@@ -1,0 +1,138 @@
+# Dylan's Compton config
+
+# Backend to use: "xrender" or "glx".
+# GLX backend is typically much faster but depends on a sane driver.
+backend = "glx";
+
+# GLX backend
+glx-no-stencil = true;
+
+# GLX backend: Copy unmodified regions from front buffer instead of redrawing them all.
+glx-copy-from-front = false;
+
+# Shadows
+
+# Enabled client-side shadows on windows.
+shadow = true;
+
+# Don't draw shadows on DND windows.
+no-dnd-shadow = true;
+
+# Avoid drawing shadows on dock/panel windows.
+no-dock-shadow = false;
+
+# Zero the part of the shadow's mask behind the window. Fix some weirdness with ARGB windows.
+clear-shadow = true;
+
+# The blur radius for shadows. (default 12)
+shadow-radius = 3;
+
+# The left offset for shadows. (default -15)
+shadow-offset-x = -5;
+
+# The top offset for shadows. (default -15)
+shadow-offset-y = -5;
+
+# The translucency for shadows. (default .75)
+shadow-opacity = 0.85;
+
+# Set if you want different colour shadows
+shadow-red = 0.03;
+shadow-green = 0.03;
+shadow-blue = 0.04;
+
+# Opacity
+menu-opacity = 1;
+inactive-opacity = 1;
+active-opacity = 1;
+frame-opacity = 1;
+inactive-opacity-override = false;
+alpha-step = 0.06;
+
+blur-background = false;
+
+# Blur background of opaque windows with transparent frames as well.
+blur-background-frame = false;
+
+# Do not let blur radius adjust based on window opacity.
+blur-background-fixed = false;
+blur-background-exclude = [
+    "window_type = 'dock'",
+    "window_type = 'desktop'"
+];
+
+# Fading
+
+# Fade windows during opacity changes.
+fading = true;
+
+# The time between steps in a fade in milliseconds. (default 10).
+fade-delta = 4;
+
+# Opacity change between steps while fading in. (default 0.028).
+fade-in-step = 0.03;
+
+# Opacity change between steps while fading out. (default 0.03).
+fade-out-step = 0.03;
+
+# Other
+
+# Try to detect WM windows and mark them as active.
+mark-wmwin-focused = true;
+
+# Mark all non-WM but override-redirect windows active (e.g. menus).
+mark-ovredir-focused = true;
+
+# Use EWMH _NET_WM_ACTIVE_WINDOW to determine which window is focused instead of using FocusIn/Out events.
+# Usually more reliable but depends on a EWMH-compliant WM.
+use-ewmh-active-win = true;
+
+# Detect rounded corners and treat them as rectangular when --shadow-ignore-shaped is on.
+detect-rounded-corners = true;
+
+# Detect _NET_WM_OPACITY on client windows, useful for window managers not passing _NET_WM_OPACITY of client windows to frame windows.
+# This prevents opacity being ignored for some apps.
+detect-client-opacity = true;
+
+# Sets vsync method
+vsync = "opengl-swc";
+
+# Enable DBE painting mode, intended to use with VSync to (hopefully) eliminate tearing.
+# Reported to have no effect, though.
+dbe = false;
+
+# Painting on X Composite overlay window. Recommended.
+paint-on-overlay = true;
+
+# Limit compton to repaint at most once every 1 / refresh_rate second to boost performance.
+sw-opti = false;
+
+# Unredirect all windows if a full-screen opaque window is detected, to maximize performance for full-screen windows, like games.
+unredir-if-possible = true;
+
+# Use WM_TRANSIENT_FOR to group windows, and consider windows in the same group focused at the same time.
+detect-transient = true;
+
+# Use WM_CLIENT_LEADER to group windows, and consider windows in the same group focused at the same time.
+# WM_TRANSIENT_FOR has higher priority if --detect-transient is enabled, too.
+detect-client-leader = true;
+
+# Window type settings
+
+wintypes:
+{
+    tooltip =
+    {
+        # fade: Fade the particular type of windows.
+        fade = true;
+
+        # shadow: Give those windows shadow
+        shadow = false;
+
+        # opacity: Default opacity for the type of windows.
+        opacity = 0.85;
+
+        # focus: Whether to always consider windows of this type focused.
+        focus = true;
+    };
+};

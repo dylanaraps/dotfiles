@@ -1,0 +1,17 @@
+" Default settings
+loadplugins '\.(js|penta)$'
+group user
+set cdpath=''
+
+" Hides everything but the tab bar
+set go=
+
+" Fix for Ublock Origin's popup ui not working with the url bar disabled
+style -name ublick * #nav-bar * { visibility: visible; }
+
+" Maps Ctrl + Left/Right to cycle through tabs
+map <C-Left> :tabprevious<CR>
+map <C-Right> :tabnext<CR>
+
+" Remaps Ctrl + T to open a new tab
+map <C-T> :tabnew<CR>
