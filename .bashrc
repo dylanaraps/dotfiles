@@ -15,3 +15,5 @@ alias firefoxram='firefox-sync -p wli7iozi.default-1428800970735'
 # Sets editor to vim
 export EDITOR=vim
 
+
+export PATH="$PATH:$HOME/.rvm/bin" # Add RVM to PATH for scripting
