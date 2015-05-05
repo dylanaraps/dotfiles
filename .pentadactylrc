@@ -7,6 +7,7 @@ set cdpath=''
 
 " Hides everything but the tab bar
 set go=
+set showtabline=never
 
 " Fix for Ublock Origin's popup ui not working with the url bar disabled
 style -name ublick * #nav-bar * { visibility: visible; }
@@ -17,9 +18,9 @@ set findcase=smart
 set scrollsteps=1
 set scrolltime=0
 
-" Maps Ctrl Right + Left arrows to cycle through tabs
-nmap <C-h> :tabprevious<CR>
-nmap <C-l> :tabnext<CR>
+" Maps Tab and Shift Tab to cycle through buffers
+map -builtin <Tab> :tabnext<CR>
+map -builtin <S-Tab> :tabprevious<CR>
 
 " Stops pentadactly from opening start page
 nmap <C-j> <CR>

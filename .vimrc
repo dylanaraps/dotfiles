@@ -1,24 +1,31 @@
 " Dylan's Vimrc
 " Choc(?) full of stuff
+
+" Start Plug
 call plug#begin('~/.vim/plugged')
 
 Plug 'terryma/vim-expand-region'
 Plug 'bling/vim-airline'
 Plug 'chriskempson/base16-vim'
 
+" Syntax Plugins
 Plug 'JulesWang/css.vim'
-Plug 'cakebaker/scss-syntax.vim'
-
-Plug 'mikewest/vimroom'
 Plug 'ap/vim-css-color'
-Plug 'othree/html5.vim'
+Plug 'cakebaker/scss-syntax.vim'
 Plug 'hail2u/vim-css3-syntax'
+Plug 'othree/html5.vim'
 
+" Visual Plugins
+Plug 'mikewest/vimroom'
+Plug 'gregsexton/MatchTag'
+
+" Tpope Plugins (They deserve their own category)
 Plug 'tpope/vim-surround'
 Plug 'tpope/vim-commentary'
 Plug 'tpope/vim-repeat'
 
 call plug#end()
+" End Plug
 
 set t_Co=256
 set background=dark
@@ -119,8 +126,8 @@ map <Right> <nop>
 autocmd FileType python set breakindentopt=shift:4
 
 " Changes Leader to Space
-" let mapleader = "\<Space>"
-
+let mapleader      = ' '
+let maplocalleader = ' '
 
 " Maps v to expand region and Ctrl + v to shrink region
 vmap v <Plug>(expand_region_expand)
