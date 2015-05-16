@@ -1,23 +1,29 @@
-#################################
-#
-# Shadows
-#
-#################################
+# Dylan's Compton Config
+# Compton is launched with "compton --config ~/.compton"
+
+#Shadows
 
 # Enabled client-side shadows on windows.
 shadow = true;
+
 # Don't draw shadows on DND windows.
 no-dnd-shadow = true;
+
 # Avoid drawing shadows on dock/panel windows.
 no-dock-shadow = false;
+
 # Zero the part of the shadow's mask behind the window. Fix some weirdness with ARGB windows.
 clear-shadow = true;
+
 # The blur radius for shadows. (default 12)
 shadow-radius = 4;
+
 # The left offset for shadows. (default -15)
 shadow-offset-x = -5;
+
 # The top offset for shadows. (default -15)
 shadow-offset-y = -5;
+
 # The translucency for shadows. (default .75)
 shadow-opacity = 0.75;
 
@@ -31,57 +37,31 @@ shadow-blue = 0.04;
 # This list includes all the affected apps I found in my testing. The "! name~=''" part excludes shadows on any "Unknown" windows, this prevents a visual glitch with the XFWM alt tab switcher.
 shadow-exclude = [
    # "! name~=''",
-   # "name = 'lemonbar'",
    "name = 'dmenu2'",
    "name = 'Dmenu'",
-   # "name = 'bar'",
    "class_g ?= 'Dmenu'",
    "class_g ?= 'dmenu2'"
-   # "name *= 'i3bar for output DFP11'",
-   # "name *= 'dmenu'",
-   # "name *= 'j4-dmenu-desktop'",
-   # "class_g ?= 'j4-dmenu-desktop'",
-   # "class_g ?= 'i3bar'"
-#    "name = 'Docky'",
-#    "name = 'Kupfer'",
-#    "name = 'xfce4-notifyd'",
-#    "name *= 'VLC'",
-#    "name *= 'compton'",
-#    "name *= 'Chromium'",
-#    "name *= 'Chrome'",
-#    "name *= 'Firefox'",
-#    "class_g = 'Conky'",
-#    "class_g = 'Kupfer'",
-#    "class_g = 'Synapse'",
-#    "class_g ?= 'Notify-osd'",
-#    "class_g ?= 'Cairo-dock'",
-#    "class_g ?= 'Xfce4-notifyd'",
-#    "class_g ?= 'Xfce4-power-manager'"
 ];
+
 # Avoid drawing shadow on all shaped windows (see also: --detect-rounded-corners)
 shadow-ignore-shaped = false;
 
-#################################
-#
 # Fading
-#
-#################################
 
 # Fade windows during opacity changes.
 fading = true;
+
 # The time between steps in a fade in milliseconds. (default 10).
 fade-delta = 4;
+
 # Opacity change between steps while fading in. (default 0.028).
 fade-in-step = 0.03;
+
 # Opacity change between steps while fading out. (default 0.03).
 fade-out-step = 0.03;
+
 # Fade windows in/out when opening/closing
 # no-fading-openclose = true;
-
-# Specify a list of conditions of windows that should not be faded.
-fade-exclude = [
-    "name = 'poniesbox'"
-];
 
 # Set VSync method. VSync methods currently available:
 # none: No VSync

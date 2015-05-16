@@ -4,9 +4,9 @@ set cdpath=''
 set toolbars=nonavigation
 set scrollbars=false
 set editor=nvim -f
-set defsearch=duckduckgo
+set defsearch=google
 
-" Fix for Ublock Origin's popup ui not working with the url bar disabled
+" Fix for Ublock Origin and Umatrix's  popup ui not working with the url bar disabled
 style -name ublick * #nav-bar * { visibility: visible; }
 
 " Maps Tab and Shift Tab to cycle through buffers

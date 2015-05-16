@@ -45,7 +45,7 @@ COMPLETION_WAITING_DOTS="true"
 # Custom plugins may be added to ~/.oh-my-zsh/custom/plugins/
 # Example format: plugins=(rails git textmate ruby lighthouse)
 # Add wisely, as too many plugins slow down shell startup.
-plugins=(archlinux git sudo vi-mode)
+plugins=(archlinux git)
 
 # User configuration
 
@@ -79,12 +79,18 @@ fi
 # Example aliases
 # alias zshconfig="mate ~/.zshrc"
 # alias ohmyzsh="mate ~/.oh-my-zsh"
-alias nh="sudo nethogs enp5s0"
-alias mp3dl="cd ~/Music && youtube-dl --extract-audio --audio-format mp3"
-alias playlistupdate="cd ~/Music && ls > ~/.mpd/playlists/music.m3u"
 
-# Puts my firefox profile into ram
-# alias firefoxram='firefox-sync -p wli7iozi.default-1428800970735'
+# Starts nethogs and uses my lan card
+alias nh="sudo nethogs enp5s0"
+
+# Music Related Aliases
+# All tag editing is done inside ncmpcpp
+
+# Mp3dl downloads the video of my choice from youtube, extracts the audio and puts it in my Music folder
+alias mp3dl="cd ~/Music && youtube-dl --extract-audio --audio-format mp3"
+
+# Playlist update does an ls of my Music folder and pipes it into my ncmpcpp playlist.
+alias playlistupdate="cd ~/Music && ls > ~/.mpd/playlists/music.m3u"
 
 autoload -U compinit
 compinit

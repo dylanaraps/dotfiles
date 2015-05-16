@@ -1,25 +1,22 @@
+# Dylan's Xinitrc
+
 # Sets the caps key to escape
 setxkbmap -option caps:escape
 
-
-# Does something
+# Does something (Not sure what this does)
 [[ -f ~/.Xresources ]] && xrdb -merge ~/.Xresources
 
-# Changes the repeat rate
+# Changes the keyboard  repeat rate
 xset r rate 400 25
 
-# Disable Screensaver
-xset -dpms s off
-
-xset +fp /usr/share/fonts
-xset fp rehash
-
+# Sets up multi monitor
 xrandr --output DFP11 --auto --output DFP10 --auto --right-of DFP11 &
+
+# Launches mpd
 mpd &
 
+# Starts Compton
 compton -b --config ~/.compton &
 
 # Starts i3 window manager
 exec i3
-# sxhkd &
-# exec bspwm

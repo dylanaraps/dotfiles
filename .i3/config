@@ -1,11 +1,21 @@
-# i3 config file
+# Dylan's i3 config file
 # Please see http://i3wm.org/docs/userguide.html for a complete reference!
 
 set $mod Mod4
 
+# workspace 1 2 3 4 5 output DFP11
+# workspace 6 7 8 9 10 output DFP10
 workspace 1 output DFP11
-workspace 2 output DFP10
-# workspace 3 output DFP10
+workspace 2 output DFP11
+workspace 3 output DFP11
+workspace 4 output DFP11
+workspace 5 output DFP11
+
+workspace 6 output DFP10
+workspace 7 output DFP10
+workspace 8 output DFP10
+workspace 9 output DFP10
+workspace 10 output DFP10
 
 # Use Mouse+$mod to drag floating windows to their wanted position
 floating_modifier $mod
@@ -16,32 +26,32 @@ bindsym $mod+Return exec xfce4-terminal
 # kill focused window
 bindsym $mod+q kill
 
-# start dmenu (a program launcher)
-bindsym $mod+d exec j4-dmenu-desktop --dmenu="dmenu -nb '#181818' -nf '#FFFFFF' -sb '#7CAFC2' -i -h 28 -w 500 -x 400 -f -fn tewi -name dmenu2" --term="xfce4-terminal"
+# Starts dmenu2 inside of j4-dmenu-desktop
+bindsym $mod+d exec j4-dmenu-desktop --dmenu="dmenu -nb '#181818' -nf '#FFFFFF' -sb '#7CAFC2' -i -h 28 -w 700 -x 300 -f -fn tewi -name dmenu2" --term="xfce4-terminal"
 
 # change focus
-bindsym $mod+j focus leftpp
-bindsym $mod+k focus down
-bindsym $mod+l focus up
-bindsym $mod+semicolon focus right
+bindsym $mod+h focus leftpp
+bindsym $mod+j focus down
+bindsym $mod+k focus up
+bindsym $mod+l focus right
 
 # alternatively, you can use the cursor keys:
-bindsym $mod+Left focus left
-bindsym $mod+Down focus down
-bindsym $mod+Up focus up
-bindsym $mod+Right focus right
+# bindsym $mod+Left focus left
+# bindsym $mod+Down focus down
+# bindsym $mod+Up focus up
+# bindsym $mod+Right focus right
 
 # move focused window
-bindsym $mod+Shift+j move left
-bindsym $mod+Shift+k move down
-bindsym $mod+Shift+l move up
-bindsym $mod+Shift+semicolon move right
+bindsym $mod+Shift+h move left
+bindsym $mod+Shift+j move down
+bindsym $mod+Shift+k move up
+bindsym $mod+Shift+l move right
 
 # alternatively, you can use the cursor keys:
-bindsym $mod+Shift+Left move left
-bindsym $mod+Shift+Down move down
-bindsym $mod+Shift+Up move up
-bindsym $mod+Shift+Right move right
+# bindsym $mod+Shift+Left move left
+# bindsym $mod+Shift+Down move down
+# bindsym $mod+Shift+Up move up
+# bindsym $mod+Shift+Right move right
 
 # split in horizontal orientation
 bindsym $mod+h split h
@@ -106,16 +116,16 @@ bindsym $mod+Shift+e exec "i3-nagbar -t warning -m 'You pressed the exit shortcu
 mode "resize" {
 
         # These bindings trigger as soon as you enter the resize mode
-        bindsym j resize shrink width 10 px or 10 ppt
-        bindsym k resize grow height 10 px or 10 ppt
-        bindsym l resize shrink height 10 px or 10 ppt
-        bindsym semicolon resize grow width 10 px or 10 ppt
+        bindsym h resize shrink width 10 px or 10 ppt
+        bindsym j resize grow height 10 px or 10 ppt
+        bindsym k resize shrink height 10 px or 10 ppt
+        bindsym l resize grow width 10 px or 10 ppt
 
         # same bindings, but for the arrow keys
-        bindsym Left resize shrink width 10 px or 10 ppt
-        bindsym Down resize grow height 10 px or 10 ppt
-        bindsym Up resize shrink height 10 px or 10 ppt
-        bindsym Right resize grow width 10 px or 10 ppt
+        # bindsym Left resize shrink width 10 px or 10 ppt
+        # bindsym Down resize grow height 10 px or 10 ppt
+        # bindsym Up resize shrink height 10 px or 10 ppt
+        # bindsym Right resize grow width 10 px or 10 ppt
 
         # back to normal: Enter or Escape
         bindsym Return mode "default"
@@ -145,35 +155,32 @@ bindsym $mod+r mode "resize"
 
 # Other
 
-
-
-smart_borders on
+# smart_borders on
 # smart_gaps on
 
+# Disables window borders
 for_window [class="^.*"] border pixel 0
+
+# Makes popus open floating
 for_window [window_role="pop-up"] floating enable
 for_window [window_role="task_dialog"] floating enable
-# for_window [class="Steam"] floating enable
-# for_window [title="Steam" class="Steam"] floating enable
 
 # Commands below are executed on i3 start
+# I'm using exec always because I'm always playing around with configs and this always me to just reload this config to see changes.
+
+# Sets Bg
 exec_always --no-startup-id feh --bg-tile /home/dylan/Pictures/6.png
-# exec_always --no-startup-id xsetroot -solid "#5ED3FF"
 
+# Kills Lemonbar and relaunches it
 exec_always pkill lemonbar
-
 exec_always ~/.config/lemonbar/czaugk.sh | ~/.config/lemonbar/bar.sh
 
-exec_always --no-startup-id compton -b --config ~/.compton
-
-
-# Remove all outlines
-client.focused           #FFFFFF #FFFFFF #FFFFFF #FFFFFF
-client.focused_inactive  #4298B8 #4298B8 #4298B8 #4298B8
-client.unfocused         #4298B8 #4298B8 #4298B8 #4298B8
-client.urgent            #4298B8 #4298B8 #4298B8 #4298B8
+# Border colors
+# client.focused           #FFFFFF #FFFFFF #FFFFFF #FFFFFF
+# client.focused_inactive  #4298B8 #4298B8 #4298B8 #4298B8
+# client.unfocused         #4298B8 #4298B8 #4298B8 #4298B8
+# client.urgent            #4298B8 #4298B8 #4298B8 #4298B8
 
 # Gaps
 gaps inner 20
-# gapse uu outer R
 
