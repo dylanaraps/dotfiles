@@ -80,6 +80,8 @@ fi
 # alias zshconfig="mate ~/.zshrc"
 # alias ohmyzsh="mate ~/.oh-my-zsh"
 alias nh="sudo nethogs enp5s0"
+alias mp3dl="cd ~/Music && youtube-dl --extract-audio --audio-format mp3"
+alias playlistupdate="cd ~/Music && ls > ~/.mpd/playlists/music.m3u"
 
 # Puts my firefox profile into ram
 # alias firefoxram='firefox-sync -p wli7iozi.default-1428800970735'

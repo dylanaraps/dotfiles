@@ -17,7 +17,7 @@ Plug 'othree/html5.vim'
 
 " Visual Plugins
 Plug 'mikewest/vimroom'
-Plug 'gregsexton/MatchTag'
+
 
 " Tpope Plugins (They deserve their own category)
 Plug 'tpope/vim-surround'
@@ -29,7 +29,7 @@ call plug#end()
 
 set t_Co=256
 set background=dark
-colorscheme base16-ocean
+colorscheme base16-default
 let g:airline_powerline_fonts = 1
 
 " Word wrap
