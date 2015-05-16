@@ -1,0 +1,41 @@
+# Dylan's ncmpcpp config
+ncmpcpp_directory = "~/.ncmpcpp"
+lyrics_directory = "~/.lyrics"
+mpd_port = "6600"
+mpd_music_dir = "~/Music"
+
+# Playlist
+song_columns_list_format = "(5)[]{} (40)[blue]{a} (48)[magenta]{t|f} (4)[yellow]{l}"
+now_playing_prefix = "$b"
+#now_playing_subfix = "/$b"
+playlist_display_mode = "columns"
+autocenter_mode = "yes"
+cyclic_scrolling = "no"
+mouse_list_scroll_whole_page = "no"
+song_list_format = " $0$8$8%l$0$8 $1|$7 $7%a$7 $1|$7 $6%t$1 $R $1%b$1"
+song_library_format = "{%n > }{%t}|{%f}"
+
+# Bars
+song_status_format = "{%a - }{%t - }{%b}"
+progressbar_look = "── "
+progressbar_color = "white"
+progressbar_elapsed_color = "white"
+titles_visibility = "no"
+header_visibility = "no"
+statusbar_visibility = "no"
+
+# Browser
+browser_playlist_prefix = "$2plist »$9 "
+browser_display_mode = "columns"
+mouse_support = "no"
+
+# Visualizer
+visualizer_fifo_path = "/tmp/mpd.fifo"
+visualizer_output_name = "my_fifo"
+visualizer_sync_interval = "10"
+visualizer_in_stereo = "yes"
+
+visualizer_type = "spectrum" (spectrum/wave)
+visualizer_look = "●▮"
+
+visualizer_color = blue, yellow, magenta
