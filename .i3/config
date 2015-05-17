@@ -54,7 +54,7 @@ bindsym $mod+Shift+l move right
 # bindsym $mod+Shift+Right move right
 
 # split in horizontal orientation
-bindsym $mod+h split h
+bindsym $mod+g split h
 
 # split in vertical orientation
 bindsym $mod+v split v
@@ -173,7 +173,7 @@ exec_always --no-startup-id feh --bg-tile /home/dylan/Pictures/6.png
 
 # Kills Lemonbar and relaunches it
 exec_always pkill lemonbar
-exec_always ~/.config/lemonbar/czaugk.sh | ~/.config/lemonbar/bar.sh
+exec_always ~/.config/lemonbar/output.sh | ~/.config/lemonbar/bar.sh
 
 # Border colors
 # client.focused           #FFFFFF #FFFFFF #FFFFFF #FFFFFF
