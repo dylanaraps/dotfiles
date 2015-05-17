@@ -1,5 +1,5 @@
 # Dylan's Dotfiles
-# If you've got any questions feel free to ask.
+If you've got any questions feel free to ask.
 
 # My Setup
 
