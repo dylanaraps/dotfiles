@@ -11,7 +11,7 @@ All of the packages (Minus the font) are available in the AUR!
 * Background: #BCBCBC
 * Apllication Launcher: Dmenu2 running inside J4-dmenu
 * Terminal Emulator: Xfce4-terminal
-* Shell: zsh/[Oh-my-zsh](http://ohmyz.sh/)
+* Shell: [zsh](http://www.zsh.org/)/[Oh-my-zsh](http://ohmyz.sh/)
 * Terminal/Bar Font: [Envypn for powerline](https://github.com/therealvdeadline/Envypn-For-Powerline)
 * Text Editor: [NeoVim](https://github.com/neovim/neovim)
 * Color Scheme: [Base16-default](https://chriskempson.github.io/base16)
