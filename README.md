@@ -18,6 +18,10 @@ All of the packages (Minus the font) are available in the AUR!
 * Video Player: [Mpvhq](https://github.com/haasn/mpvhq)
 
 # Screenshots
+![Firefox](https://raw.githubusercontent.com/therealvdeadline/dotfiles/master/screenshots/firefox.png)
 
+![Busy](https://raw.githubusercontent.com/therealvdeadline/dotfiles/master/screenshots/busy.png)
+
+![Screenfetch](https://raw.githubusercontent.com/therealvdeadline/dotfiles/master/screenshots/screenfetch.png)
 
 
