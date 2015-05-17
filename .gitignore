@@ -2,5 +2,5 @@
 *.swp
 *.swo
 *.swn
-*watch_later*
+*/.config/mpv/watch_later*
 *.sass-cache*
