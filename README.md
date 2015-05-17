@@ -9,7 +9,7 @@ All of the packages (Minus the font) are available in the AUR!
 * Window Manager: [i3 Gaps Next](https://github.com/Airblader/i3)
 * Bar: [Lemonboy's Bar patched with xft support](https://github.com/krypt-n/bar)
 * Background: #BCBCBC
-* Apllication Launcher: Dmenu2 running inside J4-dmenu
+* Apllication Launcher: [Dmenu2](https://github.com/mrshankly/dmenu2) running inside [J4-dmenu](https://github.com/enkore/j4-dmenu-desktop)
 * Terminal Emulator: Xfce4-terminal
 * Shell: [zsh](http://www.zsh.org/)/[Oh-my-zsh](http://ohmyz.sh/)
 * Terminal/Bar Font: [Envypn for powerline](https://github.com/therealvdeadline/Envypn-For-Powerline)
