@@ -2,4 +2,5 @@
 *.swp
 *.swo
 *.swn
+*watch_later*
 *.sass-cache*
