@@ -5,8 +5,11 @@ mpd_port = "6600"
 mpd_music_dir = "~/Music"
 
 # Playlist
-song_columns_list_format = "(5)[]{} (40)[blue]{a} (48)[magenta]{t|f} (4)[yellow]{l}"
+song_columns_list_format = "(5)[]{} (40)[blue]{a} (48)[white]{t|f} (4)[yellow]{l}"
 now_playing_prefix = "$b"
+fetch_lyrics_for_current_song_in_background = "yes"
+follow_now_playing_lyrics = "yes"
+
 #now_playing_subfix = "/$b"
 playlist_display_mode = "columns"
 autocenter_mode = "yes"
@@ -17,7 +20,8 @@ song_library_format = "{%n > }{%t}|{%f}"
 
 # Bars
 song_status_format = "{%a - }{%t - }{%b}"
-progressbar_look = "── "
+progressbar_boldness = "no"
+progressbar_look = "-- "
 progressbar_color = "white"
 progressbar_elapsed_color = "white"
 titles_visibility = "no"

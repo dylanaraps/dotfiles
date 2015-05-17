@@ -30,7 +30,7 @@ bindsym $mod+q kill
 bindsym $mod+d exec j4-dmenu-desktop --dmenu="dmenu -nb '#181818' -nf '#FFFFFF' -sb '#7CAFC2' -i -h 28 -w 700 -x 300 -f -fn tewi -name dmenu2" --term="xfce4-terminal"
 
 # change focus
-bindsym $mod+h focus leftpp
+bindsym $mod+h focus left
 bindsym $mod+j focus down
 bindsym $mod+k focus up
 bindsym $mod+l focus right
