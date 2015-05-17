@@ -1,6 +1,8 @@
 # Dylan's Dotfiles
 These are my dotfiles, I just moved to Arch a few months ago and it's great! If you've got any questions about any of the files  feel free to ask.
 
+All of the packages (Minus the font) are available in the AUR!
+
 # My Setup
 
 * Linux Distro: [Arch Linux](https://www.archlinux.org/)
