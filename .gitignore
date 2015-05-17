@@ -1,4 +1,5 @@
 *~
 *.swp
 *.swo
+*.swn
 *.sass-cache*
