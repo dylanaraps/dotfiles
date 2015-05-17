@@ -10,6 +10,7 @@ All of the packages (Minus the font) are available in the AUR!
 * Bar: [Lemonboy's Bar patched with xft support](https://github.com/krypt-n/bar)
 * Background: #BCBCBC
 * Terminal Emulator: Xfce4-terminal
+* Shell: zsh/Oh-my-zsh
 * Terminal/Bar Font: [Envypn for powerline](https://github.com/therealvdeadline/Envypn-For-Powerline)
 * Text Editor: [NeoVim](https://github.com/neovim/neovim)
 * Color Scheme: [Base16-default](https://chriskempson.github.io/base16)
