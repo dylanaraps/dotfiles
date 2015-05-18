@@ -1,4 +1,5 @@
 # Dylan's Xinitrc
+xrdb -merge ~/.Xresources
 
 # Sets the caps key to escape
 setxkbmap -option caps:escape
@@ -9,7 +10,10 @@ setxkbmap -option caps:escape
 # Changes the keyboard  repeat rate
 xset r rate 400 25
 
-# Sets up multi monitor
+xset +fp /usr/share/fonts/envypnforpowerline
+xset fp rehash
+
+# Sets up multi monito
 xrandr --output DFP11 --auto --output DFP10 --auto --right-of DFP11 &
 
 # Launches mpd

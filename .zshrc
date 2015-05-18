@@ -1,11 +1,20 @@
 # Path to your oh-my-zsh installation.
 export ZSH=/home/dylan/.oh-my-zsh
 
+# Sets xfce4-terminal colors to 256
+export TERM=xterm-256color
+
+# Base16 Shell
+BASE16_SHELL="/usr/share/base16-shell/base16-default.dark.sh"
+[[ -s $BASE16_SHELL ]] && source $BASE16_SHELL
+
 # Set name of the theme to load.
 # Look in ~/.oh-my-zsh/themes/
 # Optionally, if you set this to "random", it'll load a random theme each
 # time that oh-my-zsh is loaded.
-ZSH_THEME="fishy"
+ZSH_THEME="geoffgarside"
+
+# DEFAULT_USER="dylan"
 
 # Uncomment the following line to use case-sensitive completion.
 # CASE_SENSITIVE="true"

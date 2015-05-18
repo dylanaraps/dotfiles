@@ -3,6 +3,6 @@
 # ~/.cofnig/lemonbar/output.sh | ~/.config/lemonbar/bar.sh
 
 fg=FFFFFF
-font="envypn\ for\ powerline"
+font="envpynforpowerline"
 
 lemonbar -g 1600x28 -f $font -F \#FF$fg

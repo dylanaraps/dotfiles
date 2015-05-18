@@ -26,7 +26,9 @@ Plug 'tpope/vim-repeat'
 call plug#end()
 " End Plug
 
+set encoding=utf-8
 set t_Co=256
+let base16colorspace=256
 set background=dark
 colorscheme base16-default
 
@@ -102,6 +104,7 @@ set title
 
 " Auto Indents
 set autoindent
+set breakindent
 
 set complete-=i
 set smarttab
