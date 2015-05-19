@@ -1,4 +1,5 @@
 #!/bin/zsh
+pkill lemonbar
 
 # Colors
 white=FFFFFF
