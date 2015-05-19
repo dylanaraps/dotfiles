@@ -47,12 +47,6 @@ bindsym $mod+Shift+j move down
 bindsym $mod+Shift+k move up
 bindsym $mod+Shift+l move right
 
-# alternatively, you can use the cursor keys:
-# bindsym $mod+Shift+Left move left
-# bindsym $mod+Shift+Down move down
-# bindsym $mod+Shift+Up move up
-# bindsym $mod+Shift+Right move right
-
 # split in horizontal orientation
 bindsym $mod+g split h
 
@@ -72,12 +66,6 @@ bindsym $mod+Shift+space floating toggle
 
 # change focus between tiling / floating windows
 bindsym $mod+space focus mode_toggle
-
-# focus the parent container
-bindsym $mod+a focus parent
-
-# focus the child container
-#bindsym $mod+d focus child
 
 # switch to workspace
 bindsym $mod+1 workspace 1
@@ -121,42 +109,21 @@ mode "resize" {
         bindsym k resize shrink height 10 px or 10 ppt
         bindsym l resize grow width 10 px or 10 ppt
 
-        # same bindings, but for the arrow keys
-        # bindsym Left resize shrink width 10 px or 10 ppt
-        # bindsym Down resize grow height 10 px or 10 ppt
-        # bindsym Up resize shrink height 10 px or 10 ppt
-        # bindsym Right resize grow width 10 px or 10 ppt
-
         # back to normal: Enter or Escape
         bindsym Return mode "default"
         bindsym Escape mode "default"
 }
 
+# Resize Mode
 bindsym $mod+r mode "resize"
 
-# Start i3blocks
-# bar {
-#         font lucy: tewi 11px
-#         height 28
-# 	output DFP11
-# 	position top
-#         tray_output none
+# Move back and forth between workspaces
+workspace_auto_back_and_forth yes
+bindsym $mod+z workspace back_and_forth
+bindsym $mod+Shift+z move container to workspace back_and_forth
 
-#         colors {
-#                 background #181818
-
-#         # Type                     border  background font
-#                 focused_workspace  #DC9656 #DC9656 #FFFFFF
-#                 active_workspace   #DC9656 #DC9656 #FFFFFF
-#                 inactive_workspace #7CAFC2 #7CAFC2 #FFFFFF
-#                 urgent_workspace   #7CAFC2 #7CAFC2 #FFFFFF
-#         }
-# }
-
-# Other
-
-# smart_borders on
-# smart_gaps on
+# Move to next workspace on output
+bindsym $mod+Tab workspace next_on_output
 
 # Disables window borders
 for_window [class="^.*"] border pixel 0
@@ -165,21 +132,12 @@ for_window [class="^.*"] border pixel 0
 for_window [window_role="pop-up"] floating enable
 for_window [window_role="task_dialog"] floating enable
 
-# Commands below are executed on i3 start
-# I'm using exec always because I'm always playing around with configs and this always me to just reload this config to see changes.
-
 # Sets Bg
 exec_always --no-startup-id feh --bg-tile /home/dylan/Pictures/6.png
 
 # Kills Lemonbar and relaunches it
 exec_always pkill lemonbar
 exec_always ~/.config/lemonbar/output.sh | ~/.config/lemonbar/bar.sh
-
-# Border colors
-# client.focused           #FFFFFF #FFFFFF #FFFFFF #FFFFFF
-# client.focused_inactive  #4298B8 #4298B8 #4298B8 #4298B8
-# client.unfocused         #4298B8 #4298B8 #4298B8 #4298B8
-# client.urgent            #4298B8 #4298B8 #4298B8 #4298B8
 
 # Gaps
 gaps inner 20

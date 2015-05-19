@@ -26,11 +26,10 @@ Plug 'tpope/vim-repeat'
 call plug#end()
 " End Plug
 
-set encoding=utf-8
 set t_Co=256
-let base16colorspace=256
 set background=dark
 colorscheme base16-default
+let base16colorspace=256
 
 " Word wrap
 set wrap
