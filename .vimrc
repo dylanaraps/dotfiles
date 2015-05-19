@@ -26,6 +26,14 @@ Plug 'tpope/vim-repeat'
 call plug#end()
 " End Plug
 
+" Stores all swap/backup files in a seperate directory
+set dir=~/.nvim/swap//
+set backupdir=~/.nvim/backups//
+set undodir=~/.nvim/undo//
+
+" Hides the 'existing swap file error'
+set shortmess+=A
+
 set t_Co=256
 set background=dark
 colorscheme base16-default
@@ -142,12 +150,9 @@ let g:airline_theme='base16'
 let g:airline_powerline_fonts = 1
 
 " Persistent Undo, Vim remembers everything even after the file is closed.
-if exists("&undodir")
-	set undofile
-	let &undodir=&directory
-	set undolevels=500
-	set undoreload=500
-endif
+set undofile
+set undolevels=500
+set undoreload=500
 
 " Map : to ; (then remap ;) -- massive pinky-saver
 noremap ; :

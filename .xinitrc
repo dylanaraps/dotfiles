@@ -10,6 +10,7 @@ setxkbmap -option caps:escape
 # Changes the keyboard  repeat rate
 xset r rate 400 25
 
+# Sets font directory for enypn
 xset +fp /usr/share/fonts/envypnforpowerline
 xset fp rehash
 
