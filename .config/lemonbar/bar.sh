@@ -42,6 +42,7 @@ volume(){
 	voldown="A5:amixer set Master 5%-:"
 	volmute="A:amixer set Master toggle:"
 
+	# Volume Indicator
 	if [[ $(amixer get Master | awk '/Mono:/ {print $6}') == "[off]" ]]; then
 		vol=$(echo "Mute")
 	else
@@ -73,5 +74,6 @@ while :; do
 	sleep .05s
 done |
 
+# Finally, launches bar while piping the above while loop!
 # | zsh is needed on the end for the click events to work.
 lemonbar -g 1600x25 -f $font -f $icons -F \#FF$white | zsh
