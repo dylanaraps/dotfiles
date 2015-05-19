@@ -35,12 +35,6 @@ bindsym $mod+j focus down
 bindsym $mod+k focus up
 bindsym $mod+l focus right
 
-# alternatively, you can use the cursor keys:
-# bindsym $mod+Left focus left
-# bindsym $mod+Down focus down
-# bindsym $mod+Up focus up
-# bindsym $mod+Right focus right
-
 # move focused window
 bindsym $mod+Shift+h move left
 bindsym $mod+Shift+j move down
@@ -137,7 +131,7 @@ exec_always --no-startup-id feh --bg-tile /home/dylan/Pictures/6.png
 
 # Kills Lemonbar and relaunches it
 exec_always pkill lemonbar
-exec_always ~/.config/lemonbar/output.sh | ~/.config/lemonbar/bar.sh
+exec_always ~/.config/lemonbar/bar.sh
 
 # Gaps
 gaps inner 20
