@@ -70,17 +70,18 @@ volume(){
 
 workspace(){
 	# Prints a list of all open workspaces and highlights the active workspace, the empty double quotes are needed for formatting
-	wslist=$(wmctrl -d | awk '/ / {printf $2 $9 " "}' | tr -d "-")
+	wslist=$(wmctrl -d | awk '/ / {printf $2 $9}' | sed -e 's/\*[0-9]/%{B#DC9656} & %{B}/g' -e 's/\-[0-9]/%{B#AB4642} & %{B}/g' | tr -d "*-")
 
+	# | tr -d "-"
 	# Space infront of $wslist is needed to center the output.
-	echo " $wslist "
+	echo "$wslist"
 }
 
 while :; do
 	# Every line below is a different "Block" on the bar. I've laid it out this way so that it's easier to edit and to see what's going on.
 	echo\
 		"%{l}\
-			%{B$red} $(workspace) \
+			%{B$red}$(workspace)%{B$red}\
 			%{B$blue} $(focustitle) \
 		%{l}\
 		%{r}\
