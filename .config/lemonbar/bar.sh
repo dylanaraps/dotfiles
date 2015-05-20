@@ -30,7 +30,7 @@ clock(){
 focustitle(){
 	# Grabs focused window's title
 	title=$(xdotool getactivewindow getwindowname)
-	echo "$title" | cut -c 1-37 # Limits the output to a maximum of 40 chars
+	echo "$title" | cut -c 1-37 # Limits the output to a maximum # of chars
 }
 
 memory(){
@@ -83,7 +83,7 @@ while :; do
 	# Every line below is a different "Block" on the bar. I've laid it out this way so that it's easier to edit and to see what's going on.
 	echo\
 		"%{l}\
-			%{B$red}$(workspace)%{B$red}\
+			$(workspace)\
 			%{B$blue} $(focustitle) \
 		%{l}\
 		%{r}\
