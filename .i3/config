@@ -27,7 +27,7 @@ bindsym $mod+Return exec xfce4-terminal
 bindsym $mod+q kill
 
 # Starts dmenu2 inside of j4-dmenu-desktop
-bindsym $mod+d exec j4-dmenu-desktop --dmenu="dmenu -nb '#181818' -nf '#FFFFFF' -sb '#7CAFC2' -i -h 25 -w 700 -x 300 -f -fn tewi -name dmenu2" --term="xfce4-terminal"
+bindsym $mod+d exec j4-dmenu-desktop --dmenu="dmenu -nb '#181818' -nf '#FFFFFF' -sb '#7CAFC2' -i -h 28 -w 700 -x 300 -f -fn tewi -name dmenu2" --term="xfce4-terminal"
 
 # change focus
 bindsym $mod+h focus left
@@ -127,10 +127,11 @@ for_window [window_role="pop-up"] floating enable
 for_window [window_role="task_dialog"] floating enable
 
 # Sets Bg
-exec_always --no-startup-id feh --bg-tile /home/dylan/Pictures/6.png
+exec_always --no-startup-id feh --bg-fill /home/dylan/Pictures/papes/13.jpg
 
 # Kills Lemonbar and relaunches it
-exec_always ~/.config/lemonbar/bar.sh
+exec_always --no-startup-id pkill lemonbar
+exec_always --no-startup-id ~/.config/lemonbar/bar.sh
 
 # Gaps
 gaps inner 20

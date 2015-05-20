@@ -7,15 +7,10 @@ pkill lemonbar
 
 # Colors
 white="FFFFFF"
-
-black="#181818"
-blue="#7CAFC2"
-cyan="#86C1B9"
-green="#A1B56C"
-orange="#DC9656"
-purple="#BA8BAF"
-red="#AB4642"
-yellow="#F7CA88"
+black="#1C2023"
+darkgrey="#393F45"
+green="#AE95C7"
+blue="#95AEC7"
 
 # Fonts
 font="Lemon"
@@ -29,13 +24,13 @@ clock(){
 
 focustitle(){
 	# Grabs focused window's title
-	title=$(xdotool getactivewindow getwindowname)
+	title=$(xdotool getactivewindow getwindowname 2>/dev/null || echo "Hi")
 	echo "$title" | cut -c 1-37 # Limits the output to a maximum # of chars
 }
 
 memory(){
 	# Show free memory
-	free -m | awk '/Mem:/ {print " " $3" MB Free "}'
+	free -m | awk '/Mem:/ {print " " $3" MB Used "}'
 }
 
 music(){
@@ -73,7 +68,7 @@ workspace(){
 	workspaceprevious="A5:i3-msg workspace prev_on_output:"
 
 	# Prints a list of all open workspaces and highlights the active workspace, the empty double quotes are needed for formatting
-	wslist=$(wmctrl -d | awk '/ / {printf $2 $9}' | sed -e 's/\*[0-9]/%{B#DC9656} & %{B}/g' -e 's/\-[0-9]/%{B#AB4642}%{A:i3-msg workspace &:} & %{A}%{B}/g' -e 's/\*//g' -e 's/\ -/ /g')
+	wslist=$(wmctrl -d | awk '/ / {printf $2 $9}' | sed -e 's/\*[0-9]/%{B#393F45} & %{B}/g' -e 's/\-[0-9]/%{B#1C2023}%{A:i3-msg workspace &:} & %{A}%{B}/g' -e 's/\*//g' -e 's/\ -/ /g')
 
 	# Space infront of $wslist is needed to center the output.
 	echo "%{$workspacenext}%{$workspaceprevious}$wslist%{A}%{A}"
@@ -86,14 +81,16 @@ while :; do
 			$(workspace)\
 			%{B$blue} $(focustitle) \
 		%{l}\
+		%{c}\
+			%{B$blue} $(music) \
+			%{B$darkgrey} $(volume) \
+		%{c}\
 		%{r}\
-			%{B$cyan} $(music) \
-			%{B$blue} $(volume) \
-			%{B$purple} $(memory) \
-			%{B$red} $(clock) \
+			%{B$darkgrey} $(memory) \
+			%{B$black} $(clock) \
 			%{B$black}\
 		%{r}"
-	sleep .02s
+	sleep .03s
 done |
 
 # Finally, launches bar while piping the above while loop!
