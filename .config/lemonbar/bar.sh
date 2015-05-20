@@ -22,18 +22,26 @@ font="Lemon"
 icons="Sijipatched"
 
 clock(){
-	# Displays the date "Sun 17 May 9:10 AM"
+	# Displays the date eg "Sun 17 May 9:10 AM"
 	date=$(date '+%a %d %b %l:%M %p')
 	echo " $date"
 }
 
+focustitle(){
+	# Grabs focused window's title
+	title=$(xdotool getactivewindow getwindowname)
+	echo "$title" | cut -c 1-37 # Limits the output to a maximum of 40 chars
+}
+
 memory(){
-	# Show free memory  "Free/Total MB"
-	free -m | awk '/Mem:/ {print " " $3" MB"}'
+	# Show free memory
+	free -m | awk '/Mem:/ {print " " $3" MB Free "}'
 }
 
 music(){
 	musictoggle="A:mpc toggle:"
+	musicnext="A4:mpc next:"
+	musicprevious="A5:mpc prev:"
 
 	# Displays currently playing mpd song, if nothing is playing it displays "Paused"
 	if [[ $(mpc status | awk 'NR==2 {print $1}') == "[playing]" ]]; then
@@ -42,7 +50,7 @@ music(){
 		playing=$(echo "Paused")
 	fi
 
-	echo "%{$musictoggle}  $playing %{A}"
+	echo "%{$musictoggle}%{$musicnext}%{$musicprevious}  $playing %{A}%{A}%{A}"
 }
 
 volume(){
@@ -60,18 +68,20 @@ volume(){
 	echo "%{$volup}%{$voldown}%{$volmute} $vol %{A}%{A}%{A}"
 }
 
-window(){
-	# Grabs focused window's title
-	title=$(xdotool getactivewindow getwindowname)
-	echo "$title" | cut -c 1-37 # Limits the output to a maximum of 40 chars
-}
+workspace(){
+	# Prints a list of all open workspaces and highlights the active workspace, the empty double quotes are needed for formatting
+	wslist=$(wmctrl -d | awk '/ / {printf $2 $9 " "}' | tr -d "-")
 
+	# Space infront of $wslist is needed to center the output.
+	echo " $wslist "
+}
 
 while :; do
 	# Every line below is a different "Block" on the bar. I've laid it out this way so that it's easier to edit and to see what's going on.
 	echo\
 		"%{l}\
-			%{B$blue} $(window) \
+			%{B$red} $(workspace) \
+			%{B$blue} $(focustitle) \
 		%{l}\
 		%{r}\
 			%{B$cyan} $(music) \
@@ -80,7 +90,7 @@ while :; do
 			%{B$red} $(clock) \
 			%{B$black}\
 		%{r}"
-	sleep .05s
+	sleep .02s
 done |
 
 # Finally, launches bar while piping the above while loop!
