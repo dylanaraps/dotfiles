@@ -6,7 +6,7 @@
 pkill lemonbar
 
 # Colors
-white=FFFFFF
+white="FFFFFF"
 
 black="#181818"
 blue="#7CAFC2"
@@ -69,12 +69,16 @@ volume(){
 }
 
 workspace(){
-	# Prints a list of all open workspaces and highlights the active workspace, the empty double quotes are needed for formatting
-	wslist=$(wmctrl -d | awk '/ / {printf $2 $9}' | sed -e 's/\*[0-9]/%{B#DC9656} & %{B}/g' -e 's/\-[0-9]/%{B#AB4642} & %{B}/g' | tr -d "*-")
+	wsunfocused="#DC9656"
+	wsfocused="#AB4642"
 
-	# | tr -d "-"
-	# Space infront of $wslist is needed to center the output.
-	echo "$wslist"
+	workspacenext="A4:i3-msg workspace next_on_output:"
+	workspaceprevious="A5:i3-msg workspace prev_on_output:"
+
+	# Prints a list of all open workspaces and highlights the active workspace, the empty double quotes are needed for formatting
+	wslist=$(wmctrl -d | awk '/ / {printf $2 $9}' | sed -e 's/\*[0-9]/%{B$wsfocused} & %{B}/g' -e 's/\-[0-9]/%{B$wsunfocused}%{A:echo "hi":} & %{A}%{B}/g' | tr -d "*-")
+
+	echo "%{$workspacenext}%{$workspaceprevious}$wslist%{A}%{A}"
 }
 
 while :; do
