@@ -73,7 +73,7 @@ workspace(){
 	workspaceprevious="A5:i3-msg workspace prev_on_output:"
 
 	# Prints a list of all open workspaces and highlights the active workspace, the empty double quotes are needed for formatting
-	wslist=$(wmctrl -d | awk '/ / {printf $2 $9}' | sed -e 's/\*[0-9]/%{B#DC9656} & %{B}/g' -e 's/\-[0-9]/%{B#AB4642}%{A:i3-msg workspace 1:} & %{A}%{B}/g' -e 's/\*//g' -e 's/\ -/ /g')
+	wslist=$(wmctrl -d | awk '/ / {printf $2 $9}' | sed -e 's/\*[0-9]/%{B#DC9656} & %{B}/g' -e 's/\-[0-9]/%{B#AB4642}%{A:i3-msg workspace &:} & %{A}%{B}/g' -e 's/\*//g' -e 's/\ -/ /g')
 
 	# Space infront of $wslist is needed to center the output.
 	echo "%{$workspacenext}%{$workspaceprevious}$wslist%{A}%{A}"
