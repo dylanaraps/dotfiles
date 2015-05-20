@@ -2,7 +2,11 @@
 export ZSH=/home/dylan/.oh-my-zsh
 
 # Sets xfce4-terminal colors to 256
-export TERM=xterm-256color
+if [[ "$COLORTERM" == "xfce4-terminal" ]]; then
+	export TERM=xterm-256color
+else
+	export TERM=xterm
+fi
 
 # Base16 Shell
 BASE16_SHELL="/usr/share/base16-shell/base16-default.dark.sh"

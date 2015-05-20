@@ -1,4 +1,8 @@
 #!/bin/zsh
+# Dylan's Lemonbar
+
+# Kills lemon bar to keep one instance open
+# Useful as I'm constantly editing and then reloading this file.
 pkill lemonbar
 
 # Colors
@@ -6,12 +10,16 @@ white=FFFFFF
 
 black="#181818"
 blue="#7CAFC2"
+cyan="#86C1B9"
+green="#A1B56C"
 orange="#DC9656"
 purple="#BA8BAF"
+red="#AB4642"
+yellow="#F7CA88"
 
 # Fonts
-font="envpynforpowerline"
-icons="-wuncon-siji-medium-r-normal--10-100-75-75-c-80-iso10646-1"
+font="Lemon"
+icons="Sijipatched"
 
 clock(){
 	# Displays the date "Sun 17 May 9:10 AM"
@@ -21,7 +29,7 @@ clock(){
 
 memory(){
 	# Show free memory  "Free/Total MB"
-	free -m | awk '/Mem:/ {print " " $3, "/ " $2 " MB"}'
+	free -m | awk '/Mem:/ {print " " $3" MB"}'
 }
 
 music(){
@@ -55,7 +63,7 @@ volume(){
 window(){
 	# Grabs focused window's title
 	title=$(xdotool getactivewindow getwindowname)
-	echo "$title" | cut -c 1-40 # Limits the output to a maximum of 40 chars
+	echo "$title" | cut -c 1-37 # Limits the output to a maximum of 40 chars
 }
 
 
@@ -66,9 +74,10 @@ while :; do
 			%{B$blue} $(window) \
 		%{l}\
 		%{r}\
-			%{B$blue} $(music) \
-			%{B$purple} $(volume) \
-			%{B$orange} $(clock) \
+			%{B$cyan} $(music) \
+			%{B$blue} $(volume) \
+			%{B$purple} $(memory) \
+			%{B$red} $(clock) \
 			%{B$black}\
 		%{r}"
 	sleep .05s

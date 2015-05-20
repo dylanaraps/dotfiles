@@ -12,6 +12,8 @@ xset r rate 400 25
 
 # Sets font directory for enypn
 xset +fp /usr/share/fonts/envypnforpowerline
+xset +fp /usr/share/fonts/envypn
+xset +fp /usr/share/fonts/sijipatched
 xset fp rehash
 
 # Sets up multi monito
