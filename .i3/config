@@ -27,7 +27,7 @@ bindsym $mod+Return exec xfce4-terminal
 bindsym $mod+q kill
 
 # Starts dmenu2 inside of j4-dmenu-desktop
-bindsym $mod+d exec j4-dmenu-desktop --dmenu="dmenu -nb '#181818' -nf '#FFFFFF' -sb '#7CAFC2' -i -h 28 -w 700 -x 300 -f -fn tewi -name dmenu2" --term="xfce4-terminal"
+bindsym $mod+d exec j4-dmenu-desktop --dmenu="dmenu -nb '#1E1E1E' -nf '#FFFFFF' -sb '#7587A6' -i -h 25 -w 1600 -f -fn Lemon  -name dmenu2" --term="xfce4-terminal"
 
 # change focus
 bindsym $mod+h focus left
@@ -65,7 +65,7 @@ bindsym $mod+space focus mode_toggle
 bindsym $mod+1 workspace 1
 bindsym $mod+2 workspace 2
 bindsym $mod+3 workspace 3
-bindsym $mod+4 workspace They call me
+bindsym $mod+4 workspace 4
 bindsym $mod+5 workspace 5
 bindsym $mod+6 workspace 6
 bindsym $mod+7 workspace 7
@@ -122,12 +122,19 @@ bindsym $mod+Tab workspace next_on_output
 # Disables window borders
 for_window [class="^.*"] border pixel 0
 
+# class                 border  backgr. text    indicator
+client.focused          #7587A6 #7587A6 #000000 #7587A6
+client.focused_inactive #323537 #323537 #ffffff #323537
+client.unfocused        #323537 #323537 #888888 #323537
+client.urgent           #323537 #323537 #ffffff #323537
+client.placeholder      #323537 #323537 #ffffff #323537
+
 # Makes popus open floating
 for_window [window_role="pop-up"] floating enable
 for_window [window_role="task_dialog"] floating enable
 
 # Sets Bg
-exec_always --no-startup-id feh --bg-fill /home/dylan/Pictures/papes/13.jpg
+exec_always --no-startup-id feh --bg-tile /home/dylan/Pictures/papes/3.png
 
 # Kills Lemonbar and relaunches it
 exec_always --no-startup-id pkill lemonbar

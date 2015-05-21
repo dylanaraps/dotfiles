@@ -7,7 +7,7 @@ pkill lemonbar
 
 # Colors
 white="FFFFFF"
-black="#1E1E1E"
+black="#181818"
 darkgrey="#323537"
 blue="#7587A6"
 

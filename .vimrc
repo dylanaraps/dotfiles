@@ -34,10 +34,16 @@ set undodir=~/.nvim/undo//
 " Hides the 'existing swap file error'
 set shortmess+=A
 
+" Overides Theme's Line number bg color
+autocmd ColorScheme * highlight LineNr ctermfg=darkgrey ctermbg=black
+
+" Set Vim to use 256 colors
 set t_Co=256
+let base16colorspace=256
+
+" Set theme and background color
 set background=dark
 colorscheme base16-twilight
-let base16colorspace=256
 
 " Word wrap
 set wrap
@@ -68,6 +74,10 @@ set noeol
 
 " Switch syntax highlighting on
 syntax on
+
+" Line numbers
+set number
+
 
 " Shows ruler
 set ruler
@@ -168,8 +178,8 @@ cnoreabbrev <expr> W ((getcmdtype() is# ':' && getcmdline() is# 'W')?('w'):('W')
 cnoreabbrev <expr> Q ((getcmdtype() is# ':' && getcmdline() is# 'Q')?('q'):('Q'))
 
 " Vim room settings to add a gap on the left side
-highlight! link FoldColumn Normal
-set foldcolumn=1
+" highlight! link FoldColumn Normal
+" set foldcolumn=1
 
 " Stops auto adding of comments on new line
 autocmd FileType * setlocal formatoptions-=c formatoptions-=r formatoptions-=o
