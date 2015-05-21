@@ -7,10 +7,9 @@ pkill lemonbar
 
 # Colors
 white="FFFFFF"
-black="#1C2023"
-darkgrey="#393F45"
-green="#AE95C7"
-blue="#95AEC7"
+black="#1E1E1E"
+darkgrey="#323537"
+blue="#7587A6"
 
 # Fonts
 font="Lemon"
@@ -64,11 +63,14 @@ volume(){
 }
 
 workspace(){
+	# Fully functional workspace switcher for i3 (Can easily be edited to work with any wm).
+	# It currently only works for numbered workspaces up to infinity and it doesn't display the binding indicator (resize mode).
+	# I'm still working on it and I'll hopefully be able to add these features.
 	workspacenext="A4:i3-msg workspace next_on_output:"
 	workspaceprevious="A5:i3-msg workspace prev_on_output:"
 
 	# Prints a list of all open workspaces and highlights the active workspace, the empty double quotes are needed for formatting
-	wslist=$(wmctrl -d | awk '/ / {printf $2 $9}' | sed -e 's/\*[0-9]/%{B#393F45} & %{B}/g' -e 's/\-[0-9]/%{B#1C2023}%{A:i3-msg workspace &:} & %{A}%{B}/g' -e 's/\*//g' -e 's/\ -/ /g')
+	wslist=$(wmctrl -d | awk '/ / {printf $2 $9$10}' | sed -e 's/\*[0-9:[A-Za-z]*]*/%{B#AFC4DB} & %{B}/g' -e 's/\-[0-9:[A-Za-z]*]*/%{B#7587A6}%{A:i3-msg workspace &:} & %{A}%{B}/g' -e 's/\*//g' -e 's/\ -/ /g')
 
 	# Space infront of $wslist is needed to center the output.
 	echo "%{$workspacenext}%{$workspaceprevious}$wslist%{A}%{A}"
@@ -79,7 +81,7 @@ while :; do
 	echo\
 		"%{l}\
 			$(workspace)\
-			%{B$blue} $(focustitle) \
+			%{B$darkgrey} $(focustitle) \
 		%{l}\
 		%{c}\
 			%{B$blue} $(music) \

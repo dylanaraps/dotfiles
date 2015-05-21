@@ -10,10 +10,10 @@ workspace 2 output DFP11
 workspace 3 output DFP11
 workspace 4 output DFP11
 workspace 5 output DFP11
+workspace 6 output DFP11
+workspace 7 output DFP11
+workspace 8 output DFP11
 
-workspace 6 output DFP10
-workspace 7 output DFP10
-workspace 8 output DFP10
 workspace 9 output DFP10
 workspace 10 output DFP10
 
@@ -63,7 +63,7 @@ bindsym $mod+space focus mode_toggle
 
 # switch to workspace
 bindsym $mod+1 workspace 1
-bindsym $mod+2 workspace 2
+bindsym $mod+2 workspace 2: GAME
 bindsym $mod+3 workspace 3
 bindsym $mod+4 workspace 4
 bindsym $mod+5 workspace 5

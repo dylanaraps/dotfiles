@@ -36,7 +36,7 @@ set shortmess+=A
 
 set t_Co=256
 set background=dark
-colorscheme base16-ashes
+colorscheme base16-twilight
 let base16colorspace=256
 
 " Word wrap
