@@ -65,12 +65,13 @@ volume(){
 workspace(){
 	# Fully functional workspace switcher for i3 (Can easily be edited to work with any wm).
 	# Works with an infinite number of workspaces of infinite character lengths (999999999999)
-	# Works with icon fonts and workspaces that include words
-	# Only thing missing is the status indicator (Resize mode indicator) and Really long workspace names are a little iffy.
+	# Works with named workspaces up to 11 words long. (can include any amount of chars just limited word-wise)
+	# Works with icon fonts
+	# Only thing missing is the status indicator (Resize mode indicator) and I'm working on it.
 	workspacenext="A4:i3-msg workspace next_on_output:"
 	workspaceprevious="A5:i3-msg workspace prev_on_output:"
 
-	wslist=$(wmctrl -d | awk '/ / {print $2 $9, $10, $11, $12}' ORS='' | sed -e 's/  //g' -e 's/\*[0-9 A-Za-z]*[^ -~]*/%{B#AFC4DB}  & %{B}/g' -e 's/\-[0-9 A-Za-z]*[^ -~]*/%{B#7587A6}%{A:i3-msg workspace &:}  & %{A}%{B}/g' -e 's/\*//g' -e 's/\ -/ /g')
+	wslist=$(wmctrl -d | awk '/ / {print $2 $9, $10, $11, $12, $13, $14, $15, $16, $17, $18, $19, $20}' ORS='' | sed -e 's/  //g' -e 's/\*[0-9 A-Za-z]*[^ -~]*/%{B#AFC4DB}  & %{B}/g' -e 's/\-[0-9 A-Za-z]*[^ -~]*/%{B#7587A6}%{A:i3-msg workspace &:}  & %{A}%{B}/g' -e 's/\*//g' -e 's/\ -/ /g')
 
 	# Space infront of $wslist is needed to center the output.
 	echo "%{$workspacenext}%{$workspaceprevious}$wslist%{A}%{A}"
