@@ -65,7 +65,7 @@ bindsym $mod+space focus mode_toggle
 bindsym $mod+1 workspace 1
 bindsym $mod+2 workspace 2
 bindsym $mod+3 workspace 3
-bindsym $mod+4 workspace They call me nnnnnnnnnnnn they call me Stacy
+bindsym $mod+4 workspace They call me
 bindsym $mod+5 workspace 5
 bindsym $mod+6 workspace 6
 bindsym $mod+7 workspace 7
