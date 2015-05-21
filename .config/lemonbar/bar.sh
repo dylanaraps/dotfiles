@@ -64,8 +64,9 @@ volume(){
 
 workspace(){
 	# Fully functional workspace switcher for i3 (Can easily be edited to work with any wm).
-	# It currently only works for numbered workspaces up to infinity and it doesn't display the binding indicator (resize mode).
-	# I'm still working on it and I'll hopefully be able to add these features.
+	# Works with an infinite number of workspaces of infinite character lengths (999999999999)
+	# Works with icon fonts and workspaces that include words
+	# Only thing missing is the status indicator (Resize mode indicator) and I'm working on it!
 	workspacenext="A4:i3-msg workspace next_on_output:"
 	workspaceprevious="A5:i3-msg workspace prev_on_output:"
 
