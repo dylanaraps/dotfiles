@@ -66,11 +66,10 @@ workspace(){
 	# Fully functional workspace switcher for i3 (Can easily be edited to work with any wm).
 	# Works with an infinite number of workspaces of infinite character lengths (999999999999)
 	# Works with icon fonts and workspaces that include words
-	# Only thing missing is the status indicator (Resize mode indicator) and I'm working on it!
+	# Only thing missing is the status indicator (Resize mode indicator) and Really long workspace names are a little iffy.
 	workspacenext="A4:i3-msg workspace next_on_output:"
 	workspaceprevious="A5:i3-msg workspace prev_on_output:"
 
-	# Prints a list of all open workspaces and highlights the active workspace, the empty double quotes are needed for formatting
 	wslist=$(wmctrl -d | awk '/ / {print $2 $9, $10, $11, $12}' ORS='' | sed -e 's/  //g' -e 's/\*[0-9 A-Za-z]*[^ -~]*/%{B#AFC4DB}  & %{B}/g' -e 's/\-[0-9 A-Za-z]*[^ -~]*/%{B#7587A6}%{A:i3-msg workspace &:}  & %{A}%{B}/g' -e 's/\*//g' -e 's/\ -/ /g')
 
 	# Space infront of $wslist is needed to center the output.
