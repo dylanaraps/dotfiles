@@ -1,4 +1,5 @@
 " Dylan's Vimrc
+
 " Choc(?) full of stuff
 
 " Start Plug
@@ -15,10 +16,8 @@ Plug 'cakebaker/scss-syntax.vim'
 Plug 'hail2u/vim-css3-syntax'
 Plug 'othree/html5.vim'
 
-" Visual Plugins
-Plug 'mikewest/vimroom'
-
 " Tpope Plugins (They deserve their own category)
+Plug 'tpope/vim-fugitive'
 Plug 'tpope/vim-surround'
 Plug 'tpope/vim-commentary'
 Plug 'tpope/vim-repeat'
@@ -40,6 +39,9 @@ autocmd ColorScheme * highlight LineNr ctermfg=darkgrey ctermbg=black
 " Set Vim to use 256 colors
 set t_Co=256
 let base16colorspace=256
+
+" Disables Automatic Echoing
+let g:bufferline_echo = 0
 
 " Set theme and background color
 set background=dark
@@ -77,7 +79,6 @@ syntax on
 
 " Line numbers
 set number
-
 
 " Shows ruler
 set ruler
@@ -155,9 +156,13 @@ set laststatus=2
 
 " Makes vim use airline tabs
 let g:airline#extensions#tabline#enabled = 1
+let g:airline_left_sep=''
+let g:airline_right_sep=''
 
 let g:airline_theme='base16'
-let g:airline_powerline_fonts = 1
+set noshowmode
+
+" let g:airline_powerline_fonts = 1
 
 " Persistent Undo, Vim remembers everything even after the file is closed.
 set undofile
@@ -176,10 +181,6 @@ cnoreabbrev <expr> W ((getcmdtype() is# ':' && getcmdline() is# 'W')?('w'):('W')
 
 " Maps :Q to save instead of saying no command
 cnoreabbrev <expr> Q ((getcmdtype() is# ':' && getcmdline() is# 'Q')?('q'):('Q'))
-
-" Vim room settings to add a gap on the left side
-" highlight! link FoldColumn Normal
-" set foldcolumn=1
 
 " Stops auto adding of comments on new line
 autocmd FileType * setlocal formatoptions-=c formatoptions-=r formatoptions-=o

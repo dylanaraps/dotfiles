@@ -21,13 +21,13 @@ workspace 10 output DFP10
 floating_modifier $mod
 
 # start a terminal
-bindsym $mod+Return exec xfce4-terminal
+bindsym $mod+Return exec urxvt
 
 # kill focused window
 bindsym $mod+q kill
 
 # Starts dmenu2 inside of j4-dmenu-desktop
-bindsym $mod+d exec j4-dmenu-desktop --dmenu="dmenu -nb '#1E1E1E' -nf '#FFFFFF' -sb '#7587A6' -i -h 25 -w 1600 -f -fn Lemon  -name dmenu2" --term="xfce4-terminal"
+bindsym $mod+d exec j4-dmenu-desktop --dmenu="dmenu -nb '#1E1E1E' -nf '#FFFFFF' -sb '#7587A6' -i -h 25 -w 1600 -f -fn Lemon  -name dmenu2" --term="urxvt"
 
 # change focus
 bindsym $mod+h focus left
@@ -55,8 +55,8 @@ bindsym $mod+s layout stacking
 bindsym $mod+w layout tabbed
 bindsym $mod+e layout toggle split
 
-# toggle tiling / floating
-bindsym $mod+Shift+space floating toggle
+# toggle tiling / floating / border
+bindsym $mod+Shift+space floating toggle; border 1pixel
 
 # change focus between tiling / floating windows
 bindsym $mod+space focus mode_toggle
@@ -120,12 +120,16 @@ bindsym $mod+Shift+z move container to workspace back_and_forth
 bindsym $mod+Tab workspace next_on_output
 
 # Disables window borders
+# Smart borders with a border size of 0 adds borders to floating windows only.
+# Needs i3-gaps
+# Add these two commands below and add ;border 1px to the end of the floating bind.
 for_window [class="^.*"] border pixel 0
+smart_borders on
 
 # class                 border  backgr. text    indicator
-client.focused          #7587A6 #7587A6 #000000 #7587A6
-client.focused_inactive #323537 #323537 #ffffff #323537
-client.unfocused        #323537 #323537 #888888 #323537
+client.focused          #FFFFFF #FFFFFF #000000 #FFFFFF
+client.focused_inactive #FFFFFF #FFFFFF #888888 #FFFFFF
+client.unfocused        #FFFFFF #FFFFFF #888888 #FFFFFF
 client.urgent           #323537 #323537 #ffffff #323537
 client.placeholder      #323537 #323537 #ffffff #323537
 
@@ -134,10 +138,9 @@ for_window [window_role="pop-up"] floating enable
 for_window [window_role="task_dialog"] floating enable
 
 # Sets Bg
-exec_always --no-startup-id feh --bg-tile /home/dylan/Pictures/papes/3.png
+exec_always --no-startup-id feh --bg-fill /home/dylan/Pictures/papes/22.jpe
 
 # Kills Lemonbar and relaunches it
-exec_always --no-startup-id pkill lemonbar
 exec_always --no-startup-id ~/.config/lemonbar/bar.sh
 
 # Gaps

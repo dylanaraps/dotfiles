@@ -9,7 +9,7 @@ pkill lemonbar
 white="FFFFFF"
 black="#181818"
 darkgrey="#323537"
-blue="#7587A6"
+green="#8F9D6A"
 
 # Fonts
 font="Lemon"
@@ -71,7 +71,7 @@ workspace(){
 	workspacenext="A4:i3-msg workspace next_on_output:"
 	workspaceprevious="A5:i3-msg workspace prev_on_output:"
 
-	wslist=$(wmctrl -d | awk '/ / {print $2 $9, $10, $11, $12, $13, $14, $15, $16, $17, $18, $19, $20}' ORS='' | sed -e 's/\s*  //g' -e 's/\*[0-9 A-Za-z]*[^ -~]*/%{B#AFC4DB}  &  %{B}/g' -e 's/\-[0-9 A-Za-z]*[^ -~]*/%{B#7587A6}%{A:i3-msg workspace &:}  &  %{A}%{B}/g' -e 's/\*//g' -e 's/\ -/ /g')
+	wslist=$(wmctrl -d | awk '/ / {print $2 $9, $10, $11, $12, $13, $14, $15, $16, $17, $18, $19, $20}' ORS='' | sed -e 's/\s*  //g' -e 's/\*[0-9 A-Za-z]*[^ -~]*/%{B#8F9D6A}  &  %{B}/g' -e 's/\-[0-9 A-Za-z]*[^ -~]*/%{B#323537}%{A:i3-msg workspace &:}  &  %{A}%{B}/g' -e 's/\*//g' -e 's/\ -/ /g')
 
 	# Space infront of $wslist is needed to center the output.
 	echo "%{$workspacenext}%{$workspaceprevious}$wslist%{A}%{A}"
@@ -82,10 +82,10 @@ while :; do
 	echo\
 		"%{l}\
 			$(workspace)\
-			%{B$darkgrey} $(focustitle) \
+			%{B$black} $(focustitle) \
 		%{l}\
 		%{c}\
-			%{B$blue} $(music) \
+			%{B$green} $(music) \
 			%{B$darkgrey} $(volume) \
 		%{c}\
 		%{r}\
