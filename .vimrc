@@ -1,5 +1,6 @@
 " Dylan's Vimrc
 
+
 " Choc(?) full of stuff
 
 " Start Plug
@@ -7,6 +8,7 @@ call plug#begin('~/.vim/plugged')
 
 Plug 'terryma/vim-expand-region'
 Plug 'bling/vim-airline'
+" Plug 'ap/vim-buftabline'
 Plug 'chriskempson/base16-vim'
 
 " Syntax Plugins
@@ -17,7 +19,6 @@ Plug 'hail2u/vim-css3-syntax'
 Plug 'othree/html5.vim'
 
 " Tpope Plugins (They deserve their own category)
-Plug 'tpope/vim-fugitive'
 Plug 'tpope/vim-surround'
 Plug 'tpope/vim-commentary'
 Plug 'tpope/vim-repeat'
@@ -161,8 +162,6 @@ let g:airline_right_sep=''
 
 let g:airline_theme='base16'
 set noshowmode
-
-" let g:airline_powerline_fonts = 1
 
 " Persistent Undo, Vim remembers everything even after the file is closed.
 set undofile

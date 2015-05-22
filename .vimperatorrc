@@ -27,3 +27,46 @@ map <Right> <nop>
 noremap ; :
 noremap <M-;> ;
 
+" Colors
+highlight! CmdLine color: #CECFD1; background: #1E1E1E;
+highlight! CmdLine>* font-family: "Droid Sans"; font-size: 8pt; height: 12px;
+highlight! Normal color: #AAABAD; /*background: #1E1E1E;*/ font-family: "Droid Sans"; font-size: 8pt;
+highlight! StatusLine color: #AAABAD; background: #1E1E1E; font-family: "Droid Sans"; font-size: 8pt;
+
+highlight! Bell border: none; background: #323537;
+highlight! Boolean color: #AAABAD;
+highlight! CompDesc width: auto; color: #AAABAD;
+highlight! CompItem>* height: auto; padding: 0 8px;
+highlight! CompItem background: #323537;
+highlight! CompItem[selected] color: #CECFD1; background: #17181A;
+highlight! CompTitle background: #323537; font-family: "Droid Sans"; font-size: 10pt;
+highlight! CompTitle>* color: #CECFD1; padding: 2px 8px;
+
+highlight! Disabled color: #AAABAD;
+highlight! Enabled color: #AAABAD;
+highlight! ErrorMsg color: #F56C66; font-family: "Droid Sans"; font-size: 10pt;
+highlight! Filter color: #CECFD1; background: #17181A;
+highlight! FrameIndicator background: #AAABAD; opacity: 0.5; z-index: 999; position: fixed; top: 0; bottom: 0; left: 0; right: 0;
+
+highlight! HelpNote color: #8859B3;
+highlight! HelpWarning color: #B359A4;
+
+highlight! Hint font-family: "Droid Sans"; font-size: 10pt; color: #CECFD1; background: #17181A; padding: 1px;
+highlight! HintActive color: #AAABAD; background: #27282B;
+highlight! HintElem background: transparent;
+highlight! HintImage opacity: 0.5;
+
+highlight! InfoMsg color: #AAABAD;
+highlight! Keyword color: #AAABAD;
+highlight! LineNr color: #AAABAD;
+highlight! NonText color: #AAABAD;
+
+highlight! ModeMsg color: #AAABAD; background: transparent; padding: 0 8px; font-family: "Droid Sans"; font-size: 10pt;
+highlight! MoreMsg color: #AAABAD; font-family: "Droid Sans"; font-size: 10pt;
+
+highlight! PromptText color: #AAABAD; padding-top: 4px;
+highlight! Question color: #AAABAD;
+
+highlight! Title color: #CECFD1;
+highlight! WarningMsg color: #AAABAD;
+
