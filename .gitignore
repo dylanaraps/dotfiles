@@ -3,4 +3,5 @@
 *.swo
 *.swn
 .config/mpv/watch_later
+.config/lemonbar/progressbar.sh
 *.sass-cache*
