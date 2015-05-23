@@ -56,10 +56,11 @@ bindsym $mod+w layout tabbed
 bindsym $mod+e layout toggle split
 
 # toggle tiling / floating / border
-bindsym $mod+Shift+space floating toggle; border 1pixel
+bindsym $mod+Shift+space floating enable; border 1pixel
+bindsym $mod+space floating disable; border none
 
 # change focus between tiling / floating windows
-bindsym $mod+space focus mode_toggle
+# bindsym $mod+space focus mode_toggle
 
 # switch to workspace
 bindsym $mod+1 workspace 1
@@ -121,7 +122,8 @@ bindsym $mod+Tab workspace next_on_output
 
 # Disables window borders
 for_window [class="^.*"] border pixel 0
-smart_borders on
+new_window pixel 0
+new_float pixel 1
 
 # class                 border  backgr. text    indicator
 client.focused          #FFFFFF #FFFFFF #000000 #FFFFFF
@@ -133,6 +135,11 @@ client.placeholder      #323537 #323537 #ffffff #323537
 # Makes popus open floating
 for_window [window_role="pop-up"] floating enable
 for_window [window_role="task_dialog"] floating enable
+
+# Enables Floating for all steam windows apart from the main ui
+for_window [class="Steam"] floating enable
+for_window [title="Steam"] floating disable
+for_window [class="Steam" title="Steam - Update News$"] floating enable
 
 # Sets Bg
 exec_always --no-startup-id feh --bg-fill /home/dylan/Pictures/papes/22.jpe
