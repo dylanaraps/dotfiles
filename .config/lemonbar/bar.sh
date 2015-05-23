@@ -74,6 +74,7 @@ workspace(){
 	# Works with an infinite number of workspaces of infinite character lengths (999999999999)
 	# Works with named workspaces up to 11 words long. (can include any amount of chars just limited word-wise)
 	# Works with icon fonts
+	# Bug: Click events don't work when the workspace is named (number: word) for some reason. Not sure is it's an i3 issue as the code sent to bar looks fine.
 	# Only thing missing is the status indicator (Resize mode indicator) and I'm working on it.
 	workspacenext="A4:i3-msg workspace next_on_output:"
 	workspaceprevious="A5:i3-msg workspace prev_on_output:"
@@ -82,10 +83,10 @@ workspace(){
 		wmctrl -d \
 		| awk '/ / {print $2 $9, $10, $11, $12, $13, $14, $15, $16, $17, $18, $19, $20}' ORS=''\
 		| sed -e 's/\s*  //g' \
-		      -e 's/\*[0-9A-Za-z: ]*[^ -~]*/%{B#8F9D6A}  &  %{B}/g' \
-		      -e 's/\-[0-9A-Za-z: ]*[^ -~]*/%{B#323537}%{A:i3-msg workspace &:}  &  %{A}%{B}/g' \
+		      -e 's/\*[ 0-9A-Za-z]*[^ -~]*/%{B#8F9D6A}  &  %{B}/g' \
+		      -e 's/\-[ 0-9A-Za-z]*[^ -~]*/%{B#323537}%{A:i3-msg workspace &:}  &  %{A}%{B}/g' \
 		      -e 's/\*//g' \
-		      -e 's/\ -/ /g' \
+		      -e 's/ -/ /g' \
 	)
 
 	# Space infront of $wslist is needed to center the output.

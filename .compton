@@ -39,7 +39,7 @@ shadow-exclude = [
    # "! name~=''",
    "name = 'dmenu2'",
    "name = 'Dmenu'",
-   "name = 'bar'",
+   # "name = 'bar'",
    "class_g ?= 'Dmenu'",
    "class_g ?= 'dmenu2'"
 ];
@@ -50,7 +50,7 @@ shadow-ignore-shaped = false;
 # Fading
 
 # Fade windows during opacity changes.
-fading = true;
+fading = false;
 
 # The time between steps in a fade in milliseconds. (default 10).
 fade-delta = 4;
