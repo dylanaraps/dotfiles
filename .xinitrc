@@ -22,7 +22,7 @@ xset fp rehash
 # Sets up multi monito
 xrandr --output DFP11 --auto --output DFP10 --auto --right-of DFP11 &
 
-# Launches mpd
+# Starts mpd
 mpd &
 
 # Starts Compton

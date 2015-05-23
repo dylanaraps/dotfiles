@@ -21,10 +21,15 @@ clock(){
 	echo " $date"
 }
 
+# cpu(){
+# 	cpuusage=$(mpstat | awk '/all/ {print $4 + $6}')
+# 	echo "$cpuusage % Used"
+# }
+
 focustitle(){
 	# Grabs focused window's title
 	title=$(xdotool getactivewindow getwindowname 2>/dev/null || echo "Hi")
-	echo "$title" | cut -c 1-37 # Limits the output to a maximum # of chars
+	echo "$title" | cut -c 1-50 # Limits the output to a maximum # of chars
 }
 
 memory(){
@@ -39,12 +44,13 @@ music(){
 
 	# Displays currently playing mpd song, if nothing is playing it displays "Paused"
 	if [[ $(mpc status | awk 'NR==2 {print $1}') == "[playing]" ]]; then
-		playing=$(mpc current | cut -c 1-50) # Limits the output to a maximum of 50 chars
+		current=$(mpc current | cut -c 1-50) # Limits the output to a maximum of 50 chars
+		playing=$(echo " $current")
 	else
-		playing=$(echo "Paused")
+		playing=$(echo " Paused")
 	fi
 
-	echo "%{$musictoggle}%{$musicnext}%{$musicprevious}  $playing %{A}%{A}%{A}"
+	echo "%{$musictoggle}%{$musicnext}%{$musicprevious} $playing %{A}%{A}%{A}"
 }
 
 volume(){
@@ -54,16 +60,17 @@ volume(){
 
 	# Volume Indicator
 	if [[ $(amixer get Master | awk '/Mono:/ {print $6}') == "[off]" ]]; then
-		vol=$(echo "Mute")
+		vol=$(echo " Mute")
 	else
-		vol=$(amixer get Master | egrep -o '[0-9]{1,3}%' | sed -e 's/%//')
+		mastervol=$(amixer get Master | egrep -o '[0-9]{1,3}%' | sed -e 's/%//')
+		vol=$(echo " $mastervol")
 	fi
 
-	echo "%{$volup}%{$voldown}%{$volmute} $vol %{A}%{A}%{A}"
+	echo "%{$volup}%{$voldown}%{$volmute} $vol %{A}%{A}%{A}"
 }
 
 workspace(){
-	# Fully functional workspace switcher for i3 (Can easily be edited to work with any wm).
+	# Fully functional workspace switcher for i3 using wmctrl/i3-msg (Can easily be edited to work with any wm) by Dylan Araps.
 	# Works with an infinite number of workspaces of infinite character lengths (999999999999)
 	# Works with named workspaces up to 11 words long. (can include any amount of chars just limited word-wise)
 	# Works with icon fonts
@@ -71,7 +78,15 @@ workspace(){
 	workspacenext="A4:i3-msg workspace next_on_output:"
 	workspaceprevious="A5:i3-msg workspace prev_on_output:"
 
-	wslist=$(wmctrl -d | awk '/ / {print $2 $9, $10, $11, $12, $13, $14, $15, $16, $17, $18, $19, $20}' ORS='' | sed -e 's/\s*  //g' -e 's/\*[0-9 A-Za-z]*[^ -~]*/%{B#8F9D6A}  &  %{B}/g' -e 's/\-[0-9 A-Za-z]*[^ -~]*/%{B#323537}%{A:i3-msg workspace &:}  &  %{A}%{B}/g' -e 's/\*//g' -e 's/\ -/ /g')
+	wslist=$(\
+		wmctrl -d \
+		| awk '/ / {print $2 $9, $10, $11, $12, $13, $14, $15, $16, $17, $18, $19, $20}' ORS=''\
+		| sed -e 's/\s*  //g' \
+		      -e 's/\*[0-9A-Za-z: ]*[^ -~]*/%{B#8F9D6A}  &  %{B}/g' \
+		      -e 's/\-[0-9A-Za-z: ]*[^ -~]*/%{B#323537}%{A:i3-msg workspace &:}  &  %{A}%{B}/g' \
+		      -e 's/\*//g' \
+		      -e 's/\ -/ /g' \
+	)
 
 	# Space infront of $wslist is needed to center the output.
 	echo "%{$workspacenext}%{$workspaceprevious}$wslist%{A}%{A}"

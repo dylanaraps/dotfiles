@@ -65,8 +65,8 @@ bindsym $mod+space floating disable; border none
 # switch to workspace
 bindsym $mod+1 workspace 1
 bindsym $mod+2 workspace 2
-bindsym $mod+3 workspace 3
-bindsym $mod+4 workspace 4
+bindsym $mod+3 workspace 3: Hi;
+bindsym $mod+4 workspace TOTOTOTOTOTOTO
 bindsym $mod+5 workspace 5
 bindsym $mod+6 workspace 6
 bindsym $mod+7 workspace 7
@@ -140,6 +140,9 @@ for_window [window_role="task_dialog"] floating enable
 for_window [class="Steam"] floating enable
 for_window [title="Steam"] floating disable
 for_window [class="Steam" title="Steam - Update News$"] floating enable
+
+# Borders per application
+for_window [class="Firefox"] border none
 
 # Sets Bg
 exec_always --no-startup-id feh --bg-fill /home/dylan/Pictures/papes/22.jpe
