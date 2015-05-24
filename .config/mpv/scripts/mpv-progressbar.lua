@@ -1,6 +1,6 @@
 local msg = require('mp.msg')
-local bar_height = 2
-local hover_zone = 20
+local bar_height = 1
+local hover_zone = 2
 local log = {
   debug = function(format, ...)
     return msg.debug(format:format(...))
@@ -15,7 +15,7 @@ local log = {
     local level = 2
     if "table" ~= type(item) then
       msg.info(tostring(item))
-      return 
+      return
     end
     local count = 1
     local tablecount = 1
@@ -63,7 +63,7 @@ do
   local _base_0 = {
     addSubscriber = function(self, subscriber)
       if not subscriber then
-        return 
+        return
       end
       self.subscriberCount = self.subscriberCount + 1
       subscriber.aggregatorIndex = self.subscriberCount
@@ -197,14 +197,14 @@ do
     end,
     startAnimation = function(self)
       if self.animating then
-        return 
+        return
       end
       self.timer:resume()
       self.animating = true
     end,
     stopAnimation = function(self)
       if not (self.animating) then
-        return 
+        return
       end
       self.timer:kill()
       self.animating = false

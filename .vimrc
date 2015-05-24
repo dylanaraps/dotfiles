@@ -1,6 +1,4 @@
 " Dylan's Vimrc
-
-
 " Choc(?) full of stuff
 
 " Start Plug
@@ -31,9 +29,6 @@ set dir=~/.nvim/swap//
 set backupdir=~/.nvim/backups//
 set undodir=~/.nvim/undo//
 
-" Hides the 'existing swap file error'
-set shortmess+=A
-
 " Overides Theme's Line number bg color
 autocmd ColorScheme * highlight LineNr ctermfg=darkgrey ctermbg=black
 
@@ -52,7 +47,6 @@ colorscheme base16-twilight
 set wrap
 set linebreak
 set nolist
-
 set textwidth=0
 set wrapmargin=0
 
@@ -180,6 +174,9 @@ cnoreabbrev <expr> W ((getcmdtype() is# ':' && getcmdline() is# 'W')?('w'):('W')
 
 " Maps :Q to save instead of saying no command
 cnoreabbrev <expr> Q ((getcmdtype() is# ':' && getcmdline() is# 'Q')?('q'):('Q'))
+
+" Maps :E to save instead of saying no command
+cnoreabbrev <expr> E ((getcmdtype() is# ':' && getcmdline() is# 'E')?('e'):('E'))
 
 " Stops auto adding of comments on new line
 autocmd FileType * setlocal formatoptions-=c formatoptions-=r formatoptions-=o

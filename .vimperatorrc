@@ -28,10 +28,10 @@ noremap ; :
 noremap <M-;> ;
 
 " Colors
-highlight! CmdLine color: #CECFD1; background: #1E1E1E;
+highlight! CmdLine color: #CECFD1; background: #181818;
 highlight! CmdLine>* font-family: "Droid Sans"; font-size: 8pt; height: 12px;
-highlight! Normal color: #AAABAD; /*background: #1E1E1E;*/ font-family: "Droid Sans"; font-size: 8pt;
-highlight! StatusLine color: #AAABAD; background: #1E1E1E; font-family: "Droid Sans"; font-size: 8pt;
+highlight! Normal color: #AAABAD; /*background: #181818;*/ font-family: "Droid Sans"; font-size: 8pt;
+highlight! StatusLine color: #AAABAD; background: #181818; font-family: "Droid Sans"; font-size: 8pt;
 
 highlight! Bell border: none; background: #323537;
 highlight! Boolean color: #AAABAD;

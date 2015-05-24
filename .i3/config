@@ -141,8 +141,8 @@ for_window [class="Steam"] floating enable
 for_window [title="Steam"] floating disable
 for_window [class="Steam" title="Steam - Update News$"] floating enable
 
-# Borders per application
-for_window [class="Firefox"] border none
+# Apps on Workspaces
+assign [class="mpv"] mpv
 
 # Sets Bg
 exec_always --no-startup-id feh --bg-fill /home/dylan/Pictures/papes/22.jpe

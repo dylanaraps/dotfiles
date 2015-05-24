@@ -8,7 +8,7 @@ pkill lemonbar
 # Colors
 white="FFFFFF"
 black="#181818"
-darkgrey="#323537"
+darkgrey="#282828"
 green="#8F9D6A"
 
 # Fonts
