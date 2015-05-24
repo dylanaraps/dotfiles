@@ -27,6 +27,10 @@ map <Right> <nop>
 noremap ; :
 noremap <M-;> ;
 
+" Map backspace to :back
+noremap b :back <CR>
+noremap <S-b> :forward <CR>
+
 " Colors
 highlight! CmdLine color: #CECFD1; background: #181818;
 highlight! CmdLine>* font-family: "Droid Sans"; font-size: 8pt; height: 12px;

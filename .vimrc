@@ -6,8 +6,8 @@ call plug#begin('~/.vim/plugged')
 
 Plug 'terryma/vim-expand-region'
 Plug 'bling/vim-airline'
-" Plug 'ap/vim-buftabline'
 Plug 'chriskempson/base16-vim'
+Plug 'terryma/vim-multiple-cursors'
 
 " Syntax Plugins
 Plug 'JulesWang/css.vim'

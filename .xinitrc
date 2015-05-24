@@ -8,7 +8,7 @@ setxkbmap -option caps:escape
 [[ -f ~/.Xresources ]] && xrdb -merge ~/.Xresources
 
 # Changes the keyboard  repeat rate
-xset r rate 500 25
+xset r rate 400 25
 
 # Disables Mouse Accel
 xset m 0/0 0
@@ -22,7 +22,7 @@ xset fp rehash
 # Sets up multi monito
 xrandr --output DFP11 --auto --output DFP10 --auto --right-of DFP11 &
 
-# Starts mpd
+# Launches mpd
 mpd &
 
 # Starts Compton
