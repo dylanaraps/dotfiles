@@ -8,7 +8,7 @@ setxkbmap -option caps:escape
 [[ -f ~/.Xresources ]] && xrdb -merge ~/.Xresources
 
 # Changes the keyboard  repeat rate
-xset r rate 400 25
+xset r rate 500 25
 
 # Disables Mouse Accel
 xset m 0/0 0

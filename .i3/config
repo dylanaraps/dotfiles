@@ -65,7 +65,7 @@ bindsym $mod+space floating disable; border none
 # switch to workspace
 bindsym $mod+1 workspace www
 bindsym $mod+2 workspace code
-bindsym $mod+3 workspace games
+bindsym $mod+3 workspace game
 bindsym $mod+4 workspace 4
 bindsym $mod+5 workspace 5
 bindsym $mod+6 workspace 6
@@ -143,6 +143,9 @@ for_window [class="Steam" title="Steam - Update News$"] floating enable
 
 # Apps on Workspaces
 assign [class="mpv"] mpv
+assign [class="Transmission-gtk"] mpv
+assign [class="Steam"] game
+assign [class="csgo_linux"] game
 
 # Sets Bg
 exec_always --no-startup-id feh --bg-fill /home/dylan/Pictures/papes/22.jpe
@@ -152,4 +155,5 @@ exec_always --no-startup-id ~/.config/lemonbar/bar.sh
 
 # Gaps
 gaps inner 20
+
 
