@@ -21,7 +21,7 @@ song_library_format = "{%n > }{%t}|{%f}"
 # Bars
 song_status_format = "{%a - }{%t - }{%b}"
 progressbar_boldness = "no"
-progressbar_look = "-- "
+progressbar_look = "▮▮ "
 progressbar_color = "white"
 progressbar_elapsed_color = "white"
 titles_visibility = "no"
@@ -42,4 +42,4 @@ visualizer_in_stereo = "yes"
 visualizer_type = "spectrum" (spectrum/wave)
 visualizer_look = "●▮"
 
-visualizer_color = blue, yellow, magenta
+visualizer_color = green

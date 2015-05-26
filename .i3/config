@@ -125,6 +125,9 @@ for_window [class="^.*"] border pixel 0
 new_window pixel 0
 new_float pixel 1
 
+# Gaps
+gaps inner 20
+
 # class                 border  backgr. text    indicator
 client.focused          #FFFFFF #FFFFFF #000000 #FFFFFF
 client.focused_inactive #FFFFFF #FFFFFF #888888 #FFFFFF
@@ -142,18 +145,17 @@ for_window [title="Steam"] floating disable
 for_window [class="Steam" title="Steam - Update News$"] floating enable
 
 # Apps on Workspaces
-assign [class="mpv"] mpv
-assign [class="Transmission-gtk"] mpv
+assign [class="Firefox"] www
+
 assign [class="Steam"] game
 assign [class="csgo_linux"] game
+
+assign [class="mpv"] mpv
+assign [class="Transmission-gtk"] mpv
+assign [class="Popcorntime"] mpv
 
 # Sets Bg
 exec_always --no-startup-id feh --bg-fill /home/dylan/Pictures/papes/22.jpe
 
-# Kills Lemonbar and relaunches it
+# Starts lemonbar
 exec_always --no-startup-id ~/.config/lemonbar/bar.sh
-
-# Gaps
-gaps inner 20
-
-
