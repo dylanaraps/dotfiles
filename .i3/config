@@ -144,8 +144,9 @@ for_window [class="Steam"] floating enable
 for_window [title="Steam"] floating disable
 for_window [class="Steam" title="Steam - Update News$"] floating enable
 
-# Apps on Workspaces
+# Programs on Workspaces
 assign [class="Firefox"] www
+assign [class="qutebrowser"] www
 
 assign [class="Steam"] game
 assign [class="csgo_linux"] game

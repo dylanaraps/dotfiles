@@ -3,7 +3,6 @@
 # Feel free to use/edit this script!
 # If you manage to improve the script please send a PR
 
-
 # Kills lemon bar to keep one instance open
 # Useful as I'm constantly editing and then reloading this file.
 pkill lemonbar
