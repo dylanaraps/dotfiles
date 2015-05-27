@@ -1,7 +1,11 @@
+""""""""""""""""""""""""
 " Dylan's Vimrc
 " Choc(?) full of stuff
+""""""""""""""""""""""""
 
+"""""""""""""
 " Start Plug
+"""""""""""""
 call plug#begin('~/.vim/plugged')
 
 Plug 'terryma/vim-expand-region'
@@ -22,12 +26,13 @@ Plug 'tpope/vim-commentary'
 Plug 'tpope/vim-repeat'
 
 call plug#end()
+"""""""""""
 " End Plug
+"""""""""""
 
-" Stores all swap/backup files in a seperate directory
-set dir=~/.nvim/swap//
-set backupdir=~/.nvim/backups//
-set undodir=~/.nvim/undo//
+"""""""""""""""""
+" User Interface
+"""""""""""""""""
 
 " Overides Theme's Line number bg color
 autocmd ColorScheme * highlight LineNr ctermfg=darkgrey ctermbg=black
@@ -50,6 +55,96 @@ set nolist
 set textwidth=0
 set wrapmargin=0
 
+" Switch syntax highlighting on
+syntax on
+
+" Line numbers
+set number
+
+" Shows ruler
+set ruler
+
+" Enable file type detection and do language-dependent indenting.
+filetype plugin indent on
+
+" Don’t show the intro message when starting Vim
+set shortmess=atI
+
+" Show the current mode
+set showmode
+
+" Show the filename in the window titlebar
+set title
+
+" Hides Vim's current mode inplace of Airline's
+set noshowmode
+
+""""""""""
+" Airline
+""""""""""
+
+" Makes airline display at all times
+set laststatus=2
+
+" Makes vim use airline tabs
+let g:airline#extensions#tabline#enabled = 1
+
+" Change the seperator to blank
+let g:airline_left_sep=''
+let g:airline_right_sep=''
+
+" Airline Theme
+let g:airline_theme='base16'
+
+"""""""""""""""
+" Key Bindings
+"""""""""""""""
+
+" Maps W/Q/E to their lowecase commands
+cnoreabbrev <expr> W ((getcmdtype() is# ':' && getcmdline() is# 'W')?('w'):('W'))
+cnoreabbrev <expr> Q ((getcmdtype() is# ':' && getcmdline() is# 'Q')?('q'):('Q'))
+cnoreabbrev <expr> E ((getcmdtype() is# ':' && getcmdline() is# 'E')?('e'):('E'))
+
+" Maps Tab and Shift Tab to cycle through buffers
+nnoremap <Tab> :bnext<CR>
+nnoremap <S-Tab> :bprevious<CR>
+
+" Unmaps the arrow keys
+map <Up> <nop>
+map <Down> <nop>
+map <Left> <nop>
+map <Right> <nop>
+
+" Does Something
+autocmd FileType python set breakindentopt=shift:4
+
+" Maps v to expand region and Ctrl + v to shrink region
+" hitting v once selects the letter
+" hitting v twice selects the word
+" hitting v three times selects the paragraph
+vmap v <Plug>(expand_region_expand)
+vmap <C-v> <Plug>(expand_region_shrink)
+
+" Map : to ; (then remap ;)
+noremap ; :
+noremap <M-;> ;
+
+""""""""""""""
+" File Saving
+""""""""""""""
+
+" Stores all swap/backup files in a seperate directory
+set dir=~/.nvim/swap//
+set backupdir=~/.nvim/backups//
+set undodir=~/.nvim/undo//
+
+" Automatically removes all trailing whitespaces on :w
+autocmd BufWritePre * :%s/\s\+$//e
+
+""""""""
+" Misc
+""""""""
+
 " Use the OS clipboard by default
 set clipboard+=unnamedplus
 
@@ -69,23 +164,9 @@ set lcs=tab:▸\ ,trail:·,eol:¬,nbsp:_
 set binary
 set noeol
 
-" Switch syntax highlighting on
-syntax on
-
-" Line numbers
-set number
-
-" Shows ruler
-set ruler
-
-" Show cmd
 set showcmd
-
 set wildmenu
 set autoread
-
-" Enable file type detection and do language-dependent indenting.
-filetype plugin indent on
 
 " Highlight searches
 set hlsearch
@@ -103,18 +184,6 @@ set noerrorbells
 " Don’t reset cursor to start of line when moving around.
 set nostartofline
 
-" Show the cursor position
-set ruler
-
-" Don’t show the intro message when starting Vim
-set shortmess=atI
-
-" Show the current mode
-set showmode
-
-" Show the filename in the window titlebar
-set title
-
 " Auto Indents
 set autoindent
 set breakindent
@@ -125,58 +194,10 @@ set nrformats-=octal
 
 set ttimeout
 
-" Maps Tab and Shift Tab to cycle through buffers
-nnoremap <Tab> :bnext<CR>
-nnoremap <S-Tab> :bprevious<CR>
-
-" Unmaps the arrow keys
-map <Up> <nop>
-map <Down> <nop>
-map <Left> <nop>
-map <Right> <nop>
-
-
-" Does Something
-autocmd FileType python set breakindentopt=shift:4
-
-" Maps v to expand region and Ctrl + v to shrink region
-" hitting v once selects the letter
-" hitting v twice selects the word
-" hitting v three times selects the paragraph
-vmap v <Plug>(expand_region_expand)
-vmap <C-v> <Plug>(expand_region_shrink)
-
-" Makes airline display at all times
-set laststatus=2
-
-" Makes vim use airline tabs
-let g:airline#extensions#tabline#enabled = 1
-let g:airline_left_sep=''
-let g:airline_right_sep=''
-
-let g:airline_theme='base16'
-set noshowmode
-
 " Persistent Undo, Vim remembers everything even after the file is closed.
 set undofile
 set undolevels=500
 set undoreload=500
-
-" Map : to ; (then remap ;) -- massive pinky-saver
-noremap ; :
-noremap <M-;> ;
-
-" Automatically removes all trailing whitespaces on :w
-autocmd BufWritePre * :%s/\s\+$//e
-
-" Maps :W to save instead of saying no command
-cnoreabbrev <expr> W ((getcmdtype() is# ':' && getcmdline() is# 'W')?('w'):('W'))
-
-" Maps :Q to save instead of saying no command
-cnoreabbrev <expr> Q ((getcmdtype() is# ':' && getcmdline() is# 'Q')?('q'):('Q'))
-
-" Maps :E to save instead of saying no command
-cnoreabbrev <expr> E ((getcmdtype() is# ':' && getcmdline() is# 'E')?('e'):('E'))
 
 " Stops auto adding of comments on new line
 autocmd FileType * setlocal formatoptions-=c formatoptions-=r formatoptions-=o
