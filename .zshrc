@@ -49,13 +49,8 @@ plugins=(archlinux git)
 # User configuration
 
 export PATH="$PATH:$HOME/.rvm/bin" # Add RVM to PATH for scripting
-# export MANPATH="/usr/local/man:$MANPATH"
-
 source $ZSH/oh-my-zsh.sh
 source /usr/share/zsh/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
-
-# You may need to manually set your language environment
-# export LANG=en_US.UTF-8
 
 # Preferred editor for local and remote sessions
 if [[ -n $SSH_CONNECTION ]]; then
@@ -67,17 +62,14 @@ fi
 # Compilation flags
 # export ARCHFLAGS="-arch x86_64"
 
-###########
 # ALIASES #
-###########
-
 # Starts nethogs and uses my lan card
 alias nh="sudo nethogs enp5s0"
 
-# Mp3dl downloads the video of my choice from youtube, extracts the audio and puts it in my Music folder
+# Downloads video from youtube, extracts the audio and puts it in my Music folder
 alias mp3dl="cd ~/Music && youtube-dl --extract-audio --audio-format mp3"
 
-# Playlist update does an ls of my Music folder and pipes it into my ncmpcpp playlist.
+# Does an ls of my Music folder and pipes it into my ncmpcpp playlist.
 alias playlistupdate="cd ~/Music && ls > ~/.mpd/playlists/music.m3u"
 
 # Makes ls list all files and always use color
