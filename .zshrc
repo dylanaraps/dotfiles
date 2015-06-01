@@ -44,7 +44,7 @@ DISABLE_UNTRACKED_FILES_DIRTY="true"
 # Custom plugins may be added to ~/.oh-my-zsh/custom/plugins/
 # Example format: plugins=(rails git textmate ruby lighthouse)
 # Add wisely, as too many plugins slow down shell startup.
-plugins=(archlinux git)
+plugins=(git)
 
 # User configuration
 
@@ -70,10 +70,11 @@ alias nh="sudo nethogs enp5s0"
 alias mp3dl="cd ~/Music && youtube-dl --extract-audio --audio-format mp3"
 
 # Does an ls of my Music folder and pipes it into my ncmpcpp playlist.
-alias playlistupdate="cd ~/Music && ls > ~/.mpd/playlists/music.m3u"
+alias lsnc="ls -A --color=none"
+alias plu="cd ~/Music && lsnc > ~/.mpd/playlists/music.m3u"
 
 # Makes ls list all files and always use color
-alias ls="ls -a --color=always"
+alias ls="ls -A --color=always"
 
 # OTHER
 # Enables the help command
