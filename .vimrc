@@ -129,6 +129,8 @@ vmap <C-v> <Plug>(expand_region_shrink)
 noremap ; :
 noremap <M-;> ;
 
+cmap w!! w !sudo tee %
+
 """"""""""""""
 " File Saving
 """"""""""""""
