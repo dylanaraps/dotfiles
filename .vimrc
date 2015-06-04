@@ -19,6 +19,8 @@ Plug 'ap/vim-css-color'
 Plug 'cakebaker/scss-syntax.vim'
 Plug 'hail2u/vim-css3-syntax'
 Plug 'othree/html5.vim'
+Plug 'rstacruz/vim-closer'
+Plug 'kchmck/vim-coffee-script'
 
 " Tpope Plugins (They deserve their own category)
 Plug 'tpope/vim-surround'
@@ -173,6 +175,9 @@ set autoread
 " Highlight searches
 set hlsearch
 set incsearch
+
+" Stops vim from complaining when moving between buffers with unsaved files
+set hidden
 
 " Ignore case of searches
 set ignorecase
