@@ -20,6 +20,7 @@ All of the packages (Minus the font) are available in the AUR!
 * Color Scheme: [Base16-default](https://chriskempson.github.io/base16)
 * Music Player: [Mpd](http://www.musicpd.org/) + [ncmpcpp](http://ncmpcpp.rybczak.net/)
 * Browser: [Firefox Nightly](https://nightly.mozilla.org/) with Modified [Twily Powerline Css](https://userstyles.org/styles/102262/twily-s-powerline-firefox-css) and [Vimperator](https://github.com/vimperator/vimperator-labs).
+* Startpage: [My Startpage (HTML/SCSS)](https://github.com/dylanaraps/startpage)
 * Video Player: [Mpvhq](https://github.com/haasn/mpvhq)
 
 # Screenshots (8/6/15)
