@@ -122,5 +122,5 @@ while :; do
 done |
 
 # Finally, launches bar while piping the above while loop!
-# | zsh is needed on the end for the click events to work.
+# | bash is needed on the end for the click events to work.
 lemonbar -g 1600x25 -f $font -f $icons -F \#FF$white | bash
