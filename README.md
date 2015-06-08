@@ -1,5 +1,6 @@
 # Dylan's Dotfiles
-![Webm (Recommended)](https://raw.githubusercontent.com/therealvdeadline/dotfiles/master/screenshots/desktop.webm)
+Click to view Webm
+[![Webm](https://raw.githubusercontent.com/therealvdeadline/dotfiles/master/screenshots/firefox.png)](https://raw.githubusercontent.com/therealvdeadline/dotfiles/master/screenshots/desktop.webm)
 
 These are my dotfiles, I just moved to Arch a few months ago and it's great! If you've got any questions about any of the files  feel free to ask.
 
