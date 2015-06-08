@@ -1,4 +1,4 @@
-#!/bin/zsh
+#!/bin/bash
 # Dylan's Lemonbar
 # Feel free to use/edit this script!
 # If you manage to improve the script please send a PR
@@ -123,4 +123,4 @@ done |
 
 # Finally, launches bar while piping the above while loop!
 # | zsh is needed on the end for the click events to work.
-lemonbar -g 1600x25 -f $font -f $icons -F \#FF$white | zsh
+lemonbar -g 1600x25 -f $font -f $icons -F \#FF$white | bash
