@@ -1,121 +1,115 @@
-""""""""""""""""""""""""
 " Dylan's Vimrc
-" Choc(?) full of stuff
-""""""""""""""""""""""""
 
-"""""""""""""
-" Start Plug
-"""""""""""""
+" Plugins {{{
+" Auto install plug if not found
+if empty(glob('~/.vim/autoload/plug.vim'))
+		silent !curl -fLo ~/.vim/autoload/plug.vim --create-dirs
+		\ https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
+		autocmd VimEnter * PlugInstall
+endif
+
 call plug#begin('~/.vim/plugged')
 
-Plug 'terryma/vim-expand-region'
-Plug 'bling/vim-airline'
-Plug 'chriskempson/base16-vim'
-Plug 'terryma/vim-multiple-cursors'
+" LOOKS
+Plug 'chriskempson/base16-vim'				" Base16 Theme
+	let base16colorspace=256
+	autocmd ColorScheme * highlight LineNr ctermfg=darkgrey ctermbg=black
+	autocmd ColorScheme * highlight CursorLine ctermbg=black
 
-" Syntax Plugins
+Plug 'bling/vim-airline'				" Status and Tabline
+	set laststatus=2					" Always show statusline
+	let g:airline#extensions#tabline#enabled = 1		" Enables airline tabs
+	let g:airline#extensions#tabline#fnamemod = ':t'	" Display only filename in tabs
+	let g:airline_left_sep = ''
+	let g:airline_right_sep = ''
+	let g:airline_theme = 'base16'
+
+" FUNCTIONALITY
+Plug 'terryma/vim-expand-region'			" Expands region from char to word to line
+Plug 'terryma/vim-multiple-cursors'			" Multiple cursors similar to ST2/3
+	let g:multi_cursor_next_key='<C-j>'
+	let g:multi_cursor_prev_key='<C-k>'
+	let g:multi_cursor_skip_key='<C-l>'
+	let g:multi_cursor_quit_key='<Esc>'
+
+Plug 'haya14busa/incsearch.vim' 			" Shows search results as you're typing
+Plug 'osyo-manga/vim-anzu'				" Show number of search results
+	map /  <Plug>(incsearch-forward)
+	map ?  <Plug>(incsearch-backward)
+	map g/ <Plug>(incsearch-stay)
+	map n <Plug>(incsearch-nohl)<Plug>(anzu-n-with-echo)
+	map <C-n> <Plug>(incsearch-nohl)<Plug>(anzu-N-with-echo)
+
+Plug 'tpope/vim-surround'				" Surround text
+Plug 'tpope/vim-commentary'				" Comment out text
+Plug 'rstacruz/vim-closer'				" Enters and adds closing brackets to various languages
+Plug 'mattn/emmet-vim'					" Makes html super easy
+	let g:user_emmet_install_global = 0
+	autocmd FileType html,css,scss EmmetInstall
+
+Plug 'ajh17/VimCompletesMe' 			" Tiny Autocomplete
+
+" FILETYPES
 Plug 'JulesWang/css.vim'
-Plug 'ap/vim-css-color'
+Plug 'ap/vim-css-color'					" Changes background behind hex color to it's actual color
 Plug 'cakebaker/scss-syntax.vim'
 Plug 'hail2u/vim-css3-syntax'
 Plug 'othree/html5.vim'
-Plug 'rstacruz/vim-closer'
 Plug 'kchmck/vim-coffee-script'
-Plug 'mattn/emmet-vim'
-Plug 'Shougo/neocomplcache.vim'
-
-" Vim Flier
-Plug 'Shougo/unite.vim'
-Plug 'Shougo/vimfiler.vim'
-
-" Tpope Plugins (They deserve their own category)
-Plug 'tpope/vim-surround'
-Plug 'tpope/vim-commentary'
-Plug 'tpope/vim-repeat'
 
 call plug#end()
-"""""""""""
-" End Plug
-"""""""""""
+" }}}
 
-"""""""""""""""""
-" User Interface
-"""""""""""""""""
+" Filetypes {{{
+filetype on
+filetype indent on
+filetype plugin on
+" }}}
 
-" Overides Theme's Line number bg color
-autocmd ColorScheme * highlight LineNr ctermfg=darkgrey ctermbg=black
+" Spaces and Tabs {{{
+set tabstop=4
+set lcs=tab:▸\ ,trail:·,eol:¬,nbsp:_	" Show “invisible” characters
+" }}}
 
-" Set Vim to use 256 colors
-set t_Co=256
-let base16colorspace=256
+" Line Wrap {{{
+set wrap 								" Soft wraps lines without editing file
+set linebreak							" Stops words from being cut off during linebreak
+set nolist
+set textwidth=80
+set wrapmargin=0
+set autoindent
+set breakindent
+" }}}
 
-" Disables Automatic Echoing
-let g:bufferline_echo = 0
-
-" Set theme and background color
+" Look and Feel {{{
+set title								" Change window title to filename
+syntax on 								" Switch syntac highlighting on
+set t_Co=256							" Make vim use 256 colors
 set background=dark
 colorscheme base16-twilight
-
-" Word wrap
-set wrap
-set linebreak
-set nolist
-set textwidth=0
-set wrapmargin=0
-
-" Switch syntax highlighting on
-syntax on
-
-" Line numbers
-set number
-
-" Shows ruler
-set ruler
-
-" Enable file type detection and do language-dependent indenting.
-filetype plugin indent on
-
-" Don’t show the intro message when starting Vim
-set shortmess=atI
-
-" Show the current mode
-set showmode
-
-" Show the filename in the window titlebar
-set title
-
-" Hides Vim's current mode inplace of Airline's
+set number 								" Shows linenumbers
+set ruler 								" Shows Ruler
+set shortmess=atI						" Don’t show the intro message when starting Vim
 set noshowmode
+" }}}
 
-""""""""""
-" Airline
-""""""""""
+" Searching {{{
+set hlsearch
+set incsearch
+set ignorecase 							" Do case insensitive searches
+set smartcase							" Do case sensitive searches is search term includes a capital
+" }}}
 
-" Makes airline display at all times
-set laststatus=2
-
-" Makes vim use airline tabs
-let g:airline#extensions#tabline#enabled = 1
-
-" Change the seperator to blank
-let g:airline_left_sep=''
-let g:airline_right_sep=''
-
-" Airline Theme
-let g:airline_theme='base16'
-
-"""""""""""""""
-" Key Bindings
-"""""""""""""""
-
-" Maps W/Q/E to their lowecase commands
-cnoreabbrev <expr> W ((getcmdtype() is# ':' && getcmdline() is# 'W')?('w'):('W'))
-cnoreabbrev <expr> Q ((getcmdtype() is# ':' && getcmdline() is# 'Q')?('q'):('Q'))
-cnoreabbrev <expr> E ((getcmdtype() is# ':' && getcmdline() is# 'E')?('e'):('E'))
+" Mapping {{{
+command! WQ wq
+command! Wq wq
+command! Wqa wqa
+command! W w
+command! Q q
 
 " Maps Tab and Shift Tab to cycle through buffers
-nnoremap <Tab> :bnext<CR>
-nnoremap <S-Tab> :bprevious<CR>
+nmap <Tab> :bnext<CR>
+nmap <S-Tab> :bprevious<CR>
 
 " Unmaps the arrow keys
 map <Up> <nop>
@@ -123,42 +117,57 @@ map <Down> <nop>
 map <Left> <nop>
 map <Right> <nop>
 
-" Does Something
-autocmd FileType python set breakindentopt=shift:4
-
-" Maps v to expand region and Ctrl + v to shrink region
-" hitting v once selects the letter
-" hitting v twice selects the word
-" hitting v three times selects the paragraph
-vmap v <Plug>(expand_region_expand)
-vmap <C-v> <Plug>(expand_region_shrink)
-
 " Map : to ; (then remap ;)
 noremap ; :
 noremap <M-;> ;
 
+" Save files with root privliges
 cmap w!! w !sudo tee %
 
-inoremap <expr><TAB>  pumvisible() ? "\<C-n>" : "\<TAB>"
+" Tab in insert mode to autocomplete
+imap <expr><TAB>  pumvisible() ? "\<C-n>" : "\<TAB>"
 
-nnoremap <C-x> :VimFilerBufferDir -explorer -toggle -force-quit -project <CR>
+" ESC to clear last search
+nnoremap <esc> :noh<return><esc>
 
-""""""""""""""
-" File Saving
-""""""""""""""
+" Emmet binding
+imap <C-e> <plug>(emmet-expand-abbr)
 
+" Maps v to expand region and Ctrl + v to shrink region
+vmap v <Plug>(expand_region_expand)
+vmap <C-v> <Plug>(expand_region_shrink)
+
+" remap jk and kj to escape:  You'll never type it anyway, so it's great!
+inoremap jk <Esc>
+inoremap kj <Esc>
+
+" use hjkl-movement between rows when soft wrapping:
+nnoremap j gj
+nnoremap k gk
+vnoremap j gj
+vnoremap k gk
+
+" include the default behaviour by doing reverse mappings so you can move linewise with gj and gk:
+nnoremap gj j
+nnoremap gk k
+
+" Automatically removes all trailing whitespaces on :w
+autocmd BufWritePre * :%s/\s\+$//e
+" }}}
+
+" Temp Files {{{
 " Stores all swap/backup files in a seperate directory
 set dir=~/.nvim/swap//
 set backupdir=~/.nvim/backups//
 set undodir=~/.nvim/undo//
 
-" Automatically removes all trailing whitespaces on :w
-autocmd BufWritePre * :%s/\s\+$//e
+" Persistent Undo, Vim remembers everything even after the file is closed.
+set undofile
+set undolevels=500
+set undoreload=500
+" }}}
 
-""""""""
-" Misc
-""""""""
-
+" Misc {{{
 " Use the OS clipboard by default
 set clipboard+=unnamedplus
 
@@ -171,29 +180,14 @@ set backspace=indent,eol,start
 " Allow cursor keys in insert mode
 set esckeys
 
-" Show “invisible” characters
-set lcs=tab:▸\ ,trail:·,eol:¬,nbsp:_
-
 " Don’t add empty newlines at the end of files
 set binary
 set noeol
-
 set showcmd
-set wildmenu
 set autoread
-
-" Highlight searches
-set hlsearch
-set incsearch
 
 " Stops vim from complaining when moving between buffers with unsaved files
 set hidden
-
-" Ignore case of searches
-set ignorecase
-
-" Highlight dynamically as pattern is typed
-set incsearch
 
 " Disable error bells
 set noerrorbells
@@ -201,27 +195,21 @@ set noerrorbells
 " Don’t reset cursor to start of line when moving around.
 set nostartofline
 
-" Auto Indents
-set autoindent
-set breakindent
-
 set complete-=i
 set smarttab
 set nrformats-=octal
-
 set ttimeout
-
-" Persistent Undo, Vim remembers everything even after the file is closed.
-set undofile
-set undolevels=500
-set undoreload=500
 
 " Stops auto adding of comments on new line
 autocmd FileType * setlocal formatoptions-=c formatoptions-=r formatoptions-=o
+" }}}
 
-" Enable Emmet for only html/css files.
-let g:user_emmet_install_global = 0
-autocmd FileType html,css EmmetInstall
+"Folding {{{
+set foldmethod=marker
+set foldlevel=99
+set foldnestmax=10			" max 10 depth
 
-" Enable neocomplete at startup
-let g:neocomplcache_enable_at_startup = 1
+" Save folds in vimrc
+autocmd BufWinLeave .*vimrc mkview
+autocmd BufWinEnter .*vimrc silent loadview
+" }}}

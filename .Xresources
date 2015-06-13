@@ -16,6 +16,10 @@ URxvt.keysym.Shift-Control-C:   perl:clipboard:copy
 URxvt.keysym.Shift-Control-V:   perl:clipboard:paste
 URxvt.keysym.M-C-v: perl:clipboard:paste_escaped
 
+URxvt.keysym.C-z: \033[33~
+
+URxvt.cursorColor: red
+
 ! Base16 Default
 ! Scheme: Chris Kempson (http://chriskempson.com)
 

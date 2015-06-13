@@ -19,6 +19,7 @@ BASE16_SHELL="/usr/share/base16-shell/base16-default.dark.sh"
 ZSH_THEME="fishy"
 
 DEFAULT_USER="dylan"
+ZLE_RPROMPT_INDENT=0
 
 # Uncomment the following line to disable bi-weekly auto-update checks.
 # DISABLE_AUTO_UPDATE="true"
