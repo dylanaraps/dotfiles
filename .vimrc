@@ -21,6 +21,12 @@ Plug 'hail2u/vim-css3-syntax'
 Plug 'othree/html5.vim'
 Plug 'rstacruz/vim-closer'
 Plug 'kchmck/vim-coffee-script'
+Plug 'mattn/emmet-vim'
+Plug 'Shougo/neocomplcache.vim'
+
+" Vim Flier
+Plug 'Shougo/unite.vim'
+Plug 'Shougo/vimfiler.vim'
 
 " Tpope Plugins (They deserve their own category)
 Plug 'tpope/vim-surround'
@@ -133,6 +139,10 @@ noremap <M-;> ;
 
 cmap w!! w !sudo tee %
 
+inoremap <expr><TAB>  pumvisible() ? "\<C-n>" : "\<TAB>"
+
+nnoremap <C-x> :VimFilerBufferDir -explorer -toggle -force-quit -project <CR>
+
 """"""""""""""
 " File Saving
 """"""""""""""
@@ -208,3 +218,10 @@ set undoreload=500
 
 " Stops auto adding of comments on new line
 autocmd FileType * setlocal formatoptions-=c formatoptions-=r formatoptions-=o
+
+" Enable Emmet for only html/css files.
+let g:user_emmet_install_global = 0
+autocmd FileType html,css EmmetInstall
+
+" Enable neocomplete at startup
+let g:neocomplcache_enable_at_startup = 1
