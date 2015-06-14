@@ -8,7 +8,7 @@ function! airline#themes#seoul256#refresh()
 	let modified_group = [M0[0], '', M0[2], '', '']
 	let warning_group = airline#themes#get_highlight2(['airline_warning', 'bg'], ['airline_warning', 'fg'])
 
-	let s:N1 = airline#themes#get_highlight2(['Normal', 'bg'], ['SignColumn', 'fg'], 'bold')
+	let s:N1 = airline#themes#get_highlight2(['Normal', 'bg'], ['SignColumn', 'fg'])
 	let s:N2 = airline#themes#get_highlight2(['StatusLineNC', 'bg'], ['StatusLineNC', 'fg'])
 	let s:N3 = airline#themes#get_highlight2(['StatusLineNC', 'bg'], ['CursorLine', 'bg'])
 	let g:airline#themes#seoul256#palette.normal = airline#themes#generate_color_map(s:N1, s:N2, s:N3)
@@ -32,7 +32,7 @@ function! airline#themes#seoul256#refresh()
 	let g:airline#themes#seoul256#palette.replace.airline_warning = g:airline#themes#seoul256#palette.normal.airline_warning
 	let g:airline#themes#seoul256#palette.replace_modified.airline_warning = g:airline#themes#seoul256#palette.normal_modified.airline_warning
 
-	let s:V1 = airline#themes#get_highlight2(['Normal', 'bg'], ['ErrorMsg', 'bg'])
+	let s:V1 = airline#themes#get_highlight2(['Normal', 'bg'], ['TermCursorNC', 'bg'])
 	let s:V2 = s:N2
 	let s:V3 = airline#themes#get_highlight2(['StatusLineNC', 'bg'], ['CursorLine', 'bg'])
 	let g:airline#themes#seoul256#palette.visual = airline#themes#generate_color_map(s:V1, s:V2, s:V3)
