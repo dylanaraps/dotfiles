@@ -22,6 +22,7 @@ These are my dotfiles, I just moved to Arch a few months ago and it's great! If 
 * Video Player: [Mpvhq](https://github.com/haasn/mpvhq)
 
 # Screenshots (8/6/15)
+### Outdated 14/6/15
 
 ![Firefox](https://raw.githubusercontent.com/therealvdeadline/dotfiles/master/screenshots/firefox.png)
 

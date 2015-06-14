@@ -123,7 +123,6 @@ set ruler 								" Shows Ruler
 set shortmess=atI						" Don’t show the intro message when starting Vim
 set noshowmode
 
-
 " }}}
 
 " Searching {{{
