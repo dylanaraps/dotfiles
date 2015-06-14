@@ -8,7 +8,7 @@ function! airline#themes#seoul256#refresh()
 	let modified_group = [M0[0], '', M0[2], '', '']
 	let warning_group = airline#themes#get_highlight2(['airline_warning', 'bg'], ['airline_warning', 'fg'])
 
-	let s:N1 = airline#themes#get_highlight2(['Normal', 'bg'], ['SignColumn', 'fg'])
+	let s:N1 = airline#themes#get_highlight2(['Normal', 'bg'], ['SignColumn', 'fg'], 'bold')
 	let s:N2 = airline#themes#get_highlight2(['StatusLineNC', 'bg'], ['StatusLineNC', 'fg'])
 	let s:N3 = airline#themes#get_highlight2(['StatusLineNC', 'bg'], ['CursorLine', 'bg'])
 	let g:airline#themes#seoul256#palette.normal = airline#themes#generate_color_map(s:N1, s:N2, s:N3)
