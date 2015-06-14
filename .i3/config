@@ -77,7 +77,7 @@ bindsym $mod+0 workspace 10
 # move focused container to workspace
 bindsym $mod+Shift+1 move container to workspace www
 bindsym $mod+Shift+2 move container to workspace code
-bindsym $mod+Shift+3 move container to workspace games
+bindsym $mod+Shift+3 move container to workspace game
 bindsym $mod+Shift+4 move container to workspace 4
 bindsym $mod+Shift+5 move container to workspace 5
 bindsym $mod+Shift+6 move container to workspace 6

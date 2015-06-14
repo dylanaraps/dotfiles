@@ -1,6 +1,8 @@
 " Dylan's Vimrc
+" vim: set foldmethod=marker foldlevel=0:
 
 " Plugins {{{
+
 " Auto install plug if not found
 if empty(glob('~/.vim/autoload/plug.vim'))
 		silent !curl -fLo ~/.vim/autoload/plug.vim --create-dirs
@@ -11,67 +13,73 @@ endif
 call plug#begin('~/.vim/plugged')
 
 " LOOKS
-Plug 'chriskempson/base16-vim'				" Base16 Theme
-	let base16colorspace=256
-	autocmd ColorScheme * highlight LineNr ctermfg=darkgrey ctermbg=black
-	autocmd ColorScheme * highlight CursorLine ctermbg=black
+Plug 'junegunn/seoul256.vim'
+		let g:seoul256_background = 233
 
-Plug 'bling/vim-airline'				" Status and Tabline
-	set laststatus=2					" Always show statusline
-	let g:airline#extensions#tabline#enabled = 1		" Enables airline tabs
-	let g:airline#extensions#tabline#fnamemod = ':t'	" Display only filename in tabs
-	let g:airline_left_sep = ''
-	let g:airline_right_sep = ''
-	let g:airline_theme = 'base16'
+Plug 'bling/vim-airline'									" Status and Tabline
+		set laststatus=2									" Always show statusline
+		let g:airline#extensions#tabline#enabled = 1		" Enables airline tabs
+		let g:airline#extensions#tabline#fnamemod = ':t'	" Display only filename in tabs
+		let g:airline_left_sep = ''
+		let g:airline_right_sep = ''
+		let g:airline_theme = 'seoul256'
 
 " FUNCTIONALITY
-Plug 'terryma/vim-expand-region'			" Expands region from char to word to line
-Plug 'terryma/vim-multiple-cursors'			" Multiple cursors similar to ST2/3
-	let g:multi_cursor_next_key='<C-j>'
-	let g:multi_cursor_prev_key='<C-k>'
-	let g:multi_cursor_skip_key='<C-l>'
-	let g:multi_cursor_quit_key='<Esc>'
+Plug 'tpope/vim-fugitive'
+Plug 'terryma/vim-multiple-cursors'							" Multiple cursors similar to ST2/3
+		let g:multi_cursor_next_key='<C-j>'
+		let g:multi_cursor_prev_key='<C-k>'
+		let g:multi_cursor_skip_key='<C-l>'
+		let g:multi_cursor_quit_key='<Esc>'
 
-Plug 'haya14busa/incsearch.vim' 			" Shows search results as you're typing
-Plug 'osyo-manga/vim-anzu'				" Show number of search results
-	map /  <Plug>(incsearch-forward)
-	map ?  <Plug>(incsearch-backward)
-	map g/ <Plug>(incsearch-stay)
-	map n <Plug>(incsearch-nohl)<Plug>(anzu-n-with-echo)
-	map <C-n> <Plug>(incsearch-nohl)<Plug>(anzu-N-with-echo)
+Plug 'haya14busa/incsearch.vim' 							" Shows search results as you're typing
+Plug 'osyo-manga/vim-anzu'									" Show number of search results
+		let g:incsearch#consistent_n_direction = 1
+		let g:incsearch#magic = '\v' 						" very magic
+		map /  <Plug>(incsearch-forward)
+		map ?  <Plug>(incsearch-backward)
+		map g/ <Plug>(incsearch-stay)
+		map n <Plug>(incsearch-nohl)<Plug>(anzu-n-with-echo)
+		map <C-n> <Plug>(incsearch-nohl)<Plug>(anzu-N-with-echo)
 
-Plug 'tpope/vim-surround'				" Surround text
-Plug 'tpope/vim-commentary'				" Comment out text
-Plug 'rstacruz/vim-closer'				" Enters and adds closing brackets to various languages
-Plug 'mattn/emmet-vim'					" Makes html super easy
-	let g:user_emmet_install_global = 0
-	autocmd FileType html,css,scss EmmetInstall
+Plug 'tpope/vim-surround'									" Surround text
+Plug 'tpope/vim-commentary'									" Comment out text
+Plug 'rstacruz/vim-closer'									" Enters and adds closing brackets to various languages
+Plug 'mattn/emmet-vim'										" Makes html super easy
+		let g:user_emmet_install_global = 0
+		autocmd FileType html,css,scss EmmetInstall
 
-Plug 'ajh17/VimCompletesMe' 			" Tiny Autocomplete
+Plug 'ajh17/VimCompletesMe' 								" Tiny Autocomplete
 
 " FILETYPES
 Plug 'JulesWang/css.vim'
-Plug 'ap/vim-css-color'					" Changes background behind hex color to it's actual color
+Plug 'ap/vim-css-color'										" Changes background behind hex color to it's actual color
 Plug 'cakebaker/scss-syntax.vim'
 Plug 'hail2u/vim-css3-syntax'
 Plug 'othree/html5.vim'
 Plug 'kchmck/vim-coffee-script'
 
 call plug#end()
+
 " }}}
 
 " Filetypes {{{
+
 filetype on
 filetype indent on
 filetype plugin on
+
 " }}}
 
 " Spaces and Tabs {{{
+
 set tabstop=4
 set lcs=tab:▸\ ,trail:·,eol:¬,nbsp:_	" Show “invisible” characters
+
 " }}}
 
 " Line Wrap {{{
+
 set wrap 								" Soft wraps lines without editing file
 set linebreak							" Stops words from being cut off during linebreak
 set nolist
@@ -79,28 +87,60 @@ set textwidth=80
 set wrapmargin=0
 set autoindent
 set breakindent
+
 " }}}
 
 " Look and Feel {{{
+
+" Colorscheme overrides
+autocmd ColorScheme * highlight LineNr ctermbg=233 ctermfg=236
+autocmd ColorScheme * highlight CursorLine ctermbg=233 ctermfg=236
+autocmd ColorScheme * highlight TabLine ctermbg=233 ctermfg=250
+autocmd ColorScheme * highlight Comment ctermbg=233 ctermfg=238
+autocmd ColorScheme * highlight StatuslineNC ctermbg=238 ctermfg=233
+
+" Fold colors
+autocmd ColorScheme * highlight Folded ctermbg=233 ctermfg=236
+
+" Normal mode colors
+autocmd ColorScheme * highlight statusline ctermfg=238
+
+" Visual mode colors
+autocmd ColorScheme * highlight ErrorMsg ctermbg=172
+
+" Insert mode colors
+autocmd ColorScheme * highlight wildmenu ctermbg=65 ctermfg=255
+
+" Replace mode colors
+autocmd ColorScheme * highlight Structure ctermfg=167
+
 set title								" Change window title to filename
 syntax on 								" Switch syntac highlighting on
-set t_Co=256							" Make vim use 256 colors
+colorscheme seoul256
 set background=dark
-colorscheme base16-twilight
 set number 								" Shows linenumbers
 set ruler 								" Shows Ruler
 set shortmess=atI						" Don’t show the intro message when starting Vim
 set noshowmode
+
+
 " }}}
 
 " Searching {{{
+
 set hlsearch
 set incsearch
 set ignorecase 							" Do case insensitive searches
 set smartcase							" Do case sensitive searches is search term includes a capital
+
 " }}}
 
 " Mapping {{{
+
+" Fuck you, help key.
+noremap  <F1> :checktime<cr>
+inoremap <F1> <esc>:checktime<cr>
+
 command! WQ wq
 command! Wq wq
 command! Wqa wqa
@@ -133,9 +173,8 @@ nnoremap <esc> :noh<return><esc>
 " Emmet binding
 imap <C-e> <plug>(emmet-expand-abbr)
 
-" Maps v to expand region and Ctrl + v to shrink region
-vmap v <Plug>(expand_region_expand)
-vmap <C-v> <Plug>(expand_region_shrink)
+" Maps i to indent blocks of text in visual mode
+vmap i >
 
 " remap jk and kj to escape:  You'll never type it anyway, so it's great!
 inoremap jk <Esc>
@@ -151,65 +190,110 @@ vnoremap k gk
 nnoremap gj j
 nnoremap gk k
 
+" Easily move to start/end of line
+nnoremap H 0
+nnoremap L $
+
 " Automatically removes all trailing whitespaces on :w
 autocmd BufWritePre * :%s/\s\+$//e
+
 " }}}
 
 " Temp Files {{{
+
+set noswapfile                    " it's 2013, Vim.
+
 " Stores all swap/backup files in a seperate directory
-set dir=~/.nvim/swap//
-set backupdir=~/.nvim/backups//
-set undodir=~/.nvim/undo//
+set dir=~/.nvim/tmp/swap//
+set backupdir=~/.nvim/tmp/backups//
+set undodir=~/.nvim/tmp/undo//
+
+" Make those folders automatically if they don't already exist.
+if !isdirectory(expand(&undodir))
+		call mkdir(expand(&undodir), "p")
+endif
+if !isdirectory(expand(&backupdir))
+		call mkdir(expand(&backupdir), "p")
+endif
+if !isdirectory(expand(&directory))
+		call mkdir(expand(&directory), "p")
+endif
+
 
 " Persistent Undo, Vim remembers everything even after the file is closed.
 set undofile
 set undolevels=500
 set undoreload=500
+
 " }}}
 
 " Misc {{{
-" Use the OS clipboard by default
-set clipboard+=unnamedplus
 
-" Enhance command-line completion
-set wildmenu
+set clipboard+=unnamedplus 				" Use the OS clipboard by default
 
-" Make backspace behave in a sane manner.
-set backspace=indent,eol,start
+set wildmenu 							" Enhance command-line completion
+set wildignore+=.hg,.git,.svn
+set wildignore+=*.jpg,*.bmp,*.gif,*.png,*.jpeg
+set wildignore+=*.DS_Store              " OSX bullshit
 
-" Allow cursor keys in insert mode
-set esckeys
+set backspace=indent,eol,start 			" Make backspace behave in a sane manner.
+set esckeys 							" Allow cursor keys in insert mode
 
-" Don’t add empty newlines at the end of files
 set binary
 set noeol
 set showcmd
 set autoread
 
-" Stops vim from complaining when moving between buffers with unsaved files
-set hidden
+set hidden 								" Stops vim from complaining when moving between buffers with unsaved files
+set noerrorbells 						" Disable error bells
+set nostartofline 						" Don’t reset cursor to start of line when moving around.
 
-" Disable error bells
-set noerrorbells
+" Better auto complete
+set complete=.,w,b,u,t
+set completeopt=longest,menuone,preview
 
-" Don’t reset cursor to start of line when moving around.
-set nostartofline
-
-set complete-=i
 set smarttab
 set nrformats-=octal
+
+" Timeout keycodes not mappings
+set notimeout
 set ttimeout
+set ttimeoutlen=10
+
+au FocusLost * :silent! wall 			" Save on focus loss
 
 " Stops auto adding of comments on new line
 autocmd FileType * setlocal formatoptions-=c formatoptions-=r formatoptions-=o
+
+" Make vim return to same line in file
+augroup line_return
+		au!
+		au BufReadPost *
+		\ if line("'\"") > 0 && line("'\"") <= line("$") |
+		\     execute 'normal! g`"zvzz' |
+		\ endif
+augroup END
+
+" chmod +x on current file
+command! EX if !empty(expand('%')) && filereadable(expand('%'))
+		\|   silent! execute '!chmod +x %'
+		\|   redraw!
+		\| else
+		\|   echohl WarningMsg
+		\|   echo 'Save the file first'
+		\|   echohl None
+		\| endif
+
 " }}}
 
 "Folding {{{
+
 set foldmethod=marker
 set foldlevel=99
-set foldnestmax=10			" max 10 depth
+set foldnestmax=10						" max 10 depth
 
-" Save folds in vimrc
+" Save folds in *vimrc
 autocmd BufWinLeave .*vimrc mkview
 autocmd BufWinEnter .*vimrc silent loadview
+
 " }}}
