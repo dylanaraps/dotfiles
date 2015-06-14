@@ -156,7 +156,7 @@ assign [class="Transmission-gtk"] mpv
 assign [class="Popcorntime"] mpv
 
 # Sets Bg
-exec_always --no-startup-id feh --bg-fill /home/dylan/Pictures/papes/17.jpg
+exec_always --no-startup-id feh --bg-fill /home/dylan/Pictures/papes/19.jpg
 
 # Starts lemonbar
 exec_always --no-startup-id ~/.config/lemonbar/bar.sh
