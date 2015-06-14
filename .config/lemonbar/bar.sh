@@ -11,7 +11,7 @@ pkill lemonbar
 white="FFFFFF"
 black="#121212"
 darkgrey="#252525"
-green="#719862"
+green="#85ADD4"
 
 # Fonts
 font="Lemon"
@@ -91,7 +91,7 @@ workspace(){
 		wmctrl -d \
 		| awk '/ / {print $2 $9, $10, $11, $12, $13, $14, $15, $16, $17, $18, $19, $20}' ORS=''\
 		| sed -e 's/\s*  //g' \
-		-e 's/\*[ 0-9A-Za-z]*[^ -~]*/%{B#719862}  &  %{B}/g' \
+		-e 's/\*[ 0-9A-Za-z]*[^ -~]*/%{B#85ADD4}  &  %{B}/g' \
 		-e 's/\-[ 0-9A-Za-z]*[^ -~]*/%{B#252525}%{A:i3-msg workspace &:}  &  %{A}%{B}/g' \
 		-e 's/\*//g' \
 		-e 's/ -/ /g' \

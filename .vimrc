@@ -95,21 +95,22 @@ set breakindent
 " Colorscheme overrides
 autocmd ColorScheme * highlight LineNr ctermbg=233 ctermfg=236
 autocmd ColorScheme * highlight CursorLine ctermbg=233 ctermfg=236
-autocmd ColorScheme * highlight TabLine ctermbg=233 ctermfg=250
+autocmd ColorScheme * highlight TabLine ctermbg=233
 autocmd ColorScheme * highlight Comment ctermbg=233 ctermfg=238
 autocmd ColorScheme * highlight StatuslineNC ctermbg=238 ctermfg=233
+autocmd ColorScheme * highlight Statusline ctermfg=233 ctermbg=238
 
 " Fold colors
 autocmd ColorScheme * highlight Folded ctermbg=233 ctermfg=236
 
 " Normal mode colors
-autocmd ColorScheme * highlight statusline ctermfg=238
+autocmd ColorScheme * highlight SignColumn ctermfg=4
 
 " Visual mode colors
 autocmd ColorScheme * highlight ErrorMsg ctermbg=172
 
 " Insert mode colors
-autocmd ColorScheme * highlight wildmenu ctermbg=65 ctermfg=255
+autocmd ColorScheme * highlight wildmenu ctermbg=65 ctermfg=233
 
 " Replace mode colors
 autocmd ColorScheme * highlight Structure ctermfg=167
