@@ -27,7 +27,6 @@ Plug 'bling/vim-airline'									" Status and Tabline
 
 " FUNCTIONALITY
 Plug 'kien/ctrlp.vim'
-Plug 'FelikZ/ctrlp-py-matcher'
 		let g:ctrlp_map = '<c-x>'
 		let g:ctrlp_working_path_mode = 'ra'
 		let g:ctrlp_clear_cache_on_exit = 0
