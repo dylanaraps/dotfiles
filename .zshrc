@@ -77,10 +77,6 @@ alias plu="cd ~/Music && lsnc > ~/.mpd/playlists/music.m3u"
 # Makes ls list all files and always use color
 alias ls="ls -A --color=always"
 
-alias gad="git add -A"
-alias gco="git commit -m"
-alias gpu="git push -u origin master"
-
 # OTHER
 # Enables the help command
 autoload -U compinit

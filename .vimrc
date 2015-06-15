@@ -1,5 +1,6 @@
 " Dylan's Vimrc
 " vim: set foldmethod=marker foldlevel=0:
+set shell=zsh\ -l
 
 " Plugins {{{
 
