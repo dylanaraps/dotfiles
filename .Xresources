@@ -16,6 +16,7 @@ URxvt.keysym.M-C-v: perl:clipboard:paste_escaped
 
 URxvt.keysym.C-z: \
 URxvt.keysym.C-h: \
+URxvt.keysym.C-f: \
 
 ! seoul256 (dark) theme adapted for URxvt
 ! append the content of this file to your .Xresources

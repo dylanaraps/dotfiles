@@ -19,7 +19,6 @@ Plug 'junegunn/seoul256.vim'
 
 Plug 'bling/vim-airline'									" Status and Tabline
 		set laststatus=2									" Always show statusline
-		set showtabline=2
 		let g:airline#extensions#tabline#enabled = 1		" Enables airline tabs
 		let g:airline#extensions#tabline#fnamemod = ':t'	" Display only filename in tabs
 		let g:airline_left_sep = ''
@@ -27,6 +26,24 @@ Plug 'bling/vim-airline'									" Status and Tabline
 		let g:airline_theme = 'seoul256'
 
 " FUNCTIONALITY
+Plug 'kien/ctrlp.vim'
+Plug 'FelikZ/ctrlp-py-matcher'
+		let g:ctrlp_map = '<c-x>'
+		let g:ctrlp_working_path_mode = 'ra'
+		let g:ctrlp_clear_cache_on_exit = 0
+		let g:ctrlp_follow_symlinks = 1
+		let g:ctrlp_show_hidden = 1
+		let g:ctrlp_by_filename = 1
+
+		let g:ctrlp_user_command = 'ag %s -i --nocolor --nogroup --hidden
+		\ --ignore .git
+		\ --ignore .sass-cache
+		\ --ignore "*.png"
+		\ --ignore "*.jp*"
+		\ --ignore "*.gif"
+		\ --ignore "*.map"
+		\ -g ""'
+
 Plug 'terryma/vim-expand-region'
 Plug 'kana/vim-textobj-user'
 Plug 'kana/vim-textobj-line'
@@ -113,11 +130,12 @@ autocmd ColorScheme * highlight LineNr ctermbg=233 ctermfg=236
 autocmd ColorScheme * highlight CursorLine ctermbg=233 ctermfg=236
 autocmd ColorScheme * highlight TabLine ctermbg=233
 autocmd ColorScheme * highlight Comment ctermbg=233 ctermfg=238
-autocmd ColorScheme * highlight StatuslineNC ctermbg=238 ctermfg=233
+autocmd ColorScheme * highlight StatuslineNC ctermbg=255 ctermfg=234
 autocmd ColorScheme * highlight Statusline ctermfg=233 ctermbg=238
 autocmd ColorScheme * highlight ErrorMsg ctermbg=233 ctermfg=238
 autocmd ColorScheme * highlight Visual ctermbg=235
 autocmd ColorScheme * highlight Folded ctermbg=233 ctermfg=236
+autocmd ColorScheme * highlight VertSplit ctermbg=233 ctermfg=233 cterm=none
 
 " Normal mode colors
 autocmd ColorScheme * highlight SignColumn ctermfg=4
@@ -181,7 +199,8 @@ imap <expr><TAB>  pumvisible() ? "\<C-n>" : "\<TAB>"
 nnoremap <esc> :noh<return><esc>
 
 " Emmet binding
-imap <C-e> <plug>(emmet-expand-abbr)
+imap ,, <C-y>,
+vmap ,, <C-y>,
 
 " Maps Tab to indent blocks of text in visual mode
 vmap <TAB> >
@@ -204,6 +223,13 @@ nnoremap gk k
 " Easily move to start/end of line
 nnoremap H 0
 nnoremap L $
+
+" Masha
+nmap a <nop>
+nmap az za
+
+" Auto close HTML tags
+imap </ </<C-X><C-O>
 
 " Automatically removes all trailing whitespaces on :w
 autocmd BufWritePre * :%s/\s\+$//e
@@ -243,9 +269,9 @@ set undoreload=500
 set clipboard+=unnamedplus 				" Use the OS clipboard by default
 
 set wildmenu 							" Enhance command-line completion
-set wildignore+=.hg,.git,.svn
-set wildignore+=*.jpg,*.bmp,*.gif,*.png,*.jpeg
-set wildignore+=*.DS_Store              " OSX bullshit
+set wildignore+=*/.hg/*,*/.git/*,*/.svn/*
+set wildignore+=*.gif,*.png,*.jp*
+set wildignore+=*/.sass-cache/*,*.map
 
 set backspace=indent,eol,start 			" Make backspace behave in a sane manner.
 set esckeys 							" Allow cursor keys in insert mode
@@ -304,7 +330,7 @@ set foldlevel=99
 set foldnestmax=10						" max 10 depth
 
 " Save folds in *vimrc
-autocmd BufWinLeave .*vimrc mkview
-autocmd BufWinEnter .*vimrc silent loadview
+autocmd BufWinLeave .vimrc mkview
+autocmd BufWinEnter .vimrc silent loadview
 
 " }}}
