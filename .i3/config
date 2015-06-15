@@ -27,7 +27,7 @@ bindsym $mod+Return exec urxvt
 bindsym $mod+q kill
 
 # Starts dmenu2 inside of j4-dmenu-desktop
-bindsym $mod+d exec j4-dmenu-desktop --dmenu="dmenu -o 0.9 -nb '#1E1E1E' -nf '#FFFFFF' -sb '#8F9D6A' -i -h 25 -w 1600 -fn Lemon  -name dmenu2" --term="urxvt"
+bindsym $mod+d exec j4-dmenu-desktop --dmenu="dmenu -o 0.9 -nb '#121212' -nf '#FFFFFF' -sb '#85ADD4' -i -h 25 -w 1600 -fn Lemon  -name dmenu2" --term="urxvt"
 
 # change focus
 bindsym $mod+h focus left

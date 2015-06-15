@@ -12,7 +12,7 @@
 
 		/* URL VARIABLES */
 		--url-background: var(--bg-light); --url-color: var(--fg-light);
-		--url-height: 18px; --url-right-margin: 5px;
+		--url-height: 0px; --url-right-margin: 0px;
 		--url-fonts: "Lemon",monospace,"Dejavu Sans"; --url-font-size: 7pt;
 		--url-text-align: center; /* left | center | right */
 		--url-position: absolute; /* absolute == top (under tabs) || fixed == bottom of browser */
@@ -89,6 +89,10 @@
 				padding: 0 2px 0 9px !important;
 				text-align: var(--url-text-align) !important;
 				width: calc(100% + var(--url-right-margin)) !important;
+		}
+
+		#urlbar * {
+				-moz-appearance: none !important;
 		}
 
 		/* TABS */

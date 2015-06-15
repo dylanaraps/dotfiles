@@ -19,6 +19,7 @@ Plug 'junegunn/seoul256.vim'
 
 Plug 'bling/vim-airline'									" Status and Tabline
 		set laststatus=2									" Always show statusline
+		set showtabline=2
 		let g:airline#extensions#tabline#enabled = 1		" Enables airline tabs
 		let g:airline#extensions#tabline#fnamemod = ':t'	" Display only filename in tabs
 		let g:airline_left_sep = ''
