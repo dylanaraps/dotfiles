@@ -1,6 +1,6 @@
 " Dylan's Vimrc
 " vim: set foldmethod=marker foldlevel=0:
-set shell=zsh\ -l
+set shell=zsh\ -l 											" Make vim use zhrc and aliases
 
 " Plugins {{{
 
