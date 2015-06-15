@@ -11,7 +11,7 @@ pkill lemonbar
 white="FFFFFF"
 black="#121212"
 darkgrey="#252525"
-green="#85ADD4"
+blue="#85ADD4"
 
 # Fonts
 font="Lemon"
@@ -109,12 +109,12 @@ while :; do
 			%{B$black} $(windowtitle) \
 		%{l}\
 		%{c}\
-			%{B$green} $(music) \
+			%{B$blue} $(music) \
 			%{B$darkgrey} $(volume) \
 		%{c}\
 		%{r}\
 			%{B$darkgrey} $(memory) \
-			%{B$green} $(cpu) \
+			%{B$blue} $(cpu) \
 			%{B$black} $(clock) \
 			%{B$black}\
 		%{r}"

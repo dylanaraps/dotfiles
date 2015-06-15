@@ -25,6 +25,12 @@ Plug 'bling/vim-airline'									" Status and Tabline
 		let g:airline_theme = 'seoul256'
 
 " FUNCTIONALITY
+Plug 'terryma/vim-expand-region'
+Plug 'kana/vim-textobj-user'
+Plug 'kana/vim-textobj-line'
+		vmap v <Plug>(expand_region_expand)
+		vmap <C-v> <Plug>(expand_region_shrink)
+
 Plug 'tpope/vim-fugitive'
 Plug 'terryma/vim-multiple-cursors'							" Multiple cursors similar to ST2/3
 		let g:multi_cursor_next_key='<C-j>'
@@ -175,8 +181,9 @@ nnoremap <esc> :noh<return><esc>
 " Emmet binding
 imap <C-e> <plug>(emmet-expand-abbr)
 
-" Maps i to indent blocks of text in visual mode
-vmap i >
+" Maps Tab to indent blocks of text in visual mode
+vmap <TAB> >
+vmap <S-TAB> <
 
 " remap jk and kj to escape:  You'll never type it anyway, so it's great!
 inoremap jk <Esc>

@@ -32,18 +32,18 @@ noremap b :back <CR>
 noremap <S-b> :forward <CR>
 
 " Colors
-highlight! CmdLine color: #CECFD1; background: #181818;
+highlight! CmdLine color: #CECFD1; background: #121212;
 highlight! CmdLine>* font-family: "Droid Sans"; font-size: 8pt; height: 12px;
-highlight! Normal color: #AAABAD; /*background: #181818;*/ font-family: "Droid Sans"; font-size: 8pt;
-highlight! StatusLine color: #AAABAD; background: #181818; font-family: "Droid Sans"; font-size: 8pt;
+highlight! Normal color: #AAABAD; /*background: #121212;*/ font-family: "Droid Sans"; font-size: 8pt;
+highlight! StatusLine color: #AAABAD; background: #121212; font-family: "Droid Sans"; font-size: 8pt;
 
-highlight! Bell border: none; background: #323537;
+highlight! Bell border: none; background: #252525;
 highlight! Boolean color: #AAABAD;
 highlight! CompDesc width: auto; color: #AAABAD;
 highlight! CompItem>* height: auto; padding: 0 8px;
-highlight! CompItem background: #323537;
-highlight! CompItem[selected] color: #CECFD1; background: #17181A;
-highlight! CompTitle background: #323537; font-family: "Droid Sans"; font-size: 10pt;
+highlight! CompItem background: #121212;
+highlight! CompItem[selected] color: #CECFD1; background: #252525;
+highlight! CompTitle background: #121212; font-family: "Droid Sans"; font-size: 10pt;
 highlight! CompTitle>* color: #CECFD1; padding: 2px 8px;
 
 highlight! Disabled color: #AAABAD;
