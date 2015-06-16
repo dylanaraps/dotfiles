@@ -24,6 +24,8 @@ Plug 'bling/vim-airline'									" Status and Tabline
 		let g:airline_left_sep = ''
 		let g:airline_right_sep = ''
 		let g:airline_theme = 'seoul256'
+		let g:airline#extensions#tabline#show_tabs = 0
+		let g:airline#extensions#tabline#excludes = ['terminal', 'gulp']
 
 " FUNCTIONALITY
 Plug 'wesQ3/vim-windowswap'
@@ -128,16 +130,16 @@ set shortmess=atI						" Don’t show the intro message when starting Vim
 set noshowmode
 
 " Colorscheme overrides
-autocmd ColorScheme * highlight LineNr ctermbg=233 ctermfg=236
-autocmd ColorScheme * highlight CursorLine ctermbg=233 ctermfg=236
-autocmd ColorScheme * highlight TabLine ctermbg=233
-autocmd ColorScheme * highlight Comment ctermbg=233 ctermfg=238
+autocmd ColorScheme * highlight LineNr ctermbg=bg ctermfg=236
+autocmd ColorScheme * highlight CursorLine ctermbg=bg ctermfg=236
+autocmd ColorScheme * highlight TabLine ctermbg=bg
+autocmd ColorScheme * highlight Comment ctermbg=bg ctermfg=238
 autocmd ColorScheme * highlight StatuslineNC ctermbg=255 ctermfg=234
-autocmd ColorScheme * highlight Statusline ctermfg=233 ctermbg=238
-autocmd ColorScheme * highlight ErrorMsg ctermbg=233 ctermfg=238
+autocmd ColorScheme * highlight Statusline ctermfg=bg ctermbg=238
+autocmd ColorScheme * highlight ErrorMsg ctermbg=bg ctermfg=238
 autocmd ColorScheme * highlight Visual ctermbg=235
-autocmd ColorScheme * highlight Folded ctermbg=233 ctermfg=236
-autocmd ColorScheme * highlight VertSplit ctermbg=233 ctermfg=233 cterm=none
+autocmd ColorScheme * highlight Folded ctermbg=bg ctermfg=236
+autocmd ColorScheme * highlight VertSplit ctermbg=bg ctermfg=bg cterm=none
 
 " Normal mode colors
 autocmd ColorScheme * highlight SignColumn ctermfg=4
@@ -349,30 +351,58 @@ command! EX if !empty(expand('%')) && filereadable(expand('%'))
 		\|   echohl None
 		\| endif
 
-" Tries to figure out project/gulpfile dir and runs gulpfile in new buffer inside of :terminal
+" WEBDEV SESSION START
 function RunGulp()
-		vertical botright new
-		e term://gulp
+		vsp
+		terminal gulp
 		file gulp
-		lcd ~/
 endfunction
 
-command! Gulp if filereadable("gulpfile.coffee")
+function RunTerm()
+		sp
+		terminal
+		file terminal
+endfunction
+
+function Files()
+		if filereadable("src/index.html")
+		\| 		e src/index.html
+		\| else
+		\| 		echo "No index.html found"
+		\| endif
+
+		if filereadable("src/scss/main.scss")
+		\| 		e src/scss/*.scss
+		\| else
+		\| 		echo "No *.scss found"
+		\| endif
+
+		if filereadable("src/coffeescript/main.coffee")
+		\| 		e src/coffeescript/*.coffee
+		\| else
+		\| 		echo "No *.coffeescript found"
+		\| endif
+endfunction
+
+command! Webdev if filereadable("gulpfile.coffee")
+		\|		call Files()
 		\| 		call RunGulp()
+		\| 		call RunTerm()
 		\|	else
 		\|		lcd %:p:h
 		\|		lcd ..
 		\|
 		\|		if filereadable("gulpfile.coffee")
-		\| 		call RunGulp()
+		\| 			call Files()
+		\| 			call RunGulp()
+		\| 			call RunTerm()
 		\|		else
 		\|			lcd ..
+		\| 			call Files()
 		\| 			call RunGulp()
+		\| 			call RunTerm()
 		\|		endif
 		\|	endif
-
-" Opens a terminal in a new buffer in inser mode and renames the buffer to Terminal
-command! Term e term://zsh | file Terminal | startinsert
 
 " }}}
 

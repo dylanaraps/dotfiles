@@ -19,7 +19,6 @@ fi
 ZSH_THEME="fishy"
 
 DEFAULT_USER="dylan"
-ZLE_RPROMPT_INDENT=0
 
 # Uncomment the following line to disable bi-weekly auto-update checks.
 # DISABLE_AUTO_UPDATE="true"
