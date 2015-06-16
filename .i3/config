@@ -127,6 +127,10 @@ new_float pixel 1
 
 # Gaps
 gaps inner 20
+gaps outer 5
+
+workspace code gaps inner 0
+workspace code gaps outer 25
 
 # class                 border  backgr. text    indicator
 client.focused          #FFFFFF #FFFFFF #000000 #FFFFFF

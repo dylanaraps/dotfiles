@@ -179,6 +179,10 @@ command! Q q
 nmap <Tab> :bnext<CR>
 nmap <S-Tab> :bprevious<CR>
 
+" Maps Enter to cycle buffers
+" J does the same thing as enter in normal mode.
+nmap <CR> <C-w><C-w>
+
 " Unmaps the arrow keys
 map <Up> <nop>
 map <Down> <nop>
@@ -277,6 +281,10 @@ set undoreload=500
 
 " Misc {{{
 
+set ttyfast
+set mouse=a
+set ttymouse=xterm2
+
 set clipboard+=unnamedplus 				" Use the OS clipboard by default
 
 set wildmenu 							" Enhance command-line completion
@@ -340,6 +348,7 @@ command! EX if !empty(expand('%')) && filereadable(expand('%'))
 function RunGulp()
 		vertical botright new
 		e term://gulp
+		file gulp
 		lcd
 endfunction
 
@@ -369,7 +378,7 @@ set foldlevel=99
 set foldnestmax=10						" max 10 depth
 
 " Save folds in *vimrc
-autocmd BufWinLeave .*vimrc mkview
-autocmd BufWinEnter .*vimrc silent loadview
+autocmd BufWinLeave .nvimrc mkview
+autocmd BufWinEnter .nvimrc silent loadview
 
 " }}}
