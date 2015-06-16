@@ -1,6 +1,6 @@
 " Dylan's Vimrc
 " vim: set foldmethod=marker foldlevel=0:
-set shell=zsh\ -l 											" Make vim use zhrc and aliases
+set shell=zsh											" Make vim use zhrc and aliases
 
 " Plugins {{{
 
@@ -28,10 +28,8 @@ Plug 'bling/vim-airline'									" Status and Tabline
 " FUNCTIONALITY
 Plug 'kien/ctrlp.vim'
 		let g:ctrlp_map = '<c-x>'
-		let g:ctrlp_working_path_mode = 'ra'
+		let g:ctrlp_working_path_mode = 'r'
 		let g:ctrlp_clear_cache_on_exit = 0
-		let g:ctrlp_follow_symlinks = 1
-		let g:ctrlp_show_hidden = 1
 		let g:ctrlp_by_filename = 1
 
 		let g:ctrlp_user_command = 'ag %s -i --nocolor --nogroup --hidden
@@ -51,9 +49,9 @@ Plug 'kana/vim-textobj-line'
 
 Plug 'tpope/vim-fugitive'
 Plug 'terryma/vim-multiple-cursors'							" Multiple cursors similar to ST2/3
-		let g:multi_cursor_next_key='<C-j>'
-		let g:multi_cursor_prev_key='<C-k>'
-		let g:multi_cursor_skip_key='<C-l>'
+		let g:multi_cursor_next_key='<C-v>'
+		let g:multi_cursor_prev_key='v'
+		let g:multi_cursor_skip_key='<TAB>'
 		let g:multi_cursor_quit_key='<Esc>'
 
 Plug 'haya14busa/incsearch.vim' 							" Shows search results as you're typing
@@ -164,13 +162,16 @@ set smartcase							" Do case sensitive searches is search term includes a capit
 
 " Mapping {{{
 
-" Fuck you, help key.
-noremap  <F1> :checktime<cr>
-inoremap <F1> <esc>:checktime<cr>
+" Leader
+let mapleader=" "
+nnoremap <SPACE> <nop>
+vnoremap <SPACE> <nop>
+
+noremap  <F1> <nop>
+inoremap <F1> <nop>
 
 command! WQ wq
 command! Wq wq
-command! Wqa wqa
 command! W w
 command! Q q
 
@@ -227,6 +228,15 @@ nnoremap L $
 nmap a <nop>
 nmap az za
 
+" Easier split navigation
+nnoremap <Leader>h <C-W><C-H>
+nnoremap <Leader>j <C-W><C-J>
+nnoremap <Leader>k <C-W><C-K>
+nnoremap <Leader>l <C-W><C-L>
+
+" Easier mode exit for :terminal
+tnoremap <Esc> <c-\><c-n>
+
 " Auto close HTML tags
 imap </ </<C-X><C-O>
 
@@ -254,7 +264,6 @@ endif
 if !isdirectory(expand(&directory))
 		call mkdir(expand(&directory), "p")
 endif
-
 
 " Persistent Undo, Vim remembers everything even after the file is closed.
 set undofile
@@ -291,6 +300,10 @@ set completeopt=longest,menuone,preview
 set smarttab
 set nrformats-=octal
 
+" More natural split opening
+set splitbelow
+set splitright
+
 " Timeout keycodes not mappings
 set notimeout
 set ttimeout
@@ -320,6 +333,30 @@ command! EX if !empty(expand('%')) && filereadable(expand('%'))
 		\|   echohl None
 		\| endif
 
+" Tries to figure out project/gulpfile dir and runs gulpfile in new buffer inside of :terminal
+function RunGulp()
+		vertical botright new
+		e term://gulp
+		lcd
+endfunction
+
+command! Gulp if filereadable("gulpfile.coffee")
+		\| 		call RunGulp()
+		\|	else
+		\|		lcd %:p:h
+		\|		lcd ..
+		\|
+		\|		if filereadable("gulpfile.coffee")
+		\| 		call RunGulp()
+		\|		else
+		\|			lcd ..
+		\| 			call RunGulp()
+		\|		endif
+		\|	endif
+
+" Opens a terminal in a new buffer in inser mode and renames the buffer to Terminal
+command! Term e term://zsh | file Terminal | startinsert
+
 " }}}
 
 "Folding {{{
@@ -329,7 +366,7 @@ set foldlevel=99
 set foldnestmax=10						" max 10 depth
 
 " Save folds in *vimrc
-autocmd BufWinLeave .vimrc mkview
-autocmd BufWinEnter .vimrc silent loadview
+autocmd BufWinLeave .*vimrc mkview
+autocmd BufWinEnter .*vimrc silent loadview
 
 " }}}
