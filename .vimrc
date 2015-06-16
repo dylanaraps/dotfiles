@@ -192,6 +192,9 @@ noremap <M-;> ;
 " Save files with root privliges
 cmap w!! w !sudo tee %
 
+" Term
+cmap term term://zsh <bar> file Terminal <bar> startinsert
+
 " Tab in insert mode to autocomplete
 imap <expr><TAB>  pumvisible() ? "\<C-n>" : "\<TAB>"
 
