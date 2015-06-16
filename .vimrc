@@ -26,6 +26,11 @@ Plug 'bling/vim-airline'									" Status and Tabline
 		let g:airline_theme = 'seoul256'
 
 " FUNCTIONALITY
+Plug 'wesQ3/vim-windowswap'
+		let g:windowswap_map_keys = 0
+		" Maps ww to swap buffers
+		nnoremap <silent> ww :call WindowSwap#EasyWindowSwap()<CR>
+
 Plug 'kien/ctrlp.vim'
 		let g:ctrlp_map = '<c-x>'
 		let g:ctrlp_working_path_mode = 'r'
@@ -49,9 +54,9 @@ Plug 'kana/vim-textobj-line'
 
 Plug 'tpope/vim-fugitive'
 Plug 'terryma/vim-multiple-cursors'							" Multiple cursors similar to ST2/3
-		let g:multi_cursor_next_key='<C-v>'
-		let g:multi_cursor_prev_key='v'
-		let g:multi_cursor_skip_key='<TAB>'
+		let g:multi_cursor_next_key='<C-j>'
+		let g:multi_cursor_prev_key='<C-k>'
+		let g:multi_cursor_skip_key='<C-l>'
 		let g:multi_cursor_quit_key='<Esc>'
 
 Plug 'haya14busa/incsearch.vim' 							" Shows search results as you're typing
@@ -61,8 +66,8 @@ Plug 'osyo-manga/vim-anzu'									" Show number of search results
 		map /  <Plug>(incsearch-forward)
 		map ?  <Plug>(incsearch-backward)
 		map g/ <Plug>(incsearch-stay)
-		map n <Plug>(incsearch-nohl)<Plug>(anzu-n-with-echo)
-		map <C-n> <Plug>(incsearch-nohl)<Plug>(anzu-N-with-echo)
+		map <S-J> <Plug>(incsearch-nohl)<Plug>(anzu-n-with-echo)
+		map <S-K> <Plug>(incsearch-nohl)<Plug>(anzu-N-with-echo)
 
 Plug 'tpope/vim-surround'									" Surround text
 Plug 'tpope/vim-commentary'									" Comment out text
@@ -349,7 +354,7 @@ function RunGulp()
 		vertical botright new
 		e term://gulp
 		file gulp
-		lcd
+		lcd ~/
 endfunction
 
 command! Gulp if filereadable("gulpfile.coffee")
