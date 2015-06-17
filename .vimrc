@@ -8,81 +8,81 @@ set shell=zsh
 
 " Auto install plug if not found
 if empty(glob('~/.vim/autoload/plug.vim'))
-		silent !curl -fLo ~/.vim/autoload/plug.vim --create-dirs
-		\ https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
-		autocmd VimEnter * PlugInstall
+	silent !curl -fLo ~/.vim/autoload/plug.vim --create-dirs
+	\ https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
+	autocmd VimEnter * PlugInstall
 endif
 
 call plug#begin('~/.vim/plugged')
 
 " LOOKS
 Plug 'junegunn/seoul256.vim'
-		let g:seoul256_background = 233
+	let g:seoul256_background = 233
 
 Plug 'bling/vim-airline'
-		" Always show statusline
-		set laststatus=2
-		let g:airline_powerline_fonts = 1
-		let g:airline_theme = 'seoul256'
-		let g:airline#extensions#tabline#enabled = 1
+	" Always show statusline
+	set laststatus=2
+	let g:airline_powerline_fonts = 1
+	let g:airline_theme = 'seoul256'
+	let g:airline#extensions#tabline#enabled = 1
 
-		" Display only filename in tabs
-		let g:airline#extensions#tabline#fnamemod = ':t'
-		let g:airline#extensions#tabline#show_tabs = 0
-		let g:airline#extensions#tabline#excludes = ['terminal', 'gulp']
+	" Display only filename in tabs
+	let g:airline#extensions#tabline#fnamemod = ':t'
+	let g:airline#extensions#tabline#show_tabs = 0
+	let g:airline#extensions#tabline#excludes = ['terminal', 'gulp']
 
 " FUNCTIONALITY
 Plug 'tpope/vim-fugitive'
 Plug 'tommcdo/vim-lion'
 Plug 'wesQ3/vim-windowswap'
-		let g:windowswap_map_keys = 0
-		nnoremap <silent> ww :call WindowSwap#EasyWindowSwap()<CR>
+	let g:windowswap_map_keys = 0
+	nnoremap <silent> ww :call WindowSwap#EasyWindowSwap()<CR>
 
 Plug 'kien/ctrlp.vim'
-		let g:ctrlp_map = '<c-x>'
-		let g:ctrlp_working_path_mode = 'r'
-		let g:ctrlp_clear_cache_on_exit = 0
-		let g:ctrlp_by_filename = 1
+	let g:ctrlp_map = '<c-x>'
+	let g:ctrlp_working_path_mode = 'r'
+	let g:ctrlp_clear_cache_on_exit = 0
+	let g:ctrlp_by_filename = 1
 
-		let g:ctrlp_user_command = 'ag %s -i --nocolor --nogroup --hidden
-		\ --ignore .git
-		\ --ignore .sass-cache
-		\ --ignore "*.png"
-		\ --ignore "*.jp*"
-		\ --ignore "*.gif"
-		\ --ignore "*.map"
-		\ -g ""'
+	let g:ctrlp_user_command = 'ag %s -i --nocolor --nogroup --hidden
+	\ --ignore .git
+	\ --ignore .sass-cache
+	\ --ignore "*.png"
+	\ --ignore "*.jp*"
+	\ --ignore "*.gif"
+	\ --ignore "*.map"
+	\ -g ""'
 
 Plug 'kana/vim-textobj-user'
 \| Plug 'kana/vim-textobj-line'
 \| Plug 'terryma/vim-expand-region'
-		vmap v <Plug>(expand_region_expand)
-		vmap <C-v> <Plug>(expand_region_shrink)
+	vmap v <Plug>(expand_region_expand)
+	vmap <C-v> <Plug>(expand_region_shrink)
 
 Plug 'terryma/vim-multiple-cursors'
-		let g:multi_cursor_use_default_mapping = 0
-		let g:multi_cursor_next_key='<C-j>'
-		let g:multi_cursor_prev_key='<C-k>'
-		let g:multi_cursor_skip_key='<C-l>'
-		let g:multi_cursor_quit_key='<Esc>'
+	let g:multi_cursor_use_default_mapping = 0
+	let g:multi_cursor_next_key='<C-j>'
+	let g:multi_cursor_prev_key='<C-k>'
+	let g:multi_cursor_skip_key='<C-l>'
+	let g:multi_cursor_quit_key='<Esc>'
 
 " Shows search results as you're typing and a #/Total as you cycle through the results
 Plug 'haya14busa/incsearch.vim'
 Plug 'osyo-manga/vim-anzu'
-		let g:incsearch#consistent_n_direction = 1
-		let g:incsearch#magic = '\v'
-		map /  <Plug>(incsearch-forward)
-		map ?  <Plug>(incsearch-backward)
-		map g/ <Plug>(incsearch-stay)
-		map <S-J> <Plug>(incsearch-nohl)<Plug>(anzu-n-with-echo)
-		map <S-K> <Plug>(incsearch-nohl)<Plug>(anzu-N-with-echo)
+	let g:incsearch#consistent_n_direction = 1
+	let g:incsearch#magic = '\v'
+	map /  <Plug>(incsearch-forward)
+	map ?  <Plug>(incsearch-backward)
+	map g/ <Plug>(incsearch-stay)
+	map <S-J> <Plug>(incsearch-nohl)<Plug>(anzu-n-with-echo)
+	map <S-K> <Plug>(incsearch-nohl)<Plug>(anzu-N-with-echo)
 
 Plug 'tpope/vim-surround'
 Plug 'tpope/vim-commentary'
 Plug 'rstacruz/vim-closer'
 Plug 'mattn/emmet-vim', { 'for': ['html', 'css', 'scss'] }
-		let g:user_emmet_install_global = 0
-		autocmd FileType html,css,scss EmmetInstall
+	let g:user_emmet_install_global = 0
+	autocmd FileType html,css,scss EmmetInstall
 
 " Tiny Autocomplete
 Plug 'ajh17/VimCompletesMe'
@@ -112,6 +112,9 @@ filetype plugin on
 " Spaces and Tabs {{{
 
 set tabstop=4
+set shiftwidth=4
+set softtabstop=4
+set expandtab
 
 " Show “invisible” characters
 set lcs=tab:▸\ ,trail:·,eol:¬,nbsp:_
@@ -290,13 +293,13 @@ set undodir=~/.nvim/tmp/undo//
 
 " Make those folders automatically if they don't already exist.
 if !isdirectory(expand(&undodir))
-		call mkdir(expand(&undodir), "p")
+	call mkdir(expand(&undodir), "p")
 endif
 if !isdirectory(expand(&backupdir))
-		call mkdir(expand(&backupdir), "p")
+	call mkdir(expand(&backupdir), "p")
 endif
 if !isdirectory(expand(&directory))
-		call mkdir(expand(&directory), "p")
+	call mkdir(expand(&directory), "p")
 endif
 
 " Persistent Undo, Vim remembers everything even after the file is closed.
@@ -332,7 +335,6 @@ set noeol
 set showcmd
 set autoread
 
-
 " Stops vim from complaining when moving between buffers with unsaved files
 set hidden
 set noerrorbells
@@ -344,7 +346,6 @@ set nostartofline
 set complete=.,w,b,u,t
 set completeopt=longest,menuone,preview
 
-set smarttab
 set nrformats-=octal
 
 " More natural split opening
@@ -364,83 +365,82 @@ autocmd FileType * setlocal formatoptions-=c formatoptions-=r formatoptions-=o
 
 " Make vim return to same line in file
 augroup line_return
-		au!
-		au BufReadPost *
-		\ if line("'\"") > 0 && line("'\"") <= line("$") |
-		\     execute 'normal! g`"zvzz' |
-		\ endif
+	au!
+	au BufReadPost *
+	\ if line("'\"") > 0 && line("'\"") <= line("$") |
+	\     execute 'normal! g`"zvzz' |
+	\ endif
 augroup END
 
 " chmod +x on current file
 command! EX if !empty(expand('%')) && filereadable(expand('%'))
-		\|   silent! execute '!chmod +x %'
-		\|   redraw!
-		\| else
-		\|   echohl WarningMsg
-		\|   echo 'Save the file first'
-		\|   echohl None
-		\| endif
+	\|     silent! execute '!chmod +x %'
+	\|     redraw!
+	\| else
+	\|     echohl WarningMsg
+	\|     echo 'Save the file first'
+	\|     echohl None
+	\| endif
 
 " WEBDEV SESSION START
 function RunGulp()
-		vsp
-		terminal gulp
-		file gulp
+	vsp
+	terminal gulp
+	file gulp
 endfunction
 
 function RunTerm()
-		sp
-		terminal
-		file terminal
+	sp
+	terminal
+	file terminal
 endfunction
 
 function Files()
-		if filereadable("src/index.html")
-		\| 		e src/index.html
-		\| else
-		\| 		echo "No index.html found"
-		\| endif
+	if filereadable("src/index.html")
+	\|     e src/index.html
+	\| else
+	\|     echo "No index.html found"
+	\| endif
 
-		if filereadable("src/scss/main.scss")
-		\| 		e src/scss/*.scss
-		\| else
-		\| 		echo "No *.scss found"
-		\| endif
+	if filereadable("src/scss/main.scss")
+	\|     e src/scss/*.scss
+	\| else
+	\|     echo "No *.scss found"
+	\| endif
 
-		if filereadable("src/coffeescript/main.coffee")
-		\| 		e src/coffeescript/*.coffee
-		\| else
-		\| 		echo "No *.coffeescript found"
-		\| endif
+	if filereadable("src/coffeescript/main.coffee")
+	\|     e src/coffeescript/*.coffee
+	\| else
+	\|     echo "No *.coffeescript found"
+	\| endif
 endfunction
 
 function BufWidth()
-		call feedkeys("\<ESC> \<CR> \; \vertical resize +30 \<CR> \<S-TAB>")
+	call feedkeys("\<ESC> \<CR> \; \vertical resize +30 \<CR> \<S-TAB>")
 endfunction
 
 command! Webdev if filereadable("gulpfile.coffee")
-		\|		call Files()
-		\| 		call RunGulp()
-		\| 		call RunTerm()
-		\| 		call BufWidth()
-		\|	else
-		\|		lcd %:p:h
-		\|		lcd ..
-		\|
-		\|		if filereadable("gulpfile.coffee")
-		\| 			call Files()
-		\| 			call RunGulp()
-		\| 			call RunTerm()
-		\| 			call BufWidth()
-		\|		else
-		\|			lcd ..
-		\| 			call Files()
-		\| 			call RunGulp()
-		\| 			call RunTerm()
-		\| 			call BufWidth()
-		\|		endif
-		\|	endif
-		\|
+	\|     call Files()
+	\|     call RunGulp()
+	\| 	   call RunTerm()
+	\| 	   call BufWidth()
+	\| else
+	\|     lcd %:p:h
+	\|     lcd ..
+	\|
+	\|     if filereadable("gulpfile.coffee")
+	\|         call Files()
+	\|         call RunGulp()
+	\|         call RunTerm()
+	\|         call BufWidth()
+	\|     else
+	\|	       lcd ..
+	\| 	       call Files()
+	\|         call RunGulp()
+	\|         call RunTerm()
+	\|         call BufWidth()
+	\|     endif
+	\| endif
 
 " }}}
 
