@@ -150,29 +150,32 @@ set shortmess=atI
 set noshowmode
 
 " Colorscheme overrides
-autocmd ColorScheme * highlight LineNr ctermbg=bg ctermfg=236
-autocmd ColorScheme * highlight CursorLine ctermbg=bg ctermfg=236
-autocmd ColorScheme * highlight CursorLineNR ctermbg=bg ctermfg=236
-autocmd ColorScheme * highlight TabLine ctermbg=bg
-autocmd ColorScheme * highlight Comment ctermbg=bg ctermfg=238
-autocmd ColorScheme * highlight StatuslineNC ctermbg=255 ctermfg=235
-autocmd ColorScheme * highlight Statusline ctermfg=bg ctermbg=238
-autocmd ColorScheme * highlight ErrorMsg ctermbg=bg ctermfg=238
-autocmd ColorScheme * highlight Visual ctermbg=235
-autocmd ColorScheme * highlight Folded ctermbg=bg ctermfg=236
-autocmd ColorScheme * highlight VertSplit ctermbg=bg ctermfg=bg cterm=none
+augroup ColorOverride
+	autocmd!
+	autocmd ColorScheme * highlight LineNr ctermbg=bg ctermfg=236
+	autocmd ColorScheme * highlight CursorLine ctermbg=bg ctermfg=236
+	autocmd ColorScheme * highlight CursorLineNR ctermbg=bg ctermfg=236
+	autocmd ColorScheme * highlight TabLine ctermbg=bg
+	autocmd ColorScheme * highlight Comment ctermbg=bg ctermfg=238
+	autocmd ColorScheme * highlight StatuslineNC ctermbg=255 ctermfg=235
+	autocmd ColorScheme * highlight Statusline ctermfg=bg ctermbg=238
+	autocmd ColorScheme * highlight ErrorMsg ctermbg=bg ctermfg=238
+	autocmd ColorScheme * highlight Visual ctermbg=235
+	autocmd ColorScheme * highlight Folded ctermbg=bg ctermfg=236
+	autocmd ColorScheme * highlight VertSplit ctermbg=bg ctermfg=bg cterm=none
 
-" Normal mode colors
-autocmd ColorScheme * highlight SignColumn ctermfg=4
+	" Normal mode colors
+	autocmd ColorScheme * highlight SignColumn ctermfg=4
 
-" Visual mode colors
-autocmd ColorScheme * highlight TermCursorNC ctermbg=172
+	" Visual mode colors
+	autocmd ColorScheme * highlight TermCursorNC ctermbg=172
 
-" Insert mode colors
-autocmd ColorScheme * highlight wildmenu ctermbg=65 ctermfg=233
+	" Insert mode colors
+	autocmd ColorScheme * highlight wildmenu ctermbg=65 ctermfg=233
 
-" Replace mode colors
-autocmd ColorScheme * highlight Structure ctermfg=167
+	" Replace mode colors
+	autocmd ColorScheme * highlight Structure ctermfg=167
+augroup END
 
 " This line MUST be below these autocmds
 colorscheme seoul256
@@ -199,6 +202,9 @@ vnoremap <SPACE> <nop>
 
 noremap  <F1> <nop>
 inoremap <F1> <nop>
+
+" Source vimrc, redraw and clear searches
+nnoremap <leader>sv :w <bar> :source ~/.dotfiles/.vimrc <bar> :redraw <bar> :noh <CR>
 
 command! WQ wq
 command! Wq wq
@@ -246,6 +252,8 @@ vmap <S-TAB> <
 " remap jk and kj to escape:  You'll never type it anyway, so it's great!
 inoremap jk <Esc>
 inoremap kj <Esc>
+vnoremap jk <Esc>
+vnoremap kj <Esc>
 
 " use hjkl-movement between rows when soft wrapping:
 nnoremap j gj
@@ -358,15 +366,15 @@ set ttimeout
 set ttimeoutlen=10
 
 " Save on focus loss
-au FocusLost * :silent! wall
+autocmd FocusLost * :silent! wall
 
 " Stops auto adding of comments on new line
 autocmd FileType * setlocal formatoptions-=c formatoptions-=r formatoptions-=o
 
 " Make vim return to same line in file
 augroup line_return
-	au!
-	au BufReadPost *
+	autocmd!
+	autocmd BufReadPost *
 	\ if line("'\"") > 0 && line("'\"") <= line("$") |
 	\     execute 'normal! g`"zvzz' |
 	\ endif
@@ -383,19 +391,19 @@ command! EX if !empty(expand('%')) && filereadable(expand('%'))
 	\| endif
 
 " WEBDEV SESSION START
-function RunGulp()
+function! RunGulp()
 	vsp
 	terminal gulp
 	file gulp
 endfunction
 
-function RunTerm()
+function! RunTerm()
 	sp
 	terminal
 	file terminal
 endfunction
 
-function Files()
+function! Files()
 	if filereadable("src/index.html")
 	\|     e src/index.html
 	\| else
@@ -415,7 +423,7 @@ function Files()
 	\| endif
 endfunction
 
-function BufWidth()
+function! BufWidth()
 	call feedkeys("\<ESC> \<CR> \; \vertical resize +30 \<CR> \<S-TAB>")
 endfunction
 
@@ -454,7 +462,10 @@ set foldnestmax=10
 set viewoptions=folds,cursor
 
 " Save folds in *vimrc
-autocmd BufWinLeave .*vimrc mkview
-autocmd BufWinEnter .*vimrc silent loadview
+augroup FoldSave
+	autocmd!
+	autocmd BufWinLeave,BufWritePre ~/.dotfiles/.vimrc mkview
+	autocmd BufWinEnter,BufRead ~/.dotfiles/.vimrc silent loadview
+augroup END
 
 " }}}
