@@ -21,8 +21,7 @@ Plug 'bling/vim-airline'									" Status and Tabline
 		set laststatus=2									" Always show statusline
 		let g:airline#extensions#tabline#enabled = 1		" Enables airline tabs
 		let g:airline#extensions#tabline#fnamemod = ':t'	" Display only filename in tabs
-		let g:airline_left_sep = ''
-		let g:airline_right_sep = ''
+		let g:airline_powerline_fonts = 1
 		let g:airline_theme = 'seoul256'
 		let g:airline#extensions#tabline#show_tabs = 0
 		let g:airline#extensions#tabline#excludes = ['terminal', 'gulp']
