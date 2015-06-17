@@ -384,10 +384,15 @@ function Files()
 		\| endif
 endfunction
 
+function BufWidth()
+		call feedkeys("\<ESC> \<CR> \; \vertical resize +35 \<CR> \<S-TAB>")
+endfunction
+
 command! Webdev if filereadable("gulpfile.coffee")
 		\|		call Files()
 		\| 		call RunGulp()
 		\| 		call RunTerm()
+		\| 		call BufWidth()
 		\|	else
 		\|		lcd %:p:h
 		\|		lcd ..
@@ -396,13 +401,16 @@ command! Webdev if filereadable("gulpfile.coffee")
 		\| 			call Files()
 		\| 			call RunGulp()
 		\| 			call RunTerm()
+		\| 			call BufWidth()
 		\|		else
 		\|			lcd ..
 		\| 			call Files()
 		\| 			call RunGulp()
 		\| 			call RunTerm()
+		\| 			call BufWidth()
 		\|		endif
 		\|	endif
+		\|
 
 " }}}
 
