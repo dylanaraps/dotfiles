@@ -422,8 +422,8 @@ endfunction
 command! Webdev if filereadable("gulpfile.coffee")
 	\|     call Files()
 	\|     call RunGulp()
-	\| 	   call RunTerm()
-	\| 	   call BufWidth()
+	\|     call RunTerm()
+	\|     call BufWidth()
 	\| else
 	\|     lcd %:p:h
 	\|     lcd ..
@@ -434,8 +434,8 @@ command! Webdev if filereadable("gulpfile.coffee")
 	\|         call RunTerm()
 	\|         call BufWidth()
 	\|     else
-	\|	       lcd ..
-	\| 	       call Files()
+	\|         lcd ..
+	\|         call Files()
 	\|         call RunGulp()
 	\|         call RunTerm()
 	\|         call BufWidth()
