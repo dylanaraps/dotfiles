@@ -1,6 +1,8 @@
 " Dylan's Vimrc
 " vim: set foldmethod=marker foldlevel=0:
-set shell=zsh											" Make vim use zhrc and aliases
+
+" Make vim use zhrc and aliases
+set shell=zsh
 
 " Plugins {{{
 
@@ -17,19 +19,23 @@ call plug#begin('~/.vim/plugged')
 Plug 'junegunn/seoul256.vim'
 		let g:seoul256_background = 233
 
-Plug 'bling/vim-airline'									" Status and Tabline
-		set laststatus=2									" Always show statusline
-		let g:airline#extensions#tabline#enabled = 1		" Enables airline tabs
-		let g:airline#extensions#tabline#fnamemod = ':t'	" Display only filename in tabs
+Plug 'bling/vim-airline'
+		" Always show statusline
+		set laststatus=2
 		let g:airline_powerline_fonts = 1
 		let g:airline_theme = 'seoul256'
+		let g:airline#extensions#tabline#enabled = 1
+
+		" Display only filename in tabs
+		let g:airline#extensions#tabline#fnamemod = ':t'
 		let g:airline#extensions#tabline#show_tabs = 0
 		let g:airline#extensions#tabline#excludes = ['terminal', 'gulp']
 
 " FUNCTIONALITY
+Plug 'tpope/vim-fugitive'
+Plug 'tommcdo/vim-lion'
 Plug 'wesQ3/vim-windowswap'
 		let g:windowswap_map_keys = 0
-		" Maps ww to swap buffers
 		nnoremap <silent> ww :call WindowSwap#EasyWindowSwap()<CR>
 
 Plug 'kien/ctrlp.vim'
@@ -47,41 +53,45 @@ Plug 'kien/ctrlp.vim'
 		\ --ignore "*.map"
 		\ -g ""'
 
-Plug 'terryma/vim-expand-region'
 Plug 'kana/vim-textobj-user'
-Plug 'kana/vim-textobj-line'
+\| Plug 'kana/vim-textobj-line'
+\| Plug 'terryma/vim-expand-region'
 		vmap v <Plug>(expand_region_expand)
 		vmap <C-v> <Plug>(expand_region_shrink)
 
-Plug 'tpope/vim-fugitive'
-Plug 'terryma/vim-multiple-cursors'							" Multiple cursors similar to ST2/3
+Plug 'terryma/vim-multiple-cursors'
+		let g:multi_cursor_use_default_mapping = 0
 		let g:multi_cursor_next_key='<C-j>'
 		let g:multi_cursor_prev_key='<C-k>'
 		let g:multi_cursor_skip_key='<C-l>'
 		let g:multi_cursor_quit_key='<Esc>'
 
-Plug 'haya14busa/incsearch.vim' 							" Shows search results as you're typing
-Plug 'osyo-manga/vim-anzu'									" Show number of search results
+" Shows search results as you're typing and a #/Total as you cycle through the results
+Plug 'haya14busa/incsearch.vim'
+Plug 'osyo-manga/vim-anzu'
 		let g:incsearch#consistent_n_direction = 1
-		let g:incsearch#magic = '\v' 						" very magic
+		let g:incsearch#magic = '\v'
 		map /  <Plug>(incsearch-forward)
 		map ?  <Plug>(incsearch-backward)
 		map g/ <Plug>(incsearch-stay)
 		map <S-J> <Plug>(incsearch-nohl)<Plug>(anzu-n-with-echo)
 		map <S-K> <Plug>(incsearch-nohl)<Plug>(anzu-N-with-echo)
 
-Plug 'tpope/vim-surround'									" Surround text
-Plug 'tpope/vim-commentary'									" Comment out text
-Plug 'rstacruz/vim-closer'									" Enters and adds closing brackets to various languages
-Plug 'mattn/emmet-vim'										" Makes html super easy
+Plug 'tpope/vim-surround'
+Plug 'tpope/vim-commentary'
+Plug 'rstacruz/vim-closer'
+Plug 'mattn/emmet-vim', { 'for': ['html', 'css', 'scss'] }
 		let g:user_emmet_install_global = 0
 		autocmd FileType html,css,scss EmmetInstall
 
-Plug 'ajh17/VimCompletesMe' 								" Tiny Autocomplete
+" Tiny Autocomplete
+Plug 'ajh17/VimCompletesMe'
 
 " FILETYPES
 Plug 'JulesWang/css.vim'
-Plug 'ap/vim-css-color'										" Changes background behind hex color to it's actual color
+
+" Changes background behind hex color to it's actual color
+Plug 'ap/vim-css-color'
 Plug 'cakebaker/scss-syntax.vim'
 Plug 'hail2u/vim-css3-syntax'
 Plug 'othree/html5.vim'
@@ -102,14 +112,19 @@ filetype plugin on
 " Spaces and Tabs {{{
 
 set tabstop=4
-set lcs=tab:▸\ ,trail:·,eol:¬,nbsp:_	" Show “invisible” characters
+
+" Show “invisible” characters
+set lcs=tab:▸\ ,trail:·,eol:¬,nbsp:_
 
 " }}}
 
 " Line Wrap {{{
 
-set wrap 								" Soft wraps lines without editing file
-set linebreak							" Stops words from being cut off during linebreak
+" Soft wraps lines without editing file
+set wrap
+
+" Stops words from being cut off during linebreak
+set linebreak
 set nolist
 set textwidth=80
 set wrapmargin=0
@@ -120,20 +135,24 @@ set breakindent
 
 " Look and Feel {{{
 
-set title								" Change window title to filename
-syntax on 								" Switch syntac highlighting on
+" Change window title to filename
+set title
+syntax on
 set background=dark
-set number 								" Shows linenumbers
-set ruler 								" Shows Ruler
-set shortmess=atI						" Don’t show the intro message when starting Vim
+set number
+set ruler
+
+" Don’t show the intro message when starting Vim
+set shortmess=atI
 set noshowmode
 
 " Colorscheme overrides
 autocmd ColorScheme * highlight LineNr ctermbg=bg ctermfg=236
 autocmd ColorScheme * highlight CursorLine ctermbg=bg ctermfg=236
+autocmd ColorScheme * highlight CursorLineNR ctermbg=bg ctermfg=236
 autocmd ColorScheme * highlight TabLine ctermbg=bg
 autocmd ColorScheme * highlight Comment ctermbg=bg ctermfg=238
-autocmd ColorScheme * highlight StatuslineNC ctermbg=255 ctermfg=234
+autocmd ColorScheme * highlight StatuslineNC ctermbg=255 ctermfg=235
 autocmd ColorScheme * highlight Statusline ctermfg=bg ctermbg=238
 autocmd ColorScheme * highlight ErrorMsg ctermbg=bg ctermfg=238
 autocmd ColorScheme * highlight Visual ctermbg=235
@@ -161,8 +180,10 @@ colorscheme seoul256
 
 set hlsearch
 set incsearch
-set ignorecase 							" Do case insensitive searches
-set smartcase							" Do case sensitive searches is search term includes a capital
+set ignorecase
+
+" Do case sensitive searches is search term includes a capital
+set smartcase
 
 " }}}
 
@@ -202,8 +223,8 @@ noremap <M-;> ;
 " Save files with root privliges
 cmap w!! w !sudo tee %
 
-" Term
-cmap term term://zsh <bar> file Terminal <bar> startinsert
+" map .nv to open dotfiles vimrc
+cmap .nv ~/.dotfiles/.vimrc
 
 " Tab in insert mode to autocomplete
 imap <expr><TAB>  pumvisible() ? "\<C-n>" : "\<TAB>"
@@ -260,7 +281,7 @@ autocmd BufWritePre * :%s/\s\+$//e
 
 " Temp Files {{{
 
-set noswapfile                    " it's 2013, Vim.
+set noswapfile
 
 " Stores all swap/backup files in a seperate directory
 set dir=~/.nvim/tmp/swap//
@@ -287,28 +308,37 @@ set undoreload=500
 
 " Misc {{{
 
+" Auto change dir to file directory
+set autochdir
+
 set ttyfast
 set mouse=a
 set ttymouse=xterm2
 
-set clipboard+=unnamedplus 				" Use the OS clipboard by default
+" Use the OS clipboard by default
+set clipboard+=unnamedplus
 
-set wildmenu 							" Enhance command-line completion
+" Enhance command-line completion
+set wildmenu
 set wildignore+=*/.hg/*,*/.git/*,*/.svn/*
 set wildignore+=*.gif,*.png,*.jp*
 set wildignore+=*/.sass-cache/*,*.map
 
-set backspace=indent,eol,start 			" Make backspace behave in a sane manner.
-set esckeys 							" Allow cursor keys in insert mode
+set backspace=indent,eol,start
+set esckeys
 
 set binary
 set noeol
 set showcmd
 set autoread
 
-set hidden 								" Stops vim from complaining when moving between buffers with unsaved files
-set noerrorbells 						" Disable error bells
-set nostartofline 						" Don’t reset cursor to start of line when moving around.
+
+" Stops vim from complaining when moving between buffers with unsaved files
+set hidden
+set noerrorbells
+
+" Don’t reset cursor to start of line when moving around.
+set nostartofline
 
 " Better auto complete
 set complete=.,w,b,u,t
@@ -326,7 +356,8 @@ set notimeout
 set ttimeout
 set ttimeoutlen=10
 
-au FocusLost * :silent! wall 			" Save on focus loss
+" Save on focus loss
+au FocusLost * :silent! wall
 
 " Stops auto adding of comments on new line
 autocmd FileType * setlocal formatoptions-=c formatoptions-=r formatoptions-=o
@@ -384,7 +415,7 @@ function Files()
 endfunction
 
 function BufWidth()
-		call feedkeys("\<ESC> \<CR> \; \vertical resize +35 \<CR> \<S-TAB>")
+		call feedkeys("\<ESC> \<CR> \; \vertical resize +30 \<CR> \<S-TAB>")
 endfunction
 
 command! Webdev if filereadable("gulpfile.coffee")
@@ -417,10 +448,10 @@ command! Webdev if filereadable("gulpfile.coffee")
 
 set foldmethod=marker
 set foldlevel=99
-set foldnestmax=10						" max 10 depth
+set foldnestmax=10
 
 " Save folds in *vimrc
-autocmd BufWinLeave .nvimrc mkview
-autocmd BufWinEnter .nvimrc silent loadview
+autocmd BufWinLeave .*vimrc mkview
+autocmd BufWinEnter .*vimrc silent loadview
 
 " }}}
