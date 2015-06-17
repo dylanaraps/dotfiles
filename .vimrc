@@ -80,7 +80,7 @@ Plug 'osyo-manga/vim-anzu'
 Plug 'tpope/vim-surround'
 Plug 'tpope/vim-commentary'
 Plug 'rstacruz/vim-closer'
-Plug 'mattn/emmet-vim', { 'for': ['html', 'css', 'scss'] }
+Plug 'mattn/emmet-vim'
 	let g:user_emmet_install_global = 0
 	autocmd FileType html,css,scss EmmetInstall
 
@@ -449,6 +449,9 @@ command! Webdev if filereadable("gulpfile.coffee")
 set foldmethod=marker
 set foldlevel=99
 set foldnestmax=10
+
+" Only saves folds/cursor pos in mkview
+set viewoptions=folds,cursor
 
 " Save folds in *vimrc
 autocmd BufWinLeave .*vimrc mkview
