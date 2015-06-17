@@ -203,10 +203,6 @@ vnoremap <SPACE> <nop>
 noremap  <F1> <nop>
 inoremap <F1> <nop>
 
-" Source vimrc, redraw and clear searches
-nnoremap <leader>sv :w <bar> :source ~/.dotfiles/.vimrc <bar> :redraw <bar> :noh <CR>
-
-command! WQ wq
 command! Wq wq
 command! W w
 command! Q q
@@ -252,8 +248,6 @@ vmap <S-TAB> <
 " remap jk and kj to escape:  You'll never type it anyway, so it's great!
 inoremap jk <Esc>
 inoremap kj <Esc>
-vnoremap jk <Esc>
-vnoremap kj <Esc>
 
 " use hjkl-movement between rows when soft wrapping:
 nnoremap j gj
@@ -464,8 +458,8 @@ set viewoptions=folds,cursor
 " Save folds in *vimrc
 augroup FoldSave
 	autocmd!
-	autocmd BufWinLeave,BufWritePre ~/.dotfiles/.vimrc mkview
-	autocmd BufWinEnter,BufRead ~/.dotfiles/.vimrc silent loadview
+	autocmd BufWinLeave ~/.dotfiles/.vimrc mkview
+	autocmd BufWinEnter ~/.dotfiles/.vimrc silent loadview
 augroup END
 
 " }}}
