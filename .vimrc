@@ -425,7 +425,10 @@ function! BufWidth()
 endfunction
 
 function! Success()
+	messages
 	echom system("basename `git rev-parse --show-toplevel` | sed -e 's/.*/Project & Loaded/' | tr -d '\n'")
+	sleep 1
+	call feedkeys ("\<ESC>")
 endfunction
 
 command! Webdev if isdirectory(".git") && filereadable("gulpfile.coffee")
