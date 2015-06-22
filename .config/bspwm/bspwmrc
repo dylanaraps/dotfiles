@@ -15,5 +15,8 @@ bspc config -m eDP1 top_padding 30
 bspc monitor DFP10 -d www code game video
 bspc monitor eDP1 -d www code game video
 
+
+bspc rule -a steam desktop=$game follow=no
+
 ~/.config/lemonbar/bar.sh &
 

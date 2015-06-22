@@ -135,28 +135,19 @@ windowtitle(){
 }
 
 workspace(){
-	# Workspace switcher for i3 using wmctrl ( Can easily be edited for another wm)
-	# Supports icon fonts, words and numbers of any length!
-	# Functions exactly like the workspace switcher in i3bar
-	# Also supports as many workspaces as your wm can create, you'll need the space to avoid overlapping though.
+	# Workspace switcher using wmctrl
+	workspacenext="A4:bspc desktop -f next:"
+	workspaceprevious="A5:bspc desktop -f prev:"
 
-	# Bug: Click events don't work when the workspace is named (number: word) for some reason. Not sure is it's an i3 issue as the code sent to bar looks fine.
-	# Missing: Mode indicator (Resize mode, etc) and I don't think it's possible without using an ipc library.
-
-	# Change "next_on_output" to "next" to cycle between every workspace
-	workspacenext="A4:i3-msg workspace next_on_output:"
-	workspaceprevious="A5:i3-msg workspace prev_on_output:"
-
-	# This part took hours of trial and error, check the git history of this file!
-	# Increase the number of variables in print to have workspaces longer than 12 words in length.
 	wslist=$(\
 		wmctrl -d \
-		| awk '/ / {print $2 $9, $10, $11, $12, $13, $14, $15, $16, $17, $18, $19, $20}' ORS=''\
-		| sed -e 's/\s*  //g' \
+		| awk '/[a-z]$/ {printf $2 $9}'\
+		| sed -e 's/ //g' \
+		-e 's/\-/\;/g' \
 		-e 's/\*[ 0-9A-Za-z]*[^ -~]*/%{B#85ADD4}  &  %{B}/g' \
-		-e 's/\-[ 0-9A-Za-z]*[^ -~]*/%{B#252525}%{A:i3-msg workspace &:}  &  %{A}%{B}/g' \
+		-e 's/\;[ 0-9A-Za-z]*[^ -~]*/%{B#252525}%{A:bspc desktop -f &:}  &  %{A}%{B}/g' \
 		-e 's/\*//g' \
-		-e 's/ -/ /g' \
+		-e 's/ \;/ /g'\
 		)
 
 	# Adds the scrollwheel events and displays the switcher
