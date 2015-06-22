@@ -15,16 +15,16 @@ white="FFFFFF"
 black="#1C1C1C"
 darkgrey="#252525"
 blue="#458588"
-pink="#FABD2F"
+lightblue="#83A598"
 
 # Fonts
 font="-benis-lemon-medium-r-normal--10-110-75-75-m-50-iso8859-1"
 icons="-wuncon-sijipatched-medium-r-normal--10-100-75-75-c-80-iso10646-1"
 
-if [ $(xrandr | awk '/DFP10/ {print $1}') == "DFP10" ]; then
+if [[ $(xrandr | awk '/DFP10/ {print $1}') == "DFP10" ]]; then
 	size="1600x25"
 
-elif [ $(xrandr | awk '/eDP1/ {print $1}') == "eDP1" ]; then
+elif [[ $(xrandr | awk '/eDP1/ {print $1}') == "eDP1" ]]; then
 	size="1366x25"
 
 else
@@ -40,7 +40,7 @@ battery(){
 
 	elif [[ $upower == "fully-charged" ]]; then
 		batt=" Fully Charged"
-		echo "%{B$pink} $batt"
+		echo "%{B$lightblue} $batt "
 
 	elif [[ $upower == "charging" ]]; then
 		perc=$(acpi | cut -d, -f2 | sed -e 's/\%* *//g')
@@ -60,7 +60,7 @@ battery(){
 			echo "%{B$blue}  $batt%"
 
 		else
-			echo "%{B$pink}  $batt%"
+			echo "%{B$lightblue}  $batt%"
 		fi
 	fi
 }
