@@ -3,7 +3,7 @@
 
 :root {
 		/* TAB VARIABLES */
-		--bg-light: #252525; --bg-dark: #121212;
+		--bg-light: #262626; --bg-dark: #1C1C1C;
 		--fg-light: #FFFFFF; --fg-dark: #AAA5AD;
 		--tab-triangle-correction: -1px;
 		--tab-height: 18px; --tab-icon-size: 10px; --tab-strip-margin: -11px; --tab-overlap: -5px;
