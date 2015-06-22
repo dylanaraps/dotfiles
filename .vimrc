@@ -7,8 +7,8 @@ set shell=zsh
 " Plugins {{{
 
 " Auto install plug if not found
-if empty(glob('~/.vim/autoload/plug.vim'))
-	silent !curl -fLo ~/.vim/autoload/plug.vim --create-dirs
+if empty(glob('~/.nvim/autoload/plug.vim'))
+	silent !curl -fLo ~/.nvim/autoload/plug.vim --create-dirs
 	\ https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
 	autocmd VimEnter * PlugInstall
 endif
@@ -228,8 +228,8 @@ noremap <M-;> ;
 " Save files with root privliges
 cmap w!! w !sudo tee % > /dev/null
 
-" map .nv to open dotfiles vimrc
-cmap .nv ~/.dotfiles/.vimrc
+cmap Hterm sp <bar> terminal <bar> file terminal
+cmap Vterm vsp <bar> terminal <bar> file terminal
 
 " Tab in insert mode to autocomplete
 imap <expr><TAB>  pumvisible() ? "\<C-n>" : "\<TAB>"
@@ -315,10 +315,7 @@ set undoreload=500
 
 " Auto change dir to file directory
 set autochdir
-
 set ttyfast
-set mouse=a
-set ttymouse=xterm2
 
 " Use the OS clipboard by default
 set clipboard+=unnamedplus
@@ -441,6 +438,21 @@ command! Webdev if isdirectory(".git") && filereadable("gulpfile.coffee")
 	\|     echom "No project found"
 	\| endif
 
+function! Ncmpcpp()
+	vsp
+	terminal ncmpcpp -s visualizer
+
+	sp
+	terminal ncmpcpp
+	call feedkeys("\<ESC> \<CR>")
+endfunction
+
+command! Music if 1 == 1
+	\| call Ncmpcpp()
+\| else
+	\| echo "wot"
+\| endif
+
 " }}}
 
 "Folding {{{
@@ -455,8 +467,8 @@ set viewoptions=folds,cursor
 " Save folds in *vimrc
 augroup FoldSave
 	autocmd!
-	autocmd BufWinLeave ~/.dotfiles/.vimrc mkview
-	autocmd BufWinEnter ~/.dotfiles/.vimrc silent loadview
+	autocmd BufWinLeave ~/.nvimrc mkview
+	autocmd BufWinEnter ~/.nvimrc silent loadview
 augroup END
 
 " }}}
