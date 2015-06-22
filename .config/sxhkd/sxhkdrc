@@ -3,7 +3,8 @@
 #
 
 super + shift + Escape
-	pkill lemonbar; bspc quit
+	bspc quit & \
+	pkill lemonbar
 
 super + q
 	bspc window -c

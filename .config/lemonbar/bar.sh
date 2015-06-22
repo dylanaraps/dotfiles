@@ -18,7 +18,7 @@ yellow="#d75f87"
 font="-benis-lemon-medium-r-normal--10-110-75-75-m-50-iso8859-1"
 icons="-wuncon-sijipatched-medium-r-normal--10-100-75-75-c-80-iso10646-1"
 
-if [ $(xrandr | awk '/DFP11/ {print $1}') == "DFP11" ]; then
+if [ $(xrandr | awk '/DFP10/ {print $1}') == "DFP10" ]; then
 	size="1600x25"
 
 elif [ $(xrandr | awk '/eDP1/ {print $1}') == "eDP1" ]; then
@@ -31,7 +31,10 @@ fi
 battery(){
 	upower=$(upower -i /org/freedesktop/UPower/devices/battery_BAT1 | awk '/state:/ {print $2}')
 
-	if [[ $upower == "fully-charged" ]]; then
+	if [[ $upower == "" ]]; then
+		batt=""
+
+	elif [[ $upower == "fully-charged" ]]; then
 		batt=" Fully Charged"
 		echo "%{B$yellow} $batt"
 
@@ -168,7 +171,6 @@ while :; do
 		%{l}\
 		%{c}\
 			%{B$blue} $(music) \
-			%{B$darkgrey} $(volume) \
 		%{c}\
 		%{r}\
 			$(wifi) \

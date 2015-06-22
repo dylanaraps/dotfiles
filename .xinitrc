@@ -28,8 +28,8 @@ else
 fi
 
 # Sets up multi monito
-if [ $(xrandr | awk '/DFP11/ {print $1}') == "DFP11" ]; then
-	xrandr --output DFP11 --auto --output DFP10 --auto --right-of DFP11 &
+if [ $(xrandr | awk '/DFP10/ {print $1}') == "DFP10" ]; then
+	xrandr --output DFP10 --auto --primary --left-of DFP11 --output DFP11 --auto &
 else
 	echo "" &
 fi
