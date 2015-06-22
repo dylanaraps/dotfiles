@@ -31,4 +31,8 @@ mpd &
 compton -b --config ~/.compton &
 
 # Starts i3 window manager
-exec i3
+# exec i3
+
+# starts bspwm
+sxhkd &
+exec bspwm
