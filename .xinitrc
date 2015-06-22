@@ -14,19 +14,19 @@ xset r rate 400 25
 xset m 0/0 0
 
 # Sets font directory for enypn
-xset +fp /usr/share/fonts/envypnforpowerline
 xset +fp /usr/share/fonts/envypn
-xset +fp /usr/share/fonts/sijipatched
+xset +fp /usr/share/fonts/siji
+xset +fp ~/.fonts/sijipatched
 xset fp rehash
-
-# Sets up multi monito
-xrandr --output DFP11 --auto --output DFP10 --auto --right-of DFP11 &
 
 # Launches mpd
 mpd &
 
 # Starts Compton
 compton -b --config ~/.compton &
+
+# Devmon
+devmon &
 
 # Starts i3 window manager
 exec i3
