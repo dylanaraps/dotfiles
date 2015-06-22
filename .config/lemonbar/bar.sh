@@ -50,15 +50,15 @@ music(){
 }
 
 volume(){
-	volup="A4:amixer set Master 5%+:"
-	voldown="A5:amixer set Master 5%-:"
-	volmute="A:amixer set Master toggle:"
+	volup="A4:/usr/bin/pulseaudio-ctl up:"
+	voldown="A5:/usr/bin/pulseaudio-ctl down:"
+	volmute="A:/usr/bin/pulseaudio-ctl mute:"
 
 	# Volume Indicator
-	if [[ $(amixer get Master | awk '/Mono:/ {print $6}') == "[off]" ]]; then
+	if [[ $(pulseaudio-ctl | awk '/Is sink muted/ {print $5}') == "yes" ]]; then
 		vol=$(echo " Mute")
 	else
-		mastervol=$(amixer get Master | egrep -o '[0-9]{1,3}%' | sed -e 's/%//')
+		mastervol=$(pulseaudio-ctl | awk '/Volume level/ {print $4}')
 		vol=$(echo " $mastervol")
 	fi
 
@@ -110,7 +110,6 @@ while :; do
 		%{l}\
 		%{c}\
 			%{B$blue} $(music) \
-			%{B$darkgrey} $(volume) \
 		%{c}\
 		%{r}\
 			%{B$darkgrey} $(memory) \

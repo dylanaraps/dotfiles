@@ -19,6 +19,8 @@ xset +fp /usr/share/fonts/envypn
 xset +fp /usr/share/fonts/sijipatched
 xset fp rehash
 
+pulseaudio --start &
+
 # Sets up multi monito
 xrandr --output DFP11 --auto --output DFP10 --auto --right-of DFP11 &
 
