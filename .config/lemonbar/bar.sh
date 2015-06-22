@@ -12,10 +12,10 @@ fi
 
 # # Colors
 white="FFFFFF"
-black="#121212"
+black="#1C1C1C"
 darkgrey="#252525"
-blue="#85ADD4"
-yellow="#d75f87"
+blue="#458588"
+pink="#B16286"
 
 # # Fonts
 font="-benis-lemon-medium-r-normal--10-110-75-75-m-50-iso8859-1"
@@ -39,7 +39,7 @@ battery(){
 
 	elif [[ $upower == "fully-charged" ]]; then
 		batt=" Fully Charged"
-		echo "%{B$yellow} $batt"
+		echo "%{B$pink} $batt"
 
 	elif [[ $upower == "charging" ]]; then
 		perc=$(acpi | cut -d, -f2 | sed -e 's/\%* *//g')
@@ -59,7 +59,7 @@ battery(){
 			echo "%{B$blue}  $batt%"
 
 		else
-			echo "%{B$yellow}  $batt%"
+			echo "%{B$pink}  $batt%"
 		fi
 	fi
 }
