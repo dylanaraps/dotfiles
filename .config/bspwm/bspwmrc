@@ -1,7 +1,7 @@
 #! /bin/sh
 
 bspc config border_width       0
-bspc config window_gap         12
+bspc config window_gap         20
 
 bspc config split_ratio         0.50
 bspc config borderless_monocle  true
@@ -9,8 +9,8 @@ bspc config gapless_monocle     true
 bspc config focus_follows_pointer true
 bspc config initial_polarity second_child
 
-bspc config -m DFP10 top_padding 30
-bspc config -m eDP1 top_padding 30
+bspc config -m DFP10 top_padding 25
+bspc config -m eDP1 top_padding 25
 
 bspc monitor DFP10 -d www code game video
 bspc monitor eDP1 -d www code game video

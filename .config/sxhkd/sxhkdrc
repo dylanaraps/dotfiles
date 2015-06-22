@@ -3,8 +3,9 @@
 #
 
 super + shift + Escape
-	bspc quit & \
-	pkill lemonbar
+	bspc quit && \
+	pkill lemonbar && \
+	pkill bar.sh
 
 super + q
 	bspc window -c

@@ -5,7 +5,10 @@
 
 # Kills lemon bar to keep one instance open
 # Useful as I'm constantly editing and then reloading this file.
-pkill lemonbar
+if pgrep -x lemonbar; then
+	pkill lemonbar
+	pkill bar.sh
+fi
 
 # # Colors
 white="FFFFFF"
@@ -25,7 +28,7 @@ elif [ $(xrandr | awk '/eDP1/ {print $1}') == "eDP1" ]; then
 	size="1366x25"
 
 else
-	width=""
+	size=""
 fi
 
 battery(){
@@ -161,17 +164,18 @@ while :; do
 			%{B$black} $(windowtitle) \
 		%{l}\
 		%{c}\
-			%{B$blue} $(music) \
+			%{B$black} $(clock) \
 		%{c}\
 		%{r}\
 			$(wifi) \
 			$(battery) \
-			%{B$black} $(clock) \
+			%{B$blue} $(music) \
 			%{B$black}\
 		%{r}\
 		"
 	sleep .03s
+
 done |
 # Finally, launches bar while piping the above while loop!
 # | bash is needed on the end for the click events to work.
-lemonbar -g $size -f $font -f $icons -F \#FF$white | bash
+lemonbar -g $size -f $font -f $icons -F \#FF$white 2> /dev/null | bash
