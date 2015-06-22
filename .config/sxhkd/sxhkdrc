@@ -78,7 +78,7 @@ super + @button{1-3}
 #
 
 super + Return
-	urxvt -lsp 1
+	xfce4-terminal
 
 super + d
 	j4-dmenu-desktop --dmenu="dmenu -o 0.9 -nb '#121212' -nf '#FFFFFF' -sb '#85ADD4' -i -h 25 -w 1600 -fn '-benis-lemon-medium-r-normal--10-110-75-75-m-50-iso8859-1' -name dmenu2" --term="urxvt"
