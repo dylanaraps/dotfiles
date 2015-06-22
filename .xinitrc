@@ -20,10 +20,19 @@ xset +fp /usr/share/fonts/sijipatched
 xset +fp ~/.fonts/sijipatched
 xset fp rehash
 
-pulseaudio --start &
+# if pulse
+if [ $(cd /bin && ls | grep pulseaudio) == pulseaudio ]; then
+	pulseaudio --start &
+else
+	echo ""
+fi
 
 # Sets up multi monito
-xrandr --output DFP11 --auto --output DFP10 --auto --right-of DFP11 &
+if [ $(xrandr | awk '/DFP11/ {print $1}') == "DFP11" ]; then
+	xrandr --output DFP11 --auto --output DFP10 --auto --right-of DFP11 &
+else
+	echo "" &
+fi
 
 # Launches mpd
 mpd &
