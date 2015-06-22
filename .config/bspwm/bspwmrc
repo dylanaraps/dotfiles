@@ -18,5 +18,6 @@ bspc monitor eDP1 -d www code game video
 
 bspc rule -a steam desktop=$game follow=no
 
+feh --bg-tile ~/.dotfiles/wallpapers/1.jpe &
 ~/.config/lemonbar/bar.sh &
 

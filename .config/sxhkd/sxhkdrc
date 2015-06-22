@@ -83,7 +83,7 @@ super + Return
 	xfce4-terminal
 
 super + d
-	j4-dmenu-desktop --dmenu="dmenu -o 0.9 -nb '#121212' -nf '#FFFFFF' -sb '#85ADD4' -i -h 25 -w 1600 -fn '-benis-lemon-medium-r-normal--10-110-75-75-m-50-iso8859-1' -name dmenu2" --term="urxvt"
+	j4-dmenu-desktop --dmenu="dmenu -o 0.9 -nb '#1C1C1C' -nf '#FFFFFF' -sb '#458588' -i -h 25 -w 1600 -fn '-benis-lemon-medium-r-normal--10-110-75-75-m-50-iso8859-1' -name dmenu2" --term="xfce4-terminal"
 
 # Reducing gap on the fly
 alt + {minus,equal}
