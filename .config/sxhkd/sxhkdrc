@@ -95,5 +95,6 @@ super + e
 
 # make sxhkd reload its configuration files:
 super + Escape
-	pkill -USR1 -x sxhkd
+	pkill -USR1 -x sxhkd && \
+	~/.config/lemonbar/bar.sh
 
