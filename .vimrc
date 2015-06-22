@@ -16,8 +16,8 @@ endif
 call plug#begin('~/.vim/plugged')
 
 " LOOKS
-Plug 'junegunn/seoul256.vim'
-	let g:seoul256_background = 233
+Plug 'morhetz/gruvbox'
+	let g:gruvbox_contrast_dark = "hard"
 
 Plug 'bling/vim-airline'
 	" Always show statusline
@@ -152,17 +152,17 @@ set noshowmode
 " Colorscheme overrides
 augroup ColorOverride
 	autocmd!
-	autocmd ColorScheme * highlight LineNr ctermbg=bg ctermfg=236
-	autocmd ColorScheme * highlight CursorLine ctermbg=bg ctermfg=236
-	autocmd ColorScheme * highlight CursorLineNR ctermbg=bg ctermfg=236
-	autocmd ColorScheme * highlight TabLine ctermbg=bg
-	autocmd ColorScheme * highlight Comment ctermbg=bg ctermfg=238
+	autocmd ColorScheme * highlight LineNr ctermbg=234 ctermfg=236
+	autocmd ColorScheme * highlight CursorLine ctermbg=234 ctermfg=236
+	autocmd ColorScheme * highlight CursorLineNR ctermbg=234 ctermfg=236
+	autocmd ColorScheme * highlight TabLine ctermbg=234
+	autocmd ColorScheme * highlight Comment ctermbg=234 ctermfg=238
 	autocmd ColorScheme * highlight StatuslineNC ctermbg=255 ctermfg=235
-	autocmd ColorScheme * highlight Statusline ctermfg=bg ctermbg=238
-	autocmd ColorScheme * highlight ErrorMsg ctermbg=bg ctermfg=238
+	autocmd ColorScheme * highlight Statusline ctermfg=234 ctermbg=238
+	autocmd ColorScheme * highlight ErrorMsg ctermbg=234 ctermfg=238
 	autocmd ColorScheme * highlight Visual ctermbg=236
-	autocmd ColorScheme * highlight Folded ctermbg=bg ctermfg=236
-	autocmd ColorScheme * highlight VertSplit ctermbg=bg ctermfg=bg cterm=none
+	autocmd ColorScheme * highlight Folded ctermbg=234 ctermfg=236
+	autocmd ColorScheme * highlight VertSplit ctermbg=234 ctermfg=234 cterm=none
 
 	" Normal mode colors
 	autocmd ColorScheme * highlight SignColumn ctermfg=4
@@ -178,7 +178,7 @@ augroup ColorOverride
 augroup END
 
 " This line MUST be below these autocmds
-colorscheme seoul256
+colorscheme gruvbox
 
 " }}}
 

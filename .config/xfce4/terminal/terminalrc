@@ -30,11 +30,8 @@ BackgroundDarkness=1.000000
 ShortcutsNoMenukey=TRUE
 ShortcutsNoMnemonics=TRUE
 Encoding=UTF-8
-ColorCursor=#93a1a1
-ColorForeground=#d0d0d0d0d0d0
-ColorBackground=#121212121212
-ColorPalette=#121212121212;#dcdc32322f2f;#858599990000;#b5b589890000;#8585adadd4d4;#d3d336368282;#2a2aa1a19898;#d0d0d0d0d0d0;#00002b2b3636;#cbcb4b4b1616;#58586e6e7575;#65657b7b8383;#838394949696;#6c6c7171c4c4;#9393a1a1a1a1;#ffffffffffff
-ColorBold=#93a1a1
-ColorBoldUseDefault=FALSE
-TabActivityColor=#dc322f
+ColorCursor=#ebebdbdbb2b2
+ColorForeground=#ebebdbdbb2b2
+ColorBackground=#1c1c1c1c1c1c
+ColorPalette=#1c1c1c1c1c1c;#cccc24241d1d;#989897971a1a;#d7d799992121;#454585858888;#b1b162628686;#68689d9d6a6a;#a8a899998484;#929283837474;#fbfb49493434;#b8b8bbbb2626;#fafabdbd2f2f;#8383a5a59898;#d3d386869b9b;#8e8ec0c07c7c;#ebebdbdbb2b2
 

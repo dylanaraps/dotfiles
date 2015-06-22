@@ -27,7 +27,7 @@ generate_win32_compatible_filenames = "yes"
 # Bars
 progressbar_color = "white"
 progressbar_elapsed_color = "white"
-progressbar_look = "▮▮ "
+progressbar_look = "   "
 
 # UI
 header_visibility = "no"

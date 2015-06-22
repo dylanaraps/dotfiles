@@ -18,6 +18,5 @@ bspc monitor eDP1 -d www code game video
 
 bspc rule -a steam desktop=$game follow=no
 
-feh --bg-fill ~/Pictures/papes/23.jpg &
 ~/.config/lemonbar/bar.sh &
 
