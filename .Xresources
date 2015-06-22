@@ -1,4 +1,5 @@
 ! Adds padding around terminal text
+URxvt.font: envypn-13,xft:envypn-13:pixelsize-13
 
 ! Disables Scrollbar
 URxvt.scrollBar: false

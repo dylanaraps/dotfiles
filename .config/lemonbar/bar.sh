@@ -7,15 +7,56 @@
 # Useful as I'm constantly editing and then reloading this file.
 pkill lemonbar
 
-# Colors
+# # Colors
 white="FFFFFF"
 black="#121212"
 darkgrey="#252525"
 blue="#85ADD4"
+yellow="#d75f87"
 
-# Fonts
-font="Lemon"
-icons="Sijipatched"
+# # Fonts
+font="-benis-lemon-medium-r-normal--10-110-75-75-m-50-iso8859-1"
+icons="-wuncon-sijipatched-medium-r-normal--10-100-75-75-c-80-iso10646-1"
+
+if [ $(xrandr | awk '/DFP11/ {print $1}') == "DFP11" ]; then
+	size="1600x25"
+
+elif [ $(xrandr | awk '/eDP1/ {print $1}') == "eDP1" ]; then
+	size="1366x25"
+
+else
+	width=""
+fi
+
+battery(){
+	upower=$(upower -i /org/freedesktop/UPower/devices/battery_BAT1 | awk '/state:/ {print $2}')
+
+	if [[ $upower == "fully-charged" ]]; then
+		batt=" Fully Charged"
+		echo "%{B$yellow} $batt"
+
+	elif [[ $upower == "charging" ]]; then
+		perc=$(acpi | cut -d, -f2 | sed -e 's/\%* *//g')
+		batt=""
+		echo "%{B$blue} $batt$perc% "
+
+	elif [[ $upower == "discharging" ]]; then
+		batt=$(acpi | cut -d, -f2 | sed -e 's/\%* *//g')
+
+		if [[ $batt -gt 75 ]]; then
+			echo "%{B$blue}  $batt%"
+
+		elif [[ $batt -gt 50 && $batt -lt 76 ]]; then
+			echo "%{B$blue}  $batt%"
+
+		elif [[ $batt -gt 10 && $batt -lt 50 ]]; then
+			echo "%{B$blue}  $batt%"
+
+		else
+			echo "%{B$yellow}  $batt%"
+		fi
+	fi
+}
 
 clock(){
 	# Displays the date eg "Sun 17 May 9:10 AM"
@@ -50,26 +91,44 @@ music(){
 }
 
 volume(){
-	volup="A4:/usr/bin/pulseaudio-ctl up:"
-	voldown="A5:/usr/bin/pulseaudio-ctl down:"
-	volmute="A:/usr/bin/pulseaudio-ctl mute:"
+	volup="A4:amixer set Master 5%+:"
+	voldown="A5:amixer set Master 5%-:"
+	volmute="A:amixer set Master toggle:"
 
 	# Volume Indicator
-	if [[ $(pulseaudio-ctl | awk '/Is sink muted/ {print $5}') == "yes" ]]; then
+	if [[ $(amixer get Master | awk '/Mono:/ {print $6}') == "[off]" ]]; then
 		vol=$(echo " Mute")
 	else
-		mastervol=$(pulseaudio-ctl | awk '/Volume level/ {print $4}')
+		mastervol=$(amixer get Master | egrep -o '[0-9]{1,3}%' | sed -e 's/%//')
 		vol=$(echo " $mastervol")
 	fi
 
 	echo "%{$volup}%{$voldown}%{$volmute} $vol %{A}%{A}%{A}"
 }
 
+wifi(){
+	strength=$(cat /proc/net/wireless | awk '/wlp4s0/ {print $3}' | sed -e 's/\.//g')
+	wicd="%{A1:wicd-gtk:}"
+
+	if [[ $strength -gt 75 ]]; then
+		echo "%{B$darkgrey}$wicd $strength% %{A}"
+
+	elif [[ $strength -gt 50 && $strength -lt 75 ]]; then
+		echo "%{B$darkgrey}$wicd $strength% %{A}"
+
+	elif [[ $strength -gt 1 && $strength -lt 50 ]]; then
+		echo "%{B$darkgrey}$wicd $strength% %{A}"
+
+	else
+		echo "%{B$black}"
+	fi
+}
+
 windowtitle(){
 	# Grabs focused window's title
 	# The echo "" at the end displays when no windows are focused.
 	title=$(xdotool getactivewindow getwindowname 2>/dev/null || echo "Hi")
-	echo "$title" | cut -c 1-50 # Limits the output to a maximum # of chars
+	echo " $title" | cut -c 1-50 # Limits the output to a maximum # of chars
 }
 
 workspace(){
@@ -102,24 +161,24 @@ workspace(){
 }
 
 while :; do
-	# Every line below is a different "Block" on the bar. I've laid it out this way so that it's easier to edit and to see what's going on.
-	echo\
-		"%{l}\
+	echo "\
+		%{l}\
 			$(workspace)\
 			%{B$black} $(windowtitle) \
 		%{l}\
 		%{c}\
 			%{B$blue} $(music) \
+			%{B$darkgrey} $(volume) \
 		%{c}\
 		%{r}\
-			%{B$darkgrey} $(memory) \
-			%{B$blue} $(cpu) \
+			$(wifi) \
+			$(battery) \
 			%{B$black} $(clock) \
 			%{B$black}\
-		%{r}"
+		%{r}\
+		"
 	sleep .03s
 done |
-
 # Finally, launches bar while piping the above while loop!
 # | bash is needed on the end for the click events to work.
-lemonbar -g 1600x25 -f $font -f $icons -F \#FF$white | bash
+lemonbar -g $size -f $font -f $icons -F \#FF$white | bash

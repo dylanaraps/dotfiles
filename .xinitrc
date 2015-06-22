@@ -17,6 +17,7 @@ xset m 0/0 0
 xset +fp /usr/share/fonts/envypnforpowerline
 xset +fp /usr/share/fonts/envypn
 xset +fp /usr/share/fonts/sijipatched
+xset +fp ~/.fonts/sijipatched
 xset fp rehash
 
 pulseaudio --start &
