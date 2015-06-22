@@ -3,7 +3,7 @@
 
 set $mod Mod4
 
-workspace 1 output HDMI1
+# Laptop Output
 workspace www output eDp1
 workspace code output eDp1
 workspace game output eDp1
@@ -14,6 +14,18 @@ workspace 7 output eDp1
 workspace 8 output eDp1
 workspace 9 output eDp1
 workspace 10 output eDp1
+
+# Desktop Output
+workspace www output DFP11
+workspace code output DFP11
+workspace game output DFP11
+workspace video output DFP11
+workspace 5 output DFP11
+workspace 6 output DFP11
+workspace 7 output DFP11
+workspace 8 output DFP11
+workspace 9 output DFP10
+workspace 10 output DFP10
 
 # Use Mouse+$mod to drag floating windows to their wanted position
 floating_modifier $mod
