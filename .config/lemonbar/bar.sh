@@ -67,7 +67,7 @@ battery(){
 clock(){
 	# Displays the date eg "Sun 17 May 9:10 AM"
 	date=$(date '+%a %d %b %l:%M %p')
-	echo " $date"
+	echo "$date"
 }
 
 cpu(){
