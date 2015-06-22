@@ -17,7 +17,7 @@ darkgrey="#252525"
 blue="#458588"
 pink="#FABD2F"
 
-# # Fonts
+# Fonts
 font="-benis-lemon-medium-r-normal--10-110-75-75-m-50-iso8859-1"
 icons="-wuncon-sijipatched-medium-r-normal--10-100-75-75-c-80-iso10646-1"
 
@@ -31,6 +31,7 @@ else
 	size=""
 fi
 
+# Battery {{{
 battery(){
 	upower=$(upower -i /org/freedesktop/UPower/devices/battery_BAT1 | awk '/state:/ {print $2}')
 
@@ -63,23 +64,31 @@ battery(){
 		fi
 	fi
 }
+# }}}
 
+# Clock {{{
 clock(){
 	# Displays the date eg "Sun 17 May 9:10 AM"
 	date=$(date '+%a %d %b %l:%M %p')
 	echo "$date"
 }
+# }}}
 
+# Cpu {{{
 cpu(){
 	cpuusage=$(mpstat | awk '/all/ {print $4 + $6}')
 	echo "$cpuusage% Used"
 }
+# }}}
 
+# Memory {{{
 memory(){
 	# Show free memory
 	free -m | awk '/Mem:/ {print " " $3" MB Used "}'
 }
+# }}}
 
+# Music {{{
 music(){
 	musictoggle="A:mpc toggle:"
 	musicnext="A4:mpc next:"
@@ -95,7 +104,9 @@ music(){
 
 	echo "%{$musictoggle}%{$musicnext}%{$musicprevious} $playing %{A}%{A}%{A}"
 }
+# }}}
 
+# Volume {{{
 volume(){
 	volup="A4:amixer set Master 5%+:"
 	voldown="A5:amixer set Master 5%-:"
@@ -111,7 +122,9 @@ volume(){
 
 	echo "%{$volup}%{$voldown}%{$volmute} $vol %{A}%{A}%{A}"
 }
+# }}}
 
+# Wifi {{{
 wifi(){
 	strength=$(cat /proc/net/wireless | awk '/wlp4s0/ {print $3}' | sed -e 's/\.//g')
 	wicd="%{A1:wicd-gtk:}"
@@ -129,14 +142,18 @@ wifi(){
 		echo "%{B$black}"
 	fi
 }
+# }}}
 
+# Window Title {{{
 windowtitle(){
 	# Grabs focused window's title
 	# The echo "" at the end displays when no windows are focused.
 	title=$(xdotool getactivewindow getwindowname 2>/dev/null || echo "Hi")
 	echo " $title" | cut -c 1-50 # Limits the output to a maximum # of chars
 }
+# }}}
 
+# Workspace Switcher {{{
 workspace(){
 	# Workspace switcher using wmctrl
 	workspacenext="A4:bspc desktop -f next:"
@@ -156,6 +173,7 @@ workspace(){
 	# Adds the scrollwheel events and displays the switcher
 	echo "%{$workspacenext}%{$workspaceprevious}$wslist%{A}%{A}"
 }
+# }}}
 
 while :; do
 	echo "\
