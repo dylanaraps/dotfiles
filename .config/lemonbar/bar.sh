@@ -15,7 +15,7 @@ white="FFFFFF"
 black="#1C1C1C"
 darkgrey="#252525"
 blue="#458588"
-pink="#B16286"
+pink="#FABD2F"
 
 # # Fonts
 font="-benis-lemon-medium-r-normal--10-110-75-75-m-50-iso8859-1"
