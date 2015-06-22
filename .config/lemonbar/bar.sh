@@ -45,22 +45,22 @@ battery(){
 	elif [[ $upower == "charging" ]]; then
 		perc=$(acpi | cut -d, -f2 | sed -e 's/\%* *//g')
 		batt=""
-		echo "%{B$blue} $batt$perc% "
+		echo "%{B$lightblue} $batt$perc% "
 
 	elif [[ $upower == "discharging" ]]; then
 		batt=$(acpi | cut -d, -f2 | sed -e 's/\%* *//g')
 
 		if [[ $batt -gt 75 ]]; then
-			echo "%{B$blue}  $batt%"
+			echo "%{B$lightblue}  $batt%"
 
 		elif [[ $batt -gt 50 && $batt -lt 76 ]]; then
-			echo "%{B$blue}  $batt%"
+			echo "%{B$lightblue}  $batt%"
 
 		elif [[ $batt -gt 10 && $batt -lt 50 ]]; then
-			echo "%{B$blue}  $batt%"
+			echo "%{B$pink}  $batt%"
 
 		else
-			echo "%{B$lightblue}  $batt%"
+			echo "%{B$pink}  $batt%"
 		fi
 	fi
 }
