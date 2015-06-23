@@ -31,5 +31,9 @@ else
 fi
 
 feh --bg-tile ~/.dotfiles/wallpapers/1.jpe &
-~/.config/lemonbar/bar.sh &
+
+# lemonbar
+~/.config/lemonbar/clock.sh &
+~/.config/lemonbar/workspace.sh &
+~/.config/lemonbar/music.sh &
 
