@@ -71,7 +71,7 @@ elif [[ $(xrandr | awk '/eDP1/ {print $1}') == "eDP1" ]]; then
 	source ~/.dotfiles/.config/lemonbar/laptop.sh
 
 	while :; do
-		echo "%{r}$(wifi)$(battery)%{B$blue}$(volume)$(music)%{B$black}%{r}"
+		echo "%{r}$(wifi) $(battery) %{B$blue}$(volume)$(music)%{B$black}%{r}"
 		sleep .1s
 	done |
 
