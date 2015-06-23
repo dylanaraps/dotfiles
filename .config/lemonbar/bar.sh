@@ -10,17 +10,21 @@ if pgrep -x lemonbar; then
 	pkill bar.sh
 fi
 
-# # Colors
+# Variables {{{
+
 white="FFFFFF"
 black="#1C1C1C"
 darkgrey="#252525"
-blue="#458588"
-lightblue="#83A598"
+blue="#689D6A"
+lightblue="#8EC07C"
 yellow="#FABD2F"
 
-# Fonts
 font="-benis-lemon-medium-r-normal--10-110-75-75-m-50-iso8859-1"
 icons="-wuncon-sijipatched-medium-r-normal--10-100-75-75-c-80-iso10646-1"
+
+# }}}
+
+# Bar Size {{{
 
 if [[ $(xrandr | awk '/DFP10/ {print $1}') == "DFP10" ]]; then
 	size="1600x25"
@@ -32,7 +36,10 @@ else
 	size=""
 fi
 
+# }}}
+
 # Battery {{{
+
 battery(){
 	upower=$(upower -i /org/freedesktop/UPower/devices/battery_BAT1 | awk '/state:/ {print $2}')
 
@@ -68,31 +75,39 @@ battery(){
 		fi
 	fi
 }
+
 # }}}
 
 # Clock {{{
+
 clock(){
 	# Displays the date eg "Sun 17 May 9:10 AM"
 	date=$(date '+%a %d %b %l:%M %p')
 	echo "$date"
 }
+
 # }}}
 
 # Cpu {{{
+
 cpu(){
 	cpuusage=$(mpstat | awk '/all/ {print $4 + $6}')
 	echo "$cpuusage% Used"
 }
+
 # }}}
 
 # Memory {{{
+
 memory(){
 	# Show free memory
 	free -m | awk '/Mem:/ {print " " $3" MB Used "}'
 }
+
 # }}}
 
 # Music {{{
+
 music(){
 	musictoggle="A:mpc toggle:"
 	musicnext="A4:mpc next:"
@@ -108,9 +123,11 @@ music(){
 
 	echo "%{$musictoggle}%{$musicnext}%{$musicprevious} $playing %{A}%{A}%{A}"
 }
+
 # }}}
 
 # Volume {{{
+
 volume(){
 	volup="A4:amixer set Master 5%+:"
 	voldown="A5:amixer set Master 5%-:"
@@ -126,9 +143,11 @@ volume(){
 
 	echo "%{$volup}%{$voldown}%{$volmute} $vol %{A}%{A}%{A}"
 }
+
 # }}}
 
 # Wifi {{{
+
 wifi(){
 	strength=$(cat /proc/net/wireless | awk '/wlp4s0/ {print $3}' | sed -e 's/\.//g')
 	wicd="%{A1:wicd-gtk:}"
@@ -146,18 +165,22 @@ wifi(){
 		echo "%{B$black}"
 	fi
 }
+
 # }}}
 
 # Window Title {{{
+
 windowtitle(){
 	# Grabs focused window's title
 	# The echo "" at the end displays when no windows are focused.
 	title=$(xdotool getactivewindow getwindowname 2>/dev/null || echo "Hi")
 	echo " $title" | cut -c 1-50 # Limits the output to a maximum # of chars
 }
+
 # }}}
 
 # Workspace Switcher {{{
+
 workspace(){
 	# Workspace switcher using wmctrl
 	workspacenext="A4:bspc desktop -f next:"
@@ -168,7 +191,7 @@ workspace(){
 		| awk '/[a-z]$/ {printf $2 $9}'\
 		| sed -e 's/ //g' \
 		-e 's/\-/\;/g' \
-		-e 's/\*[ 0-9A-Za-z]*[^ -~]*/%{B#458588}  &  %{B}/g' \
+		-e 's/\*[ 0-9A-Za-z]*[^ -~]*/%{B#689D6A}  &  %{B}/g' \
 		-e 's/\;[ 0-9A-Za-z]*[^ -~]*/%{B#252525}%{A:bspc desktop -f &:}  &  %{A}%{B}/g' \
 		-e 's/\*//g' \
 		-e 's/ \;/ /g'\
@@ -177,7 +200,10 @@ workspace(){
 	# Adds the scrollwheel events and displays the switcher
 	echo "%{$workspacenext}%{$workspaceprevious}$wslist%{A}%{A}"
 }
+
 # }}}
+
+# Echo all the things {{{
 
 while :; do
 	echo "\
@@ -198,6 +224,8 @@ while :; do
 	sleep .03s
 
 done |
+# }}}
+
 # Finally, launches bar while piping the above while loop!
 # | bash is needed on the end for the click events to work.
 lemonbar -g $size -f $font -f $icons -F \#FF$white 2> /dev/null | bash
