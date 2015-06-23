@@ -362,15 +362,6 @@ autocmd FocusLost * :silent! wall
 " Stops auto adding of comments on new line
 autocmd FileType * setlocal formatoptions-=c formatoptions-=r formatoptions-=o
 
-" Make vim return to same line in file
-augroup line_return
-	autocmd!
-	autocmd BufReadPost *
-	\ if line("'\"") > 0 && line("'\"") <= line("$") |
-	\     execute 'normal! g`"zvzz' |
-	\ endif
-augroup END
-
 " chmod +x on current file
 command! EX if !empty(expand('%')) && filereadable(expand('%'))
 	\|     silent! execute '!chmod +x %'
@@ -380,6 +371,34 @@ command! EX if !empty(expand('%')) && filereadable(expand('%'))
 	\|     echo 'Save the file first'
 	\|     echohl None
 	\| endif
+
+
+" }}}
+
+"Folding {{{
+
+set foldmethod=marker
+set foldlevel=99
+set foldnestmax=10
+
+" Only saves folds/cursor pos in mkview
+set viewoptions=folds,cursor
+
+" Saves cursor posiiton in file and closes all folds on file read
+" This way I do away with all of the view files.
+augroup line_return
+	autocmd!
+	autocmd BufReadPost *
+	\ if line("'\"") > 0 && line("'\"") <= line("$") |
+	\     execute 'normal! g`"zvzz' |
+	\ endif
+
+	autocmd BufRead * call feedkeys("\<esc>zM")
+augroup END
+
+" }}}
+
+" Functions {{{
 
 " WEBDEV SESSION START
 function! RunGulp()
@@ -438,12 +457,15 @@ command! Webdev if isdirectory(".git") && filereadable("gulpfile.coffee")
 	\|     echom "No project found"
 	\| endif
 
+" Music session
 function! Ncmpcpp()
 	vsp
 	terminal ncmpcpp -s visualizer
+	file visualizer
 
 	sp
 	terminal ncmpcpp
+	file ncmpcpp
 	call feedkeys("\<ESC> \<CR>")
 endfunction
 
@@ -452,25 +474,5 @@ command! Music if 1 == 1
 \| else
 	\| echo "wot"
 \| endif
-
-" }}}
-
-"Folding {{{
-
-set foldmethod=marker
-set foldlevel=99
-set foldnestmax=10
-
-" Only saves folds/cursor pos in mkview
-set viewoptions=folds,cursor
-
-" Save folds in *vimrc
-augroup FoldSave
-	autocmd!
-	autocmd BufWinLeave ~/.nvimrc mkview
-	autocmd BufWinEnter ~/.nvimrc silent loadview
-	" Closes all folds on file open
-	autocmd BufWinEnter * call feedkeys("zM")
-augroup END
 
 " }}}
