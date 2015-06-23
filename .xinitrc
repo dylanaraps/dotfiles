@@ -23,11 +23,16 @@ xset fp rehash
 # if pulse
 pulseaudio --start &
 
-# Sets up multi monito
-if [ $(xrandr | awk '/DFP10/ {print $1}') == "DFP10" ]; then
+# Sets different shadow excludes based on monitor height
+if [[ $(xrandr | awk '/DFP10/ {print $1}') == "DFP10" ]]; then
 	xrandr --output DFP10 --auto --primary --left-of DFP11 --output DFP11 --auto &
+	compton -b --config ~/.compton --shadow-exclude-reg x875+0-0 &
+
+elif [[ $(xrandr | awk '/eDP1/ {print $1}') == "eDP1" ]]; then
+	compton -b --config ~/.compton --shadow-exclude-reg x743+0-0 &
+
 else
-	echo "" &
+	compton -b --config ~/.compton
 fi
 
 # Launches mpd
