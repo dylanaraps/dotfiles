@@ -1,6 +1,4 @@
-#
 # bspwm hotkeys
-#
 
 super + shift + Escape
 	bspc quit; \
@@ -16,11 +14,8 @@ super + t
 super + b
 	bspc desktop -B
 
-super + {s,f}
+super + {space,f}
 	bspc window -t {floating,fullscreen}
-
-super + {grave,Tab}
-	bspc {window,desktop} -f last
 
 super + apostrophe
 	bspc window -s last
@@ -47,6 +42,9 @@ super + {comma,period}
 
 super + bracket{left,right}
 	bspc desktop -f {prev,next}
+
+super + Tab
+	bspc desktop -f next
 
 super + ctrl + {h,j,k,l}
 	bspc window -p {left,down,up,right}
@@ -88,9 +86,7 @@ super + Escape
 	pkill -USR1 -x sxhkd && \
 	~/.config/lemonbar/bar.sh
 
-#
 # wm independent hotkeys
-#
 
 super + Return
 	xfce4-terminal
@@ -102,24 +98,24 @@ super + d
 XF86MonBrightnessUp
 	xbacklight -inc 40
 
- XF86MonBrightnessDown
+XF86MonBrightnessDown
 	xbacklight -dec 40
 
- XF86AudioMute
+XF86AudioMute
 	amixer set Master toggle
 
- XF86AudioLowerVolume
+XF86AudioLowerVolume
 	amixer set Master 5%-
 
- XF86AudioRaiseVolume
+XF86AudioRaiseVolume
 	amixer set Master 5%+
 
- XF86AudioPrev
+XF86AudioPrev
 	mpc prev
 
- XF86AudioPlay
+XF86AudioPlay
 	mpc toggle
 
- XF86AudioNext
+XF86AudioNext
 	mpc next
 
