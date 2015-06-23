@@ -39,7 +39,7 @@ shadow-exclude = [
    # "! name~=''",
    "name = 'dmenu2'",
    "name = 'Dmenu'",
-   # "name = 'bar'",
+   "name = 'bar'",
    "class_g ?= 'Dmenu'",
    "class_g ?= 'dmenu2'"
 ];
