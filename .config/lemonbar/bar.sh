@@ -16,6 +16,7 @@ black="#1C1C1C"
 darkgrey="#252525"
 blue="#458588"
 lightblue="#83A598"
+yellow="#FABD2F"
 
 # Fonts
 font="-benis-lemon-medium-r-normal--10-110-75-75-m-50-iso8859-1"
@@ -56,11 +57,14 @@ battery(){
 		elif [[ $batt -gt 50 && $batt -lt 76 ]]; then
 			echo "%{B$lightblue}  $batt%"
 
+		elif [[ $batt -gt 25 && $batt -lt 50 ]]; then
+			echo "%{B$lightblue}  $batt%"
+
 		elif [[ $batt -gt 10 && $batt -lt 50 ]]; then
-			echo "%{B$pink}  $batt%"
+			echo "%{B$yellow}  $batt%"
 
 		else
-			echo "%{B$pink}  $batt%"
+			echo "%{B$yellow}  $batt%"
 		fi
 	fi
 }
