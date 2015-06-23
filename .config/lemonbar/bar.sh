@@ -150,16 +150,15 @@ volume(){
 
 wifi(){
 	strength=$(cat /proc/net/wireless | awk '/wlp4s0/ {print $3}' | sed -e 's/\.//g')
-	wicd="%{A1:wicd-gtk:}"
 
 	if [[ $strength -gt 75 ]]; then
-		echo "%{B$darkgrey}$wicd $strength% %{A}"
+		echo "%{B$darkgrey} $strength% "
 
 	elif [[ $strength -gt 50 && $strength -lt 75 ]]; then
-		echo "%{B$darkgrey}$wicd $strength% %{A}"
+		echo "%{B$darkgrey} $strength% "
 
 	elif [[ $strength -gt 1 && $strength -lt 50 ]]; then
-		echo "%{B$darkgrey}$wicd $strength% %{A}"
+		echo "%{B$darkgrey} $strength% "
 
 	else
 		echo "%{B$black}"
