@@ -130,19 +130,27 @@ music(){
 # Volume {{{
 
 volume(){
-	volup="A4:pulseaudio-ctl up:"
-	voldown="A5:pulseaudio-ctl down:"
-	volmute="A:pulseaudio-ctl mute:"
+
+		volup="A4:pulseaudio-ctl up:"
+		voldown="A5:pulseaudio-ctl down:"
+		volmute="A:pulseaudio-ctl mute:"
+		ismute="$(pulseaudio-ctl full-status | awk '/ / {printf $2}') == "yes""
+		vol="$(pulseaudio-ctl full-status | awk '/ / {printf $1}')"
+
+		volup="A4:amixer set Master 5%+:"
+		voldown="A5:amixer set Master 5%-:"
+		volmute="A:amixer set Master toggle:"
+		ismute=$(amixer get Master | awk '/Mono:/ {print $6}')
+		total="$(amixer get Master | egrep -o '[0-9]{1,3}%' | sed -e 's/%//' )"
 
 	# Volume Indicator
-	if [[ $(pulseaudio-ctl full-status | awk '/ / {printf $2}') == "yes" ]]; then
+	if [[$ismute]]; then
 		vol=$(echo " Mute")
 	else
-		mastervol=$(pulseaudio-ctl full-status | awk '/ / {printf $1}')
-		vol=$(echo " $mastervol")
+		vol=$(echo " $total")
 	fi
 
-	echo "%{$volup}%{$voldown}%{$volmute} $vol %{A}%{A}%{A}"
+	# echo "%{$volup}%{$voldown}%{$volmute} $vol %{A}%{A}%{A}"
 }
 
 # }}}
