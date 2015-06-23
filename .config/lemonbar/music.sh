@@ -68,7 +68,7 @@ if [[ $(xrandr | awk '/DFP10/ {print $1}') == "DFP10" ]]; then
 
 elif [[ $(xrandr | awk '/eDP1/ {print $1}') == "eDP1" ]]; then
 	size="600x25+766"
-	source ~/.dotfiles/config/lemonbar/laptop.sh
+	source ~/.dotfiles/.config/lemonbar/laptop.sh
 
 	while :; do
 		echo "%{r}$(wifi)$(battery)%{B$blue}$(volume)$(music)%{B$black}%{r}"
