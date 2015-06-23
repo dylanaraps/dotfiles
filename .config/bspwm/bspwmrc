@@ -22,9 +22,9 @@ bspc rule -a Steam desktop=game follow=no
 feh --bg-tile ~/.dotfiles/wallpapers/1.jpe &
 
 # lemonbar
-~/.dotfiles/.config/lemonbar/clock.sh &
-sleep 1 &
-~/.dotfiles/.config/lemonbar/workspace.sh &
-sleep 1 &
-~/.dotfiles/.config/lemonbar/music.sh &
+bash $(~/.dotfiles/.config/lemonbar/clock.sh) &
+
+bash $(~/.dotfiles/.config/lemonbar/workspace.sh) &
+
+bash $(~/.dotfiles/.config/lemonbar/music.sh) &
 
