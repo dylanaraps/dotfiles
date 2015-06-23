@@ -152,13 +152,13 @@ wifi(){
 	strength=$(cat /proc/net/wireless | awk '/wlp4s0/ {print $3}' | sed -e 's/\.//g')
 
 	if [[ $strength -gt 75 ]]; then
-		echo "%{B$darkgrey} $strength% "
+		echo "%{B$darkgrey}  $strength% "
 
 	elif [[ $strength -gt 50 && $strength -lt 75 ]]; then
-		echo "%{B$darkgrey} $strength% "
+		echo "%{B$darkgrey}  $strength% "
 
 	elif [[ $strength -gt 1 && $strength -lt 50 ]]; then
-		echo "%{B$darkgrey} $strength% "
+		echo "%{B$darkgrey}  $strength% "
 
 	else
 		echo "%{B$black}"
