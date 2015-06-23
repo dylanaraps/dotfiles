@@ -469,6 +469,8 @@ augroup FoldSave
 	autocmd!
 	autocmd BufWinLeave ~/.nvimrc mkview
 	autocmd BufWinEnter ~/.nvimrc silent loadview
+	" Closes all folds on file open
+	autocmd BufWinEnter * call feedkeys("zM")
 augroup END
 
 " }}}
