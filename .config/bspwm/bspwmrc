@@ -23,8 +23,7 @@ feh --bg-tile ~/.dotfiles/wallpapers/1.jpe &
 
 # lemonbar
 $(~/.dotfiles/.config/lemonbar/clock.sh) &
-sleep 2s
+sleep 1.1s
 $(~/.dotfiles/.config/lemonbar/workspace.sh) &
-sleep 2s
 $(~/.dotfiles/.config/lemonbar/music.sh) &
 
