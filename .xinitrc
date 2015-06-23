@@ -33,9 +33,6 @@ fi
 # Launches mpd
 mpd &
 
-# Starts Compton
-compton -b --config ~/.compton &
-
 # Starts i3 window manager
 # exec i3
 

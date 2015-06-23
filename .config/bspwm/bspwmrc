@@ -19,6 +19,17 @@ bspc rule -a Firefox desktop=www follow=no
 
 bspc rule -a Steam desktop=game follow=no
 
+# Sets different shadow excludes based on monitor height
+if [[ $(xrandr | awk '/DFP10/ {print $1}') == "DFP10" ]]; then
+	compton -b --config ~/.compton --shadow-exclude-reg x875+0-0 &
+
+elif [[ $(xrandr | awk '/eDP1/ {print $1}') == "eDP1" ]]; then
+	compton -b --config ~/.compton --shadow-exclude-reg x743+0-0 &
+
+else
+	compton -b --config ~/.compton
+fi
+
 feh --bg-tile ~/.dotfiles/wallpapers/1.jpe &
 ~/.config/lemonbar/bar.sh &
 
