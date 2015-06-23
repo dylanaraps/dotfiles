@@ -75,16 +75,6 @@ super + button{1-3}
 super + @button{1-3}
 	bspc pointer -u
 
-#
-# wm independent hotkeys
-#
-
-super + Return
-	xfce4-terminal
-
-super + d
-	j4-dmenu-desktop --dmenu="dmenu -o 0.9 -nb '#1C1C1C' -nf '#FFFFFF' -sb '#458588' -i -h 25 -w 1600 -fn '-benis-lemon-medium-r-normal--10-110-75-75-m-50-iso8859-1' -name dmenu2" --term="xfce4-terminal"
-
 # Reducing gap on the fly
 alt + {minus,equal}
     bspc config -d focused window_gap $((`bspc config -d focused window_gap` {+,-} 2 ))
@@ -97,4 +87,39 @@ super + e
 super + Escape
 	pkill -USR1 -x sxhkd && \
 	~/.config/lemonbar/bar.sh
+
+#
+# wm independent hotkeys
+#
+
+super + Return
+	xfce4-terminal
+
+super + d
+	j4-dmenu-desktop --dmenu="dmenu -o 0.9 -nb '#1C1C1C' -nf '#FFFFFF' -sb '#458588' -i -h 25 -w 1600 -fn '-benis-lemon-medium-r-normal--10-110-75-75-m-50-iso8859-1' -name dmenu2" --term="xfce4-terminal"
+
+# Laptop hotkeys
+XF86MonBrightnessUp
+	xbacklight -inc 40
+
+ XF86MonBrightnessDown
+	xbacklight -dec 40
+
+ XF86AudioMute
+	amixer set Master toggle
+
+ XF86AudioLowerVolume
+	amixer set Master 5%-
+
+ XF86AudioRaiseVolume
+	amixer set Master 5%+
+
+ XF86AudioPrev
+	mpc prev
+
+ XF86AudioPlay
+	mpc toggle
+
+ XF86AudioNext
+	mpc next
 

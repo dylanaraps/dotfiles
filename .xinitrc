@@ -44,5 +44,5 @@ compton -b --config ~/.compton &
 # exec i3
 
 # starts bspwm
-sxhkd &
+sxhkd -f &
 exec bspwm
