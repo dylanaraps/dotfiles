@@ -26,17 +26,13 @@ pulseaudio --start &
 # Sets different shadow excludes based on monitor height
 if [[ $(xrandr | awk '/DFP10/ {print $1}') == "DFP10" ]]; then
 	xrandr --output DFP10 --auto --primary --left-of DFP11 --output DFP11 --auto &
-	compton -b --config ~/.compton --shadow-exclude-reg x875+0-0 &
-
-elif [[ $(xrandr | awk '/eDP1/ {print $1}') == "eDP1" ]]; then
-	compton -b --config ~/.compton --shadow-exclude-reg x743+0-0 &
-
-else
-	compton -b --config ~/.compton
 fi
 
 # Launches mpd
 mpd &
+
+# Compton
+compton -b --config ~/.compton
 
 # Starts i3 window manager
 # exec i3

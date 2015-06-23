@@ -4,7 +4,7 @@
 # Variables {{{
 
 white="FFFFFF"
-black="#1C1C1C"
+black="1C1C1C"
 darkgrey="#252525"
 blue="#689D6A"
 lightblue="#8EC07C"
@@ -71,11 +71,11 @@ elif [[ $(xrandr | awk '/eDP1/ {print $1}') == "eDP1" ]]; then
 	source ~/.dotfiles/.config/lemonbar/laptop.sh
 
 	while :; do
-		echo "%{r}$(wifi) $(battery) %{B$blue}$(volume) $(music) %{B$black}%{r}"
+		echo "%{r}$(wifi) $(battery) %{B$blue}$(volume) $(music) %{B\#00$black}%{r}"
 		sleep .1s
 	done |
 
-	lemonbar -g $size -f $font -f $icons -B $black -F \#FF$white 2> /dev/null | bash
+	lemonbar -d -g $size -f $font -f $icons -B \#00$black -F \#FF$white 2> /dev/null | bash
 
 else
 	size=""
