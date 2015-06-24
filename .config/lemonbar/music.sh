@@ -1,5 +1,5 @@
 #!/bin/bash
-# Worksapce Switcher
+# Music/Volume/Wifi/battery
 
 # Variables {{{
 
@@ -61,7 +61,7 @@ if [[ $(xrandr | awk '/DFP10/ {print $1}') == "DFP10" ]]; then
 
 	while :; do
 		echo "%{r}%{B$blue}$(volume)$(music)%{B}%{r}"
-		sleep .1s
+		sleep .3s
 	done |
 
 	lemonbar -g $size -f $font -f $icons -B $black -F \#FF$white 2> /dev/null | bash
@@ -72,7 +72,7 @@ elif [[ $(xrandr | awk '/eDP1/ {print $1}') == "eDP1" ]]; then
 
 	while :; do
 		echo "%{r}$(wifi) $(battery) %{B$blue}$(volume) $(music) %{B\#00$black}%{r}"
-		sleep .1s
+		sleep .3s
 	done |
 
 	lemonbar -d -g $size -f $font -f $icons -B \#00$black -F \#FF$white 2> /dev/null | bash

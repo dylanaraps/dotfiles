@@ -4,7 +4,7 @@
 # Variables {{{
 
 white="FFFFFF"
-black="#1C1C1C"
+black="1C1C1C"
 blue="#689D6A"
 
 font="-benis-lemon-medium-r-normal--10-110-75-75-m-50-iso8859-1"
@@ -67,4 +67,4 @@ while :; do
 	sleep .03s
 done |
 
-lemonbar -g $size -f $font -f $icons -B $black -F \#FF$white 2> /dev/null | bash
+lemonbar -g $size -f $font -f $icons -B \#00$black -F \#FF$white 2> /dev/null | bash
