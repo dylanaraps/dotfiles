@@ -43,10 +43,9 @@ workspace(){
 	wslist=$(\
 		wmctrl -d \
 		| awk '/[a-z]$/ {printf $2 $9}'\
-		| sed -e 's/ //g' \
-		-e 's/\-/\;/g' \
-		-e 's/\*[ 0-9A-Za-z]*[^ -~]*/%{B#689D6A}  &  %{B}/g' \
-		-e 's/\;[ 0-9A-Za-z]*[^ -~]*/%{B#252525}%{A:bspc desktop -f &:}  &  %{A}%{B}/g' \
+		| sed -e 's/\-/\;/g' \
+		-e 's/\*[a-z]*/%{B#689D6A}  &  %{B}/g' \
+		-e 's/\;[a-z]*/%{B#252525}%{A:bspc desktop -f &:}  &  %{A}%{B}/g' \
 		-e 's/\*//g' \
 		-e 's/ \;/ /g'\
 		)

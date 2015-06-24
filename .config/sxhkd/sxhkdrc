@@ -67,7 +67,10 @@ super + e
 # make sxhkd reload its configuration files:
 super + Escape
 	pkill -USR1 -x sxhkd && \
-	~/.config/lemonbar/bar.sh
+	~/.dotfiles/.config/lemonbar/clock.sh & \
+	sleep 1.01s \
+	~/.dotfiles/.config/lemonbar/workspace.sh & \
+	~/.dotfiles/.config/lemonbar/music.sh &
 
 # wm independent hotkeys
 
