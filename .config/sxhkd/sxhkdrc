@@ -66,16 +66,13 @@ super + e
 
 # make sxhkd reload its configuration files:
 super + Escape
-	pkill -USR1 -x sxhkd && \
-	~/.dotfiles/.config/lemonbar/clock.sh & \
-	sleep 1.01s \
-	~/.dotfiles/.config/lemonbar/workspace.sh & \
-	~/.dotfiles/.config/lemonbar/music.sh &
+	pkill -USR1 -x sxhkd &&
 
 # wm independent hotkeys
 
 super + Return
-	xfce4-terminal
+	urxvt
+	#-lsp 1
 
 super + d
 	j4-dmenu-desktop --dmenu="dmenu -o 0.9 -nb '#1C1C1C' -nf '#FFFFFF' -sb '#689D6A' -i -h 25 -w 1600 -fn '-benis-lemon-medium-r-normal--10-110-75-75-m-50-iso8859-1' -name dmenu2" --term="xfce4-terminal"
