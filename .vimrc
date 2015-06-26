@@ -32,6 +32,7 @@ Plug 'bling/vim-airline'
 	let g:airline#extensions#tabline#excludes = ['terminal', 'gulp']
 
 " FUNCTIONALITY
+Plug 'habamax/vim-skipit'
 Plug 'tpope/vim-fugitive'
 Plug 'tommcdo/vim-lion'
 Plug 'wesQ3/vim-windowswap'
@@ -199,6 +200,8 @@ set smartcase
 let mapleader=" "
 nnoremap <SPACE> <nop>
 vnoremap <SPACE> <nop>
+
+imap <C-s> <C-l>
 
 noremap  <F1> <nop>
 inoremap <F1> <nop>
