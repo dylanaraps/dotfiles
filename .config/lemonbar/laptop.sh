@@ -19,19 +19,19 @@ battery(){
 		batt=$(acpi | cut -d, -f2 | sed -e 's/\%* *//g')
 
 		if [[ $batt -gt 75 ]]; then
-			echo "%{B$lightblue}  $batt%"
+			echo "%{B$lightblue}  $batt% "
 
 		elif [[ $batt -gt 50 && $batt -lt 76 ]]; then
-			echo "%{B$lightblue}  $batt%"
+			echo "%{B$lightblue}  $batt% "
 
 		elif [[ $batt -gt 25 && $batt -lt 50 ]]; then
-			echo "%{B$lightblue}  $batt%"
+			echo "%{B$lightblue}  $batt% "
 
 		elif [[ $batt -gt 10 && $batt -lt 50 ]]; then
-			echo "%{B$yellow}  $batt%"
+			echo "%{B$yellow}  $batt% "
 
 		else
-			echo "%{B$yellow}  $batt%"
+			echo "%{B$yellow}  $batt% "
 		fi
 	fi
 }
