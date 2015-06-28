@@ -10,8 +10,9 @@ bspc config focus_follows_pointer true
 bspc config initial_polarity second_child
 
 bspc config normal_border_color "#EBDBB2"
-bspc config active_border_color "#FFFFFF"
+bspc config active_border_color "#EBDBB2"
 bspc config focused_border_color "#FFFFFF"
+bspc config urgent_border_color "#FFFFFF"
 
 bspc config -m DFP10 top_padding 25
 bspc config -m eDP1 top_padding 25
@@ -21,7 +22,7 @@ bspc monitor eDP1 -d www code game video
 
 bspc rule -a Firefox desktop=www follow=no
 
-bspc rule -a Steam desktop=game follow=no
+bspc rule -a Steam desktop=game follow=no floating=yes
 
 feh --bg-tile ~/.dotfiles/wallpapers/1.jpe &
 
