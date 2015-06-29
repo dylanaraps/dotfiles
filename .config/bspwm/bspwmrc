@@ -22,7 +22,7 @@ bspc monitor eDP1 -d www code game video
 
 bspc rule -a Firefox desktop=www follow=no
 
-bspc rule -a Steam desktop=game follow=no floating=yes
+bspc rule -a Steam desktop=game follow=no floating=on
 
 feh --bg-tile ~/.dotfiles/wallpapers/1.jpe &
 
