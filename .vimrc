@@ -32,7 +32,6 @@ Plug 'bling/vim-airline'
 	let g:airline#extensions#tabline#excludes = ['terminal', 'gulp']
 
 " FUNCTIONALITY
-Plug 'habamax/vim-skipit'
 Plug 'tpope/vim-fugitive'
 Plug 'tommcdo/vim-lion'
 Plug 'wesQ3/vim-windowswap'
@@ -89,10 +88,9 @@ Plug 'mattn/emmet-vim'
 Plug 'ajh17/VimCompletesMe'
 
 " FILETYPES
-Plug 'JulesWang/css.vim'
-
 " Changes background behind hex color to it's actual color
 Plug 'ap/vim-css-color'
+Plug 'JulesWang/css.vim'
 Plug 'cakebaker/scss-syntax.vim'
 Plug 'hail2u/vim-css3-syntax'
 Plug 'othree/html5.vim'
@@ -242,11 +240,10 @@ nnoremap <esc> :noh<return><esc>
 
 " Emmet binding
 imap ,, <C-y>,
-vmap ,, <C-y>,
 
 " Maps Tab to indent blocks of text in visual mode
 vmap <TAB> >
-vmap <S-TAB> <
+vmap <BS> <
 
 " remap jk and kj to escape:  You'll never type it anyway, so it's great!
 inoremap jk <Esc>
@@ -280,7 +277,7 @@ nnoremap <Leader>l <C-W><C-L>
 tnoremap <Esc> <c-\><c-n>
 
 " Auto close HTML tags
-imap </ </<C-X><C-O>
+inoremap </ </<C-X><C-O>
 
 " Automatically removes all trailing whitespaces on :w
 autocmd BufWritePre * :%s/\s\+$//e
