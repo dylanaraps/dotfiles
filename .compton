@@ -47,6 +47,13 @@ shadow-exclude = [
 # Avoid drawing shadow on all shaped windows (see also: --detect-rounded-corners)
 shadow-ignore-shaped = false;
 
+opacity-rule = [
+	"90:class_g = 'Firefox'",
+	"95:class_g = 'URxvt'",
+	"90:name = 'bar'",
+	"90:class_g = 'Steam'"
+];
+
 # Fading
 
 # Fade windows during opacity changes.

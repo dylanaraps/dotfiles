@@ -53,6 +53,10 @@ source $ZSH/oh-my-zsh.sh
 source /usr/share/zsh/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
 export EDITOR='nvim'
 
+# Wine
+# export WINEPREFIX=$HOME/.config/wine/
+# export WINEARCH=win32
+
 # Compilation flags
 # export ARCHFLAGS="-arch x86_64"
 

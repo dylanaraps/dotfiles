@@ -4,7 +4,7 @@
 # Variables {{{
 
 white="FFFFFF"
-black="#1C1C1C"
+black="#FF1C1C1C"
 
 font="-benis-lemon-medium-r-normal--10-110-75-75-m-50-iso8859-1"
 icons="-wuncon-sijipatched-medium-r-normal--10-100-75-75-c-80-iso10646-1"

@@ -22,15 +22,14 @@ keep-open=always
 save-position-on-quit
 
 # Subtitles
-ass-force-style=FontName=Sans Serif.Bold=1
-sub-text-border-color="#FF000000"
+sub-text-border-color="#FF262626"
 sub-text-border-size=5
 sub-text-color="#FFFFFFFF"
-sub-text-font="Sans Serif"
+sub-text-font="Baar Sophia"
 sub-text-font-size=60
 sub-text-margin-y=30
-sub-text-shadow-color="#FF000000"
-sub-text-shadow-offset=1
+sub-text-shadow-color="#00000000"
+sub-text-shadow-offset=2
 sub-text-spacing=0.5
 
 vo=opengl-hq:scale=ewa_lanczossharp:scale-antiring=0.9:cscale=ewa_lanczossoft:cscale-antiring=0.9:dscale=mitchell:interpolation:tscale=oversample:scaler-resizes-only:dither-depth=auto:temporal-dither:blend-subtitles:pbo:target-prim=bt.709:target-trc=bt.1886:icc-profile-auto:3dlut-size=256x256x256:source-shader=~/.config/mpv/deband.glsl
