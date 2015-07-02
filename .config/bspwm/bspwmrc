@@ -21,7 +21,7 @@ bspc monitor DFP10 -d www code game video
 bspc monitor eDP1 -d www code game video
 
 bspc rule -a Firefox desktop=www follow=no
-
+bspc rule -a Wine floating=on manage=off
 bspc rule -a Steam desktop=game follow=no floating=on
 
 feh --bg-fill ~/.dotfiles/wallpapers/4.png &

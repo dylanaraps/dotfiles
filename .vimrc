@@ -263,6 +263,8 @@ nnoremap gk k
 " Easily move to start/end of line
 nnoremap H 0
 nnoremap L $
+vnoremap H 0
+vnoremap L $
 
 " Masha
 nmap a <nop>
