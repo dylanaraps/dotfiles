@@ -19,85 +19,53 @@ URxvt.keysym.C-z: \
 URxvt.keysym.C-h: \
 URxvt.keysym.C-f: \
 
-*background: #1C1C1C
-*foreground: #ebdbb2
+! Base16 Default
+! Scheme: Chris Kempson (http://chriskempson.com)
 
-URxvt*color0: #155785
-URxvt*color1: #226f94
-URxvt*color2: #33869f
-URxvt*color3: #459cab
-URxvt*color4: #61aab5
-URxvt*color5: #8fb4bc
-URxvt*color6: #c5cac8
-URxvt*color7: #589491
-URxvt*color8: #afb092
-URxvt*color9: #d3bd84
-URxvt*color10: #ebca75
-URxvt*color11: #ab835b
-URxvt*color12: #c3a068
-URxvt*color13: #755140
-URxvt*color14: #503c32
-URxvt*color15: #535e4a
+#define base00 #181818
+#define base01 #282828
+#define base02 #383838
+#define base03 #585858
+#define base04 #b8b8b8
+#define base05 #d8d8d8
+#define base06 #e8e8e8
+#define base07 #f8f8f8
+#define base08 #ab4642
+#define base09 #dc9656
+#define base0A #f7ca88
+#define base0B #a1b56c
+#define base0C #86c1b9
+#define base0D #41909E
+#define base0E #ba8baf
+#define base0F #a16946
 
-/* ! Black + DarkGrey */
-/* *color0:  #282828 */
-/* *color8:  #928374 */
+*.foreground:   base05
+*.background:   base00
+*.cursorColor:  base05
 
-/* ! DarkRed + Red */
-/* *color1:  #cc241d */
-/* *color9:  #fb4934 */
+*.color0:       base00
+*.color1:       base08
+*.color2:       base0B
+*.color3:       base0A
+*.color4:       base0D
+*.color5:       base0E
+*.color6:       base0C
+*.color7:       base05
 
-/* ! DarkGreen + Green */
-/* *color2:  #98971a */
-/* *color10: #b8bb26 */
+*.color8:       base03
+*.color9:       base08
+*.color10:      base0B
+*.color11:      base0A
+*.color12:      base0D
+*.color13:      base0E
+*.color14:      base0C
+*.color15:      base07
 
-/* ! DarkYellow + Yellow */
-/* *color3:  #d79921 */
-/* *color11: #fabd2f */
-
-/* ! DarkBlue + Blue */
-/* *color4:  #458588 */
-/* *color12: #83a598 */
-
-/* ! DarkMagenta + Magenta */
-/* *color5:  #b16286 */
-/* *color13: #d3869b */
-
-/* ! DarkCyan + Cyan */
-/* *color6:  #689d6a */
-/* *color14: #8ec07c */
-
-/* ! LightGrey + White */
-/* *color7:  #a89984 */
-/* *color15: #ebdbb2 */
-
-URxvt.color24:  #076678
-URxvt.color66:  #427b58
-URxvt.color88:  #9d0006
-URxvt.color96:  #8f3f71
-URxvt.color100: #79740e
-URxvt.color108: #8ec07c
-URxvt.color109: #83a598
-URxvt.color130: #af3a03
-URxvt.color136: #b57614
-URxvt.color142: #b8bb26
-URxvt.color167: #fb4934
-URxvt.color175: #d3869b
-URxvt.color208: #fe8019
-URxvt.color214: #fabd2f
-URxvt.color223: #ebdbb2
-URxvt.color228: #f4e8ba
-URxvt.color229: #fdf4c1
-URxvt.color230: #ffffc8
-URxvt.color234: #1d2021
-URxvt.color235: #282828
-URxvt.color236: #32302f
-URxvt.color237: #3c3836
-URxvt.color239: #504945
-URxvt.color241: #665c54
-URxvt.color243: #7c6f64
-URxvt.color244: #928374
-URxvt.color245: #928374
-URxvt.color246: #a89984
-URxvt.color248: #bdae93
-URxvt.color250: #d5c4a1
+! Note: colors beyond 15 might not be loaded (e.g., xterm, urxvt),
+! use 'shell' template to set these if necessary
+*.color16:      base09
+*.color17:      base0F
+*.color18:      base01
+*.color19:      base02
+*.color20:      base04
+*.color21:      base06

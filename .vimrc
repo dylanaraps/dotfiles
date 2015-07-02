@@ -16,14 +16,14 @@ endif
 call plug#begin('~/.vim/plugged')
 
 " LOOKS
-Plug 'morhetz/gruvbox'
-	let g:gruvbox_contrast_dark = "hard"
+Plug 'chriskempson/base16-vim'
+	let base16colorspace=256
 
 Plug 'bling/vim-airline'
 	" Always show statusline
 	set laststatus=2
 	let g:airline_powerline_fonts = 1
-	let g:airline_theme = 'seoul256'
+	let g:airline_theme = 'base16'
 	let g:airline#extensions#tabline#enabled = 1
 
 	" Display only filename in tabs
@@ -151,17 +151,18 @@ set noshowmode
 " Colorscheme overrides
 augroup ColorOverride
 	autocmd!
-	autocmd ColorScheme * highlight LineNr ctermbg=234 ctermfg=236
-	autocmd ColorScheme * highlight CursorLine ctermbg=234 ctermfg=236
-	autocmd ColorScheme * highlight CursorLineNR ctermbg=234 ctermfg=236
-	autocmd ColorScheme * highlight TabLine ctermbg=234
-	autocmd ColorScheme * highlight Comment ctermbg=234 ctermfg=238
+	autocmd ColorScheme * highlight normal ctermbg=0
+	autocmd ColorScheme * highlight LineNr ctermbg=bg ctermfg=236
+	autocmd ColorScheme * highlight CursorLine ctermbg=bg ctermfg=236
+	autocmd ColorScheme * highlight CursorLineNR ctermbg=bg ctermfg=236
+	autocmd ColorScheme * highlight TabLine ctermbg=bg
+	autocmd ColorScheme * highlight Comment ctermbg=bg ctermfg=238
 	autocmd ColorScheme * highlight StatuslineNC ctermbg=255 ctermfg=235
-	autocmd ColorScheme * highlight Statusline ctermfg=234 ctermbg=238
-	autocmd ColorScheme * highlight ErrorMsg ctermbg=234 ctermfg=238
+	autocmd ColorScheme * highlight Statusline ctermfg=bg ctermbg=238
+	autocmd ColorScheme * highlight ErrorMsg ctermbg=bg ctermfg=238
 	autocmd ColorScheme * highlight Visual ctermbg=236
-	autocmd ColorScheme * highlight Folded ctermbg=234 ctermfg=236
-	autocmd ColorScheme * highlight VertSplit ctermbg=234 ctermfg=234 cterm=none
+	autocmd ColorScheme * highlight Folded ctermbg=bg ctermfg=236
+	autocmd ColorScheme * highlight VertSplit ctermbg=bg ctermfg=bg cterm=none
 
 	" Normal mode colors
 	autocmd ColorScheme * highlight SignColumn ctermfg=4
@@ -170,14 +171,14 @@ augroup ColorOverride
 	autocmd ColorScheme * highlight TermCursorNC ctermbg=172
 
 	" Insert mode colors
-	autocmd ColorScheme * highlight wildmenu ctermbg=65 ctermfg=233
+	autocmd ColorScheme * highlight wildmenu ctermbg=65
 
 	" Replace mode colors
 	autocmd ColorScheme * highlight Structure ctermfg=167
 augroup END
 
 " This line MUST be below these autocmds
-colorscheme gruvbox
+colorscheme base16-default
 
 " }}}
 
