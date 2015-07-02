@@ -6,9 +6,9 @@
 white="FFFFFF"
 black="1C1C1C"
 darkgrey="#FF252525"
-blue="#BB689D6A"
-lightblue="#FF8EC07C"
-yellow="#FFFABD2F"
+blue="#BB458588"
+lightblue="#BB83A598"
+yellow="#BBFABD2F"
 
 font="-benis-lemon-medium-r-normal--10-110-75-75-m-50-iso8859-1"
 icons="-wuncon-sijipatched-medium-r-normal--10-100-75-75-c-80-iso10646-1"

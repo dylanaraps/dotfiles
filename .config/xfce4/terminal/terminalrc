@@ -1,5 +1,5 @@
 [Configuration]
-FontName=Baar Sophia 12
+FontName=envypn 12
 MiscAlwaysShowTabs=FALSE
 MiscBell=FALSE
 MiscBordersDefault=FALSE
@@ -34,4 +34,5 @@ ColorForeground=#ebebdbdbb2b2
 ColorBackground=#1c1c1c1c1c1c
 ColorPalette=#1c1c1c1c1c1c;#cccc24241d1d;#989897971a1a;#d7d799992121;#454585858888;#b1b162628686;#68689d9d6a6a;#a8a899998484;#929283837474;#fbfb49493434;#b8b8bbbb2626;#fafabdbd2f2f;#8383a5a59898;#d3d386869b9b;#8e8ec0c07c7c;#ebebdbdbb2b2
 ShortcutsNoMnemonics=TRUE
+ColorSelectionUseDefault=FALSE
 

@@ -48,10 +48,8 @@ shadow-exclude = [
 shadow-ignore-shaped = false;
 
 opacity-rule = [
-	"90:class_g = 'Firefox'",
 	"95:class_g = 'URxvt'",
-	"90:name = 'bar'",
-	"90:class_g = 'Steam'"
+	"90:name = 'bar'"
 ];
 
 # Fading
