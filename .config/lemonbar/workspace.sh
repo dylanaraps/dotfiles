@@ -6,9 +6,9 @@
 white="FFFFFF"
 black="1C1C1C"
 darkgrey="#FF252525"
-blue="#BB459CAB"
-lightblue="#BB61AAB5"
-yellow="#BBFABD2F"
+blue="#FF459CAB"
+lightblue="#FF61AAB5"
+yellow="#FFFABD2F"
 
 font="-benis-lemon-medium-r-normal--10-110-75-75-m-50-iso8859-1"
 icons="-wuncon-sijipatched-medium-r-normal--10-100-75-75-c-80-iso10646-1"
@@ -47,7 +47,7 @@ workspace(){
 		wmctrl -d \
 		| awk '/[a-z]$/ {printf $2 $9}'\
 		| sed -e 's/\-/\;/g' \
-		-e 's/\*[a-z]*/%{B#BB458588}  &  %{B}/g' \
+		-e 's/\*[a-z]*/%{B#FF459CAB}  &  %{B}/g' \
 		-e 's/\;[a-z]*/%{B#001C1C1C}%{A:bspc desktop -f &:}  &  %{A}%{B}/g' \
 		-e 's/\*//g' \
 		-e 's/ \;/ /g'\

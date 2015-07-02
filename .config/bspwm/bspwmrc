@@ -24,7 +24,7 @@ bspc rule -a Firefox desktop=www follow=no
 
 bspc rule -a Steam desktop=game follow=no floating=on
 
-feh --bg-tile ~/.dotfiles/wallpapers/4.png &
+feh --bg-fill ~/.dotfiles/wallpapers/4.png &
 
 # lemonbar
 ~/.dotfiles/.config/lemonbar/clock.sh &
