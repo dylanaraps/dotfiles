@@ -75,7 +75,7 @@ super + Return
 	#-lsp 1
 
 super + d
-	j4-dmenu-desktop --dmenu="dmenu -o 0.9 -nb '#1C1C1C' -nf '#FFFFFF' -sb '#458588' -i -h 25 -w 1600 -fn '-benis-lemon-medium-r-normal--10-110-75-75-m-50-iso8859-1' -name dmenu2" --term="xfce4-terminal"
+	j4-dmenu-desktop --dmenu="dmenu -o 0.9 -nb '#1C1C1C' -nf '#FFFFFF' -sb '#61AAB5' -i -h 25 -w 1600 -fn '-benis-lemon-medium-r-normal--10-110-75-75-m-50-iso8859-1' -name dmenu2" --term="xfce4-terminal"
 
 # Laptop hotkeys
 XF86MonBrightnessUp

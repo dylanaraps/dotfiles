@@ -6,8 +6,8 @@
 white="FFFFFF"
 black="1C1C1C"
 darkgrey="#FF252525"
-blue="#BB226F94"
-lightblue="#BB459CAB"
+blue="#BB459CAB"
+lightblue="#BB61AAB5"
 yellow="#BBFABD2F"
 
 font="-benis-lemon-medium-r-normal--10-110-75-75-m-50-iso8859-1"
