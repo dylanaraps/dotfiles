@@ -31,6 +31,9 @@ fi
 # Launches mpd
 mpd &
 
+# auto usb mount
+devmon &
+
 # Compton
 compton -b --config ~/.compton
 
