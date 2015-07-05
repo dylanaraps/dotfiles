@@ -38,21 +38,6 @@ Plug 'wesQ3/vim-windowswap'
 	let g:windowswap_map_keys = 0
 	nnoremap <silent> ww :call WindowSwap#EasyWindowSwap()<CR>
 
-Plug 'kien/ctrlp.vim'
-	let g:ctrlp_map = '<c-x>'
-	let g:ctrlp_working_path_mode = 'r'
-	let g:ctrlp_clear_cache_on_exit = 0
-	let g:ctrlp_by_filename = 1
-
-	let g:ctrlp_user_command = 'ag %s -i --nocolor --nogroup --hidden
-	\ --ignore .git
-	\ --ignore .sass-cache
-	\ --ignore "*.png"
-	\ --ignore "*.jp*"
-	\ --ignore "*.gif"
-	\ --ignore "*.map"
-	\ -g ""'
-
 Plug 'kana/vim-textobj-user'
 \| Plug 'kana/vim-textobj-line'
 \| Plug 'terryma/vim-expand-region'
@@ -215,7 +200,7 @@ nmap <S-Tab> :bprevious<CR>
 
 " Maps Enter to cycle buffers
 " J does the same thing as enter in normal mode.
-nmap <CR> <C-w><C-w>
+nmap <CR><CR> <C-w><C-w>
 
 " Unmaps the arrow keys
 map <Up> <nop>
@@ -404,18 +389,6 @@ augroup END
 " Functions {{{
 
 " WEBDEV SESSION START
-function! RunGulp()
-	vsp
-	terminal gulp
-	file gulp
-endfunction
-
-function! RunTerm()
-	sp
-	terminal
-	file terminal
-endfunction
-
 function! Files()
 	if filereadable("src/index.html")
 	\|     e src/*.html
@@ -431,16 +404,12 @@ function! Files()
 	\|     echo "No scss file(s) found"
 	\| endif
 
-	if filereadable("src/coffeescript/main.coffee")
-	\|     e src/coffeescript/*.coffee
+	if filereadable("src/javascript/main.js")
+	\|     e src/javascript/*.js
 	\|     cd ..
 	\| else
-	\|     echo "No coffeescript file(s) found"
+	\|     echo "No javascript file(s) found"
 	\| endif
-endfunction
-
-function! BufWidth()
-	call feedkeys("\<ESC> \<CR> \; vertical resize +30 \<CR>")
 endfunction
 
 function! Success()
@@ -452,9 +421,6 @@ endfunction
 
 command! Webdev if isdirectory(".git") && filereadable("gulpfile.coffee")
 	\|     call Files()
-	\|     call RunGulp()
-	\|     call RunTerm()
-	\|     call BufWidth()
     \|	   call Success()
 	\| else
 	\|     echom "No project found"
@@ -469,7 +435,7 @@ function! Ncmpcpp()
 	sp
 	terminal ncmpcpp
 	file ncmpcpp
-	call feedkeys("\<ESC> \<CR>")
+	call feedkeys("\<ESC> \<CR> \<CR>")
 endfunction
 
 command! Music if 1 == 1
