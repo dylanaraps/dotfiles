@@ -3,21 +3,13 @@
 
 # Variables {{{
 
-white="FFFFFF"
-black="1C1C1C"
-darkgrey="#FF252525"
-blue="#FF459CAB"
-lightblue="#FF61AAB5"
-yellow="#FFFABD2F"
-
-font="-benis-lemon-medium-r-normal--10-110-75-75-m-50-iso8859-1"
-icons="-wuncon-sijipatched-medium-r-normal--10-100-75-75-c-80-iso10646-1"
+source ~/.dotfiles/.config/lemonbar/variables.sh
 
 if [[ $(xrandr | awk '/DFP10/ {print $1}') == "DFP10" ]]; then
-	size="430x25"
+	size="430x$height"
 
 elif [[ $(xrandr | awk '/eDP1/ {print $1}') == "eDP1" ]]; then
-	size="430x25"
+	size="430x$height"
 
 else
 	size=""
@@ -48,7 +40,7 @@ workspace(){
 		| awk '/[a-z]$/ {printf $2 $9}'\
 		| sed -e 's/\-/\;/g' \
 		-e 's/\*[a-z]*/%{B#FF459CAB}  &  %{B}/g' \
-		-e 's/\;[a-z]*/%{B#001C1C1C}%{A:bspc desktop -f &:}  &  %{A}%{B}/g' \
+		-e 's/\;[a-z]*/%{B#1C1C1C}%{A:bspc desktop -f &:}  &  %{A}%{B}/g' \
 		-e 's/\*//g' \
 		-e 's/ \;/ /g'\
 		)
@@ -69,4 +61,4 @@ while :; do
 	sleep .03s
 done |
 
-lemonbar -g $size -f $font -f $icons -B \#00$black -F \#FF$white 2> /dev/null | bash
+lemonbar -g $size -f $font -f $icons -B \#FF$black -F \#FF$white 2> /dev/null | bash

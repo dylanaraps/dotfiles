@@ -27,11 +27,10 @@ generate_win32_compatible_filenames = "yes"
 # Bars
 progressbar_color = "white"
 progressbar_elapsed_color = "white"
-progressbar_look = "   "
+progressbar_look = "// "
 
 # UI
 header_visibility = "no"
-statusbar_visibility = "no"
 titles_visibility = "no"
 
 # Browser
@@ -45,5 +44,5 @@ visualizer_fifo_path = "/tmp/mpd.fifo"
 visualizer_in_stereo = "yes"
 visualizer_look = "●▮"
 visualizer_output_name = "my_fifo"
-visualizer_sync_interval = "1"
-visualizer_type = "ellipse"
+visualizer_sync_interval = "6"
+visualizer_type = "spectrum"

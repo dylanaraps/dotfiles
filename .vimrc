@@ -412,16 +412,15 @@ function! Files()
 	\| endif
 endfunction
 
-function! Success()
-	messages
-	echom system("basename `git rev-parse --show-toplevel` | sed -e 's/.*/Project & Loaded/' | tr -d '\n'")
-	sleep 1
-	call feedkeys ("\<ESC>")
+function! Gulp()
+	10sp
+    terminal gulp
+    wincmd k
 endfunction
 
 command! Webdev if isdirectory(".git") && filereadable("gulpfile.coffee")
 	\|     call Files()
-    \|	   call Success()
+	\|     call Gulp()
 	\| else
 	\|     echom "No project found"
 	\| endif
@@ -435,7 +434,6 @@ function! Ncmpcpp()
 	sp
 	terminal ncmpcpp
 	file ncmpcpp
-	call feedkeys("\<ESC> \<CR> \<CR>")
 endfunction
 
 command! Music if 1 == 1

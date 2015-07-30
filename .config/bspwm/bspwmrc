@@ -1,6 +1,6 @@
 #! /bin/sh
 
-bspc config border_width		3
+bspc config border_width		0
 bspc config window_gap         20
 
 bspc config split_ratio         0.50
@@ -9,15 +9,28 @@ bspc config gapless_monocle     true
 bspc config focus_follows_pointer true
 bspc config initial_polarity second_child
 
-bspc config normal_border_color "#459CAB"
-bspc config active_border_color "#459CAB"
 bspc config focused_border_color "#FFFFFF"
+bspc config active_border_color "#459CAB"
+bspc config normal_border_color "#459CAB"
 bspc config urgent_border_color "#FFFFFF"
 
-bspc config -m DFP10 top_padding 25
-bspc config -m eDP1 top_padding 25
+bspc config focused_locked_border_color "#FFFFFF"
+bspc config active_locked_border_color "#FFFFFF"
+bspc config normal_locked_border_color "#FFFFFF"
+
+bspc config focused_sticky_border_color "#FFFFFF"
+bspc config active_sticky_border_color "#FFFFFF"
+bspc config normal_sticky_border_color "#FFFFFF"
+
+bspc config focused_private_border_color "#FFFFFF"
+bspc config active_private_border_color "#FFFFFF"
+bspc config normal_private_border_color "#FFFFFF"
+
+bspc config -m DFP10 top_padding 22
+bspc config -m eDP1 top_padding 22
 
 bspc monitor DFP10 -d www code game video
+# bspc monitor DFP10 -d    
 bspc monitor DFP11 -d AAA
 
 bspc monitor eDP1 -d www code game video
@@ -30,7 +43,7 @@ feh --bg-fill ~/.dotfiles/wallpapers/4.png &
 
 # lemonbar
 ~/.dotfiles/.config/lemonbar/clock.sh &
-sleep 1.01s
+sleep .3s &&
 ~/.dotfiles/.config/lemonbar/workspace.sh &
 ~/.dotfiles/.config/lemonbar/music.sh &
 

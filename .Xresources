@@ -25,7 +25,7 @@ URxvt.keysym.C-f: \
 #define base00 #181818
 #define base01 #282828
 #define base02 #383838
-#define base03 #585858
+#define base03 #181818
 #define base04 #b8b8b8
 #define base05 #d8d8d8
 #define base06 #e8e8e8
@@ -52,7 +52,7 @@ URxvt.keysym.C-f: \
 *.color6:       base0C
 *.color7:       base05
 
-*.color8:       base03
+*.color8:       #d8d8d8
 *.color9:       base08
 *.color10:      base0B
 *.color11:      base0A

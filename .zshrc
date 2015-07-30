@@ -74,6 +74,21 @@ alias plu="cd ~/Music && lsnc > ~/.mpd/playlists/music.m3u"
 # Makes ls list all files and always use color
 alias ls="ls -A --color=always"
 
+# Peerflix
+alias pf="peerflix --path '~/Videos/Downloads' --mpv"
+
+# Compton
+alias cmp="compton -b --config ~/.compton"
+
+# rxvt
+alias term="urxvt -e"
+alias t="urxvt -e"
+
+#lemonbar
+alias killbar="pkill ~/.config/lemonbar/clock.sh & pkill ~/.config/lemonbar/workspace.sh & pkill ~/.config/lemonbar/music.sh & pkill lemonbar"
+
+alias bar="~/.dotfiles/.config/lemonbar/clock.sh & sleep .5s && ~/.dotfiles/.config/lemonbar/workspace.sh & ~/.dotfiles/.config/lemonbar/music.sh &"
+
 # OTHER
 # Enables the help command
 autoload -U compinit

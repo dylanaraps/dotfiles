@@ -1,19 +1,7 @@
 #!/bin/bash
 # Music/Volume/Wifi/battery
 
-# Variables {{{
-
-white="FFFFFF"
-black="1C1C1C"
-darkgrey="#FF252525"
-blue="#FF459CAB"
-lightblue="#FF61AAB5"
-yellow="#FFFABD2F"
-
-font="-benis-lemon-medium-r-normal--10-110-75-75-m-50-iso8859-1"
-icons="-wuncon-sijipatched-medium-r-normal--10-100-75-75-c-80-iso10646-1"
-
-# }}}
+source ~/.dotfiles/.config/lemonbar/variables.sh
 
 # Music {{{
 
@@ -57,17 +45,17 @@ volume(){
 # }}}
 
 if [[ $(xrandr | awk '/DFP10/ {print $1}') == "DFP10" ]]; then
-	size="600x25+1000"
+	size="600x$height+1000"
 
 	while :; do
 		echo "%{r}%{B$blue}$(volume)$(music)%{B}%{r}"
 		sleep .3s
 	done |
 
-	lemonbar -g $size -f $font -f $icons -B $black -F \#FF$white 2> /dev/null | bash
+	lemonbar -g $size -f $font -f $icons -B \#FF$black -F \#FF$white 2> /dev/null | bash
 
 elif [[ $(xrandr | awk '/eDP1/ {print $1}') == "eDP1" ]]; then
-	size="600x25+766"
+	size="600x$height+766"
 	source ~/.dotfiles/.config/lemonbar/laptop.sh
 
 	while :; do
@@ -75,7 +63,7 @@ elif [[ $(xrandr | awk '/eDP1/ {print $1}') == "eDP1" ]]; then
 		sleep .3s
 	done |
 
-	lemonbar -d -g $size -f $font -f $icons -B \#00$black -F \#FF$white 2> /dev/null | bash
+	lemonbar -g $size -f $font -f $icons -B \#FF$black -F \#FF$white 2> /dev/null | bash
 
 else
 	size=""
