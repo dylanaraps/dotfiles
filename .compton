@@ -37,11 +37,9 @@ shadow-blue = 0.04;
 # This list includes all the affected apps I found in my testing. The "! name~=''" part excludes shadows on any "Unknown" windows, this prevents a visual glitch with the XFWM alt tab switcher.
 shadow-exclude = [
    # "! name~=''",
-   "name = 'dmenu2'",
-   "name = 'Dmenu'",
-   "name = 'bar'",
-   "class_g ?= 'Dmenu'",
-   "class_g ?= 'dmenu2'"
+   # "class_g ?= 'Dmenu'",
+   # "class_g ?= 'dmenu2'"
+   "name ?= 'kek'"
 ];
 
 # Avoid drawing shadow on all shaped windows (see also: --detect-rounded-corners)

@@ -13,13 +13,13 @@ music(){
 	# Displays currently playing mpd song, if nothing is playing it displays "Paused"
 	if [[ $(mpc status | awk 'NR==2 {print $1}') == "[playing]" ]]; then
 		current=$(mpc current)
-		playing=$(echo " $current")
+		playing=$(echo " $current")
 	else
 		# playing=$(echo " Paused")
-		playing=$(echo "")
+		playing=""
 	fi
 
-	echo "%{$musictoggle}%{$musicnext}%{$musicprevious} $playing %{A}%{A}%{A}"
+	echo "%{$musictoggle}%{$musicnext}%{$musicprevious} %{F$blue}%{F}$playing %{A}%{A}%{A}"
 }
 
 # }}}
@@ -33,37 +33,39 @@ volume(){
 
 	# Volume Indicator
 	if [[ $(pulseaudio-ctl full-status | awk '/ / {printf $2}') == "yes" ]]; then
-		vol=$(echo " Mute")
+		vol=$(echo " Mute")
+		icon=
 	else
 		mastervol=$(pulseaudio-ctl full-status | awk '/ / {printf $1}')
-		vol=$(echo " $mastervol")
+		vol=$(echo " $mastervol")
+		icon=
 	fi
 
-	echo "%{$volup}%{$voldown}%{$volmute} $vol %{A}%{A}%{A}"
+	echo "%{$volup}%{$voldown}%{$volmute} %{F$blue}$icon%{F}$vol %{A}%{A}%{A}"
 }
 
 # }}}
 
 if [[ $(xrandr | awk '/DFP10/ {print $1}') == "DFP10" ]]; then
-	size="600x$height+1000"
+	size="400x$height+1200"
 
 	while :; do
-		echo "%{r}%{B$blue}$(volume)$(music)%{B}%{r}"
+		echo "%{r}$(volume)$(music)%{r}"
 		sleep .3s
 	done |
 
-	lemonbar -g $size -f $font -f $icons -B \#FF$black -F \#FF$white 2> /dev/null | bash
+	orangebar -g $size -f $font -f $icons -B \#FF$black -F \#FF$white 2> /dev/null | bash
 
 elif [[ $(xrandr | awk '/eDP1/ {print $1}') == "eDP1" ]]; then
 	size="600x$height+766"
 	source ~/.dotfiles/.config/lemonbar/laptop.sh
 
 	while :; do
-		echo "%{r}$(wifi) $(battery) %{B$blue}$(volume) $(music) %{B\#00$black}%{r}"
+		echo "%{r}$(wifi) $(battery) $(volume) $(music) %{B\#00$black}%{r}"
 		sleep .3s
 	done |
 
-	lemonbar -g $size -f $font -f $icons -B \#FF$black -F \#FF$white 2> /dev/null | bash
+	orangebar -g $size -f $font -f $icons -B \#FF$black -F \#FF$white 2> /dev/null | bash
 
 else
 	size=""

@@ -26,12 +26,13 @@ bspc config focused_private_border_color "#FFFFFF"
 bspc config active_private_border_color "#FFFFFF"
 bspc config normal_private_border_color "#FFFFFF"
 
-bspc config -m DFP10 top_padding 22
-bspc config -m eDP1 top_padding 22
+bspc config -m DFP10 top_padding 24
+bspc config -m eDP1 top_padding 24
 
-bspc monitor DFP10 -d www code game video
+# bspc monitor DFP10 -d www code game video
 # bspc monitor DFP10 -d    
-bspc monitor DFP11 -d AAA
+bspc monitor DFP10 -d    
+bspc monitor DFP11 -d hello
 
 bspc monitor eDP1 -d www code game video
 

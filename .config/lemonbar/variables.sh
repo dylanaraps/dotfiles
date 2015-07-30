@@ -7,9 +7,9 @@ blue="#FF459CAB"
 lightblue="#FF61AAB5"
 yellow="#FFFABD2F"
 
-font="-benis-lemon-medium-r-normal--10-110-75-75-m-50-iso8859-1"
-icons="-wuncon-sijipatched-medium-r-normal--10-100-75-75-c-80-iso10646-1"
+font="lemon:size=12"
+icons="-wuncon-siji-medium-r-normal--10-100-75-75-c-80-iso10646-1"
 
-height=20
+height=24
 
 # }}}

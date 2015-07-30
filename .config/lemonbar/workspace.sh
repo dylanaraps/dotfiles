@@ -6,7 +6,7 @@
 source ~/.dotfiles/.config/lemonbar/variables.sh
 
 if [[ $(xrandr | awk '/DFP10/ {print $1}') == "DFP10" ]]; then
-	size="430x$height"
+	size="330x$height"
 
 elif [[ $(xrandr | awk '/eDP1/ {print $1}') == "eDP1" ]]; then
 	size="430x$height"
@@ -23,7 +23,7 @@ windowtitle(){
 	# Grabs focused window's title
 	# The echo "" at the end displays when no windows are focused.
 	title=$(xdotool getactivewindow getwindowname 2>/dev/null || echo "Hi")
-	echo " $title" | cut -c 1-50 # Limits the output to a maximum # of chars
+	echo "%{F$blue}%{F} $title" | cut -c 1-50 # Limits the output to a maximum # of chars
 }
 
 # }}}
@@ -37,12 +37,13 @@ workspace(){
 
 	wslist=$(\
 		wmctrl -d \
-		| awk '/[a-z]$/ {printf $2 $9}'\
+		| awk '/ / {printf $2 $9}'\
 		| sed -e 's/\-/\;/g' \
-		-e 's/\*[a-z]*/%{B#FF459CAB}  &  %{B}/g' \
-		-e 's/\;[a-z]*/%{B#1C1C1C}%{A:bspc desktop -f &:}  &  %{A}%{B}/g' \
+		-e 's/.Desktop2//g' \
+		-e 's/\*****/%{+u} & %{-u} /g' \
+		-e 's/\;****/%{A:bspc desktop -f &:} & %{A} /g' \
 		-e 's/\*//g' \
-		-e 's/ \;/ /g'\
+		-e 's/\ ;/ /g'\
 		)
 
 	# Adds the scrollwheel events and displays the switcher
@@ -61,4 +62,4 @@ while :; do
 	sleep .03s
 done |
 
-lemonbar -g $size -f $font -f $icons -B \#FF$black -F \#FF$white 2> /dev/null | bash
+orangebar -u 2 -g $size -f $font -f $icons -B \#FF$black -F \#FF$white 2> /dev/null | bash
