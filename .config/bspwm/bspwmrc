@@ -26,8 +26,8 @@ bspc config focused_private_border_color "#FFFFFF"
 bspc config active_private_border_color "#FFFFFF"
 bspc config normal_private_border_color "#FFFFFF"
 
-bspc config -m DFP10 top_padding 24
-bspc config -m eDP1 top_padding 24
+bspc config -m DFP10 top_padding 20
+bspc config -m eDP1 top_padding 20
 
 # bspc monitor DFP10 -d www code game video
 # bspc monitor DFP10 -d    
@@ -36,9 +36,9 @@ bspc monitor DFP11 -d hello
 
 bspc monitor eDP1 -d www code game video
 
-bspc rule -a Firefox desktop=www follow=no
-bspc rule -a Wine desktop=game floating=on
-bspc rule -a Steam desktop=game follow=no floating=on
+bspc rule -a Firefox desktop= follow=no
+bspc rule -a Wine desktop= floating=on
+bspc rule -a Steam desktop= follow=no floating=on
 
 feh --bg-fill ~/.dotfiles/wallpapers/4.png &
 

@@ -55,11 +55,13 @@ workspace(){
 while :; do
 	echo "\
 		%{l}\
+		%{U$blue}\
 			$(workspace)\
 			%{B$black} $(windowtitle) \
+		%{U}\
 		%{l}\
 		"
 	sleep .03s
 done |
 
-orangebar -u 2 -g $size -f $font -f $icons -B \#FF$black -F \#FF$white 2> /dev/null | bash
+orangebar -u 2 -g $size -f $font -f $icons -B $bg -F $fg 2> /dev/null | bash
