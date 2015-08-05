@@ -32,4 +32,4 @@ while :; do
 	sleep 1m
 done |
 
-lemonbar -g $size -f $font -f $icons -B $bg -F $fg 2> /dev/null | bash
+lemonbar -g $size -f $font -f $icons -B \#$bg -F $fg 2> /dev/null | bash

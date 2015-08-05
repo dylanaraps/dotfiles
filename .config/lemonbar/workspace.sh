@@ -6,7 +6,7 @@
 source ~/.dotfiles/.config/lemonbar/variables.sh
 
 if [[ $(xrandr | awk '/DFP10/ {print $1}') == "DFP10" ]]; then
-	size="330x$height"
+	size="430x$height"
 
 elif [[ $(xrandr | awk '/eDP1/ {print $1}') == "eDP1" ]]; then
 	size="430x$height"
@@ -23,7 +23,7 @@ windowtitle(){
 	# Grabs focused window's title
 	# The echo "" at the end displays when no windows are focused.
 	title=$(xdotool getactivewindow getwindowname 2>/dev/null || echo "Hi")
-	echo "%{F$blue}%{F} $title" | cut -c 1-50 # Limits the output to a maximum # of chars
+	echo "%{F$blue}%{F} $title" # Limits the output to a maximum # of chars
 }
 
 # }}}
@@ -64,4 +64,4 @@ while :; do
 	sleep .03s
 done |
 
-orangebar -u 2 -g $size -f $font -f $icons -B $bg -F $fg 2> /dev/null | bash
+orangebar -u 2 -g $size -f $font -f $icons -B \#00$bg -F $fg 2> /dev/null | bash

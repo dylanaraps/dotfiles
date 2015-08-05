@@ -40,7 +40,8 @@ bspc rule -a Firefox desktop= follow=no
 bspc rule -a Wine desktop= floating=on
 bspc rule -a Steam desktop= follow=no floating=on
 
-feh --bg-fill ~/.dotfiles/wallpapers/4.png &
+# feh --bg-fill ~/Pictures/papes/ryuuko2.png &
+nitrogen --restore &
 
 # lemonbar
 ~/.dotfiles/.config/lemonbar/clock.sh &

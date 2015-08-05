@@ -416,7 +416,12 @@ function! Gulp()
 	10sp
     terminal gulp
     wincmd k
+	call feedkeys("\<ESC>")
+	call feedkeys("\<ESC>")
 endfunction
+
+command! Gulp if 1 == 1
+	\| call Gulp()
 
 command! Webdev if isdirectory(".git") && filereadable("gulpfile.coffee")
 	\|     call Files()

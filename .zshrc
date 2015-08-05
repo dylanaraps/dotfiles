@@ -86,7 +86,6 @@ alias t="urxvt -e"
 
 #lemonbar
 alias killbar="pkill ~/.config/lemonbar/clock.sh & pkill ~/.config/lemonbar/workspace.sh & pkill ~/.config/lemonbar/music.sh & pkill lemonbar & pkill orangebar"
-
 alias startbar="~/.dotfiles/.config/lemonbar/clock.sh & sleep .5s && ~/.dotfiles/.config/lemonbar/workspace.sh & ~/.dotfiles/.config/lemonbar/music.sh"
 
 # OTHER

@@ -1,9 +1,10 @@
 # Variables.sh {{{
 
-fg="#FFFFFFFF"
-bg="#FF1C1C1C"
+fg="#FFF7F7F7"
+blue="#FFF7F7F7"
+bg="181818"
 darkgrey="#FF252525"
-blue="#FF459CAB"
+# bg="#FF459CAB"
 lightblue="#FF61AAB5"
 yellow="#FFFABD2F"
 
