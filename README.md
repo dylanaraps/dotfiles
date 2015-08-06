@@ -6,6 +6,8 @@ My current setup as of the 6th of August 2015.
 * Linux Distro: [Arch Linux](https://www.archlinux.org/)
 * Window Manager: [BSPWM](https://github.com/baskerville/bspwm)
 * Compositor (Window Shadows/Opacity: [Compton](https://github.com/chjj/compton)
+* Gtk Theme: Modified Arc (gtk folder in repo)
+* Gtk Icons: [Ultra Flat Icons](https://aur.archlinux.org/packages/ultra-flat-icons/)
 * Bar: [Lemonboy's Bar patched with xft support](https://github.com/krypt-n/bar)
 * Background: [png](https://u.teknik.io/TM6wD9.png)
 * Apllication Launcher: [Dmenu2](https://github.com/mrshankly/dmenu2)

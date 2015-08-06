@@ -49,7 +49,8 @@ opacity-rule = [
 	"95:class_g = 'URxvt'",
 	"95:name = 'kek'",
 	"95:name = 'bar'",
-	"95:class_g = 'Firefox'"
+	"95:class_g = 'Firefox'",
+	"95:class_g = 'Thunar'"
 ];
 
 # Fading

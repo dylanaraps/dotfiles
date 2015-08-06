@@ -1,0 +1,12 @@
+[Desktop Entry]
+Type=X-GNOME-Metatheme
+Name=Arc-Dark-Modified
+Comment=My modified version of the arc gtk theme
+Encoding=UTF-8
+
+[X-GNOME-Metatheme]
+GtkTheme=Arc-Dark
+MetacityTheme=Arc-Dark
+IconTheme=gnome
+CursorTheme=DMZ-Black
+ButtonLayout=menu:minimize,maximize,close

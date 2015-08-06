@@ -1,0 +1,198 @@
+style "menubar" {
+
+  bg[NORMAL] = "#181818"
+  fg[NORMAL] = "#383838"
+  fg[SELECTED] = @selected_fg_color
+  fg[INSENSITIVE] = "#383838"
+
+  xthickness = 0
+  ythickness = 0
+
+  engine "pixmap" {
+
+    image {
+      function = BOX
+      file  = "menubar-toolbar/menubar-dark.png"
+      stretch  = TRUE
+      border = { 0, 0, 0, 0 }
+    }
+  }
+}
+
+style "menubar-borderless" {
+
+  bg[NORMAL] = "#181818"
+  fg[NORMAL] = "#383838"
+  fg[SELECTED] = @selected_fg_color
+  fg[INSENSITIVE] = "#383838"
+
+  xthickness = 0
+  ythickness = 0
+
+  engine "pixmap" {
+
+    image {
+      function = BOX
+      file  = "assets/null.png"
+      stretch  = TRUE
+      border = { 0, 0, 0, 0 }
+    }
+  }
+}
+
+style "menubar_item" {
+
+  xthickness = 2
+  ythickness = 4
+
+  fg[PRELIGHT] = @selected_fg_color
+
+  engine "pixmap" {
+
+    image {
+      function = BOX
+      state = PRELIGHT
+      file = "menubar-toolbar/menubar_button-dark.png"
+      border = { 0, 0, 0, 0 }
+      stretch = TRUE
+    }
+  }
+}
+
+# Text Style Menubar
+style "menubar-text" {
+
+  engine "murrine" {
+    text_shade = 0.0
+    textstyle = 0
+  }
+}
+
+
+style "toolbar_text" {
+  fg[NORMAL] = "#383838"
+  fg[PRELIGHT] = "#383838"
+  fg[INSENSITIVE] = "#383838"
+  fg[ACTIVE] = "#383838"
+
+  text[NORMAL] = "#383838"
+  text[PRELIGHT] = "#383838"
+  text[INSENSITIVE] = "#383838"
+  text[ACTIVE] = "#383838"
+
+}
+
+style "toolbar_button" {
+
+  xthickness = 4
+  ythickness = 4
+
+  engine "pixmap" {
+
+    image {
+      function = BOX
+      state = NORMAL
+      file = "menubar-toolbar/button.png"
+      border = { 0, 0, 0, 0 }
+      stretch = TRUE
+    }
+
+    image {
+      function = BOX
+      state = PRELIGHT
+      file = "menubar-toolbar/button-hover.png"
+      border = { 0, 0, 0, 0 }
+      stretch = TRUE
+    }
+
+    image {
+      function = BOX
+      state = ACTIVE
+      file = "menubar-toolbar/button-active.png"
+      border = { 0, 0, 0, 0 }
+      stretch = TRUE
+    }
+
+    image {
+      function = BOX
+      state = INSENSITIVE
+      file = "menubar-toolbar/button-insensitive.png"
+      border = { 0, 0, 0, 0 }
+      stretch = TRUE
+    }
+  }
+}
+
+style "toolbar_entry" {
+  xthickness = 6
+
+  base[NORMAL] = "#181818"
+  base[INSENSITIVE] = "#181818"
+
+  text[NORMAL] = "#383838"
+
+  engine "pixmap" {
+
+    image {
+      function = SHADOW
+      detail = "entry"
+      state = NORMAL
+      shadow = IN
+      file = "menubar-toolbar/toolbar-entry-border-bg-dark.png"
+      border = { 0, 0, 0, 0 }
+      stretch = TRUE
+    }
+
+    image {
+      function = SHADOW
+      detail = "entry"
+      state = INSENSITIVE
+      shadow = IN
+      file = "menubar-toolbar/toolbar-entry-border-disabled-bg-dark.png"
+      border = { 0, 0, 0, 0 }
+      stretch = TRUE
+    }
+
+    image {
+      function = SHADOW
+      detail = "entry"
+      state = ACTIVE
+      file = "menubar-toolbar/toolbar-entry-border-active-bg-dark.png"
+      border = { 0, 0, 0, 0 }
+      stretch = TRUE
+    }
+
+    image {
+      function = FLAT_BOX
+      detail = "entry_bg"
+      state = NORMAL
+      overlay_file = "assets/null.png"
+      overlay_border = { 0, 0, 0, 0 }
+      overlay_stretch = TRUE
+    }
+
+    image {
+      function = FLAT_BOX
+      detail = "entry_bg"
+      state = ACTIVE
+      overlay_file = "assets/null.png"
+      overlay_border = { 0, 0, 0, 0 }
+      overlay_stretch = TRUE
+    }
+  }
+}
+
+widget_class "*<GtkMenuBar>*"                                       style "menubar"
+widget_class "*<GtkMenuBar>.<GtkMenuItem>*"                         style "menubar_item"
+
+widget_class "*ThunarWindow*<GtkToolbar>"                           style "menubar"
+
+widget_class "*<GtkMenuBar>*<GtkMenuItem>*<GtkAccelLabel>"          style "menubar-text"
+
+# Whitelist for dark toolbars
+widget_class "*ThunarWindow*<GtkMenuBar>"                                   style "menubar-borderless"
+widget_class "*ThunarWindow*<GtkToolbar>*<GtkEntry>"                        style "toolbar_entry"
+widget_class "*ThunarWindow*<GtkToolbar>*<GtkButton>"                       style "toolbar_button"
+widget_class "*ThunarWindow*<GtkToolbar>*<GtkWidget>"                       style "toolbar_text"
+widget_class "*ThunarWindow*<GtkToolbar>*<GtkButton>*<GtkLabel>"            style "menubar-text"
+
