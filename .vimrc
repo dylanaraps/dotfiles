@@ -148,6 +148,7 @@ augroup ColorOverride
 	autocmd ColorScheme * highlight Visual ctermbg=236
 	autocmd ColorScheme * highlight Folded ctermbg=bg ctermfg=236
 	autocmd ColorScheme * highlight VertSplit ctermbg=bg ctermfg=bg cterm=none
+	autocmd ColorScheme * highlight NonText ctermfg=bg
 
 	" Normal mode colors
 	autocmd ColorScheme * highlight SignColumn ctermfg=4
@@ -215,8 +216,8 @@ noremap <M-;> ;
 " Save files with root privliges
 cmap w!! w !sudo tee % > /dev/null
 
-cmap Hterm sp <bar> terminal <bar> file terminal
-cmap Vterm vsp <bar> terminal <bar> file terminal
+cmap Hterm sp <bar> terminal
+cmap Vterm vsp <bar> terminal
 
 " Tab in insert mode to autocomplete
 imap <expr><TAB>  pumvisible() ? "\<C-n>" : "\<TAB>"
@@ -247,7 +248,7 @@ nnoremap gk k
 
 " Easily move to start/end of line
 nnoremap H 0
-nnoremap L $
+nnoremap L A<space><Esc>
 vnoremap H 0
 vnoremap L $
 
