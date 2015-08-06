@@ -1,6 +1,6 @@
 {
-  "version": "1.11.2.4",
-  "date": 1436074116488,
+  "version": "1.11.6.1",
+  "date": 1438821973726,
   "Conf": {
     "JSON Navigation": true,
     "Use 4chan X Catalog": true,
@@ -8,7 +8,7 @@
     "External Catalog": false,
     "Catalog Links": false,
     "Announcement Hiding": true,
-    "Desktop Notifications": true,
+    "Desktop Notifications": false,
     "404 Redirect": true,
     "Archive Report": true,
     "Except Archives from Encryption": false,
@@ -159,7 +159,7 @@
     "sauces": "https://www.google.com/searchbyimage?image_url=%IMG\nhttp://iqdb.org/?url=%IMG\nhttp://eye.swfchan.com/search/?q=%name;types:swf;sandbox\n#//tineye.com/search?url=%IMG\n#https://www.yandex.com/images/search?rpt=imageview&img_url=%IMG\n#//saucenao.com/search.php?url=%IMG\n#http://3d.iqdb.org/?url=%IMG\n# tools:\n#http://regex.info/exif.cgi?imgurl=%URL\n#//imgops.com/%URL;types:gif,jpg,png\n# uploaders:\n#//imgur.com/upload?url=%URL;types:gif,jpg,png,pdf;text:Upload to imgur\n# \"View Same\" in archives:\n#https://archive.moe/_/search/image/%MD5/;text:View same on archive.moe\n#https://archive.moe/%board/search/image/%MD5/;text:View same on archive.moe/%board/;boards:a,an,biz,c,co,diy,fit,gd,gif,h,i,int,jp,k,m,mlp,out,po,qa,r9k,s4s,sci,tg,u,v,vg,vp,vr,wsg\n#https://rbt.asia/%board/image/%MD5;text:View same on RBT /%board/;boards:cgl,g,mu,qa,w",
     "werk": false,
     "Custom CSS": false,
-    "Index Mode": "paged",
+    "Index Mode": "catalog",
     "Previous Index Mode": "paged",
     "Index Sort": "bump",
     "Index Size": "small",
@@ -231,7 +231,6 @@
     "Bottom Scroll": false,
     "Scroll BG": false,
     "Auto Update": true,
-    "Ignore Offline Status": false,
     "Optional Increase": false,
     "Interval": 30,
     "customCooldown": 0,
@@ -244,8 +243,101 @@
       "boards": {}
     },
     "lastReadPosts": {
-      "boards": {},
-      "lastChecked": 1436074049000
+      "boards": {
+        "g": {
+          "49473457": 49474064,
+          "49468601": 49468713,
+          "49480126": 49480156,
+          "49321509": 49322313,
+          "49331146": 49331167,
+          "49339294": 49351087,
+          "49340247": 49349086,
+          "49344427": 49347663,
+          "49344553": 49346792,
+          "49347894": 49348810,
+          "49349193": 49351313,
+          "49349466": 49351403,
+          "49349493": 49351433,
+          "49350666": 49351255,
+          "49352014": 49353439,
+          "49354908": 49355610,
+          "49370228": 49374668,
+          "49371277": 49374470,
+          "49371949": 49376865,
+          "49372183": 49375100,
+          "49373473": 49373628,
+          "49373487": 49373533,
+          "49375499": 49378378,
+          "49375853": 49376192,
+          "49378825": 49383089,
+          "49381298": 49383772,
+          "49381713": 49383055,
+          "49383665": 49383903,
+          "49392946": 49393102,
+          "49395812": 49397175,
+          "49397086": 49399214,
+          "49397558": 49398172,
+          "49412663": 49412834,
+          "49444731": 49446335,
+          "49449628": 49450884,
+          "49451642": 49480070,
+          "49454775": 49456083,
+          "49454943": 49455172,
+          "49460056": 49460110,
+          "49461011": 49462280,
+          "49464372": 49468743,
+          "49464738": 49469008,
+          "49465175": 49466718,
+          "49465406": 49468846,
+          "49466457": 49468612,
+          "49467343": 49468499,
+          "49470955": 49474883,
+          "49471228": 49472033,
+          "49474088": 49474479,
+          "49474208": 49474537,
+          "49474528": 49474758,
+          "49474872": 49474908,
+          "49475783": 49475959,
+          "49475978": 49478248,
+          "49476751": 49476897,
+          "49476916": 49476977,
+          "49487375": 49487424,
+          "49488855": 49490505,
+          "49481727": 49482145,
+          "49486596": 49488241
+        },
+        "v": {
+          "304504767": 304505315,
+          "304518237": 304525727,
+          "304599289": 304601327,
+          "304621342": 304623201,
+          "304840031": 304883647,
+          "304871942": 304875732,
+          "304968327": 304973772,
+          "305224350": 305226631,
+          "305243786": 305254257
+        },
+        "vp": {
+          "23947015": 23973832,
+          "23930751": 23931241,
+          "23935050": 23935175
+        },
+        "vr": {
+          "2576506": 2577693,
+          "2456325": 2461551,
+          "2577158": 2577415
+        },
+        "wg": {
+          "6259637": 6273952
+        },
+        "a": {
+          "129001155": 129001404,
+          "129005766": 129008820,
+          "129013201": 129017090,
+          "129021609": 129022498
+        }
+      },
+      "lastChecked": 1438817484937
     },
     "yourPosts": {
       "boards": {},
@@ -253,7 +345,7 @@
     },
     "watchedThreads": {
       "boards": {},
-      "lastChecked": 1436073864378
+      "lastChecked": 1438821898690
     },
     "customTitles": {
       "boards": {}

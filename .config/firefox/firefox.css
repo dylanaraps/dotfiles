@@ -55,8 +55,6 @@
 	.tabs-closebutton-box,
 	.tab-close-button,
 	#plugins-notification-icon,
-	scrollbar[orient="vertical"], scrollbar thumb[orient="vertical"],
-	scrollbar[orient="horizontal"], scrollbar thumb[orient="horizontal"],
 	#TabsToolbar:not(:-moz-lwtheme)::after,
 	.tabs-newtab-button {
 		display: none !important;
@@ -222,9 +220,23 @@ tabbrowser tabpanels, #appcontent > #content {
 	background: var(--bg-dark) !important;
 }
 
-/* Hide Scrollbars */
-scrollbar {
-	visibility: collapse !important;
+/* background color around/behind pictures opened in firefox (require html namespace on top) */
+@-moz-document regexp("(https?://|file:///)(.*)\\.(jpeg|jpg|gif|png|apng|svg|bmp|webm|webp)") {
+    body {
+		background: var(--bg-dark) !important;
+	}
+
+    img.decoded {
+		background: url(none) !important;
+	}
+}
+
+
+/* About:Blank background */
+@-moz-document url(about:blank) {
+    html,body {
+		background: var(--bg-dark) !important;
+	}
 }
 
 /* }}} */
