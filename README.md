@@ -3,27 +3,33 @@
 # My Setup
 
 * Linux Distro: [Arch Linux](https://www.archlinux.org/)
-* Window Manager: [i3 Gaps Next](https://github.com/Airblader/i3)
+* Window Manager: [BSPWM](https://github.com/baskerville/bspwm)
+* Compositor (Window Shadows/Opacity: [Compton](https://github.com/chjj/compton)
 * Bar: [Lemonboy's Bar patched with xft support](https://github.com/krypt-n/bar)
-* Background: [Link](https://github.com/dylanaraps/dotfiles/raw/master/wallpapers/22.jpe)
-* Apllication Launcher: [Dmenu2](https://github.com/mrshankly/dmenu2) running inside [J4-dmenu](https://github.com/enkore/j4-dmenu-desktop)
-* Terminal Emulator: [rxvt-unicode](http://software.schmorp.de/pkg/rxvt-unicode.html)
+* Background: [png](https://u.teknik.io/TM6wD9.png)
+* Apllication Launcher: [Dmenu2](https://github.com/mrshankly/dmenu2)
+* Terminal Emulator: [rxvt-unicode-patched](https://aur.archlinux.org/packages/rxvt-unicode-patched/)
 * Shell: [zsh](http://www.zsh.org/)/[Oh-my-zsh](http://ohmyz.sh/)
-* Terminal/Bar Font: [Envypn (Now includes powerline fonts!)](http://ywstd.fr/me/#envypn)
+* Terminal Font: [Envypn](http://ywstd.fr/me/#envypn)
 * Text Editor: [NeoVim](https://github.com/neovim/neovim)
 * Color Scheme: [Base16-default](https://chriskempson.github.io/base16)
 * Music Player: [Mpd](http://www.musicpd.org/) + [ncmpcpp](http://ncmpcpp.rybczak.net/)
-* Browser: [Firefox Nightly](https://nightly.mozilla.org/) with Modified [Twily Powerline Css](https://userstyles.org/styles/102262/twily-s-powerline-firefox-css) and [Vimperator](https://github.com/vimperator/vimperator-labs).
+* Browser: [Firefox Developer Edition](https://nightly.mozilla.org/) with my [Firefox.css](https://github.com/dylanaraps/dotfiles/blob/master/.config/firefox/firefox.css) and [Vimfx](https://github.com/akhodakivskiy/VimFx).
 * Startpage: [My Startpage (HTML/SCSS)](https://github.com/dylanaraps/startpage)
 * Video Player: [Mpvhq](https://github.com/haasn/mpvhq)
 
-# Screenshots (8/6/15)
-### Outdated 14/6/15
+# Screenshots (6/8/15)
 
-![Firefox](https://raw.githubusercontent.com/therealvdeadline/dotfiles/master/screenshots/firefox.png)
+![Clean](https://u.teknik.io/f5HyeT.png)
 
-![Busy](https://raw.githubusercontent.com/therealvdeadline/dotfiles/master/screenshots/vim.png)
+![Screenfetch](https://u.teknik.io/zqHlCJ.png)
 
-![Screenfetch](https://raw.githubusercontent.com/therealvdeadline/dotfiles/master/screenshots/screenfetch.png)
+![Nvim](https://u.teknik.io/PcRovR.png)
 
+![Nvim2](https://u.teknik.io/1iH3bW.png)
 
+![Firefox](https://u.teknik.io/sL4IGw.png)
+
+![Firefox2](https://u.teknik.io/CfO8q8.png)
+
+![Mpv](https://u.teknik.io/7okm7V.png)
