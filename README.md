@@ -25,6 +25,8 @@ My current setup as of the 6th of August 2015.
 
 ![Clean](https://u.teknik.io/f5HyeT.png)
 
+![Gtk Theme](https://u.teknik.io/1R0C31.png)
+
 ![Nvim](https://u.teknik.io/PcRovR.png)
 
 ![Firefox](https://u.teknik.io/sL4IGw.png)
