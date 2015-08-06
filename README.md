@@ -1,4 +1,5 @@
 # Dylan's Dotfiles
+My current setup as of the 6th of August 2015.
 
 # My Setup
 
@@ -22,14 +23,15 @@
 
 ![Clean](https://u.teknik.io/f5HyeT.png)
 
-![Screenfetch](https://u.teknik.io/zqHlCJ.png)
-
 ![Nvim](https://u.teknik.io/PcRovR.png)
-
-![Nvim2](https://u.teknik.io/1iH3bW.png)
 
 ![Firefox](https://u.teknik.io/sL4IGw.png)
 
+![Mpv](https://u.teknik.io/7okm7V.png)
+
+![Nvim2](https://u.teknik.io/1iH3bW.png)
+
 ![Firefox2](https://u.teknik.io/CfO8q8.png)
 
-![Mpv](https://u.teknik.io/7okm7V.png)
+![Screenfetch](https://u.teknik.io/zqHlCJ.png)
+
