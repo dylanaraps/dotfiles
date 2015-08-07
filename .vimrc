@@ -23,6 +23,8 @@ call plug#begin('~/.vim/plugged')
 
 " LOOKS
 Plug 'junegunn/goyo.vim'
+	" Goyo Enter {{{
+
 	function! s:goyo_enter()
 		highlight NonText guifg=#181818 guibg=#181818
 
@@ -34,7 +36,20 @@ Plug 'junegunn/goyo.vim'
 		let b:quitting_bang = 0
 		autocmd QuitPre <buffer> let b:quitting = 1
 		cabbrev <buffer> q! let b:quitting_bang = 1 <bar> q!
+
+		function! GoyoNeovim()
+			let s:guibg = synIDattr(synIDtrans(hlID("Normal")), "bg", "gui")
+			execute("hi NonText guifg=" . s:guibg)
+			execute("hi StatusLine guifg=" . s:guibg)
+			execute("hi StatusLineNC guifg=" . s:guibg)
+		endfunction
+
+		call GoyoNeovim()
 	endfunction
+
+	" }}}
+
+	" Goyo Leave {{{
 
 	function! s:goyo_leave()
 		set number
@@ -50,15 +65,15 @@ Plug 'junegunn/goyo.vim'
 		endif
 	endfunction
 
+	" }}}
+augroup GoyoCMDS
 	autocmd! User GoyoEnter nested call <SID>goyo_enter()
 	autocmd! User GoyoLeave nested call <SID>goyo_leave()
-
 	autocmd! BufReadPre .* Goyo 80
+augroup END
 
 Plug 'chriskempson/base16-vim'
 	let base16colorspace=256
-
-Plug 'ajh17/Spacegray.vim'
 
 Plug 'bling/vim-airline'
 	" Always show statusline
@@ -74,11 +89,6 @@ Plug 'bling/vim-airline'
 
 " FUNCTIONALITY
 Plug 'tpope/vim-fugitive'
-Plug 'tommcdo/vim-lion'
-Plug 'wesQ3/vim-windowswap'
-	let g:windowswap_map_keys = 0
-	nnoremap <silent> ww :call WindowSwap#EasyWindowSwap()<CR>
-
 Plug 'kana/vim-textobj-user'
 \| Plug 'kana/vim-textobj-line'
 \| Plug 'terryma/vim-expand-region'
@@ -254,7 +264,7 @@ set smartcase
 " Mapping {{{
 
 " Leader
-let mapleader=" "
+let mapleader = " "
 nnoremap <SPACE> <nop>
 vnoremap <SPACE> <nop>
 
@@ -330,7 +340,7 @@ nnoremap gk k
 
 " Easily move to start/end of line
 nnoremap H 0
-nnoremap L A<space><Esc>
+nnoremap L A<space>
 vnoremap H 0
 vnoremap L $
 
