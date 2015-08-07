@@ -89,6 +89,10 @@ Plug 'bling/vim-airline'
 
 " FUNCTIONALITY
 Plug 'tpope/vim-fugitive'
+Plug 'wesQ3/vim-windowswap'
+	let g:windowswap_map_keys = 0
+	nnoremap <silent> ww :call WindowSwap#EasyWindowSwap()<CR>
+
 Plug 'kana/vim-textobj-user'
 \| Plug 'kana/vim-textobj-line'
 \| Plug 'terryma/vim-expand-region'
