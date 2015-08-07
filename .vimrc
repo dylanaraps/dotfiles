@@ -1,8 +1,14 @@
 " Dylan's Vimrc
 " vim: set foldmethod=marker foldlevel=0:
 
+" Enable true color for neovim
+let $NVIM_TUI_ENABLE_TRUE_COLOR=1
+
 " Make vim use zhrc and aliases
 set shell=zsh
+
+" This line must go before autocmds for filetypes
+filetype plugin indent on
 
 " Plugins {{{
 
@@ -18,8 +24,11 @@ call plug#begin('~/.vim/plugged')
 " LOOKS
 Plug 'junegunn/goyo.vim'
 	function! s:goyo_enter()
+		highlight NonText guifg=#181818 guibg=#181818
+
 		set showmode
 		set showcmd
+		set nonumber
 
 		let b:quitting = 0
 		let b:quitting_bang = 0
@@ -28,7 +37,7 @@ Plug 'junegunn/goyo.vim'
 	endfunction
 
 	function! s:goyo_leave()
-		set number!
+		set number
 		AirlineRefresh
 
 		" Quit Vim if this is the only remaining buffer
@@ -49,11 +58,13 @@ Plug 'junegunn/goyo.vim'
 Plug 'chriskempson/base16-vim'
 	let base16colorspace=256
 
+Plug 'ajh17/Spacegray.vim'
+
 Plug 'bling/vim-airline'
 	" Always show statusline
 	set laststatus=2
 	let g:airline_powerline_fonts = 1
-	let g:airline_theme = 'base16'
+	let g:airline_theme = 'seoul256'
 	let g:airline#extensions#tabline#enabled = 1
 
 	" Display only filename in tabs
@@ -88,6 +99,9 @@ Plug 'junegunn/vim-oblique'
 
 Plug 'tpope/vim-surround'
 Plug 'tpope/vim-commentary'
+	autocmd FileType xdefaults setlocal commentstring=!\ %s
+	autocmd FileType scss setlocal commentstring=/*%s*/
+
 Plug 'rstacruz/vim-closer'
 Plug 'mattn/emmet-vim'
 	let g:user_emmet_install_global = 0
@@ -112,8 +126,6 @@ call plug#end()
 " Filetypes {{{
 
 filetype on
-filetype indent on
-filetype plugin on
 
 " }}}
 
@@ -157,35 +169,71 @@ set ruler
 set shortmess=atI
 set noshowmode
 
-" Colorscheme overrides
-augroup ColorOverride
-	autocmd!
-	autocmd ColorScheme * highlight normal ctermbg=0
-	autocmd ColorScheme * highlight LineNr ctermbg=bg ctermfg=236
-	autocmd ColorScheme * highlight CursorLine ctermbg=bg ctermfg=236
-	autocmd ColorScheme * highlight CursorLineNR ctermbg=bg ctermfg=236
-	autocmd ColorScheme * highlight TabLine ctermbg=bg
-	autocmd ColorScheme * highlight Comment ctermbg=bg ctermfg=238
-	autocmd ColorScheme * highlight StatuslineNC ctermbg=255 ctermfg=235
-	autocmd ColorScheme * highlight Statusline ctermfg=bg ctermbg=238
-	autocmd ColorScheme * highlight ErrorMsg ctermbg=bg ctermfg=238
-	autocmd ColorScheme * highlight Visual ctermbg=236
-	autocmd ColorScheme * highlight Folded ctermbg=bg ctermfg=236
-	autocmd ColorScheme * highlight VertSplit ctermbg=bg ctermfg=bg cterm=none
-	autocmd ColorScheme * highlight NonText ctermfg=bg
+" 256 Color Terminal Color Overides {{{
+
+" augroup ColorOverride256
+" 	au!
+" 	au ColorScheme * hi normal ctermbg=0
+" 	au ColorScheme * hi LineNr ctermbg=bg ctermfg=236
+" 	au ColorScheme * hi CursorLine ctermbg=bg ctermfg=236
+" 	au ColorScheme * hi CursorLineNR ctermbg=bg ctermfg=236
+" 	au ColorScheme * hi TabLine ctermbg=bg
+" 	au ColorScheme * hi Comment ctermbg=bg ctermfg=238
+" 	au ColorScheme * hi StatuslineNC ctermbg=255 ctermfg=235
+" 	au ColorScheme * hi Statusline ctermfg=bg ctermbg=238
+" 	au ColorScheme * hi ErrorMsg ctermbg=bg ctermfg=238
+" 	au ColorScheme * hi Visual ctermbg=236
+" 	au ColorScheme * hi Folded ctermbg=bg ctermfg=236
+" 	au ColorScheme * hi VertSplit ctermbg=bg ctermfg=bg cterm=none
+" 	au ColorScheme * hi NonText ctermfg=bg
+
+" 	" Normal mode colors
+" 	au ColorScheme * hi SignColumn ctermfg=4
+
+" 	" Visual mode colors
+" 	au ColorScheme * hi TermCursorNC ctermbg=172
+
+" 	" Insert mode colors
+" 	au ColorScheme * hi wildmenu ctermbg=65
+
+" 	" Replace mode colors
+" 	au ColorScheme * hi Structure ctermfg=167
+" augroup END
+
+" }}}
+
+" True Color Terminal Color Overides {{{
+
+augroup ColorOverrideTrue
+	au!
+	au ColorScheme * hi Normal guibg=#181818
+	au ColorScheme * hi LineNr guibg=#181818 guifg=#383838
+	au ColorScheme * hi CursorLine guibg=#181818 guifg=#383838
+	au ColorScheme * hi CursorLineNR guibg=#181818 guifg=#383838
+	au ColorScheme * hi TabLine guibg=#181818
+	au ColorScheme * hi Comment guibg=#181818 guifg=#383838
+	au ColorScheme * hi StatuslineNC guibg=#F8F8F8 guifg=#282828
+	au ColorScheme * hi Statusline guifg=#181818 guibg=#383838
+	au ColorScheme * hi ErrorMsg guibg=#181818 guifg=#383838
+	au ColorScheme * hi Visual guibg=#383838
+	au ColorScheme * hi Folded guibg=#181818 guifg=#282828
+	au ColorScheme * hi VertSplit guibg=#181818 guifg=#181818 cterm=none
+	au ColorScheme * hi NonText guifg=#181818 guibg=#181818
 
 	" Normal mode colors
-	autocmd ColorScheme * highlight SignColumn ctermfg=4
+	au ColorScheme * hi SignColumn guifg=#7CAFC2
 
 	" Visual mode colors
-	autocmd ColorScheme * highlight TermCursorNC ctermbg=172
+	au ColorScheme * hi TermCursorNC guibg=#DC9656
 
 	" Insert mode colors
-	autocmd ColorScheme * highlight wildmenu ctermbg=65
+	au ColorScheme * hi wildmenu guibg=#A1B56C
 
 	" Replace mode colors
-	autocmd ColorScheme * highlight Structure ctermfg=167
+	autocmd ColorScheme * highlight Structure guifg=#BA8BAF
 augroup END
+
+" }}}
 
 " This line MUST be below these autocmds
 colorscheme base16-default

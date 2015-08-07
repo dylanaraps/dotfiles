@@ -3,13 +3,11 @@
 
 # Variables {{{
 
-source ~/.dotfiles/.config/lemonbar/variables.sh
-
 if [[ $(xrandr | awk '/DFP10/ {print $1}') == "DFP10" ]]; then
-	size="1600x$height"
+	size="1600x$barheight"
 
 elif [[ $(xrandr | awk '/eDP1/ {print $1}') == "eDP1" ]]; then
-	size="1366x$height"
+	size="1366x$barheight"
 
 else
 	size=""
@@ -32,4 +30,4 @@ while :; do
 	sleep 1m
 done |
 
-lemonbar -g $size -f $font -f $icons -B \#$bg -F $fg 2> /dev/null | bash
+lemonbar -g $size -f $barfont -f $baricons -B \#$black -F $white 2> /dev/null | bash

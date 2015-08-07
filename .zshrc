@@ -3,12 +3,7 @@
 # Path to your oh-my-zsh installation.
 export ZSH=~/.oh-my-zsh
 
-# Sets xfce4-terminal colors to 256
-if [[ "$COLORTERM" == "xfce4-terminal" ]]; then
-	export TERM=xterm-256color
-else
-	export TERM=xterm
-fi
+export TERM=rxvt-unicode-256color
 
 # Base16 Shell
 BASE16_SHELL="/usr/share/base16-shell/base16-default.dark.sh"
@@ -30,6 +25,40 @@ source /usr/share/zsh/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zs
 
 # Sets editor to neovim
 export EDITOR='nvim'
+
+# Global Variables {{{
+
+# Base16-default {{{
+
+# Shades
+export black=181818
+export brightblack=282828
+export darkgrey=383838
+export grey=585858
+export lightgrey=B8B8B8
+export lightergrey=D8D8D8
+export darkwhite=E8E8E8
+export white=F8F8F8
+
+# Colors
+export red=AB4642
+export orange=DC9656
+export yellow=F7CA88
+export green=A1B56C
+export cyan=86C1B9
+export blue=7CAFC2
+export magenta=BA8BAF
+export brown=A16946
+
+# }}}
+
+# Lemonbar
+export barfont="lemon:size=12"
+export baricons="-wuncon-siji-medium-r-normal--10-100-75-75-c-80-iso10646-1"
+
+export barheight=20
+
+# }}}
 
 # Aliases {{{
 
