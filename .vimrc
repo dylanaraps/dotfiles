@@ -195,6 +195,10 @@ command! Wq wq
 command! W w
 command! Q q
 
+" Copies what was just pasted
+" Allows you to paste the same thing over and over
+xnoremap p pgvy
+
 " Maps Tab and Shift Tab to cycle through buffers
 nmap <Tab> :bnext<CR>
 nmap <S-Tab> :bprevious<CR>
