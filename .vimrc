@@ -82,15 +82,9 @@ Plug 'terryma/vim-multiple-cursors'
 	let g:multi_cursor_quit_key='<Esc>'
 
 " Shows search results as you're typing and a #/Total as you cycle through the results
-Plug 'haya14busa/incsearch.vim'
-Plug 'osyo-manga/vim-anzu'
-	let g:incsearch#consistent_n_direction = 1
-	let g:incsearch#magic = '\v'
-	map /  <Plug>(incsearch-forward)
-	map ?  <Plug>(incsearch-backward)
-	map g/ <Plug>(incsearch-stay)
-	map <S-J> <Plug>(incsearch-nohl)<Plug>(anzu-n-with-echo)
-	map <S-K> <Plug>(incsearch-nohl)<Plug>(anzu-N-with-echo)
+Plug 'junegunn/vim-pseudocl'
+Plug 'junegunn/vim-oblique'
+	let g:oblique#incsearch_highlight_all = 1
 
 Plug 'tpope/vim-surround'
 Plug 'tpope/vim-commentary'
