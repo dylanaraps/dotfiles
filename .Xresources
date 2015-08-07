@@ -1,3 +1,5 @@
+! Dylan's Xresources
+
 ! Adds padding around terminal text
 URxvt.font: xft:envypn-13:pixelsize-13
 xterm*termName: xterm-256color
@@ -19,7 +21,7 @@ URxvt.keysym.C-z: \
 URxvt.keysym.C-h: \
 URxvt.keysym.C-f: \
 
-! Base16 Default
+! Base16 Default {{{
 ! Scheme: Chris Kempson (http://chriskempson.com)
 
 #define base00 #181818
@@ -69,3 +71,5 @@ URxvt.keysym.C-f: \
 *.color19:      base02
 *.color20:      base04
 *.color21:      base06
+
+! }}}

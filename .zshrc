@@ -1,5 +1,7 @@
+# Dylan's zhrc
+
 # Path to your oh-my-zsh installation.
-export ZSH=/home/dylan/.oh-my-zsh
+export ZSH=~/.oh-my-zsh
 
 # Sets xfce4-terminal colors to 256
 if [[ "$COLORTERM" == "xfce4-terminal" ]]; then
@@ -12,62 +14,32 @@ fi
 BASE16_SHELL="/usr/share/base16-shell/base16-default.dark.sh"
 [[ -s $BASE16_SHELL ]] && source $BASE16_SHELL
 
-# Set name of the theme to load.
-# Look in ~/.oh-my-zsh/themes/
-# Optionally, if you set this to "random", it'll load a random theme each
-# time that oh-my-zsh is loaded.
+# Zsh settings
 ZSH_THEME="fishy"
-
 DEFAULT_USER="dylan"
-
-# Uncomment the following line to disable bi-weekly auto-update checks.
-# DISABLE_AUTO_UPDATE="true"
-
-# Uncomment the following line to change how often to auto-update (in days).
-# export UPDATE_ZSH_DAYS=13
-
-# Uncomment the following line to disable auto-setting terminal title.
-# DISABLE_AUTO_TITLE="true"
-
-# Uncomment the following line to enable command auto-correction.
-ENABLE_CORRECTION="true"
-
-# Uncomment the following line to display red dots whilst waiting for completion.
+ENABLE_CORRECTION="false"
 COMPLETION_WAITING_DOTS="true"
-
-# Uncomment the following line if you want to disable marking untracked files
-# under VCS as dirty. This makes repository status check for large repositories
-# much, much faster.
 DISABLE_UNTRACKED_FILES_DIRTY="true"
 
-# Which plugins would you like to load? (plugins can be found in ~/.oh-my-zsh/plugins/*)
-# Custom plugins may be added to ~/.oh-my-zsh/custom/plugins/
-# Example format: plugins=(rails git textmate ruby lighthouse)
-# Add wisely, as too many plugins slow down shell startup.
+# Plugins
 plugins=(git)
 
 # User configuration
-
-export PATH="$PATH:$HOME/.rvm/bin:$HOME/bin" # Add RVM to PATH for scripting
 source $ZSH/oh-my-zsh.sh
 source /usr/share/zsh/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
+
+# Sets editor to neovim
 export EDITOR='nvim'
 
-# Wine
-# export WINEPREFIX=$HOME/.config/wine/
-# export WINEARCH=win32
+# Aliases {{{
 
-# Compilation flags
-# export ARCHFLAGS="-arch x86_64"
-
-# ALIASES #
 # Starts nethogs and uses my lan card
 alias nh="sudo nethogs enp5s0"
 
-# Downloads video from youtube, extracts the audio and puts it in my Music folder
+# dls video from youtube to my Music folder
 alias mp3dl="cd ~/Music && youtube-dl --extract-audio --audio-format mp3"
 
-# Does an ls of my Music folder and pipes it into my ncmpcpp playlist.
+# Creates a playlist from an ls of my Music Folder
 alias lsnc="ls -A --color=none"
 alias plu="cd ~/Music && lsnc > ~/.mpd/playlists/music.m3u"
 
@@ -80,15 +52,13 @@ alias pf="peerflix --path '~/Videos/Downloads' --mpv"
 # Compton
 alias cmp="compton -b --config ~/.compton"
 
-# rxvt
-alias term="urxvt -e"
-alias t="urxvt -e"
-
-#lemonbar
+# Aliases to start/kill bar
 alias killbar="pkill ~/.config/lemonbar/clock.sh & pkill ~/.config/lemonbar/workspace.sh & pkill ~/.config/lemonbar/music.sh & pkill lemonbar & pkill orangebar"
 alias startbar="~/.dotfiles/.config/lemonbar/clock.sh & sleep .5s && ~/.dotfiles/.config/lemonbar/workspace.sh & ~/.dotfiles/.config/lemonbar/music.sh"
 
-# OTHER
+# }}}
+
+# Misc
 # Enables the help command
 autoload -U compinit
 compinit
@@ -101,3 +71,4 @@ unalias run-help
 alias help=run-help
 
 setopt nohashdirs
+
