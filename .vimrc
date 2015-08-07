@@ -305,8 +305,9 @@ nnoremap <esc> :noh<return><esc>
 imap ,, <C-y>,
 
 " Maps Tab to indent blocks of text in visual mode
-vmap <TAB> >
-vmap <BS> <
+vmap <TAB> >gv
+vmap <BS> <gv
+vmap <S-TAB> <gv
 
 " remap jk and kj to escape:  You'll never type it anyway, so it's great!
 inoremap jk <Esc>
