@@ -319,6 +319,11 @@ nnoremap k gk
 vnoremap j gj
 vnoremap k gk
 
+nnoremap <S-J> }
+nnoremap <S-K> {
+vnoremap <S-J> }
+vnoremap <S-K> {
+
 " include the default behaviour by doing reverse mappings so you can move linewise with gj and gk:
 nnoremap gj j
 nnoremap gk k
