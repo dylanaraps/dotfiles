@@ -1,0 +1,210 @@
+<%
+	# Crayon ColorScheme
+    information = {
+        author:      "Dylan Araps",
+        email:       "dyl@tfwno.gf",
+        name:        "crayon",
+        description: "A 16 color theme for vim",
+		webpage:	 "https://github.com/dylanaraps",
+        background:  "dark",
+    }
+
+	# Colors
+	# Note: These also appear below, if you change the hex values it's better to do so with a find and replace.
+    black       = ["#080808", 0, "black"]
+    darkred     = ["#401f1f", 1, "darkred"]
+    darkgreen   = ["#3b4a35", 2, "darkgreen"]
+    darkyellow  = ["#4d3c2e", 3, "darkyellow"]
+    darkblue    = ["#2d4963", 4, "darkblue"]
+    darkmagenta = ["#564059", 5, "darkmagenta"]
+    darkcyan    = ["#2e3c40", 6, "darkcyan"]
+    gray        = ["#a3a69a", 7, "gray"]
+    darkgray    = ["#1f1f1f", 8, "darkgray"]
+    red         = ["#b27b78", 9, "red"]
+    green       = ["#9dae71", 10, "green"]
+    yellow      = ["#d8c27a", 11, "yellow"]
+    blue        = ["#6f8e9a", 12, "blue"]
+    magenta     = ["#b59cd8", 13, "magenta"]
+    cyan        = ["#80b2ad", 14, "cyan"]
+    white       = ["#dfe7d7", 15, "white"]
+
+	# Step 3: highlights {{{
+    #
+    # You can define highlight groups like this:
+    #   [ = Normal= ,       name of the highlight group
+    #     white,          the color used for background color, or use "NONE", "fg" or "bg"
+    #     darkgray,       the color used for foreground color, or use "NONE", "fg" or "bg"
+    #     "NONE"          style, can be "bold", "underline", "reverse", "italic",
+    #                     "standout", "NONE" or "undercurl"
+    #   ]
+    #
+    # or link an highlight group to another:
+    #   [ "Title", "Normal" ]
+    #
+    # In GUI Vim, there is an additional color for the undercurl used to
+    # highlighting spelling mistakes:
+    #   [ "SpellBad",     name of the highlight group
+    #     "NONE",         the color used for background color, or use "NONE", "fg" or "bg"
+    #     red,            the color used for foreground color, or use "NONE", "fg" or "bg"
+    #     "undercurl",    style
+    #     red             color used for the undercurl
+    #   ]
+    #
+    # The highlight groups below are fairly standard and should give you a
+    # working colorscheme. Some syntax scripts and plugins may define their own, though,
+    # so feel free to add them to this array as needed.
+
+    highlights = [
+        [ "Normal", black, gray, "NONE" ],
+        [ "NonText", black, black, "NONE" ],
+        [ "Comment", black, darkgray, "NONE" ],
+		[ "Constant", black, yellow, "NONE" ],
+        [ "Error", darkred, white, "NONE" ],
+        [ "Identifier", black, red, "NONE" ],
+        [ "Ignore", gray, black, "NONE" ],
+        [ "PreProc", black, yellow, "NONE" ],
+        [ "Special", black, cyan, "NONE" ],
+        [ "Statement", black, red, "NONE" ],
+        [ "String", black, green, "NONE" ],
+        [ "Number", black, gray, "NONE" ],
+        [ "Todo", darkgray, yellow, "NONE" ],
+        [ "Type", black, yellow, "NONE" ],
+        [ "Underlined", black, darkred, "underline" ],
+        [ "StatusLine", black, darkgray, "NONE" ],
+
+		# Need to edit this in Airline Theme
+        [ "StatusLineNC", black, darkblue, "bold" ],
+        [ "TabLine", black, gray, "NONE" ],
+        [ "TabLineFill", black, darkgray, "NONE" ],
+        [ "TabLineSel", black, darkgray, "NONE" ],
+
+		[ "TermCursorNC", yellow, black, "NONE" ],
+        [ "VertSplit", black, black, "NONE" ],
+        [ "Title", black, blue, "NONE" ],
+        [ "CursorLine", black, darkgray, "NONE" ],
+        [ "LineNr", black, darkgray, "NONE" ],
+        [ "CursorLineNr", black, darkgray, "NONE" ],
+        [ "helpLeadBlank", black, gray, "NONE" ],
+        [ "helpNormal", black, gray, "NONE" ],
+        [ "Visual", darkgray, gray, "NONE" ],
+        [ "VisualNOS", black, darkred, "NONE" ],
+        [ "Pmenu", darkgray, gray, "NONE" ],
+        [ "PmenuSbar", darkcyan, white, "NONE" ],
+        [ "PmenuSel", black, gray, "NONE" ],
+        [ "PmenuThumb", gray, gray, "NONE" ],
+        [ "FoldColumn", black, gray, "NONE" ],
+        [ "Folded", black, darkgray, "NONE" ],
+        [ "WildMenu", green, black, "NONE" ],
+        [ "SpecialKey", black, darkgray, "NONE" ],
+        [ "DiffAdd", black, green, "NONE" ],
+        [ "DiffChange", black, darkgray, "NONE" ],
+        [ "DiffDelete", black, red, "bold" ],
+        [ "DiffText", black, blue, "bold" ],
+        [ "IncSearch", yellow, black, "NONE" ],
+        [ "Search", yellow, black, "NONE" ],
+        [ "Directory", black, blue, "NONE" ],
+        [ "MatchParen", darkgray, black, "NONE" ],
+        [ "SpellBad", black, darkred, "underline", darkred ],
+        [ "SpellCap", black, darkblue, "underline", darkblue ],
+        [ "SpellLocal", black, darkmagenta, "underline", darkmagenta ],
+        [ "SpellRare", black, darkcyan, "underline", darkcyan ],
+        [ "ColorColumn", darkgray, darkgray, "NONE" ],
+        [ "signColumn", black, blue, "bold" ],
+        [ "ErrorMsg", black, darkgray, "NONE" ],
+        [ "ModeMsg", black, green, "NONE" ],
+        [ "MoreMsg", black, green, "NONE" ],
+        [ "Question", black, blue, "NONE" ],
+        [ "WarningMsg", black, red, "NONE" ],
+        [ "Cursor", black, darkgray, "NONE" ],
+        [ "Structure", black, magenta, "NONE" ],
+        [ "CursorColumn", darkgray, white, "NONE" ],
+		[ "EndOfBuffer", black, black, "NONE"],
+
+		# Filetype Specific
+
+		# HTML
+		[ "htmlLink", black, gray, "underline" ],
+
+		# CSS/SCSS
+		[ "cssMultiColumnAttr", black, green, "NONE" ],
+		[ "cssFontAttr", "cssMultiColumnAttr" ],
+		[ "cssFlexibleBoxAttr", "cssMultiColumnAttr" ],
+		[ "cssBraces", black, gray, "NONE" ],
+		[ "cssAttrComma", "cssBraces" ]
+    ]
+
+	# }}}
+
+	# Step 4: generation {{{
+    #
+    # From a separate shell:
+    #     $ erb -T - bar.erb > bar.vim
+    #
+    # From Vim:
+    #     :!erb -T - % > %:r.vim
+
+-%>
+" <%= information[:name] %>.vim -- Vim color scheme.
+" Author:      <%= information[:author] %> (<%= information[:email] %>)
+" Webpage:     <%= information[:webpage] %>
+" Description: <%= information[:description] %>
+
+hi clear
+
+if exists("syntax_on")
+  syntax reset
+endif
+
+" Neovim Terminal Mode Colors
+let g:terminal_color_0 = "#080808"
+let g:terminal_color_1 = "#401f1f"
+let g:terminal_color_2 = "#3b4a35"
+let g:terminal_color_3 = "#4d3c2e"
+let g:terminal_color_4 = "#2d4963"
+let g:terminal_color_5 = "#564059"
+let g:terminal_color_6 = "#2e3c40"
+let g:terminal_color_7 = "#a3a69a"
+let g:terminal_color_8 = "#1f1f1f"
+let g:terminal_color_9 = "#b27b78"
+let g:terminal_color_10 = "#9dae71"
+let g:terminal_color_11 = "#d8c27a"
+let g:terminal_color_12 = "#6f8e9a"
+let g:terminal_color_13 = "#b59cd8"
+let g:terminal_color_14 = "#80b2ad"
+let g:terminal_color_15 = "#dfe7d7"
+
+let colors_name = "<%= information[:name] %>"
+
+" highlight groups {{{
+
+if &t_Co >= 256 || has("gui_running")
+<% for highlight in highlights -%>
+<% if highlight.length == 2 -%>
+    hi link <%= highlight[0] %> <%= highlight[1] %>
+<% elsif highlight.length == 4 -%>
+    hi <%= highlight[0] %> ctermbg=<%= highlight[1].kind_of?(String) ? highlight[1] : highlight[1][1] %> ctermfg=<%= highlight[2].kind_of?(String) ? highlight[2] : highlight[2][1] %> cterm=<%= highlight[3] %> guibg=<%= highlight[1].kind_of?(String) ? highlight[1] : highlight[1][0] %> guifg=<%= highlight[2].kind_of?(String) ? highlight[2] : highlight[2][0] %> gui=<%= highlight[3] %>
+<% if highlight[0] == "Normal" -%>
+    set background=<%= information[:background] %>
+<% end -%>
+<% else -%>
+    hi <%= highlight[0] %> ctermbg=<%= highlight[1].kind_of?(String) ? highlight[1] : highlight[1][1] %> ctermfg=<%= highlight[2].kind_of?(String) ? highlight[2] : highlight[2][1] %> cterm=<%= highlight[3] %> guibg=<%= highlight[1].kind_of?(String) ? highlight[1] : highlight[1][0] %> guifg=<%= highlight[2].kind_of?(String) ? highlight[2] : highlight[2][0] %> gui=<%= highlight[3] %> guisp=<%= highlight[4].kind_of?(String) ? highlight[4] : highlight[4][0] %>
+<% end -%>
+<% end -%>
+elseif &t_Co == 8 || $TERM !~# '^linux' || &t_Co == 16
+    set t_Co=16
+<% for highlight in highlights -%>
+<% if highlight.length == 2 -%>
+    hi link <%= highlight[0] %> <%= highlight[1] %>
+<% else -%>
+    hi <%= highlight[0] %> ctermbg=<%= highlight[1].kind_of?(String) ? highlight[1] : highlight[1][2] %> ctermfg=<%= highlight[2].kind_of?(String) ? highlight[2] : highlight[2][2] %> cterm=<%= highlight[3] %>
+<% if highlight[0] == "Normal" -%>
+    set background=<%= information[:background] %>
+<% end -%>
+<% end -%>
+<% end -%>
+endif
+
+
+" Generated with RNB (https://gist.github.com/romainl/5cd2f4ec222805f49eca)
+
+" }}}

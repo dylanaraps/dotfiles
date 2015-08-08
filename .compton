@@ -46,11 +46,12 @@ shadow-exclude = [
 shadow-ignore-shaped = false;
 
 opacity-rule = [
-	"95:class_g = 'URxvt'",
-	"95:name = 'kek'",
-	"95:name = 'bar'",
-	"95:class_g = 'Firefox'",
-	"95:class_g = 'Thunar'"
+	"97:class_g = 'URxvt'",
+	"97:class_g = 'xfce4-terminal'",
+	"97:name = 'kek'",
+	"97:name = 'bar'",
+	"97:class_g = 'Firefox'",
+	"97:class_g = 'Thunar'"
 ];
 
 # Fading

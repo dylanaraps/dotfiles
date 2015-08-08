@@ -5,10 +5,6 @@ export ZSH=~/.oh-my-zsh
 
 export TERM=rxvt-unicode-256color
 
-# Base16 Shell
-BASE16_SHELL="/usr/share/base16-shell/base16-default.dark.sh"
-[[ -s $BASE16_SHELL ]] && source $BASE16_SHELL
-
 # Zsh settings
 ZSH_THEME="fishy"
 DEFAULT_USER="dylan"
@@ -28,27 +24,32 @@ export EDITOR='nvim'
 
 # Global Variables {{{
 
-# Base16-default {{{
+# Crayon  {{{
 
 # Shades
-export black=181818
-export brightblack=282828
-export darkgrey=383838
-export grey=585858
-export lightgrey=B8B8B8
-export lightergrey=D8D8D8
-export darkwhite=E8E8E8
-export white=F8F8F8
+export black=080808
+export darkgrey=1f1f1f
+export white=a3a69a
+export brightwhite=dfe7d7
 
 # Colors
-export red=AB4642
-export orange=DC9656
-export yellow=F7CA88
-export green=A1B56C
-export cyan=86C1B9
-export blue=7CAFC2
-export magenta=BA8BAF
-export brown=A16946
+export darkcyan=2e3c40
+export cyan=80b2ad
+
+export darkred=401f1f
+export red=b27b78
+
+export brown=4d3c2e
+export yellow=d8c27a
+
+export darkgreen=3b4a35
+export green=9dae71
+
+export darkblue=2d4963
+export blue=6f8e9a
+
+export darkmagenta=564059
+export magenta=b59cd8
 
 # }}}
 
@@ -61,6 +62,9 @@ export barheight=20
 # }}}
 
 # Aliases {{{
+
+# Color Test
+alias palette='for x in 0 1 4 5 7 8; do for i in `seq 30 37`; do for a in `seq 40 47`; do echo -ne "\e[$x;$i;$a""m\\\e[$x;$i;$a""m\e[0;37;40m "; done; echo; done; done; echo "";'
 
 # Starts nethogs and uses my lan card
 alias nh="sudo nethogs enp5s0"

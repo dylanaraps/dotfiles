@@ -26,7 +26,7 @@ Plug 'junegunn/goyo.vim'
 	" Goyo Enter {{{
 
 	function! s:goyo_enter()
-		highlight NonText guifg=#181818 guibg=#181818
+		" highlight NonText guifg=#080808 guibg=#080808
 
 		set showmode
 		set showcmd
@@ -53,7 +53,9 @@ Plug 'junegunn/goyo.vim'
 
 	function! s:goyo_leave()
 		set number
+		set noshowmode
 		AirlineRefresh
+		colorscheme crayon
 
 		" Quit Vim if this is the only remaining buffer
 		if b:quitting && len(filter(range(1, bufnr('$')), 'buflisted(v:val)')) == 1
@@ -66,10 +68,11 @@ Plug 'junegunn/goyo.vim'
 	endfunction
 
 	" }}}
+
 augroup GoyoCMDS
 	autocmd! User GoyoEnter nested call <SID>goyo_enter()
 	autocmd! User GoyoLeave nested call <SID>goyo_leave()
-	autocmd! BufReadPre .*,*.md Goyo 80
+	autocmd! BufReadPre .*,*.md,*.scss,*.css,*.html,*.sh,*.erb Goyo 80
 augroup END
 
 Plug 'chriskempson/base16-vim'
@@ -79,7 +82,7 @@ Plug 'bling/vim-airline'
 	" Always show statusline
 	set laststatus=2
 	let g:airline_powerline_fonts = 1
-	let g:airline_theme = 'seoul256'
+	let g:airline_theme = 'crayon'
 	let g:airline#extensions#tabline#enabled = 1
 
 	" Display only filename in tabs
@@ -183,74 +186,42 @@ set ruler
 set shortmess=atI
 set noshowmode
 
-" 256 Color Terminal Color Overides {{{
+" True Color Terminal Color Overides {{{
+" Not currently in use
 
-" augroup ColorOverride256
+" augroup ColorOverrideTrue
 " 	au!
-" 	au ColorScheme * hi normal ctermbg=0
-" 	au ColorScheme * hi LineNr ctermbg=bg ctermfg=236
-" 	au ColorScheme * hi CursorLine ctermbg=bg ctermfg=236
-" 	au ColorScheme * hi CursorLineNR ctermbg=bg ctermfg=236
-" 	au ColorScheme * hi TabLine ctermbg=bg
-" 	au ColorScheme * hi Comment ctermbg=bg ctermfg=238
-" 	au ColorScheme * hi StatuslineNC ctermbg=255 ctermfg=235
-" 	au ColorScheme * hi Statusline ctermfg=bg ctermbg=238
-" 	au ColorScheme * hi ErrorMsg ctermbg=bg ctermfg=238
-" 	au ColorScheme * hi Visual ctermbg=236
-" 	au ColorScheme * hi Folded ctermbg=bg ctermfg=236
-" 	au ColorScheme * hi VertSplit ctermbg=bg ctermfg=bg cterm=none
-" 	au ColorScheme * hi NonText ctermfg=bg
+" 	au ColorScheme * hi Normal guibg=#010607
+" 	au ColorScheme * hi LineNr guibg=#010607 guifg=#191919
+" 	au ColorScheme * hi CursorLine guibg=#010607 guifg=#191919
+" 	au ColorScheme * hi CursorLineNR guibg=#010607 guifg=#191919
+" 	au ColorScheme * hi TabLine guibg=#010607
+" 	au ColorScheme * hi Comment guibg=#010607 guifg=#191919
+"	au ColorScheme * hi StatuslineNC guibg=#DFE7D7 guifg=#364159
+" 	au ColorScheme * hi Statusline guifg=#010607 guibg=#191919
+" 	au ColorScheme * hi ErrorMsg guibg=#010607 guifg=#191919
+" 	au ColorScheme * hi Visual guibg=#191919
+" 	au ColorScheme * hi Folded guibg=#010607 guifg=#364159
+" 	au ColorScheme * hi VertSplit guibg=#010607 guifg=#010607 cterm=none
+" 	au ColorScheme * hi NonText guifg=#010607 guibg=#010607
 
 " 	" Normal mode colors
-" 	au ColorScheme * hi SignColumn ctermfg=4
+" 	au ColorScheme * hi SignColumn guifg=#364159
 
 " 	" Visual mode colors
-" 	au ColorScheme * hi TermCursorNC ctermbg=172
+" 	au ColorScheme * hi TermCursorNC guibg=#594B40
 
 " 	" Insert mode colors
-" 	au ColorScheme * hi wildmenu ctermbg=65
+" 	au ColorScheme * hi wildmenu guibg=#465940
 
 " 	" Replace mode colors
-" 	au ColorScheme * hi Structure ctermfg=167
+" 	autocmd ColorScheme * highlight Structure guifg=#594044
 " augroup END
 
 " }}}
 
-" True Color Terminal Color Overides {{{
-
-augroup ColorOverrideTrue
-	au!
-	au ColorScheme * hi Normal guibg=#181818
-	au ColorScheme * hi LineNr guibg=#181818 guifg=#383838
-	au ColorScheme * hi CursorLine guibg=#181818 guifg=#383838
-	au ColorScheme * hi CursorLineNR guibg=#181818 guifg=#383838
-	au ColorScheme * hi TabLine guibg=#181818
-	au ColorScheme * hi Comment guibg=#181818 guifg=#383838
-	au ColorScheme * hi StatuslineNC guibg=#F8F8F8 guifg=#282828
-	au ColorScheme * hi Statusline guifg=#181818 guibg=#383838
-	au ColorScheme * hi ErrorMsg guibg=#181818 guifg=#383838
-	au ColorScheme * hi Visual guibg=#383838
-	au ColorScheme * hi Folded guibg=#181818 guifg=#282828
-	au ColorScheme * hi VertSplit guibg=#181818 guifg=#181818 cterm=none
-	au ColorScheme * hi NonText guifg=#181818 guibg=#181818
-
-	" Normal mode colors
-	au ColorScheme * hi SignColumn guifg=#7CAFC2
-
-	" Visual mode colors
-	au ColorScheme * hi TermCursorNC guibg=#DC9656
-
-	" Insert mode colors
-	au ColorScheme * hi wildmenu guibg=#A1B56C
-
-	" Replace mode colors
-	autocmd ColorScheme * highlight Structure guifg=#BA8BAF
-augroup END
-
-" }}}
-
 " This line MUST be below these autocmds
-colorscheme base16-default
+colorscheme crayon
 
 " }}}
 
@@ -366,6 +337,11 @@ inoremap </ </<C-X><C-O>
 
 " Automatically removes all trailing whitespaces on :w
 autocmd BufWritePre * :%s/\s\+$//e
+
+" Shows the highlight group of whatever's under the cursor
+map <F10> :echo "hi<" . synIDattr(synID(line("."),col("."),1),"name") . '> trans<'
+\ . synIDattr(synID(line("."),col("."),0),"name") . "> lo<"
+\ . synIDattr(synIDtrans(synID(line("."),col("."),1)),"name") . ">"<CR>
 
 " }}}
 
