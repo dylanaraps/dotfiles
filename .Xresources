@@ -31,7 +31,6 @@ URxvt.keysym.C-f: \
 ! black
 *.color0:       #080808
 *.color8:       #1f1f1f
-#
 
 ! red
 *.color1:       #401f1f

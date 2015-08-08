@@ -21,7 +21,7 @@ windowtitle(){
 	# Grabs focused window's title
 	# The echo "" at the end displays when no windows are focused.
 	title=$(xdotool getactivewindow getwindowname 2>/dev/null || echo "Hi")
-	echo "%{F#$blue}%{F} $title" # Limits the output to a maximum # of chars
+	echo "%{F#$green}%{F} $title" # Limits the output to a maximum # of chars
 }
 
 # }}}
@@ -53,7 +53,7 @@ workspace(){
 while :; do
 	echo "\
 		%{l}\
-		%{U#$white}\
+		%{U#$yellow}\
 			$(workspace)\
 			$(windowtitle) \
 		%{U}\

@@ -75,8 +75,7 @@ augroup GoyoCMDS
 	autocmd! BufReadPre .*,*.md,*.scss,*.css,*.html,*.sh,*.erb Goyo 80
 augroup END
 
-Plug 'chriskempson/base16-vim'
-	let base16colorspace=256
+Plug 'dylanaraps/crayon-theme'
 
 Plug 'bling/vim-airline'
 	" Always show statusline
@@ -144,6 +143,10 @@ call plug#end()
 
 filetype on
 
+" Markdown
+autocmd BufNewFile,BufRead *.md set filetype=markdown
+
+
 " }}}
 
 " Spaces and Tabs {{{
@@ -191,31 +194,7 @@ set noshowmode
 
 " augroup ColorOverrideTrue
 " 	au!
-" 	au ColorScheme * hi Normal guibg=#010607
-" 	au ColorScheme * hi LineNr guibg=#010607 guifg=#191919
-" 	au ColorScheme * hi CursorLine guibg=#010607 guifg=#191919
-" 	au ColorScheme * hi CursorLineNR guibg=#010607 guifg=#191919
-" 	au ColorScheme * hi TabLine guibg=#010607
-" 	au ColorScheme * hi Comment guibg=#010607 guifg=#191919
-"	au ColorScheme * hi StatuslineNC guibg=#DFE7D7 guifg=#364159
-" 	au ColorScheme * hi Statusline guifg=#010607 guibg=#191919
-" 	au ColorScheme * hi ErrorMsg guibg=#010607 guifg=#191919
-" 	au ColorScheme * hi Visual guibg=#191919
-" 	au ColorScheme * hi Folded guibg=#010607 guifg=#364159
-" 	au ColorScheme * hi VertSplit guibg=#010607 guifg=#010607 cterm=none
-" 	au ColorScheme * hi NonText guifg=#010607 guibg=#010607
-
-" 	" Normal mode colors
-" 	au ColorScheme * hi SignColumn guifg=#364159
-
-" 	" Visual mode colors
-" 	au ColorScheme * hi TermCursorNC guibg=#594B40
-
-" 	" Insert mode colors
-" 	au ColorScheme * hi wildmenu guibg=#465940
-
-" 	" Replace mode colors
-" 	autocmd ColorScheme * highlight Structure guifg=#594044
+" 	au ColorScheme * hi Normal guibg=#181818 ctermbg=7
 " augroup END
 
 " }}}

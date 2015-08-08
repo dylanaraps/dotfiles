@@ -17,7 +17,7 @@ music(){
 		# playing=""
 	fi
 
-	echo "%{$musictoggle}%{$musicnext}%{$musicprevious} %{F#$blue}%{F}$playing %{A}%{A}%{A}"
+	echo "%{$musictoggle}%{$musicnext}%{$musicprevious} %{F#$red}%{F}$playing %{A}%{A}%{A}"
 }
 
 # }}}
