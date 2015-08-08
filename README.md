@@ -25,16 +25,22 @@ My current setup as of the 6th of August 2015.
 
 ![Clean](https://u.teknik.io/f5HyeT.png)
 
+## My custom Gtk Theme
 ![Gtk Theme](https://u.teknik.io/1R0C31.png)
 
+## Neovim with :Terminal splits
 ![Nvim](https://u.teknik.io/PcRovR.png)
 
+## Firefox with my custom Css and Startpage
 ![Firefox](https://u.teknik.io/sL4IGw.png)
 
+## Mpvhq playing Gangsta
 ![Mpv](https://u.teknik.io/7okm7V.png)
 
+## Gulp running in a tiny nvim :Terminal split
 ![Nvim2](https://u.teknik.io/1iH3bW.png)
 
+## Firefox and my 4chan css
 ![Firefox2](https://u.teknik.io/CfO8q8.png)
 
 ![Screenfetch](https://u.teknik.io/zqHlCJ.png)
