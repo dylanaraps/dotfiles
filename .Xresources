@@ -25,12 +25,12 @@ URxvt.keysym.C-f: \
 
 ! special
 *.foreground:   #a3a69a
-*.background:   #080808
+*.background:   #101112
 *.cursorColor:  #a3a69a
 
 ! black
-*.color0:       #080808
-*.color8:       #1f1f1f
+*.color0:       #101112
+*.color8:       #282c33
 
 ! red
 *.color1:       #401f1f

@@ -27,8 +27,8 @@ export EDITOR='nvim'
 # Crayon  {{{
 
 # Shades
-export black=080808
-export darkgrey=1f1f1f
+export black=101112
+export darkgrey=282c33
 export white=a3a69a
 export brightwhite=dfe7d7
 

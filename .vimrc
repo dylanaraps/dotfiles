@@ -23,11 +23,10 @@ call plug#begin('~/.vim/plugged')
 
 " LOOKS
 Plug 'junegunn/goyo.vim'
+
 	" Goyo Enter {{{
 
 	function! s:goyo_enter()
-		" highlight NonText guifg=#080808 guibg=#080808
-
 		set showmode
 		set showcmd
 		set nonumber
@@ -189,17 +188,6 @@ set ruler
 set shortmess=atI
 set noshowmode
 
-" True Color Terminal Color Overides {{{
-" Not currently in use
-
-" augroup ColorOverrideTrue
-" 	au!
-" 	au ColorScheme * hi Normal guibg=#181818 ctermbg=7
-" augroup END
-
-" }}}
-
-" This line MUST be below these autocmds
 colorscheme crayon
 
 " }}}
@@ -292,9 +280,11 @@ vnoremap <S-K> {
 nnoremap gj j
 nnoremap gk k
 
+" Moves a single space after end of line and puts me in indsert mode
+nnoremap L A
+
 " Easily move to start/end of line
 nnoremap H 0
-nnoremap L A<space>
 vnoremap H 0
 vnoremap L $
 
