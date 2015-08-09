@@ -21,43 +21,43 @@ URxvt.keysym.C-z: \
 URxvt.keysym.C-h: \
 URxvt.keysym.C-f: \
 
-! Crayon Colorscheme {{{
+! Crayon Theme {{{
 
 ! special
-*.foreground:   #a3a69a
+*.foreground:   #c9d4d8
 *.background:   #101112
-*.cursorColor:  #a3a69a
+*.cursorColor:  #c9d4d8
 
 ! black
 *.color0:       #101112
 *.color8:       #282c33
 
 ! red
-*.color1:       #401f1f
+*.color1:       #7f3838
 *.color9:       #b27b78
 
 ! green
 *.color2:       #3b4a35
-*.color10:      #9dae71
+*.color10:      #99ae63
 
 ! yellow
-*.color3:       #4d3c2e
+*.color3:       #ba6d30
 *.color11:      #d8c27a
 
 ! blue
 *.color4:       #2d4963
-*.color12:      #6f8e9a
+*.color12:      #7495b6
 
 ! magenta
-*.color5:       #564059
+*.color5:       #3d2e4f
 *.color13:      #b59cd8
 
 ! cyan
-*.color6:       #2e3c40
-*.color14:      #80b2ad
+*.color6:       #263a40
+*.color14:      #81c9c2
 
 ! white
-*.color7:       #a3a69a
-*.color15:      #dfe7d7
+*.color7:       #6a6f7a
+*.color15:      #c9d4d8
 
 ! }}}

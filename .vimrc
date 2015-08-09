@@ -75,6 +75,7 @@ augroup GoyoCMDS
 augroup END
 
 Plug 'dylanaraps/crayon-theme'
+Plug 'chriskempson/base16-vim'
 
 Plug 'bling/vim-airline'
 	" Always show statusline

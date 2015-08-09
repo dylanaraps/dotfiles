@@ -10,8 +10,8 @@
 
 :root {
 	/* Colors */
-    --bg-light: #1f1f1f; --bg-dark: #080808;
-    --fg-light: #dfe7d7; --fg-dark: #a3a69a;
+    --bg-light: #282c33; --bg-dark: #101112;
+    --fg-light: #c9d4d8; --fg-dark: #6a6f7a;
 
 	/* Tabs */
     --tab-height: 26px;

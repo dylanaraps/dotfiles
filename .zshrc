@@ -29,26 +29,26 @@ export EDITOR='nvim'
 # Shades
 export black=101112
 export darkgrey=282c33
-export white=a3a69a
-export brightwhite=dfe7d7
+export gray=6a6f7a
+export white=c9d4d8
 
 # Colors
-export darkcyan=2e3c40
-export cyan=80b2ad
+export darkcyan=263a40
+export cyan=81c9c2
 
-export darkred=401f1f
+export darkred=7f3838
 export red=b27b78
 
-export brown=4d3c2e
+export darkyellow=ba6d30
 export yellow=d8c27a
 
 export darkgreen=3b4a35
-export green=9dae71
+export green=99a63
 
 export darkblue=2d4963
-export blue=6f8e9a
+export blue=7495b6
 
-export darkmagenta=564059
+export darkmagenta=3d2e4f
 export magenta=b59cd8
 
 # }}}

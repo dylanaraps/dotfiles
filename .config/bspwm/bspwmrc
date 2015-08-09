@@ -44,4 +44,9 @@ bspc rule -a Steam desktop= follow=no floating=on
 nitrogen --restore &
 
 # lemonbar
-startbar &
+~/.dotfiles/.config/lemonbar/clock.sh &
+sleep .3s &&
+~/.dotfiles/.config/lemonbar/workspace.sh &
+sleep .3s &&
+~/.dotfiles/.config/lemonbar/music.sh &
+
