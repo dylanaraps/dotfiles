@@ -26,30 +26,23 @@ export EDITOR='nvim'
 
 # Crayon  {{{
 
-# Shades
+# Crayon
 export black=101112
-export darkgrey=282c33
-export gray=6a6f7a
-export white=c9d4d8
-
-# Colors
-export darkcyan=263a40
-export cyan=81c9c2
-
-export darkred=7f3838
-export red=b27b78
-
-export darkyellow=ba6d30
-export yellow=d8c27a
-
-export darkgreen=3b4a35
-export green=99a63
-
+export darkred=7f4040
+export darkgreen=324a28
+export darkyellow=c48452
 export darkblue=2d4963
-export blue=7495b6
-
 export darkmagenta=3d2e4f
+export darkcyan=263a40
+export gray=6a6f7a
+export darkgrey=282c33
+export red=b27b78
+export green=99ae63
+export yellow=d8c27a
+export blue=7495b6
 export magenta=b59cd8
+export cyan=81c9c2
+export white=c9d4d8
 
 # }}}
 

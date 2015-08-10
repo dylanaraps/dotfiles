@@ -33,15 +33,15 @@ URxvt.keysym.C-f: \
 *.color8:       #282c33
 
 ! red
-*.color1:       #7f3838
+*.color1:       #7f4040
 *.color9:       #b27b78
 
 ! green
-*.color2:       #3b4a35
+*.color2:       #324a28
 *.color10:      #99ae63
 
 ! yellow
-*.color3:       #ba6d30
+*.color3:       #c48452
 *.color11:      #d8c27a
 
 ! blue
