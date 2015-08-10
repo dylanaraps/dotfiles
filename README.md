@@ -1,6 +1,7 @@
 # Dylan's Dotfiles
 My current setup as of the 6th of August 2015.
 
+	Screenshots are outdated as of 10 Aug
 ![Clean](https://u.teknik.io/f5HyeT.png)
 
 <!--- My Setup {{{ -->
@@ -19,7 +20,7 @@ My current setup as of the 6th of August 2015.
 * Shell: [zsh](http://www.zsh.org/)/[Oh-my-zsh](http://ohmyz.sh/)
 * Terminal Font: [Envypn](http://ywstd.fr/me/#envypn)
 * Text Editor: [NeoVim](https://github.com/neovim/neovim)
-* Color Scheme: [Base16-default](https://chriskempson.github.io/base16)
+* Color Scheme: [Crayon](https://github.com/dylanaraps/crayon-theme)
 * Music Player: [Mpd](http://www.musicpd.org/) + [ncmpcpp](http://ncmpcpp.rybczak.net/)
 * Browser: [Firefox Dev](https://nightly.mozilla.org/) with my [Firefox.css](https://github.com/dylanaraps/dotfiles/blob/master/.config/firefox/firefox.css) and [Vimfx](https://github.com/akhodakivskiy/VimFx).
 * Startpage: [My Startpage (HTML/SCSS)](https://github.com/dylanaraps/startpage)
