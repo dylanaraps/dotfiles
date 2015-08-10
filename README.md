@@ -1,6 +1,10 @@
 # Dylan's Dotfiles
 My current setup as of the 6th of August 2015.
 
+![Clean](https://u.teknik.io/f5HyeT.png)
+
+<!--- My Setup {{{ -->
+
 # My Setup
 
 * Linux Distro: [Arch Linux](https://www.archlinux.org/)
@@ -21,9 +25,11 @@ My current setup as of the 6th of August 2015.
 * Startpage: [My Startpage (HTML/SCSS)](https://github.com/dylanaraps/startpage)
 * Video Player: [Mpvhq](https://github.com/haasn/mpvhq)
 
-# Screenshots (6/8/15)
+<!--- }}} -->
 
-![Clean](https://u.teknik.io/f5HyeT.png)
+<!--- Screenshots {{{ -->
+
+# Screenshots (6/8/15) OUTDATED
 
 ## My custom Gtk Theme
 ![Gtk Theme](https://u.teknik.io/1R0C31.png)
@@ -44,4 +50,6 @@ My current setup as of the 6th of August 2015.
 ![Firefox2](https://u.teknik.io/CfO8q8.png)
 
 ![Screenfetch](https://u.teknik.io/zqHlCJ.png)
+
+<!--- }}} -->
 
