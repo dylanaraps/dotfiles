@@ -22,6 +22,7 @@ endif
 call plug#begin('~/.vim/plugged')
 
 " LOOKS
+
 Plug 'junegunn/goyo.vim'
 
 	" Goyo Enter {{{
@@ -43,6 +44,7 @@ Plug 'junegunn/goyo.vim'
 			execute("hi StatusLineNC guifg=" . s:guibg)
 		endfunction
 
+		call feedkeys("\<esc>zM")
 		call GoyoNeovim()
 	endfunction
 
@@ -64,6 +66,8 @@ Plug 'junegunn/goyo.vim'
 				qa
 			endif
 		endif
+
+		call feedkeys("\<esc>zM")
 	endfunction
 
 	" }}}
@@ -125,6 +129,13 @@ Plug 'mattn/emmet-vim'
 
 " Tiny Autocomplete
 Plug 'ajh17/VimCompletesMe'
+
+" CtrlP
+Plug 'ctrlpvim/ctrlp.vim'
+	let g:ctrlp_map = '<c-x>'
+	let g:ctrlp_clear_cache_on_exit = 1
+	" let g:ctrlp_by_filename = 1
+	let g:ctrlp_show_hidden = 1
 
 " FILETYPES
 " Changes background behind hex color to it's actual color
@@ -281,6 +292,9 @@ vnoremap <S-K> {
 nnoremap gj j
 nnoremap gk k
 
+" Jumps to the bottom of Fold
+nmap <Leader>j zo]z
+
 " Moves a single space after end of line and puts me in indsert mode
 nnoremap L A
 
@@ -355,6 +369,7 @@ set clipboard+=unnamedplus
 set wildmenu
 set wildignore+=*/.hg/*,*/.git/*,*/.svn/*
 set wildignore+=*.gif,*.png,*.jp*
+set wildignore+=*/tmp/*,*.so,*.swp,*.zip
 set wildignore+=*/.sass-cache/*,*.map
 
 set backspace=indent,eol,start
