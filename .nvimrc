@@ -145,7 +145,7 @@ Plug 'ajh17/VimCompletesMe'
 
 " FZF
 Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': 'yes \| ./install' }
-	nnoremap <silent> <c-X> :call fzf#run({
+	nnoremap <silent> <C-X> :call fzf#run({
 	\   'window':  '10new'
 	\ })<CR>
 

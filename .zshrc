@@ -84,10 +84,13 @@ alias startbar="~/.dotfiles/.config/lemonbar/clock.sh & sleep .5s && ~/.dotfiles
 
 # }}}
 
+export FZF_DEFAULT_COMMAND='ag -l -g "" --hidden'
+
 export FZF_DEFAULT_OPTS='
   --extended
-  --bind ctrl-f:page-down,ctrl-b:page-up
-  --color bg:0,bg+:0'
+  --color bg:0,bg+:0
+  --multi
+'
 
 # Misc
 # Enables the help command
@@ -102,6 +105,5 @@ unalias run-help
 alias help=run-help
 
 setopt nohashdirs
-
 
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
