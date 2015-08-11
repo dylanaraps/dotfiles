@@ -2,20 +2,20 @@ style "theme-panel" {
 
   ythickness = 0
 
-  bg[NORMAL] = "#080808"
+  bg[NORMAL] = "#25272d"
   bg[ACTIVE] = @selected_bg_color
-  bg[PRELIGHT] = @selected_bg_color
+  bg[PRELIGHT] = shade(1.1, @selected_bg_color)
   bg[SELECTED] = @selected_bg_color
 
-  fg[NORMAL] = "#1f1f1f"
+  fg[NORMAL] = "#A8ADB5"
   fg[PRELIGHT] = @selected_fg_color
   fg[ACTIVE] = @selected_fg_color
   fg[SELECTED] = @selected_fg_color
 
-  text[NORMAL] = "#1f1f1f"
-  text[PRELIGHT] = "#1f1f1f"
-  text[ACTIVE] = "#1f1f1f"
-  text[SELECTED] = "#1f1f1f"
+  text[NORMAL] = "#A8ADB5"
+  text[PRELIGHT] = "#A8ADB5"
+  text[ACTIVE] = "#A8ADB5"
+  text[SELECTED] = "#A8ADB5"
 
   engine "murrine" {
     reliefstyle = 0
@@ -32,9 +32,9 @@ style "theme-panel" {
 
 style "panelbar" {
 
-  fg[NORMAL] = "#1f1f1f"
-  fg[ACTIVE] = "#1f1f1f"
-  fg[PRELIGHT] = "#1f1f1f"
+  fg[NORMAL] = "#edf5fb"
+  fg[ACTIVE] = "#edf5fb"
+  fg[PRELIGHT] = "#edf5fb"
   fg[SELECTED] = @selected_fg_color
 
   bg[SELECTED] = @selected_bg_color
@@ -54,13 +54,13 @@ style "panelbuttons" {
 
 style "theme-panel-text" {
 
-  fg[NORMAL] = "#1f1f1f"
+  fg[NORMAL] = "#edf5fb"
   fg[PRELIGHT] = @selected_fg_color
-  fg[ACTIVE] = "#1f1f1f"
+  fg[ACTIVE] = "#edf5fb"
 
-  text[NORMAL] = "#1f1f1f"
+  text[NORMAL] = "#edf5fb"
   text[PRELIGHT] = @selected_fg_color
-  text[ACTIVE] = "#1f1f1f"
+  text[ACTIVE] = "#edf5fb"
 
   engine "murrine" {
     textstyle = 0
@@ -124,7 +124,7 @@ class "PanelToplevel*"                                style "theme-panel"
 widget_class "*PanelToplevel*"                        style "theme-panel"
 widget_class "*notif*"                                style "theme-panel"
 widget_class "*Notif*"                                style "theme-panel"
-widget_class "*Tray*"                                 style "theme-panel"
+widget_class "*Tray*"                                 style "theme-panel" 
 widget_class "*tray*"                                 style "theme-panel"
 widget_class "*computertemp*"                         style "theme-panel"
 widget_class "*Applet*Tomboy*"                        style "theme-panel"

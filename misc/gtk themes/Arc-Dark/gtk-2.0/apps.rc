@@ -1,7 +1,7 @@
 #
 # Thunar
 #
-style "thunar-handle" { GtkPaned::handle-size = 0 }
+style "thunar-handle" { GtkPaned::handle-size = 2 }
 
 style "dark-sidebar" {
   GtkTreeView::odd_row_color = @dark_sidebar_bg
@@ -11,7 +11,7 @@ style "dark-sidebar" {
   base[NORMAL] = @dark_sidebar_bg
   base[INSENSITIVE] = @dark_sidebar_bg
 
-  text[NORMAL] = "#1F1F1F"
+  text[NORMAL] = "#a8adb5"
   text[ACTIVE] = @selected_fg_color
   text[SELECTED] = @selected_fg_color
 }

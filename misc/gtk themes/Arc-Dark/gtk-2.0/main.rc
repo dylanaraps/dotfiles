@@ -31,7 +31,7 @@ style "default" {
   GtkRange::stepper-size = 0
 
   GtkScrollbar::activate-slider = 1
-  GtkScrollbar::has-backward-stepper = 0
+  GtkScrollbar::has-backward-stepper = 0  
   GtkScrollbar::has-forward-stepper = 0
   GtkScrollbar::min-slider-length = 32
   GtkScrolledWindow::scrollbar-spacing = 0
@@ -59,7 +59,7 @@ style "default" {
   GtkTreeView::horizontal-separator = 4
   GtkTreeView::allow-rules = 1
   GtkTreeView::even_row_color = @base_color
-  GtkTreeView::odd_row_color = @base_color
+  GtkTreeView::odd_row_color = shade(0.98, @base_color)
 
   GtkExpander::expander-size = 11
 
@@ -73,10 +73,10 @@ style "default" {
   # Colors
 
   bg[NORMAL] = @bg_color
-  bg[PRELIGHT] = @bg_color
+  bg[PRELIGHT] = shade (1.02, @bg_color)
   bg[SELECTED] = @selected_bg_color
   bg[INSENSITIVE] = @insensitive_bg_color
-  bg[ACTIVE] = @bg_color
+  bg[ACTIVE] = shade (0.9, @bg_color)
 
   fg[NORMAL] = @text_color
   fg[PRELIGHT] = @fg_color
@@ -91,10 +91,10 @@ style "default" {
   text[ACTIVE] = @selected_fg_color
 
   base[NORMAL] = @base_color
-  base[PRELIGHT] = @bg_color
+  base[PRELIGHT] = shade (0.95, @bg_color)
   base[SELECTED] = @selected_bg_color
   base[INSENSITIVE] = @bg_color
-  base[ACTIVE] = @selected_bg_color
+  base[ACTIVE] = shade (0.9, @selected_bg_color)
 
   # For succinctness, all reasonable pixmap options remain here
 
@@ -513,7 +513,7 @@ style "default" {
       function = RESIZE_GRIP
       state = NORMAL
       detail = "statusbar"
-      overlay_file = "assets/null.png"
+      overlay_file = "assets/null.png"	
       overlay_border = { 0,0,0,0 }
       overlay_stretch = FALSE
     }
@@ -523,7 +523,7 @@ style "default" {
     image {
       function = SHADOW_GAP
       file = "assets/null.png"
-      border = { 0, 0, 0, 0 }
+      border = { 4, 4, 4, 4 }
       stretch = TRUE
     }
   }
@@ -552,7 +552,7 @@ style "scrollbar" {
       function = BOX
       detail = "trough"
       file = "assets/trough-scrollbar.png"
-      border = { 0, 0, 0, 0 }
+      border = { 2, 2, 3, 3 }
       stretch = TRUE
       orientation = HORIZONTAL
     }
@@ -561,7 +561,7 @@ style "scrollbar" {
       function = BOX
       detail = "trough"
       file = "assets/trough-scrollbar.png"
-      border = { 0, 0, 0, 0 }
+      border = { 3, 3, 2, 2 }
       stretch = TRUE
       orientation = VERTICAL
     }
@@ -603,8 +603,8 @@ style "scrollbar" {
     image {
       function = SLIDER
       state = NORMAL
-      file = "assets/null.png"
-      border = { 0, 0, 0, 0 }
+      file = "assets/slider-horiz.png" 
+      border = { 5, 5, 3, 3 }
       stretch = TRUE
       orientation = HORIZONTAL
     }
@@ -612,8 +612,8 @@ style "scrollbar" {
     image {
       function = SLIDER
       state = ACTIVE
-      file = "assets/null.png"
-      border = { 0, 0, 0, 0 }
+      file = "assets/slider-horiz-active.png" 
+      border = { 5, 5, 3, 3 }
       stretch = TRUE
       orientation = HORIZONTAL
     }
@@ -621,8 +621,8 @@ style "scrollbar" {
     image {
       function = SLIDER
       state = PRELIGHT
-      file = "assets/null.png"
-      border = { 0, 0, 0, 0 }
+      file = "assets/slider-horiz-prelight.png" 
+      border = { 5, 5, 3, 3 }
       stretch = TRUE
       orientation = HORIZONTAL
     }
@@ -630,8 +630,8 @@ style "scrollbar" {
     image {
       function = SLIDER
       state = INSENSITIVE
-      file = "assets/null.png"
-      border = { 0, 0, 0, 0 }
+      file = "assets/slider-horiz-insens.png"
+      border = { 5, 5, 3, 3 }
       stretch = TRUE
       orientation = HORIZONTAL
     }
@@ -641,8 +641,8 @@ style "scrollbar" {
     image {
       function = SLIDER
       state = NORMAL
-      file = "assets/null.png"
-      border = { 0, 0, 0, 0 }
+      file = "assets/slider-vert.png" 
+      border = { 3, 3, 5, 5 }
       stretch = TRUE
       orientation = VERTICAL
     }
@@ -650,8 +650,8 @@ style "scrollbar" {
     image {
       function = SLIDER
       state = ACTIVE
-      file = "assets/null.png"
-      border = { 0, 0, 0, 0 }
+      file = "assets/slider-vert-active.png" 
+      border = { 3, 3, 5, 5 }
       stretch = TRUE
       orientation = VERTICAL
     }
@@ -659,8 +659,8 @@ style "scrollbar" {
     image {
       function = SLIDER
       state = PRELIGHT
-      file = "assets/null.png"
-      border = { 0, 0, 0, 0 }
+      file = "assets/slider-vert-prelight.png" 
+      border = { 3, 3, 5, 5 }
       stretch = TRUE
       orientation = VERTICAL
     }
@@ -668,8 +668,8 @@ style "scrollbar" {
     image {
       function = SLIDER
       state = INSENSITIVE
-      file = "assets/null.png"
-      border = { 0, 0, 0, 0 }
+      file = "assets/slider-vert-insens.png"
+      border = { 3, 3, 5, 5 }
       stretch = TRUE
       orientation = VERTICAL
     }
@@ -727,7 +727,7 @@ style "menu_item"
       function = BOX
       state = PRELIGHT
       file = "assets/menuitem.png"
-      border = { 0, 0, 0, 0 }
+      border = { 1, 0, 1, 0 }
       stretch = TRUE
     }
 
@@ -874,7 +874,7 @@ style "menu_item"
     image {
       function = SHADOW # This fixes boxy Qt menu items
       file = "assets/null.png"
-      border = { 0, 0, 0, 0 }
+      border = { 4, 4, 4, 4 }
       stretch = TRUE
     }
 
@@ -911,7 +911,7 @@ style "button" {
       function = BOX
       state = NORMAL
       file = "assets/button.png"
-      border = { 0, 0, 0, 0 }
+      border = { 4, 4, 4, 4 }
       stretch = TRUE
     }
 
@@ -919,7 +919,7 @@ style "button" {
       function = BOX
       state = PRELIGHT
       file = "assets/button-hover.png"
-      border = { 0, 0, 0, 0 }
+      border = { 4, 4, 4, 4 }
       stretch = TRUE
     }
 
@@ -927,7 +927,7 @@ style "button" {
       function = BOX
       state = ACTIVE
       file = "assets/button-active.png"
-      border = { 0, 0, 0, 0 }
+      border = { 4, 4, 4, 4 }
       stretch = TRUE
     }
 
@@ -935,7 +935,7 @@ style "button" {
       function = BOX
       state = INSENSITIVE
       file = "assets/button-insensitive.png"
-      border = { 0, 0, 0, 0 }
+      border = { 4, 4, 4, 4 }
       stretch = TRUE
     }
   }
@@ -964,7 +964,7 @@ style "entry" {
       state = NORMAL
       shadow = IN
       file = "assets/entry-border-bg.png"
-      border = { 0, 0, 0, 0 }
+      border = { 12, 12, 12, 12 }
       stretch = TRUE
     }
 
@@ -974,7 +974,7 @@ style "entry" {
       state = INSENSITIVE
       shadow = IN
       file = "assets/entry-border-disabled-bg.png"
-      border = { 0, 0, 0, 0 }
+      border = { 12, 12, 12, 12 }
       stretch = TRUE
     }
 
@@ -983,7 +983,7 @@ style "entry" {
       detail = "entry"
       state = ACTIVE
       file = "assets/entry-border-active-bg.png"
-      border = { 0, 0, 0, 0 }
+      border = { 12, 12, 12, 12 }
       stretch = TRUE
     }
 
@@ -1018,7 +1018,7 @@ style "notebook_entry" {
       state = NORMAL
       shadow = IN
       file = "assets/notebook-entry-border-bg.png"
-      border = { 0, 0, 0, 0 }
+      border = { 12, 12, 12, 12 }
       stretch = TRUE
     }
 
@@ -1028,7 +1028,7 @@ style "notebook_entry" {
       state = INSENSITIVE
       shadow = IN
       file = "assets/notebook-entry-border-disabled-bg.png"
-      border = { 0, 0, 0, 0 }
+      border = { 12, 12, 12, 12 }
       stretch = TRUE
     }
 
@@ -1037,7 +1037,7 @@ style "notebook_entry" {
       detail = "entry"
       state = ACTIVE
       file = "assets/notebook-entry-border-active-bg.png"
-      border = { 0, 0, 0, 0 }
+      border = { 12, 12, 12, 12 }
       stretch = TRUE
     }
 
@@ -1630,7 +1630,7 @@ style "libreoffice_entry" {
       state = NORMAL
       shadow = IN
       file = "assets/entry-border-bg-solid.png"
-      border = { 0, 0, 0, 0 }
+      border = { 12, 12, 12, 12 }
       stretch = TRUE
     }
 
@@ -1639,7 +1639,7 @@ style "libreoffice_entry" {
       detail = "entry"
       state = ACTIVE
       file = "assets/entry-border-active-bg-solid.png"
-      border = { 0, 0, 0, 0 }
+      border = { 12, 12, 12, 12 }
       stretch = TRUE
     }
   }
@@ -1673,7 +1673,7 @@ style "standalone_entry" {
       state = NORMAL
       shadow = IN
       file = "assets/entry-border-bg-solid.png"
-      border = { 0, 0, 0, 0 }
+      border = { 12, 12, 12, 12 }
       stretch = TRUE
     }
 
@@ -1682,7 +1682,7 @@ style "standalone_entry" {
       detail = "entry"
       state = ACTIVE
       file = "assets/entry-border-active-bg-solid.png"
-      border = { 0, 0, 0, 0 }
+      border = { 12, 12, 12, 12 }
       stretch = TRUE
     }
   }
@@ -1729,7 +1729,7 @@ style "notebook" {
       border = { 0,0,0,0 }
       stretch = TRUE
       gap_side = LEFT
-    }
+    }	
 
     image {
       function = EXTENSION
@@ -1767,7 +1767,7 @@ style "notebook" {
 
     image {
       function = BOX_GAP
-      file = "assets/notebook.png"
+      file = "assets/notebook.png" 
       border = { 4, 4, 4, 4 }
       stretch = TRUE
       gap_file = "assets/notebook-gap-horiz.png"
@@ -1797,7 +1797,7 @@ style "notebook" {
 
     image {
       function = BOX_GAP
-      file = "assets/notebook.png"
+      file = "assets/notebook.png" 
       border = { 4, 4, 4, 4 }
       stretch = TRUE
       gap_file = "assets/notebook-gap-vert.png"
@@ -2020,7 +2020,7 @@ style "separator_menu_item" {
     image {
       function = BOX
       file = "assets/null.png"
-      border = { 0, 0, 0, 0 }
+      border = { 0, 0, 1, 0 }
       stretch = TRUE
     }
   }
@@ -2051,7 +2051,7 @@ style "treeview" {
   ythickness = 0
 
 
-}
+}    
 
 style "scrolled_window" {
 
@@ -2227,6 +2227,13 @@ style "notebook_viewport" {
   bg[NORMAL] = @notebook_bg
 }
 
+
+style "notebook_eventbox" {
+
+  bg[NORMAL] = @notebook_bg
+  bg[ACTIVE] = @bg_color
+}
+
 style "tooltips" {
 
   xthickness = 8
@@ -2365,6 +2372,9 @@ widget_class "*<GtkNotebook>.<GtkLabel>"                            style "noteb
 # GTK tooltips
 widget "gtk-tooltip*"                                               style "tooltips"
 
+#Fix GVim tabs
+widget_class "*<GtkNotebook>*<GtkEventBox>"                         style "notebook_eventbox"
+
 # Xchat special cases
 widget "*xchat-inputbox"                                            style "entry"
 
@@ -2401,7 +2411,7 @@ widget "xfwm4-tabwin*"                                              style "xfwm-
 widget "xfwm4-tabwin*GtkButton*"                                    style "xfwm-tabwin-button"
 
 # Fixes ugly text shadows for insensitive text
-widget_class "*<GtkLabel>"                                          style "text"
+widget_class "*<GtkLabel>"                                          style "text" 
 widget_class "*<GtkComboBox>*<GtkCellLayout>"                       style "text"
 widget_class "*<GtkNotebook>*<GtkLabel>"                            style "text"
 widget_class "*<GtkNotebook>*<GtkCellLayout>"                       style "text"
