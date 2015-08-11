@@ -1,10 +1,23 @@
 " Dylan's Vimrc
 " vim: set foldmethod=marker foldlevel=0:
 
+" Neovim Exclusive Settings {{{
+
+if has('nvim')
+	" Improve Neovim startup time
+	let g:python_host_skip_check=1
+	let g:loaded_python3_provider=1
+
+	" Easier mode exit for :terminal
+	tnoremap <C-c> <c-\><c-n>
+endif
+
 " Enable true color for neovim
 let $NVIM_TUI_ENABLE_TRUE_COLOR=1
 
-" Make vim use zhrc and aliases
+" }}}
+
+" Make vim use zshrc and aliases
 set shell=zsh
 
 " This line must go before autocmds for filetypes
@@ -15,7 +28,7 @@ filetype plugin indent on
 " Auto install plug if not found
 if empty(glob('~/.nvim/autoload/plug.vim'))
 	silent !curl -fLo ~/.nvim/autoload/plug.vim --create-dirs
-	\ https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
+		\ https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
 	autocmd VimEnter * PlugInstall
 endif
 
@@ -25,52 +38,52 @@ call plug#begin('~/.vim/plugged')
 
 Plug 'junegunn/goyo.vim'
 
-	" Goyo Enter {{{
+" Goyo Enter {{{
 
-	function! s:goyo_enter()
-		set showmode
-		set showcmd
-		set nonumber
+function! s:goyo_enter()
+	set showmode
+	set showcmd
+	set nonumber
 
-		let b:quitting = 0
-		let b:quitting_bang = 0
-		autocmd QuitPre <buffer> let b:quitting = 1
-		cabbrev <buffer> q! let b:quitting_bang = 1 <bar> q!
+	let b:quitting = 0
+	let b:quitting_bang = 0
+	autocmd QuitPre <buffer> let b:quitting = 1
+	cabbrev <buffer> q! let b:quitting_bang = 1 <bar> q!
 
-		function! GoyoNeovim()
-			let s:guibg = synIDattr(synIDtrans(hlID("Normal")), "bg", "gui")
-			execute("hi NonText guifg=" . s:guibg)
-			execute("hi StatusLine guifg=" . s:guibg)
-			execute("hi StatusLineNC guifg=" . s:guibg)
-		endfunction
-
-		call feedkeys("\<esc>zM")
-		call GoyoNeovim()
+	function! GoyoNeovim()
+		let s:guibg = synIDattr(synIDtrans(hlID("Normal")), "bg", "gui")
+		execute("hi NonText guifg=" . s:guibg)
+		execute("hi StatusLine guifg=" . s:guibg)
+		execute("hi StatusLineNC guifg=" . s:guibg)
 	endfunction
 
-	" }}}
+	call feedkeys("\<esc>zM")
+	call GoyoNeovim()
+endfunction
 
-	" Goyo Leave {{{
+" }}}
 
-	function! s:goyo_leave()
-		set number
-		set noshowmode
-		AirlineRefresh
-		colorscheme crayon
+" Goyo Leave {{{
 
-		" Quit Vim if this is the only remaining buffer
-		if b:quitting && len(filter(range(1, bufnr('$')), 'buflisted(v:val)')) == 1
-			if b:quitting_bang
-				qa!
-			else
-				qa
-			endif
+function! s:goyo_leave()
+	set number
+	set noshowmode
+	AirlineRefresh
+	colorscheme crayon
+
+	" Quit Vim if this is the only remaining buffer
+	if b:quitting && len(filter(range(1, bufnr('$')), 'buflisted(v:val)')) == 1
+		if b:quitting_bang
+			qa!
+		else
+			qa
 		endif
+	endif
 
-		call feedkeys("\<esc>zM")
-	endfunction
+	call feedkeys("\<esc>zM")
+endfunction
 
-	" }}}
+" }}}
 
 augroup GoyoCMDS
 	autocmd! User GoyoEnter nested call <SID>goyo_enter()
@@ -130,12 +143,11 @@ Plug 'mattn/emmet-vim'
 " Tiny Autocomplete
 Plug 'ajh17/VimCompletesMe'
 
-" CtrlP
-Plug 'ctrlpvim/ctrlp.vim'
-	let g:ctrlp_map = '<c-x>'
-	let g:ctrlp_clear_cache_on_exit = 1
-	" let g:ctrlp_by_filename = 1
-	let g:ctrlp_show_hidden = 1
+" FZF
+Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': 'yes \| ./install' }
+	nnoremap <silent> <c-X> :call fzf#run({
+	\   'window':  '10new'
+	\ })<CR>
 
 " FILETYPES
 " Changes background behind hex color to it's actual color
@@ -243,6 +255,9 @@ nmap <S-Tab> :bprevious<CR>
 " J does the same thing as enter in normal mode.
 nmap <CR><CR> <C-w><C-w>
 
+" Map Function key to equally resize splits
+nmap <F1> <C-W>=
+
 " Unmaps the arrow keys
 map <Up> <nop>
 map <Down> <nop>
@@ -262,8 +277,8 @@ cmap Vterm vsp <bar> terminal
 " Tab in insert mode to autocomplete
 imap <expr><TAB>  pumvisible() ? "\<C-n>" : "\<TAB>"
 
-" ESC to clear last search
-nnoremap <esc> :noh<return><esc>
+" ESC to clear last search and resize splits
+nnoremap <esc> <C-w>= :noh<return> <esc>
 
 " Emmet binding
 imap ,, <C-y>,
@@ -312,9 +327,6 @@ nnoremap <Leader>h <C-W><C-H>
 nnoremap <Leader>j <C-W><C-J>
 nnoremap <Leader>k <C-W><C-K>
 nnoremap <Leader>l <C-W><C-L>
-
-" Easier mode exit for :terminal
-tnoremap <Esc> <c-\><c-n>
 
 " Auto close HTML tags
 inoremap </ </<C-X><C-O>
@@ -408,16 +420,6 @@ autocmd FocusLost * :silent! wall
 " Stops auto adding of comments on new line
 autocmd FileType * setlocal formatoptions-=c formatoptions-=r formatoptions-=o
 
-" chmod +x on current file
-command! EX if !empty(expand('%')) && filereadable(expand('%'))
-	\|     silent! execute '!chmod +x %'
-	\|     redraw!
-	\| else
-	\|     echohl WarningMsg
-	\|     echo 'Save the file first'
-	\|     echohl None
-	\| endif
-
 " }}}
 
 "Folding {{{
@@ -434,9 +436,9 @@ set viewoptions=folds,cursor
 augroup line_return
 	autocmd!
 	autocmd BufReadPost *
-	\ if line("'\"") > 0 && line("'\"") <= line("$") |
-	\     execute 'normal! g`"zvzz' |
-	\ endif
+		\ if line("'\"") > 0 && line("'\"") <= line("$") |
+		\     execute 'normal! g`"zvzz' |
+		\ endif
 
 	autocmd BufRead * call feedkeys("\<esc>zM")
 augroup END
@@ -444,64 +446,5 @@ augroup END
 " }}}
 
 " Functions {{{
-
-" WEBDEV SESSION START
-function! Files()
-	if filereadable("src/index.html")
-	\|     e src/*.html
-	\|	   cd ..
-	\| else
-	\|     echo "No html file(s) found"
-	\| endif
-
-	if filereadable("src/scss/main.scss")
-	\|     e src/scss/*.scss
-	\|	   cd ..
-	\| else
-	\|     echo "No scss file(s) found"
-	\| endif
-
-	if filereadable("src/javascript/main.js")
-	\|     e src/javascript/*.js
-	\|     cd ..
-	\| else
-	\|     echo "No javascript file(s) found"
-	\| endif
-endfunction
-
-function! Gulp()
-	10sp
-    terminal gulp
-    wincmd k
-	call feedkeys("\<ESC>")
-	call feedkeys("\<ESC>")
-endfunction
-
-command! Gulp if 1 == 1
-	\| call Gulp()
-
-command! Webdev if isdirectory(".git") && filereadable("gulpfile.coffee")
-	\|     call Files()
-	\|     call Gulp()
-	\| else
-	\|     echom "No project found"
-	\| endif
-
-" Music session
-function! Ncmpcpp()
-	vsp
-	terminal ncmpcpp -s visualizer
-	file visualizer
-
-	sp
-	terminal ncmpcpp
-	file ncmpcpp
-endfunction
-
-command! Music if 1 == 1
-	\| call Ncmpcpp()
-\| else
-	\| echo "wot"
-\| endif
 
 " }}}
