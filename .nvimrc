@@ -24,6 +24,9 @@ set shell=zsh
 " This line must go before autocmds for filetypes
 filetype plugin indent on
 
+" Leader
+let mapleader = "\<space>"
+
 " Plugins {{{
 
 " Auto install plug if not found
@@ -137,6 +140,9 @@ Plug 'tpope/vim-commentary'
 	autocmd FileType scss setlocal commentstring=/*%s*/
 
 Plug 'rstacruz/vim-closer'
+	nmap s yss
+	vmap s S
+
 Plug 'mattn/emmet-vim'
 	let g:user_emmet_install_global = 0
 	autocmd FileType html,css,scss EmmetInstall
@@ -146,7 +152,7 @@ Plug 'ajh17/VimCompletesMe'
 
 " FZF
 Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': 'yes \| ./install' }
-	nnoremap <silent> <C-X> :call fzf#run({
+	nnoremap <silent> <C-S> :call fzf#run({
 	\   'window': '10new',
 	\   'sink': 'e'
 	\ })<CR>
@@ -232,7 +238,6 @@ set smartcase
 " Mapping {{{
 
 " Leader
-let mapleader = " "
 nnoremap <SPACE> <nop>
 vnoremap <SPACE> <nop>
 
@@ -310,7 +315,7 @@ nnoremap gj j
 nnoremap gk k
 
 " Jumps to the bottom of Fold
-nmap <Leader>j zo]z
+nmap <Leader>b zo]z
 
 " Moves a single space after end of line and puts me in indsert mode
 nnoremap L A
@@ -413,8 +418,7 @@ set splitright
 
 " Timeout keycodes not mappings
 set notimeout
-set ttimeout
-set ttimeoutlen=10
+set nottimeout
 
 " Save on focus loss
 autocmd FocusLost * :silent! wall
