@@ -1,12 +1,13 @@
-" Dylan's Vimrc
+" Dylan's vimrc
 " vim: set foldmethod=marker foldlevel=0:
 
 " Neovim Exclusive Settings {{{
 
 if has('nvim')
 	" Improve Neovim startup time
-	let g:python_host_skip_check=1
-	let g:loaded_python3_provider=1
+	let g:python_host_skip_check= 1
+	let g:loaded_python_provider = 1
+	let g:loaded_python3_provider= 1
 
 	" Easier mode exit for :terminal
 	tnoremap <C-c> <c-\><c-n>
@@ -28,7 +29,7 @@ filetype plugin indent on
 " Auto install plug if not found
 if empty(glob('~/.nvim/autoload/plug.vim'))
 	silent !curl -fLo ~/.nvim/autoload/plug.vim --create-dirs
-		\ https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
+	\ https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
 	autocmd VimEnter * PlugInstall
 endif
 
@@ -146,7 +147,8 @@ Plug 'ajh17/VimCompletesMe'
 " FZF
 Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': 'yes \| ./install' }
 	nnoremap <silent> <C-X> :call fzf#run({
-	\   'window':  '10new'
+	\   'window': '10new',
+	\   'sink': 'e'
 	\ })<CR>
 
 " FILETYPES
@@ -435,7 +437,7 @@ set viewoptions=folds,cursor
 " This way I do away with all of the view files.
 augroup line_return
 	autocmd!
-	autocmd BufReadPost *
+	autocmd BufReadPre *
 		\ if line("'\"") > 0 && line("'\"") <= line("$") |
 		\     execute 'normal! g`"zvzz' |
 		\ endif
@@ -446,5 +448,10 @@ augroup END
 " }}}
 
 " Functions {{{
+
+function Gulp()
+	10new
+	terminal gulp
+endfunction
 
 " }}}

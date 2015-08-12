@@ -1,8 +1,8 @@
-/log/
 /logs/
 /images/
 /tmp/
 *tmp*
+*plugged*
 *temp*
 /temp/
 *Trash*
@@ -31,6 +31,7 @@
 *GIMP*
 *Stuff*
 *Videos*
+*.wine*
 *.m2*
 *.lyrics*
 *sxhkd*
@@ -50,3 +51,5 @@
 *.jpeg
 *.png
 *.gif
+*.mp3
+*.aac
