@@ -134,14 +134,20 @@ Plug 'junegunn/vim-pseudocl'
 Plug 'junegunn/vim-oblique'
 	let g:oblique#incsearch_highlight_all = 1
 
-Plug 'tpope/vim-surround'
 Plug 'tpope/vim-commentary'
 	autocmd FileType xdefaults setlocal commentstring=!\ %s
 	autocmd FileType scss setlocal commentstring=/*%s*/
 
 Plug 'rstacruz/vim-closer'
-	nmap s yss
+Plug 'tpope/vim-surround'
+	" Maps ss to surround word
+	nmap ss ysiw
+	nmap sl yss
 	vmap s S
+
+Plug 'AndrewRadev/splitjoin.vim'
+	nmap <silent> sj :SplitjoinSplit<cr>
+    nmap <silent> sk :SplitjoinJoin<cr>
 
 Plug 'mattn/emmet-vim'
 	let g:user_emmet_install_global = 0
