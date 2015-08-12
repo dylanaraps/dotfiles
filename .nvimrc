@@ -133,6 +133,8 @@ Plug 'terryma/vim-multiple-cursors'
 Plug 'junegunn/vim-pseudocl'
 Plug 'junegunn/vim-oblique'
 	let g:oblique#incsearch_highlight_all = 1
+	let g:oblique#clear_highlight = 1
+	let g:oblique#prefix = "\\v"
 
 Plug 'tpope/vim-commentary'
 	autocmd FileType xdefaults setlocal commentstring=!\ %s
