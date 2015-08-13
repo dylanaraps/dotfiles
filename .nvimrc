@@ -1,4 +1,4 @@
-" Dylab's vimrc
+" Dylan's vimrc
 
 " Neovim Exclusive Settings {{{
 
@@ -171,7 +171,7 @@ Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': 'yes \| ./install' }
 
 " FILETYPES
 " Changes background behind hex color to it's actual color
-Plug 'gorodinskiy/vim-coloresque'
+Plug 'ap/vim-css-color'
 Plug 'JulesWang/css.vim'
 Plug 'cakebaker/scss-syntax.vim'
 Plug 'hail2u/vim-css3-syntax'
