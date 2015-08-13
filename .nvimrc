@@ -1,5 +1,4 @@
-" Dylan's vimrc
-" vim: set foldmethod=marker foldlevel=0:
+" Dylab's vimrc
 
 " Neovim Exclusive Settings {{{
 
@@ -95,7 +94,7 @@ augroup GoyoCMDS
 	autocmd! BufReadPre .*,*.md,*.scss,*.css,*.html,*.sh,*.erb Goyo 80
 augroup END
 
-Plug 'dylanaraps/crayon-theme'
+Plug 'dylanaraps/crayon'
 Plug 'chriskempson/base16-vim'
 
 Plug 'bling/vim-airline'
@@ -157,6 +156,11 @@ Plug 'mattn/emmet-vim'
 
 " Tiny Autocomplete
 Plug 'ajh17/VimCompletesMe'
+	" Tab in insert mode to autocomplete
+	imap <expr><TAB>  pumvisible() ? "\<C-n>" : "\<TAB>"
+	inoremap <expr> <CR> pumvisible() ? "\<C-y>" : "\<C-g>u\<CR>"
+
+	autocmd FileType text,markdown let b:vcm_tab_complete = 'dict'
 
 " FZF
 Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': 'yes \| ./install' }
@@ -167,7 +171,7 @@ Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': 'yes \| ./install' }
 
 " FILETYPES
 " Changes background behind hex color to it's actual color
-Plug 'ap/vim-css-color'
+Plug 'gorodinskiy/vim-coloresque'
 Plug 'JulesWang/css.vim'
 Plug 'cakebaker/scss-syntax.vim'
 Plug 'hail2u/vim-css3-syntax'
@@ -289,9 +293,6 @@ cmap w!! w !sudo tee % > /dev/null
 cmap Hterm sp <bar> terminal
 cmap Vterm vsp <bar> terminal
 
-" Tab in insert mode to autocomplete
-imap <expr><TAB>  pumvisible() ? "\<C-n>" : "\<TAB>"
-
 " ESC to clear last search and resize splits
 nnoremap <esc> <C-w>= :noh<return> <esc>
 
@@ -391,6 +392,9 @@ set ttyfast
 
 " Use the OS clipboard by default
 set clipboard+=unnamedplus
+
+" Dictionary
+set dictionary=/usr/share/dict/words
 
 " Enhance command-line completion
 set wildmenu
