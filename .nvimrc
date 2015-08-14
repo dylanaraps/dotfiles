@@ -91,11 +91,15 @@ endfunction
 augroup GoyoCMDS
 	autocmd! User GoyoEnter nested call <SID>goyo_enter()
 	autocmd! User GoyoLeave nested call <SID>goyo_leave()
-	autocmd! BufReadPre .*,*.md,*.scss,*.css,*.html,*.sh,*.erb Goyo 80
+	autocmd! BufReadPre .*,*.md Goyo 80
 augroup END
 
 Plug 'dylanaraps/crayon'
-Plug 'chriskempson/base16-vim'
+Plug '~/projects/webdev.vim/'
+	let g:webdev_gulp_filename = 'gulpfile.coffee'
+	let g:webdev_html_dir = 'src/*.html'
+	let g:webdev_style_dir = 'src/scss/*.scss'
+	let g:webdev_javascript_dir = 'src/coffeescript/*.coffee'
 
 Plug 'bling/vim-airline'
 	" Always show statusline
@@ -294,7 +298,7 @@ cmap Hterm sp <bar> terminal
 cmap Vterm vsp <bar> terminal
 
 " ESC to clear last search and resize splits
-nnoremap <esc> <C-w>= :noh<return> <esc>
+nnoremap <esc> :noh<return> <esc>
 
 " Emmet binding
 imap ,, <C-y>,
@@ -465,9 +469,6 @@ augroup END
 
 " Functions {{{
 
-function Gulp()
-	10new
-	terminal gulp
-endfunction
+
 
 " }}}
