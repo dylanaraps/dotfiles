@@ -95,11 +95,6 @@ augroup GoyoCMDS
 augroup END
 
 Plug 'dylanaraps/crayon'
-Plug '~/projects/webdev.vim/'
-	let g:webdev_gulp_filename = 'gulpfile.coffee'
-	let g:webdev_html_dir = 'src/*.html'
-	let g:webdev_style_dir = 'src/scss/*.scss'
-	let g:webdev_javascript_dir = 'src/coffeescript/*.coffee'
 
 Plug 'bling/vim-airline'
 	" Always show statusline
@@ -259,9 +254,6 @@ vnoremap <SPACE> <nop>
 
 imap <C-s> <C-l>
 
-noremap  <F1> <nop>
-inoremap <F1> <nop>
-
 command! Wq wq
 command! W w
 command! Q q
@@ -277,9 +269,6 @@ nmap <S-Tab> :bprevious<CR>
 " Maps Enter to cycle buffers
 " J does the same thing as enter in normal mode.
 nmap <CR><CR> <C-w><C-w>
-
-" Map Function key to equally resize splits
-nmap <F1> <C-W>=
 
 " Unmaps the arrow keys
 map <Up> <nop>
@@ -469,6 +458,24 @@ augroup END
 
 " Functions {{{
 
+function RunTask()
+		10new
+		call termopen("gulp")
+		setlocal nobuflisted
+		wincmd w
+endfunction
 
+function OpenFiles()
+		setlocal noautochdir
+		silent! find src/*.html
+		silent! find src/scss/**/*.scss
+		silent! find src/coffeescript/**/*.coffee
+		silent! find src/js/**/*.js
+		1buffer
+endfunction
+
+command! Webdev call OpenFiles() | call RunTask()
+
+nmap <silent> <F1> :Webdev <CR>
 
 " }}}
