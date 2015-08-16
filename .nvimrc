@@ -95,7 +95,6 @@ augroup GoyoCMDS
 augroup END
 
 Plug 'dylanaraps/crayon'
-
 Plug 'bling/vim-airline'
 	" Always show statusline
 	set laststatus=2
@@ -112,7 +111,7 @@ Plug 'bling/vim-airline'
 Plug 'tpope/vim-fugitive'
 Plug 'wesQ3/vim-windowswap'
 	let g:windowswap_map_keys = 0
-	nnoremap <silent> ww :call WindowSwap#EasyWindowSwap()<CR>
+	nnoremap <silent> <Leader>w :call WindowSwap#EasyWindowSwap()<CR>
 
 Plug 'kana/vim-textobj-user'
 \| Plug 'kana/vim-textobj-line'
@@ -164,6 +163,7 @@ Plug 'ajh17/VimCompletesMe'
 " FZF
 Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': 'yes \| ./install' }
 	nnoremap <silent> <C-S> :call fzf#run({
+	\   'dir': '~',
 	\   'window': '10new',
 	\   'sink': 'e'
 	\ })<CR>
@@ -348,6 +348,8 @@ map <F10> :echo "hi<" . synIDattr(synID(line("."),col("."),1),"name") . '> trans
 \ . synIDattr(synID(line("."),col("."),0),"name") . "> lo<"
 \ . synIDattr(synIDtrans(synID(line("."),col("."),1)),"name") . ">"<CR>
 
+nmap <silent> <F1> :Webdev <CR>
+
 " }}}
 
 " Temp Files {{{
@@ -475,7 +477,5 @@ function OpenFiles()
 endfunction
 
 command! Webdev call OpenFiles() | call RunTask()
-
-nmap <silent> <F1> :Webdev <CR>
 
 " }}}

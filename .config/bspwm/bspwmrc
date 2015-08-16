@@ -42,6 +42,7 @@ bspc rule -a Steam desktop= follow=no floating=on
 
 # feh --bg-fill ~/Pictures/papes/ryuuko2.png &
 nitrogen --restore &
+# ~/.dotfiles/scripts/wallpaper.sh &
 
 # lemonbar
 ~/.dotfiles/.config/lemonbar/clock.sh &
