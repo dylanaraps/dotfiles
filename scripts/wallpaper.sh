@@ -1,7 +1,6 @@
 #!/bin/bash
-pkill wallpaper.sh &
-
 while :; do
-	feh --randomize --bg-fill ~/Pictures/papes/*
-	sleep 30m
+	find ~/Pictures/papes -type f \( -name '*.jpg' -o -name '*.png' \) -print0 |
+    shuf -n1 -z | xargs -0 feh --bg-fill
+    sleep 15m
 done

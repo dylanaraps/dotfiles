@@ -40,6 +40,7 @@ call plug#begin('~/.vim/plugged')
 " LOOKS
 
 Plug 'junegunn/goyo.vim'
+	nnoremap <F3> :Goyo 80 <CR>
 
 " Goyo Enter {{{
 
@@ -60,8 +61,8 @@ function! s:goyo_enter()
 		execute("hi StatusLineNC guifg=" . s:guibg)
 	endfunction
 
-	call feedkeys("\<esc>zM")
 	call GoyoNeovim()
+
 endfunction
 
 " }}}
@@ -82,8 +83,6 @@ function! s:goyo_leave()
 			qa
 		endif
 	endif
-
-	call feedkeys("\<esc>zM")
 endfunction
 
 " }}}
@@ -91,7 +90,7 @@ endfunction
 augroup GoyoCMDS
 	autocmd! User GoyoEnter nested call <SID>goyo_enter()
 	autocmd! User GoyoLeave nested call <SID>goyo_leave()
-	autocmd! BufReadPre .*,*.md Goyo 80
+	autocmd! BufReadPre .nvimrc,.vimrc Goyo 80
 augroup END
 
 Plug 'dylanaraps/crayon'
@@ -156,17 +155,26 @@ Plug 'mattn/emmet-vim'
 Plug 'ajh17/VimCompletesMe'
 	" Tab in insert mode to autocomplete
 	imap <expr><TAB>  pumvisible() ? "\<C-n>" : "\<TAB>"
-	inoremap <expr> <CR> pumvisible() ? "\<C-y>" : "\<C-g>u\<CR>"
-
 	autocmd FileType text,markdown let b:vcm_tab_complete = 'dict'
 
 " FZF
 Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': 'yes \| ./install' }
-	nnoremap <silent> <C-S> :call fzf#run({
-	\   'dir': '~',
+	nnoremap <silent> <Leader>s :call fzf#run({
 	\   'window': '10new',
 	\   'sink': 'e'
 	\ })<CR>
+
+" Nerd Tree
+Plug 'scrooloose/nerdtree'
+Plug 'jistr/vim-nerdtree-tabs'
+	let g:nerdtree_tabs_open_on_gui_startup = 0
+	let NERDTreeShowHidden = 1
+	let NERDTreeMinimalUI = 1
+	let NERDTreeWinSize = 25
+	let NERDTreeMapActivateNode= 'l'
+	let NERDTreeMapCloseDir = 'h'
+	let NERDTreeRespectWildIgnore = 1
+	nnoremap <silent> <Leader>d :NERDTreeTabsToggle <CR>
 
 " FILETYPES
 " Changes background behind hex color to it's actual color
@@ -187,7 +195,6 @@ filetype on
 
 " Markdown
 autocmd BufNewFile,BufRead *.md set filetype=markdown
-
 
 " }}}
 
@@ -258,13 +265,11 @@ command! Wq wq
 command! W w
 command! Q q
 
+command! Bd bp<bar>sp<bar>bn<bar>bd<CR>
+
 " Copies what was just pasted
 " Allows you to paste the same thing over and over
 xnoremap p pgvy
-
-" Maps Tab and Shift Tab to cycle through buffers
-nmap <Tab> :bnext<CR>
-nmap <S-Tab> :bprevious<CR>
 
 " Maps Enter to cycle buffers
 " J does the same thing as enter in normal mode.
@@ -285,9 +290,6 @@ cmap w!! w !sudo tee % > /dev/null
 
 cmap Hterm sp <bar> terminal
 cmap Vterm vsp <bar> terminal
-
-" ESC to clear last search and resize splits
-nnoremap <esc> :noh<return> <esc>
 
 " Emmet binding
 imap ,, <C-y>,
@@ -318,6 +320,9 @@ nnoremap gk k
 
 " Jumps to the bottom of Fold
 nmap <Leader>b zo]z
+
+" exit file without losing split
+nmap <silent> <leader>q :bp\|bd #<CR>
 
 " Moves a single space after end of line and puts me in indsert mode
 nnoremap L A
@@ -439,43 +444,73 @@ autocmd FileType * setlocal formatoptions-=c formatoptions-=r formatoptions-=o
 
 set foldmethod=marker
 set foldlevel=99
+set foldlevelstart=0
 set foldnestmax=10
+
+" Fillchars
+set fillchars=fold:\.
 
 " Only saves folds/cursor pos in mkview
 set viewoptions=folds,cursor
 
-" Saves cursor posiiton in file and closes all folds on file read
-" This way I do away with all of the view files.
 augroup line_return
-	autocmd!
-	autocmd BufReadPre *
-		\ if line("'\"") > 0 && line("'\"") <= line("$") |
-		\     execute 'normal! g`"zvzz' |
-		\ endif
-
-	autocmd BufRead * call feedkeys("\<esc>zM")
+    au!
+    au BufReadPost *
+        \ if line("'\"") > 0 && line("'\"") <= line("$") |
+        \     execute 'normal! g`"zvzz' |
+        \ endif
 augroup END
 
 " }}}
 
 " Functions {{{
 
-function RunTask()
-		10new
-		call termopen("gulp")
+" Webdev {{{
+
+function! RunTask()
+	10new
+	call termopen("gulp")
+	setlocal nomodifiable
+	setlocal nobuflisted
+	wincmd w
+endfunction
+
+function! OpenFiles()
+	setlocal noautochdir
+	silent! find src/*.html
+	silent! find src/scss/**/*.scss
+	silent! find src/coffeescript/**/*.coffee
+	silent! find src/js/**/*.js
+	1buffer
+endfunction
+
+function! NerdTree()
+	silent! if g:loaded_nerd_tree == 1
+		NERDTreeTabsOpen
+		setlocal nomodifiable
 		setlocal nobuflisted
 		wincmd w
+	endif
 endfunction
 
-function OpenFiles()
-		setlocal noautochdir
-		silent! find src/*.html
-		silent! find src/scss/**/*.scss
-		silent! find src/coffeescript/**/*.coffee
-		silent! find src/js/**/*.js
-		1buffer
+command! Webdev call OpenFiles() | call RunTask() | call NerdTree()
+
+" }}}
+
+" Better Buffer Navigation {{{
+
+function! BetterBufferNav(bcmd)
+	if &modifiable == 0
+		wincmd w
+	else
+		exe a:bcmd
+	endif
 endfunction
 
-command! Webdev call OpenFiles() | call RunTask()
+" Maps Tab and Shift Tab to cycle through buffers
+nmap <silent> <Tab> :call BetterBufferNav("bn") <Cr>
+nmap <silent> <S-Tab> :call BetterBufferNav("bp") <Cr>
+
+" }}}
 
 " }}}

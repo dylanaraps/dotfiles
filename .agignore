@@ -1,5 +1,7 @@
 /logs/
+*.gem*
 /images/
+*.ts3client*
 *Downloads*
 /tmp/
 *tmp*
