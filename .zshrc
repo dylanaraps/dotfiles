@@ -28,23 +28,23 @@ export EDITOR='nvim'
 
 # Crayon
 
-export black="#101112"
-export gray01="#282C33"
-export gray02="#383E47"
-export gray03="#586270"
-export gray04="#798494"
-export gray05="#BCC5D1"
-export gray06="#D8D8D8"
-export white="#FDFEFF"
+export black="101112"
+export gray01="282C33"
+export gray02="383E47"
+export gray03="586270"
+export gray04="798494"
+export gray05="BCC5D1"
+export gray06="D8D8D8"
+export white="FDFEFF"
 
-export red="#B27B78"
-export orange="#C48D62"
-export yellow="#D8C27A"
-export green="#99AE63"
-export cyan="#8DC9C3"
-export blue="#7495B6"
-export magenta="#B59CD8"
-export pink="#CC99B3"
+export red="B27B78"
+export orange="C48D62"
+export yellow="D8C27A"
+export green="99AE63"
+export cyan="8DC9C3"
+export blue="7495B6"
+export magenta="B59CD8"
+export pink="CC99B3"
 
 # }}}
 

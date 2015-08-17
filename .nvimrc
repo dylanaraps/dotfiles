@@ -7,10 +7,10 @@ if has('nvim')
 	let g:python_host_skip_check= 1
 	let g:loaded_python_provider = 1
 	let g:loaded_python3_provider= 1
-endif
 
-" Enable true color for neovim
-let $NVIM_TUI_ENABLE_TRUE_COLOR=1
+	" Enable true color for neovim
+	let $NVIM_TUI_ENABLE_TRUE_COLOR=1
+endif
 
 " }}}
 
@@ -87,18 +87,33 @@ augroup GoyoCMDS
 	autocmd! BufReadPre .nvimrc,.vimrc Goyo 80
 augroup END
 
-Plug 'dylanaraps/crayon'
+Plug '~/projects/crayon/master'
 Plug 'bling/vim-airline'
 	" Always show statusline
 	set laststatus=2
 	let g:airline_powerline_fonts = 1
-	let g:airline_theme = 'crayon'
+	let g:airline_theme = 'crayon2'
 	let g:airline#extensions#tabline#enabled = 1
 
 	" Display only filename in tabs
 	let g:airline#extensions#tabline#fnamemod = ':t'
 	let g:airline#extensions#tabline#show_tabs = 0
 	let g:airline#extensions#tabline#excludes = ['terminal', 'gulp']
+
+	function AirlineTheme()
+		if g:airline_theme == "crayon2"
+			let g:airline_left_sep=''
+			let g:airline_right_sep=''
+			let g:airline_left_alt_sep=''
+			let g:airline_right_alt_sep=''
+			let g:airline#extensions#tabline#show_tab_type = 0
+		endif
+	endfunction
+
+	augroup Airline
+		au!
+		autocmd VimEnter * call AirlineTheme()
+	augroup END
 
 " FUNCTIONALITY
 Plug 'tpope/vim-fugitive'
@@ -157,7 +172,7 @@ Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': 'yes \| ./install' }
 	" FZF Functions {{{
 
 	nnoremap <silent> <Leader>s :call fzf#run({
-	\	'window': '10new',
+	\	'window': '5new',
 	\   'sink': 'e'
 	\ })<CR>
 
@@ -181,7 +196,7 @@ Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': 'yes \| ./install' }
 	\   'source':  <sid>buffer_lines(),
 	\   'sink':    function('<sid>line_handler'),
 	\   'options': '--extended --nth=3..',
-	\   'window': '10new'
+	\   'window': '5new'
 	\ })<CR>
 
 	" }}}
@@ -471,7 +486,7 @@ set foldlevelstart=0
 set foldnestmax=10
 
 " Fillchars
-set fillchars=fold:\.
+set fillchars=fold:.
 
 " Only saves folds/cursor pos in mkview
 set viewoptions=folds,cursor
@@ -554,12 +569,30 @@ function! QuickTerminal()
 	terminal
 	file quickterm
 
-	tnoremap <Esc> <C-\><C-n>:call QuitTerminal()<CR>
+	tnoremap <silent> <Esc> <C-\><C-n>:call QuitTerminal()<CR>
 endfunction
 
 if has('nvim')
 	nnoremap <silent> <Leader>t :call QuickTerminal()<CR>
 endif
+
+" }}}
+
+" Fullscreen Help {{{
+" Opens Help files as if any other file was opened with "e file"
+" Remove the "set modifiable" line if you're going to use this as I need that there for another function.
+
+function FullScreenHelp(helpfile)
+	enew
+	set bt=help
+	execute "help ".a:helpfile
+	set buflisted
+	set modifiable
+endfunction
+
+" Open help files the same as you usually do with "help example" and they'll open in a new buffer similar to "e file"
+command -nargs=1 Help call FullScreenHelp(<f-args>)
+cabbrev help Help
 
 " }}}
 

@@ -52,7 +52,7 @@ if [[ $(xrandr | awk '/DFP10/ {print $1}') == "DFP10" ]]; then
 		sleep .3s
 	done |
 
-	orangebar -g $size -f $barfont -f $baricons -B \#00$black -F $white 2> /dev/null | bash
+	orangebar -g $size -f $barfont -f $baricons -B \#00$black -F \#$white 2> /dev/null | bash
 
 elif [[ $(xrandr | awk '/eDP1/ {print $1}') == "eDP1" ]]; then
 	size="600x$barheight+766"
@@ -63,7 +63,7 @@ elif [[ $(xrandr | awk '/eDP1/ {print $1}') == "eDP1" ]]; then
 		sleep .3s
 	done |
 
-	orangebar -g $size -f $barfont -f $baricons -B \#00$black -F $white 2> /dev/null | bash
+	orangebar -g $size -f $barfont -f $baricons -B \#00$black -F \#$white 2> /dev/null | bash
 
 else
 	size=""
