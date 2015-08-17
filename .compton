@@ -45,19 +45,31 @@ shadow-exclude = [
 # Avoid drawing shadow on all shaped windows (see also: --detect-rounded-corners)
 shadow-ignore-shaped = false;
 
-# opacity-rule = [
-# 	"97:class_g = 'URxvt'",
-# 	"97:class_g = 'xfce4-terminal'",
-# 	"97:name = 'kek'",
-# 	"97:name = 'bar'",
-# 	"97:class_g = 'Firefox'",
-# 	"97:class_g = 'Thunar'"
-# ];
+opacity-rule = [
+	"97:class_g = 'URxvt'",
+	"97:class_g = 'xfce4-terminal'",
+	"97:name = 'kek'",
+	"97:name = 'bar'",
+	# "97:class_g = 'Firefox'",
+	"97:class_g = 'Thunar'"
+];
 
 # Fading
 
 # Fade windows during opacity changes.
 fading = false;
+
+# The time between steps in a fade in milliseconds. (default 10).
+fade-delta = 4;
+
+# Opacity change between steps while fading in. (default 0.028).
+fade-in-step = 0.03;
+
+# Opacity change between steps while fading out. (default 0.03).
+fade-out-step = 0.03;
+
+# Fade windows in/out when opening/closing
+# no-fading-openclose = true;
 
 # Set VSync method. VSync methods currently available:
 # none: No VSync

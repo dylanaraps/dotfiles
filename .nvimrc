@@ -7,18 +7,12 @@ if has('nvim')
 	let g:python_host_skip_check= 1
 	let g:loaded_python_provider = 1
 	let g:loaded_python3_provider= 1
-
-	" Easier mode exit for :terminal
-	tnoremap <C-c> <c-\><c-n>
 endif
 
 " Enable true color for neovim
 let $NVIM_TUI_ENABLE_TRUE_COLOR=1
 
 " }}}
-
-" Make vim use zshrc and aliases
-set shell=zsh
 
 " This line must go before autocmds for filetypes
 filetype plugin indent on
@@ -159,10 +153,38 @@ Plug 'ajh17/VimCompletesMe'
 
 " FZF
 Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': 'yes \| ./install' }
+
+	" FZF Functions {{{
+
 	nnoremap <silent> <Leader>s :call fzf#run({
-	\   'window': '10new',
+	\	'window': '10new',
 	\   'sink': 'e'
 	\ })<CR>
+
+	function! s:line_handler(l)
+		let keys = split(a:l, ':\t')
+		exec 'buf' keys[0]
+		exec keys[1]
+		normal! za
+		normal! ^zz
+	endfunction
+
+	function! s:buffer_lines()
+		let res = []
+		for b in filter(range(1, bufnr('$')), 'buflisted(v:val)')
+			call extend(res, map(getbufline(b,0,"$"), 'b . ":\t" . (v:key + 1) . ":\t" . v:val '))
+		endfor
+		return res
+	endfunction
+
+	nnoremap <silent> <Leader>a :call fzf#run({
+	\   'source':  <sid>buffer_lines(),
+	\   'sink':    function('<sid>line_handler'),
+	\   'options': '--extended --nth=3..',
+	\   'window': '10new'
+	\ })<CR>
+
+	" }}}
 
 " Nerd Tree
 Plug 'scrooloose/nerdtree'
@@ -233,6 +255,7 @@ syntax on
 set background=dark
 set number
 set ruler
+set noequalalways
 
 " Don’t show the intro message when starting Vim
 set shortmess=atI
@@ -432,11 +455,11 @@ set splitright
 set notimeout
 set nottimeout
 
-" Save on focus loss
-autocmd FocusLost * :silent! wall
-
 " Stops auto adding of comments on new line
-autocmd FileType * setlocal formatoptions-=c formatoptions-=r formatoptions-=o
+augroup Format
+	au!
+	autocmd FileType * setlocal formatoptions-=c formatoptions-=r formatoptions-=o
+augroup END
 
 " }}}
 
@@ -454,11 +477,11 @@ set fillchars=fold:\.
 set viewoptions=folds,cursor
 
 augroup line_return
-    au!
-    au BufReadPost *
-        \ if line("'\"") > 0 && line("'\"") <= line("$") |
-        \     execute 'normal! g`"zvzz' |
-        \ endif
+	au!
+	au BufReadPost *
+		\ if line("'\"") > 0 && line("'\"") <= line("$") |
+		\     execute 'normal! g`"zvzz' |
+		\ endif
 augroup END
 
 " }}}
@@ -466,6 +489,7 @@ augroup END
 " Functions {{{
 
 " Webdev {{{
+" Turns neovim into a psuedo web ide with gulp running in a terminal split and nerdtree running on the side.
 
 function! RunTask()
 	10new
@@ -498,6 +522,8 @@ command! Webdev call OpenFiles() | call RunTask() | call NerdTree()
 " }}}
 
 " Better Buffer Navigation {{{
+" Maps <Tab> to cycle though buffers but only if they're modifiable.
+" If they're unmodifiable it maps <Tab> to cycle through splits.
 
 function! BetterBufferNav(bcmd)
 	if &modifiable == 0
@@ -510,6 +536,30 @@ endfunction
 " Maps Tab and Shift Tab to cycle through buffers
 nmap <silent> <Tab> :call BetterBufferNav("bn") <Cr>
 nmap <silent> <S-Tab> :call BetterBufferNav("bp") <Cr>
+
+" }}}
+
+" Quick Terminal {{{
+" Spawns a terminal in a small split for quick typing of commands
+" Also maps <Esc> to quit out of FZF/QuickTerm
+
+function QuitTerminal()
+	setlocal buflisted
+	silent! bd! quickterm
+	silent! bd! term://*//*:FZF
+endfunction
+
+function! QuickTerminal()
+	3new
+	terminal
+	file quickterm
+
+	tnoremap <Esc> <C-\><C-n>:call QuitTerminal()<CR>
+endfunction
+
+if has('nvim')
+	nnoremap <silent> <Leader>t :call QuickTerminal()<CR>
+endif
 
 " }}}
 

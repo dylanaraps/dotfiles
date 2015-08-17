@@ -27,22 +27,24 @@ export EDITOR='nvim'
 # Crayon  {{{
 
 # Crayon
-export black=101112
-export darkred=7f4040
-export darkgreen=324a28
-export darkyellow=c48452
-export darkblue=2d4963
-export darkmagenta=3d2e4f
-export darkcyan=263a40
-export gray=6a6f7a
-export darkgrey=282c33
-export red=b27b78
-export green=99ae63
-export yellow=d8c27a
-export blue=7495b6
-export magenta=b59cd8
-export cyan=81c9c2
-export white=c9d4d8
+
+export black="#101112"
+export gray01="#282C33"
+export gray02="#383E47"
+export gray03="#586270"
+export gray04="#798494"
+export gray05="#BCC5D1"
+export gray06="#D8D8D8"
+export white="#FDFEFF"
+
+export red="#B27B78"
+export orange="#C48D62"
+export yellow="#D8C27A"
+export green="#99AE63"
+export cyan="#8DC9C3"
+export blue="#7495B6"
+export magenta="#B59CD8"
+export pink="#CC99B3"
 
 # }}}
 
@@ -81,6 +83,9 @@ alias cmp="compton -b --config ~/.compton"
 # Aliases to start/kill bar
 alias killbar="pkill ~/.config/lemonbar/clock.sh & pkill ~/.config/lemonbar/workspace.sh & pkill ~/.config/lemonbar/music.sh & pkill lemonbar & pkill orangebar"
 alias startbar="~/.dotfiles/.config/lemonbar/clock.sh & sleep .5s && ~/.dotfiles/.config/lemonbar/workspace.sh & ~/.dotfiles/.config/lemonbar/music.sh"
+
+# Webdev
+alias mksite="~/.dotfiles/scripts/webdev.sh"
 
 # }}}
 
