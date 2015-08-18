@@ -87,6 +87,9 @@ alias startbar="~/.dotfiles/.config/lemonbar/clock.sh & sleep .5s && ~/.dotfiles
 # Webdev
 alias mksite="~/.dotfiles/scripts/webdev.sh"
 
+# Start ssh-agent with startx
+alias startx='ssh-agent startx'
+
 # }}}
 
 export FZF_DEFAULT_COMMAND='ag -l -g "" --hidden'
