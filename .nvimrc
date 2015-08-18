@@ -582,6 +582,7 @@ endif
 " Opens Help files as if any other file was opened with "e file"
 " Remove the "set modifiable" line if you're going to use this as I need that there for another function.
 
+" This works by opening a blank buffer and setting it's buffer type to 'help'. Now when you run 'help ...' the blank buffer will show the helpfile in fullscreen. The function then adds the buffer to the bufferlist so you can use :bn, :bp, etc.
 function FullScreenHelp(helpfile)
 	enew
 	set bt=help
