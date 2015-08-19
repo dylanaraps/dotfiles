@@ -17,9 +17,6 @@ xset +fp /usr/share/fonts/sijipatched
 xset +fp ~/.fonts/sijipatched
 xset fp rehash
 
-# Start Pulseaudio
-pulseaudio --start &
-
 # Multi monitor
 if [[ $(xrandr | awk '/DFP10/ {print $1}') == "DFP10" ]]; then
 	xrandr --output DFP10 --auto --primary --left-of DFP11 --output DFP11 --auto &

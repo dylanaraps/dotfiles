@@ -39,7 +39,7 @@ browser_playlist_prefix = "$2plist »$9 "
 mouse_support = "no"
 
 # Visualizer
-visualizer_color = "blue"
+visualizer_color = "white"
 visualizer_fifo_path = "/tmp/mpd.fifo"
 visualizer_in_stereo = "yes"
 visualizer_look = "●▮"

@@ -54,6 +54,8 @@ opacity-rule = [
 	"97:class_g = 'Thunar'"
 ];
 
+frame-opacity = 0.8;
+
 # Fading
 
 # Fade windows during opacity changes.

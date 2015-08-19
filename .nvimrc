@@ -84,7 +84,6 @@ endfunction
 augroup GoyoCMDS
 	autocmd! User GoyoEnter nested call <SID>goyo_enter()
 	autocmd! User GoyoLeave nested call <SID>goyo_leave()
-	autocmd! BufReadPre .nvimrc,.vimrc Goyo 80
 augroup END
 
 Plug '~/projects/crayon/master'
@@ -486,18 +485,10 @@ set foldlevelstart=0
 set foldnestmax=10
 
 " Fillchars
-set fillchars=fold:.
+set fillchars=fold:-
 
 " Only saves folds/cursor pos in mkview
 set viewoptions=folds,cursor
-
-augroup line_return
-	au!
-	au BufReadPost *
-		\ if line("'\"") > 0 && line("'\"") <= line("$") |
-		\     execute 'normal! g`"zvzz' |
-		\ endif
-augroup END
 
 " }}}
 
@@ -594,6 +585,23 @@ endfunction
 " Open help files the same as you usually do with "help example" and they'll open in a new buffer similar to "e file"
 command -nargs=1 Help call FullScreenHelp(<f-args>)
 cabbrev help Help
+cabbrev h Help
+
+" }}}
+
+" Line Return {{{
+" Returns you to your position on file reopen and closes all folds.
+" On fold open your cursor is on the line you were at on the fold.
+augroup line_return
+	au!
+	au BufReadPost * :call LineReturn()
+augroup END
+
+function! LineReturn()
+	if line("'\"") > 0 && line("'\"") <= line("$")
+		execute 'normal! g`"zvzzzm'
+	endif
+endfunction
 
 " }}}
 
