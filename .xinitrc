@@ -22,6 +22,8 @@ if [[ $(xrandr | awk '/DFP10/ {print $1}') == "DFP10" ]]; then
 	xrandr --output DFP10 --auto --primary --left-of DFP11 --output DFP11 --auto &
 fi
 
+pulseaudio --start &
+
 # Launches mpd
 mpd &
 

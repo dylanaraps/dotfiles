@@ -10,6 +10,8 @@ if has('nvim')
 
 	" Enable true color for neovim
 	let $NVIM_TUI_ENABLE_TRUE_COLOR=1
+
+	tnoremap <silent> <Esc> <C-\><C-n>:call QuitTerminal()<CR>
 endif
 
 " }}}
@@ -553,6 +555,7 @@ function QuitTerminal()
 	setlocal buflisted
 	silent! bd! quickterm
 	silent! bd! term://*//*:FZF
+	silent! bd! term://*//*:man*
 endfunction
 
 function! QuickTerminal()
@@ -588,6 +591,19 @@ cabbrev help Help
 cabbrev h Help
 
 " }}}
+
+" Man Pages {{{
+" Open man pages in vim
+function! ManPages(manpage)
+	enew
+	call termopen("man ".a:manpage)
+	startinsert
+endfunction
+
+command -nargs=1 Man call ManPages(<f-args>)
+cabbrev man Man
+
+" }}
 
 " Line Return {{{
 " Returns you to your position on file reopen and closes all folds.
