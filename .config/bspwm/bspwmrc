@@ -1,6 +1,6 @@
 #!/bin/sh
 bspc config border_width		1
-bspc config window_gap         25
+bspc config window_gap         40
 
 bspc config split_ratio         0.50
 bspc config borderless_monocle  true
@@ -35,11 +35,20 @@ bspc monitor DFP11 -d hello
 
 bspc monitor eDP1 -d www code game video
 
+# Workspace 1
 bspc rule -a Firefox desktop=$ws1 follow=no
+# bspc config -d $ws1 window_gap 40
+
+# Workspace 3
 bspc rule -a Wine desktop=$ws3 floating=on
-bspc rule -a Steam desktop=$ws3 follow=no floating=on
-bspc rule -a feh floating=on
+bspc rule -a Steam desktop=$ws3 pseudo_tiled=on floating=off
+
+# Workspace 4
 bspc rule -a Gimp-2.8 desktop=$ws4
+
+# Workspace *
+bspc rule -a feh floating=on
+bspc rule -a thunar floating=on
 
 # nitrogen --restore &
 ~/.dotfiles/scripts/wallpaper.sh &
