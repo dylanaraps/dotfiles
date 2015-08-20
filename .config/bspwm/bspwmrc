@@ -30,14 +30,16 @@ bspc config -m eDP1 top_padding 20
 
 # bspc monitor DFP10 -d www code game video
 # bspc monitor DFP10 -d    
-bspc monitor DFP10 -d    
+bspc monitor DFP10 -d $ws1 $ws2 $ws3 $ws4
 bspc monitor DFP11 -d hello
 
 bspc monitor eDP1 -d www code game video
 
-bspc rule -a Firefox desktop= follow=no
-bspc rule -a Wine desktop= floating=on
-bspc rule -a Steam desktop= follow=no floating=on
+bspc rule -a Firefox desktop=$ws1 follow=no
+bspc rule -a Wine desktop=$ws3 floating=on
+bspc rule -a Steam desktop=$ws3 follow=no floating=on
+bspc rule -a feh floating=on
+bspc rule -a Gimp-2.8 desktop=$ws4
 
 # nitrogen --restore &
 ~/.dotfiles/scripts/wallpaper.sh &

@@ -10,19 +10,19 @@
 
 :root {
 	/* Colors */
-    --bg-light: #282c33; --bg-dark: #101112;
-    --fg-light: #c9d4d8; --fg-dark: #6a6f7a;
+	--bg-light: #101112; --bg-dark: #101112;
+	--fg-light: #c9d4d8; --fg-dark: #6a6f7a;
 
 	/* Tabs */
-    --tab-height: 26px;
-    --tab-fonts: "Droid Sans"
+	--tab-height: 30px;
+	--tab-fonts: "Droid Sans"
 	--tab-font-size: 10pt;
 
 	/* Url Bar */
-    --url-height: 30px;
-    --url-fonts: "Droid Sans";
+	--url-height: 30px;
+	--url-fonts: "Droid Sans";
 	--url-font-size: 10pt;
-    --url-text-align: center; /* left | center | right */
+	--url-text-align: center;
 }
 
 /* }}} */
@@ -87,6 +87,7 @@
 	#TabsToolbar .tabbrowser-tab[selected] {
 		background: var(--bg-light) !important;
 		color: var(--fg-light) !important;
+		border-top: 1px solid #FFFFFF !important;;
 	}
 
 	/* Background behind Tabs */
@@ -222,11 +223,11 @@ tabbrowser tabpanels, #appcontent > #content {
 
 /* background color around/behind pictures opened in firefox (require html namespace on top) */
 @-moz-document regexp("(https?://|file:///)(.*)\\.(jpeg|jpg|gif|png|apng|svg|bmp|webm|webp)") {
-    body {
+	body {
 		background: var(--bg-dark) !important;
 	}
 
-    img.decoded {
+	img.decoded {
 		background: url(none) !important;
 	}
 }
@@ -234,7 +235,7 @@ tabbrowser tabpanels, #appcontent > #content {
 
 /* About:Blank background */
 @-moz-document url(about:blank) {
-    html,body {
+	html,body {
 		background: var(--bg-dark) !important;
 	}
 }

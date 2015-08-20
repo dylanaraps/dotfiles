@@ -48,11 +48,22 @@ export pink="CC99B3"
 
 # }}}
 
-# Lemonbar
+# Lemonbar {{{
 export barfont="lemon:size=12"
 export baricons="-wuncon-siji-medium-r-normal--10-100-75-75-c-80-iso10646-1"
 
 export barheight=20
+
+# }}}
+
+# bspwm {{{
+
+export ws1=''
+export ws2=''
+export ws3=''
+export ws4=''
+
+# }}}
 
 # }}}
 
@@ -85,10 +96,12 @@ alias killbar="pkill ~/.config/lemonbar/clock.sh & pkill ~/.config/lemonbar/work
 alias startbar="~/.dotfiles/.config/lemonbar/clock.sh & sleep .5s && ~/.dotfiles/.config/lemonbar/workspace.sh & ~/.dotfiles/.config/lemonbar/music.sh"
 
 # Webdev
-alias mksite="~/.dotfiles/scripts/webdev.sh"
+alias mksite="~/.dotfiles/scripts/webdev/webdev.sh"
 
 # Start ssh-agent with startx
 alias startx='ssh-agent startx'
+
+alias feh='feh --auto-zoom --scale-down -g 640 -B black'
 
 # }}}
 
