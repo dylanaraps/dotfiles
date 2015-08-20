@@ -62,6 +62,9 @@ alt + {minus,equal}
 super + e
     bspc window -t sticky
 
+super + p
+	bspc window -t pseudo_tiled
+
 # make sxhkd reload its configuration files:
 super + Escape
 	pkill -USR1 -x sxhkd &&
@@ -69,7 +72,8 @@ super + Escape
 # wm independent hotkeys
 
 super + Return
-	urxvt
+	~/.dotfiles/scripts/bspwm/urxvt.sh &
+	# urxvt --geometry 110x60
 	#-lsp 1
 
 super + d
