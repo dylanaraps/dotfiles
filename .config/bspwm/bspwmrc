@@ -41,10 +41,13 @@ bspc rule -a Firefox desktop=$ws1 follow=no
 
 # Workspace 3
 bspc rule -a Wine desktop=$ws3 floating=on
-bspc rule -a Steam desktop=$ws3 pseudo_tiled=on floating=off
+bspc rule -a Steam desktop=$ws3 floating=on follow=no
 
 # Workspace 4
 bspc rule -a Gimp-2.8 desktop=$ws4
+
+# Workspace Mon2
+bspc config -d hello window_gap 100
 
 # Workspace *
 bspc rule -a feh floating=on

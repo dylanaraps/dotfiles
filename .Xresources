@@ -48,7 +48,7 @@ URxvt.keysym.C-f: \
 *.cursorColor:  gray06
 
 *.color0:       black
-*.color1:       red
+*.color1:       orange
 *.color2:       green
 *.color3:       yellow
 *.color4:       blue
@@ -57,7 +57,7 @@ URxvt.keysym.C-f: \
 *.color7:       gray05
 
 *.color8:       gray03
-*.color9:       orange
+*.color9:       red
 *.color10:      gray01
 *.color11:      gray02
 *.color12:      gray04

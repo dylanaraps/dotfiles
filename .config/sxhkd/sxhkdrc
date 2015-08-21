@@ -1,22 +1,10 @@
 # bspwm hotkeys
 
-super + shift + Escape
-	bspc quit;
-
 super + q
 	bspc window -c
 
-super + m
-	bspc desktop -l next
-
 super + {s,f}
 	bspc window -t {floating,fullscreen}
-
-super + apostrophe
-	bspc window -s last
-
-super + m
-	bspc window -s biggest
 
 super + {_,shift + }{h,j,k,l}
 	bspc window -{f,s} {left,down,up,right}
@@ -24,23 +12,13 @@ super + {_,shift + }{h,j,k,l}
 super + Tab
 	bspc desktop -f next
 
+# i3 like bindings for opening windows down and right
 super + v
 	bspc window -p down
 
 super + g
 	bspc window -p right
 
-super + ctrl + {_,shift + }space
-	bspc {window -p cancel,desktop -c}
-
-super + alt + {h,j,k,l}
-	bspc window -e {left -10,down +10,up -10,right +10}
-
-super + alt + shift + {h,j,k,l}
-	bspc window -e {right -10,up +10,down -10,left +10}
-
-super + ctrl + {1-9}
-	bspc window -r 0.{1-9}
 
 super + {_,shift + }{1-9,0}
 	bspc {desktop -f,window -d} ^{1-9,10}
@@ -59,30 +37,35 @@ alt + {minus,equal}
     bspc config -d focused window_gap $((`bspc config -d focused window_gap` {+,-} 2 ))
 
 # Sticky windows
+# Window will appear on all workspaces
 super + e
     bspc window -t sticky
 
+# Pseudo tiling
 super + p
 	bspc window -t pseudo_tiled
 
-# make sxhkd reload its configuration files:
+# Reload sxhkdkasdsad config
 super + Escape
 	pkill -USR1 -x sxhkd &&
 
 # wm independent hotkeys
 
+# Open Terminal
 super + Return
 	~/.dotfiles/scripts/bspwm/urxvt.sh &
 	# urxvt --geometry 110x60
 	#-lsp 1
 
+# Dmenu
 super + d
-	dmenu_run -l 5 -o 0.9 -nb '#101112' -nf '#D8D8D8' -sb '#7495B6' -i -h 20 -w 100 -x 10 -y 30 -fn '-benis-lemon-medium-r-normal--10-110-75-75-m-50-iso8859-1'
+	dmenu_run -l 5 -o 0.9 -nb \#$black -nf \#$gray06 -sb \#$red -i -h 20 -w 100 -x 10 -y 30 -fn '-benis-lemon-medium-r-normal--10-110-75-75-m-50-iso8859-1'
 
+# Change wallpaper to random image from folder
 super + w
 	~/.dotfiles/scripts/wallpaper2.sh
 
-# Laptop hotkeys
+# Laptop hotkeys {{{
 XF86MonBrightnessUp
 	xbacklight -inc 40
 
@@ -106,3 +89,5 @@ XF86AudioPlay
 
 XF86AudioNext
 	mpc next
+
+# }}}
