@@ -168,7 +168,10 @@ Plug 'mattn/emmet-vim'
 " Autocompletes using vim's built in completion based on the text before the cursor
 Plug 'eparreno/vim-l9'
 Plug 'othree/vim-autocomplpop'
-	imap <expr><TAB>  pumvisible() ? "\<C-n>" : "\<TAB>"
+	let g:acp_completeoptPreview = 1
+	let g:AutoComplPopDontSelectFirst = 1
+	imap <expr><TAB>  pumvisible() ? "\<C-N>" : "\<TAB>"
+	imap <expr><S-TAB>  pumvisible() ? "\<C-P>" : "\<TAB>"
 
 " FZF
 Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': 'yes \| ./install' }
