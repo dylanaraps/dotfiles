@@ -4,9 +4,9 @@
 
 if has('nvim')
 	" Improve Neovim startup time
-	let g:python_host_skip_check= 1
-	let g:loaded_python_provider = 1
-	let g:loaded_python3_provider= 1
+	" let g:python_host_skip_check= 1
+	" let g:loaded_python_provider = 1
+	" let g:loaded_python3_provider= 1
 
 	" Enable true color for neovim
 	let $NVIM_TUI_ENABLE_CURSOR_SHAPE=1
@@ -89,7 +89,9 @@ augroup GoyoCMDS
 	autocmd! User GoyoLeave nested call <SID>goyo_leave()
 augroup END
 
+" Colorscheme
 Plug '~/projects/crayon/master'
+
 Plug 'bling/vim-airline'
 	" Always show statusline
 	set laststatus=2
@@ -162,11 +164,11 @@ Plug 'mattn/emmet-vim'
 	let g:user_emmet_install_global = 0
 	autocmd FileType html,css,scss EmmetInstall
 
-" Tiny Autocomplete
-Plug 'ajh17/VimCompletesMe'
-	" Tab in insert mode to autocomplete
+" Sexiest AutoComplete ever
+" Autocompletes using vim's built in completion based on the text before the cursor
+Plug 'eparreno/vim-l9'
+Plug 'othree/vim-autocomplpop'
 	imap <expr><TAB>  pumvisible() ? "\<C-n>" : "\<TAB>"
-	autocmd FileType text,markdown let b:vcm_tab_complete = 'dict'
 
 " FZF
 Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': 'yes \| ./install' }
@@ -383,7 +385,8 @@ nnoremap <Leader>k <C-W><C-K>
 nnoremap <Leader>l <C-W><C-L>
 
 " Auto close HTML tags
-inoremap </ </<C-X><C-O>
+" inoremap </ </<C-X><C-O>
+inoremap <lt>/ </<C-X><C-O>
 
 " Automatically removes all trailing whitespaces on :w
 autocmd BufWritePre * :%s/\s\+$//e
@@ -429,6 +432,9 @@ set undoreload=500
 " Auto change dir to file directory
 set autochdir
 set ttyfast
+
+" Omni Func
+set omnifunc=syntaxcomplete#Complete
 
 " Use the OS clipboard by default
 set clipboard+=unnamedplus
@@ -604,7 +610,7 @@ endfunction
 command -nargs=1 Man call ManPages(<f-args>)
 cabbrev man Man
 
-" }}
+" }}}
 
 " Line Return {{{
 " Returns you to your position on file reopen and closes all folds.
