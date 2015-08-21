@@ -169,7 +169,7 @@ Plug 'mattn/emmet-vim'
 Plug 'eparreno/vim-l9'
 Plug 'othree/vim-autocomplpop'
 	let g:acp_completeoptPreview = 1
-	let g:AutoComplPopDontSelectFirst = 1
+	" let g:AutoComplPopDontSelectFirst = 1
 	imap <expr><TAB>  pumvisible() ? "\<C-N>" : "\<TAB>"
 	imap <expr><S-TAB>  pumvisible() ? "\<C-P>" : "\<TAB>"
 
