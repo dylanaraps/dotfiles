@@ -164,14 +164,11 @@ Plug 'mattn/emmet-vim'
 	let g:user_emmet_install_global = 0
 	autocmd FileType html,css,scss EmmetInstall
 
-" Sexiest AutoComplete ever
-" Autocompletes using vim's built in completion based on the text before the cursor
-Plug 'eparreno/vim-l9'
-Plug 'othree/vim-autocomplpop'
-	let g:acp_completeoptPreview = 1
-	" let g:AutoComplPopDontSelectFirst = 1
-	imap <expr><TAB>  pumvisible() ? "\<C-N>" : "\<TAB>"
-	imap <expr><S-TAB>  pumvisible() ? "\<C-P>" : "\<TAB>"
+" Tiny Autocomplete
+Plug 'ajh17/VimCompletesMe'
+	" Tab in insert mode to autocomplete
+	imap <expr><TAB>  pumvisible() ? "\<C-n>" : "\<TAB>"
+	autocmd FileType text,markdown let b:vcm_tab_complete = 'dict'
 
 " FZF
 Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': 'yes \| ./install' }
@@ -389,7 +386,7 @@ nnoremap <Leader>l <C-W><C-L>
 
 " Auto close HTML tags
 " inoremap </ </<C-X><C-O>
-inoremap <lt>/ </<C-X><C-O>
+inoremap </ </<C-X><C-O>
 
 " Automatically removes all trailing whitespaces on :w
 autocmd BufWritePre * :%s/\s\+$//e
