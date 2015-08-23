@@ -37,6 +37,8 @@ bspc monitor eDP1 -d www code game video
 
 # Workspace 1
 bspc rule -a Firefox desktop=$ws1 follow=no
+bspc rule -a qutebrowser desktop=$ws1 follow=no
+
 # bspc config -d $ws1 window_gap 40
 
 # Workspace 3

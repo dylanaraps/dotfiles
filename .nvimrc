@@ -36,59 +36,6 @@ call plug#begin('~/.vim/plugged')
 
 " LOOKS
 
-Plug 'junegunn/goyo.vim'
-	nnoremap <F3> :Goyo 80 <CR>
-
-" Goyo Enter {{{
-
-function! s:goyo_enter()
-	set showmode
-	set showcmd
-	set nonumber
-
-	let b:quitting = 0
-	let b:quitting_bang = 0
-	autocmd QuitPre <buffer> let b:quitting = 1
-	cabbrev <buffer> q! let b:quitting_bang = 1 <bar> q!
-
-	function! GoyoNeovim()
-		let s:guibg = synIDattr(synIDtrans(hlID("Normal")), "bg", "gui")
-		execute("hi NonText guifg=" . s:guibg)
-		execute("hi StatusLine guifg=" . s:guibg)
-		execute("hi StatusLineNC guifg=" . s:guibg)
-	endfunction
-
-	call GoyoNeovim()
-
-endfunction
-
-" }}}
-
-" Goyo Leave {{{
-
-function! s:goyo_leave()
-	set number
-	set noshowmode
-	AirlineRefresh
-	colorscheme crayon
-
-	" Quit Vim if this is the only remaining buffer
-	if b:quitting && len(filter(range(1, bufnr('$')), 'buflisted(v:val)')) == 1
-		if b:quitting_bang
-			qa!
-		else
-			qa
-		endif
-	endif
-endfunction
-
-" }}}
-
-augroup GoyoCMDS
-	autocmd! User GoyoEnter nested call <SID>goyo_enter()
-	autocmd! User GoyoLeave nested call <SID>goyo_leave()
-augroup END
-
 " Colorscheme
 Plug '~/projects/crayon/master'
 
@@ -503,7 +450,7 @@ set viewoptions=folds,cursor
 " Turns neovim into a psuedo web ide with gulp running in a terminal split and nerdtree running on the side.
 
 function! OpenInBrowser(browser, htmlfile)
-	execute "!" . a:browser . " " . a:htmlfile
+	silent! execute "!" . a:browser . " " . a:htmlfile "2&>1 >/dev/null"
 endfunction
 
 function! OpenFiles()
