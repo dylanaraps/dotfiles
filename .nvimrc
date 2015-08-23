@@ -384,10 +384,6 @@ nnoremap <Leader>j <C-W><C-J>
 nnoremap <Leader>k <C-W><C-K>
 nnoremap <Leader>l <C-W><C-L>
 
-" Auto close HTML tags
-" inoremap </ </<C-X><C-O>
-inoremap </ </<C-X><C-O>
-
 " Automatically removes all trailing whitespaces on :w
 autocmd BufWritePre * :%s/\s\+$//e
 
@@ -506,12 +502,8 @@ set viewoptions=folds,cursor
 " Webdev {{{
 " Turns neovim into a psuedo web ide with gulp running in a terminal split and nerdtree running on the side.
 
-function! RunTask()
-	10new
-	call termopen("gulp")
-	setlocal nomodifiable
-	setlocal nobuflisted
-	wincmd w
+function! OpenInBrowser(browser, htmlfile)
+	execute "!" . a:browser . " " . a:htmlfile
 endfunction
 
 function! OpenFiles()
@@ -523,8 +515,16 @@ function! OpenFiles()
 	1buffer
 endfunction
 
+function! RunTask()
+	10new
+	call termopen("gulp")
+	setlocal nomodifiable
+	setlocal nobuflisted
+	wincmd w
+endfunction
+
 function! NerdTree()
-	silent! if g:loaded_nerd_tree == 1
+	silent! if g:loaded_nerd_tree
 		NERDTreeTabsOpen
 		setlocal nomodifiable
 		setlocal nobuflisted
@@ -532,7 +532,7 @@ function! NerdTree()
 	endif
 endfunction
 
-command! Webdev call OpenFiles() | call RunTask() | call NerdTree()
+command! Webdev call OpenFiles() | call RunTask() | call NerdTree() | call OpenInBrowser("qutebrowser", "index.html")
 
 " }}}
 
@@ -625,6 +625,15 @@ function! LineReturn()
 		execute 'normal! g`"zvzzzm'
 	endif
 endfunction
+
+" }}}
+
+" HTML Auto Tag Close {{{
+
+augroup HTMLAutoTagClose
+	au!
+	autocmd FileType html inoremap <buffer> </ </<C-X><C-O>
+augroup END
 
 " }}}
 
