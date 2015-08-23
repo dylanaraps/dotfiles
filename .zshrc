@@ -128,3 +128,7 @@ alias help=run-help
 setopt nohashdirs
 
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
+
+if [ -d "$HOME/bin" ] ; then
+  PATH="$HOME/bin:$PATH"
+fi

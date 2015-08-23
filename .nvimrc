@@ -39,6 +39,7 @@ call plug#begin('~/.vim/plugged')
 " Colorscheme
 Plug '~/projects/crayon/master'
 
+" Vim Airline {{{
 Plug 'bling/vim-airline'
 	" Always show statusline
 	set laststatus=2
@@ -65,6 +66,8 @@ Plug 'bling/vim-airline'
 		au!
 		autocmd VimEnter * call AirlineTheme()
 	augroup END
+
+" }}}
 
 " FUNCTIONALITY
 Plug 'tpope/vim-fugitive'
@@ -117,11 +120,8 @@ Plug 'ajh17/VimCompletesMe'
 	imap <expr><TAB>  pumvisible() ? "\<C-n>" : "\<TAB>"
 	autocmd FileType text,markdown let b:vcm_tab_complete = 'dict'
 
-" FZF
+" FZF {{{
 Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': 'yes \| ./install' }
-
-	" FZF Functions {{{
-
 	nnoremap <silent> <Leader>s :call fzf#run({
 	\	'window': '5new',
 	\   'sink': 'e'
@@ -248,13 +248,9 @@ set smartcase
 nnoremap <SPACE> <nop>
 vnoremap <SPACE> <nop>
 
-imap <C-s> <C-l>
-
 command! Wq wq
 command! W w
 command! Q q
-
-command! Bd bp<bar>sp<bar>bn<bar>bd<CR>
 
 " Copies what was just pasted
 " Allows you to paste the same thing over and over
@@ -288,7 +284,7 @@ vmap <TAB> >gv
 vmap <BS> <gv
 vmap <S-TAB> <gv
 
-" remap jk and kj to escape:  You'll never type it anyway, so it's great!
+" remap jk and kj to escape
 inoremap jk <Esc>
 inoremap kj <Esc>
 
@@ -310,10 +306,7 @@ nnoremap gk k
 " Jumps to the bottom of Fold
 nmap <Leader>b zo]z
 
-" exit file without losing split
-nmap <silent> <leader>q :bp\|bd #<CR>
-
-" Moves a single space after end of line and puts me in indsert mode
+" Moves a single space after end of line and puts me in insert mode
 nnoremap L A
 
 " Easily move to start/end of line
@@ -332,7 +325,10 @@ nnoremap <Leader>k <C-W><C-K>
 nnoremap <Leader>l <C-W><C-L>
 
 " Automatically removes all trailing whitespaces on :w
-autocmd BufWritePre * :%s/\s\+$//e
+augroup RemWS
+	au!
+	autocmd BufWritePre * :%s/\s\+$//e
+augroup END
 
 " Shows the highlight group of whatever's under the cursor
 map <F10> :echo "hi<" . synIDattr(synID(line("."),col("."),1),"name") . '> trans<'
@@ -449,8 +445,13 @@ set viewoptions=folds,cursor
 " Webdev {{{
 " Turns neovim into a psuedo web ide with gulp running in a terminal split and nerdtree running on the side.
 
-function! OpenInBrowser(browser, htmlfile)
-	silent! execute "!" . a:browser . " " . a:htmlfile "2&>1 >/dev/null"
+function! NerdTree()
+	silent! if g:loaded_nerd_tree
+		NERDTreeTabsOpen
+		setlocal nomodifiable
+		setlocal nobuflisted
+		wincmd w
+	endif
 endfunction
 
 function! OpenFiles()
@@ -470,16 +471,18 @@ function! RunTask()
 	wincmd w
 endfunction
 
-function! NerdTree()
-	silent! if g:loaded_nerd_tree
-		NERDTreeTabsOpen
-		setlocal nomodifiable
-		setlocal nobuflisted
-		wincmd w
-	endif
+function! OpenInBrowser(browser, htmlfile)
+	" Fast async way of opening browser. Doesn't currently work as neovim segfaults if you sleep while focused on a terminal buffer
+	" 0new
+	" call termopen(a:browser . " " . a:htmlfile)
+	" sleep .2s
+	" bd! "term://*//*:" . a:browser . "*"
+
+	" Slow way of opening browser
+	silent! execute "!" . a:browser . " " . a:htmlfile
 endfunction
 
-command! Webdev call OpenFiles() | call RunTask() | call NerdTree() | call OpenInBrowser("qutebrowser", "index.html")
+command! Webdev call NerdTree() | call OpenFiles() | call RunTask() | call OpenInBrowser("qutebrowser", "index.html")
 
 " }}}
 
@@ -581,6 +584,21 @@ augroup HTMLAutoTagClose
 	au!
 	autocmd FileType html inoremap <buffer> </ </<C-X><C-O>
 augroup END
+
+" }}}
+
+" Smart :bd {{{
+" If one buffer is open quit as normal, else quit while maintaining splits
+" Also supports ! for force closing buffers
+command! -bang BD
+	\| if len(filter(range(1, bufnr('$')), 'buflisted(v:val)')) == 1
+		\| bd<bang>
+	\| else
+		\| bp
+		\| bd<bang> #
+	\| endif
+
+cabbrev bd BD
 
 " }}}
 
