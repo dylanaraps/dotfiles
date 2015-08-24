@@ -485,10 +485,10 @@ command! Webdev call OpenFiles() | call RunTask("gulp", "10new") | call NerdTree
 " If they're unmodifiable it maps <Tab> to cycle through splits.
 
 function! BetterBufferNav(bcmd)
-	if &modifiable == 0
-		wincmd w
-	else
+	if &modifiable == 1 || &ft == 'help'
 		exe a:bcmd
+	else
+		wincmd w
 	endif
 endfunction
 
@@ -510,7 +510,7 @@ function QuitTerminal()
 endfunction
 
 function! QuickTerminal()
-	3new
+	6new
 	terminal
 	file quickterm
 
@@ -525,7 +525,7 @@ endif
 
 " Fullscreen Help {{{
 " Opens Help files as if any other file was opened with "e file"
-" Remove the "set modifiable" line if you're going to use this as I need that there for another function.
+" also works with completion like regular :help
 
 " This works by opening a blank buffer and setting it's buffer type to 'help'. Now when you run 'help ...' the blank buffer will show the helpfile in fullscreen. The function then adds the buffer to the bufferlist so you can use :bn, :bp, etc.
 function FullScreenHelp(helpfile)
@@ -533,11 +533,10 @@ function FullScreenHelp(helpfile)
 	set bt=help
 	execute "help ".a:helpfile
 	set buflisted
-	set modifiable
 endfunction
 
 " Open help files the same as you usually do with "help example" and they'll open in a new buffer similar to "e file"
-command -nargs=1 Help call FullScreenHelp(<f-args>)
+command -nargs=1 -complete=help Help call FullScreenHelp(<f-args>)
 cabbrev help Help
 cabbrev h Help
 
