@@ -550,7 +550,7 @@ function! ManPages(manpage)
 	startinsert
 endfunction
 
-command -nargs=1 Man call ManPages(<f-args>)
+command -nargs=1 -complete=shellcmd Man call ManPages(<f-args>)
 cabbrev man Man
 
 " }}}
