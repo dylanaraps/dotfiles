@@ -586,16 +586,17 @@ augroup END
 " Also supports ! for force closing buffers
 " If args are added after :bd delete the buffer as normal
 function SmartBD(bang, argu)
-		if a:bang == 0 && len(filter(range(1, bufnr('$')), 'buflisted(v:val)')) == 1
-			execute "bd" . " " . a:argu
-		elseif a:bang == 1 && len(filter(range(1, bufnr('$')), 'buflisted(v:val)')) == 1
-			execute "bd" . "! " . a:argu
-		elseif a:bang == 0 && len(filter(range(1, bufnr('$')), 'buflisted(v:val)')) > 1
+		if a:bang == 1
+			let bang = "!"
+		else
+			let bang = " "
+		endif
+
+		if len(filter(range(1, bufnr('$')), 'buflisted(v:val)')) == 1
+			execute "bd" . bang . " " . a:argu
+		else
 			bp
-			bd #
-		elseif a:bang == 1 && len(filter(range(1, bufnr('$')), 'buflisted(v:val)')) > 1
-			bp
-			bd! #
+			execute "bd" . bang . " #"
 		endif
 
 endfunction
@@ -603,16 +604,6 @@ endfunction
 command! -bang -nargs=* BD call SmartBD(<bang>0, <q-args>)
 
 cnoreabbrev bd BD
-
-" command! -bang -nargs=* BD
-" 			\| if len(filter(range(1, bufnr('$')), 'buflisted(v:val)')) == 1
-" 				\| bd<bang>
-" 			\| else
-" 				\| bp
-" 				\| bd<bang> #
-" 			\| endif
-
-" cabbrev bd BD
 
 " }}}
 
