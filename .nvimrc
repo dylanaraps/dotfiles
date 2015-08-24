@@ -445,15 +445,6 @@ set viewoptions=folds,cursor
 " Webdev {{{
 " Turns neovim into a psuedo web ide with gulp running in a terminal split and nerdtree running on the side.
 
-function! NerdTree()
-	silent! if g:loaded_nerd_tree
-		NERDTreeTabsOpen
-		setlocal nomodifiable
-		setlocal nobuflisted
-		wincmd w
-	endif
-endfunction
-
 function! OpenFiles()
 	setlocal noautochdir
 	silent! find src/*.html
@@ -463,26 +454,29 @@ function! OpenFiles()
 	1buffer
 endfunction
 
-function! RunTask()
-	10new
-	call termopen("gulp")
+function! RunTask(taskrunner, buffersize)
+	execute a:buffersize
+	call termopen(a:taskrunner)
 	setlocal nomodifiable
 	setlocal nobuflisted
 	wincmd w
 endfunction
 
-function! OpenInBrowser(browser, htmlfile)
-	" Fast async way of opening browser. Doesn't currently work as neovim segfaults if you sleep while focused on a terminal buffer
-	" 0new
-	" call termopen(a:browser . " " . a:htmlfile)
-	" sleep .2s
-	" bd! "term://*//*:" . a:browser . "*"
-
-	" Slow way of opening browser
-	silent! execute "!" . a:browser . " " . a:htmlfile
+function! NerdTree()
+	silent! if g:loaded_nerd_tree
+		NERDTreeTabsOpen
+		setlocal nomodifiable
+		setlocal nobuflisted
+		wincmd w
+	endif
 endfunction
 
-command! Webdev call NerdTree() | call OpenFiles() | call RunTask() | call OpenInBrowser("qutebrowser", "index.html")
+function! OpenInBrowser(browser, htmlfile)
+	" Neovim segfaults if you sleep in a terminal that's running a command
+	silent! execute "!" . a:browser . " " . a:htmlfile . " &"
+endfunction
+
+command! Webdev call OpenFiles() | call RunTask("gulp", "10new") | call NerdTree() | call OpenInBrowser("qutebrowser", "index.html")
 
 " }}}
 
