@@ -582,9 +582,8 @@ augroup END
 " }}}
 
 " Smart :bd {{{
-" If one buffer is open quit as normal, else quit while maintaining splits
-" Also supports ! for force closing buffers
-" If args are added after :bd delete the buffer as normal
+" If more than 1 buffer exists close buffers while retaining splits.
+" bangs(!) are supported as well as arguments after :bd (:bd index.html, etc)
 function SmartBD(bang, argu)
 		if a:bang == 1
 			let bang = "!"
