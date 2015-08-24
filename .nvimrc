@@ -584,15 +584,35 @@ augroup END
 " Smart :bd {{{
 " If one buffer is open quit as normal, else quit while maintaining splits
 " Also supports ! for force closing buffers
-command! -bang BD
-	\| if len(filter(range(1, bufnr('$')), 'buflisted(v:val)')) == 1
-		\| bd<bang>
-	\| else
-		\| bp
-		\| bd<bang> #
-	\| endif
+" If args are added after :bd delete the buffer as normal
+function SmartBD(bang, argu)
+		if a:bang == 0 && len(filter(range(1, bufnr('$')), 'buflisted(v:val)')) == 1
+			execute "bd" . " " . a:argu
+		elseif a:bang == 1 && len(filter(range(1, bufnr('$')), 'buflisted(v:val)')) == 1
+			execute "bd" . "! " . a:argu
+		elseif a:bang == 0 && len(filter(range(1, bufnr('$')), 'buflisted(v:val)')) > 1
+			bp
+			bd #
+		elseif a:bang == 1 && len(filter(range(1, bufnr('$')), 'buflisted(v:val)')) > 1
+			bp
+			bd! #
+		endif
 
-cabbrev bd BD
+endfunction
+
+command! -bang -nargs=* BD call SmartBD(<bang>0, <q-args>)
+
+cnoreabbrev bd BD
+
+" command! -bang -nargs=* BD
+" 			\| if len(filter(range(1, bufnr('$')), 'buflisted(v:val)')) == 1
+" 				\| bd<bang>
+" 			\| else
+" 				\| bp
+" 				\| bd<bang> #
+" 			\| endif
+
+" cabbrev bd BD
 
 " }}}
 
