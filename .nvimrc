@@ -1,5 +1,8 @@
 " Dylan's vimrc
 
+" Leader
+let mapleader = "\<space>"
+
 " Neovim Exclusive Settings {{{
 
 if has('nvim')
@@ -9,19 +12,15 @@ if has('nvim')
 	let g:loaded_python3_provider= 1
 
 	" Enable true color for neovim
-	let $NVIM_TUI_ENABLE_CURSOR_SHAPE=1
 	let $NVIM_TUI_ENABLE_TRUE_COLOR=1
+
+	" Sexy cursor
+	let $NVIM_TUI_ENABLE_CURSOR_SHAPE=1
 
 	tnoremap <silent> <Esc> <C-\><C-n>:call QuitTerminal()<CR>
 endif
 
 " }}}
-
-" This line must go before autocmds for filetypes
-filetype plugin indent on
-
-" Leader
-let mapleader = "\<space>"
 
 " Plugins {{{
 
@@ -38,9 +37,8 @@ call plug#begin('~/.vim/plugged')
 
 " Colorscheme
 Plug '~/projects/crayon/master'
-
-" Vim Airline {{{
 Plug 'bling/vim-airline'
+" Vim Airline {{{
 	" Always show statusline
 	set laststatus=2
 	let g:airline_powerline_fonts = 1
@@ -93,11 +91,14 @@ Plug 'junegunn/vim-pseudocl'
 Plug 'junegunn/vim-oblique'
 	let g:oblique#incsearch_highlight_all = 1
 	let g:oblique#clear_highlight = 1
-	let g:oblique#prefix = "\\v"
+	let g:oblique#prefix = "\\v" " Very Magic
 
 Plug 'tpope/vim-commentary'
-	autocmd FileType xdefaults setlocal commentstring=!\ %s
-	autocmd FileType scss setlocal commentstring=/*%s*/
+	augroup Commentary
+		au!
+		autocmd FileType xdefaults setlocal commentstring=!\ %s
+		autocmd FileType scss setlocal commentstring=/*%s*/
+	augroup END
 
 Plug 'rstacruz/vim-closer'
 Plug 'tpope/vim-surround'
@@ -110,18 +111,14 @@ Plug 'AndrewRadev/splitjoin.vim'
 	nmap <silent> sj :SplitjoinSplit<cr>
     nmap <silent> sk :SplitjoinJoin<cr>
 
-Plug 'mattn/emmet-vim'
-	let g:user_emmet_install_global = 0
-	autocmd FileType html,css,scss EmmetInstall
-
 " Tiny Autocomplete
 Plug 'ajh17/VimCompletesMe'
 	" Tab in insert mode to autocomplete
 	imap <expr><TAB>  pumvisible() ? "\<C-n>" : "\<TAB>"
 	autocmd FileType text,markdown let b:vcm_tab_complete = 'dict'
 
-" FZF {{{
 Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': 'yes \| ./install' }
+" FZF {{{
 	nnoremap <silent> <Leader>s :call fzf#run({
 	\	'window': '5new',
 	\   'sink': 'e'
@@ -165,7 +162,7 @@ Plug 'jistr/vim-nerdtree-tabs'
 	nnoremap <silent> <Leader>d :NERDTreeTabsToggle <CR>
 
 " FILETYPES
-" Changes background behind hex color to it's actual color
+Plug 'mattn/emmet-vim'
 Plug 'ap/vim-css-color'
 Plug 'JulesWang/css.vim'
 Plug 'cakebaker/scss-syntax.vim'
@@ -179,10 +176,26 @@ call plug#end()
 
 " Filetypes {{{
 
-filetype on
+filetype plugin indent on
+
+augroup Filetypes
+	au!
+
+" All Filetypes
+	" Disable comment on newline
+	autocmd FileType * setlocal formatoptions-=c formatoptions-=r formatoptions-=o
+	" Remove Whitespace on save
+	autocmd BufWritePre * :%s/\s\+$//e
+
+" Html
+	" Map </ to auto close tags
+	autocmd FileType html inoremap <buffer> </ </<C-X><C-O>
 
 " Markdown
-autocmd BufNewFile,BufRead *.md set filetype=markdown
+	" set .md files to filetype markdown
+	autocmd BufNewFile,BufRead *.md set filetype=markdown
+
+augroup END
 
 " }}}
 
@@ -236,8 +249,6 @@ colorscheme crayon
 set hlsearch
 set incsearch
 set ignorecase
-
-" Do case sensitive searches is search term includes a capital
 set smartcase
 
 " }}}
@@ -248,16 +259,15 @@ set smartcase
 nnoremap <SPACE> <nop>
 vnoremap <SPACE> <nop>
 
-command! Wq wq
-command! W w
-command! Q q
+cabbrev Wq wq
+cabbrev W w
+cabbrev Q q
 
 " Copies what was just pasted
-" Allows you to paste the same thing over and over
+" Allows you to paste the same thing over and over and over and over
 xnoremap p pgvy
 
-" Maps Enter to cycle buffers
-" J does the same thing as enter in normal mode.
+" Cylces through splits using a double press of enter in normal mode
 nmap <CR><CR> <C-w><C-w>
 
 " Unmaps the arrow keys
@@ -268,11 +278,11 @@ map <Right> <nop>
 
 " Map : to ; (then remap ;)
 noremap ; :
-noremap <M-;> ;
 
 " Save files with root privliges
-cmap w!! w !sudo tee % > /dev/null
+cmap w!! w !sudo tee % >/dev/null
 
+" Terminal Splits
 cmap Hterm sp <bar> terminal
 cmap Vterm vsp <bar> terminal
 
@@ -294,11 +304,6 @@ nnoremap k gk
 vnoremap j gj
 vnoremap k gk
 
-nnoremap <S-J> }
-nnoremap <S-K> {
-vnoremap <S-J> }
-vnoremap <S-K> {
-
 " include the default behaviour by doing reverse mappings so you can move linewise with gj and gk:
 nnoremap gj j
 nnoremap gk k
@@ -314,8 +319,11 @@ nnoremap H 0
 vnoremap H 0
 vnoremap L $
 
-" Masha
+" unmap a in normal mode
 nmap a <nop>
+
+" za/az toggle folds
+" ezpz to spam open/close folds now
 nmap az za
 
 " Easier split navigation
@@ -323,12 +331,6 @@ nnoremap <Leader>h <C-W><C-H>
 nnoremap <Leader>j <C-W><C-J>
 nnoremap <Leader>k <C-W><C-K>
 nnoremap <Leader>l <C-W><C-L>
-
-" Automatically removes all trailing whitespaces on :w
-augroup RemWS
-	au!
-	autocmd BufWritePre * :%s/\s\+$//e
-augroup END
 
 " Shows the highlight group of whatever's under the cursor
 map <F10> :echo "hi<" . synIDattr(synID(line("."),col("."),1),"name") . '> trans<'
@@ -341,22 +343,19 @@ nmap <silent> <F1> :Webdev <CR>
 
 " Temp Files {{{
 
+" Fuck swapfiles
 set noswapfile
 
-" Stores all swap/backup files in a seperate directory
-set dir=~/.nvim/tmp/swap//
 set backupdir=~/.nvim/tmp/backups//
 set undodir=~/.nvim/tmp/undo//
 
 " Make those folders automatically if they don't already exist.
-if !isdirectory(expand(&undodir))
-	call mkdir(expand(&undodir), "p")
-endif
 if !isdirectory(expand(&backupdir))
 	call mkdir(expand(&backupdir), "p")
 endif
-if !isdirectory(expand(&directory))
-	call mkdir(expand(&directory), "p")
+
+if !isdirectory(expand(&undodir))
+	call mkdir(expand(&undodir), "p")
 endif
 
 " Persistent Undo, Vim remembers everything even after the file is closed.
@@ -370,10 +369,6 @@ set undoreload=500
 
 " Auto change dir to file directory
 set autochdir
-set ttyfast
-
-" Omni Func
-set omnifunc=syntaxcomplete#Complete
 
 " Use the OS clipboard by default
 set clipboard+=unnamedplus
@@ -390,13 +385,10 @@ set wildignore+=*/.sass-cache/*,*.map
 
 set backspace=indent,eol,start
 set esckeys
-
 set binary
 set noeol
 set showcmd
 set autoread
-
-" Stops vim from complaining when moving between buffers with unsaved files
 set hidden
 set noerrorbells
 
@@ -408,20 +400,12 @@ set complete=.,w,b,u,t
 set completeopt=longest,menuone,preview
 
 set nrformats-=octal
+set notimeout
+set nottimeout
 
 " More natural split opening
 set splitbelow
 set splitright
-
-" Timeout keycodes not mappings
-set notimeout
-set nottimeout
-
-" Stops auto adding of comments on new line
-augroup Format
-	au!
-	autocmd FileType * setlocal formatoptions-=c formatoptions-=r formatoptions-=o
-augroup END
 
 " }}}
 
@@ -431,9 +415,6 @@ set foldmethod=marker
 set foldlevel=99
 set foldlevelstart=0
 set foldnestmax=10
-
-" Fillchars
-set fillchars=fold:-
 
 " Only saves folds/cursor pos in mkview
 set viewoptions=folds,cursor
@@ -546,7 +527,7 @@ cabbrev h Help
 " Open man pages in vim
 function! ManPages(manpage)
 	enew
-	call termopen("man ".a:manpage)
+	call termopen("man " . a:manpage)
 	startinsert
 endfunction
 
@@ -568,15 +549,6 @@ function! LineReturn()
 		execute 'normal! g`"zvzzzm'
 	endif
 endfunction
-
-" }}}
-
-" HTML Auto Tag Close {{{
-
-augroup HTMLAutoTagClose
-	au!
-	autocmd FileType html inoremap <buffer> </ </<C-X><C-O>
-augroup END
 
 " }}}
 
