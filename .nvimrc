@@ -9,7 +9,7 @@ if has('nvim')
 	" Improve Neovim startup time
 	let g:python_host_skip_check= 1
 	let g:loaded_python_provider = 1
-	let g:loaded_python3_provider= 1
+	" let g:loaded_python3_provider= 1
 
 	" Enable true color for neovim
 	let $NVIM_TUI_ENABLE_TRUE_COLOR=1
@@ -120,12 +120,6 @@ Plug 'AndrewRadev/splitjoin.vim'
 	nmap <silent> sj :SplitjoinSplit<cr>
     nmap <silent> sk :SplitjoinJoin<cr>
 
-" Tiny Autocomplete
-Plug 'ajh17/VimCompletesMe'
-	" Tab in insert mode to autocomplete
-	imap <expr><TAB>  pumvisible() ? "\<C-n>" : "\<TAB>"
-	autocmd FileType text,markdown let b:vcm_tab_complete = 'dict'
-
 Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': 'yes \| ./install' }
 " FZF {{{
 	nnoremap <silent> <Leader>s :call fzf#run({
@@ -149,7 +143,7 @@ Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': 'yes \| ./install' }
 		return res
 	endfunction
 
-	nnoremap <silent> <Leader>a :call fzf#run({
+	nnoremap <silent> <Leader><Leader> :call fzf#run({
 	\   'source':  <sid>buffer_lines(),
 	\   'sink':    function('<sid>line_handler'),
 	\   'options': '--extended --nth=3..',
@@ -169,6 +163,13 @@ Plug 'jistr/vim-nerdtree-tabs'
 	let NERDTreeMapCloseDir = 'h'
 	let NERDTreeRespectWildIgnore = 1
 	nnoremap <silent> <Leader>d :NERDTreeTabsToggle <CR>
+
+" Tiny Autocomplete
+Plug 'ajh17/VimCompletesMe'
+	augroup Complete
+		au!
+		autocmd FileType text,markdown let b:vcm_tab_complete = 'dict'
+	augroup END
 
 " FILETYPES
 Plug 'mattn/emmet-vim'
@@ -405,8 +406,8 @@ set noerrorbells
 set nostartofline
 
 " Better auto complete
-set complete=.,w,b,u,t
-set completeopt=longest,menuone,preview
+set complete=.,w,b,u,t,i
+set completeopt=longest,menu,preview
 
 set nrformats-=octal
 set notimeout
