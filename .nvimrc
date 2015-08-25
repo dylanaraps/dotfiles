@@ -35,8 +35,12 @@ call plug#begin('~/.vim/plugged')
 
 " LOOKS
 
-" Colorscheme
+" My Plugins
 Plug '~/projects/crayon/master'
+" Plug '~/projects/taskrunner.nvim/'
+" Plug '~/projects/webdev.vim/'
+" 	let g:webdev_openin_browser = 0
+
 Plug 'bling/vim-airline'
 " Vim Airline {{{
 	" Always show statusline
@@ -48,7 +52,6 @@ Plug 'bling/vim-airline'
 	" Display only filename in tabs
 	let g:airline#extensions#tabline#fnamemod = ':t'
 	let g:airline#extensions#tabline#show_tabs = 0
-	let g:airline#extensions#tabline#excludes = ['terminal', 'gulp']
 
 	function AirlineTheme()
 		if g:airline_theme == "crayon2"
@@ -68,6 +71,12 @@ Plug 'bling/vim-airline'
 " }}}
 
 " FUNCTIONALITY
+" Sets directory to nearest .git folder
+Plug 'airblade/vim-rooter'
+	let g:rooter_disable_map = 1
+	let g:rooter_use_lcd = 1
+	let g:rooter_silent_chdir = 1
+
 Plug 'tpope/vim-fugitive'
 Plug 'wesQ3/vim-windowswap'
 	let g:windowswap_map_keys = 0
@@ -419,6 +428,8 @@ set foldnestmax=10
 " Only saves folds/cursor pos in mkview
 set viewoptions=folds,cursor
 
+set fillchars=fold:-
+
 " }}}
 
 " Functions {{{
@@ -454,6 +465,7 @@ endfunction
 
 function! OpenInBrowser(browser, htmlfile)
 	" Neovim segfaults if you sleep in a terminal that's running a command
+	" So I'm using this instead of a terminal buffer.
 	silent! execute "!" . a:browser . " " . a:htmlfile . " &"
 endfunction
 
@@ -467,7 +479,7 @@ command! Webdev call OpenFiles() | call RunTask("gulp", "10new") | call NerdTree
 
 function! BetterBufferNav(bcmd)
 	if &modifiable == 1 || &ft == 'help'
-		exe a:bcmd
+		execute a:bcmd
 	else
 		wincmd w
 	endif
@@ -541,7 +553,7 @@ cabbrev man Man
 " On fold open your cursor is on the line you were at on the fold.
 augroup line_return
 	au!
-	au BufReadPost * :call LineReturn()
+	autocmd BufReadPost * :call LineReturn()
 augroup END
 
 function! LineReturn()
