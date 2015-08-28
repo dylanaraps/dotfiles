@@ -9,7 +9,7 @@ if has('nvim')
 	" Improve Neovim startup time
 	let g:python_host_skip_check= 1
 	let g:loaded_python_provider = 1
-	" let g:loaded_python3_provider= 1
+	let g:loaded_python3_provider= 1
 
 	" Enable true color for neovim
 	let $NVIM_TUI_ENABLE_TRUE_COLOR=1
@@ -36,10 +36,12 @@ call plug#begin('~/.vim/plugged')
 " LOOKS
 
 " My Plugins
-Plug '~/projects/crayon/master'
-" Plug '~/projects/taskrunner.nvim/'
-" Plug '~/projects/webdev.vim/'
-" 	let g:webdev_openin_browser = 0
+Plug '~/projects/vim/crayon/master'
+Plug '~/projects/vim/simplerooter.vim/'
+Plug '~/projects/vim/taskrunner.nvim/'
+	" let g:taskrunner#dirs_to_go_up = 1
+	let g:taskrunner#split = "8new"
+	let g:simplerooter#auto = 0
 
 Plug 'bling/vim-airline'
 " Vim Airline {{{
@@ -70,13 +72,13 @@ Plug 'bling/vim-airline'
 
 " }}}
 
-" FUNCTIONALITY
 " Sets directory to nearest .git folder
 Plug 'airblade/vim-rooter'
 	let g:rooter_disable_map = 1
 	let g:rooter_use_lcd = 1
 	let g:rooter_silent_chdir = 1
 
+" FUNCTIONALITY
 Plug 'tpope/vim-fugitive'
 Plug 'wesQ3/vim-windowswap'
 	let g:windowswap_map_keys = 0
@@ -388,6 +390,7 @@ set dictionary=/usr/share/dict/words
 
 " Enhance command-line completion
 set wildmenu
+set wildmode=longest,full
 set wildignore+=*/.hg/*,*/.git/*,*/.svn/*
 set wildignore+=*.gif,*.png,*.jp*
 set wildignore+=*/tmp/*,*.so,*.swp,*.zip
@@ -538,13 +541,7 @@ cabbrev h Help
 
 " Man Pages {{{
 " Open man pages in vim
-function! ManPages(manpage)
-	enew
-	call termopen("man " . a:manpage)
-	startinsert
-endfunction
-
-command -nargs=1 -complete=shellcmd Man call ManPages(<f-args>)
+command -nargs=1 -complete=shellcmd Man terminal man <args>
 cabbrev man Man
 
 " }}}
