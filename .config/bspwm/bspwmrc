@@ -43,6 +43,8 @@ bspc rule -a qutebrowser desktop=$ws1 follow=no
 
 # Workspace 3
 bspc rule -a Wine desktop=$ws3 floating=on
+bspc rule -a Hearthstone.exe desktop=$ws3 floating=on
+bspc rule -a Battle.net.exe desktop=$ws3 floating=on
 bspc rule -a Steam desktop=$ws3 floating=on follow=no
 
 # Workspace 4

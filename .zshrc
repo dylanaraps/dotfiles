@@ -49,7 +49,7 @@ export pink="CC99B3"
 # }}}
 
 # Lemonbar {{{
-export barfont="lemon:size=12"
+export barfont="lemon:size=6"
 export baricons="-wuncon-siji-medium-r-normal--10-100-75-75-c-80-iso10646-1"
 
 export barheight=20

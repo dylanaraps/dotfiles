@@ -37,11 +37,12 @@ call plug#begin('~/.vim/plugged')
 
 " My Plugins
 Plug '~/projects/vim/crayon/master'
-Plug '~/projects/vim/simplerooter.vim/'
+Plug '~/projects/vim/root.vim/'
 Plug '~/projects/vim/taskrunner.nvim/'
 	" let g:taskrunner#dirs_to_go_up = 1
 	let g:taskrunner#split = "8new"
-	let g:simplerooter#auto = 0
+	let g:root#auto = 1
+	let g:root#echo = 0
 
 Plug 'bling/vim-airline'
 " Vim Airline {{{
@@ -71,12 +72,6 @@ Plug 'bling/vim-airline'
 	augroup END
 
 " }}}
-
-" Sets directory to nearest .git folder
-Plug 'airblade/vim-rooter'
-	let g:rooter_disable_map = 1
-	let g:rooter_use_lcd = 1
-	let g:rooter_silent_chdir = 1
 
 " FUNCTIONALITY
 Plug 'tpope/vim-fugitive'

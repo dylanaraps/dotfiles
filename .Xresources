@@ -1,7 +1,7 @@
 ! Dylans Xresources
 
 ! Adds padding around terminal text
-URxvt.font: xft:envypn-13:pixelsize-13
+URxvt.font: xft:envypn-8:pixelsize-8
 xterm*termName: xterm-256color
 
 ! Disables Scrollbar
