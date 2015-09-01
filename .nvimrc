@@ -31,12 +31,16 @@ if empty(glob('~/.nvim/autoload/plug.vim'))
 	autocmd VimEnter * PlugInstall
 endif
 
-call plug#begin('~/.vim/plugged')
+call plug#begin('~/.nvim/plugged')
 
 " LOOKS
 
 " My Plugins
 Plug '~/projects/crayon'
+Plug 'morhetz/gruvbox'
+	let g:gruvbox_italic = 0
+	let g:gruvbox_contrast = "hard"
+
 Plug '~/projects/root.vim/'
 Plug '~/projects/taskrunner.nvim/'
 	" let g:taskrunner#dirs_to_go_up = 1

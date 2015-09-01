@@ -28,9 +28,9 @@ URxvt.keysym.C-f: \
 #define gray02	#383E47
 #define gray03	#586270
 #define gray04	#798494
-#define gray05	#BCC5D1
-#define gray06	#D8D8D8
-#define white	#FDFEFF
+#define gray05	#A7AFBA
+#define gray06	#CCCCCC
+#define white	#DCE3EA
 
 ! Colors
 #define red		#B27B78
@@ -47,7 +47,7 @@ URxvt.keysym.C-f: \
 *.cursorColor:  gray06
 
 *.color0:       black
-*.color1:       orange
+*.color1:       red
 *.color2:       green
 *.color3:       yellow
 *.color4:       blue
@@ -56,7 +56,7 @@ URxvt.keysym.C-f: \
 *.color7:       gray05
 
 *.color8:       gray03
-*.color9:       red
+*.color9:       orange
 *.color10:      gray01
 *.color11:      gray02
 *.color12:      gray04
