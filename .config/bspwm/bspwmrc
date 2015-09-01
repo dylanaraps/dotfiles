@@ -58,13 +58,13 @@ bspc rule -a feh floating=on
 bspc rule -a thunar floating=on
 
 # nitrogen --restore &
-~/.dotfiles/scripts/wallpaper.sh &
+~/dotfiles/scripts/wallpaper.sh &
 # feh --bg-fill ~/Pictures/papes/girl/10.png
 
 # lemonbar
-~/.dotfiles/.config/lemonbar/clock.sh &
+~/dotfiles/.config/lemonbar/clock.sh &
 sleep .3s &&
-~/.dotfiles/.config/lemonbar/workspace.sh &
+~/dotfiles/.config/lemonbar/workspace.sh &
 sleep .3s &&
-~/.dotfiles/.config/lemonbar/music.sh &
+~/dotfiles/.config/lemonbar/music.sh &
 

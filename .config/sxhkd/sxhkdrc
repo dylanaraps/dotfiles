@@ -53,7 +53,7 @@ super + Escape
 
 # Open Terminal
 super + Return
-	~/.dotfiles/scripts/bspwm/urxvt.sh &
+	~/dotfiles/scripts/bspwm/urxvt.sh &
 	# urxvt --geometry 110x60
 	#-lsp 1
 
@@ -63,7 +63,7 @@ super + d
 
 # Change wallpaper to random image from folder
 super + w
-	~/.dotfiles/scripts/wallpaper2.sh
+	~/dotfiles/scripts/wallpaper2.sh
 
 # Laptop hotkeys {{{
 XF86MonBrightnessUp

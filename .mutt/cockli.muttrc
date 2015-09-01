@@ -1,0 +1,12 @@
+set folder      = imaps://mail.cock.li/
+set imap_user   = dyl@tfwno.gf
+set imap_pass   = mlpv17UEG7lLsVvBIY7LlsnIc0gk080+AChzddunPHM6Dq7bh23o5YOyw34R+7vXOAUG0lrT6W0V7+vk/S6PGXhSe+1G98mm0Avr
+set spoolfile   = +INBOX
+mailboxes       = +INBOX
+set header_cache = ~/.cache/mutt
+set message_cachedir = "~/.cache/mutt"
+set postponed = +Drafts
+unset imap_passive
+set imap_keepalive = 300
+set mail_check = 120
+set smtp_url=smtps://$imap_user:$imap_pass@tfwno.gf

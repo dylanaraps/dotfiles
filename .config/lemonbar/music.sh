@@ -25,16 +25,16 @@ music(){
 # Volume {{{
 
 volume(){
-	volup="A4:pulseaudio-ctl up:"
-	voldown="A5:pulseaudio-ctl down:"
-	volmute="A:pulseaudio-ctl mute:"
+	volup="A4:amixer set Master 5%+:"
+ 	voldown="A5:amixer set Master 5%-:"
+ 	volmute="A:amixer set Master toggle:"
 
 	# Volume Indicator
-	if [[ $(pulseaudio-ctl full-status | awk '/ / {printf $2}') == "yes" ]]; then
+	if [[ $(amixer get Master | awk '/Mono:/ {print $6}') == "[off]" ]]; then
 		vol=$(echo " Mute")
 		icon=
 	else
-		mastervol=$(pulseaudio-ctl full-status | awk '/ / {printf $1}')
+		mastervol=$(amixer get Master | egrep -o '[0-9]{1,3}%' | sed -e 's/%//')
 		vol=$(echo " $mastervol")
 		icon=
 	fi

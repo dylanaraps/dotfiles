@@ -11,10 +11,9 @@ xset r rate 400 25
 xset m 0/0 0
 
 # Font paths
-xset +fp /usr/share/fonts/envypnforpowerline
 xset +fp /usr/share/fonts/envypn
-xset +fp /usr/share/fonts/sijipatched
-xset +fp ~/.fonts/sijipatched
+xset +fp /usr/share/fonts/misc/
+xset +fp ~/.fonts
 xset fp rehash
 
 # Multi monitor
@@ -22,7 +21,7 @@ if [[ $(xrandr | awk '/DFP10/ {print $1}') == "DFP10" ]]; then
 	xrandr --output DFP10 --auto --primary --left-of DFP11 --output DFP11 --auto &
 fi
 
-pulseaudio --start &
+# pulseaudio --start &
 
 # Launches mpd
 mpd &

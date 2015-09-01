@@ -49,7 +49,7 @@ export pink="CC99B3"
 # }}}
 
 # Lemonbar {{{
-export barfont="lemon:size=6"
+export barfont="-benis-lemon-medium-r-normal--10-110-75-75-m-50-iso8859-1"
 export baricons="-wuncon-siji-medium-r-normal--10-100-75-75-c-80-iso10646-1"
 
 export barheight=20
@@ -93,7 +93,7 @@ alias cmp="compton -b --config ~/.compton"
 
 # Aliases to start/kill bar
 alias killbar="pkill ~/.config/lemonbar/clock.sh & pkill ~/.config/lemonbar/workspace.sh & pkill ~/.config/lemonbar/music.sh & pkill lemonbar & pkill orangebar"
-alias startbar="~/.dotfiles/.config/lemonbar/clock.sh & sleep .5s && ~/.dotfiles/.config/lemonbar/workspace.sh & ~/.dotfiles/.config/lemonbar/music.sh"
+alias startbar="~/dotfiles/.config/lemonbar/clock.sh & sleep .5s && ~/dotfiles/.config/lemonbar/workspace.sh & ~/dotfiles/.config/lemonbar/music.sh"
 
 # Webdev
 alias mksite="~/.dotfiles/scripts/webdev/webdev.sh"
@@ -102,6 +102,8 @@ alias mksite="~/.dotfiles/scripts/webdev/webdev.sh"
 alias startx='ssh-agent startx'
 
 alias feh='feh --auto-zoom --scale-down -g 640 -B black'
+
+alias battle.net='wine ~/.wine/drive_c/Program\ Files\ \(x86\)/Battle.net/Battle.net.exe &'
 
 # }}}
 
@@ -131,4 +133,8 @@ setopt nohashdirs
 
 if [ -d "$HOME/bin" ] ; then
   PATH="$HOME/bin:$PATH"
+fi
+
+if [ -d "$HOME/.gem/ruby/2.2.0/bin" ] ; then
+  PATH="$HOME/.gem/ruby/2.2.0/bin:$PATH"
 fi

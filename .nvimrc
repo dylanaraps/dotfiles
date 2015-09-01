@@ -36,9 +36,9 @@ call plug#begin('~/.vim/plugged')
 " LOOKS
 
 " My Plugins
-Plug '~/projects/vim/crayon/master'
-Plug '~/projects/vim/root.vim/'
-Plug '~/projects/vim/taskrunner.nvim/'
+Plug '~/projects/crayon'
+Plug '~/projects/root.vim/'
+Plug '~/projects/taskrunner.nvim/'
 	" let g:taskrunner#dirs_to_go_up = 1
 	let g:taskrunner#split = "8new"
 	let g:root#auto = 1
@@ -48,7 +48,7 @@ Plug 'bling/vim-airline'
 " Vim Airline {{{
 	" Always show statusline
 	set laststatus=2
-	let g:airline_powerline_fonts = 1
+	let g:airline_powerline_fonts = 0
 	let g:airline_theme = 'crayon2'
 	let g:airline#extensions#tabline#enabled = 1
 
@@ -118,36 +118,10 @@ Plug 'AndrewRadev/splitjoin.vim'
     nmap <silent> sk :SplitjoinJoin<cr>
 
 Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': 'yes \| ./install' }
-" FZF {{{
 	nnoremap <silent> <Leader>s :call fzf#run({
 	\	'window': '5new',
 	\   'sink': 'e'
 	\ })<CR>
-
-	function! s:line_handler(l)
-		let keys = split(a:l, ':\t')
-		exec 'buf' keys[0]
-		exec keys[1]
-		normal! za
-		normal! ^zz
-	endfunction
-
-	function! s:buffer_lines()
-		let res = []
-		for b in filter(range(1, bufnr('$')), 'buflisted(v:val)')
-			call extend(res, map(getbufline(b,0,"$"), 'b . ":\t" . (v:key + 1) . ":\t" . v:val '))
-		endfor
-		return res
-	endfunction
-
-	nnoremap <silent> <Leader><Leader> :call fzf#run({
-	\   'source':  <sid>buffer_lines(),
-	\   'sink':    function('<sid>line_handler'),
-	\   'options': '--extended --nth=3..',
-	\   'window': '5new'
-	\ })<CR>
-
-	" }}}
 
 " Nerd Tree
 Plug 'scrooloose/nerdtree'
@@ -201,6 +175,10 @@ augroup Filetypes
 " Markdown
 	" set .md files to filetype markdown
 	autocmd BufNewFile,BufRead *.md set filetype=markdown
+
+" rtorrent config file
+	" set filetype to zsh so that comments are correctly highlighted
+	autocmd BufEnter,BufNewFile .rtorrent.rc set filetype=zsh
 
 augroup END
 
@@ -445,14 +423,6 @@ function! OpenFiles()
 	1buffer
 endfunction
 
-function! RunTask(taskrunner, buffersize)
-	execute a:buffersize
-	call termopen(a:taskrunner)
-	setlocal nomodifiable
-	setlocal nobuflisted
-	wincmd w
-endfunction
-
 function! NerdTree()
 	silent! if g:loaded_nerd_tree
 		NERDTreeTabsOpen
@@ -468,7 +438,7 @@ function! OpenInBrowser(browser, htmlfile)
 	silent! execute "!" . a:browser . " " . a:htmlfile . " &"
 endfunction
 
-command! Webdev call OpenFiles() | call RunTask("gulp", "10new") | call NerdTree() | call OpenInBrowser("qutebrowser", "index.html")
+command! Webdev call OpenFiles() | call NerdTree() | call OpenInBrowser("qutebrowser", "index.html") | Task
 
 " }}}
 
@@ -497,7 +467,7 @@ nmap <silent> <S-Tab> :call BetterBufferNav("bp") <Cr>
 function QuitTerminal()
 	setlocal buflisted
 	silent! bd! quickterm
-	silent! bd! term://*//*:FZF
+	silent! bd! term://*//*/home/dyl/.fzf/bin/fzf*
 	silent! bd! term://*//*:man*
 endfunction
 
