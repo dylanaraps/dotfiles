@@ -13,24 +13,12 @@ xset m 0/0 0
 # Font paths
 xset +fp /usr/share/fonts/envypn
 xset +fp /usr/share/fonts/misc/
+xset +fp /usr/share/fonts/artwiz-fonts/
 xset +fp ~/.fonts
 xset fp rehash
 
 # Multi monitor
-if [[ $(xrandr | awk '/DFP10/ {print $1}') == "DFP10" ]]; then
-	xrandr --output DFP10 --auto --primary --left-of DFP11 --output DFP11 --auto &
-fi
-
-# pulseaudio --start &
-
-# Launches mpd
-mpd &
-
-# auto usb mount
-devmon &
-
-# Compton
-compton -b --config ~/.compton
+xrandr --output DVI-0 --mode 1600x900 --rate 60 --left-of DVI-1 --output DVI-1 --mode 1280x1024 --rate 75 &
 
 # starts bspwm
 sxhkd -f 100 &

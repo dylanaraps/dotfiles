@@ -19,7 +19,7 @@ follow_now_playing_lyrics = "yes"
 jump_to_now_playing_song_at_start = "yes"
 playlist_display_mode = "classic"
 song_columns_list_format = "(5)[blue]{} (40)[blue]{a} (48)[white]{t} (4)[cyan]{l}"
-song_list_format = "$5 %a $R $2 %t $8 %l"
+song_list_format = "$5 %a $R $8 %t $5 %l"
 
 # Tag Editor
 generate_win32_compatible_filenames = "yes"

@@ -1,19 +1,6 @@
 #!/bin/bash
 # Worksapce Switcher
-
-# Variables {{{
-
-if [[ $(xrandr | awk '/DFP10/ {print $1}') == "DFP10" ]]; then
-	size="1600x$barheight"
-
-elif [[ $(xrandr | awk '/eDP1/ {print $1}') == "eDP1" ]]; then
-	size="1366x$barheight"
-
-else
-	size=""
-fi
-
-# }}}
+size="1600x$barheight"
 
 # Clock {{{
 

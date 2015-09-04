@@ -9,6 +9,11 @@ URxvt.scrollBar: false
 ! Sets urxvt as login shell
 URxvt*loginShell: true
 
+! Speed up loading of alsamixer on ati
+URxvt*skipBuiltinGlyphs: true
+
+URxvt.internalBorder: 4
+
 ! Enables copy/paste
 URxvt.iso14755: False
 URxvt.perl-ext-common: clipboard
@@ -23,28 +28,28 @@ URxvt.keysym.C-f: \
 ! Crayon Theme {{{
 
 ! Shades
-#define black	#101112
-#define gray01	#282C33
-#define gray02	#383E47
-#define gray03	#586270
-#define gray04	#798494
-#define gray05	#A7AFBA
-#define gray06	#CCCCCC
-#define white	#DCE3EA
+#define black	#0E1114
+#define gray01	#222A33
+#define gray02	#2B3647
+#define gray03	#485870
+#define gray04	#607594
+#define gray05	#96B0D1
+#define gray06	#8F98BF
+#define white	#CFDAE6
 
 ! Colors
-#define red		#B27B78
-#define orange	#C48D62
-#define yellow	#D8C27A
-#define green	#99AE63
-#define cyan	#8DC9C3
-#define blue	#7495B6
-#define magenta	#B59CD8
-#define pink 	#CC99B3
+#define red		#734745
+#define orange	#997254
+#define yellow	#A69253
+#define green	#637339
+#define cyan	#6A9994
+#define blue	#406080
+#define magenta	#5A4080
+#define pink 	#804060
 
-*.foreground:   gray06
+*.foreground:   white
 *.background:   black
-*.cursorColor:  gray06
+*.cursorColor:  white
 
 *.color0:       black
 *.color1:       red
@@ -65,3 +70,4 @@ URxvt.keysym.C-f: \
 *.color15:      white
 
 ! }}}
+

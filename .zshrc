@@ -1,50 +1,34 @@
 # Dylan's zhrc
-
-# Path to your oh-my-zsh installation.
-export ZSH=~/.oh-my-zsh
-
 export TERM=rxvt-unicode-256color
-
-# Zsh settings
-ZSH_THEME="fishy"
-DEFAULT_USER="dylan"
-ENABLE_CORRECTION="false"
-COMPLETION_WAITING_DOTS="true"
-DISABLE_UNTRACKED_FILES_DIRTY="true"
-
-# Plugins
-plugins=(git)
-
-# User configuration
-source $ZSH/oh-my-zsh.sh
-source /usr/share/zsh/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
 
 # Sets editor to neovim
 export EDITOR='nvim'
 
+# Sets ccache location to ssd
+export CCACHE_DIR=~/.ccache
+
 # Global Variables {{{
 
-# Crayon  {{{
+# Crayon Dark {{{
 
-# Crayon
+export black="0E1114"
+export gray01="222A33"
+export gray02="2B3647"
+export gray03="485870"
+export gray04="607594"
+export gray05="96B0D1"
+export gray06="8F98BF"
+export white="CFDAE6"
+export white2="E6F2FF"
 
-export black="101112"
-export gray01="282C33"
-export gray02="383E47"
-export gray03="586270"
-export gray04="798494"
-export gray05="A7AFBA"
-export gray06="CCCCCC"
-export white="DCE3EA"
-
-export red="B27B78"
-export orange="C48D62"
-export yellow="D8C27A"
-export green="99AE63"
-export cyan="8DC9C3"
-export blue="7495B6"
-export magenta="B59CD8"
-export pink="CC99B3"
+export red="734745"
+export orange="997254"
+export yellow="A69253"
+export green="637339"
+export cyan="6A9994"
+export blue="406080"
+export magenta="5A4080"
+export pink="804060"
 
 # }}}
 
@@ -52,7 +36,7 @@ export pink="CC99B3"
 export barfont="-benis-lemon-medium-r-normal--10-110-75-75-m-50-iso8859-1"
 export baricons="-wuncon-siji-medium-r-normal--10-100-75-75-c-80-iso10646-1"
 
-export barheight=20
+export barheight=23
 
 # }}}
 
@@ -103,10 +87,11 @@ alias startx='ssh-agent startx'
 
 alias feh='feh --auto-zoom --scale-down -g 640 -B black'
 
-alias battle.net='wine ~/.wine/drive_c/Program\ Files\ \(x86\)/Battle.net/Battle.net.exe &'
+alias wine= 'thread_submit=true wine'
 
 # }}}
 
+# FZF {{{
 export FZF_DEFAULT_COMMAND='ag -l -g "" --hidden'
 
 export FZF_DEFAULT_OPTS='
@@ -115,26 +100,50 @@ export FZF_DEFAULT_OPTS='
   --multi
 '
 
-# Misc
-# Enables the help command
-autoload -U compinit
-compinit
-
-autoload -U run-help
-autoload run-help-git
-autoload run-help-svn
-autoload run-help-svk
-unalias run-help
-alias help=run-help
-
-setopt nohashdirs
-
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
+# }}}
 
+# Paths {{{
 if [ -d "$HOME/bin" ] ; then
   PATH="$HOME/bin:$PATH"
 fi
 
 if [ -d "$HOME/.gem/ruby/2.2.0/bin" ] ; then
-  PATH="$HOME/.gem/ruby/2.2.0/bin:$PATH"
+  PATH="$home/.gem/ruby/2.2.0/bin:$PATH"
 fi
+# }}}
+
+# Enable completion and prompt
+autoload -U compinit promptinit
+compinit
+promptinit
+
+# Better tab completion
+zstyle ':completion:*' menu select
+
+# Complete Aliases
+setopt completealiases
+
+# Enable colors in prompt
+autoload -U colors && colors
+
+PROMPT="%{$fg_bold[white]%} %n %{$fg_no_bold[white]%}%~ %{$fg_no_bold[yellow]%}>"
+
+RPROMPT="%{$fg_bold[cyan]%}%t %{$reset_color%}"
+
+# History File
+HISTSIZE=1000
+SAVEHIST=1000
+HISTFILE=~/.zsh_history
+
+# Assume a command is cd if it's a directory
+setopt autocd
+setopt sharehistory
+
+source /usr/share/zsh/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
+source ~/builds/zsh-history-substring-search/zsh-history-substring-search.zsh
+
+# bind UP and DOWN arrow keys
+zmodload zsh/terminfo
+bindkey "$terminfo[kcuu1]" history-substring-search-up
+bindkey "$terminfo[kcud1]" history-substring-search-down

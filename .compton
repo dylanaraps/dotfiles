@@ -1,40 +1,41 @@
 # Dylan's Compton config
+backend = "glx"
 
-#################################
-# Shadows
-#################################
+# #################################
+# # Shadows
+# #################################
 
-# Enabled client-side shadows on windows.
-shadow = true;
-# Don't draw shadows on DND windows.
-no-dnd-shadow = true;
-# Avoid drawing shadows on dock/panel windows.
-no-dock-shadow = false;
-# Zero the part of the shadow's mask behind the window. Fix some weirdness with ARGB windows.
-clear-shadow = true;
-# The blur radius for shadows. (default 12)
-shadow-radius = 4;
-# The left offset for shadows. (default -15)
-shadow-offset-x = -5;
-# The top offset for shadows. (default -15)
-shadow-offset-y = -5;
-# The translucency for shadows. (default .75)
-shadow-opacity = 0.85;
+# # Enabled client-side shadows on windows.
+# shadow = false;
+# # Don't draw shadows on DND windows.
+# no-dnd-shadow = true;
+# # Avoid drawing shadows on dock/panel windows.
+# no-dock-shadow = false;
+# # Zero the part of the shadow's mask behind the window. Fix some weirdness with ARGB windows.
+# clear-shadow = true;
+# # The blur radius for shadows. (default 12)
+# shadow-radius = 4;
+# # The left offset for shadows. (default -15)
+# shadow-offset-x = -5;
+# # The top offset for shadows. (default -15)
+# shadow-offset-y = -5;
+# # The translucency for shadows. (default .75)
+# shadow-opacity = 0.85;
 
-# Set if you want different colour shadows
-shadow-red = 0.03;
-shadow-green = 0.03;
-shadow-blue = 0.04;
+# # Set if you want different colour shadows
+# shadow-red = 0.03;
+# shadow-green = 0.03;
+# shadow-blue = 0.04;
 
-# The shadow exclude options are helpful if you have shadows enabled. Due to the way compton draws its shadows, certain applications will have visual glitches
-# (most applications are fine, only apps that do weird things with xshapes or argb are affected).
-# This list includes all the affected apps I found in my testing. The "! name~=''" part excludes shadows on any "Unknown" windows, this prevents a visual glitch with the XFWM alt tab switcher.
-shadow-exclude = [
-   "name ?= 'kek'"
-];
+# # The shadow exclude options are helpful if you have shadows enabled. Due to the way compton draws its shadows, certain applications will have visual glitches
+# # (most applications are fine, only apps that do weird things with xshapes or argb are affected).
+# # This list includes all the affected apps I found in my testing. The "! name~=''" part excludes shadows on any "Unknown" windows, this prevents a visual glitch with the XFWM alt tab switcher.
+# shadow-exclude = [
+#    "name ?= 'kek'"
+# ];
 
 # Avoid drawing shadow on all shaped windows (see also: --detect-rounded-corners)
-shadow-ignore-shaped = false;
+# shadow-ignore-shaped = false;
 
 #################################
 # Opacity
@@ -43,33 +44,33 @@ shadow-ignore-shaped = false;
 frame-opacity = 0.8;
 
 opacity-rule = [
-	"95:class_g = 'URxvt'",
-	"95:class_g = 'xfce5-terminal'",
-	"95:name = 'kek'",
-	"95:name = 'bar'",
-	"95:class_g = 'Firefox'",
-	"95:class_g = 'qutebrowser'",
-	"95:class_g = 'Thunar'"
+	"97:class_g = 'URxvt'",
+	"97:class_g = 'xfce4-terminal'",
+	"97:name = 'kek'",
+	"97:name = 'bar'",
+	"97:class_g = 'Firefox'",
+	"97:class_g = 'qutebrowser'",
+	"97:class_g = 'Thunar'"
 ];
 
 #################################
 # Other
 #################################
 
-# Try to detect WM windows and mark them as active.
-mark-wmwin-focused = true;
-# Mark all non-WM but override-redirect windows active (e.g. menus).
-mark-ovredir-focused = true;
-# Use EWMH _NET_WM_ACTIVE_WINDOW to determine which window is focused instead of using FocusIn/Out events.
-# Usually more reliable but depends on a EWMH-compliant WM.
-use-ewmh-active-win = true;
-# Detect rounded corners and treat them as rectangular when --shadow-ignore-shaped is on.
-detect-rounded-corners = true;
+# # Try to detect WM windows and mark them as active.
+# mark-wmwin-focused = true;
+# # Mark all non-WM but override-redirect windows active (e.g. menus).
+# mark-ovredir-focused = true;
+# # Use EWMH _NET_WM_ACTIVE_WINDOW to determine which window is focused instead of using FocusIn/Out events.
+# # Usually more reliable but depends on a EWMH-compliant WM.
+# use-ewmh-active-win = true;
+# # Detect rounded corners and treat them as rectangular when --shadow-ignore-shaped is on.
+# detect-rounded-corners = true;
 
-# Detect _NET_WM_OPACITY on client windows, useful for window managers not passing _NET_WM_OPACITY of client windows to frame windows.
-# This prevents opacity being ignored for some apps.
-# For example without this enabled my xfce4-notifyd is 100% opacity no matter what.
-detect-client-opacity = true;
+# # Detect _NET_WM_OPACITY on client windows, useful for window managers not passing _NET_WM_OPACITY of client windows to frame windows.
+# # This prevents opacity being ignored for some apps.
+# # For example without this enabled my xfce4-notifyd is 100% opacity no matter what.
+# detect-client-opacity = true;
 
 # Set VSync method. VSync methods currently available:
 # none: No VSync
@@ -79,18 +80,18 @@ detect-client-opacity = true;
 # opengl-swc: Try to VSync with SGI_swap_control OpenGL extension. Only work on some drivers. Works only with GLX backend. Known to be most effective on many drivers. Does not actually control paint timing, only buffer swap is affected, so it doesn’t have the effect of --sw-opti unlike other methods. Experimental.
 # opengl-mswc: Try to VSync with MESA_swap_control OpenGL extension. Basically the same as opengl-swc above, except the extension we use.
 # (Note some VSync methods may not be enabled at compile time.)
-vsync = "opengl";
+vsync = "opengl-swc";
 
 # Enable DBE painting mode, intended to use with VSync to (hopefully) eliminate tearing.
 # Reported to have no effect, though.
-dbe = true;
+# dbe = false;
 # Painting on X Composite overlay window. Recommended.
 paint-on-overlay = true;
 
 # Limit compton to repaint at most once every 1 / refresh_rate second to boost performance.
 # This should not be used with --vsync drm/opengl/opengl-oml as they essentially does --sw-opti's job already,
 # unless you wish to specify a lower refresh rate than the actual value.
-sw-opti = false;
+sw-opti = true;
 
 # Unredirect all windows if a full-screen opaque window is detected, to maximize performance for full-screen windows, like games.
 # Known to cause flickering when redirecting/unredirecting windows.

@@ -12,10 +12,10 @@ if has('nvim')
 	let g:loaded_python3_provider= 1
 
 	" Enable true color for neovim
-	let $NVIM_TUI_ENABLE_TRUE_COLOR=1
+	let $NVIM_TUI_ENABLE_TRUE_COLOR = 1
 
 	" Sexy cursor
-	let $NVIM_TUI_ENABLE_CURSOR_SHAPE=1
+	let $NVIM_TUI_ENABLE_CURSOR_SHAPE = 1
 
 	tnoremap <silent> <Esc> <C-\><C-n>:call QuitTerminal()<CR>
 endif
@@ -36,10 +36,7 @@ call plug#begin('~/.nvim/plugged')
 " LOOKS
 
 " My Plugins
-Plug '~/projects/crayon'
-Plug 'morhetz/gruvbox'
-	let g:gruvbox_italic = 0
-	let g:gruvbox_contrast = "hard"
+Plug '~/projects/crayondark'
 
 Plug '~/projects/root.vim/'
 Plug '~/projects/taskrunner.nvim/'
@@ -49,33 +46,20 @@ Plug '~/projects/taskrunner.nvim/'
 	let g:root#echo = 0
 
 Plug 'bling/vim-airline'
-" Vim Airline {{{
 	" Always show statusline
 	set laststatus=2
 	let g:airline_powerline_fonts = 0
-	let g:airline_theme = 'crayon2'
-	let g:airline#extensions#tabline#enabled = 1
+	let g:airline_theme = 'crayondark'
+	let g:airline#extensions#tabline#enabled = 0
 
 	" Display only filename in tabs
 	let g:airline#extensions#tabline#fnamemod = ':t'
 	let g:airline#extensions#tabline#show_tabs = 0
-
-	function AirlineTheme()
-		if g:airline_theme == "crayon2"
-			let g:airline_left_sep=''
-			let g:airline_right_sep=''
-			let g:airline_left_alt_sep=''
-			let g:airline_right_alt_sep=''
-			let g:airline#extensions#tabline#show_tab_type = 0
-		endif
-	endfunction
-
-	augroup Airline
-		au!
-		autocmd VimEnter * call AirlineTheme()
-	augroup END
-
-" }}}
+	let g:airline_left_sep=''
+	let g:airline_right_sep=''
+	let g:airline_left_alt_sep=''
+	let g:airline_right_alt_sep=''
+	let g:airline#extensions#tabline#show_tab_type = 0
 
 " FUNCTIONALITY
 Plug 'tpope/vim-fugitive'
@@ -159,30 +143,33 @@ call plug#end()
 
 " }}}
 
-" Filetypes {{{
+" Filetypes {{c>
 
 filetype plugin indent on
 
 augroup Filetypes
-	au!
+au!
 
 " All Filetypes
-	" Disable comment on newline
-	autocmd FileType * setlocal formatoptions-=c formatoptions-=r formatoptions-=o
-	" Remove Whitespace on save
-	autocmd BufWritePre * :%s/\s\+$//e
+" Disable comment on newline
+autocmd FileType * setlocal formatoptions-=c formatoptions-=r formatoptions-=o
+" Remove Whitespace on save
+autocmd BufWritePre * :%s/\s\+$//e
+
+" Clear cmdline on bufread/enter
+autocmd BufEnter,BufReadPost,BufWinEnter * redraw!
 
 " Html
-	" Map </ to auto close tags
-	autocmd FileType html inoremap <buffer> </ </<C-X><C-O>
+" Map </ to auto close tags
+autocmd FileType html inoremap <buffer> </ </<C-X><C-O>
 
 " Markdown
-	" set .md files to filetype markdown
-	autocmd BufNewFile,BufRead *.md set filetype=markdown
+" set .md files to filetype markdown
+autocmd BufNewFile,BufRead *.md set filetype=markdown
 
 " rtorrent config file
-	" set filetype to zsh so that comments are correctly highlighted
-	autocmd BufEnter,BufNewFile .rtorrent.rc set filetype=zsh
+" set filetype to zsh so that comments are correctly highlighted
+autocmd BufEnter,BufNewFile .rtorrent.rc set filetype=zsh
 
 augroup END
 
@@ -222,14 +209,14 @@ set title
 syntax on
 set background=dark
 set number
-set ruler
+set noruler
 set noequalalways
 
 " Don’t show the intro message when starting Vim
 set shortmess=atI
 set noshowmode
 
-colorscheme crayon
+colorscheme crayondark
 
 " }}}
 
@@ -251,6 +238,9 @@ vnoremap <SPACE> <nop>
 cabbrev Wq wq
 cabbrev W w
 cabbrev Q q
+
+" K
+nnoremap K <nop>
 
 " Copies what was just pasted
 " Allows you to paste the same thing over and over and over and over
