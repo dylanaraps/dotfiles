@@ -73,3 +73,5 @@ sleep .3s &&
 ~/dotfiles/.config/lemonbar/workspace.sh &
 sleep .3s &&
 ~/dotfiles/.config/lemonbar/music.sh &
+
+~/dotfiles/afterx.sh &
