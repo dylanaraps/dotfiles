@@ -19,6 +19,8 @@ super + v
 super + g
 	bspc window -p right
 
+super + `
+	bspc desktop -f term
 
 super + {_,shift + }{1-9,0}
 	bspc {desktop -f,window -d} ^{1-9,10}

@@ -67,23 +67,23 @@ alias mp3dl="cd ~/Music && youtube-dl --extract-audio --audio-format mp3"
 
 # Creates a playlist from an ls of my Music Folder
 alias lsnc="ls -A --color=none"
-alias plu="cd ~/Music && lsnc > ~/.mpd/playlists/music.m3u"
+alias plu="lsnc ~/Music > ~/.mpd/playlists/music.m3u"
 
 # Makes ls list all files and always use color
 alias ls="ls -A --color=always"
 
 # Peerflix
-alias pf="peerflix --path '~/Videos/Downloads' --mpv"
+alias peerflix="peerflix --path '~/Videos/Downloads' --mpv"
 
 # Compton
-alias cmp="compton -b --config ~/.compton"
+alias cmp="compton --config ~/.compton &"
 
 # Aliases to start/kill bar
 alias killbar="pkill ~/.config/lemonbar/clock.sh & pkill ~/.config/lemonbar/workspace.sh & pkill ~/.config/lemonbar/music.sh & pkill lemonbar & pkill orangebar"
 alias startbar="~/dotfiles/.config/lemonbar/clock.sh & sleep .5s && ~/dotfiles/.config/lemonbar/workspace.sh & ~/dotfiles/.config/lemonbar/music.sh"
 
 # Webdev
-alias mksite="~/.dotfiles/scripts/webdev/webdev.sh"
+alias mksite="~/dotfiles/scripts/webdev/webdev.sh"
 
 # Start ssh-agent with startx
 alias startx='ssh-agent startx'
