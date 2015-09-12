@@ -18,13 +18,28 @@ def_key "H"
 	seek_backward
 
 def_key "J"
-	scroll_down_artist
+	scroll_down
+	scroll_down
+	scroll_down
 
 def_key "K"
-	scroll_up_artist
+	scroll_up
+	scroll_up
+	scroll_up
 
 def_key "L"
 	seek_forward
+
+# gg (Jump to top)
+def_key "g"
+	execute_command
+
+def_command "g" [immediate]
+	move_home
+
+# G (Jump to bottom)
+def_key "G"
+	move_end
 
 # next/prev search result
 def_key "n"
