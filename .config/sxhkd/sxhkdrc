@@ -3,8 +3,9 @@
 super + q
 	bspc window -c
 
-super + {s,f}
-	bspc window -t {floating,fullscreen}
+# Toggle options
+super + {s,f,e,p}
+	bspc window -t {floating,fullscreen,sticky,pseudo_tiled}
 
 super + {_,shift + }{h,j,k,l}
 	bspc window -{f,s} {left,down,up,right}
@@ -13,21 +14,18 @@ super + Tab
 	bspc desktop -f next
 
 # i3 like bindings for opening windows down and right
-super + v
-	bspc window -p down
+super + {v,g}
+	bspc window -p {down,right}
 
-super + g
-	bspc window -p right
-
-super + `
-	bspc desktop -f term
-
+# Move windows between desktops
 super + {_,shift + }{1-9,0}
 	bspc {desktop -f,window -d} ^{1-9,10}
 
+# Focus windows
 ~button1
 	bspc pointer -g focus
 
+# Resize windows with mouse
 super + button{1-3}
 	; bspc pointer -g {move,resize_side,resize_corner}
 
@@ -38,58 +36,18 @@ super + @button{1-3}
 alt + {minus,equal}
     bspc config -d focused window_gap $((`bspc config -d focused window_gap` {+,-} 2 ))
 
-# Sticky windows
-# Window will appear on all workspaces
-super + e
-    bspc window -t sticky
-
-# Pseudo tiling
-super + p
-	bspc window -t pseudo_tiled
-
 # Reload sxhkdkasdsad config
 super + Escape
 	pkill -USR1 -x sxhkd &&
 
-# wm independent hotkeys
-
 # Open Terminal
 super + Return
 	~/dotfiles/scripts/bspwm/urxvt.sh &
-	# urxvt --geometry 110x60
-	#-lsp 1
 
 # Dmenu
 super + d
-	dmenu_run -l 5 -o 0.9 -nb \#$black -nf \#$gray06 -sb \#$red -i -h 20 -w 100 -x 10 -y 30 -fn '-benis-lemon-medium-r-normal--10-110-75-75-m-50-iso8859-1'
+	dmenu_run -l 5 -o 0.9 -nb "#$black" -nf "#$gray06" -sb "#$red" -i -h 20 -w 100 -x 10 -y 30 -fn "-benis-lemon-medium-r-normal--10-110-75-75-m-50-iso8859-1"
 
 # Change wallpaper to random image from folder
-super + w
-	~/dotfiles/scripts/wallpaper2.sh
-
-# Laptop hotkeys {{{
-XF86MonBrightnessUp
-	xbacklight -inc 40
-
-XF86MonBrightnessDown
-	xbacklight -dec 40
-
-XF86AudioMute
-	amixer set Master toggle
-
-XF86AudioLowerVolume
-	amixer set Master 5%-
-
-XF86AudioRaiseVolume
-	amixer set Master 5%+
-
-XF86AudioPrev
-	mpc prev
-
-XF86AudioPlay
-	mpc toggle
-
-XF86AudioNext
-	mpc next
-
-# }}}
+# super + w
+# 	~/dotfiles/scripts/wallpaper2.sh

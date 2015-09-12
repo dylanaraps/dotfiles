@@ -36,7 +36,7 @@ titles_visibility = "no"
 # Browser
 browser_display_mode = "columns"
 browser_playlist_prefix = "$2plist »$9 "
-mouse_support = "no"
+mouse_support = "yes"
 
 # Visualizer
 visualizer_color = "white"
@@ -44,4 +44,3 @@ visualizer_fifo_path = "/tmp/mpd.fifo"
 visualizer_in_stereo = "yes"
 visualizer_look = "●▮"
 visualizer_output_name = "my_fifo"
-# visualizer_type = "spectrum"
