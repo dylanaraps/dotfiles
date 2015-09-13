@@ -1,7 +1,7 @@
 #!/bin/sh
-if [[ $(bspc query -D -d) == "$ws2" ]]; then
+if [[ $(bspc query -D -d) == "hello" ]]; then
 	bspc rule -a URxvt pseudo_tiled=on
-	urxvt --geometry 110x60
+	urxvt
 else
 	bspc rule -a URxvt pseudo_tiled=off
 	urxvt

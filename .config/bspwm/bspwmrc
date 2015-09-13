@@ -31,6 +31,12 @@ bspc config -m DVI-0 top_padding 20
 bspc monitor DVI-0 -d $ws1 $ws2 $ws3 $ws4
 bspc monitor DVI-1 -d hello
 
+bspc config -d $ws2 window_gap 0
+bspc config -d $ws2 top_padding 30
+bspc config -d $ws2 right_padding 40
+bspc config -d $ws2 bottom_padding 40
+bspc config -d $ws2 left_padding 40
+
 # Workspace 1
 bspc rule -a Firefox desktop=$ws1 follow=no
 bspc rule -a qutebrowser desktop=$ws1 follow=no
