@@ -318,6 +318,10 @@ map <F10> :echo "hi<" . synIDattr(synID(line("."),col("."),1),"name") . '> trans
 
 nmap <silent> <F1> :Webdev <CR>
 
+" Move visual block
+vnoremap J :m '>+1<CR>gv=gv
+vnoremap K :m '<-2<CR>gv=gv
+
 " }}}
 
 " Temp Files {{{

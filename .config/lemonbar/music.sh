@@ -15,15 +15,15 @@ music(){
 }
 
 volume(){
-	volup="A4:amixer set Master 5%+:"
- 	voldown="A5:amixer set Master 5%-:"
- 	volmute="A:amixer set Master toggle:"
+	volup="A4:pulseaudio-ctl up:"
+ 	voldown="A5:pulseaudio-ctl down:"
+ 	volmute="A:pulseaudio-ctl mute:"
 
-	if [[ $(amixer get Master | grep -o "\[off\]") == "[off]" ]]; then
+	if [[ $(pulseaudio-ctl full-status | awk '/ / {printf $2}') == "yes" ]]; then
 		vol="Mute"
 		icon=""
 	else
-		mastervol=$(amixer get Master | egrep -o "[0-9]+%" | tr -d '%')
+		mastervol=$(pulseaudio-ctl full-status | egrep -o "[0-9]+")
 		vol=$mastervol
 		icon=""
 	fi
