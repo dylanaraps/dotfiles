@@ -42,7 +42,8 @@ super + Escape
 
 # Open Terminal
 super + Return
-	~/dotfiles/scripts/bspwm/urxvt.sh &
+	urxvt
+	# ~/dotfiles/scripts/bspwm/urxvt.sh &
 
 F12
 	~/dotfiles/scripts/bspwm/urxvt.sh &

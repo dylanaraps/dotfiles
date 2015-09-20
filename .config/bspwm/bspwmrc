@@ -53,7 +53,12 @@ bspc rule -a Steam desktop=$ws3 floating=on follow=no
 bspc rule -a Gimp-2.8 desktop=$ws4
 
 # Workspace Mon2
-bspc config -d hello window_gap 100
+bspc config -d hello window_gap 0
+bspc config -d hello top_padding 200
+bspc config -d hello right_padding 300
+bspc config -d hello bottom_padding 200
+bspc config -d hello left_padding 300
+
 
 # Workspace *
 bspc rule -a feh floating=on
