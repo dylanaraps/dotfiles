@@ -143,7 +143,7 @@ call plug#end()
 
 " }}}
 
-" Filetypes {{c>
+" Filetypes {{{
 
 filetype plugin indent on
 
@@ -393,7 +393,7 @@ set splitright
 
 " }}}
 
-"Folding {{{
+" Folding {{{
 
 set foldmethod=marker
 set foldlevel=99
@@ -547,7 +547,6 @@ endfunction
 command! -bang -nargs=* BD call SmartBD(<bang>0, <q-args>)
 
 cnoreabbrev bd BD
-
 " }}}
 
 " }}}
