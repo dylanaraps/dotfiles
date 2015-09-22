@@ -63,7 +63,7 @@ alias cleandeps='sudo pacman -R $(pacman -Qqdt)'
 alias pal='for x in 0 1 4 5 7 8; do for i in `seq 30 37`; do for a in `seq 40 47`; do echo -ne "\e[$x;$i;$a""m\\\e[$x;$i;$a""m\e[0;37;40m "; done; echo; done; done; echo "";'
 
 # dls video from youtube to my Music folder
-alias mp3dl="cd ~/Music && youtube-dl --extract-audio --audio-format mp3"
+alias mp3dl="cd ~/Music && youtube-dl --extract-audio --audio-format mp3 --no-playlist"
 
 # Creates a playlist from an ls of my Music Folder
 alias lsnc="ls -A --color=none"
