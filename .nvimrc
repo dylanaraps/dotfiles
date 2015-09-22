@@ -50,7 +50,7 @@ Plug 'bling/vim-airline'
 	set laststatus=2
 	let g:airline_powerline_fonts = 0
 	let g:airline_theme = 'crayondark'
-	let g:airline#extensions#tabline#enabled = 0
+	let g:airline#extensions#tabline#enabled = 1
 
 	" Display only filename in tabs
 	let g:airline#extensions#tabline#fnamemod = ':t'

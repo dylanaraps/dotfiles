@@ -40,6 +40,10 @@ alt + {minus,equal}
 super + Escape
 	pkill -USR1 -x sxhkd &&
 
+# alt + tab
+alt + Tab
+	bspc window -f next
+
 # Open Terminal
 super + Return
 	urxvt
@@ -50,7 +54,7 @@ F12
 
 # Dmenu
 super + d
-	dmenu_run -l 5 -o 0.9 -nb "#$black" -nf "#$gray06" -sb "#$red" -i -h 20 -w 100 -x 10 -y 30 -fn "-benis-lemon-medium-r-normal--10-110-75-75-m-50-iso8859-1"
+	dmenu_recent_aliases -l 5 -o 0.9 -nb "#$black" -nf "#$gray06" -sb "#$red" -i -h 20 -w 100 -x 10 -y 30 -fn "-benis-lemon-medium-r-normal--10-110-75-75-m-50-iso8859-1"
 
 # Change wallpaper to random image from folder
 # super + w

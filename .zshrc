@@ -10,6 +10,9 @@ export CCACHE_DIR=~/.ccache
 # Disable Ranger default config
 export RANGER_LOAD_DEFAULT_RC=FALSE
 
+# Aliases
+source ~/.zsh_aliases
+
 # Global Variables {{{
 
 # Crayon Dark {{{
@@ -51,46 +54,6 @@ export ws3=''
 export ws4=''
 
 # }}}
-
-# }}}
-
-# Aliases {{{
-
-# Remove deps not needed anymore
-alias cleandeps='sudo pacman -R $(pacman -Qqdt)'
-
-# Color Test
-alias pal='for x in 0 1 4 5 7 8; do for i in `seq 30 37`; do for a in `seq 40 47`; do echo -ne "\e[$x;$i;$a""m\\\e[$x;$i;$a""m\e[0;37;40m "; done; echo; done; done; echo "";'
-
-# dls video from youtube to my Music folder
-alias mp3dl="cd ~/Music && youtube-dl --extract-audio --audio-format mp3 --no-playlist"
-
-# Creates a playlist from an ls of my Music Folder
-alias lsnc="ls -A --color=none"
-alias plu="lsnc ~/Music > ~/.mpd/playlists/music.m3u"
-
-# Makes ls list all files and always use color
-alias ls="ls -A --color=always"
-
-# Peerflix
-alias peerflix="peerflix --path '~/Videos/Downloads' --mpv"
-
-# Compton
-alias cmp="compton --config ~/.compton &"
-
-# Aliases to start/kill bar
-alias killbar="pkill ~/.config/lemonbar/clock.sh & pkill ~/.config/lemonbar/workspace.sh & pkill ~/.config/lemonbar/music.sh & pkill lemonbar & pkill orangebar"
-alias startbar="~/dotfiles/.config/lemonbar/clock.sh & sleep .5s && ~/dotfiles/.config/lemonbar/workspace.sh & ~/dotfiles/.config/lemonbar/music.sh"
-
-# Webdev
-alias mksite="~/dotfiles/scripts/webdev/webdev.sh"
-
-# Start ssh-agent with startx
-alias startx='ssh-agent startx'
-
-alias feh='feh --auto-zoom --scale-down -g 640 -B black'
-
-alias wine='thread_submit=true wine'
 
 # }}}
 
@@ -138,6 +101,10 @@ RPROMPT="%{$fg_bold[cyan]%}%t %{$reset_color%}"
 HISTSIZE=1000
 SAVEHIST=1000
 HISTFILE=~/.zsh_history
+
+# Url magic
+autoload -U url-quote-magic
+zle -N self-insert url-quote-magic
 
 # Assume a command is cd if it's a directory
 setopt autocd

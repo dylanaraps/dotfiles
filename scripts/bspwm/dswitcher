@@ -1,0 +1,7 @@
+#!/bin/bash
+
+# 	dmenu_recent_aliases -l 5 -o 0.9 -nb "#$black" -nf "#$gray06" -sb "#$red" -i -h 20 -w 100 -x 10 -y 30 -fn "-benis-lemon-medium-r-normal--10-110-75-75-m-50-iso8859-1"
+
+num=$(wmctrl -l | sed 's/  / /' | cut -d " " -f 4- | nl -w 3 -n rn | sed -r 's/^([ 0-9]+)[ \t]*(.*)$/\1 - \2/' | sed -e 's/  //g' | dmenu -i -l 10 -o 0.9 -nb "#$black" -nf "#$gray06" -sb "#$red" -h 20 -w 250 -x 10 -y 30 -fn "-benis-lemon-medium-r-normal--10-110-75-75-m-50-iso8859-1" | cut -d '-' -f -1)
+[[ -z "$num" ]] && exit
+wmctrl -l | sed -n "$num p" | cut -c -10 | xargs wmctrl -i -a
