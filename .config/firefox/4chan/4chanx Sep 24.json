@@ -1,9 +1,9 @@
 {
   "version": "1.11.10.5",
-  "date": 1443058534435,
+  "date": 1443058971997,
   "Conf": {
-    "JSON Navigation": false,
-    "Use 4chan X Catalog": false,
+    "JSON Navigation": true,
+    "Use 4chan X Catalog": true,
     "Index Refresh Notifications": false,
     "External Catalog": false,
     "Catalog Links": false,
@@ -308,7 +308,10 @@
           "49486596": 49488241,
           "50442464": 50443028,
           "50443747": 50444188,
-          "50443046": 50443087
+          "50443046": 50443087,
+          "50446020": 50446055,
+          "50445571": 50445889,
+          "50439141": 50440308
         },
         "v": {
           "304504767": 304505315,
@@ -349,7 +352,7 @@
     },
     "watchedThreads": {
       "boards": {},
-      "lastChecked": 1443058353309
+      "lastChecked": 1443058756754
     },
     "customTitles": {
       "boards": {}
