@@ -49,9 +49,6 @@ super + Return
 	urxvt
 	# ~/dotfiles/scripts/bspwm/urxvt.sh &
 
-F12
-	~/dotfiles/scripts/bspwm/urxvt.sh &
-
 # Dmenu
 super + d
 	dmenu_recent_aliases -l 5 -o 0.9 -nb "#$black" -nf "#$gray06" -sb "#$red" -i -h 20 -w 100 -x 10 -y 30 -fn "-benis-lemon-medium-r-normal--10-110-75-75-m-50-iso8859-1"
