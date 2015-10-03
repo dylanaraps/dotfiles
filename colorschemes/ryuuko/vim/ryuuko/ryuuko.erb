@@ -1,0 +1,312 @@
+<%
+		# Crayon ColorScheme
+	information = {
+		author:      "Dylan Araps",
+		email:       "dyl@tfwno.gf",
+		name:        "ryuuko",
+		description: "A 16 color theme for vim",
+		webpage:	 "https://github.com/dylanaraps/crayone",
+		background:  "dark",
+	}
+
+	# Colors
+	# Note: These also appear below, if you change the hex values it's better to do so with a find and replace.
+	black       = ["#2d2b33",  0, "black"]
+	gray	    = ["#75747a", 10, "green"]
+	white       = ["#feffff", 15, "white"]
+
+	red			= ["#c86c75", 9,  "red"]
+	orange      = ["#e47b66", 1,  "darkred"]
+	yellow		= ["#e7b9ac", 3,  "darkyellow"]
+	green		= ["#d1c8b8", 2,  "darkgreen"]
+	cyan		= ["#b4bcc9", 6,  "darkcyan"]
+	blue		= ["#757b8e", 4,  "darkblue"]
+
+	# Step 3: highlights {{{
+
+	highlights = [
+
+		# Default highlight Groups {{{
+
+		[ "Normal", black, white, "NONE" ],
+		[ "NonText", "NONE", black, "NONE" ],
+		[ "Comment", "NONE", gray, "NONE" ],
+		[ "Constant", "NONE", yellow, "NONE" ],
+		[ "Error", red, white, "NONE" ],
+		[ "Identifier", "NONE", red, "NONE" ],
+		[ "Ignore", gray, black, "NONE" ],
+		[ "PreProc", "NONE", yellow, "NONE" ],
+		[ "Special", "NONE", cyan, "NONE" ],
+		[ "Statement", "NONE", red, "NONE" ],
+		[ "String", "NONE", green, "NONE" ],
+		[ "Number", "NONE", yellow, "NONE" ],
+		[ "Todo", gray, yellow, "NONE" ],
+		[ "Type", "NONE", yellow, "NONE" ],
+		[ "Underlined", "NONE", red, "underline" ],
+		[ "StatusLine", "NONE", gray, "NONE" ],
+		[ "StatusLineNC", "NONE", "NONE", "NONE" ],
+		[ "TabLine", "NONE", gray, "NONE" ],
+		[ "TabLineFill", "NONE", gray, "NONE" ],
+		[ "TabLineSel", "NONE", gray, "NONE" ],
+		[ "TermCursorNC", yellow, black, "NONE" ],
+		[ "VertSplit", "NONE", "NONE", "NONE" ],
+		[ "Title", "NONE", blue, "NONE" ],
+		[ "CursorLine", "NONE", gray, "NONE" ],
+		[ "LineNr", "NONE", gray, "NONE" ],
+		[ "CursorLineNr", "NONE", gray, "NONE" ],
+		[ "helpLeadBlank", "NONE", white, "NONE" ],
+		[ "helpNormal", "NONE", white, "NONE" ],
+		[ "Visual", gray, gray, "NONE" ],
+		[ "VisualNOS", "NONE", red, "NONE" ],
+		[ "Pmenu", gray, white, "NONE" ],
+		[ "PmenuSbar", cyan, white, "NONE" ],
+		[ "PmenuSel", blue, black, "bold" ],
+		[ "PmenuThumb", gray, gray, "NONE" ],
+		[ "FoldColumn", "NONE", white, "NONE" ],
+		[ "Folded", "NONE", gray, "bold" ],
+		[ "WildMenu", green, black, "NONE" ],
+		[ "SpecialKey", "NONE", gray, "NONE" ],
+		[ "DiffAdd", "NONE", green, "NONE" ],
+		[ "DiffChange", "NONE", gray, "NONE" ],
+		[ "DiffDelete", "NONE", red, "bold" ],
+		[ "DiffText", "NONE", blue, "bold" ],
+		[ "IncSearch", yellow, black, "NONE" ],
+		[ "Search", yellow, black, "NONE" ],
+		[ "Directory", "NONE", blue, "NONE" ],
+		[ "MatchParen", gray, black, "NONE" ],
+		[ "ColorColumn", gray, gray, "NONE" ],
+		[ "signColumn", "NONE", blue, "bold" ],
+		[ "ErrorMsg", "NONE", gray, "NONE" ],
+		[ "ModeMsg", "NONE", green, "NONE" ],
+		[ "MoreMsg", "NONE", green, "NONE" ],
+		[ "Question", "NONE", blue, "NONE" ],
+		[ "WarningMsg", red, black, "NONE" ],
+		[ "Cursor", "NONE", gray, "NONE" ],
+		[ "Structure", "NONE", orange, "NONE" ],
+		[ "CursorColumn", gray, white, "NONE" ],
+		[ "ModeMsg", "NONE", white, "bold" ],
+		# [ "EndOfBuffer", "NONE", black, "NONE"],
+
+		# Spelling Highlighting
+		[ "SpellBad", "NONE", red, "underline", red ],
+		[ "SpellCap", "NONE", blue, "underline", blue ],
+		[ "SpellLocal", "NONE", orange, "underline", orange ],
+		[ "SpellRare", "NONE", cyan, "underline", cyan ],
+
+		# Standard Syntax Highlighting
+		[ "Boolean", "NONE", orange, "NONE" ],
+		[ "Character", "NONE", red, "NONE" ],
+		[ "Conditional", "NONE", orange, "NONE" ],
+		[ "Define", "NONE", orange, "NONE" ],
+		[ "Delimiter", "NONE", orange, "NONE" ],
+		[ "Float", "NONE", orange, "NONE" ],
+		[ "Include", "NONE", blue, "NONE" ],
+		[ "Keyword", "NONE", orange, "NONE" ],
+		[ "Label", "NONE", yellow, "NONE" ],
+		[ "Operator", "NONE", white, "NONE" ],
+		[ "Repeat", "NONE", yellow, "NONE" ],
+		[ "SpecialChar", "NONE", orange, "NONE" ],
+		[ "Tag", "NONE", yellow, "NONE" ],
+		[ "Typedef", "NONE", yellow, "NONE" ],
+
+		# }}}
+
+		# Language Specific {{{
+
+		# Viml
+		[ "vimUserCommand", "NONE", red, "BOLD" ],
+		[ "vimMap", "vimUserCommand" ],
+		[ "vimLet", "vimUserCommand" ],
+		[ "vimCommand", "vimUserCommand" ],
+		[ "vimFTCmd", "vimUserCommand" ],
+		[ "vimAutoCmd", "vimUserCommand" ],
+		[ "vimNotFunc", "vimUserCommand" ],
+		[ "vimNotation", "NONE", blue, "NONE" ],
+		[ "vimMapModKey", "NONE", blue, "NONE" ],
+		[ "vimBracket", "NONE", white, "NONE" ],
+		[ "vimCommentString", "NONE", gray, "NONE" ],
+
+		# HTML
+		[ "htmlLink", "NONE", red, "underline" ],
+		[ "htmlBold", "NONE", yellow, "NONE" ],
+		[ "htmlItalic", "NONE", orange, "NONE" ],
+		[ "htmlEndTag", "NONE", white, "NONE" ],
+		[ "htmlTag", "NONE", white, "NONE" ],
+		[ "htmlTagName", "NONE", red, "BOLD" ],
+		[ "htmlH1", "NONE", white, "BOLD" ],
+		[ "htmlH2", "htmlH1" ],
+		[ "htmlH3", "htmlH1" ],
+		[ "htmlH4", "htmlH1" ],
+		[ "htmlH5", "htmlH1" ],
+		[ "htmlH6", "htmlH1" ],
+
+		# Css
+		[ "cssMultiColumnAttr", "NONE", green, "NONE" ],
+		[ "cssFontAttr", "cssMultiColumnAttr" ],
+		[ "cssFlexibleBoxAttr", "cssMultiColumnAttr" ],
+		[ "cssBraces", "NONE", white, "NONE" ],
+		[ "cssAttrComma", "cssBraces" ],
+		[ "cssValueLength", "NONE", white, "NONE"],
+		[ "cssUnitDecorators", "NONE", white, "NONE"],
+		[ "cssValueNumber", "NONE", white, "NONE"],
+		[ "cssValueLength", "cssValueNumber" ],
+		[ "cssNoise", "NONE", gray, "NONE" ],
+		[ "cssTagName", "NONE", red, "bold" ],
+		[ "cssFunctionName", "NONE", blue, "bold" ],
+
+		# Sass/Scss
+		[ "scssSelectorChar", "NONE", white, "NONE"],
+		[ "scssAttribute", "NONE", white, "NONE"],
+		[ "scssDefinition", "cssNoise" ],
+		[ "sassidChar", "NONE", red, "NONE"],
+		[ "sassClassChar", "NONE", orange, "NONE"],
+		[ "sassInclude", "NONE", orange, "NONE"],
+		[ "sassMixing", "NONE", orange, "NONE"],
+		[ "sassMixinName", "NONE", blue, "NONE"],
+
+		# Javascript
+		[ "javaScript", "NONE", white, "NONE"],
+		[ "javaScriptBraces", "NONE", white, "NONE"],
+		[ "javaScriptNumber", "NONE", orange, "NONE"],
+
+		# Markdown
+		[ "markdownAutomaticLink", "NONE", red, "underline" ],
+		[ "markdownUrl", "markdownAutomaticLink" ],
+		[ "markdownError", "NONE", white, "NONE" ],
+		[ "markdownCode", "NONE", yellow, "NONE" ],
+		[ "markdownCodeBlock", "NONE", yellow, "NONE" ],
+		[ "markdownCodeDelimiter", "NONE", orange, "NONE" ],
+
+		# Xdefaults
+		[ "xdefaultsValue", "NONE", white, "NONE" ],
+
+		# Ruby
+		[ "rubyInclude", "NONE", blue, "NONE" ],
+		[ "rubyDefine", "NONE", orange, "NONE" ],
+		[ "rubyFunction", "NONE", blue, "NONE" ],
+		[ "rubyStringDelimiter", "NONE", green, "NONE" ],
+		[ "rubyInteger", "NONE", yellow, "NONE" ],
+		[ "rubyAttribute", "NONE", blue, "NONE" ],
+		[ "rubyConstant", "NONE", yellow, "NONE" ],
+		[ "rubyInterpolation", "NONE", green, "NONE" ],
+		[ "rubyInterpolationDelimiter", "NONE", yellow, "NONE" ],
+		[ "rubyRegexp", "NONE", cyan, "NONE" ],
+		[ "rubySymbol", "NONE", green, "NONE" ],
+		[ "rubyTodo", "NONE", gray, "bold" ],
+		[ "rubyRegexpAnchor", "NONE", white, "NONE" ],
+		[ "rubyRegexpQuantifier", "rubyRegexpAnchor" ],
+
+		# Python
+		[ "pythonOperator", "NONE", orange, "NONE" ],
+		[ "pythonFunction", "NONE", blue, "NONE" ],
+		[ "pythonRepeat", "NONE", orange, "NONE" ],
+		[ "pythonStatement", "NONE", red, "Bold" ],
+		[ "pythonBuiltIn", "NONE", blue, "NONE" ],
+
+		# Php
+		[ "phpMemberSelector", "NONE", white, "NONE" ],
+		[ "phpComparison", "NONE", white, "NONE" ],
+		[ "phpParent", "NONE", white, "NONE" ],
+
+		# C
+		[ "cOperator", "NONE", cyan, "NONE" ],
+		[ "cPreCondit", "NONE", orange, "NONE" ],
+
+		# }}}
+
+		# Plugin Specific {{{
+
+		# Airline
+		# All airline highlighting is in a seperate file, which is in the autoload/vim-airline/themes/ folder.
+
+		# Signify
+		[ "SignifySignAdd", "NONE", green, "NONE" ],
+		[ "SignifySignChange", "NONE", blue, "NONE" ],
+		[ "SignifySignDelete", "NONE", red, "NONE" ],
+
+		# Nerd Tree
+		[ "NERDTreeDirSlash", "NONE", blue, "NONE" ],
+		[ "NERDTreeExecFile", "NONE", white, "NONE" ],
+
+		# }}}
+
+	]
+
+	# }}}
+
+	# Step 4: generation {{{
+	#
+	# From a separate shell:
+	#     $ erb -T - bar.erb > bar.vim
+	#
+	# From Vim:
+	#     :!erb -T - % > %:r.vim
+
+-%>
+
+" <%= information[:name] %>.vim -- Vim color scheme.
+" Author:      <%= information[:author] %> (<%= information[:email] %>)
+" Webpage:     <%= information[:webpage] %>
+" Description: <%= information[:description] %>
+
+hi clear
+
+set background=dark
+
+" Neovim Terminal Mode Colors
+let g:terminal_color_0 = "#2d2b33"
+let g:terminal_color_1 = "#c86c75"
+let g:terminal_color_2 = "#d1c8b8"
+let g:terminal_color_3 = "#e7b9ac"
+let g:terminal_color_4 = "#757b8e"
+let g:terminal_color_5 = "#e47b66"
+let g:terminal_color_6 = "#b4bcc9"
+let g:terminal_color_7 = "#feffff"
+let g:terminal_color_8 = "#75747a"
+let g:terminal_color_9 = "#e47b66"
+let g:terminal_color_10 = "#75747a"
+let g:terminal_color_11 = "#e7b9ac"
+let g:terminal_color_12 = "#757b8e"
+let g:terminal_color_13 = "#e47b66"
+let g:terminal_color_14 = "#b4bcc9"
+let g:terminal_color_15 = "#feffff"
+
+if exists("syntax_on")
+syntax reset
+endif
+
+let colors_name = "<%= information[:name] %>"
+
+" highlight groups {{{
+
+if &t_Co >= 256 || has("gui_running")
+<% for highlight in highlights -%>
+	<% if highlight.length == 2 -%>
+		hi link <%= highlight[0] %> <%= highlight[1] %>
+<% elsif highlight.length == 4 -%>
+	hi <%= highlight[0] %> ctermbg=<%= highlight[1].kind_of?(String) ? highlight[1] : highlight[1][1] %> ctermfg=<%= highlight[2].kind_of?(String) ? highlight[2] : highlight[2][1] %> cterm=<%= highlight[3] %> guibg=<%= highlight[1].kind_of?(String) ? highlight[1] : highlight[1][0] %> guifg=<%= highlight[2].kind_of?(String) ? highlight[2] : highlight[2][0] %> gui=<%= highlight[3] %>
+<% if highlight[0] == "Normal" -%>
+	set background=<%= information[:background] %>
+<% end -%>
+<% else -%>
+	hi <%= highlight[0] %> ctermbg=<%= highlight[1].kind_of?(String) ? highlight[1] : highlight[1][1] %> ctermfg=<%= highlight[2].kind_of?(String) ? highlight[2] : highlight[2][1] %> cterm=<%= highlight[3] %> guibg=<%= highlight[1].kind_of?(String) ? highlight[1] : highlight[1][0] %> guifg=<%= highlight[2].kind_of?(String) ? highlight[2] : highlight[2][0] %> gui=<%= highlight[3] %> guisp=<%= highlight[4].kind_of?(String) ? highlight[4] : highlight[4][0] %>
+<% end -%>
+<% end -%>
+elseif &t_Co == 8 || $TERM !~# '^linux' || &t_Co == 16
+set t_Co=16
+<% for highlight in highlights -%>
+	<% if highlight.length == 2 -%>
+		hi link <%= highlight[0] %> <%= highlight[1] %>
+<% else -%>
+	hi <%= highlight[0] %> ctermbg=<%= highlight[1].kind_of?(String) ? highlight[1] : highlight[1][2] %> ctermfg=<%= highlight[2].kind_of?(String) ? highlight[2] : highlight[2][2] %> cterm=<%= highlight[3] %>
+<% if highlight[0] == "Normal" -%>
+	set background=<%= information[:background] %>
+<% end -%>
+<% end -%>
+<% end -%>
+endif
+
+
+" Generated with RNB (https://gist.github.com/romainl/5cd2f4ec222805f49eca)
+
+" }}}

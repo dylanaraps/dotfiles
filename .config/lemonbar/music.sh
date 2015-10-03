@@ -36,5 +36,5 @@ while :; do
 	sleep .3s
 done |
 
-orangebar -g "400x$barheight+1200" -f "$barfont" -f "$baricons" -B "#00$black" -F "#$white" 2>/dev/null | bash
+orangebar -g "500x$barheight+1420" -f "$barfont" -f "$baricons" -B "#00$black" -F "#$white" 2>/dev/null | bash
 

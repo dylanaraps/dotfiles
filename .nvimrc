@@ -36,7 +36,7 @@ call plug#begin('~/.nvim/plugged')
 " LOOKS
 
 " My Plugins
-Plug '~/projects/crayondark'
+Plug '~/dotfiles/colorschemes/ryuuko/vim/ryuuko/'
 
 Plug '~/projects/root.vim/'
 Plug '~/projects/taskrunner.nvim/'
@@ -49,7 +49,7 @@ Plug 'bling/vim-airline'
 	" Always show statusline
 	set laststatus=2
 	let g:airline_powerline_fonts = 0
-	let g:airline_theme = 'crayondark'
+	let g:airline_theme = 'ryuuko'
 	let g:airline#extensions#tabline#enabled = 1
 
 	" Display only filename in tabs
@@ -216,7 +216,7 @@ set noequalalways
 set shortmess=atI
 set noshowmode
 
-colorscheme crayondark
+colorscheme ryuuko
 
 " }}}
 

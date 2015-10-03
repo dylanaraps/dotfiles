@@ -17,24 +17,15 @@ source ~/.zsh_aliases
 
 # Crayon Dark {{{
 
-export black="0E1114"
-export gray01="222A33"
-export gray02="2B3647"
-export gray03="485870"
-export gray04="607594"
-export gray05="96B0D1"
-export gray06="8F98BF"
-export white="CFDAE6"
-export white2="E6F2FF"
-
-export red="734745"
-export orange="997254"
-export yellow="A69253"
-export green="637339"
-export cyan="6A9994"
-export blue="406080"
-export magenta="5A4080"
-export pink="804060"
+export black="2d2b33"
+export darkgray="75747a"
+export red="c86c75"
+export green="d1c8b8"
+export yellow="e7b9ac"
+export blue="757b8e"
+export magenta="e47b66"
+export cyan="b4bcc9"
+export white="feffff"
 
 # }}}
 
@@ -74,9 +65,8 @@ if [ -d "$HOME/bin" ] ; then
   PATH="$HOME/bin:$PATH"
 fi
 
-if [ -d "$HOME/.gem/ruby/2.2.0/bin" ] ; then
-  PATH="$home/.gem/ruby/2.2.0/bin:$PATH"
-fi
+PATH="$(ruby -e 'print Gem.user_dir')/bin:$PATH"
+
 # }}}
 
 # Enable completion and prompt

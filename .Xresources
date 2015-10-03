@@ -25,27 +25,20 @@ URxvt.keysym.C-z: \
 URxvt.keysym.C-h: \
 URxvt.keysym.C-f: \
 
-! Crayon Theme {{{
+! Kill la Kill Theme {{{
 
 ! Shades
-#define black	#0E1114
-#define gray01	#222A33
-#define gray02	#2B3647
-#define gray03	#485870
-#define gray04	#607594
-#define gray05	#96B0D1
-#define gray06	#8F98BF
-#define white	#CFDAE6
+#define black	#2d2b33
+#define gray	#75747a
+#define white	#feffff
 
 ! Colors
-#define red		#734745
-#define orange	#997254
-#define yellow	#A69253
-#define green	#637339
-#define cyan	#6A9994
-#define blue	#406080
-#define magenta	#5A4080
-#define pink 	#804060
+#define red		#c86c75
+#define orange	#e47b66
+#define yellow	#e7b9ac
+#define green	#d1c8b8
+#define cyan	#b4bcc9
+#define blue	#757b8e
 
 *.foreground:   white
 *.background:   black
@@ -56,17 +49,17 @@ URxvt.keysym.C-f: \
 *.color2:       green
 *.color3:       yellow
 *.color4:       blue
-*.color5:       magenta
+*.color5:       orange
 *.color6:       cyan
-*.color7:       gray05
+*.color7:       white
 
-*.color8:       gray03
+*.color8:       gray
 *.color9:       orange
-*.color10:      gray01
-*.color11:      gray02
-*.color12:      gray04
-*.color13:      gray06
-*.color14:      pink
+*.color10:      gray
+*.color11:      yellow
+*.color12:      blue
+*.color13:      orange
+*.color14:      cyan
 *.color15:      white
 
 ! }}}
