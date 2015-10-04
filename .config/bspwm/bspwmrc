@@ -9,37 +9,39 @@ bspc config focus_follows_pointer true
 bspc config initial_polarity second_child
 bspc config ignore_ewmh_focus true
 
-bspc config focused_border_color \#$blue
-bspc config active_border_color \#$blue
-bspc config normal_border_color \#$blue
-bspc config urgent_border_color \#$blue
+bspc config focused_border_color \#$red
+bspc config active_border_color \#$red
+bspc config normal_border_color \#$red
+bspc config urgent_border_color \#$red
 
-bspc config focused_locked_border_color \#$blue
-bspc config active_locked_border_color \#$blue
-bspc config normal_locked_border_color \#$blue
+bspc config focused_locked_border_color \#$red
+bspc config active_locked_border_color \#$red
+bspc config normal_locked_border_color \#$red
 
-bspc config focused_sticky_border_color \#$blue
-bspc config active_sticky_border_color \#$blue
-bspc config normal_sticky_border_color \#$blue
+bspc config focused_sticky_border_color \#$red
+bspc config active_sticky_border_color \#$red
+bspc config normal_sticky_border_color \#$red
 
-bspc config focused_private_border_color \#$blue
-bspc config active_private_border_color \#$blue
-bspc config normal_private_border_color \#$blue
+bspc config focused_private_border_color \#$red
+bspc config active_private_border_color \#$red
+bspc config normal_private_border_color \#$red
 
 bspc config -m DVI-0 top_padding 20
 
 bspc monitor DVI-0 -d $ws1 $ws2 $ws3 $ws4
 bspc monitor DVI-1 -d hello
 
-bspc config -d $ws2 window_gap 0
+# Workspace 1
+bspc rule -a Firefox desktop=$ws1 follow=no
+bspc rule -a qutebrowser desktop=$ws1 follow=no
+
+# Workdsace 2
+bspc config -d $ws2 window_gap -3
 bspc config -d $ws2 top_padding 80
 bspc config -d $ws2 right_padding 80
 bspc config -d $ws2 bottom_padding 80
 bspc config -d $ws2 left_padding 80
 
-# Workspace 1
-bspc rule -a Firefox desktop=$ws1 follow=no
-bspc rule -a qutebrowser desktop=$ws1 follow=no
 
 # bspc config -d $ws1 window_gap 40
 
@@ -53,7 +55,7 @@ bspc rule -a Steam desktop=$ws3 floating=on follow=no
 bspc rule -a Gimp-2.8 desktop=$ws4
 
 # Workspace Mon2
-bspc config -d hello window_gap 0
+bspc config -d hello window_gap -3
 bspc config -d hello top_padding 200
 bspc config -d hello right_padding 300
 bspc config -d hello bottom_padding 200
@@ -81,7 +83,7 @@ sleep 2s &&
 
 # Papes
 # ~/dotfiles/scripts/wallpaper.sh &
-feh --bg-fill ~/Pictures/ryuuko4.png &
+feh --bg-fill ~/Pictures/4k.png &
 
 # lemonbar
 ~/dotfiles/.config/lemonbar/clock.sh &
@@ -91,4 +93,3 @@ sleep .5s &&
 ~/dotfiles/.config/lemonbar/music.sh &
 
 ~/dotfiles/afterx.sh &
-~/dotfiles/scripts/bspwm/music.sh &

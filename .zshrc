@@ -24,6 +24,7 @@ export green="d1c8b8"
 export yellow="e7b9ac"
 export blue="757b8e"
 export magenta="e47b66"
+export orange="e47b66"
 export cyan="b4bcc9"
 export white="feffff"
 
