@@ -41,5 +41,7 @@ alias wine='thread_submit=true wine'
 
 alias firefox='firefox-nightly'
 
+alias scrot='cd ~/Pictures/ && scrot'
+
 # }}}
 

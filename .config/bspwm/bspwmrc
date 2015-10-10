@@ -1,5 +1,5 @@
 #!/bin/sh
-bspc config border_width		3
+bspc config border_width		5
 bspc config window_gap         80
 
 bspc config split_ratio         0.50
@@ -36,11 +36,11 @@ bspc rule -a Firefox desktop=$ws1 follow=no
 bspc rule -a qutebrowser desktop=$ws1 follow=no
 
 # Workdsace 2
-bspc config -d $ws2 window_gap -3
-bspc config -d $ws2 top_padding 80
-bspc config -d $ws2 right_padding 80
-bspc config -d $ws2 bottom_padding 80
-bspc config -d $ws2 left_padding 80
+bspc config -d $ws2 window_gap -5
+bspc config -d $ws2 top_padding 85
+bspc config -d $ws2 right_padding 85
+bspc config -d $ws2 bottom_padding 85
+bspc config -d $ws2 left_padding 85
 
 
 # bspc config -d $ws1 window_gap 40
@@ -55,7 +55,7 @@ bspc rule -a Steam desktop=$ws3 floating=on follow=no
 bspc rule -a Gimp-2.8 desktop=$ws4
 
 # Workspace Mon2
-bspc config -d hello window_gap -3
+bspc config -d hello window_gap -5
 bspc config -d hello top_padding 200
 bspc config -d hello right_padding 300
 bspc config -d hello bottom_padding 200

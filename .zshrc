@@ -1,4 +1,5 @@
 # Dylan's zhrc
+export DE=bspwm
 export TERM=rxvt-unicode-256color
 
 # Sets editor to neovim
