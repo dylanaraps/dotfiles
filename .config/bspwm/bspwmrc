@@ -82,8 +82,8 @@ xrandr --output DVI-0 --mode 1920x1080 --rate 60 --left-of DVI-1 --output DVI-1 
 sleep 2s &&
 
 # Papes
-# ~/dotfiles/scripts/wallpaper.sh &
-feh --bg-fill ~/Pictures/4k.png &
+~/dotfiles/scripts/wallpaper.sh &
+# feh --bg-fill ~/Pictures/4k.png &
 
 # lemonbar
 ~/dotfiles/.config/lemonbar/clock.sh &
