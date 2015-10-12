@@ -28,7 +28,7 @@ bspc config normal_private_border_color \#$red
 
 bspc config -m DVI-0 top_padding 20
 
-bspc monitor DVI-0 -d $ws1 $ws2 $ws3 $ws4
+bspc monitor DVI-0 -d $ws1 $ws2 $ws3 $ws4 5 6 7 8 9
 bspc monitor DVI-1 -d hello
 
 # Workspace 1
@@ -52,7 +52,7 @@ bspc rule -a Battle.net.exe desktop=$ws3 floating=on
 bspc rule -a Steam desktop=$ws3 floating=on follow=no
 
 # Workspace 4
-bspc rule -a Gimp-2.8 desktop=$ws4
+bspc rule -a Gimp-2.8 desktop=5
 
 # Workspace Mon2
 bspc config -d hello window_gap -5
@@ -86,8 +86,9 @@ sleep 2s &&
 # feh --bg-fill ~/Pictures/4k.png &
 
 # lemonbar
-~/dotfiles/.config/lemonbar/clock.sh &
 sleep .5s &&
+~/dotfiles/.config/lemonbar/clock.sh &
+sleep 1s &&
 ~/dotfiles/.config/lemonbar/workspace.sh &
 sleep .5s &&
 ~/dotfiles/.config/lemonbar/music.sh &
