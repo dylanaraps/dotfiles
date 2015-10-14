@@ -41,7 +41,7 @@ backend = "glx"
 # Opacity
 #################################
 
-frame-opacity = 1;
+frame-opacity = .7;
 
 opacity-rule = [
 	"97:class_g = 'URxvt'",
