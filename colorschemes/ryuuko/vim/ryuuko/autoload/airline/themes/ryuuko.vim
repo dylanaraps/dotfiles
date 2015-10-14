@@ -2,7 +2,7 @@
 let g:airline#themes#ryuuko#palette = {}
 
 " Normal mode
-let s:N1 = [ '#757b8e' , 'NONE' ,  7 ,  0 ]
+let s:N1 = [ '#707894' , 'NONE' ,  7 ,  0 ]
 let s:N2 = [ '#feffff' , 'NONE' ,  7 ,  0 ]
 let s:N3 = [ '#feffff' , 'NONE' ,  7 ,  0 ]
 
@@ -17,7 +17,7 @@ let s:V2 = [ '#feffff' , 'NONE' ,  7 ,  0 ]
 let s:V3 = [ '#feffff' , 'NONE' ,  7 ,  0 ]
 
 " Replace mode
-let s:R1 = [ '#757b8e' , 'NONE' ,  7 ,  0 ]
+let s:R1 = [ '#707894' , 'NONE' ,  7 ,  0 ]
 let s:R2 = [ '#feffff' , 'NONE' ,  7 ,  0 ]
 let s:R3 = [ '#feffff' , 'NONE' ,  7 ,  0 ]
 

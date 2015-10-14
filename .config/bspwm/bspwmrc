@@ -52,7 +52,7 @@ bspc rule -a Battle.net.exe desktop=$ws3 floating=on
 bspc rule -a Steam desktop=$ws3 floating=on follow=no
 
 # Workspace 4
-bspc rule -a Gimp-2.8 desktop=5
+bspc rule -a Gimp-2.8 desktop=6
 
 # Workspace Mon2
 bspc config -d hello window_gap -5

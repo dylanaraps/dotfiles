@@ -38,7 +38,7 @@ URxvt.keysym.C-f: \
 #define yellow	#e7b9ac
 #define green	#d1c8b8
 #define cyan	#b4bcc9
-#define blue	#757b8e
+#define blue	#707894
 
 *.foreground:   white
 *.background:   black
