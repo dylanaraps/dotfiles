@@ -20,19 +20,7 @@ workspace(){
 		hello )
 			echo "%{B#757B8E}%{A:bspc desktop -f $ws1:}  $ws1  %{A}%{B}%{B#757B8E}%{A:bspc desktop -f $ws2:}  $ws2  %{A}%{B}%{B#757B8E}%{A:bspc desktop -f $ws3:}  $ws3  %{A}%{B}%{B#757B8E}%{A:bspc desktop -f $ws4:}  $ws4  %{A}%{B}" ;;
 
-		5 )
-			echo "%{B#757B8E}%{A:bspc desktop -f $ws1:}  $ws1  %{A}%{B}%{B#757B8E}%{A:bspc desktop -f $ws2:}  $ws2  %{A}%{B}%{B#757B8E}%{A:bspc desktop -f $ws3:}  $ws3  %{A}%{B}%{B#757B8E}%{A:bspc desktop -f $ws4:}  $ws4  %{A}%{B}" ;;
-
-		6 )
-			echo "%{B#757B8E}%{A:bspc desktop -f $ws1:}  $ws1  %{A}%{B}%{B#757B8E}%{A:bspc desktop -f $ws2:}  $ws2  %{A}%{B}%{B#757B8E}%{A:bspc desktop -f $ws3:}  $ws3  %{A}%{B}%{B#757B8E}%{A:bspc desktop -f $ws4:}  $ws4  %{A}%{B}" ;;
-
-		7 )
-			echo "%{B#757B8E}%{A:bspc desktop -f $ws1:}  $ws1  %{A}%{B}%{B#757B8E}%{A:bspc desktop -f $ws2:}  $ws2  %{A}%{B}%{B#757B8E}%{A:bspc desktop -f $ws3:}  $ws3  %{A}%{B}%{B#757B8E}%{A:bspc desktop -f $ws4:}  $ws4  %{A}%{B}" ;;
-
-		8 )
-			echo "%{B#757B8E}%{A:bspc desktop -f $ws1:}  $ws1  %{A}%{B}%{B#757B8E}%{A:bspc desktop -f $ws2:}  $ws2  %{A}%{B}%{B#757B8E}%{A:bspc desktop -f $ws3:}  $ws3  %{A}%{B}%{B#757B8E}%{A:bspc desktop -f $ws4:}  $ws4  %{A}%{B}" ;;
-
-		9 )
+		[5-9] )
 			echo "%{B#757B8E}%{A:bspc desktop -f $ws1:}  $ws1  %{A}%{B}%{B#757B8E}%{A:bspc desktop -f $ws2:}  $ws2  %{A}%{B}%{B#757B8E}%{A:bspc desktop -f $ws3:}  $ws3  %{A}%{B}%{B#757B8E}%{A:bspc desktop -f $ws4:}  $ws4  %{A}%{B}" ;;
 	esac
 }
