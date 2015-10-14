@@ -12,6 +12,7 @@ xset m 0/0 0
 
 # Font paths
 xset +fp /usr/share/fonts/envypn
+xset +fp /usr/share/fonts/Montana/
 xset +fp /usr/share/fonts/misc/
 xset +fp /usr/share/fonts/artwiz-fonts/
 xset +fp ~/.fonts
