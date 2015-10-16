@@ -28,38 +28,39 @@ bspc config normal_private_border_color \#$red
 
 bspc config -m DVI-0 top_padding 20
 
-bspc monitor DVI-0 -d $ws1 $ws2 $ws3 $ws4 5 6 7 8 9
-bspc monitor DVI-1 -d hello
+bspc monitor DVI-0 -d 1 2 3 4 5 6 7
+bspc monitor DVI-1 -d 8
+bspc monitor HDMI-0 -d 9
 
 # Workspace 1
-bspc rule -a Firefox desktop=$ws1 follow=no
-bspc rule -a qutebrowser desktop=$ws1 follow=no
+bspc rule -a Firefox desktop=1 follow=no
+bspc rule -a qutebrowser desktop=1 follow=no
 
 # Workdsace 2
-bspc config -d $ws2 window_gap -5
-bspc config -d $ws2 top_padding 85
-bspc config -d $ws2 right_padding 85
-bspc config -d $ws2 bottom_padding 85
-bspc config -d $ws2 left_padding 85
+bspc config -d 2 window_gap -5
+bspc config -d 2 top_padding 85
+bspc config -d 2 right_padding 85
+bspc config -d 2 bottom_padding 85
+bspc config -d 2 left_padding 85
 
 
 # bspc config -d $ws1 window_gap 40
 
 # Workspace 3
-bspc rule -a Wine desktop=$ws3 floating=on
-bspc rule -a Hearthstone.exe desktop=$ws3 floating=on
-bspc rule -a Battle.net.exe desktop=$ws3 floating=on
-bspc rule -a Steam desktop=$ws3 floating=on follow=no
+bspc rule -a Wine desktop=3 floating=on
+bspc rule -a Hearthstone.exe desktop=3 floating=on
+bspc rule -a Battle.net.exe desktop=3 floating=on
+bspc rule -a Steam desktop=3 floating=on follow=no
 
-# Workspace 4
+
 bspc rule -a Gimp-2.8 desktop=6
 
 # Workspace Mon2
-bspc config -d hello window_gap -5
-bspc config -d hello top_padding 200
-bspc config -d hello right_padding 300
-bspc config -d hello bottom_padding 200
-bspc config -d hello left_padding 300
+bspc config -d 8 window_gap -5
+bspc config -d 8 top_padding 200
+bspc config -d 8 right_padding 300
+bspc config -d 8 bottom_padding 200
+bspc config -d 8 left_padding 300
 
 
 # Workspace *
@@ -78,8 +79,11 @@ compton --config ~/.compton &
 # compton --backend glx --paint-on-overlay --vsync opengl-swc &
 
 # Multi monitor
-xrandr --output DVI-0 --mode 1920x1080 --rate 60 --left-of DVI-1 --output DVI-1 --mode 1280x1024 --rate 75 &
-sleep 2s &&
+# xrandr --output DVI-0 --mode 1920x1080 --rate 60 --left-of DVI-1 --output DVI-1 --mode 1280x1024 --rate 75 &
+
+#xrandr --output DVI-0 --mode 1920x1080 --rate 60 --primary --left-of DVI-1 --output DVI-1 --mode 1280x1024 --rate 75 --output HDMI-0 --mode 1920x1080 --rate 60 --right-of DVI-1 &
+xrandr --output DVI-0 --mode 1920x1080 --rate 60 --primary --left-of DVI-1 --output DVI-1 --mode 1280x1024 --rate 75 --output HDMI-0 --mode 1920x1080 --rate 60 --below DVI-0 &
+sleep 3s &&
 
 # Papes
 ~/dotfiles/scripts/wallpaper.sh &

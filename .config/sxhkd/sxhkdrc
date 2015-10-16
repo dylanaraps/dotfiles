@@ -18,8 +18,8 @@ super + {v,g}
 	bspc window -p {down,right}
 
 # Move windows between desktops
-super + {_,shift + }{1-9,0}
-	bspc {desktop -f,window -d} ^{1-9,10}
+super + {_,shift + } {1-9}
+	bspc {desktop -f,window -d} {1-9}
 
 # Focus windows
 ~button1
