@@ -9,22 +9,22 @@ bspc config focus_follows_pointer true
 bspc config initial_polarity second_child
 bspc config ignore_ewmh_focus true
 
-bspc config focused_border_color \#$blue
-bspc config active_border_color \#$blue
-bspc config normal_border_color \#$blue
-bspc config urgent_border_color \#$blue
+bspc config focused_border_color \#$white
+bspc config active_border_color \#$white
+bspc config normal_border_color \#$white
+bspc config urgent_border_color \#$white
 
-bspc config focused_locked_border_color \#$blue
-bspc config active_locked_border_color \#$blue
-bspc config normal_locked_border_color \#$blue
+bspc config focused_locked_border_color \#$white
+bspc config active_locked_border_color \#$white
+bspc config normal_locked_border_color \#$white
 
-bspc config focused_sticky_border_color \#$blue
-bspc config active_sticky_border_color \#$blue
-bspc config normal_sticky_border_color \#$blue
+bspc config focused_sticky_border_color \#$white
+bspc config active_sticky_border_color \#$white
+bspc config normal_sticky_border_color \#$white
 
-bspc config focused_private_border_color \#$blue
-bspc config active_private_border_color \#$blue
-bspc config normal_private_border_color \#$blue
+bspc config focused_private_border_color \#$white
+bspc config active_private_border_color \#$white
+bspc config normal_private_border_color \#$white
 
 bspc config -m DVI-0 top_padding 20
 
@@ -86,8 +86,8 @@ xrandr --output DVI-0 --mode 1920x1080 --rate 60 --primary --left-of DVI-1 --out
 sleep 3s &&
 
 # Papes
-~/dotfiles/scripts/wallpaper.sh &
-# feh --bg-fill ~/Pictures/4k.png &
+# ~/dotfiles/scripts/wallpaper.sh &
+feh --bg-fill ~/Pictures/papes2/killlakill4.png &
 
 # lemonbar
 sleep .5s &&

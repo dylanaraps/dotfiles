@@ -46,9 +46,9 @@ let g:airline#themes#ryuuko#palette.replace.airline_warning = s:WI
 
 " Tabline
 let g:airline#themes#ryuuko#palette.tabline = {
-      \ 'airline_tab':     [ '#feffff' , '#2d2b33'    , 7, 0 , 'NONE' ],
-      \ 'airline_tabsel':  [ '#feffff' , '#2d2b34'	  , 7, 0 , 'bold' ],
-      \ 'airline_tabtype': [ '#feffff' , '#2d2b33'    , 7, 0 , 'NONE' ],
-      \ 'airline_tabfill': [ '#feffff' , '#2d2b33'    , 7, 0 , 'NONE' ],
-      \ 'airline_tabmod':  [ '#feffff' , '#2d2b33'    , 7, 0 , 'bold' ]
+      \ 'airline_tab':     [ '#2d2b33' , '#2d2b33'    , 7, 0 , 'NONE' ],
+      \ 'airline_tabsel':  [ '#2d2b33' , '#707894'	  , 7, 0 , 'bold' ],
+      \ 'airline_tabtype': [ '#2d2b33' , '#2d2b33'    , 7, 0 , 'NONE' ],
+      \ 'airline_tabfill': [ '#2d2b33' , '#2d2b33'    , 7, 0 , 'NONE' ],
+      \ 'airline_tabmod':  [ '#2d2b33' , '#2d2b33'    , 7, 0 , 'bold' ]
 \ }

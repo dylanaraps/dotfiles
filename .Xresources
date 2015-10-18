@@ -34,6 +34,7 @@ URxvt.keysym.C-f: \
 
 ! Colors
 #define red		#c86c75
+#define pink	#EBA3A3
 #define orange	#e47b66
 #define yellow	#e7b9ac
 #define green	#d1c8b8
@@ -54,7 +55,7 @@ URxvt.keysym.C-f: \
 *.color7:       white
 
 *.color8:       gray
-*.color9:       orange
+*.color9:       pink
 *.color10:      gray
 *.color11:      yellow
 *.color12:      blue
