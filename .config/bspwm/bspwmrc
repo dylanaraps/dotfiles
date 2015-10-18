@@ -57,10 +57,10 @@ bspc rule -a Gimp-2.8 desktop=6
 
 # Workspace Mon2
 bspc config -d 8 window_gap -5
-bspc config -d 8 top_padding 200
-bspc config -d 8 right_padding 300
-bspc config -d 8 bottom_padding 200
-bspc config -d 8 left_padding 300
+bspc config -d 8 top_padding 85
+bspc config -d 8 right_padding 85
+bspc config -d 8 bottom_padding 85
+bspc config -d 8 left_padding 85
 
 
 # Workspace *
