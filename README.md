@@ -1,7 +1,9 @@
 # Dylan's Dotfiles
-My current setup as of the 11th of October 2015.
+My current setup as of the 18th of October 2015.
 
-![Clean](http://i.imgur.com/eCl6M9C.png)
+![Clean](http://i.imgur.com/S0O2Lxm.png)
+![Music](http://i.imgur.com/zUhgrJC.png)
+![Neovim](http://i.imgur.com/YiKYVk1.png)
 
 <!--- My Setup {{{ -->
 
