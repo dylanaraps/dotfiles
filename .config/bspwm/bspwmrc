@@ -26,7 +26,7 @@ bspc config focused_private_border_color \#$white
 bspc config active_private_border_color \#$white
 bspc config normal_private_border_color \#$white
 
-bspc config -m DVI-0 top_padding 20
+bspc config -m DVI-0 top_padding $barheight
 
 bspc monitor DVI-0 -d 1 2 3 4 5 6 7
 bspc monitor DVI-1 -d 8
@@ -37,11 +37,11 @@ bspc rule -a Firefox desktop=1 follow=no
 bspc rule -a qutebrowser desktop=1 follow=no
 
 # Workdsace 2
-bspc config -d 2 window_gap -5
-bspc config -d 2 top_padding 85
-bspc config -d 2 right_padding 85
-bspc config -d 2 bottom_padding 85
-bspc config -d 2 left_padding 85
+bspc config -d 2 window_gap 10
+bspc config -d 2 top_padding 100
+bspc config -d 2 right_padding 100
+bspc config -d 2 bottom_padding 100
+bspc config -d 2 left_padding 100
 
 
 # bspc config -d $ws1 window_gap 40

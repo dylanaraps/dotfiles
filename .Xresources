@@ -1,6 +1,9 @@
 ! Dylans Xresources
+! URxvt.font: envypn-13
+URxvt*font: xft:lemon-j:size=4
+URxvt*boldFont: xft:lemon-j:size=4
+URxvt*geometry: 90x25
 
-URxvt.font: envypn-13
 xterm*termName: xterm-256color
 
 ! Disables Scrollbar
@@ -24,6 +27,8 @@ URxvt.keysym.M-C-v: perl:clipboard:paste_escaped
 URxvt.keysym.C-z: \
 URxvt.keysym.C-h: \
 URxvt.keysym.C-f: \
+
+Xcursor.size: 8
 
 ! Kill la Kill Theme {{{
 

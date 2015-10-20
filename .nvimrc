@@ -41,7 +41,8 @@ Plug '~/dotfiles/colorschemes/ryuuko/vim/ryuuko/'
 Plug '~/projects/root.vim/'
 Plug '~/projects/taskrunner.nvim/'
 	" let g:taskrunner#dirs_to_go_up = 1
-	let g:taskrunner#split = "8new"
+	let g:taskrunner#split = "15new"
+	let g:taskrunner#focus_on_open = 1
 	let g:root#auto = 1
 	let g:root#echo = 0
 
@@ -438,7 +439,13 @@ function! OpenInBrowser(browser, htmlfile)
 	silent! execute "!" . a:browser . " " . a:htmlfile . " &"
 endfunction
 
-command! Webdev call OpenFiles() | call NerdTree() | call OpenInBrowser("qutebrowser", "index.html") | Task
+function! TaskSplit()
+	Task
+	wincmd w
+	wincmd w
+endfunction
+
+command! Webdev call OpenFiles() | call NerdTree() | call OpenInBrowser("firefox-nightly", "index.html") | call TaskSplit()
 
 " }}}
 
@@ -468,7 +475,6 @@ function QuitTerminal()
 	setlocal buflisted
 	silent! bd! quickterm
 	silent! bd! term://*//*/home/dyl/.fzf/bin/fzf*
-	silent! bd! term://*//*:man*
 endfunction
 
 function! QuickTerminal()
@@ -493,7 +499,7 @@ endif
 function FullScreenHelp(helpfile)
 	enew
 	set bt=help
-	execute "help ".a:helpfile
+	execute "help " . a:helpfile
 	set buflisted
 endfunction
 
@@ -501,13 +507,6 @@ endfunction
 command -nargs=1 -complete=help Help call FullScreenHelp(<f-args>)
 cabbrev help Help
 cabbrev h Help
-
-" }}}
-
-" Man Pages {{{
-" Open man pages in vim
-command -nargs=1 -complete=shellcmd Man terminal man <args>
-cabbrev man Man
 
 " }}}
 
