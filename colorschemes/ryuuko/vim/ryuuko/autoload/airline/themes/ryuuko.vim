@@ -50,5 +50,5 @@ let g:airline#themes#ryuuko#palette.tabline = {
       \ 'airline_tabsel':  [ '#2d2b33' , '#feffff'	  , 7, 0 , 'bold' ],
       \ 'airline_tabtype': [ '#2d2b33' , '#2d2b33'    , 7, 0 , 'NONE' ],
       \ 'airline_tabfill': [ '#2d2b33' , '#2d2b33'    , 7, 0 , 'NONE' ],
-      \ 'airline_tabmod':  [ '#2d2b33' , '#2d2b33'    , 7, 0 , 'bold' ]
+      \ 'airline_tabmod':  [ '#2d2b33' , '#feffff'    , 7, 0 , 'bold' ]
 \ }

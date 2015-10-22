@@ -36,8 +36,15 @@ bspc monitor HDMI-0 -d 9
 bspc rule -a Firefox desktop=1 follow=no
 bspc rule -a qutebrowser desktop=1 follow=no
 
+# Workdsace 1
+bspc config -d 1 window_gap 20
+bspc config -d 1 top_padding 100
+bspc config -d 1 right_padding 100
+bspc config -d 1 bottom_padding 100
+bspc config -d 1 left_padding 100
+
 # Workdsace 2
-bspc config -d 2 window_gap 10
+bspc config -d 2 window_gap 20
 bspc config -d 2 top_padding 100
 bspc config -d 2 right_padding 100
 bspc config -d 2 bottom_padding 100
