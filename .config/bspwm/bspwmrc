@@ -1,6 +1,5 @@
 #!/bin/sh
 bspc config border_width		5
-bspc config window_gap         80
 
 bspc config split_ratio         0.50
 bspc config borderless_monocle  true
@@ -8,6 +7,7 @@ bspc config gapless_monocle     true
 bspc config focus_follows_pointer true
 bspc config initial_polarity second_child
 bspc config ignore_ewmh_focus true
+bspc config auto_cancel true
 
 bspc config focused_border_color \#$white
 bspc config active_border_color \#$white
@@ -36,29 +36,28 @@ bspc monitor HDMI-0 -d 9
 bspc rule -a Firefox desktop=1 follow=no
 bspc rule -a qutebrowser desktop=1 follow=no
 
-# Workdsace 1
+# Workdsace
 bspc config -d 1 window_gap 20
-bspc config -d 1 top_padding 100
-bspc config -d 1 right_padding 100
-bspc config -d 1 bottom_padding 100
-bspc config -d 1 left_padding 100
-
-# Workdsace 2
 bspc config -d 2 window_gap 20
-bspc config -d 2 top_padding 100
-bspc config -d 2 right_padding 100
-bspc config -d 2 bottom_padding 100
-bspc config -d 2 left_padding 100
+bspc config -d 3 window_gap 20
 
+bspc config top_padding 100
+bspc config right_padding 100
+bspc config bottom_padding 100
+bspc config left_padding 100
 
-# bspc config -d $ws1 window_gap 40
+# Workdsace 4
+bspc config -d 4 window_gap -5
+bspc config -d 4 top_padding 150
+bspc config -d 4 right_padding 250
+bspc config -d 4 bottom_padding 150
+bspc config -d 4 left_padding 250
 
 # Workspace 3
 bspc rule -a Wine desktop=3 floating=on
 bspc rule -a Hearthstone.exe desktop=3 floating=on
 bspc rule -a Battle.net.exe desktop=3 floating=on
 bspc rule -a Steam desktop=3 floating=on follow=no
-
 
 bspc rule -a Gimp-2.8 desktop=6
 
@@ -93,8 +92,8 @@ xrandr --output DVI-0 --mode 1920x1080 --rate 60 --primary --left-of DVI-1 --out
 sleep 3s &&
 
 # Papes
-# ~/dotfiles/scripts/wallpaper.sh &
-feh --bg-fill ~/Pictures/papes2/killlakill4.png &
+~/dotfiles/scripts/wallpaper.sh &
+# feh --bg-fill ~/Pictures/papes2/killlakill4.png &
 
 # lemonbar
 sleep .5s &&

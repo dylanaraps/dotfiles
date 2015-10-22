@@ -57,7 +57,7 @@ super + F12
 	scrot
 
 # Change wallpaper to random image from folder
-# super + w
-# 	~/dotfiles/scripts/wallpaper2.sh
+super + w
+	~/dotfiles/scripts/wallpaper2.sh
 
 
