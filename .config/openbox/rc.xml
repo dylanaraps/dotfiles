@@ -339,7 +339,7 @@
     <!-- Keybindings for running applications -->
     <keybind key="W-Return">
       <action name="Execute">
-        <command>urxvt</command>
+        <command>urxvt -n urxvt</command>
       </action>
     </keybind>
     <keybind key="W-d">
