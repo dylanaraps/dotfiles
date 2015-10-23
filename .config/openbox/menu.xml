@@ -11,23 +11,23 @@
 		<action name="Execute"><command>thunar</command></action>
 	</item>
 	<separator />
-	<item label="Urxvt">
-		<action name="Execute"><command>urxvt</command></action>
+	<item label="Steam">
+		<action name="Execute"><command>steam</command></action>
+	</item>
+	<separator />
+	<item label="Gimp">
+		<action name="Execute"><command>gimp</command></action>
 	</item>
 </menu>
 
 <menu id="system-menu" label="System">
-	<item label="Suspend">
-		<action name="sudo god --suspend" />
-	</item>
-	<separator />
 	<item label="Reconfigure Openbox">
 		<action name="Reconfigure" />
 	</item>
 </menu>
 
 <menu id="root-menu" label="Openbox 3">
-	<item label="URxvt">
+	<item label="urxvt">
 		<action name="Execute"><command>urxvt</command></action>
 	</item>
 	<separator />
