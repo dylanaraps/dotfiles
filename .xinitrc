@@ -12,12 +12,12 @@ xset m 0/0 0
 
 # Font paths
 xset +fp /usr/share/fonts/envypn
+xset +fp /usr/share/fonts/TTF/
 xset +fp /usr/share/fonts/Montana/
 xset +fp /usr/share/fonts/misc/
 xset +fp /usr/share/fonts/artwiz-fonts/
 xset +fp ~/.fonts
 xset fp rehash
 
-# starts bspwm
-sxhkd -f 100 &
-exec bspwm
+# exec bspwm
+exec openbox-session

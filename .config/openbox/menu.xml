@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<openbox_menu xmlns="http://openbox.org/3.4/menu">
+
+<menu id="launch-menu" label="Launch">
+	<item label="Firefox">
+		<action name="Execute"><command>firefox-nightly</command></action>
+	</item>
+	<separator />
+	<item label="Thunar">
+		<action name="Execute"><command>thunar</command></action>
+	</item>
+	<separator />
+	<item label="Urxvt">
+		<action name="Execute"><command>urxvt</command></action>
+	</item>
+</menu>
+
+<menu id="system-menu" label="System">
+	<item label="Suspend">
+		<action name="sudo god --suspend" />
+	</item>
+	<separator />
+	<item label="Reconfigure Openbox">
+		<action name="Reconfigure" />
+	</item>
+</menu>
+
+<menu id="root-menu" label="Openbox 3">
+	<item label="URxvt">
+		<action name="Execute"><command>urxvt</command></action>
+	</item>
+	<separator />
+	<menu id="launch-menu"/>
+	<separator />
+	<menu id="system-menu"/>
+</menu>
+
+</openbox_menu>

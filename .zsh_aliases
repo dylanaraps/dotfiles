@@ -43,5 +43,7 @@ alias firefox='firefox-nightly'
 
 alias scrot='cd ~/Pictures/ && scrot'
 
+alias nvimusic="nvim -c 'call Music()'"
+
 # }}}
 

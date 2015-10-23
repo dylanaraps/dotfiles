@@ -30,7 +30,7 @@ super + button{1-3}
 	; bspc pointer -g {move,resize_side,resize_corner}
 
 super + @button{1-3}
-	bspc pointer -u
+	bspc pointer -u && bash ~/dotfiles/scripts/titleBar.sh
 
 # Reducing gap on the fly
 alt + {minus,equal}

@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<settings>
+	<gaps top="100" bottom="70" left="70" right="70" windows_x="40" windows_y="40"/>
+
+	<!--<workspace id="<id>" median="0.5" reverse_x="true|false" reverse_y="true|false"/>-->
+
+	<!--<window class="<class>" priority="high|low" floating="true|false" fake_windows="1|2|3|..."/>-->
+</settings>

@@ -21,20 +21,20 @@ volume(){
 
 	if [[ $(pulseaudio-ctl full-status | awk '/ / {printf $2}') == "yes" ]]; then
 		vol="Mute"
-		icon=""
+		icon=""
 	else
 		mastervol=$(pulseaudio-ctl full-status | egrep -o "[0-9]+")
 		vol=$mastervol
-		icon=""
+		icon=""
 	fi
 
-	echo "%{$volup}%{$voldown}%{$volmute} %{F#$red}$icon%{F} $vol %{A}%{A}%{A}"
+	echo "%{$volup}%{$voldown}%{$volmute} $icon $vol%{A}%{A}%{A}"
 }
 
 while :; do
-	echo "%{r}$(volume) %{B#$white}%{F#$black}$(music)%{F}%{B}%{r}"
+	echo "%{r}%{B#00$black}$(volume) %{B}%{B#00$blue}%{F#$white}$(music)%{F}%{B}%{r}"
 	sleep .3s
 done |
 
-orangebar -g "500x$barheight+1420" -f "$barfont" -f "$baricons" -B "#00$black" -F "#$white" 2>/dev/null | bash
+orangebar -d -g "500x$barheight+1420" -f "$barfont" -f "Fontawesome-12" -B "#00$black" -F "#$white" 2>/dev/null | bash
 

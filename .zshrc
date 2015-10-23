@@ -21,22 +21,20 @@ source ~/.zsh_aliases
 export black="2d2b33"
 export darkgray="75747a"
 export red="c86c75"
-export green="d1c8b8"
-export yellow="e7b9ac"
-export blue="707894"
-export magenta="e47b66"
-export orange="e47b66"
-export pink="EBA3A3"
-export cyan="b4bcc9"
-export white="ffffff"
+export green="c6d1c0"
+export yellow="e5c196"
+export blue="8294b4"
+export orange="e8907e"
+export cyan="a9cdd9"
+export white="f2f3f2"
 
 # }}}
 
 # Lemonbar {{{
-export barfont="-benis-lemon-medium-r-normal--10-110-75-75-m-50-iso8859-1"
-export baricons="-wuncon-siji-medium-r-normal--10-100-75-75-c-80-iso10646-1"
+export barfont="Roboto-10"
+export baricons="Fontawesome-10"
 
-export barheight=23
+export barheight=30
 
 # }}}
 

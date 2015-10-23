@@ -65,6 +65,7 @@ Plug 'bling/vim-airline'
 	let g:airline#extensions#tabline#show_tab_type = 0
 
 " FUNCTIONALITY
+Plug 'junegunn/goyo.vim'
 Plug 'tpope/vim-fugitive'
 Plug 'wesQ3/vim-windowswap'
 	let g:windowswap_map_keys = 0
@@ -446,6 +447,18 @@ function! TaskSplit()
 endfunction
 
 command! Webdev call OpenFiles() | call NerdTree() | call OpenInBrowser("firefox-nightly", "index.html") | call TaskSplit()
+
+" }}}
+
+" Music {{{
+
+function! Music()
+	Goyo 100%x100%
+	terminal cava
+	sp
+	terminal ncmpcpp
+endfunction
+
 
 " }}}
 
