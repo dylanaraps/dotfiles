@@ -1,5 +1,5 @@
 # Dylan's Dotfiles
-My current setup as of the 18th of October 2015.
+My current setup as of the 23rd of October 2015.
 
 ![Music](http://i.imgur.com/dUBTG4F.jpg)
 ![Neovim](http://i.imgur.com/kuSqo5P.jpg)
