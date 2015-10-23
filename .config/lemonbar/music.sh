@@ -32,7 +32,7 @@ volume(){
 }
 
 while :; do
-	echo "%{r}%{B#00$black}$(volume) %{B}%{B#$red}%{F#$white}$(music)%{F}%{B}%{r}"
+	echo "%{r}$(volume) %{B#$red}$(music)%{B}%{r}"
 	sleep .3s
 done |
 

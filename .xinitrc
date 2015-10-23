@@ -11,7 +11,6 @@ xset r rate 400 25
 xset m 0/0 0
 
 # Font paths
-xset +fp /usr/share/fonts/envypn
 xset +fp /usr/share/fonts/TTF/
 xset +fp /usr/share/fonts/Montana/
 xset +fp /usr/share/fonts/misc/

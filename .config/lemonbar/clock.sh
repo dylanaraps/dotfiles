@@ -1,6 +1,6 @@
 #!/bin/bash
 while :; do
-	echo "%{c}%{B#$black} $(date "+%a %d %b %l:%M %p") %{B}%{c}"
+	echo "%{c}$(date "+%a %d %b %l:%M %p")%{c}"
 	sleep 1m
 done |
 

@@ -627,20 +627,23 @@
       <maximized>no</maximized>
       <decor>yes</decor>
     </application>
-
     <application class="Firefox*">
       <desktop>1</desktop>
       <focus>no</focus>
     </application>
-
     <application class="Steam*">
       <desktop>3</desktop>
       <focus>no</focus>
     </application>
-
     <application class="Gimp*">
       <desktop>5</desktop>
       <focus>no</focus>
     </application>
-</applications>
+    <application class="csgo*">
+      <desktop>3</desktop>
+      <focus>no</focus>
+      <decor>no</decor>
+      <fullscreen>yes</fullscreen>
+    </application>
+  </applications>
 </openbox_config>

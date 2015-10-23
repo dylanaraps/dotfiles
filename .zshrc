@@ -16,8 +16,6 @@ source ~/.zsh_aliases
 
 # Global Variables {{{
 
-# Crayon Dark {{{
-
 export black="2d2b33"
 export darkgray="75747a"
 export red="c86c75"
@@ -28,28 +26,8 @@ export orange="e8907e"
 export cyan="a9cdd9"
 export white="f2f3f2"
 
-# }}}
-
-# Lemonbar {{{
-export barfont="Roboto-10"
-export baricons="Fontawesome-10"
-
 export barheight=30
 
-# }}}
-
-# bspwm {{{
-
-export ws1=''
-export ws2=''
-export ws3=''
-export ws4=''
-
-# }}}
-
-# }}}
-
-# FZF {{{
 export FZF_DEFAULT_COMMAND='ag -l -g "" --hidden'
 
 export FZF_DEFAULT_OPTS='
@@ -59,6 +37,7 @@ export FZF_DEFAULT_OPTS='
 '
 
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
+
 # }}}
 
 # Paths {{{

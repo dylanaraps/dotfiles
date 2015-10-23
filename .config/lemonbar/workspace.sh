@@ -1,8 +1,8 @@
 #!/bin/bash
 
 windowtitle(){
-	title=$(xdotool getactivewindow getwindowname 2>/dev/null || echo "Hi")
-	echo " %{F#$white}x> $title%{F}"
+	title=$(xdotool getactivewindow getwindowname 2>/dev/null)
+	echo " x> $title"
 }
 
 workspace(){
@@ -10,20 +10,20 @@ workspace(){
 
 	case $query in
 		0 )
-			echo "%{B#$cyan}%{F#$white}  www  %{F}%{B}%{B#$blue}%{A:wmctrl -s 1:}  cmd  %{A}%{B}%{B#$blue}%{A:wmctrl -s 2:}  gam  %{A}%{B}%{B#$blue}%{A:wmctrl -s 3:}  mus  %{A}%{B}" ;;
+			echo "%{B#$cyan}  www  %{B}%{B#$blue}%{A:wmctrl -s 1:}  cmd  %{A}%{B}%{B#$blue}%{A:wmctrl -s 2:}  gam  %{A}%{B}%{B#$blue}%{A:wmctrl -s 3:}  mus  %{A}%{B}" ;;
 		1 )
-			echo "%{B#$blue}%{A:wmctrl -s 0:}  www  %{A}%{B}%{B#$cyan}%{F#$white}  cmd  %{F}%{B}%{B#$blue}%{A:wmctrl -s 2:}  gam  %{A}%{B}%{B#$blue}%{A:wmctrl -s 3:}  mus  %{A}%{B}" ;;
+			echo "%{B#$blue}%{A:wmctrl -s 0:}  www  %{A}%{B}%{B#$cyan}  cmd  %{B}%{B#$blue}%{A:wmctrl -s 2:}  gam  %{A}%{B}%{B#$blue}%{A:wmctrl -s 3:}  mus  %{A}%{B}" ;;
 		2 )
-			echo "%{B#$blue}%{A:wmctrl -s 0:}  www  %{A}%{B}%{B#$blue}%{A:wmctrl -s 1:}  cmd  %{A}%{B}%{B#$cyan}%{F#$white}  gam  %{F}%{B}%{B#$blue}%{A:wmctrl -s 3:}  mus  %{A}%{B}" ;;
+			echo "%{B#$blue}%{A:wmctrl -s 0:}  www  %{A}%{B}%{B#$blue}%{A:wmctrl -s 1:}  cmd  %{A}%{B}%{B#$cyan}  gam  %{B}%{B#$blue}%{A:wmctrl -s 3:}  mus  %{A}%{B}" ;;
 		3 )
-			echo "%{B#$blue}%{A:wmctrl -s 0:}  www  %{A}%{B}%{B#$blue}%{A:wmctrl -s 1:}  cmd  %{A}%{B}%{B#$blue}%{A:wmctrl -s 2:}  gam  %{A}%{B}%{B#$cyan}%{F#$white}  mus  %{F}%{B}" ;;
+			echo "%{B#$blue}%{A:wmctrl -s 0:}  www  %{A}%{B}%{B#$blue}%{A:wmctrl -s 1:}  cmd  %{A}%{B}%{B#$blue}%{A:wmctrl -s 2:}  gam  %{A}%{B}%{B#$cyan}  mus  %{B}" ;;
 		* )
 			echo "%{B#$blue}%{A:wmctrl -s 0:}  www  %{A}%{B}%{B#$blue}%{A:wmctrl -s 1:}  cmd  %{A}%{B}%{B#$blue}%{A:wmctrl -s 2:}  gam  %{A}%{B}%{B#$blue}%{A:wmctrl -s 3:}  mus  %{A}%{B}" ;;
 	esac
 }
 
 while :; do
-	echo "%{l}%{F#$white}$(workspace) $(windowtitle)%{F}%{l}"
+	echo "%{l}$(workspace) $(windowtitle)%{l}"
 	sleep .03s
 done |
 

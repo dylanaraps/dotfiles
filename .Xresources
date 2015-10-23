@@ -2,8 +2,8 @@
 ! URxvt.font: envypn-13
 URxvt*font: xft:lemon-j:size=4
 URxvt*boldFont: xft:lemon-j:size=4
-URxvt*geometry: 90x25
 
+URxvt*geometry: 90x25
 xterm*termName: xterm-256color
 
 ! Disables Scrollbar
@@ -14,7 +14,6 @@ URxvt*loginShell: true
 
 ! Speed up loading of alsamixer on ati
 URxvt*skipBuiltinGlyphs: true
-
 URxvt.internalBorder: 4
 
 ! Enables copy/paste
@@ -24,11 +23,14 @@ URxvt.keysym.Shift-Control-C:   perl:clipboard:copy
 URxvt.keysym.Shift-Control-V:   perl:clipboard:paste
 URxvt.keysym.M-C-v: perl:clipboard:paste_escaped
 
+! Disable these keybindings
 URxvt.keysym.C-z: \
 URxvt.keysym.C-h: \
 URxvt.keysym.C-f: \
 
 Xcursor.size: 8
+
+! Dyl Colors {{{
 
 ! special
 *.foreground:   #f2f3f2
@@ -66,4 +68,6 @@ Xcursor.size: 8
 ! white
 *.color7:       #f2f3f2
 *.color15:      #f2f3f2
+
+! }}}
 

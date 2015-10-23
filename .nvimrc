@@ -37,15 +37,14 @@ call plug#begin('~/.nvim/plugged')
 
 " My Plugins
 Plug '~/dotfiles/colorschemes/ryuuko/vim/ryuuko/'
-
 Plug '~/projects/root.vim/'
 Plug '~/projects/taskrunner.nvim/'
-	" let g:taskrunner#dirs_to_go_up = 1
 	let g:taskrunner#split = "15new"
 	let g:taskrunner#focus_on_open = 1
 	let g:root#auto = 1
 	let g:root#echo = 0
 
+Plug 'junegunn/goyo.vim'
 Plug 'bling/vim-airline'
 	" Always show statusline
 	set laststatus=2
@@ -59,13 +58,14 @@ Plug 'bling/vim-airline'
 	let g:airline_left_sep=''
 	let g:airline_right_sep=''
 	let g:airline_left_alt_sep=''
+
+	" Disable tab seperators
 	let g:airline#extensions#tabline#left_sep = ''
 	let g:airline#extensions#tabline#left_alt_sep = ''
 	let g:airline_right_alt_sep=''
 	let g:airline#extensions#tabline#show_tab_type = 0
 
 " FUNCTIONALITY
-Plug 'junegunn/goyo.vim'
 Plug 'tpope/vim-fugitive'
 Plug 'wesQ3/vim-windowswap'
 	let g:windowswap_map_keys = 0
