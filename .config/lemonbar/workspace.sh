@@ -27,4 +27,4 @@ while :; do
 	sleep .03s
 done |
 
-orangebar -d -g "500x$barheight" -f "lemon-j" -B "#00$black" -F "#$white" 2>/dev/null | bash
+orangebar -g "1000x$barheight" -f "lemon-j" -B "#00$black" -F "#$white" 2>/dev/null | bash

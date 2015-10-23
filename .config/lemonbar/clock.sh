@@ -4,5 +4,5 @@ while :; do
 	sleep 1m
 done |
 
-lemonbar -d -g "1920x$barheight" -f "lemon-j" -B "#$black" -F "#$white" 2> /dev/null | bash
+lemonbar -g "1920x$barheight" -f "lemon-j" -B "#$black" -F "#$white" 2> /dev/null | bash
 
