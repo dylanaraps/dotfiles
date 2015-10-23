@@ -2,7 +2,7 @@
 
 windowtitle(){
 	title=$(xdotool getactivewindow getwindowname 2>/dev/null || echo "Hi")
-	echo " %{F#$white}>$title%{F}"
+	echo " %{F#$white}x> $title%{F}"
 }
 
 workspace(){
@@ -10,21 +10,21 @@ workspace(){
 
 	case $query in
 		0 )
-			echo "%{B#00$cyan}%{F#$white}  WWW  %{F}%{B}%{B#00$blue}%{A:wmctrl -s 1:}  cmd  %{A}%{B}%{B#00$blue}%{A:wmctrl -s 2:}  gam  %{A}%{B}%{B#00$blue}%{A:wmctrl -s 3:}  mus  %{A}%{B}" ;;
+			echo "%{B#$cyan}%{F#$white}  www  %{F}%{B}%{B#$blue}%{A:wmctrl -s 1:}  cmd  %{A}%{B}%{B#$blue}%{A:wmctrl -s 2:}  gam  %{A}%{B}%{B#$blue}%{A:wmctrl -s 3:}  mus  %{A}%{B}" ;;
 		1 )
-			echo "%{B#00$blue}%{A:wmctrl -s 0:}  www  %{A}%{B}%{B#00$cyan}%{F#$white}  CMD  %{F}%{B}%{B#00$blue}%{A:wmctrl -s 2:}  gam  %{A}%{B}%{B#00$blue}%{A:wmctrl -s 3:}  mus  %{A}%{B}" ;;
+			echo "%{B#$blue}%{A:wmctrl -s 0:}  www  %{A}%{B}%{B#$cyan}%{F#$white}  cmd  %{F}%{B}%{B#$blue}%{A:wmctrl -s 2:}  gam  %{A}%{B}%{B#$blue}%{A:wmctrl -s 3:}  mus  %{A}%{B}" ;;
 		2 )
-			echo "%{B#00$blue}%{A:wmctrl -s 0:}  www  %{A}%{B}%{B#00$blue}%{A:wmctrl -s 1:}  cmd  %{A}%{B}%{B#00$cyan}%{F#$white}  GAM  %{F}%{B}%{B#00$blue}%{A:wmctrl -s 3:}  mus  %{A}%{B}" ;;
+			echo "%{B#$blue}%{A:wmctrl -s 0:}  www  %{A}%{B}%{B#$blue}%{A:wmctrl -s 1:}  cmd  %{A}%{B}%{B#$cyan}%{F#$white}  gam  %{F}%{B}%{B#$blue}%{A:wmctrl -s 3:}  mus  %{A}%{B}" ;;
 		3 )
-			echo "%{B#00$blue}%{A:wmctrl -s 0:}  www  %{A}%{B}%{B#00$blue}%{A:wmctrl -s 1:}  cmd  %{A}%{B}%{B#00$blue}%{A:wmctrl -s 2:}  gam  %{A}%{B}%{B#00$cyan}%{F#$white}  MUS  %{F}%{B}" ;;
+			echo "%{B#$blue}%{A:wmctrl -s 0:}  www  %{A}%{B}%{B#$blue}%{A:wmctrl -s 1:}  cmd  %{A}%{B}%{B#$blue}%{A:wmctrl -s 2:}  gam  %{A}%{B}%{B#$cyan}%{F#$white}  mus  %{F}%{B}" ;;
 		* )
-			echo "%{B#00$blue}%{A:wmctrl -s 0:}  www  %{A}%{B}%{B#00$blue}%{A:wmctrl -s 1:}  cmd  %{A}%{B}%{B#00$blue}%{A:wmctrl -s 2:}  gam  %{A}%{B}%{B#00$blue}%{A:wmctrl -s 3:}  mus  %{A}%{B}" ;;
+			echo "%{B#$blue}%{A:wmctrl -s 0:}  www  %{A}%{B}%{B#$blue}%{A:wmctrl -s 1:}  cmd  %{A}%{B}%{B#$blue}%{A:wmctrl -s 2:}  gam  %{A}%{B}%{B#$blue}%{A:wmctrl -s 3:}  mus  %{A}%{B}" ;;
 	esac
 }
 
 while :; do
-	echo "%{l}%{F#$white}$(workspace)%{F}%{l}"
+	echo "%{l}%{F#$white}$(workspace) $(windowtitle)%{F}%{l}"
 	sleep .03s
 done |
 
-orangebar -d -g "500x$barheight" -f "$barfont" -f "$baricons" -B "#00$black" -F "#$white" 2>/dev/null | bash
+orangebar -d -g "500x$barheight" -f "lemon-j" -B "#00$black" -F "#$white" 2>/dev/null | bash
