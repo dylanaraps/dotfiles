@@ -4,7 +4,7 @@ dir=$HOME/Music/covers/
 width=298
 height=298
 
-fotmat=jpg
+format=jpg
 
 while :; do
 	currentsong=$(mpc current | sed -e 's/\///g')
