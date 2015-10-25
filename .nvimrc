@@ -453,7 +453,7 @@ function! TaskSplit()
 	wincmd w
 endfunction
 
-command! Webdev Goyo! | call OpenFiles() | call NerdTree() | call OpenInBrowser("firefox-nightly", "index.html") | call TaskSplit()
+command! Webdev call OpenFiles() | call NerdTree() | call OpenInBrowser("firefox-nightly", "index.html") | call TaskSplit() | Goyo!
 
 " }}}
 
