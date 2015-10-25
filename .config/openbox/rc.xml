@@ -213,12 +213,6 @@
         <wrap>yes</wrap>
       </action>
     </keybind>
-    <keybind key="W-4">
-      <action name="GoToDesktop">
-        <to>4</to>
-        <wrap>yes</wrap>
-      </action>
-    </keybind>
     <keybind key="W-5">
       <action name="GoToDesktop">
         <to>5</to>
@@ -346,6 +340,12 @@
       <action name="Execute">
         <name>dmenu</name>
         <command>~/dotfiles/scripts/dmenu.sh</command>
+      </action>
+    </keybind>
+    <keybind key="W-4">
+      <action name="Execute">
+        <name>musicfoc</name>
+		<command>~/dotfiles/scripts/openbox/musicfoc.sh</command>
       </action>
     </keybind>
   </keyboard>
