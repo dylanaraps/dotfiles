@@ -28,3 +28,4 @@ sleep .5s &&
 ~/dotfiles/.config/lemonbar/music.sh &
 
 ~/dotfiles/afterx.sh &
+

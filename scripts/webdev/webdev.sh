@@ -8,24 +8,18 @@ mkdir $dirname
 cd $dirname
 
 mkdir src
-cd src
 
-mkdir scss
-cd scss
-touch main.scss
-cd ..
+mkdir src/scss
+touch src/scss/main.scss
 
-mkdir coffeescript
-cd coffeescript
-touch main.coffee
-cd ..
+mkdir src/coffeescript
+touch src/coffeescript/main.coffee
 
-touch index.html
-cd ..
+touch src/index.html
 
 git init
 git add .
 git commit -m "Initial Files"
 
-cp ~/.dotfiles/scripts/webdev/files/gulpfile.coffee ~/projects/$dirname
+cp ~/dotfiles/scripts/webdev/files/gulpfile.coffee ~/projects/$dirname
 

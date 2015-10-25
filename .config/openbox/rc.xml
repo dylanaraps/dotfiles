@@ -42,7 +42,7 @@
                   'Active' - where the active window is -->
   </placement>
   <theme>
-    <name>NumixDylan</name>
+    <name>yellow</name>
     <titleLayout>LMC</titleLayout>
     <!--
       available characters are NDSLIMC, each can occur at most once.
@@ -290,7 +290,7 @@
     <!-- Tiling Bindings -->
     <keybind key="W-s">
       <action name="Execute">
-        <command>rtile.rb --all</command>
+        <command>~/dotfiles/scripts/openbox/tiling.sh</command>
       </action>
     </keybind>
     <!-- Always Ontop toggle -->

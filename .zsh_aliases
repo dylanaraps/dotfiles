@@ -39,7 +39,11 @@ alias feh='feh --auto-zoom --scale-down -g 640 -B black'
 alias wine='thread_submit=true wine'
 alias firefox='firefox-nightly'
 alias scrot='cd ~/Pictures/ && scrot'
-alias nvimusic="nvim -c 'call Music()'"
+
+# Music
+alias startmusic="~/dotfiles/scripts/tmux/tmuxicspawn.sh"
+alias music="~/dotfiles/scripts/tmux/tmuxicattach.sh"
+alias killmusic="tmux kill-session"
 
 # }}}
 

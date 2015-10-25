@@ -39,12 +39,16 @@ call plug#begin('~/.nvim/plugged')
 Plug '~/dotfiles/colorschemes/ryuuko/vim/ryuuko/'
 Plug '~/projects/root.vim/'
 Plug '~/projects/taskrunner.nvim/'
-	let g:taskrunner#split = "15new"
+	let g:taskrunner#split = "10new"
 	let g:taskrunner#focus_on_open = 1
 	let g:root#auto = 1
 	let g:root#echo = 0
 
 Plug 'junegunn/goyo.vim'
+	augroup Goyo
+		autocmd VimEnter * Goyo 80%x90%
+	augroup END
+
 Plug 'bling/vim-airline'
 	" Always show statusline
 	set laststatus=2
@@ -242,6 +246,9 @@ vnoremap <SPACE> <nop>
 cabbrev Wq wq
 cabbrev W w
 cabbrev Q q
+
+" Map q to qa to quickly exit when using goyo
+cnoreabbrev q qa
 
 " K
 nnoremap K <nop>
@@ -446,19 +453,7 @@ function! TaskSplit()
 	wincmd w
 endfunction
 
-command! Webdev call OpenFiles() | call NerdTree() | call OpenInBrowser("firefox-nightly", "index.html") | call TaskSplit()
-
-" }}}
-
-" Music {{{
-
-function! Music()
-	Goyo 100%x100%
-	terminal cava
-	sp
-	terminal ncmpcpp
-endfunction
-
+command! Webdev Goyo! | call OpenFiles() | call NerdTree() | call OpenInBrowser("firefox-nightly", "index.html") | call TaskSplit()
 
 " }}}
 
