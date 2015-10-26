@@ -45,5 +45,7 @@ alias startmusic="~/dotfiles/scripts/tmux/tmuxicspawn.sh"
 alias music="~/dotfiles/scripts/tmux/tmuxicattach.sh"
 alias killmusic="tmux kill-session"
 
+alias weechat="urxvt -hold -b 50 -g 135x45 -e zsh -c weechat"
+
 # }}}
 

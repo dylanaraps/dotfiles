@@ -10,15 +10,15 @@ workspace(){
 
 	case $query in
 		0 )
-			echo "%{B#$cyan}  www  %{B}%{B#$blue}%{A:wmctrl -s 1:}  cmd  %{A}%{B}%{B#$blue}%{A:wmctrl -s 2:}  gam  %{A}%{B}%{B#$blue}%{A:wmctrl -s 3:}  mus  %{A}%{B}" ;;
+			echo "%{B#$cyan}  www  %{B}%{B#$blue}%{A:wmctrl -s 1:}  cmd  %{A}%{B}%{B#$blue}%{A:wmctrl -s 2:}  gam  %{A}%{B}%{B#$blue}%{A:~/dotfiles/scripts/openbox/musicfoc.sh:}  mus  %{A}%{B}" ;;
 		1 )
-			echo "%{B#$blue}%{A:wmctrl -s 0:}  www  %{A}%{B}%{B#$cyan}  cmd  %{B}%{B#$blue}%{A:wmctrl -s 2:}  gam  %{A}%{B}%{B#$blue}%{A:wmctrl -s 3:}  mus  %{A}%{B}" ;;
+			echo "%{B#$blue}%{A:wmctrl -s 0:}  www  %{A}%{B}%{B#$cyan}  cmd  %{B}%{B#$blue}%{A:wmctrl -s 2:}  gam  %{A}%{B}%{B#$blue}%{A:~/dotfiles/scripts/openbox/musicfoc.sh:}  mus  %{A}%{B}" ;;
 		2 )
-			echo "%{B#$blue}%{A:wmctrl -s 0:}  www  %{A}%{B}%{B#$blue}%{A:wmctrl -s 1:}  cmd  %{A}%{B}%{B#$cyan}  gam  %{B}%{B#$blue}%{A:wmctrl -s 3:}  mus  %{A}%{B}" ;;
+			echo "%{B#$blue}%{A:wmctrl -s 0:}  www  %{A}%{B}%{B#$blue}%{A:wmctrl -s 1:}  cmd  %{A}%{B}%{B#$cyan}  gam  %{B}%{B#$blue}%{A:~/dotfiles/scripts/openbox/musicfoc.sh:}  mus  %{A}%{B}" ;;
 		3 )
 			echo "%{B#$blue}%{A:wmctrl -s 0:}  www  %{A}%{B}%{B#$blue}%{A:wmctrl -s 1:}  cmd  %{A}%{B}%{B#$blue}%{A:wmctrl -s 2:}  gam  %{A}%{B}%{B#$cyan}  mus  %{B}" ;;
 		* )
-			echo "%{B#$blue}%{A:wmctrl -s 0:}  www  %{A}%{B}%{B#$blue}%{A:wmctrl -s 1:}  cmd  %{A}%{B}%{B#$blue}%{A:wmctrl -s 2:}  gam  %{A}%{B}%{B#$blue}%{A:wmctrl -s 3:}  mus  %{A}%{B}" ;;
+			echo "%{B#$blue}%{A:wmctrl -s 0:}  www  %{A}%{B}%{B#$blue}%{A:wmctrl -s 1:}  cmd  %{A}%{B}%{B#$blue}%{A:wmctrl -s 2:}  gam  %{A}%{B}%{B#$blue}%{A:~/dotfiles/scripts/openbox/musicfoc.sh:}  mus  %{A}%{B}" ;;
 	esac
 }
 
