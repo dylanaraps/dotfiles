@@ -26,7 +26,7 @@ alias peerflix="peerflix --path '~/Videos/Downloads' --mpv"
 alias cmp="compton --config ~/.compton &"
 
 # Aliases to start/kill bar
-alias killbar="pkill ~/.config/lemonbar/clock.sh & pkill ~/.config/lemonbar/workspace.sh & pkill ~/.config/lemonbar/music.sh & pkill lemonbar & pkill orangebar"
+alias killbar="pkill ~/.config/lemonbar/clock.sh & pkill ~/.config/lemonbar/workspace.sh & pkill ~/.config/lemonbar/music.sh & pkill lemonbar"
 alias startbar="~/dotfiles/.config/lemonbar/clock.sh & sleep .5s && ~/dotfiles/.config/lemonbar/workspace.sh & ~/dotfiles/.config/lemonbar/music.sh"
 
 # Webdev
