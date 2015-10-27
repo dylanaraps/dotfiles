@@ -635,6 +635,7 @@
     <application class="Firefox*">
       <desktop>1</desktop>
       <focus>no</focus>
+	  <action name="Lower"/>
     </application>
     <application class="Steam*">
       <desktop>3</desktop>
