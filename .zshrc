@@ -19,7 +19,7 @@ source ~/.zsh_aliases
 export black="2d2b33"
 export darkgray="75747a"
 export red="c86c75"
-export green="c6d1c0"
+export green="9BB38F"
 export yellow="e5c196"
 export blue="8294b4"
 export orange="e8907e"

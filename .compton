@@ -49,8 +49,8 @@ opacity-rule = [
 	"94:class_g = 'xfce4-terminal'",
 	"90:name = 'kek'",
 	"90:name = 'bar'",
-	"94:class_g = 'qutebrowser'",
-	"94:class_g = 'Firefox'",
+	"92:class_g = 'qutebrowser'",
+	"92:class_g = 'Firefox'",
 	"96:class_g = 'Thunar'"
 ];
 

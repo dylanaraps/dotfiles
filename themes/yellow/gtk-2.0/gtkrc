@@ -6,6 +6,7 @@ gtk-color-scheme = "bg_color:#2d2b33\nfg_color:#75747a\nbase_color:#2d2b33\ntext
 # Default Style
 
 style "murrine-default" {
+
 	GtkArrow::arrow-scaling= 0.6
 
 	GtkButton::child-displacement-x = 0

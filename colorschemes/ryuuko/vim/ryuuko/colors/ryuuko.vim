@@ -11,7 +11,7 @@ set background=dark
 " Neovim Terminal Mode Colors
 let g:terminal_color_0 = "#2d2b33"
 let g:terminal_color_1 = "#c86c75"
-let g:terminal_color_2 = "#c6d1c0"
+let g:terminal_color_2 = "#9BB38F"
 let g:terminal_color_3 = "#e5c196"
 let g:terminal_color_4 = "#8294b4"
 let g:terminal_color_5 = "#e8907e"
@@ -46,7 +46,7 @@ if &t_Co >= 256 || has("gui_running")
 		hi PreProc ctermbg=NONE ctermfg=3 cterm=NONE guibg=NONE guifg=#e5c196 gui=NONE
 		hi Special ctermbg=NONE ctermfg=6 cterm=NONE guibg=NONE guifg=#a9cdd9 gui=NONE
 		hi Statement ctermbg=NONE ctermfg=9 cterm=NONE guibg=NONE guifg=#c86c75 gui=NONE
-		hi String ctermbg=NONE ctermfg=2 cterm=NONE guibg=NONE guifg=#c6d1c0 gui=NONE
+		hi String ctermbg=NONE ctermfg=2 cterm=NONE guibg=NONE guifg=#9BB38F gui=NONE
 		hi Number ctermbg=NONE ctermfg=3 cterm=NONE guibg=NONE guifg=#e5c196 gui=NONE
 		hi Todo ctermbg=10 ctermfg=3 cterm=NONE guibg=#75747a guifg=#e5c196 gui=NONE
 		hi Type ctermbg=NONE ctermfg=3 cterm=NONE guibg=NONE guifg=#e5c196 gui=NONE
@@ -72,9 +72,9 @@ if &t_Co >= 256 || has("gui_running")
 		hi PmenuThumb ctermbg=10 ctermfg=10 cterm=NONE guibg=#75747a guifg=#75747a gui=NONE
 		hi FoldColumn ctermbg=NONE ctermfg=15 cterm=NONE guibg=NONE guifg=#f2f3f2 gui=NONE
 		hi Folded ctermbg=NONE ctermfg=10 cterm=bold guibg=NONE guifg=#75747a gui=bold
-		hi WildMenu ctermbg=2 ctermfg=0 cterm=NONE guibg=#c6d1c0 guifg=#2d2b33 gui=NONE
+		hi WildMenu ctermbg=2 ctermfg=0 cterm=NONE guibg=#9BB38F guifg=#2d2b33 gui=NONE
 		hi SpecialKey ctermbg=NONE ctermfg=10 cterm=NONE guibg=NONE guifg=#75747a gui=NONE
-		hi DiffAdd ctermbg=NONE ctermfg=2 cterm=NONE guibg=NONE guifg=#c6d1c0 gui=NONE
+		hi DiffAdd ctermbg=NONE ctermfg=2 cterm=NONE guibg=NONE guifg=#9BB38F gui=NONE
 		hi DiffChange ctermbg=NONE ctermfg=10 cterm=NONE guibg=NONE guifg=#75747a gui=NONE
 		hi DiffDelete ctermbg=NONE ctermfg=9 cterm=bold guibg=NONE guifg=#c86c75 gui=bold
 		hi DiffText ctermbg=NONE ctermfg=4 cterm=bold guibg=NONE guifg=#8294b4 gui=bold
@@ -85,8 +85,8 @@ if &t_Co >= 256 || has("gui_running")
 		hi ColorColumn ctermbg=10 ctermfg=10 cterm=NONE guibg=#75747a guifg=#75747a gui=NONE
 		hi signColumn ctermbg=NONE ctermfg=4 cterm=bold guibg=NONE guifg=#8294b4 gui=bold
 		hi ErrorMsg ctermbg=NONE ctermfg=10 cterm=NONE guibg=NONE guifg=#75747a gui=NONE
-		hi ModeMsg ctermbg=NONE ctermfg=2 cterm=NONE guibg=NONE guifg=#c6d1c0 gui=NONE
-		hi MoreMsg ctermbg=NONE ctermfg=2 cterm=NONE guibg=NONE guifg=#c6d1c0 gui=NONE
+		hi ModeMsg ctermbg=NONE ctermfg=2 cterm=NONE guibg=NONE guifg=#9BB38F gui=NONE
+		hi MoreMsg ctermbg=NONE ctermfg=2 cterm=NONE guibg=NONE guifg=#9BB38F gui=NONE
 		hi Question ctermbg=NONE ctermfg=4 cterm=NONE guibg=NONE guifg=#8294b4 gui=NONE
 		hi WarningMsg ctermbg=9 ctermfg=0 cterm=NONE guibg=#c86c75 guifg=#2d2b33 gui=NONE
 		hi Cursor ctermbg=NONE ctermfg=10 cterm=NONE guibg=NONE guifg=#75747a gui=NONE
@@ -134,7 +134,7 @@ if &t_Co >= 256 || has("gui_running")
 			hi link htmlH4 htmlH1
 			hi link htmlH5 htmlH1
 			hi link htmlH6 htmlH1
-		hi cssMultiColumnAttr ctermbg=NONE ctermfg=2 cterm=NONE guibg=NONE guifg=#c6d1c0 gui=NONE
+		hi cssMultiColumnAttr ctermbg=NONE ctermfg=2 cterm=NONE guibg=NONE guifg=#9BB38F gui=NONE
 			hi link cssFontAttr cssMultiColumnAttr
 			hi link cssFlexibleBoxAttr cssMultiColumnAttr
 		hi cssBraces ctermbg=NONE ctermfg=15 cterm=NONE guibg=NONE guifg=#f2f3f2 gui=NONE
@@ -167,14 +167,14 @@ if &t_Co >= 256 || has("gui_running")
 		hi rubyInclude ctermbg=NONE ctermfg=4 cterm=NONE guibg=NONE guifg=#8294b4 gui=NONE
 		hi rubyDefine ctermbg=NONE ctermfg=1 cterm=NONE guibg=NONE guifg=#e8907e gui=NONE
 		hi rubyFunction ctermbg=NONE ctermfg=4 cterm=NONE guibg=NONE guifg=#8294b4 gui=NONE
-		hi rubyStringDelimiter ctermbg=NONE ctermfg=2 cterm=NONE guibg=NONE guifg=#c6d1c0 gui=NONE
+		hi rubyStringDelimiter ctermbg=NONE ctermfg=2 cterm=NONE guibg=NONE guifg=#9BB38F gui=NONE
 		hi rubyInteger ctermbg=NONE ctermfg=3 cterm=NONE guibg=NONE guifg=#e5c196 gui=NONE
 		hi rubyAttribute ctermbg=NONE ctermfg=4 cterm=NONE guibg=NONE guifg=#8294b4 gui=NONE
 		hi rubyConstant ctermbg=NONE ctermfg=3 cterm=NONE guibg=NONE guifg=#e5c196 gui=NONE
-		hi rubyInterpolation ctermbg=NONE ctermfg=2 cterm=NONE guibg=NONE guifg=#c6d1c0 gui=NONE
+		hi rubyInterpolation ctermbg=NONE ctermfg=2 cterm=NONE guibg=NONE guifg=#9BB38F gui=NONE
 		hi rubyInterpolationDelimiter ctermbg=NONE ctermfg=3 cterm=NONE guibg=NONE guifg=#e5c196 gui=NONE
 		hi rubyRegexp ctermbg=NONE ctermfg=6 cterm=NONE guibg=NONE guifg=#a9cdd9 gui=NONE
-		hi rubySymbol ctermbg=NONE ctermfg=2 cterm=NONE guibg=NONE guifg=#c6d1c0 gui=NONE
+		hi rubySymbol ctermbg=NONE ctermfg=2 cterm=NONE guibg=NONE guifg=#9BB38F gui=NONE
 		hi rubyTodo ctermbg=NONE ctermfg=10 cterm=bold guibg=NONE guifg=#75747a gui=bold
 		hi rubyRegexpAnchor ctermbg=NONE ctermfg=15 cterm=NONE guibg=NONE guifg=#f2f3f2 gui=NONE
 			hi link rubyRegexpQuantifier rubyRegexpAnchor
@@ -188,7 +188,7 @@ if &t_Co >= 256 || has("gui_running")
 		hi phpParent ctermbg=NONE ctermfg=15 cterm=NONE guibg=NONE guifg=#f2f3f2 gui=NONE
 		hi cOperator ctermbg=NONE ctermfg=6 cterm=NONE guibg=NONE guifg=#a9cdd9 gui=NONE
 		hi cPreCondit ctermbg=NONE ctermfg=1 cterm=NONE guibg=NONE guifg=#e8907e gui=NONE
-		hi SignifySignAdd ctermbg=NONE ctermfg=2 cterm=NONE guibg=NONE guifg=#c6d1c0 gui=NONE
+		hi SignifySignAdd ctermbg=NONE ctermfg=2 cterm=NONE guibg=NONE guifg=#9BB38F gui=NONE
 		hi SignifySignChange ctermbg=NONE ctermfg=4 cterm=NONE guibg=NONE guifg=#8294b4 gui=NONE
 		hi SignifySignDelete ctermbg=NONE ctermfg=9 cterm=NONE guibg=NONE guifg=#c86c75 gui=NONE
 		hi NERDTreeDirSlash ctermbg=NONE ctermfg=4 cterm=NONE guibg=NONE guifg=#8294b4 gui=NONE

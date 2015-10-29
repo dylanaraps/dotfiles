@@ -630,11 +630,12 @@
       <desktop>all</desktop>
       <maximized>no</maximized>
       <decor>yes</decor>
+	  <layer>above</layer>
     </application>
     <application class="Firefox*">
       <desktop>1</desktop>
       <focus>no</focus>
-      <action name="Lower"/>
+	  <layer>below</layer>
     </application>
     <application class="Steam*">
       <desktop>3</desktop>

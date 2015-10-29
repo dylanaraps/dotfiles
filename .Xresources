@@ -45,8 +45,8 @@ Xcursor.size: 8
 *.color9:       #c86c75
 
 ! green
-*.color2:       #c6d1c0
-*.color10:      #c6d1c0
+*.color2:       #9BB38F
+*.color10:      #9BB38F
 
 ! yellow
 *.color3:       #e5c196
