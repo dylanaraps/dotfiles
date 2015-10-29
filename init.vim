@@ -433,19 +433,13 @@ function! NerdTree()
 	endif
 endfunction
 
-function! OpenInBrowser(browser, htmlfile)
-	" Neovim segfaults if you sleep in a terminal that's running a command
-	" So I'm using this instead of a terminal buffer.
-	silent! execute "!" . a:browser . " " . a:htmlfile . " &"
-endfunction
-
 function! TaskSplit()
 	Task
 	wincmd w
 	wincmd w
 endfunction
 
-command! Webdev call OpenFiles() | call NerdTree() | call OpenInBrowser("firefox-nightly", "index.html") | call TaskSplit()
+command! Webdev call OpenFiles() | call NerdTree() | call Openwith("firefox-nightly") | call TaskSplit()
 
 " }}}
 
@@ -566,10 +560,20 @@ augroup END
 
 " }}}
 
-" Echo on save {{{
+" Custom message on save {{{
 
 command! -bang -nargs=* W  :w <bar> redraw <bar> call PersistentEcho("saved")
 cnoreabbrev w W
+
+" }}}
+
+" Open current file with another program {{{
+
+function! Openwith(program)
+	silent! execute "!" . a:program . " " . expand('%:p') . " &"
+endfunction
+
+command! -bang -nargs=* Openwith call Openwith(<q-args>)
 
 " }}}
 
