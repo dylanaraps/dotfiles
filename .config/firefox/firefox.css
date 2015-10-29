@@ -10,19 +10,19 @@
 
 :root {
 	/* Colors */
-    --bg-light: #feffff; --bg-dark: #d6d6d6;
-    --fg-light: #2d2b33; --fg-dark: #2d2b33;
+    --bg-light: #2d2b33; --bg-dark: #2d2b33;
+    --fg-light: #feffff; --fg-dark: #AAAAAA;
 
 	/* Tabs */
-    --tab-height: 25px;
-    --tab-fonts: Roboto;
+    --tab-height: 30px;
+    --tab-fonts: lemon-j;
     --tab-font-size: 12px;
 
 	/* Url Bar */
     --url-height: 30px;
-    --url-fonts: Roboto;
-	--url-font-size: 12px;
-    --url-text-align: center; /* left | center | right */
+    --url-fonts: lemon-j;
+    --url-font-size: 12px;
+    --url-text-align: left; /* left | center | right */
 }
 
 /* }}} */
@@ -91,8 +91,9 @@
 
 	/* Background behind Tabs */
 	#main-window[sizemode="normal"]:not([inFullscreen])  #TabsToolbar {
-		background: transparent !important;
-		margin: 4px -25px 1px -18px !important;
+		background: var(--bg-dark) !important;
+		margin: 0px -25px 0px -18px !important;
+                padding-top: 4px !important;
 	}
 
 	#main-window[sizemode="normal"]:not([inFullscreen])  #TabsToolbar .tabbrowser-tabs {
@@ -136,6 +137,11 @@
 /* }}} */
 
 /* NAVBAR/URLBAR {{{ */
+
+	menubar, toolbar, nav-bar, #TabsToolbar > *{
+		background-color: var(--bg-dark) !important;
+	}
+
 	#nav-bar {
 		background: var(--bg-light) !important;
 		border: none !important;
@@ -154,9 +160,7 @@
 		font-family: var(--url-fonts) !important;
 		font-size: var(--url-font-size) !important;
 		margin: 0 4px 0 12px !important;
-		padding-left: 0px !important;
-		padding: 5px !important;
-                padding-top: 8px !important;
+		padding: 8px 5px 8px 10px !important;
 		text-align: var(--url-text-align) !important;
 	}
 
@@ -185,6 +189,8 @@
 
 	/* Changes menu button image */
 	#PanelUI-menu-button {
+		padding: 0px 25px 0px 0px !important;
+		margin-bottom: 4px !important;
 		-moz-image-region: rect(0,16px,16px,0) !important;
 		background: transparent !important;
 		border: transparent !important;
@@ -207,7 +213,6 @@
 	#PanelUI-button {
 		background: none !important;
 		list-style-image: url('data:image/png,%89PNG%0D%0A%1A%0A%00%00%00%0DIHDR%00%00%00%10%00%00%00%10%08%06%00%00%00%1F%F3%FFa%00%00%00%04sBIT%08%08%08%08%7C%08d%88%00%00%00%09pHYs%00%00%0D%D7%00%00%0D%D7%01B%28%9Bx%00%00%00%19tEXtSoftware%00www.inkscape.org%9B%EE%3C%1A%00%00%009IDAT8%8Dc%60%A0%1002000TT%B4%0B%92%A3%B9%A3%A3%F2%3DciES%0A%03%23%E3l%B2%AC%FF%FF%3F%95%89%2C%8D%83%0A%8C%06"%15%C0h%20R%01%00%00%E2%86%1A%86%C2%C8%D8%A4%00%00%00%00IEND%AEB%60%82') !important;
-		margin: 0 -3px 0 -7px !important;
 		width: 0px !important;
 	}
 
@@ -242,6 +247,5 @@ tabbrowser tabpanels, #appcontent > #content {
 }
 
 /* }}} */
-
 
 
