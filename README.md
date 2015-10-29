@@ -1,8 +1,7 @@
 # Dylan's Dotfiles
 My current setup as of the 23rd of October 2015.
 
-![Music](http://i.imgur.com/dUBTG4F.jpg)
-![Neovim](http://i.imgur.com/kuSqo5P.jpg)
+![Music](http://i.imgur.com/F2mWQCs.jpg)
 
 <!--- My Setup {{{ -->
 
