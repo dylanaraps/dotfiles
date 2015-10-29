@@ -1,9 +1,8 @@
 ! Dylans Xresources
-! URxvt.font: envypn-13
 URxvt*font: xft:lemon-j:size=4
 URxvt*boldFont: xft:lemon-j:size=4
 
-URxvt*geometry: 90x25
+URxvt*geometry: 90x24
 xterm*termName: xterm-256color
 
 ! Disables Scrollbar
@@ -14,7 +13,7 @@ URxvt*loginShell: true
 
 ! Speed up loading of alsamixer on ati
 URxvt*skipBuiltinGlyphs: true
-URxvt.internalBorder: 4
+URxvt.internalBorder: 6
 
 ! Enables copy/paste
 URxvt.iso14755: False

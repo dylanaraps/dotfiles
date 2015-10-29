@@ -43,7 +43,7 @@
   </placement>
   <theme>
     <name>yellow</name>
-    <titleLayout>LMC</titleLayout>
+    <titleLayout>MC</titleLayout>
     <!--
       available characters are NDSLIMC, each can occur at most once.
       N: window icon
@@ -193,11 +193,10 @@
         <to>right</to>
         <wrap>yes</wrap>
       </action>
-
-	  <action name="Execute">
-		<name>musicfoc2</name>
-		<command>~/dotfiles/scripts/openbox/musicfoc2.sh</command>
-	  </action>
+      <action name="Execute">
+        <name>musicfoc2</name>
+        <command>~/dotfiles/scripts/openbox/musicfoc2.sh</command>
+      </action>
     </keybind>
     <!-- Go to desktop by number -->
     <keybind key="W-1">
@@ -350,7 +349,7 @@
     <keybind key="W-4">
       <action name="Execute">
         <name>musicfoc</name>
-		<command>~/dotfiles/scripts/openbox/musicfoc.sh</command>
+        <command>~/dotfiles/scripts/openbox/musicfoc.sh</command>
       </action>
     </keybind>
   </keyboard>
@@ -635,7 +634,7 @@
     <application class="Firefox*">
       <desktop>1</desktop>
       <focus>no</focus>
-	  <action name="Lower"/>
+      <action name="Lower"/>
     </application>
     <application class="Steam*">
       <desktop>3</desktop>

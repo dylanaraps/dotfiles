@@ -53,9 +53,9 @@ if &t_Co >= 256 || has("gui_running")
 		hi Underlined ctermbg=NONE ctermfg=9 cterm=underline guibg=NONE guifg=#c86c75 gui=underline
 		hi StatusLine ctermbg=NONE ctermfg=10 cterm=NONE guibg=NONE guifg=#75747a gui=NONE
 		hi StatusLineNC ctermbg=NONE ctermfg=NONE cterm=NONE guibg=NONE guifg=NONE gui=NONE
-		hi TabLine ctermbg=NONE ctermfg=10 cterm=NONE guibg=NONE guifg=#75747a gui=NONE
-		hi TabLineFill ctermbg=NONE ctermfg=10 cterm=NONE guibg=NONE guifg=#75747a gui=NONE
-		hi TabLineSel ctermbg=NONE ctermfg=10 cterm=NONE guibg=NONE guifg=#75747a gui=NONE
+		hi TabLine ctermbg=NONE ctermfg=0 cterm=NONE guibg=NONE guifg=#2d2b33 gui=NONE
+		hi TabLineFill ctermbg=NONE ctermfg=0 cterm=NONE guibg=NONE guifg=#2d2b33 gui=NONE
+		hi TabLineSel ctermbg=NONE ctermfg=0 cterm=NONE guibg=NONE guifg=#2d2b33 gui=NONE
 		hi TermCursorNC ctermbg=3 ctermfg=0 cterm=NONE guibg=#e5c196 guifg=#2d2b33 gui=NONE
 		hi VertSplit ctermbg=NONE ctermfg=NONE cterm=NONE guibg=NONE guifg=NONE gui=NONE
 		hi Title ctermbg=NONE ctermfg=4 cterm=NONE guibg=NONE guifg=#8294b4 gui=NONE
@@ -64,7 +64,7 @@ if &t_Co >= 256 || has("gui_running")
 		hi CursorLineNr ctermbg=NONE ctermfg=10 cterm=NONE guibg=NONE guifg=#75747a gui=NONE
 		hi helpLeadBlank ctermbg=NONE ctermfg=15 cterm=NONE guibg=NONE guifg=#f2f3f2 gui=NONE
 		hi helpNormal ctermbg=NONE ctermfg=15 cterm=NONE guibg=NONE guifg=#f2f3f2 gui=NONE
-		hi Visual ctermbg=10 ctermfg=10 cterm=NONE guibg=#75747a guifg=#75747a gui=NONE
+		hi Visual ctermbg=10 ctermfg=0 cterm=NONE guibg=#75747a guifg=#2d2b33 gui=NONE
 		hi VisualNOS ctermbg=NONE ctermfg=9 cterm=NONE guibg=NONE guifg=#c86c75 gui=NONE
 		hi Pmenu ctermbg=10 ctermfg=15 cterm=NONE guibg=#75747a guifg=#f2f3f2 gui=NONE
 		hi PmenuSbar ctermbg=6 ctermfg=15 cterm=NONE guibg=#a9cdd9 guifg=#f2f3f2 gui=NONE
@@ -213,9 +213,9 @@ set t_Co=16
 		hi Underlined ctermbg=NONE ctermfg=red cterm=underline
 		hi StatusLine ctermbg=NONE ctermfg=green cterm=NONE
 		hi StatusLineNC ctermbg=NONE ctermfg=NONE cterm=NONE
-		hi TabLine ctermbg=NONE ctermfg=green cterm=NONE
-		hi TabLineFill ctermbg=NONE ctermfg=green cterm=NONE
-		hi TabLineSel ctermbg=NONE ctermfg=green cterm=NONE
+		hi TabLine ctermbg=NONE ctermfg=black cterm=NONE
+		hi TabLineFill ctermbg=NONE ctermfg=black cterm=NONE
+		hi TabLineSel ctermbg=NONE ctermfg=black cterm=NONE
 		hi TermCursorNC ctermbg=darkyellow ctermfg=black cterm=NONE
 		hi VertSplit ctermbg=NONE ctermfg=NONE cterm=NONE
 		hi Title ctermbg=NONE ctermfg=darkblue cterm=NONE
@@ -224,7 +224,7 @@ set t_Co=16
 		hi CursorLineNr ctermbg=NONE ctermfg=green cterm=NONE
 		hi helpLeadBlank ctermbg=NONE ctermfg=white cterm=NONE
 		hi helpNormal ctermbg=NONE ctermfg=white cterm=NONE
-		hi Visual ctermbg=green ctermfg=green cterm=NONE
+		hi Visual ctermbg=green ctermfg=black cterm=NONE
 		hi VisualNOS ctermbg=NONE ctermfg=red cterm=NONE
 		hi Pmenu ctermbg=green ctermfg=white cterm=NONE
 		hi PmenuSbar ctermbg=darkcyan ctermfg=white cterm=NONE

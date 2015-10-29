@@ -5,69 +5,41 @@ let mapleader = "\<space>"
 
 " Neovim Exclusive Settings {{{
 
-if has('nvim')
-	" Improve Neovim startup time
-	let g:python_host_skip_check= 1
-	let g:loaded_python_provider = 1
-	let g:loaded_python3_provider= 1
+" Improve Neovim startup time
+let g:python_host_skip_check= 1
+let g:loaded_python_provider = 1
+let g:loaded_python3_provider= 1
 
-	" Enable true color for neovim
-	let $NVIM_TUI_ENABLE_TRUE_COLOR = 1
+" Enable true color for neovim
+let $NVIM_TUI_ENABLE_TRUE_COLOR = 1
 
-	" Sexy cursor
-	let $NVIM_TUI_ENABLE_CURSOR_SHAPE = 1
-
-	tnoremap <silent> <Esc> <C-\><C-n>:call QuitTerminal()<CR>
-endif
+" Sexy cursor
+let $NVIM_TUI_ENABLE_CURSOR_SHAPE = 1
 
 " }}}
 
 " Plugins {{{
 
 " Auto install plug if not found
-if empty(glob('~/.nvim/autoload/plug.vim'))
-	silent !curl -fLo ~/.nvim/autoload/plug.vim --create-dirs
+if empty(glob('~/.config/nvim/autoload/plug.vim'))
+	silent !curl -fLo ~/.config//nvim/autoload/plug.vim --create-dirs
 	\ https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
 	autocmd VimEnter * PlugInstall
 endif
 
-call plug#begin('~/.nvim/plugged')
+call plug#begin('~/.config/nvim/plugged')
 
 " LOOKS
 
 " My Plugins
 Plug '~/dotfiles/colorschemes/ryuuko/vim/ryuuko/'
 Plug '~/projects/root.vim/'
-Plug '~/projects/taskrunner.nvim/'
-	let g:taskrunner#split = "10new"
-	let g:taskrunner#focus_on_open = 1
 	let g:root#auto = 1
 	let g:root#echo = 0
 
-Plug 'junegunn/goyo.vim'
-	augroup Goyo
-		autocmd VimEnter * Goyo 80%x90%
-	augroup END
-
-Plug 'bling/vim-airline'
-	" Always show statusline
-	set laststatus=2
-	let g:airline_powerline_fonts = 0
-	let g:airline_theme = 'ryuuko'
-	let g:airline#extensions#tabline#enabled = 1
-
-	" Display only filename in tabs
-	let g:airline#extensions#tabline#fnamemod = ':t'
-	let g:airline#extensions#tabline#show_tabs = 0
-	let g:airline_left_sep=''
-	let g:airline_right_sep=''
-	let g:airline_left_alt_sep=''
-
-	" Disable tab seperators
-	let g:airline#extensions#tabline#left_sep = ''
-	let g:airline#extensions#tabline#left_alt_sep = ''
-	let g:airline_right_alt_sep=''
-	let g:airline#extensions#tabline#show_tab_type = 0
+Plug '~/projects/taskrunner.nvim/'
+	let g:taskrunner#split = "10new"
+	let g:taskrunner#focus_on_open = 1
 
 " FUNCTIONALITY
 Plug 'tpope/vim-fugitive'
@@ -179,6 +151,9 @@ autocmd BufNewFile,BufRead *.md set filetype=markdown
 " set filetype to zsh so that comments are correctly highlighted
 autocmd BufEnter,BufNewFile .rtorrent.rc set filetype=zsh
 
+autocmd CmdwinEnter * redraw!
+autocmd CmdwinLeave * redraw!
+
 augroup END
 
 " }}}
@@ -219,12 +194,29 @@ set background=dark
 set number
 set noruler
 set noequalalways
+set laststatus=2
+set tabline=" "
+set showtabline=2
+set lazyredraw
+
+" Limit syntax highlighting to 800 columns wide
+set synmaxcol=1000
 
 " Don’t show the intro message when starting Vim
 set shortmess=atI
 set noshowmode
 
 colorscheme ryuuko
+
+set statusline=\ %t
+set statusline+=\ %y
+set statusline+=\ %m
+set statusline+=\ %r
+set statusline+=%=
+set statusline+=%n
+set statusline+=\/%{len(filter(range(1,bufnr('$')),'buflisted(v:val)'))}
+
+hi User1 guifg=#f2f3f2 guibg=NONE
 
 " }}}
 
@@ -340,8 +332,8 @@ vnoremap K :m '<-2<CR>gv=gv
 " Fuck swapfiles
 set noswapfile
 
-set backupdir=~/.nvim/tmp/backups//
-set undodir=~/.nvim/tmp/undo//
+set backupdir=~/.config/nvim/tmp/backups//
+set undodir=~/.config/nvim/tmp/undo//
 
 " Make those folders automatically if they don't already exist.
 if !isdirectory(expand(&backupdir))
@@ -453,7 +445,7 @@ function! TaskSplit()
 	wincmd w
 endfunction
 
-command! Webdev call OpenFiles() | call NerdTree() | call OpenInBrowser("firefox-nightly", "index.html") | call TaskSplit() | Goyo!
+command! Webdev call OpenFiles() | call NerdTree() | call OpenInBrowser("firefox-nightly", "index.html") | call TaskSplit()
 
 " }}}
 
@@ -464,6 +456,7 @@ command! Webdev call OpenFiles() | call NerdTree() | call OpenInBrowser("firefox
 function! BetterBufferNav(bcmd)
 	if &modifiable == 1 || &ft == 'help'
 		execute a:bcmd
+		call PersistentEcho(" ")
 	else
 		wincmd w
 	endif
@@ -486,16 +479,13 @@ function QuitTerminal()
 endfunction
 
 function! QuickTerminal()
-	6new
+	10new
 	terminal
 	file quickterm
-
-	tnoremap <silent> <Esc> <C-\><C-n>:call QuitTerminal()<CR>
 endfunction
 
-if has('nvim')
-	nnoremap <silent> <Leader>t :call QuickTerminal()<CR>
-endif
+tnoremap <silent> <Esc> <C-\><C-n>:call QuitTerminal()<CR>
+nnoremap <silent> <Leader>t :call QuickTerminal()<CR>
 
 " }}}
 
@@ -556,6 +546,31 @@ endfunction
 command! -bang -nargs=* BD call SmartBD(<bang>0, <q-args>)
 
 cnoreabbrev bd BD
+" }}}
+
+" Persistent Echo {{{
+" Used to remove the text that gets printed on bnext/bprev
+
+func! PersistentEcho(msg)
+	echo a:msg
+	let g:PersistentEcho=a:msg
+endfun
+
+let g:PersistentEcho=''
+
+if &ut>200|let &ut=0|endif
+
+augroup Echo
+	au CursorHold * if PersistentEcho!=''|echo PersistentEcho|let PersistentEcho=''|endif
+augroup END
+
+" }}}
+
+" Echo on save {{{
+
+command! -bang -nargs=* W  :w <bar> redraw <bar> call PersistentEcho("saved")
+cnoreabbrev w W
+
 " }}}
 
 " }}}
