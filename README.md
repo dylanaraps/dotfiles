@@ -1,5 +1,5 @@
 # Dylan's Dotfiles
-My current setup as of the 23rd of October 2015.
+My current setup as of the 29th of October 2015.
 
 ![Music](http://i.imgur.com/F2mWQCs.jpg)
 
@@ -16,12 +16,12 @@ My current setup as of the 23rd of October 2015.
 * Terminal Emulator: [rxvt-unicode-24bit](https://aur4.archlinux.org/packages/rxvt-unicode-24bit/)
 * Shell: [zsh](http://www.zsh.org/)
 * Terminal Font: [lemon](https://github.com/phallus/fonts)
-* Text Editor: [NeoVim](https://github.com/neovim/neovim)
-* Color Scheme: Ryuuko (In this repo)
+* Text Editor: [Neovim](https://github.com/neovim/neovim)
+* Color Scheme: ryuuko (In this repo)
 * Music Player: [Mpd](http://www.musicpd.org/) + [ncmpcpp](http://ncmpcpp.rybczak.net/)
 * Browser: [Qutebrowser](https://github.com/The-Compiler/qutebrowser) and Firefox-nightly
-* Startpage: [My Startpage (HTML/SCSS)](https://github.com/dylanaraps/startpage)
-* Video Player: [Mpv](https://github.com/haasn/mpvhq)
+* Startpage: In this repo "/startpage/"
+* Video Player: [mpv](https://github.com/haasn/mpvhq)
 
 <!--- }}} -->
 
