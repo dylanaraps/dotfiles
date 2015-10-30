@@ -11,6 +11,9 @@ export CCACHE_DIR=~/.ccache
 # Disable Ranger default config
 export RANGER_LOAD_DEFAULT_RC=FALSE
 
+# font options
+export INFINALITY_FT_FILTER_PARAMS="16 20 28 20 16"
+
 # Aliases
 source ~/.zsh_aliases
 

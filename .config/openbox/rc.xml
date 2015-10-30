@@ -630,12 +630,12 @@
       <desktop>all</desktop>
       <maximized>no</maximized>
       <decor>yes</decor>
-	  <layer>above</layer>
+      <layer>above</layer>
     </application>
     <application class="Firefox*">
       <desktop>1</desktop>
       <focus>no</focus>
-	  <layer>below</layer>
+      <layer>below</layer>
     </application>
     <application class="Steam*">
       <desktop>3</desktop>

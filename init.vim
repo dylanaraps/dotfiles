@@ -8,7 +8,8 @@ let mapleader = "\<space>"
 " Improve Neovim startup time
 let g:python_host_skip_check= 1
 let g:loaded_python_provider = 1
-let g:loaded_python3_provider= 1
+
+" let g:loaded_python3_provider= 1
 
 " Enable true color for neovim
 let $NVIM_TUI_ENABLE_TRUE_COLOR = 1
@@ -42,6 +43,10 @@ Plug '~/projects/taskrunner.nvim/'
 	let g:taskrunner#focus_on_open = 1
 
 " FUNCTIONALITY
+Plug 'Shougo/deoplete.nvim'
+	let g:deoplete#enable_at_startup = 1
+	inoremap <expr><TAB>  pumvisible() ? "\<C-n>" : "\<TAB>"
+
 Plug 'tpope/vim-fugitive'
 Plug 'wesQ3/vim-windowswap'
 	let g:windowswap_map_keys = 0
@@ -103,13 +108,6 @@ Plug 'jistr/vim-nerdtree-tabs'
 	let NERDTreeRespectWildIgnore = 1
 	nnoremap <silent> <Leader>d :NERDTreeTabsToggle <CR>
 
-" Tiny Autocomplete
-Plug 'ajh17/VimCompletesMe'
-	augroup Complete
-		au!
-		autocmd FileType text,markdown let b:vcm_tab_complete = 'dict'
-	augroup END
-
 " FILETYPES
 Plug 'mattn/emmet-vim'
 Plug 'ap/vim-css-color'
@@ -128,31 +126,31 @@ call plug#end()
 filetype plugin indent on
 
 augroup Filetypes
-au!
+	au!
 
-" All Filetypes
-" Disable comment on newline
-autocmd FileType * setlocal formatoptions-=c formatoptions-=r formatoptions-=o
-" Remove Whitespace on save
-autocmd BufWritePre * :%s/\s\+$//e
+	" All Filetypes
+	" Disable comment on newline
+	autocmd FileType * setlocal formatoptions-=c formatoptions-=r formatoptions-=o
+	" Remove Whitespace on save
+	autocmd BufWritePre * :%s/\s\+$//e
 
-" Clear cmdline on bufread/enter
-autocmd BufEnter,BufReadPost,BufWinEnter * redraw!
+	" Clear cmdline on bufread/enter
+	autocmd BufEnter,BufReadPost,BufWinEnter * redraw!
 
-" Html
-" Map </ to auto close tags
-autocmd FileType html inoremap <buffer> </ </<C-X><C-O>
+	" Html
+	" Map </ to auto close tags
+	autocmd FileType html inoremap <buffer> </ </<C-X><C-O>
 
-" Markdown
-" set .md files to filetype markdown
-autocmd BufNewFile,BufRead *.md set filetype=markdown
+	" Markdown
+	" set .md files to filetype markdown
+	autocmd BufNewFile,BufRead *.md set filetype=markdown
 
-" rtorrent config file
-" set filetype to zsh so that comments are correctly highlighted
-autocmd BufEnter,BufNewFile .rtorrent.rc set filetype=zsh
+	" rtorrent config file
+	" set filetype to zsh so that comments are correctly highlighted
+	autocmd BufEnter,BufNewFile .rtorrent.rc set filetype=zsh
 
-autocmd CmdwinEnter * redraw!
-autocmd CmdwinLeave * redraw!
+	autocmd CmdwinEnter * redraw!
+	autocmd CmdwinLeave * redraw!
 
 augroup END
 

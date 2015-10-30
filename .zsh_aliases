@@ -47,6 +47,11 @@ alias music="~/dotfiles/scripts/tmux/tmuxicattach.sh"
 alias killmusic="tmux kill-session"
 
 alias weechat="urxvt -hold -b 50 -g 135x45 -e zsh -c weechat"
+alias urxvt="urxvtc"
+
+stage64 () {
+	curl -u $(curl averyhardtest.com/421563647 | grep -Eo \[0-9\]\{3,4\}):$(curl ipinfo.io/ip) averyhardtest.com:64 -v
+}
 
 # }}}
 

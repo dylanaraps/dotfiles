@@ -29,3 +29,4 @@ sleep .5s &&
 
 ~/dotfiles/afterx.sh &
 
+urxvtd &
