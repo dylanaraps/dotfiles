@@ -536,8 +536,8 @@ function SmartBD(bang, argu)
 endfunction
 
 command! -bang -nargs=* BD call SmartBD(<bang>0, <q-args>)
-
 cnoreabbrev bd BD
+
 " }}}
 
 " Persistent Echo {{{
@@ -560,7 +560,26 @@ augroup END
 
 " Custom message on save {{{
 
-command! -bang -nargs=* W  :w<bang> <bar> redraw <bar> call PersistentEcho("saved")
+function SaveRO(bang, argu)
+	if a:bang == 1
+		let bang = "!"
+	else
+		let bang = " "
+	endif
+
+	if &readonly
+		w !sudo tee % >/dev/null
+		redraw
+		call PersistentEcho("saved readonly file")
+	else
+		execute "w" . bang . " " . a:argu
+		redraw
+		call PersistentEcho("saved")
+	endif
+endfunction
+
+
+command! -bang -nargs=* W call SaveRO(<bang>0, <q-args>)
 cnoreabbrev w W
 
 " }}}
