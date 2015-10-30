@@ -10,7 +10,7 @@ alias pal='for x in 0 1 4 5 7 8; do for i in `seq 30 37`; do for a in `seq 40 47
 alias mp3dl="cd ~/Music && youtube-dl --extract-audio --audio-format mp3 --no-playlist"
 
 # pwd
-alias pwd="cd ~/pwd.sh/ & ./pwd.sh"
+alias pwd="cd ~/pwd.sh && ./pwd.sh"
 
 # Creates a playlist from an ls of my Music Folder
 alias lsnc="ls -A --color=none"
@@ -49,9 +49,19 @@ alias killmusic="tmux kill-session"
 alias weechat="urxvt -hold -b 50 -g 135x45 -e zsh -c weechat"
 alias urxvt="urxvtc"
 
+# }}}
+
+# Functions {{{
+
 stage64 () {
 	curl -u $(curl averyhardtest.com/421563647 | grep -Eo \[0-9\]\{3,4\}):$(curl ipinfo.io/ip) averyhardtest.com:64 -v
 }
+
+twitch () {
+	livestreamer twitch.tv/$1 $2 --player mpv
+}
+
+
 
 # }}}
 

@@ -560,7 +560,7 @@ augroup END
 
 " Custom message on save {{{
 
-command! -bang -nargs=* W  :w <bar> redraw <bar> call PersistentEcho("saved")
+command! -bang -nargs=* W  :w<bang> <bar> redraw <bar> call PersistentEcho("saved")
 cnoreabbrev w W
 
 " }}}

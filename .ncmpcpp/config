@@ -25,8 +25,8 @@ song_list_format = "$2 %a $R $5 %t $8 %l"
 generate_win32_compatible_filenames = "yes"
 
 # Bars
-progressbar_color = "green"
-progressbar_elapsed_color = "green"
+progressbar_color = "white"
+progressbar_elapsed_color = "white"
 progressbar_look = "// "
 
 # UI
