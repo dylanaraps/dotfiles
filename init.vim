@@ -3,22 +3,6 @@
 " Leader
 let mapleader = "\<space>"
 
-" Neovim Exclusive Settings {{{
-
-" Improve Neovim startup time
-let g:python_host_skip_check= 1
-let g:loaded_python_provider = 1
-
-" let g:loaded_python3_provider= 1
-
-" Enable true color for neovim
-let $NVIM_TUI_ENABLE_TRUE_COLOR = 1
-
-" Sexy cursor
-let $NVIM_TUI_ENABLE_CURSOR_SHAPE = 1
-
-" }}}
-
 " Plugins {{{
 
 " Auto install plug if not found
@@ -30,8 +14,6 @@ endif
 
 call plug#begin('~/.config/nvim/plugged')
 
-" LOOKS
-
 " My Plugins
 Plug '~/dotfiles/colorschemes/ryuuko/vim/ryuuko/'
 Plug '~/projects/root.vim/'
@@ -42,16 +24,12 @@ Plug '~/projects/taskrunner.nvim/'
 	let g:taskrunner#split = "10new"
 	let g:taskrunner#focus_on_open = 1
 
-" FUNCTIONALITY
+" Async autocomplete
 Plug 'Shougo/deoplete.nvim'
 	let g:deoplete#enable_at_startup = 1
 	inoremap <expr><TAB>  pumvisible() ? "\<C-n>" : "\<TAB>"
 
-Plug 'tpope/vim-fugitive'
-Plug 'wesQ3/vim-windowswap'
-	let g:windowswap_map_keys = 0
-	nnoremap <silent> <Leader>w :call WindowSwap#EasyWindowSwap()<CR>
-
+" Clicking v expands region
 Plug 'kana/vim-textobj-user'
 \| Plug 'kana/vim-textobj-line'
 \| Plug 'terryma/vim-expand-region'
@@ -65,7 +43,7 @@ Plug 'terryma/vim-multiple-cursors'
 	let g:multi_cursor_skip_key='<C-l>'
 	let g:multi_cursor_quit_key='<Esc>'
 
-" Shows search results as you're typing and a #/Total as you cycle through the results
+" Shows search results as you're typing
 Plug 'junegunn/vim-pseudocl'
 Plug 'junegunn/vim-oblique'
 	let g:oblique#incsearch_highlight_all = 1
@@ -83,12 +61,12 @@ Plug 'rstacruz/vim-closer'
 Plug 'tpope/vim-surround'
 	" Maps ss to surround word
 	nmap ss ysiw
-	nmap sl yss
-	vmap s S
 
-Plug 'AndrewRadev/splitjoin.vim'
-	nmap <silent> sj :SplitjoinSplit<cr>
-    nmap <silent> sk :SplitjoinJoin<cr>
+	" Maps sl to surround line
+	nmap sl yss
+
+	" Surround Visual selection
+	vmap s S
 
 Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': 'yes \| ./install' }
 	nnoremap <silent> <Leader>s :call fzf#run({
@@ -106,9 +84,10 @@ Plug 'jistr/vim-nerdtree-tabs'
 	let NERDTreeMapActivateNode= 'l'
 	let NERDTreeMapCloseDir = 'h'
 	let NERDTreeRespectWildIgnore = 1
+	let NERDTreeIgnore = ['\.git$', '\.sass-cache$', '\screenshots$']
 	nnoremap <silent> <Leader>d :NERDTreeTabsToggle <CR>
 
-" FILETYPES
+" Filetype Plugins
 Plug 'mattn/emmet-vim'
 Plug 'ap/vim-css-color'
 Plug 'JulesWang/css.vim'
@@ -131,6 +110,7 @@ augroup Filetypes
 	" All Filetypes
 	" Disable comment on newline
 	autocmd FileType * setlocal formatoptions-=c formatoptions-=r formatoptions-=o
+
 	" Remove Whitespace on save
 	autocmd BufWritePre * :%s/\s\+$//e
 
@@ -185,6 +165,12 @@ set breakindent
 
 " Look and Feel {{{
 
+" Enable true color for neovim
+let $NVIM_TUI_ENABLE_TRUE_COLOR = 1
+
+" Sexy cursor
+let $NVIM_TUI_ENABLE_CURSOR_SHAPE = 1
+
 " Change window title to filename
 set title
 syntax on
@@ -192,20 +178,27 @@ set background=dark
 set number
 set noruler
 set noequalalways
-set laststatus=2
+
+" Always show tabline and make tab text blank
+" Used as dodgy top padding!
 set tabline=" "
 set showtabline=2
+
 set lazyredraw
 
-" Limit syntax highlighting to 800 columns wide
+" Limit syntax highlighting length
 set synmaxcol=1000
 
 " Don’t show the intro message when starting Vim
 set shortmess=atI
+
+" Hide mode indicator
 set noshowmode
 
-colorscheme ryuuko
+" Always show statusline
+set laststatus=2
 
+" Statusline
 set statusline=\ %t
 set statusline+=\ %y
 set statusline+=\ %m
@@ -214,7 +207,7 @@ set statusline+=%=
 set statusline+=%n
 set statusline+=\/%{len(filter(range(1,bufnr('$')),'buflisted(v:val)'))}
 
-hi User1 guifg=#f2f3f2 guibg=NONE
+colorscheme ryuuko
 
 " }}}
 
@@ -350,6 +343,10 @@ set undoreload=500
 " }}}
 
 " Misc {{{
+
+" Improve Neovim startup time by disabling python 2 and host check
+let g:python_host_skip_check= 1
+let g:loaded_python_provider = 1
 
 " Auto change dir to file directory
 set autochdir

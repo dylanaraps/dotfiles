@@ -5,13 +5,8 @@ URxvt*boldFont: xft:lemon-j:size=4
 URxvt*geometry: 90x24
 xterm*termName: xterm-256color
 
-! Disables Scrollbar
 URxvt.scrollBar: false
-
-! Sets urxvt as login shell
 URxvt*loginShell: true
-
-! Speed up loading of alsamixer on ati
 URxvt*skipBuiltinGlyphs: true
 URxvt.internalBorder: 6
 
@@ -27,7 +22,7 @@ URxvt.keysym.C-z: \
 URxvt.keysym.C-h: \
 URxvt.keysym.C-f: \
 
-Xcursor.size: 8
+Xcursor.size: 16
 
 ! Dyl Colors {{{
 

@@ -1,7 +1,7 @@
 #!/bin/bash
 
 windowtitle(){
-	title=$(xdotool getactivewindow getwindowname 2>/dev/null)
+	title=$(xdotool getactivewindow getwindowname | cut -c 1-75)
 	echo " x> $title"
 }
 
