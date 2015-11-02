@@ -200,41 +200,47 @@
     </keybind>
     <!-- Go to desktop by number -->
     <keybind key="W-1">
-      <action name="GoToDesktop">
-        <to>1</to>
-        <wrap>yes</wrap>
+      <action name="Execute">
+        <name>musicfoc</name>
+        <command>~/dotfiles/scripts/openbox/musicfoc.sh 0</command>
       </action>
     </keybind>
     <keybind key="W-2">
-      <action name="GoToDesktop">
-        <to>2</to>
-        <wrap>yes</wrap>
+      <action name="Execute">
+        <name>musicfoc</name>
+        <command>~/dotfiles/scripts/openbox/musicfoc.sh 1</command>
       </action>
     </keybind>
-    <keybind key="W-3">
-      <action name="GoToDesktop">
-        <to>3</to>
-        <wrap>yes</wrap>
-      </action>
-    </keybind>
-    <keybind key="W-5">
-      <action name="GoToDesktop">
-        <to>5</to>
-        <wrap>yes</wrap>
-      </action>
-    </keybind>
-    <keybind key="W-6">
-      <action name="GoToDesktop">
-        <to>6</to>
-        <wrap>yes</wrap>
-      </action>
-    </keybind>
-    <keybind key="W-7">
-      <action name="GoToDesktop">
-        <to>7</to>
-        <wrap>yes</wrap>
-      </action>
-    </keybind>
+	<keybind key="W-3">
+	  <action name="Execute">
+		<name>musicfoc</name>
+		<command>~/dotfiles/scripts/openbox/musicfoc.sh 2</command>
+	  </action>
+	</keybind>
+	<keybind key="W-4">
+	  <action name="Execute">
+		<name>musicfoc</name>
+		<command>~/dotfiles/scripts/openbox/musicfoc.sh 3</command>
+	  </action>
+	</keybind>
+	<keybind key="W-5">
+	  <action name="Execute">
+		<name>musicfoc</name>
+		<command>~/dotfiles/scripts/openbox/musicfoc.sh 4</command>
+	  </action>
+	</keybind>
+	<keybind key="W-6">
+	  <action name="Execute">
+		<name>musicfoc</name>
+		<command>~/dotfiles/scripts/openbox/musicfoc.sh 5</command>
+	  </action>
+	</keybind>
+	<keybind key="W-7">
+	  <action name="Execute">
+		<name>musicfoc</name>
+		<command>~/dotfiles/scripts/openbox/musicfoc.sh 6</command>
+	  </action>
+	</keybind>
     <!-- Send program to desktop by number -->
     <keybind key="W-S-1">
       <action name="SendToDesktop">
@@ -344,12 +350,6 @@
       <action name="Execute">
         <name>dmenu</name>
         <command>~/dotfiles/scripts/dmenu.sh</command>
-      </action>
-    </keybind>
-    <keybind key="W-4">
-      <action name="Execute">
-        <name>musicfoc</name>
-        <command>~/dotfiles/scripts/openbox/musicfoc.sh</command>
       </action>
     </keybind>
   </keyboard>
@@ -627,6 +627,12 @@
   </menu>
   <applications>
     <application name="mpv">
+      <desktop>all</desktop>
+      <maximized>no</maximized>
+      <decor>yes</decor>
+      <layer>above</layer>
+    </application>
+    <application name="music">
       <desktop>all</desktop>
       <maximized>no</maximized>
       <decor>yes</decor>

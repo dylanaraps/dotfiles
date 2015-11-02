@@ -38,7 +38,6 @@ alias startx='ssh-agent startx'
 alias feh='feh --auto-zoom --scale-down -g 640 -B black'
 alias wine='thread_submit=true wine'
 alias winesteam='wine ~/.wine/drive_c/Program\ Files/Steam/Steam.exe'
-# alias firefox='firefox-nightly'
 alias scrot='cd ~/Pictures/ && scrot'
 
 # Music
