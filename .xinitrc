@@ -14,7 +14,6 @@ xset m 0/0 0
 xset +fp /usr/share/fonts/TTF/
 xset +fp /usr/share/fonts/Montana/
 xset +fp /usr/share/fonts/misc/
-xset +fp /usr/share/fonts/artwiz-fonts/
 xset +fp ~/.fonts
 xset fp rehash
 

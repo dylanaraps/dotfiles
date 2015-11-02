@@ -283,10 +283,10 @@ style "murrine-spinbutton" = "murrine-button" {
 }
 
 style "murrine-radiocheck" = "murrine-default" {
-	bg[SELECTED] = @base_color
+	bg[SELECTED] = "#f2f3f2"
 
-	text[NORMAL] = @selected_bg_color
-	text[PRELIGHT] = @selected_bg_color
+	text[NORMAL] = @menu_bg_color
+	text[PRELIGHT] = @menu_bg_color
 }
 
 style "murrine-entry" = "murrine-wider" {

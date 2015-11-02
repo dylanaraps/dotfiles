@@ -1,4 +1,4 @@
 #!/bin/bash
-urxvt -hold -g 125x60 -e zsh -c 'tmux attach-session'
+urxvt -hold -g 62x29 -e zsh -c 'tmux attach-session'
 
 

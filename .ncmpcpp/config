@@ -8,7 +8,7 @@ ncmpcpp_directory = "~/.ncmpcpp"
 
 # General
 autocenter_mode = "yes"
-message_delay_time = "3"
+message_delay_time = "1"
 external_editor = "/usr/bin/nvim"
 use_console_editor = "yes"
 regular_expressions = "extended"
@@ -18,7 +18,8 @@ fetch_lyrics_for_current_song_in_background = "yes"
 follow_now_playing_lyrics = "yes"
 jump_to_now_playing_song_at_start = "yes"
 playlist_display_mode = "classic"
-song_columns_list_format = "(5)[blue]{} (40)[blue]{a} (48)[white]{t} (4)[cyan]{l}"
+now_playing_prefix = "$b"
+song_columns_list_format = "(6f)[cyan]{l} (40)[default]{t|f} (25)[red]{a} (30)[blue]{b}"
 song_list_format = "$2 %a $R $5 %t $8 %l"
 
 # Tag Editor
@@ -27,20 +28,10 @@ generate_win32_compatible_filenames = "yes"
 # Bars
 progressbar_color = "white"
 progressbar_elapsed_color = "white"
-progressbar_look = "// "
+song_status_format = "$8%t $1$2%a $1•{ $5%b $1• }$7%y$1"
+progressbar_look = "─╼╌"
 
 # UI
 header_visibility = "no"
 titles_visibility = "no"
 
-# Browser
-browser_display_mode = "columns"
-browser_playlist_prefix = "$2plist »$9 "
-mouse_support = "yes"
-
-# Visualizer
-visualizer_color = "white"
-visualizer_fifo_path = "/tmp/mpd.fifo"
-visualizer_in_stereo = "yes"
-visualizer_look = "●▮"
-visualizer_output_name = "my_fifo"

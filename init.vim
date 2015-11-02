@@ -24,6 +24,30 @@ Plug '~/projects/taskrunner.nvim/'
 	let g:taskrunner#split = "10new"
 	let g:taskrunner#focus_on_open = 1
 
+Plug 'bling/vim-airline'
+	" Always show statusline
+	let g:airline_powerline_fonts = 0
+	let g:airline#extensions#tabline#enabled = 1
+
+	" Display only filename in tabs
+	let g:airline#extensions#tabline#fnamemod = ':t'
+	let g:airline#extensions#tabline#show_tabs = 0
+	let g:airline_left_sep=''
+	let g:airline_right_sep=''
+	let g:airline_left_alt_sep=''
+	let g:airline_right_alt_sep=''
+
+	" Disable tab seperators
+	let g:airline#extensions#tabline#left_sep = ''
+	let g:airline#extensions#tabline#left_alt_sep = ''
+	let g:airline#extensions#tabline#show_tab_type = 0
+
+	" Speed up airline by disabling stuff
+	let g:airline_detect_paste = 0
+	let g:airline_detect_crypt = 0
+	let g:airline#extensions#disable_rtp_load = 1
+	let g:airline_extensions = ['tabline']
+
 " Async autocomplete
 Plug 'Shougo/deoplete.nvim'
 	let g:deoplete#enable_at_startup = 1
@@ -178,12 +202,6 @@ set background=dark
 set number
 set noruler
 set noequalalways
-
-" Always show tabline and make tab text blank
-" Used as dodgy top padding!
-set tabline=" "
-set showtabline=2
-
 set lazyredraw
 
 " Limit syntax highlighting length
@@ -197,15 +215,6 @@ set noshowmode
 
 " Always show statusline
 set laststatus=2
-
-" Statusline
-set statusline=\ %t
-set statusline+=\ %y
-set statusline+=\ %m
-set statusline+=\ %r
-set statusline+=%=
-set statusline+=%n
-set statusline+=\/%{len(filter(range(1,bufnr('$')),'buflisted(v:val)'))}
 
 colorscheme ryuuko
 

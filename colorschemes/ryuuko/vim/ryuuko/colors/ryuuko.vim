@@ -51,7 +51,7 @@ if &t_Co >= 256 || has("gui_running")
 		hi Todo ctermbg=10 ctermfg=3 cterm=NONE guibg=#75747a guifg=#e5c196 gui=NONE
 		hi Type ctermbg=NONE ctermfg=3 cterm=NONE guibg=NONE guifg=#e5c196 gui=NONE
 		hi Underlined ctermbg=NONE ctermfg=9 cterm=underline guibg=NONE guifg=#c86c75 gui=underline
-		hi StatusLine ctermbg=NONE ctermfg=10 cterm=NONE guibg=NONE guifg=#75747a gui=NONE
+		hi StatusLine ctermbg=0 ctermfg=10 cterm=NONE guibg=#2d2b33 guifg=#75747a gui=NONE
 		hi StatusLineNC ctermbg=NONE ctermfg=NONE cterm=NONE guibg=NONE guifg=NONE gui=NONE
 		hi TabLine ctermbg=NONE ctermfg=0 cterm=NONE guibg=NONE guifg=#2d2b33 gui=NONE
 		hi TabLineFill ctermbg=NONE ctermfg=0 cterm=NONE guibg=NONE guifg=#2d2b33 gui=NONE
@@ -211,7 +211,7 @@ set t_Co=16
 		hi Todo ctermbg=green ctermfg=darkyellow cterm=NONE
 		hi Type ctermbg=NONE ctermfg=darkyellow cterm=NONE
 		hi Underlined ctermbg=NONE ctermfg=red cterm=underline
-		hi StatusLine ctermbg=NONE ctermfg=green cterm=NONE
+		hi StatusLine ctermbg=black ctermfg=green cterm=NONE
 		hi StatusLineNC ctermbg=NONE ctermfg=NONE cterm=NONE
 		hi TabLine ctermbg=NONE ctermfg=black cterm=NONE
 		hi TabLineFill ctermbg=NONE ctermfg=black cterm=NONE
