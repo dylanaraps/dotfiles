@@ -24,6 +24,8 @@ Plug '~/projects/taskrunner.nvim/'
 	let g:taskrunner#split = "10new"
 	let g:taskrunner#focus_on_open = 1
 
+Plug 'junegunn/goyo.vim'
+
 Plug 'bling/vim-airline'
 	" Always show statusline
 	let g:airline_powerline_fonts = 0

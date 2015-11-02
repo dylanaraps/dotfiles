@@ -44,7 +44,7 @@ alias scrot='cd ~/Pictures/ && scrot'
 # Music
 alias startmusic="~/dotfiles/scripts/tmux/tmuxicspawn.sh"
 alias music="~/dotfiles/scripts/tmux/tmuxicattach.sh"
-alias killmusic="tmux kill-session & pkill cava & pkill tmux & pkill ncmpcpp && tmux"
+alias killmusic="tmux kill-session & pkill cava & pkill tmux & pkill ncmpcpp"
 
 alias weechat="urxvt -hold -b 50 -g 135x45 -e zsh -c weechat"
 alias urxvt="urxvtc"
