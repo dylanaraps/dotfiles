@@ -25,7 +25,6 @@ Plug '~/projects/taskrunner.nvim/'
 	let g:taskrunner#focus_on_open = 1
 
 Plug 'junegunn/goyo.vim'
-
 Plug 'bling/vim-airline'
 	" Always show statusline
 	let g:airline_powerline_fonts = 0
@@ -157,6 +156,9 @@ augroup Filetypes
 
 	autocmd CmdwinEnter * redraw!
 	autocmd CmdwinLeave * redraw!
+
+	autocmd VimResized * execute "normal \<C-W>="
+	autocmd BufEnter init.vim,.* Goyo 80%x90%
 
 augroup END
 
