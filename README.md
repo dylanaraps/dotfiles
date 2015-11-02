@@ -1,7 +1,9 @@
 # Dylan's Dotfiles
 My current setup as of the 29th of October 2015.
 
-![Music](http://i.imgur.com/F2mWQCs.jpg)
+![Firefox](http://i.imgur.com/e29wLe3.png)
+![Neovim](http://i.imgur.com/LaGtaB1.png)
+![Music](http://i.imgur.com/GkGEjWD.png)
 
 <!--- My Setup {{{ -->
 
