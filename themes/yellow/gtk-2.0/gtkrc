@@ -1,7 +1,7 @@
-# Numix GTK Themhh
+# Dylan's Yellow theme
+# Created using numix as a base.
 
-# Light
-gtk-color-scheme = "bg_color:#2d2b33\nfg_color:#75747a\nbase_color:#2d2b33\ntext_color:#75747a\nselected_bg_color:#7495B6\nselected_fg_color:#2d2b33\ntooltip_bg_color:#2d2b33\ntooltip_fg_color:#2d2b33\ntitlebar_bg_color:#2d2b33\ntitlebar_fg_color:#75747a\nmenubar_bg_color:#2d2b33\nmenubar_fg_color:#75747a\ntoolbar_bg_color:#2d2b33\ntoolbar_fg_color:#75747a\nmenu_bg_color:#2d2b33\nmenu_fg_color:#75747a\npanel_bg_color:#2d2b33\npanel_fg_color:#75747a\nlink_color:#757b8e"
+gtk-color-scheme = "bg_color:#2d2b33\nfg_color:#75747a\nbase_color:#2d2b33\ntext_color:#75747a\nselected_bg_color:#7495B6\nselected_fg_color:#2d2b33\ntooltip_bg_color:#2d2b33\ntooltip_fg_color:#75747a\ntitlebar_bg_color:#2d2b33\ntitlebar_fg_color:#75747a\nmenubar_bg_color:#2d2b33\nmenubar_fg_color:#75747a\ntoolbar_bg_color:#2d2b33\ntoolbar_fg_color:#75747a\nmenu_bg_color:#2d2b33\nmenu_fg_color:#75747a\npanel_bg_color:#2d2b33\npanel_fg_color:#75747a\nlink_color:#8294B4"
 
 # Default Style
 
@@ -262,8 +262,8 @@ style "murrine-frame-title" {
 }
 
 style "murrine-tooltips" {
-	xthickness = 0
-	ythickness = 0
+	xthickness = 5
+	ythickness = 5
 
 	bg[NORMAL] = @tooltip_bg_color
 	bg[SELECTED] = @tooltip_bg_color
@@ -272,7 +272,7 @@ style "murrine-tooltips" {
 
 	engine "murrine" {
 		textstyle = 0
-		roundness = 2
+		roundness = 0
 		rgba = FALSE
 	}
 }
@@ -283,10 +283,10 @@ style "murrine-spinbutton" = "murrine-button" {
 }
 
 style "murrine-radiocheck" = "murrine-default" {
-	bg[SELECTED] = "#f2f3f2"
+	bg[SELECTED] = @base_color
 
-	text[NORMAL] = @menu_bg_color
-	text[PRELIGHT] = @menu_bg_color
+	text[NORMAL] = @text_color
+	text[PRELIGHT] = @text_color
 }
 
 style "murrine-entry" = "murrine-wider" {
