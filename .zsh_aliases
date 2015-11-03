@@ -3,7 +3,7 @@
 # Remove deps not needed anymore
 alias cleandeps='sudo pacman -R $(pacman -Qqdt)'
 
-# Color Test
+# Print terminal colors
 alias pal='for x in 0 1 4 5 7 8; do for i in `seq 30 37`; do for a in `seq 40 47`; do echo -ne "\e[$x;$i;$a""m\\\e[$x;$i;$a""m\e[0;37;40m "; done; echo; done; done; echo "";'
 
 # dls video from youtube to my Music folder
@@ -18,9 +18,6 @@ alias plu="lsnc ~/Music > ~/.mpd/playlists/music.m3u"
 
 # Makes ls list all files and always use color
 alias ls="ls -A --color=always"
-
-# Peerflix
-alias peerflix="peerflix --path '~/Videos/Downloads' --mpv"
 
 # Compton
 alias cmp="compton --config ~/.compton &"
@@ -65,7 +62,6 @@ twitch () {
     calc="${calc//x/*}"
     echo "$(($calc))"
 }
-
 
 # }}}
 

@@ -53,9 +53,9 @@ if &t_Co >= 256 || has("gui_running")
 		hi Underlined ctermbg=NONE ctermfg=9 cterm=underline guibg=NONE guifg=#c86c75 gui=underline
 		hi StatusLine ctermbg=0 ctermfg=10 cterm=NONE guibg=#2d2b33 guifg=#75747a gui=NONE
 		hi StatusLineNC ctermbg=NONE ctermfg=NONE cterm=NONE guibg=NONE guifg=NONE gui=NONE
-		hi TabLine ctermbg=NONE ctermfg=0 cterm=NONE guibg=NONE guifg=#2d2b33 gui=NONE
-		hi TabLineFill ctermbg=NONE ctermfg=0 cterm=NONE guibg=NONE guifg=#2d2b33 gui=NONE
-		hi TabLineSel ctermbg=NONE ctermfg=0 cterm=NONE guibg=NONE guifg=#2d2b33 gui=NONE
+		hi TabLine ctermbg=NONE ctermfg=10 cterm=NONE guibg=NONE guifg=#75747a gui=NONE
+		hi TabLineFill ctermbg=NONE ctermfg=10 cterm=NONE guibg=NONE guifg=#75747a gui=NONE
+		hi TabLineSel ctermbg=4 ctermfg=0 cterm=NONE guibg=#8294b4 guifg=#2d2b33 gui=NONE
 		hi TermCursorNC ctermbg=3 ctermfg=0 cterm=NONE guibg=#e5c196 guifg=#2d2b33 gui=NONE
 		hi VertSplit ctermbg=NONE ctermfg=NONE cterm=NONE guibg=NONE guifg=NONE gui=NONE
 		hi Title ctermbg=NONE ctermfg=4 cterm=NONE guibg=NONE guifg=#8294b4 gui=NONE
@@ -213,9 +213,9 @@ set t_Co=16
 		hi Underlined ctermbg=NONE ctermfg=red cterm=underline
 		hi StatusLine ctermbg=black ctermfg=green cterm=NONE
 		hi StatusLineNC ctermbg=NONE ctermfg=NONE cterm=NONE
-		hi TabLine ctermbg=NONE ctermfg=black cterm=NONE
-		hi TabLineFill ctermbg=NONE ctermfg=black cterm=NONE
-		hi TabLineSel ctermbg=NONE ctermfg=black cterm=NONE
+		hi TabLine ctermbg=NONE ctermfg=green cterm=NONE
+		hi TabLineFill ctermbg=NONE ctermfg=green cterm=NONE
+		hi TabLineSel ctermbg=darkblue ctermfg=black cterm=NONE
 		hi TermCursorNC ctermbg=darkyellow ctermfg=black cterm=NONE
 		hi VertSplit ctermbg=NONE ctermfg=NONE cterm=NONE
 		hi Title ctermbg=NONE ctermfg=darkblue cterm=NONE

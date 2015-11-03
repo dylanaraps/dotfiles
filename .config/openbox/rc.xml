@@ -211,36 +211,36 @@
         <command>~/dotfiles/scripts/openbox/musicfoc.sh 1</command>
       </action>
     </keybind>
-	<keybind key="W-3">
-	  <action name="Execute">
-		<name>musicfoc</name>
-		<command>~/dotfiles/scripts/openbox/musicfoc.sh 2</command>
-	  </action>
-	</keybind>
-	<keybind key="W-4">
-	  <action name="Execute">
-		<name>musicfoc</name>
-		<command>~/dotfiles/scripts/openbox/musicfoc.sh 3</command>
-	  </action>
-	</keybind>
-	<keybind key="W-5">
-	  <action name="Execute">
-		<name>musicfoc</name>
-		<command>~/dotfiles/scripts/openbox/musicfoc.sh 4</command>
-	  </action>
-	</keybind>
-	<keybind key="W-6">
-	  <action name="Execute">
-		<name>musicfoc</name>
-		<command>~/dotfiles/scripts/openbox/musicfoc.sh 5</command>
-	  </action>
-	</keybind>
-	<keybind key="W-7">
-	  <action name="Execute">
-		<name>musicfoc</name>
-		<command>~/dotfiles/scripts/openbox/musicfoc.sh 6</command>
-	  </action>
-	</keybind>
+    <keybind key="W-3">
+      <action name="Execute">
+        <name>musicfoc</name>
+        <command>~/dotfiles/scripts/openbox/musicfoc.sh 2</command>
+      </action>
+    </keybind>
+    <keybind key="W-4">
+      <action name="Execute">
+        <name>musicfoc</name>
+        <command>~/dotfiles/scripts/openbox/musicfoc.sh 3</command>
+      </action>
+    </keybind>
+    <keybind key="W-5">
+      <action name="Execute">
+        <name>musicfoc</name>
+        <command>~/dotfiles/scripts/openbox/musicfoc.sh 4</command>
+      </action>
+    </keybind>
+    <keybind key="W-6">
+      <action name="Execute">
+        <name>musicfoc</name>
+        <command>~/dotfiles/scripts/openbox/musicfoc.sh 5</command>
+      </action>
+    </keybind>
+    <keybind key="W-7">
+      <action name="Execute">
+        <name>musicfoc</name>
+        <command>~/dotfiles/scripts/openbox/musicfoc.sh 6</command>
+      </action>
+    </keybind>
     <!-- Send program to desktop by number -->
     <keybind key="W-S-1">
       <action name="SendToDesktop">

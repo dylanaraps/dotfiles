@@ -24,30 +24,23 @@ Plug '~/projects/taskrunner.nvim/'
 	let g:taskrunner#split = "10new"
 	let g:taskrunner#focus_on_open = 1
 
+" Hide view ui
 Plug 'junegunn/goyo.vim'
-Plug 'bling/vim-airline'
-	" Always show statusline
-	let g:airline_powerline_fonts = 0
-	let g:airline#extensions#tabline#enabled = 1
 
-	" Display only filename in tabs
-	let g:airline#extensions#tabline#fnamemod = ':t'
-	let g:airline#extensions#tabline#show_tabs = 0
-	let g:airline_left_sep=''
-	let g:airline_right_sep=''
-	let g:airline_left_alt_sep=''
-	let g:airline_right_alt_sep=''
+" lighter than air Statusline
+Plug 'itchyny/lightline.vim'
+	let g:lightline = {
+		\ 'colorscheme': 'ryuuko'
+		\ }
 
-	" Disable tab seperators
-	let g:airline#extensions#tabline#left_sep = ''
-	let g:airline#extensions#tabline#left_alt_sep = ''
-	let g:airline#extensions#tabline#show_tab_type = 0
+	let g:lightline.active = {
+		\ 'left': [ [ 'mode' ],
+		\           [ 'filename', 'readonly', 'modified' ] ],
+		\ 'right': [ [ 'lineinfo' ],
+		\            [ 'filetype' ] ] }
 
-	" Speed up airline by disabling stuff
-	let g:airline_detect_paste = 0
-	let g:airline_detect_crypt = 0
-	let g:airline#extensions#disable_rtp_load = 1
-	let g:airline_extensions = ['tabline']
+Plug 'ap/vim-buftabline'
+	let g:buftabline_show = 2
 
 " Async autocomplete
 Plug 'Shougo/deoplete.nvim'
@@ -95,7 +88,7 @@ Plug 'tpope/vim-surround'
 
 Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': 'yes \| ./install' }
 	nnoremap <silent> <Leader>s :call fzf#run({
-	\	'window': '5new',
+	\	'window': '25new',
 	\   'sink': 'e'
 	\ })<CR>
 
@@ -158,7 +151,6 @@ augroup Filetypes
 	autocmd CmdwinLeave * redraw!
 
 	autocmd VimResized * execute "normal \<C-W>="
-	autocmd BufEnter init.vim,.* Goyo 80%x90%
 
 augroup END
 

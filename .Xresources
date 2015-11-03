@@ -1,13 +1,12 @@
 ! Dylans Xresources
-URxvt*font: xft:lemon-j:pixelsize=10
-URxvt*boldFont: xft:lemon-j:pixelsize=10
+URxvt*font: xft:lemon:pixelsize=10
+URxvt*boldFont: xft:lemon:pixelsize=10
 
 URxvt*geometry: 90x24
 xterm*termName: xterm-256color
 
 URxvt.scrollBar: false
 URxvt*loginShell: true
-URxvt*skipBuiltinGlyphs: true
 URxvt.internalBorder: 6
 
 ! Enables copy/paste
