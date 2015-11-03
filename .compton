@@ -46,7 +46,6 @@ frame-opacity = 1.0;
 
 opacity-rule = [
 	"94:class_g = 'URxvt'",
-	"94:class_g = 'Termite'",
 	"90:name = 'bar'",
 	"92:class_g = 'qutebrowser'",
 	"92:class_g = 'Firefox'",
