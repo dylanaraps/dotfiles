@@ -68,22 +68,22 @@ if &t_Co >= 256 || has("gui_running")
 		hi VisualNOS ctermbg=NONE ctermfg=9 cterm=NONE guibg=NONE guifg=#c86c75 gui=NONE
 		hi Pmenu ctermbg=10 ctermfg=15 cterm=NONE guibg=#75747a guifg=#f2f3f2 gui=NONE
 		hi PmenuSbar ctermbg=6 ctermfg=15 cterm=NONE guibg=#a9cdd9 guifg=#f2f3f2 gui=NONE
-		hi PmenuSel ctermbg=4 ctermfg=0 cterm=bold guibg=#8294b4 guifg=#2d2b33 gui=bold
+		hi PmenuSel ctermbg=4 ctermfg=0 cterm=NONE guibg=#8294b4 guifg=#2d2b33 gui=NONE
 		hi PmenuThumb ctermbg=10 ctermfg=10 cterm=NONE guibg=#75747a guifg=#75747a gui=NONE
 		hi FoldColumn ctermbg=NONE ctermfg=15 cterm=NONE guibg=NONE guifg=#f2f3f2 gui=NONE
-		hi Folded ctermbg=NONE ctermfg=10 cterm=bold guibg=NONE guifg=#75747a gui=bold
+		hi Folded ctermbg=NONE ctermfg=10 cterm=NONE guibg=NONE guifg=#75747a gui=NONE
 		hi WildMenu ctermbg=2 ctermfg=0 cterm=NONE guibg=#9BB38F guifg=#2d2b33 gui=NONE
 		hi SpecialKey ctermbg=NONE ctermfg=10 cterm=NONE guibg=NONE guifg=#75747a gui=NONE
 		hi DiffAdd ctermbg=NONE ctermfg=2 cterm=NONE guibg=NONE guifg=#9BB38F gui=NONE
 		hi DiffChange ctermbg=NONE ctermfg=10 cterm=NONE guibg=NONE guifg=#75747a gui=NONE
-		hi DiffDelete ctermbg=NONE ctermfg=9 cterm=bold guibg=NONE guifg=#c86c75 gui=bold
-		hi DiffText ctermbg=NONE ctermfg=4 cterm=bold guibg=NONE guifg=#8294b4 gui=bold
+		hi DiffDelete ctermbg=NONE ctermfg=9 cterm=NONE guibg=NONE guifg=#c86c75 gui=NONE
+		hi DiffText ctermbg=NONE ctermfg=4 cterm=NONE guibg=NONE guifg=#8294b4 gui=NONE
 		hi IncSearch ctermbg=3 ctermfg=0 cterm=NONE guibg=#e5c196 guifg=#2d2b33 gui=NONE
 		hi Search ctermbg=3 ctermfg=0 cterm=NONE guibg=#e5c196 guifg=#2d2b33 gui=NONE
 		hi Directory ctermbg=NONE ctermfg=4 cterm=NONE guibg=NONE guifg=#8294b4 gui=NONE
 		hi MatchParen ctermbg=10 ctermfg=0 cterm=NONE guibg=#75747a guifg=#2d2b33 gui=NONE
 		hi ColorColumn ctermbg=10 ctermfg=10 cterm=NONE guibg=#75747a guifg=#75747a gui=NONE
-		hi signColumn ctermbg=NONE ctermfg=4 cterm=bold guibg=NONE guifg=#8294b4 gui=bold
+		hi signColumn ctermbg=NONE ctermfg=4 cterm=NONE guibg=NONE guifg=#8294b4 gui=NONE
 		hi ErrorMsg ctermbg=NONE ctermfg=10 cterm=NONE guibg=NONE guifg=#75747a gui=NONE
 		hi ModeMsg ctermbg=NONE ctermfg=2 cterm=NONE guibg=NONE guifg=#9BB38F gui=NONE
 		hi MoreMsg ctermbg=NONE ctermfg=2 cterm=NONE guibg=NONE guifg=#9BB38F gui=NONE
@@ -92,7 +92,7 @@ if &t_Co >= 256 || has("gui_running")
 		hi Cursor ctermbg=NONE ctermfg=10 cterm=NONE guibg=NONE guifg=#75747a gui=NONE
 		hi Structure ctermbg=NONE ctermfg=1 cterm=NONE guibg=NONE guifg=#e8907e gui=NONE
 		hi CursorColumn ctermbg=10 ctermfg=15 cterm=NONE guibg=#75747a guifg=#f2f3f2 gui=NONE
-		hi ModeMsg ctermbg=NONE ctermfg=15 cterm=bold guibg=NONE guifg=#f2f3f2 gui=bold
+		hi ModeMsg ctermbg=NONE ctermfg=15 cterm=NONE guibg=NONE guifg=#f2f3f2 gui=NONE
 		hi SpellBad ctermbg=NONE ctermfg=9 cterm=underline guibg=NONE guifg=#c86c75 gui=underline guisp=#c86c75
 		hi SpellCap ctermbg=NONE ctermfg=4 cterm=underline guibg=NONE guifg=#8294b4 gui=underline guisp=#8294b4
 		hi SpellLocal ctermbg=NONE ctermfg=1 cterm=underline guibg=NONE guifg=#e8907e gui=underline guisp=#e8907e
@@ -144,8 +144,8 @@ if &t_Co >= 256 || has("gui_running")
 		hi cssValueNumber ctermbg=NONE ctermfg=15 cterm=NONE guibg=NONE guifg=#f2f3f2 gui=NONE
 			hi link cssValueLength cssValueNumber
 		hi cssNoise ctermbg=NONE ctermfg=10 cterm=NONE guibg=NONE guifg=#75747a gui=NONE
-		hi cssTagName ctermbg=NONE ctermfg=9 cterm=bold guibg=NONE guifg=#c86c75 gui=bold
-		hi cssFunctionName ctermbg=NONE ctermfg=4 cterm=bold guibg=NONE guifg=#8294b4 gui=bold
+		hi cssTagName ctermbg=NONE ctermfg=9 cterm=NONE guibg=NONE guifg=#c86c75 gui=NONE
+		hi cssFunctionName ctermbg=NONE ctermfg=4 cterm=NONE guibg=NONE guifg=#8294b4 gui=NONE
 		hi scssSelectorChar ctermbg=NONE ctermfg=15 cterm=NONE guibg=NONE guifg=#f2f3f2 gui=NONE
 		hi scssAttribute ctermbg=NONE ctermfg=15 cterm=NONE guibg=NONE guifg=#f2f3f2 gui=NONE
 			hi link scssDefinition cssNoise
@@ -175,7 +175,7 @@ if &t_Co >= 256 || has("gui_running")
 		hi rubyInterpolationDelimiter ctermbg=NONE ctermfg=3 cterm=NONE guibg=NONE guifg=#e5c196 gui=NONE
 		hi rubyRegexp ctermbg=NONE ctermfg=6 cterm=NONE guibg=NONE guifg=#a9cdd9 gui=NONE
 		hi rubySymbol ctermbg=NONE ctermfg=2 cterm=NONE guibg=NONE guifg=#9BB38F gui=NONE
-		hi rubyTodo ctermbg=NONE ctermfg=10 cterm=bold guibg=NONE guifg=#75747a gui=bold
+		hi rubyTodo ctermbg=NONE ctermfg=10 cterm=NONE guibg=NONE guifg=#75747a gui=NONE
 		hi rubyRegexpAnchor ctermbg=NONE ctermfg=15 cterm=NONE guibg=NONE guifg=#f2f3f2 gui=NONE
 			hi link rubyRegexpQuantifier rubyRegexpAnchor
 		hi pythonOperator ctermbg=NONE ctermfg=1 cterm=NONE guibg=NONE guifg=#e8907e gui=NONE
@@ -228,22 +228,22 @@ set t_Co=16
 		hi VisualNOS ctermbg=NONE ctermfg=red cterm=NONE
 		hi Pmenu ctermbg=green ctermfg=white cterm=NONE
 		hi PmenuSbar ctermbg=darkcyan ctermfg=white cterm=NONE
-		hi PmenuSel ctermbg=darkblue ctermfg=black cterm=bold
+		hi PmenuSel ctermbg=darkblue ctermfg=black cterm=NONE
 		hi PmenuThumb ctermbg=green ctermfg=green cterm=NONE
 		hi FoldColumn ctermbg=NONE ctermfg=white cterm=NONE
-		hi Folded ctermbg=NONE ctermfg=green cterm=bold
+		hi Folded ctermbg=NONE ctermfg=green cterm=NONE
 		hi WildMenu ctermbg=darkgreen ctermfg=black cterm=NONE
 		hi SpecialKey ctermbg=NONE ctermfg=green cterm=NONE
 		hi DiffAdd ctermbg=NONE ctermfg=darkgreen cterm=NONE
 		hi DiffChange ctermbg=NONE ctermfg=green cterm=NONE
-		hi DiffDelete ctermbg=NONE ctermfg=red cterm=bold
-		hi DiffText ctermbg=NONE ctermfg=darkblue cterm=bold
+		hi DiffDelete ctermbg=NONE ctermfg=red cterm=NONE
+		hi DiffText ctermbg=NONE ctermfg=darkblue cterm=NONE
 		hi IncSearch ctermbg=darkyellow ctermfg=black cterm=NONE
 		hi Search ctermbg=darkyellow ctermfg=black cterm=NONE
 		hi Directory ctermbg=NONE ctermfg=darkblue cterm=NONE
 		hi MatchParen ctermbg=green ctermfg=black cterm=NONE
 		hi ColorColumn ctermbg=green ctermfg=green cterm=NONE
-		hi signColumn ctermbg=NONE ctermfg=darkblue cterm=bold
+		hi signColumn ctermbg=NONE ctermfg=darkblue cterm=NONE
 		hi ErrorMsg ctermbg=NONE ctermfg=green cterm=NONE
 		hi ModeMsg ctermbg=NONE ctermfg=darkgreen cterm=NONE
 		hi MoreMsg ctermbg=NONE ctermfg=darkgreen cterm=NONE
@@ -252,7 +252,7 @@ set t_Co=16
 		hi Cursor ctermbg=NONE ctermfg=green cterm=NONE
 		hi Structure ctermbg=NONE ctermfg=darkred cterm=NONE
 		hi CursorColumn ctermbg=green ctermfg=white cterm=NONE
-		hi ModeMsg ctermbg=NONE ctermfg=white cterm=bold
+		hi ModeMsg ctermbg=NONE ctermfg=white cterm=NONE
 		hi SpellBad ctermbg=NONE ctermfg=red cterm=underline
 		hi SpellCap ctermbg=NONE ctermfg=darkblue cterm=underline
 		hi SpellLocal ctermbg=NONE ctermfg=darkred cterm=underline
@@ -304,8 +304,8 @@ set t_Co=16
 		hi cssValueNumber ctermbg=NONE ctermfg=white cterm=NONE
 			hi link cssValueLength cssValueNumber
 		hi cssNoise ctermbg=NONE ctermfg=green cterm=NONE
-		hi cssTagName ctermbg=NONE ctermfg=red cterm=bold
-		hi cssFunctionName ctermbg=NONE ctermfg=darkblue cterm=bold
+		hi cssTagName ctermbg=NONE ctermfg=red cterm=NONE
+		hi cssFunctionName ctermbg=NONE ctermfg=darkblue cterm=NONE
 		hi scssSelectorChar ctermbg=NONE ctermfg=white cterm=NONE
 		hi scssAttribute ctermbg=NONE ctermfg=white cterm=NONE
 			hi link scssDefinition cssNoise
@@ -335,7 +335,7 @@ set t_Co=16
 		hi rubyInterpolationDelimiter ctermbg=NONE ctermfg=darkyellow cterm=NONE
 		hi rubyRegexp ctermbg=NONE ctermfg=darkcyan cterm=NONE
 		hi rubySymbol ctermbg=NONE ctermfg=darkgreen cterm=NONE
-		hi rubyTodo ctermbg=NONE ctermfg=green cterm=bold
+		hi rubyTodo ctermbg=NONE ctermfg=green cterm=NONE
 		hi rubyRegexpAnchor ctermbg=NONE ctermfg=white cterm=NONE
 			hi link rubyRegexpQuantifier rubyRegexpAnchor
 		hi pythonOperator ctermbg=NONE ctermfg=darkred cterm=NONE

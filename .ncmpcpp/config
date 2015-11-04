@@ -28,7 +28,7 @@ generate_win32_compatible_filenames = "yes"
 # Bars
 progressbar_color = "white"
 progressbar_elapsed_color = "white"
-song_status_format = "$8%t $1$2%a $1•{ $5%b $1• }$7%y$1"
+song_status_format = "$8%t $2$2%a { $5%b $2• }$7%y$5"
 progressbar_look = "─╼╌"
 
 # UI
