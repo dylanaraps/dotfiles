@@ -27,4 +27,4 @@ while :; do
 	sleep .03s
 done |
 
-lemonbar -g "1000x$barheight" -f "lemon-j" -f "fontawesome-8" -B "#00$black" -F "#$white" 2>/dev/null | bash
+lemonbar -g "1000x$barheight" -f "lemon" -B "#00$black" -F "#$white" 2>/dev/null | bash

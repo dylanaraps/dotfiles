@@ -24,7 +24,8 @@ volume(){
 
 while :; do
 	echo "%{r}$(volume) $(music)%{r}"
-	sleep .3s
+	sleep .1s
 done |
 
-lemonbar -g "1000x$barheight+920" -f "lemon-j" -B "#00$black" -F "#$white" 2>/dev/null | bash
+lemonbar -g "1000x$barheight+920" -f "lemon" -B "#00$black" -F "#$white" 2>/dev/null | bash
+
