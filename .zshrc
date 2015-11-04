@@ -75,6 +75,10 @@ HISTSIZE=1000
 SAVEHIST=1000
 HISTFILE=~/.zsh_history
 
+# Key binds
+bindkey '^H' beginning-of-line
+bindkey '^L' end-of-line
+
 # Url magic
 autoload -U url-quote-magic
 zle -N self-insert url-quote-magic
@@ -90,3 +94,5 @@ source ~/builds/zsh-history-substring-search/zsh-history-substring-search.zsh
 zmodload zsh/terminfo
 bindkey "$terminfo[kcuu1]" history-substring-search-up
 bindkey "$terminfo[kcud1]" history-substring-search-down
+
+

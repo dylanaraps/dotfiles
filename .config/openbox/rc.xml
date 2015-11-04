@@ -638,9 +638,6 @@
       <decor>yes</decor>
       <layer>above</layer>
     </application>
-    <application name="clockbar">
-      <layer>below</layer>
-    </application>
     <application class="Firefox*">
       <desktop>1</desktop>
       <focus>no</focus>

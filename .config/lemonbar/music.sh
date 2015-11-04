@@ -28,4 +28,3 @@ while :; do
 done |
 
 lemonbar -g "1000x$barheight+920" -f "lemon-j" -B "#00$black" -F "#$white" 2>/dev/null | bash
-
