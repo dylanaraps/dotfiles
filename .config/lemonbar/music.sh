@@ -6,7 +6,7 @@ music(){
 		playing="Paused"
 	fi
 
-	echo "%{A:mpc toggle:}%{A4:mpc next:}%{A5:mpc prev:}%{B#$red} $playing %{B}%{A}%{A}%{A}"
+	echo "%{A:mpc toggle:}%{A4:mpc next:}%{A5:mpc prev:}%{B#$blue}%{F#$white} $playing %{F}%{B}%{A}%{A}%{A}"
 }
 
 volume(){
