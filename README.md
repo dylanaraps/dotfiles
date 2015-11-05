@@ -1,5 +1,5 @@
 # Dylan's Dotfiles
-My current setup as of the 2nd of November.
+### Screenshots are outdated as of the 5th of November
 
 ![Firefox](http://i.imgur.com/e29wLe3.png)
 ![Neovim](http://i.imgur.com/LaGtaB1.png)
