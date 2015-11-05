@@ -43,7 +43,7 @@
   </placement>
   <theme>
     <name>yellow</name>
-    <titleLayout>MC</titleLayout>
+    <titleLayout>C</titleLayout>
     <!--
       available characters are NDSLIMC, each can occur at most once.
       N: window icon

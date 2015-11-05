@@ -15,12 +15,13 @@ regular_expressions = "extended"
 
 # Playlist
 fetch_lyrics_for_current_song_in_background = "yes"
+playlist_disable_highlight_delay = 1
 follow_now_playing_lyrics = "yes"
 jump_to_now_playing_song_at_start = "yes"
 playlist_display_mode = "classic"
 now_playing_prefix = "$b"
-song_columns_list_format = "(6f)[cyan]{l} (40)[default]{t|f} (25)[red]{a} (30)[blue]{b}"
-song_list_format = "$2 %a $R $5 %t $8 %l"
+song_columns_list_format = "(50)[red]{a} (50)[blue]{t|f} (4f)[cyan]{l}"
+song_list_format = "$5 %a $R $2 %t $7 %l"
 
 # Tag Editor
 generate_win32_compatible_filenames = "yes"

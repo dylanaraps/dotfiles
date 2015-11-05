@@ -1,8 +1,7 @@
 ! Dylans Xresources
-URxvt*font: xft:lemon:pixelsize=10
-URxvt*boldFont: xft:lemon:pixelsize=10
+URxvt*font: xft:drift:pixelsize=10
 
-URxvt*geometry: 90x24
+URxvt*geometry: 75x24
 xterm*termName: xterm-256color
 
 URxvt.scrollBar: false
@@ -27,16 +26,16 @@ Xcursor.size: 16
 
 ! special
 *.foreground:   #f2f3f2
-*.background:   #2d2b33
+*.background:   #363740
 *.cursorColor:  #f2f3f2
 
 ! black
-*.color0:       #2d2b33
+*.color0:       #363740
 *.color8:       #75747a
 
 ! red
-*.color1:       #c86c75
-*.color9:       #c86c75
+*.color1:       #BF687F
+*.color9:       #BF687F
 
 ! green
 *.color2:       #9BB38F
@@ -51,12 +50,12 @@ Xcursor.size: 16
 *.color12:      #8294b4
 
 ! magenta
-*.color5:       #e8907e
-*.color13:      #e8907e
+*.color5:       #E68A8B
+*.color13:      #E68A8B
 
 ! cyan
-*.color6:       #a9cdd9
-*.color14:      #a9cdd9
+*.color6:       #95B9BF
+*.color14:      #95B9BF
 
 ! white
 *.color7:       #f2f3f2

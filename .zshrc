@@ -20,13 +20,14 @@ source ~/.zsh_aliases
 # Global Variables {{{
 
 export black="2d2b33"
+export lightblack="363740"
 export darkgray="75747a"
-export red="c86c75"
+export red="BF687F"
 export green="9BB38F"
 export yellow="e5c196"
 export blue="8294b4"
-export orange="e8907e"
-export cyan="a9cdd9"
+export orange="E68A8B"
+export cyan="95B9BF"
 export white="f2f3f2"
 
 export barheight=30

@@ -1,8 +1,8 @@
 #!/bin/sh
 dir=$HOME/Music/covers/
 
-width=144
-height=144
+width=158
+height=158
 
 format=jpg
 

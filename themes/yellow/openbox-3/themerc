@@ -19,12 +19,12 @@ padding.height: 8
 # Set title colors
 window.*.title.bg: Solid Flat
 window.*.*.bg: Parentrelative
-window.*.title.bg.color: #e5c196
+window.*.title.bg.color: #2d2b33
 window.*.label.text.color: #2d2b33
 window.label.text.justify: center
 
 # Set buttons color
-window.*.button.*.image.color: #BC846F
+window.*.button.*.image.color: #75747A
 
 
 ## MENU

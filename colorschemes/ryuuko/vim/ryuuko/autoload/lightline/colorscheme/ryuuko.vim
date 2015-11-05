@@ -3,10 +3,10 @@
 " Author: dylan araps
 " =============================================================================
 let s:white = '#f2f3f2'
-let s:black = '#2d2b33'
+let s:black = '#363740'
 let s:gray = '#75747a'
-let s:red = '#c86c75'
-let s:orange = '#e8907e'
+let s:red = '#BF687F'
+let s:orange = '#E68A8B'
 let s:yellow = '#e5c196'
 let s:green = '#9BB38F'
 let s:cyan = '#a9cdd9'
