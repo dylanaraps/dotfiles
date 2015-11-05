@@ -1,9 +1,8 @@
 # Dylan's Dotfiles
-### Screenshots are outdated as of the 5th of November
 
-![Firefox](http://i.imgur.com/e29wLe3.png)
-![Neovim](http://i.imgur.com/LaGtaB1.png)
-![Music](http://i.imgur.com/GkGEjWD.png)
+![1](http://i.imgur.com/6Or4ICD.png)
+![2](http://i.imgur.com/hGFsXH4.png)
+![3](http://i.imgur.com/5VZMp9U.png)
 
 <!--- My Setup {{{ -->
 
