@@ -19,7 +19,13 @@ padding.height: 9
 # Set title colors
 window.*.title.bg: Solid Flat
 window.*.*.bg: Parentrelative
-window.*.title.bg.color: #2d2b33
+
+# Light bg for notrans
+# window.*.title.bg.color: #2d2b33
+
+# Dark bg for trans
+window.*.title.bg.color: #27282E
+
 window.*.label.text.color: #75747A
 window.label.text.justify: center
 

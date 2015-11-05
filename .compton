@@ -45,11 +45,11 @@ backend = "glx"
 frame-opacity = 1.0;
 
 opacity-rule = [
-	"92:class_g = 'URxvt'",
+	"93:class_g = 'URxvt'",
 	"90:name = 'bar'",
-	"92:class_g = 'qutebrowser'",
-	"92:class_g = 'Firefox'",
-	"92:class_g = 'Thunar'"
+	"93:class_g = 'qutebrowser'",
+	"93:class_g = 'Firefox'",
+	"93:class_g = 'Thunar'"
 ];
 
 #################################
