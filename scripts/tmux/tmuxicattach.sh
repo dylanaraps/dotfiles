@@ -1,5 +1,5 @@
 #!/bin/bash
-urxvtc -hold -g 56x29 -e zsh -c 'tmux attach-session'
+urxvtc -hold -name music -g 56x29+1422+639 -e zsh -c 'tmux attach-session'
 
 
 

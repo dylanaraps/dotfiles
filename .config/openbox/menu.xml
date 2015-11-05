@@ -18,6 +18,10 @@
 	<item label="Gimp">
 		<action name="Execute"><command>gimp</command></action>
 	</item>
+	<separator />
+	<item label="scrot">
+		<action name="Execute"><command>scrot</command></action>
+	</item>
 </menu>
 
 <menu id="system-menu" label="System">

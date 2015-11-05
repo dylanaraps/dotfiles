@@ -352,6 +352,12 @@
         <command>~/dotfiles/scripts/dmenu.sh</command>
       </action>
     </keybind>
+    <keybind key="W-c">
+      <action name="Execute">
+        <name>dmenu</name>
+		<command>~/dotfiles/scripts/wmutils/centerwin.sh</command>
+      </action>
+    </keybind>
   </keyboard>
   <mouse>
     <dragThreshold>1</dragThreshold>

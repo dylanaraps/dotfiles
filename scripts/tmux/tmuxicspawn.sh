@@ -1,2 +1,2 @@
 #!/bin/bash
-urxvtc -hold -g 56x29 -e zsh -c ~/dotfiles/scripts/tmux/tmuxic.sh
+urxvtc -hold -name music -g 56x29+1422+639 -e zsh -c ~/dotfiles/scripts/tmux/tmuxic.sh

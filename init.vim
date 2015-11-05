@@ -39,9 +39,6 @@ Plug 'itchyny/lightline.vim'
 		\ 'right': [ [ 'lineinfo' ],
 		\            [ 'filetype' ] ] }
 
-Plug 'ap/vim-buftabline'
-	let g:buftabline_show = 2
-
 " Async autocomplete
 Plug 'Shougo/deoplete.nvim'
 	let g:deoplete#enable_at_startup = 1
