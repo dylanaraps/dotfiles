@@ -16,13 +16,13 @@
 * Launcher: [Dmenu2](https://github.com/mrshankly/dmenu2)
 * Terminal Emulator: [rxvt-unicode-24bit](https://aur4.archlinux.org/packages/rxvt-unicode-24bit/)
 * Shell: [zsh](http://www.zsh.org/)
-* Terminal Font: [lemon](https://github.com/phallus/fonts)
+* Terminal Font: drift (part of artwiz fonts)
 * Text Editor: [Neovim](https://github.com/neovim/neovim)
 * Color Scheme: ryuuko (In this repo)
 * Music Player: [Mpd](http://www.musicpd.org/) + [ncmpcpp](http://ncmpcpp.rybczak.net/)
 * Browser: [Qutebrowser](https://github.com/The-Compiler/qutebrowser) and Firefox-nightly
 * Startpage: In this repo "/startpage/"
-* Video Player: [mpv](https://github.com/haasn/mpvhq)
+* Video Player: [mpv](https://github.com/mpv-player/mpv)
 
 <!--- }}} -->
 
