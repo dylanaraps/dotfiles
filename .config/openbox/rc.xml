@@ -294,7 +294,7 @@
     <!-- Tiling Bindings -->
     <keybind key="W-s">
       <action name="Execute">
-        <command>~/dotfiles/scripts/openbox/tiling.sh</command>
+        <command>rtile.rb --all</command>
       </action>
     </keybind>
     <!-- Always Ontop toggle -->

@@ -461,7 +461,7 @@ nmap <silent> <S-Tab> :call BetterBufferNav("bp") <Cr>
 
 " Quick Terminal {{{
 " Spawns a terminal in a small split for quick typing of commands
-" Also maps <Esc> to quit out of FZF/QuickTerm
+" Also maps <Esc> to quit out of the terminal
 
 function QuitTerminal()
 	setlocal buflisted
@@ -540,7 +540,7 @@ cnoreabbrev bd BD
 " }}}
 
 " Persistent Echo {{{
-" Used to remove the text that gets printed on bnext/bprev
+" Keeps echo on screen, mainly used by me in other functions to clear the cmdline
 
 func! PersistentEcho(msg)
 	echo a:msg

@@ -1,40 +1,47 @@
+# Dylan's zsh aliases and functions
+
 # Aliases {{{
 
-# Remove deps not needed anymore
+# Remove orphaned package dependencies
 alias cleandeps='sudo pacman -R $(pacman -Qqdt)'
 
 # Print terminal colors
 alias pal='for x in 0 1 4 5 7 8; do for i in `seq 30 37`; do for a in `seq 40 47`; do echo -ne "\e[$x;$i;$a""m\\\e[$x;$i;$a""m\e[0;37;40m "; done; echo; done; done; echo "";'
 
-# dls video from youtube to my Music folder
+# Download youtube url to an .mp3
+# and save it to my music folder.
 alias mp3dl="cd ~/Music && youtube-dl --extract-audio --audio-format mp3 --no-playlist"
-
-# pwd
-alias pwd="cd ~/pwd.sh && ./pwd.sh"
 
 # Creates a playlist from an ls of my Music Folder
 alias lsnc="ls -A --color=none"
 alias plu="lsnc ~/Music > ~/.mpd/playlists/music.m3u"
 
+# pwd
+alias pwd="cd ~/pwd.sh && ./pwd.sh"
+
 # Makes ls list all files and always use color
 alias ls="ls -A --color=always"
 
-# Compton
+# Start compton with config file
 alias cmp="compton --config ~/.compton &"
 
-# Aliases to start/kill bar
+# Aliases to start/kill lemonbar
 alias killbar="pkill ~/.config/lemonbar/clock.sh & pkill ~/.config/lemonbar/workspace.sh & pkill ~/.config/lemonbar/music.sh & pkill lemonbar"
 alias startbar="~/dotfiles/.config/lemonbar/clock.sh & sleep .5s && ~/dotfiles/.config/lemonbar/workspace.sh & ~/dotfiles/.config/lemonbar/music.sh"
 
-# Webdev
+# Create a website project directory
 alias mksite="~/dotfiles/scripts/webdev/webdev.sh"
 
 # Start ssh-agent with startx
 alias startx='ssh-agent startx'
 
+# Open feh in a small window
 alias feh='feh --auto-zoom --scale-down -g 640 -B black'
+
 alias wine='thread_submit=true wine'
 alias winesteam='wine ~/.wine/drive_c/Program\ Files/Steam/Steam.exe'
+
+# Save all screenshots to ~/Pictures
 alias scrot='cd ~/Pictures/ && scrot'
 
 # Music
@@ -42,21 +49,27 @@ alias startmusic="~/dotfiles/scripts/tmux/tmuxicspawn.sh"
 alias music="~/dotfiles/scripts/tmux/tmuxicattach.sh"
 alias killmusic="tmux kill-session & pkill cava & pkill tmux & pkill ncmpcpp"
 
+# Start weechat in a terminal with custom padding/size
 alias weechat="urxvt -hold -b 50 -g 135x45 -e zsh -c weechat"
+
+# Easier alias to open a urxvt client
 alias urxvt="urxvtc"
 
 # }}}
 
 # Functions {{{
 
+# Function for averyhardtest
 stage64 () {
 	curl -u $(curl averyhardtest.com/421563647 | grep -Eo \[0-9\]\{3,4\}):$(curl ipinfo.io/ip) averyhardtest.com:64 -v
 }
 
+# Watch a twitch stream with "twitch channelname videoquality"
 twitch () {
 	livestreamer twitch.tv/$1 $2 --player "mpv --cache 8192"
 }
 
+# Do maths in the terminal
 = () {
     calc="${@//p/+}"
     calc="${calc//x/*}"

@@ -1,5 +1,6 @@
 # Dylan's zhrc
-export DE=bspwm
+
+# Set term
 export TERM=rxvt-unicode-256color
 
 # Sets editor to neovim
@@ -19,6 +20,8 @@ source ~/.zsh_aliases
 
 # Global Variables {{{
 
+# ryuuko colorscheme
+# for easy use in scripts
 export black="2d2b33"
 export lightblack="363740"
 export darkgray="75747a"
@@ -30,8 +33,10 @@ export orange="E68A8B"
 export cyan="95B9BF"
 export white="f2f3f2"
 
+# lemonbar height
 export barheight=30
 
+# fzf settings
 export FZF_DEFAULT_COMMAND='ag -l -g "" --hidden'
 
 export FZF_DEFAULT_OPTS='
@@ -67,25 +72,22 @@ setopt completealiases
 # Enable colors in prompt
 autoload -U colors && colors
 
+# Set prompt
 PROMPT="%{$fg_bold[white]%} %n %{$fg_no_bold[white]%}%~ %{$fg_no_bold[yellow]%}>"
 
+# Set right prompt
 RPROMPT="%{$fg_bold[cyan]%}%t %{$reset_color%}"
 
 # History File
-HISTSIZE=1000
-SAVEHIST=1000
+HISTSIZE=10000
+SAVEHIST=10000
 HISTFILE=~/.zsh_history
 
 # Key binds
 bindkey '^H' beginning-of-line
 bindkey '^L' end-of-line
 
-# Url magic
-autoload -U url-quote-magic
-zle -N self-insert url-quote-magic
-
-# Assume a command is cd if it's a directory
-setopt autocd
+# share history
 setopt sharehistory
 
 source /usr/share/zsh/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh

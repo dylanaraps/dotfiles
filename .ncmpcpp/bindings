@@ -13,6 +13,7 @@ def_key "k"
 def_key "l"
 	next_column
 
+
 # HJKL keys
 def_key "H"
 	seek_backward
@@ -30,6 +31,7 @@ def_key "K"
 def_key "L"
 	seek_forward
 
+
 # gg (Jump to top)
 def_key "g"
 	execute_command
@@ -37,9 +39,11 @@ def_key "g"
 def_command "g" [immediate]
 	move_home
 
+
 # G (Jump to bottom)
 def_key "G"
 	move_end
+
 
 # next/prev search result
 def_key "n"
@@ -48,17 +52,21 @@ def_key "n"
 def_key "N"
 	previous_found_item
 
+
 # ; to enter command
 def_key ";"
 	execute_command
 
-# {:q<CR> to quit
+
+# :q<CR> to quit
 def_command "q" [deferred]
 	quit
+
 
 # :w<CR> to update database
 def_command "w" [deferred]
 	update_database
+
 
 # :e<CR> to edit song under cursor
 def_command "e" [deferred]

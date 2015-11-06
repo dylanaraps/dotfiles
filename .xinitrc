@@ -1,4 +1,6 @@
 # Dylan's Xinitrc
+
+# Merge .Xresources
 [[ -f ~/.Xresources ]] && xrdb -merge ~/.Xresources
 
 # Sets the caps key to escape
@@ -17,5 +19,5 @@ xset +fp /usr/share/fonts/misc/
 xset +fp ~/.fonts
 xset fp rehash
 
-# exec bspwm
+# Launch openbox
 exec openbox-session

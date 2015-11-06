@@ -1,14 +1,17 @@
 ! Dylans Xresources
 URxvt*font: xft:drift:pixelsize=10
 
+! Terminal window size
 URxvt*geometry: 75x24
-xterm*termName: xterm-256color
 
+xterm*termName: xterm-256color
 URxvt.scrollBar: false
 URxvt*loginShell: true
+
+! Set terminal padding
 URxvt.internalBorder: 6
 
-! Enables copy/paste
+! Enables copy/paste with Ctrl-Shift-C/V
 URxvt.iso14755: False
 URxvt.perl-ext-common: clipboard
 URxvt.keysym.Shift-Control-C:   perl:clipboard:copy
@@ -22,7 +25,7 @@ URxvt.keysym.C-f: \
 
 Xcursor.size: 16
 
-! Dyl Colors {{{
+! ryuuko Colors {{{
 
 ! special
 *.foreground:   #f2f3f2
@@ -62,4 +65,3 @@ Xcursor.size: 16
 *.color15:      #f2f3f2
 
 ! }}}
-

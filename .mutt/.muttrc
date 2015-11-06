@@ -1,4 +1,7 @@
+# Source my cock.li specific settings
 source ~/cockli.muttrc
+
+# Remove + characters on newline
 unset markers
 
 # Default colour definitions
@@ -31,3 +34,13 @@ color body brightgreen black " [;:]-*[)>(<|]"                                   
 color body brightblue  black "(^|[[:space:]])\\*[^[:space:]]+\\*([[:space:]]|$)" # *Bold* text.
 color body brightblue  black "(^|[[:space:]])_[^[:space:]]+_([[:space:]]|$)"     # _Underlined_ text.
 color body brightblue  black "(^|[[:space:]])/[^[:space:]]+/([[:space:]]|$)"     # /Italic/ text.
+
+# Vim scroll keys
+macro pager 'j' <next-line>
+macro pager 'k' <previous-line>
+
+# Capital J/K to scroll whole pages
+bind index 'J' next-page
+bind index 'K' previous-page
+
+
