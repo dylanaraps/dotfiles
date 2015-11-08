@@ -1,5 +1,4 @@
 #!/bin/sh
-trap 'echo -ne "\e]0;music\007"' DEBUG
 tmux new-session -d 'music'
 tmux new-window '~/dotfiles/scripts/cover.sh'
 tmux split-window -v 'ncmpcpp'
