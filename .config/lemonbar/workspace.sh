@@ -1,4 +1,8 @@
 #!/bin/bash
+startbutton(){
+	echo "%{A:~/dotfiles/scripts/openbox/startbutton.sh:}    %{A}"
+}
+
 workspace(){
 	query=$(wmctrl -d | grep "*" | cut -d ' ' -f 1)
 	focus="~/dotfiles/scripts/openbox/musicfoc.sh"
@@ -21,12 +25,12 @@ workspace(){
 
 windowtitle(){
 	title=$(xdotool getactivewindow getwindowname | cut -c 1-75)
-	echo "%{F#$white} x> $title%{F}"
+	echo "%{F#$white}  $title%{F}"
 }
 
 while :; do
-	echo "%{l}$(workspace) $(windowtitle)%{l}"
+	echo "$(startbutton)$(workspace) $(windowtitle)"
 	sleep .03s
 done |
 
-lemonbar -g "1000x$barheight" -f "drift" -B "#00$black" -F "#$white" 2>/dev/null | bash
+lemonbar -g "970x$barheight" -f "drift" -f "xbmicons" -B "#00$black" -F "#$white" 2>/dev/null | bash

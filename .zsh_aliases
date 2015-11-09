@@ -76,5 +76,10 @@ twitch () {
     echo "$(($calc))"
 }
 
+# Waifu2x
+waifu () {
+	waifu2x -i $1 -o $2 --scale_ratio $3 $4 $5
+}
+
 # }}}
 

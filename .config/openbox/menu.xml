@@ -2,42 +2,174 @@
 
 <openbox_menu xmlns="http://openbox.org/3.4/menu">
 
-<menu id="launch-menu" label="Launch">
-	<item label="Firefox">
-		<action name="Execute"><command>firefox-nightly</command></action>
-	</item>
-	<separator />
-	<item label="Thunar">
-		<action name="Execute"><command>thunar</command></action>
-	</item>
-	<separator />
-	<item label="Steam">
-		<action name="Execute"><command>steam</command></action>
-	</item>
-	<separator />
-	<item label="Gimp">
-		<action name="Execute"><command>gimp</command></action>
-	</item>
-	<separator />
-	<item label="scrot">
-		<action name="Execute"><command>scrot</command></action>
-	</item>
-</menu>
+	<menu id="root-menu" label="Openbox 3">
 
-<menu id="system-menu" label="System">
-	<item label="Reconfigure Openbox">
-		<action name="Reconfigure" />
-	</item>
-</menu>
+		<menu id="Games" label="Games" icon="/usr/share/icons/gnome/16x16/categories/gnome-joystick.png">
+			<item label="Dolphin Emulator" icon="/usr/share/pixmaps/dolphin-emu.xpm">
+				<action name="Execute"><execute>dolphin-emu</execute></action>
+			</item>
 
-<menu id="root-menu" label="Openbox 3">
-	<item label="urxvt">
-		<action name="Execute"><command>urxvt</command></action>
-	</item>
-	<separator />
-	<menu id="launch-menu"/>
-	<separator />
-	<menu id="system-menu"/>
-</menu>
+			<separator />
+
+			<item label="Minecraft" icon="/usr/share/pixmaps/minecraft.png">
+				<action name="Execute"><execute>minecraft</execute></action>
+			</item>
+
+			<separator />
+
+			<item label="MultiMC5" icon="/usr/share/pixmaps/multimc5.svg">
+				<action name="Execute"><execute>multimc5</execute></action>
+			</item>
+
+			<separator />
+
+			<item label="Nestopia" icon="/usr/share/pixmaps/nestopia.svg">
+				<action name="Execute"><execute>nestopia -e</execute></action>
+			</item>
+
+			<separator />
+
+			<item label="OpenSpades" icon="/usr/share/icons/hicolor/16x16/apps/openspades.png">
+				<action name="Execute"><execute>openspades </execute></action>
+			</item>
+
+			<separator />
+
+			<item label="Steam" icon="/usr/share/icons/hicolor/16x16/apps/steam.png">
+				<action name="Execute"><execute>/usr/bin/steam </execute></action>
+			</item>
+		</menu> <!-- Games -->
+
+		<separator />
+
+		<menu id="Graphics" label="Graphics" icon="/usr/share/icons/gnome/16x16/categories/gnome-graphics.png">
+			<item label="FontForge" icon="/usr/share/icons/hicolor/16x16/apps/fontforge.png">
+				<action name="Execute"><execute>fontforge </execute></action>
+			</item>
+
+			<separator />
+
+			<item label="GNU Image Manipulation Program" icon="/usr/share/icons/hicolor/16x16/apps/gimp.png">
+				<action name="Execute"><execute>gimp-2.8 </execute></action>
+			</item>
+
+			<separator />
+
+			<item label="Inkscape" icon="/usr/share/icons/hicolor/16x16/apps/inkscape.png">
+				<action name="Execute"><execute>inkscape </execute></action>
+			</item>
+
+			<separator />
+
+			<item label="Pinta" icon="/usr/share/icons/hicolor/16x16/apps/pinta.png">
+				<action name="Execute"><execute>pinta </execute></action>
+			</item>
+
+			<separator />
+
+			<item label="gbdfed" icon="/usr/share/pixmaps/gbdfed.png">
+				<action name="Execute"><execute>gbdfed </execute></action>
+			</item>
+		</menu> <!-- Graphics -->
+
+		<separator />
+
+		<menu id="Internet" label="Internet" icon="/usr/share/icons/gnome/16x16/categories/gnome-globe.png">
+			<item label="Firefox" icon="/usr/share/icons/hicolor/16x16/apps/firefox.png">
+				<action name="Execute"><execute>firefox </execute></action>
+			</item>
+
+			<separator />
+
+			<item label="TeamSpeak 3">
+				<action name="Execute"><execute>teamspeak3</execute></action>
+			</item>
+
+			<separator />
+
+			<item label="Transmission" icon="/usr/share/icons/hicolor/16x16/apps/transmission.png">
+				<action name="Execute"><execute>transmission-gtk </execute></action>
+			</item>
+
+			<separator />
+
+			<item label="qutebrowser" icon="/usr/share/icons/hicolor/16x16/apps/qutebrowser.png">
+				<action name="Execute"><execute>qutebrowser </execute></action>
+			</item>
+		</menu> <!-- Internet -->
+
+		<separator />
+
+		<menu id="Sound &amp; Video" label="Sound &amp; Video" icon="/usr/share/icons/gnome/16x16/categories/gnome-multimedia.png">
+			<item label="MKVToolNix GUI" icon="/usr/share/icons/hicolor/16x16/apps/mkvtoolnix-gui.png">
+				<action name="Execute"><execute>mkvtoolnix-gui </execute></action>
+			</item>
+
+			<separator />
+
+			<item label="PulseAudio Volume Control" icon="/usr/share/icons/gnome/16x16/apps/multimedia-volume-control.png">
+				<action name="Execute"><execute>pavucontrol</execute></action>
+			</item>
+
+			<separator />
+
+			<item label="SimpleScreenRecorder" icon="/usr/share/icons/hicolor/16x16/apps/simplescreenrecorder.png">
+				<action name="Execute"><execute>simplescreenrecorder --logfile</execute></action>
+			</item>
+
+			<separator />
+
+			<item label="mpv Media Player" icon="/usr/share/icons/hicolor/16x16/apps/mpv.png">
+				<action name="Execute"><execute>mpv --profile=pseudo-gui -- </execute></action>
+			</item>
+		</menu> <!-- Sound & Video -->
+
+		<separator />
+
+		<menu id="System Tools" label="System Tools" icon="/usr/share/icons/gnome/16x16/categories/gnome-system.png">
+			<item label="Bulk Rename" icon="/usr/share/icons/hicolor/16x16/apps/Thunar.png">
+				<action name="Execute"><execute>/usr/lib/Thunar/ThunarBulkRename </execute></action>
+			</item>
+
+			<separator />
+
+			<item label="GParted" icon="/usr/share/icons/hicolor/16x16/apps/gparted.png">
+				<action name="Execute"><execute>/usr/bin/gparted_polkit </execute></action>
+			</item>
+
+			<separator />
+
+			<item label="Htop" icon="/usr/share/pixmaps/htop.png">
+				<action name="Execute"><execute>urxvtc -e htop</execute></action>
+			</item>
+
+			<separator />
+
+			<item label="Thunar File Manager" icon="/usr/share/icons/hicolor/16x16/apps/Thunar.png">
+				<action name="Execute"><execute>thunar </execute></action>
+			</item>
+
+			<separator />
+
+			<item label="Xfce Terminal" icon="/usr/share/icons/gnome/16x16/apps/utilities-terminal.png">
+				<action name="Execute"><execute>xfce4-terminal</execute></action>
+			</item>
+
+			<separator />
+
+			<item label="urxvt" icon="/usr/share/icons/gnome/16x16/apps/utilities-terminal.png">
+				<action name="Execute"><execute>urxvtc</execute></action>
+			</item>
+		</menu> <!-- System Tools -->
+
+		<separator />
+
+		<menu id="system-menu" label="System">
+			<item label="Reconfigure Openbox">
+				<action name="Reconfigure" />
+			</item>
+		</menu>
+	</menu>
 
 </openbox_menu>
+

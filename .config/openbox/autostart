@@ -17,7 +17,7 @@ sleep 3s &&
 
 # Papes
 # ~/dotfiles/scripts/wallpaper.sh &
-feh --bg-tile ~/Pictures/papes4/9.jpg &
+feh --bg-fill /home/dyl/Pictures/fuuu4.png &
 
 # lemonbar
 sleep .5s &&

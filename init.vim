@@ -140,13 +140,10 @@ augroup Filetypes
 	" set .md files to filetype markdown
 	autocmd BufNewFile,BufRead *.md set filetype=markdown
 
-	" rtorrent config file
-	" set filetype to zsh so that comments are correctly highlighted
-	autocmd BufEnter,BufNewFile .rtorrent.rc set filetype=zsh
+	" Refraw on cmdwinenter/leave
+	autocmd CmdwinEnter,CmdwinLeave * redraw!
 
-	autocmd CmdwinEnter * redraw!
-	autocmd CmdwinLeave * redraw!
-
+	" Equalize splits on resize, mainly used with Goyo to fix it's padding on resize.
 	autocmd VimResized * execute "normal \<C-W>="
 
 augroup END
@@ -155,8 +152,11 @@ augroup END
 
 " Spaces and Tabs {{{
 
+" Set indent to 4 spaces wide
 set tabstop=4
 set shiftwidth=4
+
+" A combination of spaces and tabs are used to simulate tab stops at a width
 set softtabstop=4
 set expandtab
 
@@ -172,10 +172,15 @@ set wrap
 
 " Stops words from being cut off during linebreak
 set linebreak
-set nolist
+
+" Set textwidth to 80 characters
 set textwidth=80
 set wrapmargin=0
+
+" Copy indent from previous line on linebreak
 set autoindent
+
+" Linebreaks keep indent level
 set breakindent
 
 " }}}
@@ -185,16 +190,19 @@ set breakindent
 " Enable true color for neovim
 let $NVIM_TUI_ENABLE_TRUE_COLOR = 1
 
-" Sexy cursor
+" Enables cursor similar to gui programs
 let $NVIM_TUI_ENABLE_CURSOR_SHAPE = 1
 
 " Change window title to filename
 set title
-syntax on
-set background=dark
+
+" Turn on linenumbers
 set number
+
+" Hide ruler
 set noruler
-set noequalalways
+
+" Don't redraw screen as often
 set lazyredraw
 
 " Limit syntax highlighting length
@@ -215,8 +223,13 @@ colorscheme ryuuko
 
 " Searching {{{
 
+" Highlight search matches
 set hlsearch
+
+" Show search results as you type
 set incsearch
+
+" Ignore case in searches if query doesn't include capitals
 set ignorecase
 set smartcase
 
@@ -224,10 +237,11 @@ set smartcase
 
 " Mapping {{{
 
-" Leader
+" Unmap space in normal and visual modes
 nnoremap <SPACE> <nop>
 vnoremap <SPACE> <nop>
 
+" Map the capital equivalent for easier save/exit
 cabbrev Wq wq
 cabbrev W w
 cabbrev Q q
@@ -235,11 +249,11 @@ cabbrev Q q
 " Map q to qa to quickly exit when using goyo
 cnoreabbrev q qa
 
-" K
+" unmap capital K
 nnoremap K <nop>
 
 " Copies what was just pasted
-" Allows you to paste the same thing over and over and over and over
+" Allows you to paste the same thing over and over and over and over and over and over
 xnoremap p pgvy
 
 " Cylces through splits using a double press of enter in normal mode
@@ -251,7 +265,7 @@ map <Down> <nop>
 map <Left> <nop>
 map <Right> <nop>
 
-" Map : to ; (then remap ;)
+" Map ; to :
 noremap ; :
 
 " Save files with root privliges
@@ -325,10 +339,11 @@ vnoremap K :m '<-2<CR>gv=gv
 " Fuck swapfiles
 set noswapfile
 
+" Set backup/undo dirs
 set backupdir=~/.config/nvim/tmp/backups//
 set undodir=~/.config/nvim/tmp/undo//
 
-" Make those folders automatically if they don't already exist.
+" Make the folders automatically if they don't already exist.
 if !isdirectory(expand(&backupdir))
 	call mkdir(expand(&backupdir), "p")
 endif
@@ -367,9 +382,10 @@ set wildignore+=*.gif,*.png,*.jp*
 set wildignore+=*/tmp/*,*.so,*.swp,*.zip
 set wildignore+=*/.sass-cache/*,*.map
 
+" Saner backspacing
 set backspace=indent,eol,start
+
 set esckeys
-set binary
 set noeol
 set showcmd
 set autoread

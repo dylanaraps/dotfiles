@@ -20,29 +20,26 @@ padding.height: 9
 window.*.title.bg: Solid Flat
 window.*.*.bg: Parentrelative
 
-# Light bg for notrans
-# window.*.title.bg.color: #2d2b33
-
 # Dark bg for trans
-window.*.title.bg.color: #27282E
+window.*.title.bg.color: #95B9BF
 
-window.*.label.text.color: #75747A
+window.*.label.text.color: #f2f3f2
 window.label.text.justify: center
 
 # Set buttons color
-window.*.button.*.image.color: #75747A
+window.*.button.*.image.color: #f2f3f2
 
 
 ## MENU
 
 # Set menu colors
 menu.*.bg: Solid Flat
-menu.*.bg.color: #EEEEEE
-menu.*.text.color: #021B21
+menu.*.bg.color: #E68A8B
+menu.*.text.color: #f2f3f2
 
 # Add some padding
 menu.border.width: 20
-menu.border.color: #EEEEEE
+menu.border.color: #E68A8B
 
 # Add some submenu padding
 menu.overlap.x: -30
@@ -50,4 +47,4 @@ menu.overlap.y: 0
 
 # Add padding between items
 menu.separator.padding.height: 3
-menu.separator.color: #EEEEEE
+menu.separator.color: #E68A8B

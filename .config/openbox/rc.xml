@@ -355,7 +355,7 @@
     <keybind key="W-c">
       <action name="Execute">
         <name>dmenu</name>
-		<command>~/dotfiles/scripts/wmctrl/centerwin.sh</command>
+        <command>~/dotfiles/scripts/wmctrl/centerwin.sh</command>
       </action>
     </keybind>
   </keyboard>
