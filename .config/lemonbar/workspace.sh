@@ -1,13 +1,17 @@
 #!/bin/bash
-startbutton(){
+# Dylan's lemonbar workspace script
+
+# Variables that don't need to be in the loop.
+focus="~/dotfiles/scripts/openbox/musicfoc.sh"
+bg=$red
+bgfoc=$cyan
+
+startbutton() {
 	echo "%{A:~/dotfiles/scripts/openbox/startbutton.sh:}    %{A}"
 }
 
-workspace(){
-	query=$(wmctrl -d | grep "*" | cut -d ' ' -f 1)
-	focus="~/dotfiles/scripts/openbox/musicfoc.sh"
-	bg=$red
-	bgfoc=$cyan
+workspace() {
+    query=$(wmctrl -d | awk '/\*/ {printf $1}')
 
 	case $query in
 		0 )
@@ -23,7 +27,7 @@ workspace(){
 	esac
 }
 
-windowtitle(){
+windowtitle() {
 	title=$(xdotool getactivewindow getwindowname | cut -c 1-75)
 	echo "%{F#$white}  $title%{F}"
 }

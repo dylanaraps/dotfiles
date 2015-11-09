@@ -146,6 +146,9 @@ augroup Filetypes
 	" Equalize splits on resize, mainly used with Goyo to fix it's padding on resize.
 	autocmd VimResized * execute "normal \<C-W>="
 
+    " Always use goyo
+    autocmd BufRead,VimEnter * Goyo 80%x90%
+
 augroup END
 
 " }}}
@@ -196,8 +199,8 @@ let $NVIM_TUI_ENABLE_CURSOR_SHAPE = 1
 " Change window title to filename
 set title
 
-" Turn on linenumbers
-set number
+" Turn off linenumbers
+set nonumber
 
 " Hide ruler
 set noruler
@@ -606,6 +609,24 @@ function! Openwith(program)
 endfunction
 
 command! -bang -nargs=* Openwith call Openwith(<q-args>)
+
+" }}}
+
+" Toggle Lightline {{{
+
+let g:lightline_enabled = 1
+
+function! LightlineToggle()
+    if g:lightline_enabled
+        call lightline#enable()
+        let g:lightline_enabled = 0
+    else
+        call lightline#disable()
+        let g:lightline_enabled = 1
+    endif
+endfunction
+
+nnoremap <silent> <Leader><Leader> :call LightlineToggle()<CR>
 
 " }}}
 

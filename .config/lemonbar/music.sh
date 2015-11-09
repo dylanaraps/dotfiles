@@ -1,16 +1,8 @@
 #!/bin/bash
-music(){
-	if [[ $(mpc status | grep -o "\[playing\]") == "[playing]" ]]; then
-		playing=" $(mpc current)"
-	else
-		playing="  "
-	fi
+# Dylan's lemonbar music script
 
-	echo "%{A:mpc toggle:}%{A4:mpc next:}%{A5:mpc prev:}%{B#$blue}%{F#$white} $playing %{F}%{B}%{A}%{A}%{A}"
-}
-
-volume(){
-	if [[ $(pulseaudio-ctl full-status | awk '/ / {printf $2}') == "yes" ]]; then
+volume() {
+	if [[ $(pulseaudio-ctl full-status | awk '{printf $2}') == "yes" ]]; then
 		vol="Mute"
 		icon=""
 	else
@@ -20,6 +12,16 @@ volume(){
 	fi
 
 	echo "%{A4:pulseaudio-ctl up:}%{A5:pulseaudio-ctl down:}%{A:pulseaudio-ctl mute:} $icon $vol %{A}%{A}%{A}"
+}
+
+music() {
+	if [[ $(mpc status | grep -o "\[playing\]") == "[playing]" ]]; then
+		playing=" $(mpc current)"
+	else
+		playing="  "
+	fi
+
+	echo "%{A:mpc toggle:}%{A4:mpc next:}%{A5:mpc prev:}%{B#$blue}%{F#$white} $playing %{F}%{B}%{A}%{A}%{A}"
 }
 
 while :; do
