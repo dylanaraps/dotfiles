@@ -1,11 +1,11 @@
 #!/bin/bash
-cd ~/projects
+cd ~/projects || exit
 
 echo "What would you like to name your project?"
-read dirname
+read -r dirname
 
-mkdir $dirname
-cd $dirname
+mkdir "$dirname"
+cd "$dirname" || exit
 
 mkdir src
 
@@ -21,5 +21,5 @@ git init
 git add .
 git commit -m "Initial Files"
 
-cp ~/dotfiles/scripts/webdev/files/gulpfile.coffee ~/projects/$dirname
+cp ~/dotfiles/scripts/webdev/files/gulpfile.coffee ~/projects/"$dirname"
 

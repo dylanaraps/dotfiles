@@ -2,7 +2,7 @@
 # Dylan's lemonbar workspace script
 
 # Variables that don't need to be in the loop.
-focus="~/dotfiles/scripts/openbox/musicfoc.sh"
+focus="$HOME/dotfiles/scripts/openbox/musicfoc.sh"
 bg=$red
 bgfoc=$cyan
 
