@@ -18,8 +18,6 @@ export INFINALITY_FT_FILTER_PARAMS="16 20 28 20 16"
 # Aliases
 source ~/.zsh_aliases
 
-# Global Variables {{{
-
 # ryuuko colorscheme
 # for easy use in scripts
 export black="2d2b33"
@@ -47,16 +45,11 @@ export FZF_DEFAULT_OPTS='
 
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
 
-# }}}
-
-# Paths {{{
 if [ -d "$HOME/bin" ] ; then
   PATH="$HOME/bin:$PATH"
 fi
 
 PATH="$(ruby -e 'print Gem.user_dir')/bin:$PATH"
-
-# }}}
 
 # Enable completion and prompt
 autoload -U compinit promptinit
@@ -76,7 +69,7 @@ autoload -U colors && colors
 PROMPT="%{$fg_bold[white]%} %n %{$fg_no_bold[white]%}%~ %{$fg_no_bold[yellow]%}>"
 
 # Set right prompt
-RPROMPT="%{$fg_bold[cyan]%}%t %{$reset_color%}"
+RPROMPT="%{$fg_bold[red]%}%t %{$reset_color%}"
 
 # History File
 HISTSIZE=10000
