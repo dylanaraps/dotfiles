@@ -55,6 +55,9 @@ alias weechat="urxvt -hold -b 50 -g 135x45 -e zsh -c weechat"
 # Easier alias to open a urxvt client
 alias urxvt="urxvtc"
 
+# Hide info box
+alias pqiv="pqiv -i"
+
 # }}}
 
 # Functions {{{

@@ -85,22 +85,9 @@ Plug 'tpope/vim-surround'
 
 Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': 'yes \| ./install' }
 	nnoremap <silent> <Leader>s :call fzf#run({
-	\	'window': '25new',
+	\	'window': '15new',
 	\   'sink': 'e'
 	\ })<CR>
-
-" Nerd Tree
-Plug 'scrooloose/nerdtree'
-Plug 'jistr/vim-nerdtree-tabs'
-	let g:nerdtree_tabs_open_on_gui_startup = 0
-	let NERDTreeShowHidden = 1
-	let NERDTreeMinimalUI = 1
-	let NERDTreeWinSize = 25
-	let NERDTreeMapActivateNode= 'l'
-	let NERDTreeMapCloseDir = 'h'
-	let NERDTreeRespectWildIgnore = 1
-	let NERDTreeIgnore = ['\.git$', '\.sass-cache$', '\screenshots$']
-	nnoremap <silent> <Leader>d :NERDTreeTabsToggle <CR>
 
 " Filetype Plugins
 Plug 'mattn/emmet-vim'
@@ -130,7 +117,7 @@ augroup Filetypes
 	autocmd BufWritePre * :%s/\s\+$//e
 
 	" Clear cmdline on bufread/enter
-	autocmd BufEnter,BufReadPost,BufWinEnter * redraw!
+	autocmd BufEnter,BufReadPost,BufWinEnter,CmdwinEnter,CmdwinLeave * redraw!
 
 	" Html
 	" Map </ to auto close tags
@@ -140,14 +127,11 @@ augroup Filetypes
 	" set .md files to filetype markdown
 	autocmd BufNewFile,BufRead *.md set filetype=markdown
 
-	" Refraw on cmdwinenter/leave
-	autocmd CmdwinEnter,CmdwinLeave * redraw!
-
 	" Equalize splits on resize, mainly used with Goyo to fix it's padding on resize.
 	autocmd VimResized * execute "normal \<C-W>="
 
     " Always use goyo
-    autocmd BufRead,VimEnter * Goyo 80%x90%
+    autocmd BufRead * Goyo 80%x90%
 
 augroup END
 
@@ -330,6 +314,7 @@ map <F10> :echo "hi<" . synIDattr(synID(line("."),col("."),1),"name") . '> trans
 \ . synIDattr(synIDtrans(synID(line("."),col("."),1)),"name") . ">"<CR>
 
 nmap <silent> <F1> :Webdev <CR>
+nmap <silent> <F2> :call Chmox() <CR>
 
 " Move visual block
 vnoremap J :m '>+1<CR>gv=gv
@@ -609,6 +594,16 @@ function! Openwith(program)
 endfunction
 
 command! -bang -nargs=* Openwith call Openwith(<q-args>)
+
+" }}}
+
+" Chmod +x current file {{{
+
+function! Chmox()
+	execute "!chmod +x " . expand('%:p')
+endfunction
+
+command! Chmox call Chmox()
 
 " }}}
 

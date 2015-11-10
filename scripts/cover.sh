@@ -3,7 +3,6 @@ dir=$HOME/Music/covers/
 
 width=158
 height=158
-
 format=jpg
 
 while :; do

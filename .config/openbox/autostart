@@ -17,7 +17,8 @@ sleep 3s &&
 
 # Papes
 # ~/dotfiles/scripts/wallpaper.sh &
-feh --bg-fill /home/dyl/Pictures/fuuu4.png &
+# feh --bg-fill /home/dyl/Pictures/fuuu4.png &
+nitrogen --restore &
 
 # lemonbar
 sleep .5s &&
