@@ -3,20 +3,6 @@
 # Use glx backend
 backend = "glx"
 
-# Opacity
-
-# Set frame opacity
-frame-opacity = 1.0;
-
-opacity-rule = [
-	"99:class_g = 'URxvt'",
-	"90:name = 'bar'",
-	"100:class_g = 'qutebrowser'",
-	"99:class_g = 'Firefox'",
-	"99:class_g = 'Thunar'"
-
-];
-
 # Set vsync methof
 vsync = "opengl-swc";
 
