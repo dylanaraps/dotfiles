@@ -161,7 +161,8 @@ set wrap
 set linebreak
 
 " Set textwidth to 80 characters
-set textwidth=80
+set textwidth=0
+set nolist
 set wrapmargin=0
 
 " Copy indent from previous line on linebreak

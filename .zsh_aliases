@@ -58,6 +58,9 @@ alias urxvt="urxvtc"
 # Hide info box
 alias pqiv="pqiv -i"
 
+# My color script
+alias color="~/dotfiles/scripts/colors.sh"
+
 # }}}
 
 # Functions {{{
