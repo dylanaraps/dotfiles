@@ -37,4 +37,4 @@ while :; do
 	sleep .03s
 done |
 
-lemonbar -g "970x$barheight" -f "drift" -f "xbmicons" -B "#00$black" -F "#$white" | bash
+lemonbar -n bar2 -g "970x$barheight" -f "drift" -f "xbmicons" -B "#00$black" -F "#$white" | bash
