@@ -2,7 +2,7 @@
 
 ![1](http://i.imgur.com/ATiSC2b.png)
 ![2](http://i.imgur.com/CA69L5a.png)
-![3](http://i.imgur.com/YtBudRM.png)
+![3](http://i.imgur.com/mQ17KHR.png)
 
 <!--- My Setup {{{ -->
 
