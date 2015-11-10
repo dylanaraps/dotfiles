@@ -61,6 +61,9 @@ alias pqiv="pqiv -i"
 # My color script
 alias color="~/dotfiles/scripts/colors.sh"
 
+# My screenfetch script
+alias fetch="~/dotfiles/scripts/fetch.sh"
+
 # }}}
 
 # Functions {{{

@@ -10,7 +10,7 @@ li {
 }
 
 body {
-	background: #f2f3f2;
+	background: #363740;
 	height: 100vh;
 	width: 100vw;
 }
@@ -24,7 +24,7 @@ main {
 }
 
 h1 {
-	color: #757b8e;
+	color: #8294b4;
 	font-family: Roboto;
 	font-size: 3em;
 }
@@ -44,17 +44,17 @@ li {
 }
 
 .subh {
-	color: #2d2b33;
+	color: #BF687F;
 	font-weight: bold;
 	margin-top: 5px;
 }
 
 a {
-	color: #8294b4;
+	color: #a9cdd9;
 	text-decoration: none;
 	transition: .2s;
 }
 
 a:hover {
-	color: #a9cdd9;
+	color: #8294b4;
 }
