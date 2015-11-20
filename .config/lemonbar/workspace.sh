@@ -11,7 +11,7 @@ startbutton() {
 }
 
 workspace() {
-    query=$(wmctrl -d | awk '/\*/ {printf $1}')
+    query=$(xdotool get_desktop)
 
 	case $query in
 		0 )

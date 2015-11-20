@@ -8,7 +8,9 @@ window.client.padding.width: 0
 border.width: 0
 
 # Set border color
-window.*.client.color: #ffffff
+window.*.title.separator.color #E68A8B
+window.*.client.color: #f2f3f2
+window.*.border.color: #f2f3f2
 
 ## TITLE
 

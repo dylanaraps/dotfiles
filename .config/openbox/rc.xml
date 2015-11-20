@@ -294,7 +294,7 @@
     <!-- Tiling Bindings -->
     <keybind key="W-s">
       <action name="Execute">
-        <command>rtile.rb --all</command>
+          <command>rtile.rb --all</command>
       </action>
     </keybind>
     <!-- Always Ontop toggle -->
@@ -312,12 +312,6 @@
     <!-- Close Windows -->
     <keybind key="W-q">
       <action name="Close"/>
-    </keybind>
-    <!-- Change Wallpaper -->
-    <keybind key="W-w">
-      <action name="Execute">
-        <command>~/dotfiles/scripts/wallpaper2.sh</command>
-      </action>
     </keybind>
     <!-- Alt-Tab -->
     <keybind key="A-Tab">
