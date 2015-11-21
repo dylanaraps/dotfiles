@@ -22,7 +22,7 @@ setborder() {
     wattr $2 || return
 
     # do not modify border of fullscreen windows
-    test "$(wattr xywh $2)" = "$(wattr xywh $ROOT)" && return
+    test "$(wattr xywh $2)" = "0 0 1920 1080" && return
 
     case $1 in
         active)   chwb -s $BW -c $ACTIVE $2 ;;
@@ -31,8 +31,8 @@ setborder() {
 }
 
 case $1 in
-    next) wid=$(lsw|grep -v $CUR|sed '1 p;d') ;;
-    prev) wid=$(lsw|grep -v $CUR|sed '$ p;d') ;;
+    next) wid=$(lsw | grep -v $CUR | sed '1 p;d') ;;
+    prev) wid=$(lsw | grep -v $CUR | sed '$ p;d') ;;
     0x*) wattr $1 && wid=$1 ;;
     *) usage ;;
 esac
