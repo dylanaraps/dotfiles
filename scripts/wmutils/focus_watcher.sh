@@ -21,8 +21,7 @@ spawn_at_cursor() {
 wew | while IFS=: read ev wid; do
     case $ev in
         # spawn windows at cursor if not overriden
-        # also add window to workspace it's opened on.
-        16) wattr o $wid || spawn_at_cursor $wid || ~/dotfiles/scripts/wmutils/graow.sh -a 1 $(pfW) ;;
+        16) wattr o $wid || spawn_at_cursor $wid ;;
 
         # focus windows if not overriden
         19) wattr o $wid || ~/dotfiles/scripts/wmutils/focus.sh $wid ;;
