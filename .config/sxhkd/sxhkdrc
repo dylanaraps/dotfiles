@@ -48,7 +48,8 @@ super + Escape
 
 super + {1,2,3,4,5}
     ~/dotfiles/scripts/wmutils/graow.sh -U *; \
-    ~/dotfiles/scripts/wmutils/graow.sh -m {1,2,3,4,5}
+    ~/dotfiles/scripts/wmutils/graow.sh -m {1,2,3,4,5}; \
+    mpc update
 
 super + shift + {1,2,3,4,5}
     ~/dotfiles/scripts/wmutils/graow.sh -d all; \

@@ -27,10 +27,10 @@ wew | while IFS=: read ev wid; do
         19) wattr o $wid || ~/dotfiles/scripts/wmutils/focus.sh $wid ;;
 
         # focus next window when deleting focused window
-        18) wattr $(pfw) || ~/dotfiles/scripts/wmutils/focus.sh prev 2>/dev/null;;
+        18) wattr $(pfw) || ~/dotfiles/scripts/wmutils/focus.sh prev 2>/dev/null ;;
 
         # focus windows where the cursor enters
-        7) wattr o $wid || ~/dotfiles/scripts/wmutils/focus.sh $wid ;;
+        7) wattr o $wid || ~/dotfiles/scripts/wmutils/focus.sh $wid || mpc update ;;
     esac
 done
 
