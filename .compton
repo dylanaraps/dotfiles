@@ -3,39 +3,14 @@
 # Use glx backend
 backend = "glx"
 
-# Enabled client-side shadows on windows.
 shadow = true;
-
-# Don't draw shadows on DND windows.
+shadow-opacity = 0.5;
+shadow-radius = 5;
+shadow-offset-x = -5;
+shadow-offset-y = -5;
+no-dock-shadow = true;
 no-dnd-shadow = true;
-
-# Zero the part of the shadow's mask behind the window. Fix some weirdness with ARGB windows.
 clear-shadow = true;
-
-# The blur radius for shadows. (default 12)
-shadow-radius = 4;
-
-# The left offset for shadows. (default -15)
-shadow-offset-x = -6;
-
-# The top offset for shadows. (default -15)
-shadow-offset-y = -6;
-
-# Shadow Opacity
-shadow-opacity = 0.2;
-
-# Shadow color
-shadow-red = 0.03;
-shadow-green = 0.03;
-shadow-blue = 0.04;
-
-shadow-exclude = [
-	"name ?= 'bar2'",
-	"name ?= 'bar3'"
-];
-
-# Avoid drawing shadow on all shaped windows (see also: --detect-rounded-corners)
-shadow-ignore-shaped = false;
 
 # Set vsync methof
 vsync = "opengl-swc";
@@ -52,10 +27,3 @@ sw-opti = true;
 # Known to cause flickering when redirecting/unredirecting windows.
 # paint-on-overlay may make the flickering less obvious.
 unredir-if-possible = true;
-
-# Use WM_TRANSIENT_FOR to group windows, and consider windows in the same group focused at the same time.
-detect-transient = true;
-
-# Use WM_CLIENT_LEADER to group windows, and consider windows in the same group focused at the same time.
-# WM_TRANSIENT_FOR has higher priority if --detect-transient is enabled, too.
-detect-client-leader = true;

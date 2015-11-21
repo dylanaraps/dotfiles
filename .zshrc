@@ -4,13 +4,7 @@
 export TERM=rxvt-unicode-256color
 
 # Sets editor to neovim
-export EDITOR='nvim'
-
-# Sets ccache location to ssd
-export CCACHE_DIR=~/.ccache
-
-# Disable Ranger default config
-export RANGER_LOAD_DEFAULT_RC=FALSE
+# export EDITOR='nvim'
 
 # font options
 export INFINALITY_FT_FILTER_PARAMS="16 20 28 20 16"
@@ -49,8 +43,6 @@ if [ -d "$HOME/bin" ] ; then
   PATH="$HOME/bin:$PATH"
 fi
 
-PATH="$(ruby -e 'print Gem.user_dir')/bin:$PATH"
-
 # Enable completion and prompt
 autoload -U compinit promptinit
 compinit
@@ -84,7 +76,7 @@ bindkey '^L' end-of-line
 setopt sharehistory
 
 source /usr/share/zsh/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
-source ~/builds/zsh-history-substring-search/zsh-history-substring-search.zsh
+source /usr/share/zsh/plugins/zsh-history-substring-search/zsh-history-substring-search.zsh
 
 # bind UP and DOWN arrow keys
 zmodload zsh/terminfo

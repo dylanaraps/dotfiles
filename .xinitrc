@@ -1,23 +1,13 @@
 # Dylan's Xinitrc
 
-# Merge .Xresources
-[[ -f ~/.Xresources ]] && xrdb -merge ~/.Xresources
+xrdb -merge ~/.Xresources
 
-# Sets the caps key to escape
-setxkbmap -option caps:escape
+xrandr --output DVI-0 --mode 1920x1080 --rate 60 --primary --left-of DVI-1 --output DVI-1 --mode 1280x1024 --rate 75 --output HDMI-0 --mode 1920x1080 --rate 60 --below DVI-0 &
 
-# Changes the keyboard  repeat rate
-xset r rate 400 25
+sxhkd -f 100 &
+~/dotfiles/scripts/wmutils/focus_watcher.sh &
+compton --config ~/.compton &
 
-# Disables Mouse Accel
-xset m 0/0 0
-
-# Font paths
-xset +fp /usr/share/fonts/TTF/
-xset +fp /usr/share/fonts/Montana/
-xset +fp /usr/share/fonts/misc/
-xset +fp ~/.fonts
-xset fp rehash
 
 # Launch openbox
-exec openbox-session
+exec sh -c 'while :; do sleep 10; done'

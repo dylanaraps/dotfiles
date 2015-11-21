@@ -12,11 +12,11 @@ URxvt*loginShell: true
 URxvt.internalBorder: 6
 
 ! Enables copy/paste with Ctrl-Shift-C/V
-URxvt.iso14755: False
-URxvt.perl-ext-common: clipboard
-URxvt.keysym.Shift-Control-C:   perl:clipboard:copy
-URxvt.keysym.Shift-Control-V:   perl:clipboard:paste
-URxvt.keysym.M-C-v: perl:clipboard:paste_escaped
+URxvt.iso14755: false
+URxvt.iso14755_52: false
+URxvt.perl-ext-common: default,clipboard
+URxvt.keysym.Shift-Control-C: perl:clipboard:copy
+URxvt.keysym.Shift-Control-V: perl:clipboard:paste
 
 ! Disable these keybindings
 URxvt.keysym.C-z: \

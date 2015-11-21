@@ -40,9 +40,9 @@ Plug 'itchyny/lightline.vim'
 		\            [ 'filetype' ] ] }
 
 " Async autocomplete
-Plug 'Shougo/deoplete.nvim'
-	let g:deoplete#enable_at_startup = 1
-	inoremap <expr><TAB>  pumvisible() ? "\<C-n>" : "\<TAB>"
+" Plug 'Shougo/deoplete.nvim'
+" 	let g:deoplete#enable_at_startup = 1
+" 	inoremap <expr><TAB>  pumvisible() ? "\<C-n>" : "\<TAB>"
 
 " Clicking v expands region
 Plug 'kana/vim-textobj-user'

@@ -33,7 +33,7 @@ alias startbar="~/dotfiles/.config/lemonbar/clock.sh & sleep .5s && ~/dotfiles/.
 alias mksite="~/dotfiles/scripts/webdev/webdev.sh"
 
 # Start ssh-agent with startx
-alias startx='ssh-agent startx'
+# alias startx='ssh-agent startx'
 
 # Open feh in a small window
 alias feh='feh --auto-zoom --scale-down -g 640 -B black'
@@ -53,7 +53,7 @@ alias killmusic="tmux kill-session & pkill cava & pkill tmux & pkill ncmpcpp"
 alias weechat="urxvt -hold -b 50 -g 135x45 -e zsh -c weechat"
 
 # Easier alias to open a urxvt client
-alias urxvt="urxvtc"
+# alias urxvt="urxvtc"
 
 # Hide info box
 alias pqiv="pqiv -i"
