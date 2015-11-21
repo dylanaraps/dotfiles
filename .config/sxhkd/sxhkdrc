@@ -62,7 +62,7 @@ super + e
 
 # Tile windows
 super + s
-    if [[ $(lsw | wc -l) == 1 ]]; then ~/dotfiles/scripts/wmutils/maximize.sh 64 64; else; ~/dotfiles/scripts/wmutils/tile.sh; fi
+    ~/dotfiles/scripts/wmutils/tile.sh
 
 # Center window on screen
 super + c
@@ -70,4 +70,4 @@ super + c
 
 # Maximize window with gaps
 super + m
-    ~/dotfiles/scripts/wmutils/maximize.sh 64 64
+    ~/dotfiles/scripts/wmutils/maximize.sh 100 100

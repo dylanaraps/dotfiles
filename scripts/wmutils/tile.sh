@@ -5,7 +5,7 @@
 
 # default values for gaps and master area
 PANEL=${PANEL:-0}
-GAP=${GAP:-64}
+GAP=${GAP:-100}
 MASTER=$((1920 / 2 - $(($GAP / 2))))
 
 # get current window id and its borderwidth
@@ -26,9 +26,13 @@ wtp $GAP $Y $((MASTER - GAP - 2*BW)) $((SH - GAP)) $PFW
 # and now, stack up all remaining windows on the right
 X=$((MASTER + GAP))
 W=$((SW - MASTER - GAP))
-H=$((SH / MAX - GAP - BW))
+H=$((SH / MAX - GAP))
 
 for wid in $(lsw | grep -v $PFW); do
-    wtp $X $Y $W $H $wid
-    Y=$((Y + H + GAP + 2*BW))
+    if [[ $(wname $wid) == *"music"* ]]; then
+        H=$((SH / $((MAX - 1)) - GAP))
+    else
+        wtp $X $Y $W $H $wid
+        Y=$((Y + H + GAP))
+    fi
 done
