@@ -7,10 +7,10 @@ xrandr --output DVI-0 --mode 1920x1080 --rate 60 --primary --left-of DVI-1 --out
 sxhkd -f 100 &
 
 ~/dotfiles/scripts/wmutils/focus_watcher.sh &
+~/dotfiles/scripts/wmutils/wallpaper.sh &
+feh --bg-fill ~/Pictures/wallpaper/8.jpg &
 
 mpd &
-
-urxvtd &
 
 # Launch openbox
 exec sh -c 'while :; do sleep 10; done'

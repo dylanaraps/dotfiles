@@ -1,5 +1,5 @@
 ! Dylans Xresources
-URxvt*font: xft:drift:pixelsize=10
+URxvt*font: xft:drift:pixelsize=10:antialias=false
 
 ! Terminal window size
 URxvt*geometry: 75x24
@@ -9,7 +9,7 @@ URxvt.scrollBar: false
 URxvt*loginShell: true
 
 ! Set terminal padding
-URxvt.internalBorder: 6
+URxvt.internalBorder: 8
 
 ! Enables copy/paste with Ctrl-Shift-C/V
 URxvt.iso14755: false
@@ -29,11 +29,11 @@ Xcursor.size: 16
 
 ! special
 *.foreground:   #f2f3f2
-*.background:   #2d2b33
+*.background:   #34393D
 *.cursorColor:  #f2f3f2
 
 ! black
-*.color0:       #2d2b33
+*.color0:       #34393D
 *.color8:       #75747a
 
 ! red

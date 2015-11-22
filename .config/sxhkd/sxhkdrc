@@ -6,7 +6,7 @@ super + Return
 
 # Dmenu
 super + d
-    ~/dotfiles/scripts/dmenu.sh
+    dmenu_recent_aliases -s 0 -nb "#$white" -nf "#$black" -sb "#$white" -sf "#$darkgray" -i -h 30 -w 120 -q -x 20 -y 20 -fn "drift" -p ">" -l 1
 
 # manipulate windows
 

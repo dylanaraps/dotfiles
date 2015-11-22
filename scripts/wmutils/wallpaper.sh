@@ -7,9 +7,9 @@ blur() {
 wew | while IFS=: read ev wid; do
     case $ev in
         # window creation
-        16) wattr o "$wid" || test "$(lsw)" = "$wid" && blur 2-blur.jpg ;;
+        16) wattr o "$wid" || test "$(lsw)" = "$wid" && blur 8-blur.jpg ;;
 
         # window deletion
-        18) test -z "$(lsw)" && blur 2.jpg ;;
+        18) test -z "$(lsw -a)" && blur 8.jpg ;;
     esac
 done
