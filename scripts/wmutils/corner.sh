@@ -4,22 +4,23 @@
 # move windows to the corners
 
 CUR=${2:-$(pfw)}
-ROOT=$(lsw -r)
-SW=$(wattr w $ROOT)
-SH=$(wattr h $ROOT)
+SW=1920
+SH=1080
 
 BW=$(wattr b $CUR)
 W=$(wattr w $CUR)
 H=$(wattr h $CUR)
 
-X=0
-Y=0
+GAP=64
+
+X=$GAP
+Y=$GAP
 
 case $1 in
-    tr) X=$((SW - W - BW*2)) ;;
-    bl) Y=$((SH - H - BW*2)) ;;
-    br) X=$((SW - W - BW*2))
-        Y=$((SH - H - BW*2)) ;;
+    tr) X=$((SW - W - BW*2 - $GAP)) ;;
+    bl) Y=$((SH - H - BW*2 - $GAP)) ;;
+    br) X=$((SW - W - BW*2 - $GAP))
+        Y=$((SH - H - BW*2 - $GAP)) ;;
     md) X=$((SW/2 - W/2 - BW))
         Y=$((SH/2 - H/2 - BW));;
 esac

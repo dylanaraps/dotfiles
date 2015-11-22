@@ -71,3 +71,7 @@ super + c
 # Maximize window with gaps
 super + m
     ~/dotfiles/scripts/wmutils/maximize.sh 100 100
+
+# Corners
+super + {y,u,b,n}
+    ~/dotfiles/scripts/wmutils/corner.sh {tl,tr,bl,br}
