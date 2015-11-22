@@ -12,5 +12,7 @@ feh --bg-fill ~/Pictures/wallpaper/8.jpg &
 
 mpd &
 
-# Launch openbox
+~/dotfiles/scripts/lemonbar/clock.sh &
+~/dotfiles/scripts/lemonbar/music.sh &
+
 exec sh -c 'while :; do sleep 10; done'
