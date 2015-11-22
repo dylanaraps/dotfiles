@@ -10,18 +10,18 @@
 
 :root {
 	/* Colors */
-    --bg-light: #2d2b33; --bg-dark: #2d2b33;
+    --bg-light: #34393D; --bg-dark: #34393D;
     --fg-light: #feffff; --fg-dark: #AAAAAA;
 
 	/* Tabs */
     --tab-height: 30px;
-    --tab-fonts: lemon-j;
-    --tab-font-size: 12px;
+    --tab-fonts: drift;
+    --tab-font-size: 9px;
 
 	/* Url Bar */
     --url-height: 30px;
-    --url-fonts: lemon-j;
-    --url-font-size: 12px;
+    --url-fonts: drift;
+    --url-font-size: 9px;
     --url-text-align: left; /* left | center | right */
 }
 
@@ -81,6 +81,7 @@
 		font-family: var(--tab-fonts) !important;
 		font-size: var(--tab-font-size) !important;
 		text-align: center !important;
+		margin: 0 50px 0 0;
 	}
 
 	/* Selected Tab */
@@ -92,8 +93,8 @@
 	/* Background behind Tabs */
 	#main-window[sizemode="normal"]:not([inFullscreen])  #TabsToolbar {
 		background: var(--bg-dark) !important;
-		margin: 0px -25px 0px -18px !important;
-                padding-top: 4px !important;
+		margin: 0 0 0 0 !important;
+    padding-top: 4px !important;
 	}
 
 	#main-window[sizemode="normal"]:not([inFullscreen])  #TabsToolbar .tabbrowser-tabs {
@@ -145,7 +146,7 @@
 	#nav-bar {
 		background: var(--bg-light) !important;
 		border: none !important;
-                border-bottom: 2px solid #d6d6d6 !important;
+    border-bottom: 0 !important;
 		box-shadow: none !important;
 		height: var(--url-height) !important;
 		margin: -2px 0 0 -5px !important;
@@ -159,8 +160,8 @@
 		color: var(--fg-dark) !important;
 		font-family: var(--url-fonts) !important;
 		font-size: var(--url-font-size) !important;
-		margin: 0 4px 0 12px !important;
-		padding: 8px 5px 8px 10px !important;
+		margin: 0 0px 0 0px !important;
+		padding: 10px 5px 10px 20px !important;
 		text-align: var(--url-text-align) !important;
 	}
 

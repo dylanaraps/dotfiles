@@ -1,7 +1,7 @@
 # Dylan's Yellow theme
 # Created using numix as a base.
 
-gtk-color-scheme = "bg_color:#363740\nfg_color:#75747a\nbase_color:#363740\ntext_color:#75747a\nselected_bg_color:#7495B6\nselected_fg_color:#363740\ntooltip_bg_color:#363740\ntooltip_fg_color:#75747a\ntitlebar_bg_color:#363740\ntitlebar_fg_color:#75747a\nmenubar_bg_color:#363740\nmenubar_fg_color:#75747a\ntoolbar_bg_color:#363740\ntoolbar_fg_color:#75747a\nmenu_bg_color:#363740\nmenu_fg_color:#75747a\npanel_bg_color:#363740\npanel_fg_color:#75747a\nlink_color:#8294B4"
+gtk-color-scheme = "bg_color:#34393D\nfg_color:#75747a\nbase_color:#34393D\ntext_color:#75747a\nselected_bg_color:#7495B6\nselected_fg_color:#34393D\ntooltip_bg_color:#34393D\ntooltip_fg_color:#75747a\ntitlebar_bg_color:#34393D\ntitlebar_fg_color:#75747a\nmenubar_bg_color:#34393D\nmenubar_fg_color:#75747a\ntoolbar_bg_color:#34393D\ntoolbar_fg_color:#75747a\nmenu_bg_color:#34393D\nmenu_fg_color:#75747a\npanel_bg_color:#34393D\npanel_fg_color:#75747a\nlink_color:#8294B4"
 
 # Default Style
 

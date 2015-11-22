@@ -14,8 +14,7 @@ source ~/.zsh_aliases
 
 # ryuuko colorscheme
 # for easy use in scripts
-export black="2d2b33"
-export lightblack="363740"
+export black="34393D"
 export darkgray="75747a"
 export red="BF687F"
 export green="9BB38F"
