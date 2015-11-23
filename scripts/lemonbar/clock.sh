@@ -5,4 +5,4 @@ while :; do
 	sleep 1s
 done |
 
-lemonbar -d -g "150x30+1670+1015" -f "drift" -f "xbmicons" -B "#$white" -F "#$black"
+lemonbar -d -g "150x30+1670+1015" -f "drift" -B "#$white" -F "#$black"

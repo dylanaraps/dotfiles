@@ -22,10 +22,6 @@ alias ls="ls -A --color=always"
 # Start compton with config file
 alias cmp="compton --config ~/.compton &"
 
-# Aliases to start/kill lemonbar
-alias killbar="pkill ~/.config/lemonbar/clock.sh & pkill ~/.config/lemonbar/workspace.sh & pkill ~/.config/lemonbar/music.sh & pkill lemonbar"
-alias startbar="~/dotfiles/.config/lemonbar/clock.sh & sleep .5s && ~/dotfiles/.config/lemonbar/workspace.sh & ~/dotfiles/.config/lemonbar/music.sh"
-
 # Create a website project directory
 alias mksite="~/dotfiles/scripts/webdev/webdev.sh"
 

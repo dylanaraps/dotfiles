@@ -12,7 +12,7 @@ while :; do
 
 	echo "%{c}%{A:mpc toggle:}%{A4:mpc next:}%{A5:mpc prev:} $playing %{A}%{A}%{A}%{c}"
 
-	mpc idle player update
+	mpc idle player update >/dev/null
 done |
 
-lemonbar -d -g "200x30+1450+1015" -f "drift" -f "xbmicons" -B "#$white" -F "#$black" | mksh
+lemonbar -d -g "200x30+1450+1015" -f "drift" -B "#$white" -F "#$black" | sh
