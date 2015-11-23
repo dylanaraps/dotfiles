@@ -88,6 +88,10 @@ super + {Up,Down}
 super + {Left,Right}
     mpc -q {prev,next}
 
+# scrot
+super + p
+    cd ~/Pictures && scrot
+
 
 # Other
 

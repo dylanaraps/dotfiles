@@ -11,7 +11,7 @@ BW=$(wattr b $CUR)
 W=$(wattr w $CUR)
 H=$(wattr h $CUR)
 
-GAP=64
+GAP=100
 
 X=$GAP
 Y=$GAP

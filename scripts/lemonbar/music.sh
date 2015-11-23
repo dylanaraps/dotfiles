@@ -5,7 +5,7 @@ while :; do
 	if [[ $(mpc status | grep -o "\[paused\]") == "[paused]" ]]; then
         playing="Paused"
     elif [[ $(mpc current | wc -c) -gt 30 ]]; then
-        playing=$(mpc current -f %title%)
+        playing=$(mpc current -f %title% | cut -c 1-30)
     else
         playing=$(mpc current)
     fi

@@ -42,6 +42,9 @@ alias color="~/dotfiles/scripts/colors.sh"
 # My screenfetch script
 alias fetch="~/dotfiles/scripts/fetch.sh"
 
+# steam audio fix
+alias steam="LD_PRELOAD=/usr/lib/libasound.so.2 STEAM_RUNTIME=1 SDL_AUDIODRIVER=alsa steam"
+
 # }}}
 
 # Functions {{{
