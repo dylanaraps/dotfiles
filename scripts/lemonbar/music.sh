@@ -1,5 +1,6 @@
-#!/bin/bash
-# Dylan's bar
+#!/bin/sh
+# Dylan's music bar
+
 while :; do
     # If song title + artist is longer than 30 chars, only show song title
 	if [[ $(mpc status | grep -o "\[paused\]") == "[paused]" ]]; then

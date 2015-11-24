@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/bin/sh
 # Dylan's Color script
 # Prints terminal colors with hex colors side by side
 # Only works with terminals that use .Xdefaults/.Xresources

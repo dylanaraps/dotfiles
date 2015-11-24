@@ -3,28 +3,31 @@
 # z3bra - 2014 (c) wtfpl
 # move windows to the corners
 
-WID=$(pfw)
+wid=$(pfw)
 
 # Hardcoded w/h due to multimon
-SW=1920
-SH=1080
+sw=1920
+sh=1080
 
-BW=$(wattr b $WID)
-W=$(wattr w $WID)
-H=$(wattr h $WID)
+# Get border/window size
+bw=$(wattr b $wid)
+w=$(wattr w $wid)
+h=$(wattr h $wid)
 
-GAP=100
+# Set gap around corner
+gap=100
 
-X=$GAP
-Y=$GAP
+# Set gap for x/y
+x=$gap
+y=$gap
 
 case $1 in
-    tr) X=$((SW - W - BW*2 - $GAP)) ;;
-    bl) Y=$((SH - H - BW*2 - $GAP)) ;;
-    br) X=$((SW - W - BW*2 - $GAP))
-        Y=$((SH - H - BW*2 - $GAP)) ;;
-    md) X=$((SW/2 - W/2 - BW))
-        Y=$((SH/2 - H/2 - BW));;
+    tr) x=$((sw - w - bw*2 - $gap)) ;;
+    bl) y=$((sh - h - bw*2 - $gap)) ;;
+    br) x=$((sw - w - bw*2 - $gap))
+        y=$((sh - h - bw*2 - $gap)) ;;
+    md) x=$((sw/2 - w/2 - bw))
+        y=$((sh/2 - h/2 - bw)) ;;
 esac
 
-wtp $X $Y $W $H $WID
+wtp $x $y $w $h $wid

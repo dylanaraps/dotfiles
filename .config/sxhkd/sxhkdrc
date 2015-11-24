@@ -82,7 +82,7 @@ super + f
 # Volume
 super + {Up,Down}
     amixer set Master {5+,5-}; \
-    ~/dotfiles/scripts/notify/popup.sh $(amixer get Master | egrep -o "[0-9]+\%") 2
+    ~/dotfiles/scripts/popup.sh $(amixer get Master | egrep -o "[0-9]+\%") 2
 
 # Control music
 super + {Left,Right}

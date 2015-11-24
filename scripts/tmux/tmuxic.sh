@@ -1,5 +1,9 @@
 #!/bin/sh
+
+# Set title
 echo -e '\033]2;'music - tile_ignore'\007'
+
+# Start session
 tmux new-session -d 'music'
 tmux new-window '~/dotfiles/scripts/cover.sh'
 tmux split-window -v 'ncmpcpp'

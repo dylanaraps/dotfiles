@@ -1,9 +1,9 @@
 #!/bin/bash
-# Dylan's screenfetch
+# Dylan's screenfetch script
 
 ## Formatting
 
-# Set to nothing to disable bold text
+# Set to nothing to disable bold/underline text
 bold=$(tput bold)
 underline=$(tput smul)
 

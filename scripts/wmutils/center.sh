@@ -1,17 +1,18 @@
 #!/bin/sh
 
 # get current window id, width and height
-WID=$(pfw)
+wid=$(pfw)
 
-WW=$(wattr w $WID)
-WH=$(wattr h $WID)
+# Get current window size
+ww=$(wattr w $wid)
+wh=$(wattr h $wid)
 
 # Hardcoded w/h due to multimon
 SW=1920
 SH=1080
 
 # move the current window to the center of the screen
-wtp $(((SW - WW)/2)) $(((SH - WH)/2)) $WW $WH $WID
+wtp $(((SW - ww)/2)) $(((SH - wh)/2)) $ww $wh $wid
 
 # Move the current window to the botton layer
-chwso -l $WID
+chwso -l $wid

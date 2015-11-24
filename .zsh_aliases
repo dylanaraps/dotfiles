@@ -61,5 +61,15 @@ waifu () {
 	waifu2x -i $1 -o $2 --scale_ratio $3 $4 $5
 }
 
+# Set window title
+title () {
+    echo -e '\033]2;'$1'\007'
+}
+
+# Ignore window from tiling
+tile_ignore () {
+    echo -e '\033]2;'$(wname $(pfw)) - tile_ignore'\007'
+}
+
 # }}}
 

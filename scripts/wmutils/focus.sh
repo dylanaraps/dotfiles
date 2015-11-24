@@ -3,12 +3,12 @@
 # z3bra - 2014 (c) wtfpl
 # window focus wrapper that sets borders and can focus next/previous window
 
-BW=${BW:-6}                    # border width
-ACTIVE=${ACTIVE:-0x$white}     # active border color
-INACTIVE=${INACTIVE:-0xc0c0c0} # inactive border color
+bw=6 # border width
+active=$white # active border color
+inactive=0xc0c0c0 # inactive border color
 
 # get current window id
-CUR=$(pfw)
+cur=$(pfw)
 
 usage() {
     echo "usage: $(basename $0) <next|prev|wid>"
@@ -23,14 +23,14 @@ setborder() {
     test "$(wattr xywh $2)" = "0 0 1920 1080" && return
 
     case $1 in
-        active)   chwb -s $BW -c $ACTIVE $2 ;;
-        inactive) chwb -s $BW -c $INACTIVE $2 ;;
+        active)   chwb -s $bw -c $active $2 ;;
+        inactive) chwb -s $bw -c $inactive $2 ;;
     esac
 }
 
 case $1 in
-    next) wid=$(lsw | grep -v $CUR | sed '1 p;d') ;;
-    prev) wid=$(lsw | grep -v $CUR | sed '$ p;d') ;;
+    next) wid=$(lsw | grep -v $cur | sed '1 p;d') ;;
+    prev) wid=$(lsw | grep -v $cur | sed '$ p;d') ;;
     0x*) wattr $1 && wid=$1 ;;
     *) usage ;;
 esac
@@ -38,6 +38,6 @@ esac
 # exit if we can't find another window to focus
 test -z "$wid" && echo "$(basename $0): can't find a window to focus" >&2 && exit 1
 
-setborder inactive $CUR # set inactive border on current window
+setborder inactive $cur # set inactive border on current window
 setborder active $wid   # activate the new window
 wtf $wid                # set focus on it

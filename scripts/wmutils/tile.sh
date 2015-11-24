@@ -4,62 +4,62 @@
 # arrange windows in a tiled pattern
 
 # Resolution
-WIDTH=1920
-HEIGHT=1080
+width=1920
+height=1080
 
 # default values for gaps and master area
-PANEL=0
-GAP=100
+panel=0
+gap=100
 
 # Master is half of the screen width minus
-MASTER=$((WIDTH / 2 - $((GAP / 2))))
+master=$((width / 2 - $((gap / 2))))
 
 # get current window id and its borderwidth
-PFW=$(pfw)
-BW=$(wattr b "$PFW")
+pfw=$(pfw)
+bw=$(wattr b "$pfw")
 
 # get the number of windows to put in the stacking area
-MAX=$(lsw | grep -v $PFW | wc -l)
+max=$(lsw | grep -v $pfw | wc -l)
 
 # List number of windows with "tile_ignore" in name
-IGNORE=$(wname $(lsw) | grep "tile_ignore" | wc -l)
+ignore=$(wname $(lsw) | grep "tile_ignore" | wc -l)
 
 # calculate usable screen size (without borders and gaps)
-SW=$((WIDTH - GAP - 2*BW))
-SH=$((HEIGHT - GAP - 2*BW - PANEL))
+sw=$((width - gap - 2*bw))
+sh=$((height - gap - 2*bw - panel))
 
-Y=$((GAP + PANEL))
+y=$((gap + panel))
 
 # put current window in master area
 
 # If windowname includes "tile_ignore", exit
-if [[ $(wname $PFW) == *"tile_ignore"* ]]; then
+if [[ $(wname $pfw) == *"tile_ignore"* ]]; then
     exit
 
 # If there's only one unignored window open tile it to the full width of the screen
-elif [[ $(($(lsw | wc -l) - $IGNORE)) == 1 ]]; then
-    SW=$((SW - GAP))
-    SH=$((SH - GAP))
-    wtp $GAP $GAP $SW $SH $PFW
+elif [[ $(($(lsw | wc -l) - $ignore)) == 1 ]]; then
+    sw=$((sw - gap))
+    sh=$((sh - gap))
+    wtp $gap $gap $sw $sh $pfw
 
 # Prevent tiling of ignored windows
 else
-    wtp $GAP $Y $((MASTER - GAP - 2*BW)) $((SH - GAP)) $PFW
+    wtp $gap $y $((master - gap - 2*bw)) $((sh - gap)) $pfw
 fi
 
 # Put the tiled windows at the bottom of the stack
-chwso -l $PFW
+chwso -l $pfw
 
 # and now, stack up all remaining windows on the right
-X=$((MASTER + GAP))
-W=$((SW - MASTER - GAP))
-H=$((SH / $((MAX - IGNORE)) - GAP))
+x=$((master + gap))
+w=$((sw - master - gap))
+h=$((sh / $((max - ignore)) - gap))
 
-for wid in $(lsw | grep -v $PFW); do
+for wid in $(lsw | grep -v $pfw); do
     # If focused window's name doesn't include "tile_ignore", tile it!
     if [[ $(wname $wid) != *"tile_ignore"* ]]; then
-        wtp $X $Y $W $H $wid
-        Y=$((Y + H + GAP))
+        wtp $x $y $w $h $wid
+        y=$((y + h + gap))
 
         # Put the tiled windows at the bottom of the stack
         chwso -l $wid

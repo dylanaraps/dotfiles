@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/bin/sh
 cd ~/projects || exit
 
 echo "What would you like to name your project?"

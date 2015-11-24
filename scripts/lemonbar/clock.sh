@@ -1,5 +1,6 @@
-#!/bin/bash
-# Dylan's bar
+#!/bin/sh
+# Dylan's clock bar
+
 while :; do
 	echo "%{c}$(date "+%a %d %b %l:%M %p")%{c}"
 	sleep 1s
