@@ -32,15 +32,17 @@ Y=$((GAP + PANEL))
 
 # put current window in master area
 
+# If windowname includes "tile_ignore", exit
+if [[ $(wname $PFW) == *"tile_ignore"* ]]; then
+    exit
+
 # If there's only one unignored window open tile it to the full width of the screen
-if [[ $(($(lsw | wc -l) - $IGNORE)) == 1 ]]; then
+elif [[ $(($(lsw | wc -l) - $IGNORE)) == 1 ]]; then
     SW=$((SW - GAP))
     SH=$((SH - GAP))
     wtp $GAP $GAP $SW $SH $PFW
 
 # Prevent tiling of ignored windows
-elif [[ $(wname $PFW) == *"tile_ignore"* ]]; then
-    exit
 else
     wtp $GAP $Y $((MASTER - GAP - 2*BW)) $((SH - GAP)) $PFW
 fi
