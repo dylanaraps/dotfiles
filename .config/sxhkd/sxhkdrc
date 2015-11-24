@@ -22,28 +22,19 @@ super + button1
     chwso -r $(pfw)
 
 # move
-super + {h,j,k,l}
+    super + {h,j,k,l}
     wmv {-20 0,0 +20, 0 -20, +20 0} $(pfw)
 
 # resize
 super + shift + {h,j,k,l}
     wrs {-20 0,0 +20, 0 -20, +20 0} $(pfw)
 
-# close window
-super + q
-    killw $(pfw)
-
-# make fullscreen
-super + f
-    ~/dotfiles/scripts/wmutils/fullscreen.sh $(pfw)
-
-# cycle through windows
-alt + {Tab, shift + Tab}
-    ~/dotfiles/scripts/wmutils/focus.sh {next,prev} 2>/dev/null && \
-    wmp -a $(xattr xy $(pfw)) && \
-    wmp -r $(wattr wh $(pfw))
+# focus
+super + Tab
+    ~/dotfiles/scripts/wmutils/focus.sh next
 
 # "Workspaces"
+
 
 super + {1,2,3,4,5}
     ~/dotfiles/scripts/wmutils/graow.sh -U *; \
@@ -54,7 +45,6 @@ super + shift + {1,2,3,4,5}
     ~/dotfiles/scripts/wmutils/graow.sh -d all; \
     ~/dotfiles/scripts/wmutils/graow.sh -a {1,2,3,4,5}; \
     mapw -u $(pfw) &
-
 
 # Sticky window
 super + e
@@ -76,6 +66,14 @@ super + m
 # Corners
 super + {y,u,b,n}
     ~/dotfiles/scripts/wmutils/corner.sh {tl,tr,bl,br}
+
+# close window
+super + q
+    killw $(pfw)
+
+# make fullscreen
+super + f
+    ~/dotfiles/scripts/wmutils/fullscreen.sh $(pfw)
 
 
 # Application specific

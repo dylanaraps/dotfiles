@@ -14,4 +14,4 @@ SH=1080
 wtp $(((SW - WW)/2)) $(((SH - WH)/2)) $WW $WH $WID
 
 # Move the current window to the botton layer
-chwso $WID -l
+chwso -l $WID
