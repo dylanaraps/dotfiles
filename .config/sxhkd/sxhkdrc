@@ -62,7 +62,8 @@ super + e
 
 # Tile windows
 super + s
-    ~/dotfiles/scripts/wmutils/tile.sh
+    ~/dotfiles/scripts/wmutils/tile.sh ;\
+    mpc update &
 
 # Center window on screen
 super + c

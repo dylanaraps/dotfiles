@@ -4,10 +4,7 @@
 export TERM=rxvt-unicode-256color
 
 # Sets editor to neovim
-# export EDITOR='nvim'
-
-# font options
-export INFINALITY_FT_FILTER_PARAMS="16 20 28 20 16"
+export EDITOR='nvim'
 
 # Aliases
 source ~/.zsh_aliases
