@@ -8,7 +8,7 @@ ACTIVE=${ACTIVE:-0x$white}     # active border color
 INACTIVE=${INACTIVE:-0xc0c0c0} # inactive border color
 
 # get current window id
-CUR=$(pfw)
+WID=$(pfw)
 
 usage() {
     echo "usage: $(basename $0) <next|prev|wid>"
@@ -29,8 +29,8 @@ setborder() {
 }
 
 case $1 in
-    next) wid=$(lsw | grep -v $CUR | sed '1 p;d') ;;
-    prev) wid=$(lsw | grep -v $CUR | sed '$ p;d') ;;
+    next) wid=$(lsw | grep -v $WID | sed '1 p;d') ;;
+    prev) wid=$(lsw | grep -v $WID | sed '$ p;d') ;;
     0x*) wattr $1 && wid=$1 ;;
     *) usage ;;
 esac
@@ -38,6 +38,6 @@ esac
 # exit if we can't find another window to focus
 test -z "$wid" && echo "$(basename $0): can't find a window to focus" >&2 && exit 1
 
-setborder inactive $CUR # set inactive border on current window
+setborder inactive $WID # set inactive border on current window
 setborder active $wid   # activate the new window
 wtf $wid                # set focus on it
