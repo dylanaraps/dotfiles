@@ -42,7 +42,7 @@ else
 fi
 
 # Put the tiled windows at the bottom of the stack
-chwso $(pfw) -l
+chwso $PFW -l
 
 # and now, stack up all remaining windows on the right
 X=$(($MASTER + $GAP))
