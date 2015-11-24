@@ -2,6 +2,7 @@
 
 # get current window id, width and height
 WID=$(pfw)
+
 WW=$(wattr w $WID)
 WH=$(wattr h $WID)
 

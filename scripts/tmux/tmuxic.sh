@@ -1,5 +1,5 @@
 #!/bin/sh
-echo -e '\033]2;'music'\007'
+echo -e '\033]2;'music - tile_ignore'\007'
 tmux new-session -d 'music'
 tmux new-window '~/dotfiles/scripts/cover.sh'
 tmux split-window -v 'ncmpcpp'

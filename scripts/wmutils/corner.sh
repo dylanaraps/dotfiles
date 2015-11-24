@@ -3,13 +3,15 @@
 # z3bra - 2014 (c) wtfpl
 # move windows to the corners
 
-CUR=${2:-$(pfw)}
+WID=$(pfw)
+
+# Hardcoded w/h due to multimon
 SW=1920
 SH=1080
 
-BW=$(wattr b $CUR)
-W=$(wattr w $CUR)
-H=$(wattr h $CUR)
+BW=$(wattr b $WID)
+W=$(wattr w $WID)
+H=$(wattr h $WID)
 
 GAP=100
 
@@ -25,4 +27,4 @@ case $1 in
         Y=$((SH/2 - H/2 - BW));;
 esac
 
-wtp $X $Y $W $H $CUR
+wtp $X $Y $W $H $WID

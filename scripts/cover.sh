@@ -11,6 +11,7 @@ while :; do
 	w3m_command="0;1;0;0;$width;$height;;;;;$dir$currentsong.$format\n4;\n3;"
 	echo -e "$w3m_command" | /usr/lib/w3m/w3mimgdisplay
 
+    # Update on mpd plau/pause/next/prev and database update
 	mpc idle player update
 	clear
 done

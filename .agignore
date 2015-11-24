@@ -1,4 +1,5 @@
 /logs/
+/aur/
 /builds/
 *.gem*
 /images/

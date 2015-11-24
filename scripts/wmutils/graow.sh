@@ -40,6 +40,7 @@ hide_group() {
         done
 }
 
+# Hide all groups
 hide_group_all() {
         for file in $GROOT/*/*; do
                 wid=$(basename $file)

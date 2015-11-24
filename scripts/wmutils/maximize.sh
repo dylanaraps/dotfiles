@@ -4,6 +4,7 @@
 
 w=1920
 h=1080
+
 gapx=$1
 gapy=$2
 border=$(wattr b $(pfw))

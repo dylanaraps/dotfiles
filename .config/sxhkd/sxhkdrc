@@ -48,12 +48,13 @@ alt + {Tab, shift + Tab}
 super + {1,2,3,4,5}
     ~/dotfiles/scripts/wmutils/graow.sh -U *; \
     ~/dotfiles/scripts/wmutils/graow.sh -m {1,2,3,4,5}; \
-    mpc update
+    mpc current &
 
 super + shift + {1,2,3,4,5}
     ~/dotfiles/scripts/wmutils/graow.sh -d all; \
     ~/dotfiles/scripts/wmutils/graow.sh -a {1,2,3,4,5}; \
-    mapw -u $(pfw)
+    mapw -u $(pfw) &
+
 
 # Sticky window
 super + e

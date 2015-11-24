@@ -6,6 +6,7 @@
 # default values for gaps and master area
 PANEL=${PANEL:-0}
 GAP=${GAP:-100}
+
 MASTER=$((1920 / 2 - $(($GAP / 2))))
 
 # get current window id and its borderwidth
@@ -29,7 +30,8 @@ W=$((SW - MASTER - GAP))
 H=$((SH / MAX - GAP))
 
 for wid in $(lsw | grep -v $PFW); do
-    if [[ $(wname $wid) == *"music"* ]]; then
+    # If focused window name includes "tile_ignore" don't tile it.
+    if [[ $(wname $wid) == *"tile_ignore"* ]]; then
         H=$((SH / $((MAX - 1)) - GAP))
     else
         wtp $X $Y $W $H $wid

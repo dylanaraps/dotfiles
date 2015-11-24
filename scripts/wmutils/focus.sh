@@ -16,8 +16,6 @@ usage() {
 }
 
 setborder() {
-    ROOT=$(lsw -r)
-
     # check if window exists
     wattr $2 || return
 
@@ -42,9 +40,4 @@ test -z "$wid" && echo "$(basename $0): can't find a window to focus" >&2 && exi
 
 setborder inactive $CUR # set inactive border on current window
 setborder active $wid   # activate the new window
-# chwso -r $wid           # put it on top of the stack
 wtf $wid                # set focus on it
-
-# you might want to remove this for sloppy focus
-# wmp -a $(wattr xy $wid) # move the mouse cursor to
-# wmp -r $(wattr wh $wid) # .. its bottom right corner
