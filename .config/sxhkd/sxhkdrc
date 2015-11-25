@@ -22,7 +22,7 @@ super + button1
     chwso -r $(pfw)
 
 # move
-    super + {h,j,k,l}
+super + {h,j,k,l}
     wmv {-20 0,0 +20, 0 -20, +20 0} $(pfw)
 
 # resize

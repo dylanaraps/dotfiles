@@ -4,7 +4,7 @@
   "Right Margin": 5,
   "Custom Right Margin": 0,
   "Fixed Thread Watcher": false,
-  "Style Thread Stats": true,
+  "Style Thread Stats": false,
   "Rounded Corners": false,
   "Underline All Links": true,
   "Show Banner": false,
