@@ -239,7 +239,6 @@ tabbrowser tabpanels, #appcontent > #content {
 	}
 }
 
-
 /* About:Blank background */
 @-moz-document url(about:blank) {
     html,body {
