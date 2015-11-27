@@ -12,6 +12,10 @@ source ~/.zsh_aliases
 # Dir colors
 eval "$(dircolors ~/.dircolors)";
 
+# ls colors
+LS_COLORS='di=1:fi=0:ln=93:pi=5:so=5:bd=5:cd=5:or=31:mi=0:ex=35'
+export LS_COLORS
+
 # ryuuko colorscheme
 # for easy use in scripts
 export black="34393D"

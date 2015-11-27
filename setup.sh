@@ -13,6 +13,7 @@ mkdir "$HOME/.config/nvim"
 mkdir "$HOME/.mpd"
 mkdir "$HOME/.ncmpcpp"
 mkdir "$HOME/pwd.sh"
+mkdir "$HOME/bin"
 
 # Link dotfiles
 
@@ -30,3 +31,5 @@ $ln "$dotfiledir/.zsh_aliases" "$HOME/"
 $ln "$dotfiledir/.zshrc" "$HOME/"
 $ln "$dotfiledir/.dircolors" "$HOME/"
 $ln "$dotfiledir/.config/mpv" "$HOME/.config"
+$ln "$dotfiledir/scripts/*.sh" "$HOME/bin"
+$ln "$dotfiledir/scripts/*/*.sh" "$HOME/bin"

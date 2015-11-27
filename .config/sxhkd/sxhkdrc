@@ -31,41 +31,42 @@ super + shift + {h,j,k,l}
 
 # focus
 super + Tab
-    ~/dotfiles/scripts/wmutils/focus.sh next
+    focus.sh next
+
 
 # "Workspaces"
 
 
 super + {1,2,3,4,5}
-    ~/dotfiles/scripts/wmutils/graow.sh -U *; \
-    ~/dotfiles/scripts/wmutils/graow.sh -m {1,2,3,4,5}; \
+    graow.sh -U *; \
+    graow.sh -m {1,2,3,4,5}; \
     mpc update &
 
 super + shift + {1,2,3,4,5}
-    ~/dotfiles/scripts/wmutils/graow.sh -d all; \
-    ~/dotfiles/scripts/wmutils/graow.sh -a {1,2,3,4,5}; \
+    graow.sh -d all; \
+    graow.sh -a {1,2,3,4,5}; \
     mapw -u $(pfw) &
 
 # Sticky window
 super + e
-    ~/dotfiles/scripts/wmutils/graow.sh -d all
+    graow.sh -d all
 
 # Tile windows
 super + s
-    ~/dotfiles/scripts/wmutils/tile.sh ;\
+    tile.sh ;\
     mpc update &
 
 # Center window on screen
 super + c
-    ~/dotfiles/scripts/wmutils/center.sh
+    center.sh
 
 # Maximize window with gaps
 super + m
-    ~/dotfiles/scripts/wmutils/maximize.sh 100 100
+    maximize.sh 100 100
 
 # Corners
 super + {y,u,b,n}
-    ~/dotfiles/scripts/wmutils/corner.sh {tl,tr,bl,br}
+    corner.sh {tl,tr,bl,br}
 
 # close window
 super + q
@@ -73,7 +74,7 @@ super + q
 
 # make fullscreen
 super + f
-    ~/dotfiles/scripts/wmutils/fullscreen.sh $(pfw)
+    fullscreen.sh $(pfw)
 
 
 # Application specific
@@ -82,7 +83,7 @@ super + f
 # Volume
 super + {Up,Down}
     amixer set Master {5+,5-}; \
-    ~/dotfiles/scripts/popup.sh $(amixer get Master | egrep -o "[0-9]+\%") 2
+    popup.sh $(amixer get Master | egrep -o "[0-9]+\%") 2
 
 # Control music
 super + {Left,Right}
@@ -90,10 +91,11 @@ super + {Left,Right}
 
 # scrot
 super + p
-    cd ~/Pictures && scrot
+    cd "$HOME/Pictures" && scrot
 
 
 # Other
+
 
 # Restart sxhkd
 super + Escape

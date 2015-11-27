@@ -1,5 +1,11 @@
 #!/bin/sh
-cd ~/projects || exit
+# Script to set up a website project
+
+if [ ! -d "$HOME/projects" ]; then
+    mkdir "$HOME/projects"
+fi
+
+cd "$HOME/projects" || exit
 
 echo "What would you like to name your project?"
 read -r dirname
@@ -21,5 +27,5 @@ git init
 git add .
 git commit -m "Initial Files"
 
-cp ~/dotfiles/scripts/webdev/files/gulpfile.coffee ~/projects/"$dirname"
+cp "$HOME/dotfiles/scripts/webdev/files/gulpfile.coffee" "$HOME/projects/$dirname"
 

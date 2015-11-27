@@ -7,40 +7,28 @@ alias cleandeps='sudo pacman -R $(pacman -Qqdt)'
 
 # Download youtube url to an .mp3
 # and save it to my music folder.
-alias mp3dl="cd ~/Music && youtube-dl --extract-audio --audio-format mp3 --no-playlist"
+alias mp3dl="cd $HOME/Music && youtube-dl --extract-audio --audio-format mp3 --no-playlist"
 
 # Creates a playlist from an ls of my Music Folder
 alias lsnc="ls -A --color=none"
-alias plu="lsnc ~/Music > ~/.mpd/playlists/music.m3u"
+alias plu="lsnc $HOME/Music > $HOME/.mpd/playlists/music.m3u"
 
 # pwd
-alias pwd="cd ~/pwd.sh && ./pwd.sh"
+alias pwd="cd $HOME/pwd.sh && ./pwd.sh"
 
 # Makes ls list all files and always use color
 alias ls="export LC_COLLATE="C"; ls -A --color=always --group-directories-first"
 
-LS_COLORS='di=1:fi=0:ln=93:pi=5:so=5:bd=5:cd=5:or=31:mi=0:ex=35'
-export LS_COLORS
-
-# Create a website project directory
-alias mksite="~/dotfiles/scripts/webdev/webdev.sh"
-
 # Save all screenshots to ~/Pictures
-alias scrot='cd ~/Pictures/ && scrot'
+alias scrot="cd $HOME/Pictures/ && scrot"
 
 # Music
 alias startmusic="~/dotfiles/scripts/tmux/tmuxicspawn.sh"
 alias music="~/dotfiles/scripts/tmux/tmuxicattach.sh"
-alias killmusic="tmux kill-session & pkill cava & pkill tmux & pkill ncmpcpp"
+alias killmusic="tmux kill-session & pkill cava & pkill ncmpcpp"
 
 # Hide info box
 alias pqiv="pqiv -i --low-memory"
-
-# My color script
-alias color="~/dotfiles/scripts/colors.sh"
-
-# My screenfetch script
-alias fetch="~/dotfiles/scripts/fetch.sh"
 
 # steam audio fix
 alias steam="LD_PRELOAD=/usr/lib/libasound.so.2 STEAM_RUNTIME=1 SDL_AUDIODRIVER=alsa steam"
