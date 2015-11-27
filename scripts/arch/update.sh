@@ -21,11 +21,6 @@ fi
 
 # Update the packages
 for package in $pkgdir/$pkg; do
-    if [ ! -d "$package" ]; then
-        cd "$pkgdir" || exit
-        cower -d "$(basename $package)" 2>/dev/null || { cowerError+=("$(basename "$package")"); continue; }
-    fi
-
     cd "$pkgdir/$(basename "$package")" 2>/dev/null || { cdError+=("$(basename "$package")"); continue; }
     $makepkg || makeError+=("$(basename "$package")")
     cd "$pkgdir" || exit
