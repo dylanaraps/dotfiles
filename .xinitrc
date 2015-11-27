@@ -16,8 +16,10 @@ sxhkd -f 100 &
 mpd &
 
 # Start bar(s)
-~/dotfiles/scripts/lemonbar/clock.sh &
-~/dotfiles/scripts/lemonbar/music.sh &
+clock.sh &
+music.sh &
+coverspawn.sh &
+
 
 # Set wallpaper
 feh --bg-fill ~/Pictures/wallpaper/8.jpg &

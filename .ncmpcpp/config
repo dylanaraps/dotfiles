@@ -14,25 +14,21 @@ use_console_editor = "yes"
 regular_expressions = "extended"
 
 # Playlist
-fetch_lyrics_for_current_song_in_background = "yes"
 playlist_disable_highlight_delay = 1
-follow_now_playing_lyrics = "yes"
 jump_to_now_playing_song_at_start = "yes"
 playlist_display_mode = "classic"
-now_playing_prefix = "$b"
-song_columns_list_format = "(50)[red]{a} (50)[blue]{t|f} (4f)[cyan]{l}"
 song_list_format = "$5 %a $R $2 %t $7 %l"
 
 # Tag Editor
 generate_win32_compatible_filenames = "yes"
 
 # Bars
-progressbar_color = "white"
-progressbar_elapsed_color = "white"
-song_status_format = "$8%t $2$2%a { $5%b $2• }$7%y$5"
-progressbar_look = "─╼╌"
+progressbar_color = "black"
+progressbar_elapsed_color = "black"
+progressbar_look = "__ "
 
 # UI
 header_visibility = "no"
 titles_visibility = "no"
+statusbar_visibility = "no"
 

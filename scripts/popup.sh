@@ -1,6 +1,16 @@
 #!/bin/sh
 # Notifications using lemonbar
-# $1 gets sent to lemonbar and $2 is the sleep duration
 
-(echo "%{c} $1 %{c}"; sleep $2) | lemonbar -d -g "150x30+1280+1015" -f "drift" -B "#$white" -F "#$black"
+# USAGE:
+# $1 gets displayed
+# $2 sleep duration
+# $3 notification width
+# $4 xoffset
+
+# Kill previous notifications
+ps -ef | awk '/popups/ {print $2}' | xargs kill
+
+# Start notification
+(echo "%{c} $1 %{c}"; sleep $2) | lemonbar -n "popups" -d -g "$3x30+$4+35" -f "drift" -B "#$white" -F "#$black"
+
 
