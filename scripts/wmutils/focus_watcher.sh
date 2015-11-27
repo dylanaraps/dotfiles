@@ -40,6 +40,6 @@ wew | while IFS=: read ev wid; do
         18) wattr $(pfw) || ~/dotfiles/scripts/wmutils/focus.sh prev 2>/dev/null ;;
 
         # focus windows where the cursor enters
-        7) wattr o $wid || ~/dotfiles/scripts/wmutils/focus.sh $wid; mpc update ;;
+        7) wattr o $wid || ~/dotfiles/scripts/wmutils/focus.sh $wid ;;
     esac
 done
