@@ -17,10 +17,10 @@ alias plu="lsnc ~/Music > ~/.mpd/playlists/music.m3u"
 alias pwd="cd ~/pwd.sh && ./pwd.sh"
 
 # Makes ls list all files and always use color
-alias ls="ls -A --color=always"
+alias ls="export LC_COLLATE="C"; ls -A --color=always --group-directories-first"
 
-# Start compton with config file
-alias cmp="compton --config ~/.compton &"
+LS_COLORS='di=1:fi=0:ln=93:pi=5:so=5:bd=5:cd=5:or=31:mi=0:ex=35'
+export LS_COLORS
 
 # Create a website project directory
 alias mksite="~/dotfiles/scripts/webdev/webdev.sh"

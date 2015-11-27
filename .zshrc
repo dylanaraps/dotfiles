@@ -9,6 +9,9 @@ export EDITOR='nvim'
 # Aliases
 source ~/.zsh_aliases
 
+# Dir colors
+eval "$(dircolors ~/.dircolors)";
+
 # ryuuko colorscheme
 # for easy use in scripts
 export black="34393D"
