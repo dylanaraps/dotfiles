@@ -90,6 +90,9 @@ super + {Left,Right}
     mpc -q {prev,next}; \
     popup.sh "$(mpc current)" 2 $(txtw "$(mpc current)") $((1820 - $(txtw "$(mpc current)")))
 
+super + End
+    mpc -q toggle
+
 # scrot
 super + p
     cd "$HOME/Pictures" && scrot
