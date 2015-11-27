@@ -49,6 +49,11 @@ alias steam="LD_PRELOAD=/usr/lib/libasound.so.2 STEAM_RUNTIME=1 SDL_AUDIODRIVER=
 
 # Functions {{{
 
+# ls on every cd
+function chpwd() {
+  ls
+}
+
 # Do maths in the terminal
 = () {
     calc="${@//p/+}"
