@@ -1,8 +1,8 @@
-#!/bin/bash
+#!/bin/sh
 # This script symlinks my dotfiles to their required locations
 
 # Set dotfiles directory
-dotfiledir=$HOME/dotfiles
+dotfiledir="$HOME/dotfiles"
 
 # Set ln flags
 ln="ln -s -f -v -n -i"
