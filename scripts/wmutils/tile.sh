@@ -54,15 +54,14 @@ chwso -l $pfw
 # and now, stack up all remaining windows on the right
 x=$((master + gap + padding))
 w=$((sw - master - gap - padding))
-h=$((sh / $((max - ignore)) - gap - $((padding / max))))
+h=$((sh / $((max - ignore)) - gap - $((padding / max)) - $((max - 1))*bw))
 
 for wid in $(lsw | grep -v $pfw); do
     # If focused window's name doesn't include "tile_ignore", tile it!
     if [[ $(wname $wid) != *"tile_ignore"* ]]; then
         wtp $x $y $w $h $wid
-        y=$((y + h + gap))
+        y=$((y + h + gap + max*bw))
 
-        echo $sh
         # Put the tiled windows at the bottom of the stack
         chwso -l $wid
     fi
