@@ -56,5 +56,5 @@ echo "${pad}${bold}${green}Window Manager:${clear} wmutils"
 echo "${pad}${bold}${green}Cpu:${clear} AMD FX-6300 ${cyan}@${clear} $(lscpu | awk '/CPU MHz:/ {printf "scale=1; " $3 " / 1000 \n"}' | bc -l)GHz"
 echo "${pad}${bold}${green}Ram:${clear} $(free -m | awk '/Mem:/ {printf $3 "MB / " $2 "MB"}')"
 echo "${pad}${bold}${green}Current Song:${clear} $(mpc current | cut -c 1-25)"
-echo
+echo ""
 echo -e "0;1;$xoffset;$yoffset;$width;$height;;;;;$img\n4;\n3;" | /usr/lib/w3m/w3mimgdisplay

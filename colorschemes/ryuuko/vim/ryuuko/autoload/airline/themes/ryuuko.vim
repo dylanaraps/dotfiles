@@ -2,22 +2,22 @@
 let g:airline#themes#ryuuko#palette = {}
 
 " Normal mode
-let s:N1 = [ '#2d2b33' , '#8294b4' ,  7 ,  0 ]
+let s:N1 = [ '#34393D' , '#8294b4' ,  7 ,  0 ]
 let s:N2 = [ '#f2f3f2' , 'NONE' ,  7 ,  0 ]
 let s:N3 = [ '#f2f3f2' , 'NONE' ,  7 ,  0 ]
 
 " Insert mode
-let s:I1 = [ '#2d2b33' , '#9BB38F' ,  7 ,  0 ]
+let s:I1 = [ '#34393D' , '#9BB38F' ,  7 ,  0 ]
 let s:I2 = [ '#f2f3f2' , 'NONE' ,  7 ,  0 ]
 let s:I3 = [ '#f2f3f2' , 'NONE' ,  7 ,  0 ]
 
 " Visual mode
-let s:V1 = [ '#2d2b33' , '#e8907e' ,  7 ,  0 ]
+let s:V1 = [ '#34393D' , '#e8907e' ,  7 ,  0 ]
 let s:V2 = [ '#f2f3f2' , 'NONE' ,  7 ,  0 ]
 let s:V3 = [ '#f2f3f2' , 'NONE' ,  7 ,  0 ]
 
 " Replace mode
-let s:R1 = [ '#2d2b33' , '#c86c75' ,  7 ,  0 ]
+let s:R1 = [ '#34393D' , '#c86c75' ,  7 ,  0 ]
 let s:R2 = [ '#f2f3f2' , 'NONE' ,  7 ,  0 ]
 let s:R3 = [ '#f2f3f2' , 'NONE' ,  7 ,  0 ]
 
@@ -46,9 +46,9 @@ let g:airline#themes#ryuuko#palette.replace.airline_warning = s:WI
 
 " Tabline
 let g:airline#themes#ryuuko#palette.tabline = {
-      \ 'airline_tab':     [ '#2d2b33' , '#2d2b33'    , 7, 0 , 'NONE' ],
-      \ 'airline_tabsel':  [ '#2d2b33' , '#8294b4'	  , 7, 0 , 'bold' ],
-      \ 'airline_tabtype': [ '#2d2b33' , '#2d2b33'    , 7, 0 , 'NONE' ],
-      \ 'airline_tabfill': [ '#2d2b33' , '#2d2b33'    , 7, 0 , 'NONE' ],
-      \ 'airline_tabmod':  [ '#2d2b33' , '#9BB38F'    , 7, 0 , 'bold' ]
+      \ 'airline_tab':     [ '#34393D' , '#34393D'    , 7, 0 , 'NONE' ],
+      \ 'airline_tabsel':  [ '#34393D' , '#8294b4'	  , 7, 0 , 'bold' ],
+      \ 'airline_tabtype': [ '#34393D' , '#34393D'    , 7, 0 , 'NONE' ],
+      \ 'airline_tabfill': [ '#34393D' , '#34393D'    , 7, 0 , 'NONE' ],
+      \ 'airline_tabmod':  [ '#34393D' , '#9BB38F'    , 7, 0 , 'bold' ]
 \ }
