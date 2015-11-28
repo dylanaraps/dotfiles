@@ -36,6 +36,10 @@ alias steam="LD_PRELOAD=/usr/lib/libasound.so.2 STEAM_RUNTIME=1 SDL_AUDIODRIVER=
 # urxvt
 alias urxvt="urxvtc"
 
+# winesteam
+
+alias winesteam="wine ~/.wine/drive_c/Program\ Files/Steam/Steam.exe"
+
 # }}}
 
 # Functions {{{

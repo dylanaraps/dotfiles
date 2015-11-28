@@ -37,6 +37,12 @@ if [ -d "$HOME/bin" ] ; then
   PATH="$HOME/bin:$PATH"
 fi
 
+# Wine
+export WINEPREFIX=~/.wine
+export WINEARCH=win32
+export WINEDEBUG=-all
+export WINEDLLOVERRIDES="winemenubuilder.exe=d"
+
 # Enable completion and prompt
 autoload -U compinit promptinit
 compinit
