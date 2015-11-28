@@ -19,40 +19,9 @@ eval "$(dircolors ~/.dircolors)"
 # Gen colors
 source ~/.colors
 
-# lemonbar height
-export barheight=30
-
-# fzf settings
-export FZF_DEFAULT_COMMAND='ag -l -g "" --hidden'
-
-export FZF_DEFAULT_OPTS='
-  --extended
-  --color bg:0,bg+:0
-  --multi
-'
-
-[ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
-
-if [ -d "$HOME/bin" ] ; then
-  PATH="$HOME/bin:$PATH"
+if [ -d "~/bin" ] ; then
+  PATH="~/bin:$PATH"
 fi
-
-# Wine
-export WINEPREFIX=~/.wine
-export WINEARCH=win32
-export WINEDEBUG=-all
-export WINEDLLOVERRIDES="winemenubuilder.exe=d"
-
-# Enable completion and prompt
-autoload -U compinit promptinit
-compinit
-promptinit
-
-# Better tab completion
-zstyle ':completion:*' menu select
-
-# Complete Aliases
-setopt completealiases
 
 # Enable colors in prompt
 autoload -U colors && colors
@@ -60,17 +29,10 @@ autoload -U colors && colors
 # Set prompt
 PROMPT="%{$fg_bold[white]%} %n %{$fg_no_bold[white]%}%~ %{$fg_no_bold[yellow]%}>"
 
-# Set right prompt
-RPROMPT="%{$fg_bold[red]%}%t %{$reset_color%}"
-
 # History File
 HISTSIZE=10000
 SAVEHIST=10000
 HISTFILE=~/.zsh_history
-
-# Key binds
-bindkey '^H' beginning-of-line
-bindkey '^L' end-of-line
 
 # share history
 setopt sharehistory

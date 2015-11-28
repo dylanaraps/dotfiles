@@ -20,10 +20,6 @@ Plug '~/projects/root.vim/'
 	let g:root#auto = 1
 	let g:root#echo = 0
 
-Plug '~/projects/taskrunner.nvim/'
-	let g:taskrunner#split = "10new"
-	let g:taskrunner#focus_on_open = 1
-
 " Hide view ui
 Plug 'junegunn/goyo.vim'
 
@@ -77,12 +73,6 @@ Plug 'tpope/vim-surround'
 
 	" Surround Visual selection
 	vmap s S
-
-Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': 'yes \| ./install' }
-	nnoremap <silent> <Leader>s :call fzf#run({
-	\	'window': '15new',
-	\   'sink': 'e'
-	\ })<CR>
 
 " Filetype Plugins
 Plug 'mattn/emmet-vim'
@@ -600,24 +590,6 @@ function! Chmox()
 endfunction
 
 command! Chmox call Chmox()
-
-" }}}
-
-" Toggle Lightline {{{
-
-let g:lightline_enabled = 1
-
-function! LightlineToggle()
-    if g:lightline_enabled
-        call lightline#enable()
-        let g:lightline_enabled = 0
-    else
-        call lightline#disable()
-        let g:lightline_enabled = 1
-    endif
-endfunction
-
-nnoremap <silent> <Leader><Leader> :call LightlineToggle()<CR>
 
 " }}}
 
