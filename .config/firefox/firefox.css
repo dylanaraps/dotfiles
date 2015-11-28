@@ -190,7 +190,7 @@
 
 	/* Changes menu button image */
 	#PanelUI-menu-button {
-		padding: 0px 25px 0px 0px !important;
+		padding: 0px 5px 0px 0px !important;
 		margin-bottom: 4px !important;
 		-moz-image-region: rect(0,16px,16px,0) !important;
 		background: transparent !important;
