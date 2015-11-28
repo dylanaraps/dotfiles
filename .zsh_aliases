@@ -14,7 +14,7 @@ alias lsnc="ls -A --color=none"
 alias plu="lsnc $HOME/Music > $HOME/.mpd/playlists/music.m3u"
 
 # pwd
-# alias pwd="cd $HOME/pwd.sh && ./pwd.sh"
+alias pwd.sh="cd $HOME/pwd.sh && ./pwd.sh"
 
 # Makes ls list all files and always use color
 alias ls="export LC_COLLATE="C"; ls -A --color=always --group-directories-first"
