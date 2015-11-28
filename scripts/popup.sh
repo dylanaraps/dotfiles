@@ -33,6 +33,8 @@ while getopts "w:h:x:y:bg:fg:n:s:f:e:" opt; do
     esac
 done
 
+# Start bar
+
 # Kill previous notifications
 ps -ef | awk -v name="$barname" '$0 ~ name {print $2}' | xargs kill 2>/dev/null
 
