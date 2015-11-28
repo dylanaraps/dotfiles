@@ -1,7 +1,7 @@
 #!/bin/bash
 # script to update aur packages
 
-makepkg="makepkg -sicfC --noconfirm"
+makepkg="makepkg -sicfC"
 pkgdir="$HOME/aur"
 
 # Error arrays

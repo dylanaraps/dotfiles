@@ -9,10 +9,11 @@ height=1080
 
 # default values for gaps and master area
 panel=0
-gap=100
+gap=50
+padding=50
 
 # Master is half of the screen width minus
-master=$((width / 2 - $((gap / 2))))
+master=$((width / 2 - $((gap / 2)) - padding))
 
 # get current window id and its borderwidth
 pfw=$(pfw)
@@ -25,10 +26,10 @@ max=$(lsw | grep -v $pfw | wc -l)
 ignore=$(wname $(lsw) | grep "tile_ignore" | wc -l)
 
 # calculate usable screen size (without borders and gaps)
-sw=$((width - gap - 2*bw))
-sh=$((height - gap - 2*bw - panel))
+sw=$((width - gap - 2*bw - padding))
+sh=$((height - gap - 2*bw - panel - padding))
 
-y=$((gap + panel))
+y=$((gap + panel + padding))
 
 # put current window in master area
 
@@ -38,28 +39,28 @@ if [[ $(wname $pfw) == *"tile_ignore"* ]]; then
 
 # If there's only one unignored window open tile it to the full width of the screen
 elif [[ $(($(lsw | wc -l) - $ignore)) == 1 ]]; then
-    sw=$((sw - gap))
-    sh=$((sh - gap))
-    wtp $gap $gap $sw $sh $pfw
+    sw=$((sw - gap - padding))
+    sh=$((sh - gap - padding))
+    wtp $((gap + padding)) $((gap + padding)) $sw $sh $pfw
 
 # Prevent tiling of ignored windows
 else
-    wtp $gap $y $((master - gap - 2*bw)) $((sh - gap)) $pfw
+    wtp $((gap + padding)) $y $((master - gap - 2*bw)) $((sh - gap - padding)) $pfw
 fi
 
 # Put the tiled windows at the bottom of the stack
 chwso -l $pfw
 
 # and now, stack up all remaining windows on the right
-x=$((master + gap))
-w=$((sw - master - gap))
-h=$((sh / $((max - ignore)) - gap))
+x=$((master + gap + padding))
+w=$((sw - master - gap - padding))
+h=$((sh / $((max - ignore)) - gap - padding))
 
 for wid in $(lsw | grep -v $pfw); do
     # If focused window's name doesn't include "tile_ignore", tile it!
     if [[ $(wname $wid) != *"tile_ignore"* ]]; then
         wtp $x $y $w $h $wid
-        y=$((y + h + gap))
+        y=$((y + h + gap + padding))
 
         # Put the tiled windows at the bottom of the stack
         chwso -l $wid
