@@ -83,12 +83,12 @@ super + f
 # Volume
 super + {Up,Down}
     amixer set Master {5+,5-}; \
-    popup.sh "$(amixer get Master | egrep -o "[0-9]+\%")" 2 150 1670
+    popup.sh -e "$(amixer get Master | egrep -o "[0-9]+\%")" -s 2 -w 150 -x 1670
 
 # Control music
 super + {Left,Right}
     mpc -q {prev,next}; \
-    popup.sh "$(mpc current)" 2 $(txtw "$(mpc current)") $((1820 - $(txtw "$(mpc current)")))
+    popup.sh -e "$(mpc current)" -s 2 -w $(txtw "$(mpc current)") -x $((1820 - $(txtw "$(mpc current)")))
 
 super + End
     mpc -q toggle
