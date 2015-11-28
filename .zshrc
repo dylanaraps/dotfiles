@@ -16,17 +16,8 @@ export LS_COLORS
 # Dir colors
 eval "$(dircolors ~/.dircolors)"
 
-# ryuuko colorscheme
-# for easy use in scripts
-export black="34393D"
-export darkgray="75747a"
-export red="BF687F"
-export green="9BB38F"
-export yellow="e5c196"
-export blue="8294b4"
-export orange="E68A8B"
-export cyan="95B9BF"
-export white="f2f3f2"
+# Gen colors
+source ~/.colors
 
 # lemonbar height
 export barheight=30

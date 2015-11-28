@@ -33,6 +33,9 @@ alias pqiv="pqiv -i --low-memory"
 # steam audio fix
 alias steam="LD_PRELOAD=/usr/lib/libasound.so.2 STEAM_RUNTIME=1 SDL_AUDIODRIVER=alsa steam"
 
+# urxvt
+alias urxvt="urxvtc"
+
 # }}}
 
 # Functions {{{

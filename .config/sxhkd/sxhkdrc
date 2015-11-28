@@ -3,7 +3,7 @@
 
 # Start urxvt
 super + Return
-    urxvt
+    urxvtc
 
 # Dmenu
 super + d
@@ -70,7 +70,7 @@ super + {y,u,b,n}
 
 # close window
 super + q
-    killw $(pfw)
+    killwa $(pfw)
 
 # make fullscreen
 super + f

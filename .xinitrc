@@ -15,11 +15,13 @@ sxhkd -f 100 &
 
 mpd &
 
+# Start urxvt daemon
+urxvtd -q -f -o &
+
 # Start bar(s)
 clock.sh &
 music.sh &
 coverspawn.sh &
-
 
 # Set wallpaper
 feh --bg-fill ~/Pictures/wallpaper/8.jpg &
