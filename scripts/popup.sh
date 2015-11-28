@@ -8,7 +8,7 @@ sleep=2
 
 width=150
 height=30
-xoffset=1800
+xoffset=1670
 yoffset=35
 
 bg="#$white"
