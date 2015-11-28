@@ -10,6 +10,8 @@ height=1080
 # default values for gaps and master area
 panel=0
 gap=50
+
+# Padding is gap + padding
 padding=50
 
 # Master is half of the screen width minus
