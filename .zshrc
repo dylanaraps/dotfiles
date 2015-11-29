@@ -19,8 +19,8 @@ eval "$(dircolors ~/.dircolors)"
 # Gen colors
 source ~/.colors
 
-if [ -d "~/bin" ] ; then
-  PATH="~/bin:$PATH"
+if [ -d "$HOME/bin" ] ; then
+  PATH="$HOME/bin:$PATH"
 fi
 
 # Enable colors in prompt
