@@ -38,6 +38,8 @@ done
 # Kill previous notifications
 ps -ef | awk -v name="$barname" '$0 ~ name {print $2}' | xargs kill 2>/dev/null
 
-# Start notification
-(echo "%{c} $echo %{c}"; sleep $sleep) | lemonbar -n "$barname" -d -g "$width"x"$height+$xoffset+$yoffset" -f "$font" -B "$bg" -F "$fg"
+# Echo notifivation
+(echo "%{c} $echo %{c}"; sleep $sleep) |
 
+# Pipe to bar
+lemonbar -n "$barname" -d -g "$width"x"$height+$xoffset+$yoffset" -f "$font" -B "$bg" -F "$fg"
