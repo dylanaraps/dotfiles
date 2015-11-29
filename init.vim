@@ -15,7 +15,7 @@ endif
 call plug#begin('~/.config/nvim/plugged')
 
 " My Plugins
-Plug '~/dotfiles/colorschemes/ryuuko/vim/ryuuko/'
+Plug '~/dotfiles/colorschemes/ryuuko'
 Plug '~/projects/root.vim/'
 	let g:root#auto = 1
 	let g:root#echo = 0
