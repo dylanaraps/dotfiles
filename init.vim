@@ -23,18 +23,6 @@ Plug '~/projects/root.vim/'
 " Hide view ui
 Plug 'junegunn/goyo.vim'
 
-" lighter than air Statusline
-Plug 'itchyny/lightline.vim'
-	let g:lightline = {
-		\ 'colorscheme': 'ryuuko'
-		\ }
-
-	let g:lightline.active = {
-		\ 'left': [ [ 'mode' ],
-		\           [ 'filename', 'readonly', 'modified' ] ],
-		\ 'right': [ [ 'lineinfo' ],
-		\            [ 'filetype' ] ] }
-
 " Clicking v expands region
 Plug 'kana/vim-textobj-user'
 \| Plug 'kana/vim-textobj-line'

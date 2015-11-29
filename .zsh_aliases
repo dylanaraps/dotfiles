@@ -22,23 +22,15 @@ alias ls="export LC_COLLATE="C"; ls -A --color=always --group-directories-first"
 # Save all screenshots to ~/Pictures
 alias scrot="cd $HOME/Pictures/ && scrot"
 
-# Music
-alias startmusic="~/dotfiles/scripts/tmux/tmuxicspawn.sh"
-alias music="~/dotfiles/scripts/tmux/tmuxicattach.sh"
-alias killmusic="tmux kill-session & pkill cava & pkill ncmpcpp"
-
 # Hide info box
 alias pqiv="pqiv -i --low-memory"
 
-# steam audio fix
+# Launch steam with options that allow sound/mic to work without
+# Pulse audio.
 alias steam="LD_PRELOAD=/usr/lib/libasound.so.2 STEAM_RUNTIME=1 SDL_AUDIODRIVER=alsa steam"
 
 # urxvt
 alias urxvt="urxvtc"
-
-# winesteam
-
-alias winesteam="wine ~/.wine/drive_c/Program\ Files/Steam/Steam.exe"
 
 # }}}
 
@@ -56,17 +48,12 @@ function chpwd() {
     echo "$(($calc))"
 }
 
-# Waifu2x
-waifu () {
-	waifu2x -i $1 -o $2 --scale_ratio $3 $4 $5
-}
-
 # Set window title
 title () {
     echo -e '\033]2;'$1'\007'
 }
 
-# Ignore window from tiling
+# Ignore current terminal window from tiling
 tile_ignore () {
     echo -e '\033]2;'$(wname $(pfw)) - tile_ignore'\007'
 }

@@ -1,7 +1,1 @@
-*~
-*.swp
-*.swo
-*.swn
 .config/mpv/watch_later
-.config/lemonbar/musicbar.sh
-*.sass-cache*
