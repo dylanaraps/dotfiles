@@ -64,7 +64,7 @@ while getopts "a:c:u:Um:M:n:*" opt 2>/dev/null; do
 done
 
 # Error message suffix
-errsuffix="$(tput bold)$(tput setaf 1)==> ERROR:$(tput sgr0)"
+errsuffix="$(tput bold)$(tput setaf 1)ERROR:$(tput sgr0)"
 
 # cd to aur folder
 cd "$aurdir" 2>/dev/null || \

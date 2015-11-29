@@ -6,6 +6,9 @@ export TERM=rxvt-unicode-256color
 # Sets editor to neovim
 export EDITOR='nvim'
 
+# Removed highlighted "%" at eol
+PROMPT_EOL_MARK=""
+
 # Aliases
 source ~/.zsh_aliases
 
