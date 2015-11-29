@@ -1,46 +1,67 @@
 # Source my cock.li specific settings
 source ~/cockli.muttrc
 
-# Remove + characters on newline
+# Settings
+
+# Sort mail by newest first
+set sort=threads
+set sort_browser=date
+set sort_aux=reverse-last-date-received
+
+# Remove "+" characters on newline
 unset markers
 
-# Default colour definitions
-color indicator  black brightred
-color status     black blue
-color normal     white         black
+# Convert html email to plaintext on open
+auto_view text/html
+alternative_order text/plain text/html
 
-# Colours for items in the reader
-color header white		   black "^(From|Subject):"
-color header white         black "^X-Junked-Because: "
-color header white         black "^X-Virus-hagbard: .* FOUND"
-mono  header bold          "^(From|Subject|X-Junked-Because|X-Virus-hagbard):"
+set date_format="%b %d - %I:%M %p"
+set index_format="%d  %-30.30F  %s"
 
-# URLs
-color body yellow  black "(http|https|ftp|news|telnet|finger)://[^ \">\t\r\n]*"
-color body yellow  black "mailto:[-a-z_0-9.]+@[-a-z_0-9.]+"
-color body yellow  black "news:[^ \">\t\r\n]*"
-mono  body bold              "(http|https|ftp|news|telnet|finger)://[^ \">\t\r\n]*"
-mono  body bold              "mailto:[-a-z_0-9.]+@[-a-z_0-9.]+"
-mono  body bold              "news:[^ \">\t\r\n]*"
+# Key Bindings
 
-# email addresses
-color body brightblue  white "[-a-z_0-9.%$]+@[-a-z_0-9.]+\\.[-a-z][-a-z]+"
-mono  body bold              "[-a-z_0-9.%$]+@[-a-z_0-9.]+\\.[-a-z][-a-z]+"
-
-# Various smilies and the like
-color body brightgreen black "<[Gg]>"                                            # <g>
-color body brightgreen black "<[Bb][Gg]>"                                        # <bg>
-color body brightgreen black " [;:]-*[)>(<|]"                                    # :-) etc...
-color body brightblue  black "(^|[[:space:]])\\*[^[:space:]]+\\*([[:space:]]|$)" # *Bold* text.
-color body brightblue  black "(^|[[:space:]])_[^[:space:]]+_([[:space:]]|$)"     # _Underlined_ text.
-color body brightblue  black "(^|[[:space:]])/[^[:space:]]+/([[:space:]]|$)"     # /Italic/ text.
-
-# Vim scroll keys
-macro pager 'j' <next-line>
-macro pager 'k' <previous-line>
+# vi bindings
+bind pager gg top
+bind pager G bottom
+bind attach,index gg first-entry
+bind attach,index G last-entry
+macro pager j <next-line>
+macro pager k <previous-line>
 
 # Capital J/K to scroll whole pages
-bind index 'J' next-page
-bind index 'K' previous-page
+bind index J next-page
+bind index K previous-page
 
+# Colors
 
+# Default colour definitions
+color indicator black red
+color status black black
+color normal white black
+
+# Colours for items in the reader
+color header white black "^(From|Subject):"
+color header white black "^X-Junked-Because: "
+color header white black "^X-Virus-hagbard: .* FOUND"
+mono  header bold "^(From|Subject|X-Junked-Because|X-Virus-hagbard):"
+
+# URLs
+color body yellow black "(http|https|ftp|news|telnet|finger)://[^ \">\t\r\n]*"
+color body yellow black "mailto:[-a-z_0-9.]+@[-a-z_0-9.]+"
+color body yellow black "news:[^ \">\t\r\n]*"
+mono  body bold "(http|https|ftp|news|telnet|finger)://[^ \">\t\r\n]*"
+mono  body bold "mailto:[-a-z_0-9.]+@[-a-z_0-9.]+"
+mono  body bold "news:[^ \">\t\r\n]*"
+
+# email addresses
+color body blue white "[-a-z_0-9.%$]+@[-a-z_0-9.]+\\.[-a-z][-a-z]+"
+mono  body bold "[-a-z_0-9.%$]+@[-a-z_0-9.]+\\.[-a-z][-a-z]+"
+
+# Bold text
+color body brightwhite black "(^|[[:space:]])\\*[^[:space:]]+\\*([[:space:]]|$)"
+
+# Underlined text
+color body white black "(^|[[:space:]])_[^[:space:]]+_([[:space:]]|$)"
+
+# /Italic/ text.
+color body white black "(^|[[:space:]])/[^[:space:]]+/([[:space:]]|$)"
