@@ -27,11 +27,11 @@ usage () {
     echo "$(tput bold)-a $(tput sgr0)\"dir/to/store/aur/packages\" : Directory to store aur packages (default \"\$HOME/aur\")"
     echo "    The script won't create this directory, ensure it exists"
     echo ""
-    echo "$(tput bold)-u $(tput sgr0)\"package1 package2 package3\" : Packages to install/update";
+    echo "$(tput bold)-s $(tput sgr0)\"package1 package2 package3\" : Packages to install/update";
     echo "    Packages must be defined as follows \"cava cower tmux-truecolor\""
     echo "    The quotes are necessary as getopts doesn't allow multi arg options"
     echo ""
-    echo "$(tput bold)-U $(tput sgr0) : Update all packages inside of the aur folder"
+    echo "$(tput bold)-S $(tput sgr0) : Update all packages inside of the aur folder"
     echo ""
     echo "$(tput bold)-m $(tput sgr0)\"makepkg flags\" : flags to send to makepkg (default: -sicfC)";
     echo "    -m: Overrides the default mkflags"
@@ -50,12 +50,12 @@ if [ $# -eq 0 ]; then
 fi
 
 # Set up args
-while getopts "a:c:u:Um:M:n:*" opt 2>/dev/null; do
+while getopts "a:c:s:Sm:M:n:*" opt 2>/dev/null; do
     case $opt in
         a) aurdir="$OPTARG" ;;
         c) cowflags="$OPTARG" ;;
-        u) packages+=($OPTARG) ;;
-        U) packages="*" ;;
+        s) packages+=($OPTARG) ;;
+        S) packages="*" ;;
         m) mkflags=($OPTARG) ;;
         M) mkflags+=($OPTARG) ;;
         n) dl=0 ;;
