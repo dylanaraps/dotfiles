@@ -1,5 +1,9 @@
 /* Startpage  Css */
 /* By Dylan Araps */
+
+/* Import colors */
+@import url("colors.css");
+
 html,
 body,
 h1,
@@ -10,7 +14,7 @@ li {
 }
 
 body {
-	background: #f2f3f2;
+	background: var(--white);
 	height: 100vh;
 	width: 100vw;
 }
@@ -24,7 +28,7 @@ main {
 }
 
 h1 {
-	color: #8294b4;
+	color: var(--blue);
 	font-family: Roboto;
 	font-size: 3em;
 }
@@ -44,17 +48,17 @@ li {
 }
 
 .subh {
-	color: #BF687F;
+	color: var(--red);
 	font-weight: bold;
 	margin-top: 5px;
 }
 
 a {
-	color: #75747a;
+	color: var(--gray);
 	text-decoration: none;
 	transition: .2s;
 }
 
 a:hover {
-	color: #8294b4;
+	color: var(--blue);
 }

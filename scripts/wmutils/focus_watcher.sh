@@ -4,7 +4,7 @@
 # focus a window when it is created
 # depends on: wew focus.sh
 
-spawn_at_cursor() {
+spawn_at_cursor () {
     wid=$1
     w=$(wattr w $wid)
     h=$(wattr h $wid)
@@ -18,13 +18,21 @@ spawn_at_cursor() {
 }
 
 # hacky hacky
-ignore_cover() {
+ignore_cover () {
     # Get cover window id by width/height
     wid=$(wattr iwh $(lsw) | awk '/152 151/ {print $1;}')
 
     chwb -s 0 "$wid"
     wmv -a 1668 842 "$wid"
     ignw -s "$wid"
+}
+
+# If window size is 1920x1080 remove border
+remove_border () {
+    wid=$(wattr iwh $(lsw) | awk '/1920 1080/ {print $1;}')
+    if [[ $wid -gt 0 ]]; then
+        chwb -s 0 "$wid"
+    fi
 }
 
 # watch X events
@@ -40,6 +48,6 @@ wew | while IFS=: read ev wid; do
         18) wattr $(pfw) || ~/dotfiles/scripts/wmutils/focus.sh prev 2>/dev/null ;;
 
         # focus windows where the cursor enters
-        7) wattr o $wid || ~/dotfiles/scripts/wmutils/focus.sh $wid ;;
+        7) wattr o $wid || ~/dotfiles/scripts/wmutils/focus.sh $wid; remove_border ;;
     esac
 done

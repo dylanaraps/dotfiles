@@ -1,14 +1,7 @@
 # Dylan's gtk theme
 
-gtk_color_scheme = "color_black:#34393D"
-gtk_color_scheme = "color_red:#BF687F"
-gtk_color_scheme = "color_green:#9BB38F"
-gtk_color_scheme = "color_yellow:#e5c196"
-gtk_color_scheme = "color_blue:#8294b4"
-gtk_color_scheme = "color_orange:#E68A8B"
-gtk_color_scheme = "color_cyan:#95B9BF"
-gtk_color_scheme = "color_white:#f2f3f2"
-gtk_color_scheme = "color_gray:#75747a"
+# Include color file
+include "colors.rc"
 
 gtk-icon-sizes = "panel-menu=22,22:gtk-button=16,16" # Set icon size for button without text
 gtk-button-images = 1 # Disables icons for buttons with text

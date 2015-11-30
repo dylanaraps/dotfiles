@@ -1,6 +1,7 @@
+@import "file:///home/dyl/dotfiles/scripts/colors/output/colors.css";
+
 /*
 	Dylan's Firefox CSS
-	Tested on Firefox Nightly with Default Theme
 */
 
 @namespace html url(http://www.w3.org/1999/xhtml);
@@ -9,9 +10,8 @@
 /* VARIABLES {{{ */
 
 :root {
-	/* Colors */
-    --bg-light: #34393D; --bg-dark: #34393D;
-    --fg-light: #feffff; --fg-dark: #AAAAAA;
+    /* Import colors */
+    @import "/home/dyl/dotfiles/scripts/colors/output/stylish.css"
 
 	/* Tabs */
     --tab-height: 30px;
@@ -75,9 +75,9 @@
 
 	/* Unselected Tabs */
 	#TabsToolbar .tabbrowser-tab {
-		background: var(--bg-dark) !important;
+		background: var(--black) !important;
 		border: none !important;
-		color: var(--fg-dark) !important;
+		color: var(--gray) !important;
 		font-family: var(--tab-fonts) !important;
 		font-size: var(--tab-font-size) !important;
 		text-align: center !important;
@@ -86,13 +86,13 @@
 
 	/* Selected Tab */
 	#TabsToolbar .tabbrowser-tab[selected] {
-		background: var(--bg-light) !important;
-		color: var(--fg-light) !important;
+		background: var(--black) !important;
+		color: var(--white) !important;
 	}
 
 	/* Background behind Tabs */
 	#main-window[sizemode="normal"]:not([inFullscreen])  #TabsToolbar {
-		background: var(--bg-dark) !important;
+		background: var(--black) !important;
 		margin: 0 0 0 0 !important;
     padding-top: 4px !important;
 	}
@@ -106,7 +106,7 @@
 	#TabsToolbar,
 	#tabbrowser-tabs {
 		-moz-appearance: none !important;
-		background: var(--bg-dark) !important;
+		background: var(--black) !important;
 		border: none !important;
 		box-shadow: none !important;
 	}
@@ -140,11 +140,11 @@
 /* NAVBAR/URLBAR {{{ */
 
 	menubar, toolbar, nav-bar, #TabsToolbar > *{
-		background-color: var(--bg-dark) !important;
+		background-color: var(--black) !important;
 	}
 
 	#nav-bar {
-		background: var(--bg-light) !important;
+		background: var(--black) !important;
 		border: none !important;
     border-bottom: 0 !important;
 		box-shadow: none !important;
@@ -154,10 +154,10 @@
 	}
 
 	#urlbar {
-		background: var(--bg-light) !important;
+		background: var(--black) !important;
 		border: none !important;
 		box-shadow: none !important;
-		color: var(--fg-dark) !important;
+		color: var(--gray) !important;
 		font-family: var(--url-fonts) !important;
 		font-size: var(--url-font-size) !important;
 		margin: 0 0px 0 0px !important;
@@ -225,13 +225,13 @@
 
 /* Stops the white flash on new tab */
 tabbrowser tabpanels, #appcontent > #content {
-	background: var(--bg-dark) !important;
+	background: var(--black) !important;
 }
 
 /* background color around/behind pictures opened in firefox (require html namespace on top) */
 @-moz-document regexp("(https?://|file:///)(.*)\\.(jpeg|jpg|gif|png|apng|svg|bmp|webm|webp)") {
     body {
-		background: var(--bg-dark) !important;
+		background: var(--black) !important;
 	}
 
     img.decoded {
@@ -242,7 +242,7 @@ tabbrowser tabpanels, #appcontent > #content {
 /* About:Blank background */
 @-moz-document url(about:blank) {
     html,body {
-		background: var(--bg-dark) !important;
+		background: var(--black) !important;
 	}
 }
 

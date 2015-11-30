@@ -32,6 +32,9 @@ alias steam="LD_PRELOAD=/usr/lib/libasound.so.2 STEAM_RUNTIME=1 SDL_AUDIODRIVER=
 # urxvt
 alias urxvt="urxvtc"
 
+# hdmi audio mpv
+alias mpv-hdmi="mpv --audio-device=alsa/hw:1,3"
+
 # }}}
 
 # Functions {{{
