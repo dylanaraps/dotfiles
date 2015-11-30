@@ -72,9 +72,6 @@ super + q
 super + f
     fullscreen.sh $(pfw)
 
-super + i
-    ~/dotfiles/scripts/wmutils/tile_ignore.sh $(pfw)
-
 # Application specific
 
 
