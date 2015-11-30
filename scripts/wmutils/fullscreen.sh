@@ -17,8 +17,6 @@ usage() {
 test -z "$1" && usage
 
 # this will unset the fullscreen state of any fullscreen window if there is one.
-# this way, there will only be one window in fullscreen at a time, and no window
-# will loose their previous geometry info
 test -f $fsfile && wtp $(cat $fsfile)
 
 # if file exist and contain our window id, it means that out window is in
