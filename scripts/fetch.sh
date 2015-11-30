@@ -10,35 +10,45 @@ underline=$(tput smul)
 # Clears attributes
 clear=$(tput sgr0)
 
-## Text Colors
-
-color="tput setaf"
-black="$($color 0)"
-red="$($color 1)"
-green="$($color 2)"
-yellow="$($color 3)"
-blue="$($color 4)"
-orange="$($color 5)"
-cyan="$($color 6)"
-white="$($color 7)"
-gray="$($color 8)"
+# Default color
+# colors are now defined with a launch option "-c"
+color=$(tput setaf 1)
 
 ## Custom Image
 
-width=120
-height=120
+width=140
+height=140
 yoffset=0
 xoffset=0
 
 # Comment out these two lines below to disable the image
-img=$HOME/Pictures/fetch.jpg
+img=$HOME/Pictures/fetch.png
 
 # Padding to align text to the right
-pad="                      "
+pad="                          "
 
 ## Other
 
-title="Dylan's PC"
+title="dylan's pc"
+
+customtext=$(colors2.sh)
+
+# Set up args
+while getopts ":c:e:w:h:t:p:x:y:" opt; do
+    case $opt in
+        c) color=$(tput setaf $OPTARG) ;;
+        e) customtext="$OPTARG" ;;
+        w) width="$OPTARG" ;;
+        h) height="$OPTARG" ;;
+        t) title="$OPTARG" ;;
+        p) pad="$OPTARG" ;;
+        x) xoffset="$OPTARG" ;;
+        y) yoffset="$OPTARG" ;;
+    esac
+done
+
+# Underline title with length of title
+underline=$(printf '%0.s-' $(seq 1 $(echo "${title%?}" | wc -m)))
 
 ## Start printing info
 
@@ -46,15 +56,17 @@ title="Dylan's PC"
 clear
 
 echo "${pad}${bold}$title${clear}"
-echo "${pad}----------"
-echo "${pad}${bold}${green}OS:${clear} $(cat /etc/*ease | awk '/^NAME=/' | cut -d '"' -f2)"
-echo "${pad}${bold}${green}Kernal:${clear} $(uname -r)"
-echo "${pad}${bold}${green}Uptime:${clear} $(uptime -p)"
-echo "${pad}${bold}${green}Packages:${clear} $(pacman -Q | wc -l)"
-echo "${pad}${bold}${green}Shell:${clear} $SHELL"
-echo "${pad}${bold}${green}Window Manager:${clear} wmutils"
-echo "${pad}${bold}${green}Cpu:${clear} AMD FX-6300 ${cyan}@${clear} $(lscpu | awk '/CPU MHz:/ {printf "scale=1; " $3 " / 1000 \n"}' | bc -l)GHz"
-echo "${pad}${bold}${green}Ram:${clear} $(free -m | awk '/Mem:/ {printf $3 "MB / " $2 "MB"}')"
-echo "${pad}${bold}${green}Current Song:${clear} $(mpc current | cut -c 1-25)"
+echo "${pad}$underline"
+echo "${pad}${bold}${color}OS${clear}: $(cat /etc/*ease | awk '/^NAME=/' | cut -d '"' -f2)"
+echo "${pad}${bold}${color}Kernal${clear}: $(uname -r)"
+echo "${pad}${bold}${color}Uptime${clear}: $(uptime -p)"
+echo "${pad}${bold}${color}Packages${clear}: $(pacman -Q | wc -l)"
+echo "${pad}${bold}${color}Shell${clear}: $SHELL"
+echo "${pad}${bold}${color}Window Manager${clear}: none"
+echo "${pad}${bold}${color}Cpu${clear}: AMD FX-6300 ${cyan}@${clear} $(lscpu | awk '/CPU MHz:/ {printf "scale=1; " $3 " / 1000 \n"}' | bc -l)GHz"
+echo "${pad}${bold}${color}Ram${clear}: $(free -m | awk '/Mem:/ {printf $3 "MB / " $2 "MB"}')"
+echo "${pad}${bold}${color}Song${clear}: $(mpc current | cut -c 1-30)"
+echo ""
+echo "$customtext"
 echo ""
 echo -e "0;1;$xoffset;$yoffset;$width;$height;;;;;$img\n4;\n3;" | /usr/lib/w3m/w3mimgdisplay

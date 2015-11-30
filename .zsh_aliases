@@ -35,6 +35,9 @@ alias urxvt="urxvtc"
 # hdmi audio mpv
 alias mpv-hdmi="mpv --audio-device=alsa/hw:1,3"
 
+# Start gimp with a different gtkrc as it crashes when a bitmap font is used
+alias gimp="GTK2_RC_FILES=~/gimp.gtkrc gimp"
+
 # }}}
 
 # Functions {{{
