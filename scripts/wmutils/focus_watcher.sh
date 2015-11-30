@@ -27,14 +27,6 @@ ignore_cover () {
     ignw -s "$wid"
 }
 
-# If window size is 1920x1080 remove border
-remove_border () {
-    wid=$(wattr iwh $(lsw) | awk '/1920 1080/ {print $1;}')
-    if [[ $wid -gt 0 ]]; then
-        chwb -s 0 "$wid"
-    fi
-}
-
 # watch X events
 wew | while IFS=: read ev wid; do
     case $ev in
@@ -45,9 +37,9 @@ wew | while IFS=: read ev wid; do
         19) wattr o $wid || ~/dotfiles/scripts/wmutils/focus.sh $wid ;;
 
         # focus next window when deleting focused window
-        18) wattr $(pfw) || ~/dotfiles/scripts/wmutils/focus.sh prev 2>/dev/null ;;
+        18) wattr $(pfw) || ~/dotfiles/scripts/wmutils/focus.sh prev ;;
 
         # focus windows where the cursor enters
-        7) wattr o $wid || ~/dotfiles/scripts/wmutils/focus.sh $wid; remove_border ;;
+        7) wattr o $wid || ~/dotfiles/scripts/wmutils/focus.sh $wid ;;
     esac
 done

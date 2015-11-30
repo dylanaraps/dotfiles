@@ -24,6 +24,6 @@ music.sh &
 coverspawn.sh &
 
 # Set wallpaper
-feh --bg-fill ~/Pictures/wallpaper/8.jpg &
+feh --bg-fill ~/Pictures/wallpaper/mmm.png &
 
 exec sh -c 'while :; do sleep 10; done'

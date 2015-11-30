@@ -20,7 +20,8 @@ setborder() {
     wattr $2 || return
 
     # do not modify border of fullscreen windows
-    test "$(wattr xywh $2)" = "0 0 1920 1080" && return
+    test "$(wattr wh $2)" = "1920 1080" && return
+    test "$(wattr wh $2)" = "1280 1024" && return
 
     case $1 in
         active)   chwb -s $bw -c $active $2 ;;

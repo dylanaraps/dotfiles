@@ -33,8 +33,15 @@ else
     # geometry and id to $fsfile we also remove any border from this window.
     wattr xywhi $1 > $fsfile
 
-    # Hardcoded due to multimon
-    wtp 0 0 1920 1080 $1
+    # hardcoded miltimon support
+    if [[ $(wattr y $1) -gt 1080 ]]; then
+        wtp 0 1080 1920 1080 $1
+    elif [[ $(wattr x $1) -gt 1920 ]]; then
+        wtp 1920 0 1280 1024 $1
+    else
+        wtp 0 0 1920 1080 $1
+    fi
+
     chwb -s 0 $1
 fi
 
