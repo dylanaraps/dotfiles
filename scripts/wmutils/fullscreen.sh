@@ -5,7 +5,7 @@
 # depends on: focus.sh
 
 # this file is used to store the previous geometry of a window
-fsfile="$HOME/.fwin"
+fsfile="/tmp/.fwin-$1"
 
 # it's pretty simple, but anyway...
 usage() {
@@ -33,7 +33,6 @@ else
     # geometry and id to $fsfile we also remove any border from this window.
     wattr xywhi $1 > $fsfile
 
-    # hardcoded miltimon support
     if [[ $(wattr y $1) -gt 1080 ]]; then
         wtp 0 1080 1920 1080 $1
     elif [[ $(wattr x $1) -gt 1920 ]]; then

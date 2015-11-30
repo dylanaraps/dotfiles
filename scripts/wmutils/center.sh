@@ -7,12 +7,21 @@ wid=$(pfw)
 ww=$(wattr w $wid)
 wh=$(wattr h $wid)
 
-# Hardcoded w/h due to multimon
-SW=1920
-SH=1080
+# Multimon
+sw=1920
+sh=1080
+
+if [[ $(wattr y $wid) -gt 1080 ]]; then
+    wtp $(((sw - ww) / 2)) $(((sh - wh ) / 2 + 1080)) $ww $wh $wid
+elif [[ $(wattr x $wid) -gt 1920 ]]; then
+    sw=1280
+    sh=1024
+    wtp $(((sw - ww) / 2 + 1920)) $(((sh - wh) / 2)) $ww $wh $wid
+else
+    wtp $(((sw - ww)/2)) $(((sh - wh)/2)) $ww $wh $wid
+fi
 
 # move the current window to the center of the screen
-wtp $(((SW - ww)/2)) $(((SH - wh)/2)) $ww $wh $wid
 
 # Move the current window to the botton layer
 chwso -l $wid
