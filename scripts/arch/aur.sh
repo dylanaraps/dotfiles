@@ -55,7 +55,7 @@ while getopts "a:c:s:Sm:M:n:*" opt 2>/dev/null; do
         a) aurdir="$OPTARG" ;;
         c) cowflags="$OPTARG" ;;
         s) packages+=($OPTARG) ;;
-        S) packages="*" ;;
+        S) dl=0; all=1 ;;
         m) mkflags=($OPTARG) ;;
         M) mkflags+=($OPTARG) ;;
         n) dl=0 ;;
@@ -71,7 +71,13 @@ cd "$aurdir" 2>/dev/null || \
 { echo "$errsuffix Failed to cd to aur directory: $(tput bold)$aurdir$(tput sgr0)"; exit; }
 
 # Update the packages
-for pkg in "${packages[@]}"; do
+if [[ $all == 1 ]]; then
+    loop="*"
+else
+    loop="${packages[@]}"
+fi
+
+for pkg in $loop; do
     # If package isn't in aur folder, attempt to download PKGBUILD/etc using cower
     # Use the -n flag to disable this.
     if [ ! -d "$aurdir/$pkg" ] && [ $dl -eq 1 ]; then
