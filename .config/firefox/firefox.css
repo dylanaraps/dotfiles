@@ -10,9 +10,6 @@
 /* VARIABLES {{{ */
 
 :root {
-    /* Import colors */
-    @import "/home/dyl/dotfiles/scripts/colors/output/stylish.css"
-
 	/* Tabs */
     --tab-height: 30px;
     --tab-fonts: drift;
