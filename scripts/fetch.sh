@@ -29,8 +29,10 @@ pad="                          "
 
 ## Other
 
+# Title
 title="dylan's pc"
 
+# Custom text to print at the bottom, configurable at launch with "-e"
 customtext=$(colors2.sh)
 
 # Set up args
