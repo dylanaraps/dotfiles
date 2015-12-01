@@ -20,10 +20,10 @@ spawn_at_cursor () {
 # hacky hacky
 ignore_cover () {
     # Get cover window id by width/height
-    wid=$(wattr iwh $(lsw) | awk '/152 151/ {print $1;}')
+    wid=$(wattr iwh $(lsw) | awk '/144 143/ {print $1;}')
 
-    chwb -s 0 "$wid"
-    wmv -a 1668 842 "$wid"
+    chwb -s 6 "$wid"
+    wmv -a 1667 815 "$wid"
     ignw -s "$wid"
 }
 

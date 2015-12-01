@@ -7,14 +7,14 @@ barname="popups"
 sleep=2
 
 width=150
-height=30
+height=40
 xoffset=1670
 yoffset=35
 
 bg="#$white"
 fg="#$black"
 
-font="drift"
+font="lemon"
 
 # Options
 

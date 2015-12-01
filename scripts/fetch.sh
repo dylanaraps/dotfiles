@@ -71,4 +71,5 @@ echo "${pad}${bold}${color}Song${clear}: $(mpc current | cut -c 1-30)"
 echo ""
 echo "$customtext"
 echo ""
+
 echo -e "0;1;$xoffset;$yoffset;$width;$height;;;;;$img\n4;\n3;" | /usr/lib/w3m/w3mimgdisplay

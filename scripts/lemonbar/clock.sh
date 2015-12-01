@@ -6,4 +6,4 @@ while :; do
 	sleep 1s
 done |
 
-lemonbar -d -g "150x30+1670+1015" -f "drift" -B "#$white" -F "#$black"
+lemonbar -d -g "150x40+1670+990" -f "lemon" -B "#$white" -F "#$black"
