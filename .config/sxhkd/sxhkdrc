@@ -87,12 +87,13 @@ super + {Left,Right}
     popup.sh -e "$(mpc current)" -w $(txtw "$(mpc current)") -x $((1820 - $(txtw "$(mpc current)")))
 
 super + End
-    mpc -q toggle
+    mpc -q toggle; \
+    popup.sh -e "$(mpc status | egrep -o '\[.*\]' | sed 's/[][]//g')" -w 150 -x 1670 &
 
 # scrot
 super + p
-    cd "$HOME/Pictures" && scrot &; \
-    popup.sh -e "Saved Screenshot" -s 1 -w 150 -x 1670
+    popup.sh -e "Saved Screenshot" -s 2 -w 150 -x 1670; \
+    cd "$HOME/Pictures" && scrot &
 
 # Other
 
