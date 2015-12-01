@@ -1,5 +1,6 @@
 ! Dylans Xresources
-URxvt*font: xft:drift:pixelsize=10:antialias=false
+URxvt*font: xft:lemon:pixelsize=10:antialias=false
+URxvt*boldFont: xft:lemon:pixelsize=10:antialias=false
 URxvt*lineSpace: 2
 
 ! Terminal window size

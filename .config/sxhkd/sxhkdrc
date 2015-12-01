@@ -7,7 +7,7 @@ super + Return
 
 # Dmenu
 super + d
-    dmenu_recent_aliases -s 0 -nb "#$white" -nf "#$black" -sb "#$white" -sf "#$gray" -i -h 30 -w 120 -q -x 30 -y 30 -fn "drift" -p ">" -l 1
+    dmenu_recent_aliases -s 0 -nb "#$white" -nf "#$black" -sb "#$white" -sf "#$gray" -i -h 30 -w 120 -q -x 30 -y 30 -fn "lemon" -p ">" -l 1
 
 
 # manipulate windows

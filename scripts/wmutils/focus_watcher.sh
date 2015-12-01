@@ -22,8 +22,8 @@ ignore_cover () {
     # Get cover window id by width/height
     wid=$(wattr iwh $(lsw) | awk '/144 143/ {print $1;}')
 
-    chwb -s 6 "$wid"
-    wmv -a 1667 815 "$wid"
+    chwb -s 7 "$wid"
+    wmv -a 1666 815 "$wid"
     ignw -s "$wid"
 }
 

@@ -16,8 +16,8 @@ color=$(tput setaf 1)
 
 ## Custom Image
 
-width=140
-height=140
+width=128
+height=128
 yoffset=0
 xoffset=0
 
@@ -25,7 +25,7 @@ xoffset=0
 img=$HOME/Pictures/fetch.png
 
 # Padding to align text to the right
-pad="                          "
+pad="                             "
 
 ## Other
 
