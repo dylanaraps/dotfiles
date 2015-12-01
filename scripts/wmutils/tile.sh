@@ -37,8 +37,12 @@ if [[ $(wattr x $pfw) -gt 1920 ]]; then
     mon=2
     width=1280
     height=1024
+    gap=50
+    paddingy=0
+    paddingx=0
 
     x=$((gap + paddingx + 1920))
+    y=$((gap + panel + paddingy))
 
     # List windows only on the second monitor
     listwin=$(wattr xi $(lsw) | awk '$1 > 1920' | awk '{print $2}')
