@@ -17,7 +17,7 @@ colors () {
     if [[ $totalcolors == 8 ]]; then
         getcolors=$(xrdb -query | grep "\*\.color[0-8]:" | sort --version-sort | cut -f2 | sed -e "s/\#//")
     else
-        getcolors=$(xrdb -query | grep "\*\.color[0-9]*[0-9]:" | sort --version-sort | cut -f2 | sed -e "s/\#//")
+        getcolors=$(xrdb -query | grep "\*\.color[0-9]*[0-4]:" | sort --version-sort | cut -f2 | sed -e "s/\#//")
     fi
     # What to name the colors.
     # Goes in order of 0-15
