@@ -91,7 +91,7 @@ style "theme-default" {
     text[NORMAL] = @color_gray # window text
     text[PRELIGHT] = @color_gray # mouseover text
     text[ACTIVE] = @color_gray # menu and tree active text in inactive window
-    text[SELECTED] = @color_gray # selected text
+    text[SELECTED] = @color_white # selected text
     text[INSENSITIVE] = @color_gray
 
     xthickness = 0

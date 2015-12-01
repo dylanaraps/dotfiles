@@ -1,8 +1,8 @@
 
 " ryuuko.vim -- Vim color scheme.
-" Author:      Dylan Araps (dyl@tfwno.gf)
-" Webpage:     https://github.com/dylanaraps/crayone
-" Description: A 16 color theme for vim
+" Author:      dyl ()
+" Webpage:     
+" Description: 
 
 hi clear
 
