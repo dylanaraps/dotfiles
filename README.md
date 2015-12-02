@@ -1,5 +1,7 @@
 # Dylan's Dotfiles
 
+## Screenshots are slightly outdated
+
 ![1](http://i.imgur.com/zLHFEFs.png)
 ![2](http://i.imgur.com/B5pAlbF.png)
 ![3](http://i.imgur.com/EODVLd7.png)
