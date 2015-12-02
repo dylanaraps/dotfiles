@@ -62,7 +62,7 @@ super + c
 
 # Corners
 alt + {1,2,3,4,5,6}
-    corner.sh {tl,tr,bl,br,ml,mr}
+    corner.sh {tl,ml,bl,tr,mr,br}
 
 # close window
 super + q
@@ -100,5 +100,3 @@ super + p
 # Restart sxhkd
 super + Escape
     pkill -USR1 -x sxhkd
-
-
