@@ -51,9 +51,13 @@ super + shift + {1,2,3,4,5}
 super + e
     graow.sh -d all
 
+# Exclude window from tiling
+super +  i
+    tile.sh -i
+
 # Tile windows
 super + s
-    tile.sh ;\
+    tile.sh -t; \
     mpc update &
 
 # Center window on screen
