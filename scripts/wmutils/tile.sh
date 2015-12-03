@@ -3,7 +3,6 @@
 # Heavily modified by Dylan
 # Tile windows with gaps/padding/ignored-windows/multi-monitor
 
-
 # Options
 
 # Space to leave on top for a panel
@@ -17,13 +16,13 @@ paddingy=50
 paddingx=250
 
 # Currently focused window
-pfw=$(pfw)
+wid=$(pfw)
 
 # Border width
-bw=$(wattr b "$pfw")
+bw=$(wattr b "$wid")
 
 # Ignore file
-ignorefile="/tmp/.ignore-$pfw"
+ignorefile="/tmp/.ignore-$wid"
 
 # Exclude windows from tiling
 ignore () {
@@ -34,9 +33,9 @@ ignore () {
         touch $ignorefile
 
         # If tiled window class is URxvt then restore it to it's default size on ignore
-        if [[ $(xprop -id $pfw WM_CLASS | cut -d\" -f4) == *"URxvt"* ]]; then
-            xy=$(wattr xy $pfw)
-            wtp $xy 355 234 $pfw
+        if [[ $(xprop -id $wid WM_CLASS | cut -d\" -f4) == *"URxvt"* ]]; then
+            xy=$(wattr xy $wid)
+            wtp $xy 355 234 $wid
         fi
     fi
 }
@@ -53,7 +52,7 @@ tile () {
 
     # Checks the x/y coords of the currently focused window to see which monitor it's on.
     # Monitors must be manually defined as wmutils doesn't have multimon tools yet.
-    if [[ $(wattr x $pfw) -gt 1920 ]]; then
+    if [[ $(wattr x $wid) -gt 1920 ]]; then
         mon=2
         width=1280
         height=1024
@@ -66,7 +65,7 @@ tile () {
 
         # List windows only on the second monitor
         listwin=$(wattr xi $(lsw) | awk '$1 > 1920' | awk '{print $2}')
-    elif [[ $(wattr y $pfw) -gt 1080 ]]; then
+    elif [[ $(wattr y $wid) -gt 1080 ]]; then
         mon=3
         width=1920
         height=1080
@@ -91,7 +90,7 @@ tile () {
     master=$((width / 2 - $((gap / 2)) - paddingx))
 
     # Get the number of windows to put in the stacking area
-    max=$(echo "$listwin" | grep -v $pfw | wc -l)
+    max=$(echo "$listwin" | grep -v $wid | wc -l)
 
     # calculate usable screen size (without borders and gaps)
     sw=$((width - gap - 2*bw - paddingx))
@@ -109,13 +108,13 @@ tile () {
         sw=$((sw - gap - paddingx))
         sh=$((sh - gap - paddingy))
 
-        wtp $x $y $sw $sh $pfw
+        wtp $x $y $sw $sh $wid
     else
-        wtp $x $y $((master - gap - 2*bw)) $((sh - gap - paddingy)) $pfw
+        wtp $x $y $((master - gap - 2*bw)) $((sh - gap - paddingy)) $wid
     fi
 
     # Put the tiled windows at the bottom of the stack
-    chwso -l $pfw
+    chwso -l $wid
 
 
     # Tile the rest of the windows
@@ -130,7 +129,7 @@ tile () {
     h=$((sh / $((max - ignore)) - gap - paddingy/$((max - ignore))))
     echo $h
 
-    for wid in $(echo "$listwin" | grep -v $pfw); do
+    for wid in $(echo "$listwin" | grep -v $wid); do
         ignorefile="/tmp/.ignore-$wid"
         # If focused window's name doesn't include "tile_ignore", tile it!
         if [ ! -f $ignorefile ]; then
