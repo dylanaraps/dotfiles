@@ -4,7 +4,7 @@
 # Options and their default values
 
 # Cower/Makepkg flags
-mkflags="-sicfC"
+mkflags=(-sicfC --noconfirm)
 cowflags="-d"
 
 # aur packages dir

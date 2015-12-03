@@ -45,4 +45,4 @@ echo "Syncing CS:GO"
 rsync -a --delete /home/dyl/.steam/steam/SteamApps/Common/Counter-Strike\ Global\ Offensive /home/dyl/Backup/Games
 
 
-echo "Done!"; popup.sh -e "Backup Complete!" -s 5
+echo "Done!"; popup.sh -e "Backup Complete!" -s 5 &
