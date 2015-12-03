@@ -59,8 +59,8 @@ Xcursor.size: 16
 *.color13:      #ccad99
 
 ! cyan
-*.color6:       #99bfb9
-*.color14:      #99bfb9
+*.color6:       #8fb3ad
+*.color14:      #8fb3ad
 
 ! white
 *.color7:       #f0e4d8

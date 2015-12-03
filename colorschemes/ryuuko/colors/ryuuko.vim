@@ -15,7 +15,7 @@ let g:terminal_color_2 = "#78a090"
 let g:terminal_color_3 = "#bfb7a1"
 let g:terminal_color_4 = "#7c9fa6"
 let g:terminal_color_5 = "#ccad99"
-let g:terminal_color_6 = "#99bfb9"
+let g:terminal_color_6 = "#8fb3ad"
 let g:terminal_color_7 = "#f0e4d8"
 let g:terminal_color_8 = "#70838c"
 let g:terminal_color_9 = "#99736e"
@@ -23,7 +23,7 @@ let g:terminal_color_10 = "#78a090"
 let g:terminal_color_11 = "#bfb7a1"
 let g:terminal_color_12 = "#7c9fa6"
 let g:terminal_color_13 = "#ccad99"
-let g:terminal_color_14 = "#99bfb9"
+let g:terminal_color_14 = "#8fb3ad"
 let g:terminal_color_15 = "#f0e4d8"
 
 if exists("syntax_on")
@@ -44,7 +44,7 @@ if &t_Co >= 256 || has("gui_running")
 		hi Identifier ctermbg=NONE ctermfg=1 cterm=NONE guibg=NONE guifg=#99736e gui=NONE
 		hi Ignore ctermbg=8 ctermfg=0 cterm=NONE guibg=#70838c guifg=#434e4a gui=NONE
 		hi PreProc ctermbg=NONE ctermfg=3 cterm=NONE guibg=NONE guifg=#bfb7a1 gui=NONE
-		hi Special ctermbg=NONE ctermfg=6 cterm=NONE guibg=NONE guifg=#99bfb9 gui=NONE
+		hi Special ctermbg=NONE ctermfg=6 cterm=NONE guibg=NONE guifg=#8fb3ad gui=NONE
 		hi Statement ctermbg=NONE ctermfg=1 cterm=NONE guibg=NONE guifg=#99736e gui=NONE
 		hi String ctermbg=NONE ctermfg=2 cterm=NONE guibg=NONE guifg=#78a090 gui=NONE
 		hi Number ctermbg=NONE ctermfg=3 cterm=NONE guibg=NONE guifg=#bfb7a1 gui=NONE
@@ -67,7 +67,7 @@ if &t_Co >= 256 || has("gui_running")
 		hi Visual ctermbg=8 ctermfg=0 cterm=NONE guibg=#70838c guifg=#434e4a gui=NONE
 		hi VisualNOS ctermbg=NONE ctermfg=1 cterm=NONE guibg=NONE guifg=#99736e gui=NONE
 		hi Pmenu ctermbg=8 ctermfg=7 cterm=NONE guibg=#70838c guifg=#f0e4d8 gui=NONE
-		hi PmenuSbar ctermbg=6 ctermfg=7 cterm=NONE guibg=#99bfb9 guifg=#f0e4d8 gui=NONE
+		hi PmenuSbar ctermbg=6 ctermfg=7 cterm=NONE guibg=#8fb3ad guifg=#f0e4d8 gui=NONE
 		hi PmenuSel ctermbg=4 ctermfg=0 cterm=NONE guibg=#7c9fa6 guifg=#434e4a gui=NONE
 		hi PmenuThumb ctermbg=8 ctermfg=8 cterm=NONE guibg=#70838c guifg=#70838c gui=NONE
 		hi FoldColumn ctermbg=NONE ctermfg=7 cterm=NONE guibg=NONE guifg=#f0e4d8 gui=NONE
@@ -96,7 +96,7 @@ if &t_Co >= 256 || has("gui_running")
 		hi SpellBad ctermbg=NONE ctermfg=1 cterm=underline guibg=NONE guifg=#99736e gui=underline guisp=#99736e
 		hi SpellCap ctermbg=NONE ctermfg=4 cterm=underline guibg=NONE guifg=#7c9fa6 gui=underline guisp=#7c9fa6
 		hi SpellLocal ctermbg=NONE ctermfg=5 cterm=underline guibg=NONE guifg=#ccad99 gui=underline guisp=#ccad99
-		hi SpellRare ctermbg=NONE ctermfg=6 cterm=underline guibg=NONE guifg=#99bfb9 gui=underline guisp=#99bfb9
+		hi SpellRare ctermbg=NONE ctermfg=6 cterm=underline guibg=NONE guifg=#8fb3ad gui=underline guisp=#8fb3ad
 		hi Boolean ctermbg=NONE ctermfg=5 cterm=NONE guibg=NONE guifg=#ccad99 gui=NONE
 		hi Character ctermbg=NONE ctermfg=1 cterm=NONE guibg=NONE guifg=#99736e gui=NONE
 		hi Conditional ctermbg=NONE ctermfg=5 cterm=NONE guibg=NONE guifg=#ccad99 gui=NONE
@@ -173,7 +173,7 @@ if &t_Co >= 256 || has("gui_running")
 		hi rubyConstant ctermbg=NONE ctermfg=3 cterm=NONE guibg=NONE guifg=#bfb7a1 gui=NONE
 		hi rubyInterpolation ctermbg=NONE ctermfg=2 cterm=NONE guibg=NONE guifg=#78a090 gui=NONE
 		hi rubyInterpolationDelimiter ctermbg=NONE ctermfg=3 cterm=NONE guibg=NONE guifg=#bfb7a1 gui=NONE
-		hi rubyRegexp ctermbg=NONE ctermfg=6 cterm=NONE guibg=NONE guifg=#99bfb9 gui=NONE
+		hi rubyRegexp ctermbg=NONE ctermfg=6 cterm=NONE guibg=NONE guifg=#8fb3ad gui=NONE
 		hi rubySymbol ctermbg=NONE ctermfg=2 cterm=NONE guibg=NONE guifg=#78a090 gui=NONE
 		hi rubyTodo ctermbg=NONE ctermfg=8 cterm=NONE guibg=NONE guifg=#70838c gui=NONE
 		hi rubyRegexpAnchor ctermbg=NONE ctermfg=7 cterm=NONE guibg=NONE guifg=#f0e4d8 gui=NONE
@@ -186,7 +186,7 @@ if &t_Co >= 256 || has("gui_running")
 		hi phpMemberSelector ctermbg=NONE ctermfg=7 cterm=NONE guibg=NONE guifg=#f0e4d8 gui=NONE
 		hi phpComparison ctermbg=NONE ctermfg=7 cterm=NONE guibg=NONE guifg=#f0e4d8 gui=NONE
 		hi phpParent ctermbg=NONE ctermfg=7 cterm=NONE guibg=NONE guifg=#f0e4d8 gui=NONE
-		hi cOperator ctermbg=NONE ctermfg=6 cterm=NONE guibg=NONE guifg=#99bfb9 gui=NONE
+		hi cOperator ctermbg=NONE ctermfg=6 cterm=NONE guibg=NONE guifg=#8fb3ad gui=NONE
 		hi cPreCondit ctermbg=NONE ctermfg=5 cterm=NONE guibg=NONE guifg=#ccad99 gui=NONE
 		hi SignifySignAdd ctermbg=NONE ctermfg=2 cterm=NONE guibg=NONE guifg=#78a090 gui=NONE
 		hi SignifySignChange ctermbg=NONE ctermfg=4 cterm=NONE guibg=NONE guifg=#7c9fa6 gui=NONE
