@@ -10,7 +10,7 @@
 # My Setup
 
 * Linux Distro: [Arch Linux](https://www.archlinux.org/)
-* Window Manager: [wmutils]
+* Window Manager: wmutils
 * Gtk Icons: [Ultra Flat Icons](https://aur.archlinux.org/packages/ultra-flat-icons/)
 * Bar: [Lemonboy's Bar patched with xft support](https://github.com/krypt-n/bar)
 * Launcher: [Dmenu2](https://github.com/mrshankly/dmenu2)
