@@ -1,11 +1,9 @@
 # Dylan's Dotfiles
 
-## Screenshots are slightly outdated
-
-![1](http://i.imgur.com/zLHFEFs.png)
-![2](http://i.imgur.com/B5pAlbF.png)
-![3](http://i.imgur.com/EODVLd7.png)
-![4](http://i.imgur.com/upLiRFF.png)
+![1](http://i.imgur.com/LK8YpKr.png)
+![2](http://i.imgur.com/xFz7x8X.png)
+![3](http://i.imgur.com/onEBpeC.png)
+![4](http://i.imgur.com/vshV4B9.png)
 
 <!--- My Setup {{{ -->
 

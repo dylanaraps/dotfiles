@@ -23,8 +23,15 @@ format=jpg
 
 while :; do
 	currentsong=$(mpc current | sed -e 's/\///g')
+    img="$dir$currentsong.$format"
 
-	w3m_command="0;1;$xoffset;$yoffset;$width;$height;;;;;$dir$currentsong.$format\n4;\n3;"
+    # Desaturate cover image to match colorscheme
+    if [[ $1 != "--no-convert" ]]; then
+        convert "$img" -modulate 100,50,100 "$HOME/.cover/$currentsong.$format"
+        img="$HOME/.cover/$currentsong.$format"
+    fi
+
+	w3m_command="0;1;$xoffset;$yoffset;$width;$height;;;;;$img\n4;\n3;"
 	echo -e "$w3m_command" | /usr/lib/w3m/w3mimgdisplay
 
     # Update on mpd play/pause/next/prev and database update

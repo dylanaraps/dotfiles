@@ -96,7 +96,7 @@ super + End
 
 # scrot
 super + p
-    popup.sh -e "Saved Screenshot" -s 2 -w 150 -x 1670; \
+    popup.sh -e "Saved Screenshot" -s 4 -w 150 -x 1670 & sleep 1; \
     cd "$HOME/Pictures" && scrot &
 
 # Other

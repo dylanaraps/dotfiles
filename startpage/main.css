@@ -23,8 +23,8 @@ main {
 	display: block;
 	position: absolute;
 	top: 50%;
-	left: 50%;
-	transform: translate(-50%,-90%);
+	left: 40%;
+	transform: translate(-40%,-90%);
 }
 
 /* Change the vertical center offset
