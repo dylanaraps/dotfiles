@@ -62,11 +62,11 @@ super + s
 
 # Center window on screen
 super + c
-    center.sh
+    corner.sh mm
 
 # Corners
-alt + {1,2,3,4,5,6}
-    corner.sh {tl,ml,bl,tr,mr,br}
+alt + {1,2,3,4,5,6,7,8}
+    corner.sh {tl,ml,bl,mt,mb,tr,mr,br}
 
 # close window
 super + q

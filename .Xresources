@@ -30,40 +30,40 @@ Xcursor.size: 16
 ! ryuuko Colors {{{
 
 ! special
-*.foreground:   #f2f3f2
-*.background:   #34393D
-*.cursorColor:  #f2f3f2
+*.foreground:   #f0e4d8
+*.background:   #434e4a
+*.cursorColor:  #f0e4d8
 
 ! black
-*.color0:       #34393D
-*.color8:       #75747a
+*.color0:       #434e4a
+*.color8:       #70838c
 
 ! red
-*.color1:       #BF687F
-*.color9:       #BF687F
+*.color1:       #99736e
+*.color9:       #99736e
 
 ! green
-*.color2:       #9BB38F
-*.color10:      #9BB38F
+*.color2:       #78a090
+*.color10:      #78a090
 
 ! yellow
-*.color3:       #e5c196
-*.color11:      #e5c196
+*.color3:       #bfb7a1
+*.color11:      #bfb7a1
 
 ! blue
-*.color4:       #8294b4
-*.color12:      #8294b4
+*.color4:       #7c9fa6
+*.color12:      #7c9fa6
 
 ! magenta
-*.color5:       #E68A8B
-*.color13:      #E68A8B
+*.color5:       #ccad99
+*.color13:      #ccad99
 
 ! cyan
-*.color6:       #95B9BF
-*.color14:      #95B9BF
+*.color6:       #99bfb9
+*.color14:      #99bfb9
 
 ! white
-*.color7:       #f2f3f2
-*.color15:      #f2f3f2
+*.color7:       #f0e4d8
+*.color15:      #f0e4d8
 
 ! }}}

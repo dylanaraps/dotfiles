@@ -27,11 +27,17 @@ ignorefile="/tmp/.ignore-$pfw"
 
 # Exclude windows from tiling
 ignore () {
-    # if file exist and contains our window id,
+    # if file exists
     if test -f $ignorefile; then
         rm -f $ignorefile
     else
         touch $ignorefile
+
+        # If tiled window class is URxvt then restore it to it's default size on ignore
+        if [[ $(xprop -id $pfw WM_CLASS | cut -d\" -f4) == *"URxvt"* ]]; then
+            xy=$(wattr xy $pfw)
+            wtp $xy 355 234 $pfw
+        fi
     fi
 }
 

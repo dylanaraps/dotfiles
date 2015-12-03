@@ -1,12 +1,12 @@
 /* Color variables */
 :root {
-    --black: #34393D;
-    --red: #BF687F;
-    --green: #9BB38F;
-    --yellow: #e5c196;
-    --blue: #8294b4;
-    --orange: #E68A8B;
-    --cyan: #95B9BF;
-    --white: #f2f3f2;
-    --gray: #75747a;
+    --black: #434e4a;
+    --red: #99736e;
+    --green: #78a090;
+    --yellow: #bfb7a1;
+    --blue: #7c9fa6;
+    --orange: #ccad99;
+    --cyan: #99bfb9;
+    --white: #f0e4d8;
+    --gray: #70838c;
 }

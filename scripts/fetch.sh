@@ -21,9 +21,6 @@ height=128
 yoffset=0
 xoffset=0
 
-# Comment out these two lines below to disable the image
-img=$HOME/Pictures/fetch.png
-
 # Padding to align text to the right
 pad="                             "
 
@@ -48,6 +45,13 @@ while getopts ":c:e:w:h:t:p:x:y:" opt; do
         y) yoffset="$OPTARG" ;;
     esac
 done
+
+# Get image form wallpaper
+wallpaper=$(cat .fehbg | awk '/feh/ {printf $3}' | sed -e "s/'//g")
+
+convert -crop 1080x1080+480+0 "$wallpaper" "$HOME/.wallpaper/$(basename $wallpaper)"
+
+img="$HOME/.wallpaper/$(basename $wallpaper)"
 
 # Underline title with length of title
 underline=$(printf '%0.s-' $(seq 1 $(echo "${title%?}" | wc -m)))
