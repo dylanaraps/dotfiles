@@ -41,6 +41,9 @@ alias gimp="GTK2_RC_FILES=~/gimp.gtkrc gimp"
 # backup files on poweroff
 alias poweroff="backup.sh; poweroff"
 
+# Create vim colorscheme on open
+alias nvim="erb -T - ~/dotfiles/colorschemes/ryuuko/ryuuko.erb > ~/dotfiles/colorschemes/ryuuko/colors/ryuuko.vim && nvim"
+
 # }}}
 
 # Functions {{{

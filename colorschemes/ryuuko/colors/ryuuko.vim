@@ -8,24 +8,6 @@ hi clear
 
 set background=dark
 
-" Neovim Terminal Mode Colors
-let g:terminal_color_0 = "#434e4a"
-let g:terminal_color_1 = "#99736e"
-let g:terminal_color_2 = "#78a090"
-let g:terminal_color_3 = "#bfb7a1"
-let g:terminal_color_4 = "#7c9fa6"
-let g:terminal_color_5 = "#ccad99"
-let g:terminal_color_6 = "#8fb3ad"
-let g:terminal_color_7 = "#f0e4d8"
-let g:terminal_color_8 = "#70838c"
-let g:terminal_color_9 = "#99736e"
-let g:terminal_color_10 = "#78a090"
-let g:terminal_color_11 = "#bfb7a1"
-let g:terminal_color_12 = "#7c9fa6"
-let g:terminal_color_13 = "#ccad99"
-let g:terminal_color_14 = "#8fb3ad"
-let g:terminal_color_15 = "#f0e4d8"
-
 if exists("syntax_on")
 syntax reset
 endif
@@ -357,5 +339,25 @@ endif
 
 
 " Generated with RNB (https://gist.github.com/romainl/5cd2f4ec222805f49eca)
+
+" }}}
+
+" Neovim Terminal Mode Colors
+let g:terminal_color_0 = "#434e4a"
+let g:terminal_color_1 = "#99736e"
+let g:terminal_color_2 = "#78a090"
+let g:terminal_color_3 = "#bfb7a1"
+let g:terminal_color_4 = "#7c9fa6"
+let g:terminal_color_5 = "#ccad99"
+let g:terminal_color_6 = "#8fb3ad"
+let g:terminal_color_7 = "#f0e4d8"
+let g:terminal_color_8 = "#70838c"
+let g:terminal_color_9 = "#99736e"
+let g:terminal_color_10 = "#78a090"
+let g:terminal_color_11 = "#bfb7a1"
+let g:terminal_color_12 = "#7c9fa6"
+let g:terminal_color_13 = "#ccad99"
+let g:terminal_color_14 = "#8fb3ad"
+let g:terminal_color_15 = "#f0e4d8"
 
 " }}}

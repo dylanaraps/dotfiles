@@ -47,7 +47,9 @@ if [[ $(wattr y $wid) -gt 1080 ]]; then
         mm) w=$(wattr w $wid)
             h=$(wattr h $wid)
             x=$((1920/2 - w/2 - bw))
-            y=$((1080 + 1080/2 - h/2 - bw)) ;;
+            y=$((1080 + 1080/2 - h/2 - bw))
+            chwso -l $wid ;;
+
     esac
 elif [[ $(wattr x $wid) -gt 1920 ]]; then
     case $1 in
@@ -77,6 +79,7 @@ elif [[ $(wattr x $wid) -gt 1920 ]]; then
             h=$(wattr h $wid)
             x=$((1920+1280/2 - w/2 - bw))
             y=$((1024/2 - h/2 - bw))
+            chwso -l $wid ;;
     esac
 else
     case $1 in
@@ -106,7 +109,8 @@ else
         mm) w=$(wattr w $wid)
             h=$(wattr h $wid)
             x=$((1920/2 - w/2 - bw))
-            y=$((1080/2 - h/2 - bw)) ;;
+            y=$((1080/2 - h/2 - bw))
+            chwso -l $wid ;;
     esac
 fi
 
