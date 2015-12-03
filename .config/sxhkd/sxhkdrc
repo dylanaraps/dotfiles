@@ -74,7 +74,7 @@ super + q
 
 # make fullscreen
 super + f
-    fullscreen.sh $(pfw)
+    fullscreen.sh
 
 # Application specific
 
