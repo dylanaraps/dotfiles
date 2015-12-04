@@ -21,27 +21,25 @@ packages=()
 
 # Script usage
 usage () {
+    echo "Usage: $(basename $0) -n -U -a [\"aurdir\"] -u [\"package1 package2 package3\"] -m [makepkg flags] -c [cower flags] -M [makepkg flags]"
     echo ""
-    echo "$(tput bold)Usage: $(tput sgr0)$(basename $0) -n -U -a [\"aurdir\"] -u [\"package1 package2 package3\"] -m [makepkg flags] -c [cower flags] -M [makepkg flags]"
-    echo ""
-    echo "$(tput bold)-a $(tput sgr0)\"dir/to/store/aur/packages\" : Directory to store aur packages (default \"\$HOME/aur\")"
+    echo "-a \"dir/to/store/aur/packages\" : Directory to store aur packages (default \"\$HOME/aur\")"
     echo "    The script won't create this directory, ensure it exists"
     echo ""
-    echo "$(tput bold)-s $(tput sgr0)\"package1 package2 package3\" : Packages to install/update";
+    echo "-s \"package1 package2 package3\" : Packages to install/update";
     echo "    Packages must be defined as follows \"cava cower tmux-truecolor\""
     echo "    The quotes are necessary as getopts doesn't allow multi arg options"
     echo ""
-    echo "$(tput bold)-S $(tput sgr0) : Update all packages inside of the aur folder"
+    echo "-S  : Update all packages inside of the aur folder"
     echo ""
-    echo "$(tput bold)-m $(tput sgr0)\"makepkg flags\" : flags to send to makepkg (default: -sicfC)";
+    echo "-m \"makepkg flags\" : flags to send to makepkg (default: -sicfC)";
     echo "    -m: Overrides the default mkflags"
     echo "    -M: Adds to the default mkflags"
     echo ""
-    echo "$(tput bold)-c $(tput sgr0)\"cower flags\" : flags to send to cower (default: -d)";
+    echo "-c \"cower flags\" : flags to send to cower (default: -d)";
     echo ""
-    echo "$(tput bold)-n $(tput sgr0) : Disables the use of cower"
+    echo "-n  : Disables the use of cower"
     echo ""
-    exit 1;
 }
 
 # If no options are given, print usage
@@ -64,11 +62,11 @@ while getopts "a:c:s:Sm:M:n:*" opt 2>/dev/null; do
 done
 
 # Error message suffix
-errsuffix="$(tput bold)$(tput setaf 1)ERROR:$(tput sgr0)"
+errsuffix="$(tput setaf 1)ERROR:$(tput sgr0)"
 
 # cd to aur folder
 cd "$aurdir" 2>/dev/null || \
-{ echo "$errsuffix Failed to cd to aur directory: $(tput bold)$aurdir$(tput sgr0)"; exit; }
+{ echo "$errsuffix Failed to cd to aur directory: $aurdir"; exit; }
 
 # Update the packages
 if [[ $all == 1 ]]; then
@@ -85,24 +83,28 @@ for pkg in $loop; do
     fi
 
     # cd into the package's directory and run makepkg
-    cd "$aurdir/$pkg" 2>/dev/null || { pkgCdError+=("$pkg"); continue; }
+    cd "$pkg" 2>/dev/null || { pkgCdError+=("$pkg"); continue; }
     makepkg "${mkflags[@]}" || makeError+=("$pkg")
-    cd "$aurdir" || exit
+    cd "$aurdir"
 done
 
 # Error Handling
 if [ ${#cowError[@]} -gt 0 ]; then
-    echo -n "$errsuffix Cower failed to download package(s): $(tput bold)"
-    echo -n "${cowError[*]}$(tput sgr0)" | sed -e 's/\ /\,\ /g'
+    echo -n "$errsuffix Cower failed to download package(s):"
+    echo -n "${cowError[*]}" | sed -e 's/\ /\,\ /g'
 fi
 
 if [ ${#makeError[@]} -gt 0 ]; then
-    echo -n "$errsuffix Makepkg failed to install package(s) $(tput bold)"
-    echo "${makeError[*]}$(tput sgr0)" | sed -e 's/\ /\,\ /g'
+    echo -n "$errsuffix Makepkg failed to install package(s)"
+    echo "${makeError[*]}" | sed -e 's/\ /\,\ /g'
 fi
 
 # Doesn't appear often but is useful for packages that have differing name/foldername
 if [ ${#pkgCdError[@]} -gt 0 ]; then
-    echo -n "$errsuffix Failed to cd to package directory of $(tput bold)"
-    echo "${pkgCdError[*]}$(tput sgr0)" | sed -e 's/\ /\,\ /g'
+    echo -n "$errsuffix Failed to cd to package directory of"
+    echo "${pkgCdError[*]}" | sed -e 's/\ /\,\ /g'
 fi
+
+# Finally, remove all uneeded build dependencies
+sudo pacman -R $(pacman -Qqdt) 2>/dev/null
+
