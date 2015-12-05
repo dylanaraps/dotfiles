@@ -1,12 +1,9 @@
 @import "file:///home/dyl/dotfiles/scripts/colors/output/colors.css";
 
-/*
-	Dylan's Firefox CSS
-*/
+/*  Dylan's Firefox css */
 
 @namespace html url(http://www.w3.org/1999/xhtml);
 @namespace url("http://www.mozilla.org/keymaster/gatekeeper/there.is.only.xul"); /* only needed once */
-
 
 /* VARIABLES {{{ */
 
@@ -20,7 +17,7 @@
     --url-height: 30px;
     --url-fonts: lemon;
     --url-font-size: 9px;
-    --url-text-align: left; /* left | center | right */
+    --url-text-align: center;
 }
 
 /* }}} */
@@ -91,7 +88,7 @@
 	/* Background behind Tabs */
 	#main-window[sizemode="normal"]:not([inFullscreen])  #TabsToolbar {
 		background: var(--black) !important;
-		margin: 0 0 0 0 !important;
+		margin: 0 !important;
         padding-top: 4px !important;
 	}
 
@@ -113,7 +110,8 @@
 	.tabbrowser-tab *,
 	.tabs-newtab-button * {
 		-moz-appearance: none !important;
-		background: none !important; list-style-image: none !important;
+		background: none !important;
+        list-style-image: none !important;
 	}
 
 	/* Makes tabs use all the space available */
@@ -144,7 +142,6 @@
 	#nav-bar {
 		background: var(--black) !important;
 		border: none !important;
-        border-bottom: 0 !important;
 		box-shadow: none !important;
 		height: var(--url-height) !important;
 		margin: -2px 0 0 -5px !important;
@@ -158,7 +155,7 @@
 		color: var(--gray) !important;
 		font-family: var(--url-fonts) !important;
 		font-size: var(--url-font-size) !important;
-		margin: 0 0px 0 0px !important;
+		margin: 0 !important;
 		padding: 10px 5px 10px 20px !important;
 		text-align: var(--url-text-align) !important;
 	}
@@ -224,8 +221,8 @@
 /* hide scrollbars */
 #content browser {
  margin-right: -16px !important;
- overflow-y: scroll;
- overflow-x: hidden;
+ overflow-y: scroll !important;
+ overflow-x: hidden !important;
 }
 
 /* }}} */
