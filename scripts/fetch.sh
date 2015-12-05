@@ -3,19 +3,25 @@
 
 ## Formatting
 
-# Set to nothing to disable bold/underline text
+# Set to nothing to disable bold text
 bold=$(tput bold)
-underline=$(tput smul)
 
 # Clears attributes
 clear=$(tput sgr0)
 
 # Default color
-# colors are now defined with a launch option "-c"
+# colors are now defined with a launch option "-c" at launch
 color=$(tput setaf 1)
 
 ## Custom Image
 
+# If usewall=1 then fetch will use a cropped version of your wallpaper as the img
+usewall=1
+
+# The default image to use if usewall=0
+img="$HOME/Pictures/avatars/gon.png"
+
+# Image width/height/offset
 width=128
 height=128
 yoffset=0
@@ -27,6 +33,9 @@ pad="                             "
 ## Other
 
 # Title
+# title can also be changed with -t
+# TO use the usual "user@hostname" change the line below to:
+# title="$(whoami)@$(hostname)"
 title="dylan's pc"
 
 # Custom text to print at the bottom, configurable at launch with "-e"
@@ -46,12 +55,26 @@ while getopts ":c:e:w:h:t:p:x:y:" opt; do
     esac
 done
 
-# Get image form wallpaper
-wallpaper=$(cat .fehbg | awk '/feh/ {printf $3}' | sed -e "s/'//g")
+# Get image from wallpaper
+# Requires feh
+if [[ $usewall == 1 ]]; then
+    wallpaper=$(cat .fehbg | awk '/feh/ {printf $3}' | sed -e "s/'//g")
 
-convert -crop 1080x1080+480+0 "$wallpaper" "$HOME/.wallpaper/$(basename $wallpaper)"
+    # Directory to store cropped wallpapers.
+    walltempdir="$HOME/.wallpaper"
 
-img="$HOME/.wallpaper/$(basename $wallpaper)"
+    # Check if the directory exists
+    if [ ! -d "$walltempdir" ]; then
+        mkdir "$walltempdir" || echo "Failed to create wallpaper dir"; exit
+    fi
+
+    # Crop the wallpaper and save it to  the wallpaperdir
+    # By default it crops a 1080x1080 square in the center of the image.
+    [[ -f "$walltempdir/$(basename $wallpaper)" ]] || convert -crop 1080x1080+480+0 "$wallpaper" "$walltempdir/$(basename $wallpaper)"
+
+    # The final image
+    img="$walltempdir/$(basename $wallpaper)"
+fi
 
 # Underline title with length of title
 underline=$(printf '%0.s-' $(seq 1 $(echo "${title%?}" | wc -m)))

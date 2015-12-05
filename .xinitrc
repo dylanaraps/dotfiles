@@ -20,7 +20,6 @@ urxvtd -q -f -o &
 
 # Start bar(s)
 clock.sh &
-music.sh &
 coverspawn.sh &
 
 # Set wallpaper

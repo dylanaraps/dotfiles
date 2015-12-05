@@ -1,6 +1,6 @@
 #!/bin/sh
 # Dylan's Color script
-# Prints terminal colors with hex colors side by side
+# Prints the terminal colors in a line
 # Only works with terminals that use .Xdefaults/.Xresources
 
 number="0"
