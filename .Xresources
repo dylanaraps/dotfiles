@@ -1,13 +1,17 @@
 ! Dylans Xresources
 URxvt*font: xft:lemon:pixelsize=10:antialias=false
 URxvt*boldFont: xft:lemon:pixelsize=10:antialias=false
+
+! Increase line spacing
 URxvt*lineSpace: 2
 
 ! Terminal window size
 URxvt*geometry: 65x17
 
-xterm*termName: xterm-256color
+! Disable scrollbar
 URxvt.scrollBar: false
+
+! Set urxvt as login shell
 URxvt*loginShell: true
 
 ! Set terminal padding
@@ -20,14 +24,7 @@ URxvt.perl-ext-common: default,clipboard
 URxvt.keysym.Shift-Control-C: perl:clipboard:copy
 URxvt.keysym.Shift-Control-V: perl:clipboard:paste
 
-! Disable these keybindings
-URxvt.keysym.C-z: \
-URxvt.keysym.C-h: \
-URxvt.keysym.C-f: \
-
-Xcursor.size: 16
-
-! ryuuko Colors {{{
+! Colors {{{
 
 ! special
 *.foreground:   #f0e4d8
@@ -35,6 +32,7 @@ Xcursor.size: 16
 *.cursorColor:  #f0e4d8
 
 ! black
+! Second black is grey
 *.color0:       #434e4a
 *.color8:       #70838c
 
