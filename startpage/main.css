@@ -23,15 +23,16 @@ main {
 	display: block;
 	position: absolute;
 	top: 50%;
-	left: 40%;
-	transform: translate(-40%,-90%);
+	left: 50%;
+	transform: translate(-50%,-90%);
 }
 
 /* Change the vertical center offset
 at browser heights of 700 px and below */
 @media only screen and (max-height: 700px) {
     main {
-        transform: translate(-50%,-60%);
+        left: 40%;
+        transform: translate(-40%,-60%);
     }
 }
 
