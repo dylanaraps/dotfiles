@@ -19,7 +19,7 @@ jump_to_now_playing_song_at_start = "yes"
 playlist_display_mode = "classic"
 song_list_format = "$5 %a $R $2 %t $7 %l"
 
-# Tag Editor
+# Other
 generate_win32_compatible_filenames = "yes"
 
 # Bars

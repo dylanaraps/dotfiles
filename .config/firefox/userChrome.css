@@ -5,19 +5,20 @@
 */
 
 @namespace html url(http://www.w3.org/1999/xhtml);
-@namespace xul url(http://www.mozilla.org/keymaster/gatekeeper/there.is.only.xul);
+@namespace url("http://www.mozilla.org/keymaster/gatekeeper/there.is.only.xul"); /* only needed once */
+
 
 /* VARIABLES {{{ */
 
 :root {
 	/* Tabs */
     --tab-height: 30px;
-    --tab-fonts: drift;
+    --tab-fonts: lemon;
     --tab-font-size: 9px;
 
 	/* Url Bar */
     --url-height: 30px;
-    --url-fonts: drift;
+    --url-fonts: lemon;
     --url-font-size: 9px;
     --url-text-align: left; /* left | center | right */
 }
@@ -91,7 +92,7 @@
 	#main-window[sizemode="normal"]:not([inFullscreen])  #TabsToolbar {
 		background: var(--black) !important;
 		margin: 0 0 0 0 !important;
-    padding-top: 4px !important;
+        padding-top: 4px !important;
 	}
 
 	#main-window[sizemode="normal"]:not([inFullscreen])  #TabsToolbar .tabbrowser-tabs {
@@ -143,7 +144,7 @@
 	#nav-bar {
 		background: var(--black) !important;
 		border: none !important;
-    border-bottom: 0 !important;
+        border-bottom: 0 !important;
 		box-shadow: none !important;
 		height: var(--url-height) !important;
 		margin: -2px 0 0 -5px !important;
@@ -220,29 +221,11 @@
 
 /* MISC {{{ */
 
-/* Stops the white flash on new tab */
-tabbrowser tabpanels, #appcontent > #content {
-	background: var(--black) !important;
-}
-
-/* background color around/behind pictures opened in firefox (require html namespace on top) */
-@-moz-document regexp("(https?://|file:///)(.*)\\.(jpeg|jpg|gif|png|apng|svg|bmp|webm|webp)") {
-    body {
-		background: var(--black) !important;
-	}
-
-    img.decoded {
-		background: url(none) !important;
-	}
-}
-
-/* About:Blank background */
-@-moz-document url(about:blank) {
-    html,body {
-		background: var(--black) !important;
-	}
+/* hide scrollbars */
+#content browser {
+ margin-right: -16px !important;
+ overflow-y: scroll;
+ overflow-x: hidden;
 }
 
 /* }}} */
-
-
