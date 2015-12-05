@@ -10,7 +10,7 @@ bold=$(tput bold)
 clear=$(tput sgr0)
 
 # Default color
-# colors are now defined with a launch option "-c" at launch
+# colors are now defined with a launch option "-c"
 color=$(tput setaf 1)
 
 ## Custom Image
