@@ -1,4 +1,4 @@
-# Dylan's Ncmpcpp Vim Bindings
+# Dylan's Ncmpcpp vi Bindings
 
 # hjkl movement
 def_key "h"

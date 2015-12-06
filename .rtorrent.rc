@@ -1,4 +1,4 @@
-# Dylan's rtorrent
+# Dylan's rtorrentrc
 
 # Maximum and minimum number of peers to connect to per torrent.
 min_peers = 26

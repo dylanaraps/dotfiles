@@ -1,7 +1,6 @@
 #!/bin/sh
-# z3bra - 2014 (c) wtfpl
-# Heavily modified by Dylan
 # Tile windows with gaps/padding/ignored-windows/multi-monitor
+# Created by Dylan Araps
 
 # Options
 

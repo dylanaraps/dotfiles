@@ -1,5 +1,5 @@
 #!/bin/sh
-# Dylan's clock bar
+# Dylan's Lemonbar Clock
 
 while :; do
 	echo "%{c}$(date "+%a %d %b %l:%M %p")%{c}"

@@ -1,5 +1,6 @@
 #!/bin/sh
 # Notifications using lemonbar
+# Created by Dylan Araps
 
 # Variables
 

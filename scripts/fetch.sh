@@ -1,5 +1,6 @@
 #!/bin/bash
-# Dylan's screenfetch script
+# Fetch info about your system
+# Created by Dylan Araps
 
 ## Formatting
 

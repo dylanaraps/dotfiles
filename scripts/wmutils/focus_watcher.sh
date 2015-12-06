@@ -1,8 +1,6 @@
 #!/bin/sh
-#
-# z3bra - 2014 (c) wtfpl
 # focus a window when it is created
-# depends on: wew focus.sh
+# Created by Z3bra, Modified by Dylan Araps
 
 spawn_at_cursor () {
     wid=$1

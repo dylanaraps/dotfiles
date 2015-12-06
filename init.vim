@@ -1,4 +1,4 @@
-" Dylan's vimrc
+" Dylan's Init.vim
 
 " Leader
 let mapleader = "\<space>"

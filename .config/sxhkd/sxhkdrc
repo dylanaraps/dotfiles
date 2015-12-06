@@ -1,3 +1,6 @@
+# Dylan's sxhkdrc
+
+
 # start applications
 
 
@@ -76,6 +79,7 @@ super + q
 super + f
     fullscreen.sh
 
+
 # Application specific
 
 
@@ -99,7 +103,9 @@ super + p
     popup.sh -e "Saved Screenshot" -s 4 -w 150 -x 1670 & sleep 1; \
     cd "$HOME/Pictures" && scrot &
 
+
 # Other
+
 
 # Restart sxhkd
 super + Escape

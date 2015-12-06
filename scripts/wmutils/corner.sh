@@ -1,7 +1,6 @@
 #!/bin/sh
-#
-# z3bra - 2014 (c) wtfpl
 # move windows to the corners
+# Created by Dylan Araps
 
 # Focused window
 wid=$(pfw)

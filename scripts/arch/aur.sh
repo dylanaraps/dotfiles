@@ -1,5 +1,6 @@
 #!/bin/bash
 # Script to install/update aur packages
+# Created by Dylan Araps
 
 # Options and their default values
 

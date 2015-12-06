@@ -1,7 +1,7 @@
 #!/bin/sh
-# Dylan's Color script
 # Prints the terminal colors in a line
 # Only works with terminals that use .Xdefaults/.Xresources
+# Created by Dylan Araps
 
 number="0"
 

@@ -1,5 +1,6 @@
 #!/bin/sh
 # Script to set up a website project
+# Created by Dylan Araps
 
 if [ ! -d "$HOME/projects" ]; then
     mkdir "$HOME/projects"

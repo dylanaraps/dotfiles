@@ -1,8 +1,6 @@
 #!/bin/sh
-#
-# z3bra - 2014 (c) wtfpl
-# toggle the fullscreen state of a window
-# depends on: focus.sh
+# toggle the fullscreen state of multiple windows
+# Created by z3bra, Modified by Dylan Araps
 
 wid=$(pfw)
 

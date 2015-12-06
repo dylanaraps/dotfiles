@@ -1,4 +1,6 @@
-! Dylans Xresources
+! Dylan's Xresources
+
+! Set the font
 URxvt*font: xft:lemon:pixelsize=10:antialias=false
 URxvt*boldFont: xft:lemon:pixelsize=10:antialias=false
 

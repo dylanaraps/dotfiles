@@ -1,7 +1,6 @@
 #!/bin/sh
-#
-# z3bra - 2014 (c) wtfpl
-# window focus wrapper that sets borders and can focus next/previous window
+# window focus wrapper that sets borders and can focus to the next/previous window
+# Created by z3bra, Modified by Dylan Araps
 
 # border width
 bw=6

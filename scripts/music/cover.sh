@@ -1,5 +1,6 @@
 #!/bin/bash
-# Dylan's cover art script
+# Display cover art based on "mpc current"
+# Created by Dylan Araps
 
 # Set terminal title
 echo -e '\033]2;'music - tile_ignore'\007'

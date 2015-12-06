@@ -1,7 +1,6 @@
 #!/bin/sh
-#
-# z3bra - 2014 (c) wtfpl
-# groaw - group, organize and arrange windows (or just a bear behind you)
+# groaw - group, organize and arrange windows
+# Created by z3bra, Modified by Dylan Araps
 
 groot=/tmp/groaw.d
 gnumber=5
