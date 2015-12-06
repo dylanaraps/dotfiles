@@ -103,7 +103,6 @@ envar > "$colordir/colors.envar"; echo "Generated envars"
 gtk2 > "$colordir/colors.rc"; echo "Generated gtk2 colors"
 css > "$colordir/colors.css"; echo "Generated firefox css vars"
 erb > "$colordir/colors.erbvim"; echo "Generated vim erb vars"
-qutebrowser
 
 # Nvim uses 16 colors so lets generate all 16
 totalcolors=16
