@@ -28,6 +28,10 @@ if [ -d "$HOME/bin" ] ; then
   PATH="$HOME/bin:$PATH"
 fi
 
+if [ -d "$HOME/.gem/ruby/2.2.0/bin" ] ; then
+    PATH="$HOME/.gem/ruby/2.2.0/bin:$PATH"
+fi
+
 # Enable colors in prompt
 autoload -U colors && colors
 

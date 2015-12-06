@@ -53,7 +53,7 @@ gtk2 () {
     done
 }
 
-# Generate firefox only css variables for my startpage and stylish css
+# Generate firefox only css variables for my userChrome.css
 css () {
     colors
 
@@ -66,6 +66,17 @@ css () {
     done
 
     echo "}"
+}
+
+scss () {
+    colors
+
+    echo "// Color variables"
+
+    for color in $getcolors; do
+        pos=$((pos + 1))
+        echo "\$${colors[$pos]}: #$color;"
+    done
 }
 
 erb () {
@@ -102,6 +113,7 @@ nvim () {
 envar > "$colordir/colors.envar"; echo "Generated envars"
 gtk2 > "$colordir/colors.rc"; echo "Generated gtk2 colors"
 css > "$colordir/colors.css"; echo "Generated firefox css vars"
+scss > "$colordir/colors.scss"; echo "Generated Sass variables"
 erb > "$colordir/colors.erbvim"; echo "Generated vim erb vars"
 
 # Nvim uses 16 colors so lets generate all 16
@@ -120,4 +132,12 @@ erbgen () {
     cat "$themedir/colors.erbvim" "$themedir/theme.erbvim" "$themedir/tui.erbvim" > "$themedir/ryuuko.erb"
 }
 
+# Generate css
+# Use sass to preproccess css
+gencss () {
+    startpage="$HOME/dotfiles/startpage"
+    sass --sourcemap=none -f "$startpage/scss/main.scss" "$startpage/main.css"
+}
+
 erbgen; echo "Generated Vim colorscheme template"
+gencss; echo "Generated css file using sass"
