@@ -1,7 +1,9 @@
 #!/bin/sh
 # Prints the terminal colors in a line
 # Only works with terminals that use .Xdefaults/.Xresources
+#
 # Created by Dylan Araps
+# https://github.com/dylanaraps/dotfiles
 
 number="0"
 

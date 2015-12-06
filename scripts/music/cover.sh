@@ -1,6 +1,8 @@
 #!/bin/bash
 # Display cover art based on "mpc current"
+#
 # Created by Dylan Araps
+# https://github.com/dylanaraps/dotfiles
 
 # Set terminal title
 echo -e '\033]2;'music - tile_ignore'\007'

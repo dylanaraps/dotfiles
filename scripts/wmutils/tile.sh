@@ -1,6 +1,8 @@
 #!/bin/sh
 # Tile windows with gaps/padding/ignored-windows/multi-monitor
+#
 # Created by Dylan Araps
+# https://github.com/dylanaraps/dotfiles
 
 # Options
 

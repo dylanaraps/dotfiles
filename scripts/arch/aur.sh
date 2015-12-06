@@ -1,6 +1,8 @@
 #!/bin/bash
 # Script to install/update aur packages
+#
 # Created by Dylan Araps
+# https://github.com/dylanaraps/dotfiles
 
 # Options and their default values
 

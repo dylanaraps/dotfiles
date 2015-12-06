@@ -1,6 +1,9 @@
 #!/bin/sh
 # toggle the fullscreen state of multiple windows
+#
 # Created by z3bra, Modified by Dylan Araps
+# Original: https://git.z3bra.org
+# Modified: https://github.com/dylanaraps/dotfiles
 
 wid=$(pfw)
 

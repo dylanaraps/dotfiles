@@ -1,6 +1,9 @@
 #!/bin/sh
 # focus a window when it is created
-# Created by Z3bra, Modified by Dylan Araps
+#
+# Created by z3bra, Modified by Dylan Araps
+# Original: https://git.z3bra.org
+# Modified: https://github.com/dylanaraps/dotfiles
 
 spawn_at_cursor () {
     wid=$1

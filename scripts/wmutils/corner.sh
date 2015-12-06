@@ -1,6 +1,8 @@
 #!/bin/sh
 # move windows to the corners
+#
 # Created by Dylan Araps
+# https://github.com/dylanaraps/dotfiles
 
 # Focused window
 wid=$(pfw)

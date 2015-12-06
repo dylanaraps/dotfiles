@@ -1,6 +1,8 @@
 #!/bin/sh
 # Script to backup specific folders using rsync
+#
 # Created by Dylan Araps
+# https://github.com/dylanaraps/dotfiles
 
 # First notification
 popup.sh -e "Backing Up System" -s 5 &

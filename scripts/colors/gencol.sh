@@ -1,6 +1,8 @@
 #!/bin/bash
 # Grab Xresources colors and ouput them in various formats
+#
 # Created by Dylan Araps
+# https://github.com/dylanaraps/dotfiles
 
 # Options
 

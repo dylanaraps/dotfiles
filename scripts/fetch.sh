@@ -1,6 +1,8 @@
 #!/bin/bash
 # Fetch info about your system
+#
 # Created by Dylan Araps
+# https://github.com/dylanaraps/dotfiles
 
 ## Formatting
 

@@ -1,6 +1,8 @@
 #!/bin/sh
 # Notifications using lemonbar
+#
 # Created by Dylan Araps
+# https://github.com/dylanaraps/dotfiles
 
 # Variables
 

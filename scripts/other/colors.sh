@@ -1,7 +1,9 @@
 #!/bin/sh
 # Prints terminal colors with hex colors side by side
 # Only works with terminals that use .Xdefaults/.Xresources
+#
 # Created by Dylan Araps
+# https://github.com/dylanaraps/dotfiles
 
 number="0"
 

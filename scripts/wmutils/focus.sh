@@ -1,6 +1,9 @@
 #!/bin/sh
 # window focus wrapper that sets borders and can focus to the next/previous window
+#
 # Created by z3bra, Modified by Dylan Araps
+# Original: https://git.z3bra.org
+# Modified: https://github.com/dylanaraps/dotfiles
 
 # border width
 bw=6

@@ -1,6 +1,9 @@
 #!/bin/sh
 # groaw - group, organize and arrange windows
+#
 # Created by z3bra, Modified by Dylan Araps
+# Original: https://git.z3bra.org
+# Modified: https://github.com/dylanaraps/dotfiles
 
 groot=/tmp/groaw.d
 gnumber=5
