@@ -10,7 +10,7 @@
 # My Setup
 
 * Linux Distro: [Arch Linux](https://www.archlinux.org/)
-* Window Manager: wmutils
+* Window Manager: none (wmutils)
 * Gtk Icons: [Ultra Flat Icons](https://aur.archlinux.org/packages/ultra-flat-icons/)
 * Bar: [Lemonboy's Bar patched with xft support](https://github.com/krypt-n/bar)
 * Launcher: [Dmenu2](https://github.com/mrshankly/dmenu2)
@@ -20,7 +20,7 @@
 * Text Editor: [Neovim](https://github.com/neovim/neovim)
 * Color Scheme: ryuuko (In this repo)
 * Music Player: [Mpd](http://www.musicpd.org/) + [ncmpcpp](http://ncmpcpp.rybczak.net/)
-* Browser: Firefox
+* Browser: Firefox and qutebrowser
 * Startpage: In this repo "/startpage/"
 * Video Player: [mpv](https://github.com/mpv-player/mpv)
 
