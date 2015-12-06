@@ -3,7 +3,7 @@
 # Aliases {{{
 
 # Remove orphaned package dependencies
-alias cleandeps='sudo pacman -R $(pacman -Qqdt)'
+alias cleandeps='sudo pacman -Rns $(pacman -Qtdq) 2>/dev/null'
 
 # Download youtube url to an .mp3
 # and save it to my music folder.

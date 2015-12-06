@@ -1,4 +1,4 @@
-! Dylan's Xresources
+! Dylans Xresources
 
 ! Set the font
 URxvt*font: xft:lemon:pixelsize=10:antialias=false
@@ -29,9 +29,9 @@ URxvt.keysym.Shift-Control-V: perl:clipboard:paste
 ! Colors {{{
 
 ! special
-*.foreground:   #f0e4d8
+*.foreground:   #f0e4dc
 *.background:   #434e4a
-*.cursorColor:  #f0e4d8
+*.cursorColor:  #f0e4dc
 
 ! black
 ! Second black is grey
@@ -63,7 +63,7 @@ URxvt.keysym.Shift-Control-V: perl:clipboard:paste
 *.color14:      #8fb3ad
 
 ! white
-*.color7:       #f0e4d8
-*.color15:      #f0e4d8
+*.color7:       #f0e4dc
+*.color15:      #f0e4dc
 
 ! }}}
