@@ -79,10 +79,6 @@ super + q
 super + f
     fullscreen.sh
 
-button1 ; button1
-    fullscreen.sh
-
-
 # Application specific
 
 
