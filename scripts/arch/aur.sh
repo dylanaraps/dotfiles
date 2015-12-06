@@ -109,5 +109,5 @@ if [ ${#pkgCdError[@]} -gt 0 ]; then
 fi
 
 # Finally, remove all uneeded build dependencies
-sudo pacman -R $(pacman -Qqdt) 2>/dev/null
+sudo pacman -Rns $(pacman -Qtdq) 2>/dev/null
 
