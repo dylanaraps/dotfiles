@@ -28,7 +28,7 @@ packages=()
 
 # Script usage
 usage () {
-    echo "Usage: $(basename $0) -n -U -a [\"aurdir\"] -u [\"package1 package2 package3\"] -m [makepkg flags] -c [cower flags] -M [makepkg flags]"
+    echo "Usage: $(basename $0) -p -n -U -a [\"aurdir\"] -u [\"package1 package2 package3\"] -m [makepkg flags] -c [cower flags] -M [makepkg flags]"
     echo ""
     echo "-a \"dir/to/store/aur/packages\" : Directory to store aur packages (default \"\$HOME/aur\")"
     echo "    The script won't create this directory, ensure it exists"
@@ -47,6 +47,8 @@ usage () {
     echo ""
     echo "-n  : Disables the use of cower"
     echo ""
+    echo "-p  : Disables the PKGBUILD check prompt"
+    echo ""
 }
 
 # If no options are given, print usage
@@ -55,7 +57,7 @@ if [ $# -eq 0 ]; then
 fi
 
 # Set up args
-while getopts "a:c:s:Sm:M:n:*" opt 2>/dev/null; do
+while getopts "a:c:s:Sm:M:n:p*" opt 2>/dev/null; do
     case $opt in
         a) aurdir="$OPTARG" ;;
         c) cowflags="$OPTARG" ;;
@@ -64,6 +66,7 @@ while getopts "a:c:s:Sm:M:n:*" opt 2>/dev/null; do
         m) mkflags=($OPTARG) ;;
         M) mkflags+=($OPTARG) ;;
         n) dl=0 ;;
+        p) viewalways=0 ;;
         *) usage ;;
     esac
 done
@@ -89,10 +92,12 @@ for pkg in $loop; do
         cower "$cowflags" "$pkg" || { cowError+=("$pkg"); continue; }
 
         # Ask whether or not to view PKGBUILD
-        read -p "View PKGBUILD? (y/n) " -n 1 -r
-        echo
-        if [[ $REPLY =~ ^[Yy]$ ]] && [[ $viewalways == 1 ]]; then
-            $EDITOR $pkg/PKGBUILD
+        if [[ $viewalways == 1 ]]; then
+            read -p "View PKGBUILD? (y/n) " -n 1 -r
+            echo
+            if [[ $REPLY =~ ^[Yy]$ ]]; then
+                $EDITOR $pkg/PKGBUILD
+            fi
         fi
     fi
 
