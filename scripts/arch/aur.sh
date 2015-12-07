@@ -16,6 +16,10 @@ aurdir="$HOME/aur"
 # Use cower to get pkgbuilds by default
 dl=1
 
+# If 1 the script will ask for you to view the PKGBUILD of
+# new packages
+viewalways=1
+
 # Error message arrays
 cowError=(); makeError=(); pkgCdError=()
 
@@ -83,6 +87,13 @@ for pkg in $loop; do
     # Use the -n flag to disable this.
     if [ ! -d "$aurdir/$pkg" ] && [ $dl -eq 1 ]; then
         cower "$cowflags" "$pkg" || { cowError+=("$pkg"); continue; }
+
+        # Ask whether or not to view PKGBUILD
+        read -p "View PKGBUILD? (y/n) " -n 1 -r
+        echo
+        if [[ $REPLY =~ ^[Yy]$ ]] && [[ $viewalways == 1 ]]; then
+            $EDITOR $pkg/PKGBUILD
+        fi
     fi
 
     # cd into the package's directory and run makepkg
