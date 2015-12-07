@@ -10,15 +10,6 @@ aurdir="$HOME/aur"
 # Makepkg flags
 mkflags="-sicfC"
 
-# Ask whether or not to view PKGBUILD
-viewpkgbuild () {
-    read -p "View PKGBUILD? (y/n) " -n 1 -r
-    echo
-    if [[ $REPLY =~ ^[Yy]$ ]]; then
-        $EDITOR "$pkg/PKGBUILD"
-    fi
-}
-
 # Install packages
 install () {
     cd "$aurdir" || exit
@@ -28,7 +19,11 @@ install () {
         if [ ! -d "$pkg" ]; then
             cower -d "$pkg"
 
-            viewpkgbuild
+            read -p "View PKGBUILD? (y/n) " -n 1 -r
+            echo
+            if [[ $REPLY =~ ^[Yy]$ ]]; then
+                $EDITOR "$pkg/PKGBUILD"
+            fi
         fi
 
         # cd into the package's directory and run makepkg
