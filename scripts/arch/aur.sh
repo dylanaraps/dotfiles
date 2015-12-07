@@ -1,5 +1,5 @@
 #!/bin/bash
-# Script to install/update aur packages
+# Hacked together script to install/update/remove aur packages
 #
 # Created by Dylan Araps
 # https://github.com/dylanaraps/dotfiles
@@ -16,6 +16,9 @@ aurdir="$HOME/aur"
 # Use cower to get pkgbuilds by default
 dl=1
 
+# Whether or not to update all packages
+all=0
+
 # If 1 the script will ask for you to view the PKGBUILD of
 # new packages
 viewalways=1
@@ -28,7 +31,7 @@ packages=()
 
 # Script usage
 usage () {
-    echo "Usage: $(basename $0) -p -n -U -a [\"aurdir\"] -u [\"package1 package2 package3\"] -m [makepkg flags] -c [cower flags] -M [makepkg flags]"
+    echo "Usage: $(basename $0) -p -n -S -a [\"aurdir\"] -s [\"package1 package2 package3\"] -m [makepkg flags] -c [cower flags] -M [makepkg flags] -r [\"package1 package2 package3\"]"
     echo ""
     echo "-a \"dir/to/store/aur/packages\" : Directory to store aur packages (default \"\$HOME/aur\")"
     echo "    The script won't create this directory, ensure it exists"
@@ -49,6 +52,8 @@ usage () {
     echo ""
     echo "-p  : Disables the PKGBUILD check prompt"
     echo ""
+    echo "-r  : Remove a package and delete it's local aur folder"
+    echo ""
 }
 
 # If no options are given, print usage
@@ -57,16 +62,17 @@ if [ $# -eq 0 ]; then
 fi
 
 # Set up args
-while getopts "a:c:s:Sm:M:n:p*" opt 2>/dev/null; do
+while getopts "a:c:s:Sm:M:n:pr:*" opt 2>/dev/null; do
     case $opt in
         a) aurdir="$OPTARG" ;;
         c) cowflags="$OPTARG" ;;
-        s) packages+=($OPTARG) ;;
-        S) dl=0; all=1 ;;
+        s) packages+=($OPTARG); install=1  ;;
+        S) dl=0; all=1; install=1 ;;
         m) mkflags=($OPTARG) ;;
         M) mkflags+=($OPTARG) ;;
         n) dl=0 ;;
         p) viewalways=0 ;;
+        r) packages+=($OPTARG); install=0 ;;
         *) usage ;;
     esac
 done
@@ -79,7 +85,7 @@ cd "$aurdir" 2>/dev/null || \
 { echo "$errsuffix Failed to cd to aur directory: $aurdir"; exit; }
 
 # Update the packages
-if [[ $all == 1 ]]; then
+if [ $all -eq 1 ]; then
     loop="*"
 else
     loop="${packages[@]}"
@@ -88,23 +94,28 @@ fi
 for pkg in $loop; do
     # If package isn't in aur folder, attempt to download PKGBUILD/etc using cower
     # Use the -n flag to disable this.
-    if [ ! -d "$aurdir/$pkg" ] && [ $dl -eq 1 ]; then
+    if [ ! -d "$aurdir/$pkg" ] && [ $dl -eq 1 ] && [ $install -eq 1 ]; then
         cower "$cowflags" "$pkg" || { cowError+=("$pkg"); continue; }
 
         # Ask whether or not to view PKGBUILD
-        if [[ $viewalways == 1 ]]; then
+        if [ $viewalways -eq 1 ]; then
             read -p "View PKGBUILD? (y/n) " -n 1 -r
             echo
             if [[ $REPLY =~ ^[Yy]$ ]]; then
-                $EDITOR $pkg/PKGBUILD
+                $EDITOR "$pkg/PKGBUILD"
             fi
         fi
     fi
 
-    # cd into the package's directory and run makepkg
-    cd "$pkg" 2>/dev/null || { pkgCdError+=("$pkg"); continue; }
-    makepkg "${mkflags[@]}" || makeError+=("$pkg")
-    cd "$aurdir"
+    if [ -d "$aurdir/$pkg" ] && [ $install -eq 0 ] && [ ! -z $pkg ]; then
+        cd "$aurdir" && rm -rf "$aurdir/$pkg"
+        sudo pacman -R "$pkg"
+    else
+        # cd into the package's directory and run makepkg
+        cd "$pkg" 2>/dev/null || { pkgCdError+=("$pkg"); continue; }
+        makepkg "${mkflags[@]}" || makeError+=("$pkg")
+        cd "$aurdir"
+    fi
 done
 
 # Error Handling
@@ -114,16 +125,15 @@ if [ ${#cowError[@]} -gt 0 ]; then
 fi
 
 if [ ${#makeError[@]} -gt 0 ]; then
-    echo -n "$errsuffix Makepkg failed to install package(s)"
+    echo -n "$errsuffix Makepkg failed to install package(s):"
     echo "${makeError[*]}" | sed -e 's/\ /\,\ /g'
 fi
 
 # Doesn't appear often but is useful for packages that have differing name/foldername
 if [ ${#pkgCdError[@]} -gt 0 ]; then
-    echo -n "$errsuffix Failed to cd to package directory of"
+    echo -n "$errsuffix Failed to cd to package directory of package: "
     echo "${pkgCdError[*]}" | sed -e 's/\ /\,\ /g'
 fi
 
 # Finally, remove all uneeded build dependencies
 sudo pacman -Rns $(pacman -Qtdq)
-
