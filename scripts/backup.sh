@@ -5,7 +5,7 @@
 # https://github.com/dylanaraps/dotfiles
 
 # First notification
-popup.sh -e "Backing Up System" -s 5 &
+popup.sh -e "Backing Up System" -s 10000 &
 
 # Videos
 

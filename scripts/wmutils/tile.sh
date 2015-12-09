@@ -20,7 +20,7 @@ paddingx=250
 wid=$(pfw)
 
 # Border width
-bw=$(wattr b "$wid")
+bw=$(wattr b $wid)
 
 # Ignore file
 ignorefile="/tmp/.ignore-$wid"
@@ -28,16 +28,10 @@ ignorefile="/tmp/.ignore-$wid"
 # Exclude windows from tiling
 ignore () {
     # if file exists
-    if test -f $ignorefile; then
-        rm -f $ignorefile
+    if test -f "$ignorefile"; then
+        rm -f "$ignorefile"
     else
-        touch $ignorefile
-
-        # If tiled window class is URxvt then restore it to it's default size on ignore
-        if [[ $(xprop -id $wid WM_CLASS | cut -d\" -f4) == *"URxvt"* ]]; then
-            xy=$(wattr xy $wid)
-            wtp $xy 355 234 $wid
-        fi
+        touch "$ignorefile"
     fi
 }
 
@@ -53,7 +47,7 @@ tile () {
 
     # Checks the x/y coords of the currently focused window to see which monitor it's on.
     # Monitors must be manually defined as wmutils doesn't have multimon tools yet.
-    if [[ $(wattr x $wid) -gt 1920 ]]; then
+    if [ "$(wattr x $wid)" -gt 1920 ]; then
         mon=2
         width=1280
         height=1024
@@ -66,7 +60,7 @@ tile () {
 
         # List windows only on the second monitor
         listwin=$(wattr xi $(lsw) | awk '$1 > 1920' | awk '{print $2}')
-    elif [[ $(wattr y $wid) -gt 1080 ]]; then
+    elif [ "$(wattr y $wid)" -gt 1080 ]; then
         mon=3
         width=1920
         height=1080
@@ -105,7 +99,7 @@ tile () {
         exit
 
     # If there's only one unignored window open tile it to the full width of the screen
-    elif [[ $(($(echo "$listwin" | wc -l) - $ignore)) == 1 ]]; then
+    elif [ $(($(echo "$listwin" | wc -l) - $ignore)) -eq 1 ]; then
         sw=$((sw - gap - paddingx))
         sh=$((sh - gap - paddingy))
 
@@ -120,7 +114,7 @@ tile () {
 
     # Tile the rest of the windows
 
-    if [[ $mon == 2 ]]; then
+    if [ $mon -eq 2 ]; then
         x=$((master + gap + paddingx + 1920))
     else
         x=$((master + gap + paddingx))
