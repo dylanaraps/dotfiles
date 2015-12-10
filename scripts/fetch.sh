@@ -90,7 +90,7 @@ clear
 echo "${pad}${bold}$title${clear}"
 echo "${pad}$underline"
 echo "${pad}${bold}${color}OS${clear}: $(cat /etc/*ease | awk '/^NAME=/' | cut -d '"' -f2)"
-echo "${pad}${bold}${color}Kernal${clear}: $(uname -r)"
+echo "${pad}${bold}${color}Kernel${clear}: $(uname -r)"
 echo "${pad}${bold}${color}Uptime${clear}: $(uptime -p)"
 echo "${pad}${bold}${color}Packages${clear}: $(pacman -Q | wc -l)"
 echo "${pad}${bold}${color}Shell${clear}: $SHELL"
