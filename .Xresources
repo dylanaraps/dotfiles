@@ -28,6 +28,7 @@ URxvt.keysym.Shift-Control-V: perl:clipboard:paste
 
 ! Size of cursor
 Xcursor.size: 16
+
 ! Colors {{{
 
 ! special
