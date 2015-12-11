@@ -60,15 +60,5 @@ function chpwd() {
     echo "$(($calc))"
 }
 
-# Set window title
-title () {
-    echo -e '\033]2;'$1'\007'
-}
-
-# Ignore current terminal window from tiling
-tile_ignore () {
-    echo -e '\033]2;'$(wname $(pfw)) - tile_ignore'\007'
-}
-
 # }}}
 
