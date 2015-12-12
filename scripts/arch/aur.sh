@@ -8,7 +8,7 @@
 aurdir="$HOME/aur"
 
 # Makepkg flags
-mkflags="-sicfC"
+mkflags="--noconfirm -sicfC"
 
 # Install packages
 install () {
@@ -28,7 +28,7 @@ install () {
 
         # cd into the package's directory and run makepkg
         cd "$pkg" || exit
-        makepkg "$mkflags"
+        makepkg $mkflags
         cd "$aurdir"
     done
 }
@@ -54,7 +54,7 @@ update_all () {
     for pkg in *; do
         # cd into the package's directory and run makepkg
         cd "$pkg" || exit
-        makepkg "$mkflags"
+        makepkg $mkflags
         cd "$aurdir"
     done
 }
