@@ -90,13 +90,13 @@ erb () {
         echo -e "\t${colors[$pos]}       = [\"#$color\", $pos, \"${colors[$pos]}\"]"
     done
 
-    echo ""
+    echo
 }
 
 nvim () {
     colors
 
-    echo ""
+    echo
 
     echo "\" Neovim Terminal Mode Colors"
 
@@ -105,8 +105,27 @@ nvim () {
         echo "let g:terminal_color_$pos = \"#$color\""
     done
 
-    echo ""
+    echo
     echo "\" }}}"
+}
+
+sxiv () {
+    colors
+
+    bg=$(xrdb -query | grep "\*\.color0:" | sort --version-sort | cut -f2 | sed -e "s/\#//" )
+    fg=$(xrdb -query | grep "\*\.color6:" | sort --version-sort | cut -f2 | sed -e "s/\#//" )
+
+    echo "#ifdef _WINDOW_CONFIG"
+    echo
+    echo "/* colors:"
+    echo " * (see X(7) section "COLOR NAMES" for valid values) "
+    echo "*/"
+    echo "static const char * const WIN_BG_COLOR = \"#$bg\";"
+    echo "static const char * const WIN_FS_COLOR = \"#$bg\";"
+    echo "static const char * const SEL_COLOR    = \"#$fg\";"
+    echo "static const char * const BAR_BG_COLOR = \"#$bg\";"
+    echo "static const char * const BAR_FG_COLOR = \"#$bg\";"
+    echo
 }
 
 # Generate the colors
@@ -115,6 +134,7 @@ gtk2 > "$colordir/colors.rc"; echo "Generated gtk2 colors"
 css > "$colordir/colors.css"; echo "Generated firefox css vars"
 scss > "$colordir/colors.scss"; echo "Generated Sass variables"
 erb > "$colordir/colors.erbvim"; echo "Generated vim erb vars"
+sxiv > "$colordir/colors.sxiv"; echo "Generated sxiv config colors"
 
 # Nvim uses 16 colors so lets generate all 16
 totalcolors=16
@@ -139,5 +159,12 @@ gencss () {
     sass --sourcemap=none -f "$startpage/scss/main.scss" "$startpage/main.css"
 }
 
+# Generate config.h file
+sxivgen () {
+   configdir="$HOME/dotfiles/other/sxiv"
+   cat "$configdir/colors.sxiv" "$configdir/config.sxiv" > "$configdir/config.h"
+}
+
 erbgen; echo "Generated Vim colorscheme template"
 gencss; echo "Generated css file using sass"
+sxivgen; echo "Generated sxiv config.h, please rebuild sxiv to see the changes"

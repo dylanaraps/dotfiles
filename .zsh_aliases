@@ -22,8 +22,6 @@ alias ls="export LC_COLLATE="C"; ls -A --color=always --group-directories-first"
 # Save all screenshots to ~/Pictures
 alias scrot="cd $HOME/Pictures/ && scrot"
 
-alias imv="imv -b #$black"
-
 # Launch steam with options that allow sound/mic to work without
 # Pulse audio.
 alias steam="LD_PRELOAD=/usr/lib/libasound.so.2 STEAM_RUNTIME=1 SDL_AUDIODRIVER=alsa steam"
@@ -42,6 +40,8 @@ alias poweroff="backup.sh; poweroff"
 
 # Create vim colorscheme on open
 alias nvim="erb -T - ~/dotfiles/colorschemes/ryuuko/ryuuko.erb > ~/dotfiles/colorschemes/ryuuko/colors/ryuuko.vim && nvim"
+
+alias sxiv="sxiv -t -b"
 
 # }}}
 
