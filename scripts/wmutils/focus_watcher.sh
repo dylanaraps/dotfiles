@@ -24,7 +24,7 @@ ignore_cover () {
     wid=$(wattr iwh $(lsw) | awk '/144 143/ {print $1;}')
 
     chwb -s 7 "$wid"
-    wmv -a 1666 815 "$wid"
+    wmv -a 1738 886 "$wid"
     ignw -s "$wid"
 }
 
