@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/bin/mksh
 # Fetch info about your system
 #
 # Created by Dylan Araps
@@ -60,8 +60,8 @@ done
 
 # Get image from wallpaper
 # Requires feh
-if [[ $usewall == 1 ]]; then
-    wallpaper=$(cat .fehbg | awk '/feh/ {printf $3}' | sed -e "s/'//g")
+if [ $usewall -eq 1 ]; then
+    wallpaper=$(cat $HOME/.fehbg | awk '/feh/ {printf $3}' | sed -e "s/'//g")
 
     # Directory to store cropped wallpapers.
     walltempdir="$HOME/.wallpaper"
@@ -73,7 +73,7 @@ if [[ $usewall == 1 ]]; then
 
     # Crop the wallpaper and save it to  the wallpaperdir
     # By default it crops a 1080x1080 square in the center of the image.
-    [[ -f "$walltempdir/$(basename $wallpaper)" ]] || convert -crop 1080x1080+480+0 "$wallpaper" "$walltempdir/$(basename $wallpaper)"
+    [ -f "$walltempdir/$(basename $wallpaper)" ] || convert -crop 1080x1080+480+0 "$wallpaper" "$walltempdir/$(basename $wallpaper)"
 
     # The final image
     img="$walltempdir/$(basename $wallpaper)"

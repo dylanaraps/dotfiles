@@ -1,4 +1,4 @@
-#!/bin/sh
+#!/bin/mksh
 # focus a window when it is created
 #
 # Created by z3bra, Modified by Dylan Araps

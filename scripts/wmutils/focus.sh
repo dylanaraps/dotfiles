@@ -1,4 +1,4 @@
-#!/bin/sh
+#!/bin/mksh
 # window focus wrapper that sets borders and can focus to the next/previous window
 #
 # Created by z3bra, Modified by Dylan Araps

@@ -1,4 +1,4 @@
-#!/bin/sh
+#!/bin/mksh
 # Script to backup specific folders using rsync
 #
 # Created by Dylan Araps

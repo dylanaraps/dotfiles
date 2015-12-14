@@ -1,4 +1,4 @@
-#!/bin/sh
+#!/bin/mksh
 # Notifications using lemonbar
 #
 # Created by Dylan Araps

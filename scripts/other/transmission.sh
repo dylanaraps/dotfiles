@@ -1,4 +1,4 @@
-#!/bin/sh
+#!/bin/mksh
 # Dylan's transmission popup script
 # Displays a notification when transmission finishes downloading a torrent.
 

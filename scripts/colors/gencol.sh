@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/bin/mksh
 # Grab Xresources colors and ouput them in various formats
 #
 # Created by Dylan Araps
@@ -17,9 +17,9 @@ totalcolors=9
 # Name of the colors
 colors () {
     # Grab the current terminal colors
-    if [[ $totalcolors == 8 ]]; then
+    if [ $totalcolors -eq 8 ]; then
         getcolors=$(xrdb -query | grep "\*\.color[0-7]:" | sort --version-sort | cut -f2 | sed -e "s/\#//")
-    elif [[ $totalcolors == 16 ]]; then
+    elif [ $totalcolors -eq 16 ]; then
         getcolors=$(xrdb -query | grep "\*\.color[0-9]*[0-9]:" | sort --version-sort | cut -f2 | sed -e "s/\#//")
     else
         # I print 9 colors as the second black is a dark grey in my schemes

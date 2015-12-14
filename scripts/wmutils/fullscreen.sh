@@ -1,4 +1,4 @@
-#!/bin/sh
+#!/bin/mksh
 # toggle the fullscreen state of multiple windows
 #
 # Created by z3bra, Modified by Dylan Araps
@@ -34,9 +34,9 @@ else
     # geometry and id to $fsfile we also remove any border from this window.
     wattr xywhi $wid > $fsfile
 
-    if [[ $(wattr y $wid) -gt 1080 ]]; then
+    if [ $(wattr y $wid) -gt 1080 ]; then
         wtp 0 1080 1920 1080 $wid
-    elif [[ $(wattr x $wid) -gt 1920 ]]; then
+    elif [ $(wattr x $wid) -gt 1920 ]; then
         wtp 1920 0 1280 1024 $wid
     else
         wtp 0 0 1920 1080 $wid

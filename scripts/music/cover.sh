@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/bin/mksh
 # Display cover art based on "mpc current"
 #
 # Created by Dylan Araps

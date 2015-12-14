@@ -1,4 +1,4 @@
-#!/bin/sh
+#!/bin/mksh
 # Prints terminal colors with hex colors side by side
 # Only works with terminals that use .Xdefaults/.Xresources
 #

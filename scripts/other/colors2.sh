@@ -1,4 +1,4 @@
-#!/bin/sh
+#!/bin/mksh
 # Prints the terminal colors in a line
 # Only works with terminals that use .Xdefaults/.Xresources
 #
@@ -7,7 +7,7 @@
 
 number="0"
 
-echo ""
+echo
 
 # This echo is outside of the for loop to manually set it's text color
 for color in $( xrdb -query | awk '/*.color[1-8]:/ {print $2}' ); do
@@ -15,5 +15,5 @@ for color in $( xrdb -query | awk '/*.color[1-8]:/ {print $2}' ); do
     echo -n "$(tput setaf "$number")$(tput smso)       $(tput sgr0)"
 done
 
-echo ""
-echo ""
+echo
+echo

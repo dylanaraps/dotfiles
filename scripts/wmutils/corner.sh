@@ -1,4 +1,4 @@
-#!/bin/sh
+#!/bin/mksh
 # move windows to the corners
 #
 # Created by Dylan Araps
@@ -22,7 +22,7 @@ x=$padding
 y=$padding
 
 # Hardvoded multimonitor
-if [[ $(wattr y $wid) -gt 1080 ]]; then
+if [ $(wattr y $wid) -gt 1080 ]; then
     case $1 in
         tl) y=$((1080 + padding)) ;;
 
@@ -52,7 +52,7 @@ if [[ $(wattr y $wid) -gt 1080 ]]; then
             chwso -l $wid ;;
 
     esac
-elif [[ $(wattr x $wid) -gt 1920 ]]; then
+elif [ $(wattr x $wid) -gt 1920 ]; then
     case $1 in
         tl) x=$((1920 + padding)) ;;
 

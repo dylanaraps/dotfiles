@@ -1,4 +1,4 @@
-#!/bin/sh
+#!/bin/mksh
 # groaw - group, organize and arrange windows
 #
 # Created by z3bra, Modified by Dylan Araps

@@ -1,4 +1,4 @@
-#!/bin/sh
+#!/bin/mksh
 # Tile windows with gaps/padding/ignored-windows/multi-monitor
 #
 # Created by Dylan Araps

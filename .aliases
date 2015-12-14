@@ -1,4 +1,4 @@
-# Dylan's zsh aliases and functions
+# Dylan's aliases and functions
 
 # Aliases {{{
 
@@ -17,7 +17,7 @@ alias plu="lsnc $HOME/Music > $HOME/.mpd/playlists/music.m3u"
 alias pwd.sh="cd $HOME/pwd.sh && ./pwd.sh"
 
 # Makes ls list all files and always use color
-alias ls="export LC_COLLATE="C"; ls -A --color=always --group-directories-first"
+alias ls="ls -A --color=always --group-directories-first"
 
 # Save all screenshots to ~/Pictures
 alias scrot="cd $HOME/Pictures/ && scrot"
@@ -42,22 +42,6 @@ alias poweroff="backup.sh; poweroff"
 alias nvim="erb -T - ~/dotfiles/colorschemes/ryuuko/ryuuko.erb > ~/dotfiles/colorschemes/ryuuko/colors/ryuuko.vim && nvim"
 
 alias sxiv="sxiv -t -b"
-
-# }}}
-
-# Functions {{{
-
-# ls on every cd
-function chpwd() {
-  ls
-}
-
-# Do maths in the terminal
-= () {
-    calc="${@//p/+}"
-    calc="${calc//x/*}"
-    echo "$(($calc))"
-}
 
 # }}}
 

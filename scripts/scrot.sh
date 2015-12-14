@@ -1,4 +1,4 @@
-#!/bin/sh
+#!/bin/mksh
 # Take a screenshot, crop out the secondary monitors
 # and upload it to sr.ht
 #

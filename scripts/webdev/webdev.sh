@@ -1,4 +1,4 @@
-#!/bin/sh
+#!/bin/mksh
 # Script to set up a website project
 #
 # Created by Dylan Araps
