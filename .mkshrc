@@ -1,5 +1,6 @@
 # Dylan's mkshrc
 
+# History file
 HISTFILE="$HOME/.mksh_history"
 
 # Set prompt
