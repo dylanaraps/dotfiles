@@ -32,9 +32,9 @@ Xcursor.size: 16
 ! Colors {{{
 
 ! special
-*.foreground:   #f0e4dc
+*.foreground:   #f0eae6
 *.background:   #434e4a
-*.cursorColor:  #f0e4dc
+*.cursorColor:  #f0eae6
 
 ! black
 ! Second black is grey
@@ -66,7 +66,7 @@ Xcursor.size: 16
 *.color14:      #8fb3ad
 
 ! white
-*.color7:       #f0e4dc
-*.color15:      #f0e4dc
+*.color7:       #f0eae6
+*.color15:      #f0eae6
 
 ! }}}

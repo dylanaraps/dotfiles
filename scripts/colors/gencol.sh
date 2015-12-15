@@ -139,6 +139,8 @@ sxiv () {
 }
 
 # Generate the colors
+echo "Generating color files"
+echo
 envar > "$colordir/colors.envar"; echo "Generated envars"
 scripts > "$colordir/colors.sh"; echo "Generated variables"
 gtk2 > "$colordir/colors.rc"; echo "Generated gtk2 colors"
@@ -152,6 +154,9 @@ totalcolors=16
 nvim > "$colordir/tui.erbvim"; echo "Generated neovim tui colors"
 
 # Other Generation
+echo
+echo "Doing other generation"
+echo
 
 # Neovim colorscheme
 # How it works:  colors.erbvim + theme.erbvim + tui.erbvim > ryuuko.erb
@@ -176,6 +181,20 @@ sxivgen () {
    cat "$configdir/colors.sxiv" "$configdir/config.sxiv" > "$configdir/config.h"
 }
 
+# Reopen lemonbar
+bar () {
+    pkill clock.sh
+    clock.sh &>/dev/null
+}
+
+# Reopen cover art
+cover () {
+    killw $(wattr iwh $(lsw -o) | awk '/144 143/ {print $1;}')
+    coverspawn.sh &>/dev/null
+}
+
 erbgen; echo "Generated Vim colorscheme template"
 gencss; echo "Generated css file using sass"
 sxivgen; echo "Generated sxiv config.h, please rebuild sxiv to see the changes"
+bar & echo "Restarted lemonbar"
+cover & echo "Restarted cover script"
