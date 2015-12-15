@@ -20,7 +20,7 @@ alias pwd.sh="cd $HOME/pwd.sh && ./pwd.sh"
 alias ls="ls -A --color=always --group-directories-first"
 
 # Save all screenshots to ~/Pictures
-alias scrot="cd $HOME/Pictures/ && scrot"
+alias scrot="cd $HOME/Pictures/scrots/ && scrot"
 
 # Launch steam with options that allow sound/mic to work without
 # Pulse audio.

@@ -18,7 +18,7 @@ upload () {
 if [ -z "$1" ]; then
     # What to name the image and where to save it
     img="scrot-$(date "+%d%b")-$RANDOM.png"
-    dir="$HOME/Pictures/"
+    dir="$HOME/Pictures/scrots"
 
     # Take the screenshot and move the image to $dir
     scrot -q 100 "$img" -e "mv $img $dir"
