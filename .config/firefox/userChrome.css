@@ -215,14 +215,3 @@
 /* }}} */
 
 }
-
-/* MISC {{{ */
-
-/* hide scrollbars */
-#content browser {
- margin-right: -16px !important;
- overflow-y: scroll !important;
- overflow-x: hidden !important;
-}
-
-/* }}} */

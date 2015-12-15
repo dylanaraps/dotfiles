@@ -8,8 +8,8 @@ ul {
 
 body {
   background: #f0eae6;
-  height: 100vh;
-  width: 100vw; }
+  height: 100%;
+  width: 100%; }
 
 main {
   display: block;
@@ -18,7 +18,7 @@ main {
   top: 50%;
   transform: translate(-50%, -70%);
   /* Fix centering in qutebrowser */
-  -webkit-transform: translate(-50%, -80%);
+  -webkit-transform: translate(-50%, -70%);
   text-align: center;
   width: 100%; }
   main img {
