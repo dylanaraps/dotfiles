@@ -43,6 +43,16 @@ envar () {
     done
 }
 
+# Used as an include inside of scripts
+scripts () {
+    colors
+
+    for color in $getcolors; do
+        pos=$((pos + 1))
+        echo "${colors[$pos]}=$color"
+    done
+}
+
 # Generate gtk2 colors for use in my gtk theme
 gtk2 () {
     colors
@@ -130,6 +140,7 @@ sxiv () {
 
 # Generate the colors
 envar > "$colordir/colors.envar"; echo "Generated envars"
+scripts > "$colordir/colors.sh"; echo "Generated variables"
 gtk2 > "$colordir/colors.rc"; echo "Generated gtk2 colors"
 css > "$colordir/colors.css"; echo "Generated firefox css vars"
 scss > "$colordir/colors.scss"; echo "Generated Sass variables"

@@ -2,9 +2,7 @@
    By Dylan Araps */
 html,
 body,
-h1,
-ul,
-li {
+ul {
   margin: 0;
   padding: 0; }
 
@@ -15,24 +13,29 @@ body {
 
 main {
   display: block;
+  left: 50%;
   position: absolute;
   top: 50%;
-  left: 50%;
-  transform: translate(-50%, -90%);
+  transform: translate(-50%, -70%);
   /* Fix centering in qutebrowser */
-  -webkit-transform: translate(-50%, -90%); }
+  -webkit-transform: translate(-50%, -80%);
+  text-align: center;
+  width: 100%; }
+  main img {
+    display: block;
+    margin: 0 auto;
+    width: 300px; }
 
 /* Change the vertical center offset
    at browser heights of 700 px and below */
 @media only screen and (max-height: 700px) {
   main {
-    left: 40%;
-    transform: translate(-40%, -60%);
-    -webkit-transform: translate(-40%, -60%); } }
-h1 {
-  color: #7c9fa6;
-  font-family: Roboto;
-  font-size: 3em; }
+    transform: translate(-50%, -50%);
+    -webkit-transform: translate(-50%, -50%); } }
+hr {
+  border: 0;
+  border-top: 1px solid #bfb7a1;
+  width: 400px; }
 
 ul {
   display: block;
@@ -44,12 +47,7 @@ li {
   font-size: 1em;
   line-height: 1.5;
   list-style: none;
-  margin: 0 5px; }
-
-.subh {
-  color: #99736e;
-  font-weight: bold;
-  margin-top: 5px; }
+  margin: 5px; }
 
 a {
   color: #70838c;

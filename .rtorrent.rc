@@ -32,11 +32,11 @@ schedule = untied_directory,5,5,stop_untied=
 schedule = low_diskspace,5,60,close_low_diskspace=100M
 
 # Colors: 0 = black 1 = red 2 = green 3 = yellow 4 = blue 5 = magenta 6 = cyan 7 = white
-color_active_fg = 0
+color_active_fg = 4
 color_inactive_fg = 1
 color_dead_fg = 0
 color_finished_fg = 0
-color_active_bg = 4
+color_active_bg = 0
 color_inactive_bg = 0
 color_dead_bg = 1
 color_finished_bg = 2

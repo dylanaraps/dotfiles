@@ -115,5 +115,9 @@ else
     esac
 fi
 
+# Ingore windows from tiling
+ignorefile="/tmp/.ignore-$wid"
+touch "$ignorefile"
+
 # Move the window
 wtp $x $y $w $h $wid
