@@ -202,6 +202,9 @@ set smartcase
 nnoremap <SPACE> <nop>
 vnoremap <SPACE> <nop>
 
+" Map ctrl c to escape to fix multiple cursors issue
+noremap <C-c> <Esc>
+
 " Map the capital equivalent for easier save/exit
 cabbrev Wq wq
 cabbrev W w
