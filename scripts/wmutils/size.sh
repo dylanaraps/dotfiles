@@ -16,7 +16,7 @@ padding=80
 
 xy=$(wattr xy $wid)
 
-# If window is on my second monitor
+# If window is on my second monitoet number!
 if [ $(wattr x $wid) -gt 1920 ]; then
     sw=1280
     sh=1024

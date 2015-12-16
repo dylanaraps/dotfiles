@@ -172,8 +172,8 @@ set shortmess=atI
 " Hide mode indicator
 set noshowmode
 
-" Never show statusline
-set laststatus=0
+" Always show statusline
+set laststatus=2
 
 colorscheme ryuuko
 
@@ -254,9 +254,6 @@ nnoremap gk k
 " Jumps to the bottom of Fold
 nmap <Leader>b zo]z
 
-" Toggle line numbers
-nmap <Leader>n set number!<CR>
-
 " Moves a single space after end of line and puts me in insert mode
 nnoremap L A
 
@@ -283,6 +280,7 @@ map <F10> :echo "hi<" . synIDattr(synID(line("."),col("."),1),"name") . '> trans
 \ . synIDattr(synID(line("."),col("."),0),"name") . "> lo<"
 \ . synIDattr(synIDtrans(synID(line("."),col("."),1)),"name") . ">"<CR>
 
+nmap <F1> :set number!<CR>
 nmap <silent> <F2> :call Chmox() <CR>
 
 " }}}
