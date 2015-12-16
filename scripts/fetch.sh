@@ -80,7 +80,7 @@ if [ $usewall -eq 1 ]; then
 fi
 
 # Underline title with length of title
-underline=$(printf '%0.s-' $(seq 1 $(echo "${title%?}" | wc -m)))
+underline=$(printf %"${#title}"s |tr " " "-")
 
 ## Start printing info
 
