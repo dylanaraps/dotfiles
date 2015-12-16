@@ -45,12 +45,6 @@ Plug 'junegunn/vim-oblique'
 	let g:oblique#prefix = "\\v" " Very Magic
 
 Plug 'tpope/vim-commentary'
-	augroup Commentary
-		au!
-		autocmd FileType xdefaults setlocal commentstring=!\ %s
-		autocmd FileType scss setlocal commentstring=/*%s*/
-	augroup END
-
 Plug 'rstacruz/vim-closer'
 Plug 'tpope/vim-surround'
 	" Maps ss to surround word
@@ -63,13 +57,10 @@ Plug 'tpope/vim-surround'
 	vmap s S
 
 " Filetype Plugins
-Plug 'mattn/emmet-vim'
-Plug 'ap/vim-css-color'
 Plug 'JulesWang/css.vim'
 Plug 'cakebaker/scss-syntax.vim'
 Plug 'hail2u/vim-css3-syntax'
 Plug 'othree/html5.vim'
-Plug 'kchmck/vim-coffee-script'
 
 call plug#end()
 
@@ -106,6 +97,12 @@ augroup Filetypes
     " Always use goyo
     autocmd BufRead * Goyo 80%x90%
 
+    " Plugins
+    autocmd FileType xdefaults setlocal commentstring=!\ %s
+    autocmd FileType scss setlocal commentstring=/*%s*/
+
+    " Set rtorrent config to zsh filetype to fix syntax highlighting
+	autocmd BufRead .rtorrent.rc set filetype=markdown
 augroup END
 
 " }}}
@@ -175,8 +172,8 @@ set shortmess=atI
 " Hide mode indicator
 set noshowmode
 
-" Always show statusline
-set laststatus=2
+" Never show statusline
+set laststatus=0
 
 colorscheme ryuuko
 
@@ -239,17 +236,10 @@ cmap w!! w !sudo tee % >/dev/null
 cmap Hterm sp <bar> terminal
 cmap Vterm vsp <bar> terminal
 
-" Emmet binding
-imap ,, <C-y>,
-
 " Maps Tab to indent blocks of text in visual mode
 vmap <TAB> >gv
 vmap <BS> <gv
 vmap <S-TAB> <gv
-
-" remap jk and kj to escape
-inoremap jk <Esc>
-inoremap kj <Esc>
 
 " use hjkl-movement between rows when soft wrapping:
 nnoremap j gj
@@ -263,6 +253,9 @@ nnoremap gk k
 
 " Jumps to the bottom of Fold
 nmap <Leader>b zo]z
+
+" Toggle line numbers
+nmap <Leader>n set number!<CR>
 
 " Moves a single space after end of line and puts me in insert mode
 nnoremap L A
@@ -290,12 +283,7 @@ map <F10> :echo "hi<" . synIDattr(synID(line("."),col("."),1),"name") . '> trans
 \ . synIDattr(synID(line("."),col("."),0),"name") . "> lo<"
 \ . synIDattr(synIDtrans(synID(line("."),col("."),1)),"name") . ">"<CR>
 
-nmap <silent> <F1> :Webdev <CR>
 nmap <silent> <F2> :call Chmox() <CR>
-
-" Move visual block
-vnoremap J :m '>+1<CR>gv=gv
-vnoremap K :m '<-2<CR>gv=gv
 
 " }}}
 
@@ -326,9 +314,10 @@ set undoreload=500
 
 " Misc {{{
 
-" Improve Neovim startup time by disabling python 2 and host check
+" Improve Neovim startup time by disabling python and host check
 let g:python_host_skip_check= 1
 let g:loaded_python_provider = 1
+let g:loaded_python3_provider = 1
 
 " Auto change dir to file directory
 set autochdir
@@ -389,37 +378,6 @@ set fillchars=fold:-
 " }}}
 
 " Functions {{{
-
-" Webdev {{{
-" Turns neovim into a psuedo web ide with gulp running in a terminal split and nerdtree running on the side.
-
-function! OpenFiles()
-	setlocal noautochdir
-	silent! find src/*.html
-	silent! find src/scss/**/*.scss
-	silent! find src/coffeescript/**/*.coffee
-	silent! find src/js/**/*.js
-	1buffer
-endfunction
-
-function! NerdTree()
-	silent! if g:loaded_nerd_tree
-		NERDTreeTabsOpen
-		setlocal nomodifiable
-		setlocal nobuflisted
-		wincmd w
-	endif
-endfunction
-
-function! TaskSplit()
-	Task
-	wincmd w
-	wincmd w
-endfunction
-
-command! Webdev call OpenFiles() | call NerdTree() | call Openwith("firefox-nightly") | call TaskSplit()
-
-" }}}
 
 " Better Buffer Navigation {{{
 " Maps <Tab> to cycle though buffers but only if they're modifiable.
