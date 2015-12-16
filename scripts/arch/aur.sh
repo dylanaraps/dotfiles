@@ -69,4 +69,4 @@ while getopts "S:R:U" opt 2>/dev/null; do
 done
 
 # Recursively remove uneeded dependencies
-sudo pacman -Rns $(pacman -Qtdq) 2>/dev/null || echo "No uneeded dependencies to remove"
+sudo pacman -Rns $(pacman -Qtdq) --noconfirm 2>/dev/null || echo "No uneeded dependencies to remove"

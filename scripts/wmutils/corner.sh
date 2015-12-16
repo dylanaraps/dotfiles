@@ -21,7 +21,7 @@ h=234
 x=$padding
 y=$padding
 
-# Hardvoded multimonitor
+# Hardcoded multimonitor
 if [ $(wattr y $wid) -gt 1080 ]; then
     case $1 in
         tl) y=$((1080 + padding)) ;;

@@ -1,5 +1,8 @@
 # Dylan's mkshrc
 
+# Set default editor to nvim
+EDITOR="nvim"
+
 # History file
 HISTFILE="$HOME/.mksh_history"
 

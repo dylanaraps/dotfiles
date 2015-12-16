@@ -9,8 +9,13 @@ upload () {
     file="$1"
     dest="https://sr.ht/api/upload"
 
+    # Create a popup
+    popup.sh -e "Uploading Screenshot" -s 60 -w 150 -x 1670 &
+
     # Upload the image, to use this script you'll need your sr.ht key.
-    curl --silent -F key="$(cat srhtkey)" -F file="@${file}" "https://sr.ht/api/upload" | grep -o -i "https://sr.ht/*.[a-z0-9._-]*"
+    url=$(curl --silent -F key="$(cat srhtkey)" -F file="@${file}" "https://sr.ht/api/upload" | grep -o -i "https://sr.ht/*.[a-z0-9._-]*")
+
+    echo "$url"
 }
 
 # If args are given, take a screenshot and upload it
@@ -31,3 +36,9 @@ if [ -z "$1" ]; then
 else
     upload "$1"
 fi
+
+# Copy link to clipboard
+echo "$url" | xsel -i -b
+
+# Create final popup
+popup.sh -e "Done!: $url" -s 5 -w 150 -x 1670 &
