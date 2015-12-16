@@ -4,7 +4,7 @@
 # Created by Dylan Araps
 # https://github.com/dylanaraps/dotfiles
 
-## Formatting
+# Formatting
 
 # Set to nothing to disable bold text
 bold=$(tput bold)
@@ -16,7 +16,7 @@ clear=$(tput sgr0)
 # colors are now defined with a launch option "-c"
 color=$(tput setaf 1)
 
-## Custom Image
+# Custom Image
 
 # If usewall=1 then fetch will use a cropped version of your wallpaper as the img
 usewall=1
@@ -33,11 +33,11 @@ xoffset=0
 # Padding to align text to the right
 pad="                             "
 
-## Other
+# Other
 
 # Title
 # title can also be changed with -t
-# TO use the usual "user@hostname" change the line below to:
+# To use the usual "user@hostname" change the line below to:
 # title="$(whoami)@$(hostname)"
 title="dylan's pc"
 
@@ -82,7 +82,7 @@ fi
 # Underline title with length of title
 underline=$(printf %"${#title}"s |tr " " "-")
 
-## Start printing info
+# Start printing info
 
 # Clear terminal before running
 clear
