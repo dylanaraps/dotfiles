@@ -127,7 +127,7 @@ tile () {
     for wid in $(echo "$listwin" | grep -v $wid); do
         ignorefile="/tmp/.ignore-$wid"
         # If focused window's name doesn't include "tile_ignore", tile it!
-        if [ ! -f $ignorefile ]; then
+        if [ ! -f "$ignorefile" ]; then
             wtp $x $y $w $h $wid
 
             y=$((y + h + gap))
