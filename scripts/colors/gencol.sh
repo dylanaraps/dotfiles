@@ -123,7 +123,7 @@ sxiv () {
     colors
 
     bg=$(xrdb -query | grep "\*\.color0:" | sort --version-sort | cut -f2 | sed -e "s/\#//" )
-    fg=$(xrdb -query | grep "\*\.color6:" | sort --version-sort | cut -f2 | sed -e "s/\#//" )
+    fg=$(xrdb -query | grep "\*\.color4:" | sort --version-sort | cut -f2 | sed -e "s/\#//" )
 
     echo "#ifdef _WINDOW_CONFIG"
     echo

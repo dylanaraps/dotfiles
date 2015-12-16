@@ -33,6 +33,15 @@ if [ $(wattr y $wid) -gt 1080 ]; then
         ri) x=$((sw - w - padding - bw*2))
             y=$((sh + padding)) ;;
     esac
+elif [ $(wattr x $wid) -gt 1920 ]; then
+    sh=1024
+    h=$((sh - padding*2))
+
+    case $1 in
+        le) x=$((1920 + padding)) ;;
+
+        ri) x=$((1920 + 1280 - w - padding - bw*2)) ;;
+    esac
 else
     case $1 in
         # Kept here for readability

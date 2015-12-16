@@ -5,7 +5,7 @@
 */
 static const char * const WIN_BG_COLOR = "#434e4a";
 static const char * const WIN_FS_COLOR = "#434e4a";
-static const char * const SEL_COLOR    = "#8fb3ad";
+static const char * const SEL_COLOR    = "#7c9fa6";
 static const char * const BAR_BG_COLOR = "#434e4a";
 static const char * const BAR_FG_COLOR = "#434e4a";
 

@@ -16,6 +16,12 @@ padding=80
 
 xy=$(wattr xy $wid)
 
+# If window is on my second monitor
+if [ $(wattr x $wid) -gt 1920 ]; then
+    sw=1280
+    sh=1024
+fi
+
 case $1 in
     half) w=$((sw / 2 - padding - padding/2)) ;;
     third) w=$((sw / 3)) ;;

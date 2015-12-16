@@ -32,12 +32,18 @@ super + {h,j,k,l}
 super + shift + {h,j,k,l}
     wrs {-50 0,0 +50, 0 -50, +50 0} $(pfw)
 
+alt + shift + {h,j,k,l}
+    wrs {-50 0,0 +50, 0 -50, +50 0} $(pfw)
+
 # focus
 super + Tab
     focus.sh next
 
 # left/right snapping
 alt + {Left,Right}
+    snap.sh {le,ri}
+
+alt + {h,l}
     snap.sh {le,ri}
 
 alt + {z,x,c}
