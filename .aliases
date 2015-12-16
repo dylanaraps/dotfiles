@@ -19,23 +19,24 @@ alias pwd.sh="cd $HOME/pwd.sh && ./pwd.sh"
 # Makes ls list all files and always use color
 alias ls="ls -A --color=always --group-directories-first"
 
-# Save all screenshots to ~/Pictures
+# Save all screenshots to ~/Pictures/scrots
 alias scrot="cd $HOME/Pictures/scrots/ && scrot"
 
 # Launch steam with options that allow sound/mic to work without
 # Pulse audio.
 alias steam="LD_PRELOAD=/usr/lib/libasound.so.2 STEAM_RUNTIME=1 SDL_AUDIODRIVER=alsa steam"
 
-# urxvt
+# Always open urxvt clients
 alias urxvt="urxvtc"
 
 # backup files on poweroff
 alias poweroff="backup.sh; poweroff"
 
-# Create vim colorscheme on open
-alias nvim="erb -T - ~/dotfiles/colorschemes/ryuuko/ryuuko.erb > ~/dotfiles/colorschemes/ryuuko/colors/ryuuko.vim && nvim"
+# Launch sxiv without the bottom bar
+alias sxiv="sxiv -b"
 
-alias sxiv="sxiv -t -b"
+# The erb command doesn't work inside of the shellscript(?)
+alias gencol.sh="gencol.sh; erb -T - ~/dotfiles/colorschemes/ryuuko/ryuuko.erb > ~/dotfiles/colorschemes/ryuuko/colors/ryuuko.vim"
 
 # }}}
 

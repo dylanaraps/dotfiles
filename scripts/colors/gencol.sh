@@ -166,7 +166,7 @@ erbgen () {
     themedir="$HOME/dotfiles/colorschemes/ryuuko"
 
     # Combine the three files
-    cat "$themedir/colors.erbvim" "$themedir/theme.erbvim" "$themedir/tui.erbvim" > "$themedir/ryuuko.erb"
+    cat "$themedir/gen/colors.erbvim" "$themedir/gen/theme.erbvim" "$themedir/gen/tui.erbvim" > "$themedir/ryuuko.erb"
 }
 
 # Generate css
