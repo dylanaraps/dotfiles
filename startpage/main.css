@@ -4,12 +4,14 @@ html,
 body,
 ul {
   margin: 0;
-  padding: 0; }
+  padding: 0;
+}
 
 body {
   background: #f0eae6;
   height: 100%;
-  width: 100%; }
+  width: 100%;
+}
 
 main {
   display: block;
@@ -20,26 +22,34 @@ main {
   /* Fix centering in qutebrowser */
   -webkit-transform: translate(-50%, -70%);
   text-align: center;
-  width: 100%; }
-  main img {
-    display: block;
-    margin: 0 auto;
-    width: 300px; }
+  width: 100%;
+}
+
+main img {
+  display: block;
+  margin: 0 auto;
+  width: 300px;
+}
 
 /* Change the vertical center offset
    at browser heights of 700 px and below */
 @media only screen and (max-height: 700px) {
   main {
     transform: translate(-50%, -50%);
-    -webkit-transform: translate(-50%, -50%); } }
+    -webkit-transform: translate(-50%, -50%);
+  }
+}
+
 hr {
   border: 0;
   border-top: 1px solid #bfb7a1;
-  width: 400px; }
+  width: 400px;
+}
 
 ul {
   display: block;
-  margin: 0 auto; }
+  margin: 0 auto;
+}
 
 li {
   display: inline-block;
@@ -47,11 +57,15 @@ li {
   font-size: 1.2em;
   line-height: 1.5;
   list-style: none;
-  margin: 5px; }
+  margin: 5px;
+}
 
 a {
   color: #70838c;
   text-decoration: none;
-  transition: .2s; }
-  a:hover {
-    color: #7c9fa6; }
+  transition: .2s;
+}
+
+a:hover {
+  color: #7c9fa6;
+}

@@ -139,6 +139,7 @@ sxiv () {
 }
 
 # Generate the colors
+echo
 echo "Generating color files"
 echo
 envar > "$colordir/colors.envar"; echo "Generated envars"
@@ -172,7 +173,7 @@ erbgen () {
 # Use sass to preproccess css
 gencss () {
     startpage="$HOME/dotfiles/startpage"
-    sass --sourcemap=none -f "$startpage/scss/main.scss" "$startpage/main.css"
+    sassc --style expanded "$startpage/scss/main.scss" "$startpage/main.css"
 }
 
 # Generate config.h file
