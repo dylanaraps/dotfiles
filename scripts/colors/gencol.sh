@@ -97,7 +97,7 @@ erb () {
 
     for color in $getcolors; do
         pos=$((pos + 1))
-        echo -e "\t${colors[$pos]}       = [\"#$color\", $pos, \"${colors[$pos]}\"]"
+        echo -e "\t${colors[$pos]} = [\"#$color\", $pos, \"${colors[$pos]}\"]"
     done
 
     echo
@@ -108,11 +108,11 @@ nvim () {
 
     echo
 
-    echo "\" Neovim Terminal Mode Colors"
+    echo -e "\t\" Neovim Terminal Mode Colors"
 
     for color in $getcolors; do
         pos=$((pos + 1))
-        echo "let g:terminal_color_$pos = \"#$color\""
+        echo -e "\tlet g:terminal_color_$pos = \"#$color\""
     done
 
     echo
@@ -179,7 +179,7 @@ gencss () {
 # Generate config.h file
 sxivgen () {
    configdir="$HOME/dotfiles/other/sxiv"
-   cat "$configdir/colors.sxiv" "$configdir/config.sxiv" > "$configdir/config.h"
+   cat "$configdir/gen/colors.sxiv" "$configdir/gen/config.sxiv" > "$configdir/config.h"
 }
 
 # Reopen lemonbar
