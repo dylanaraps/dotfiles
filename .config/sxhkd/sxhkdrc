@@ -26,28 +26,12 @@ super + button1
 
 # move
 super + {h,j,k,l}
-    wmv {-20 0,0 +20, 0 -20, +20 0} $(pfw)
+    wmv {-40 0,0 +40, 0 -40, +40 0} $(pfw)
 
-# resize
-super + shift + {h,j,k,l}
-    wrs {-50 0,0 +50, 0 -50, +50 0} $(pfw)
+# Resize windows to fractions of screen size
+alt + {h,j,k,l}
+    size.sh {h,j,k,l}
 
-alt + shift + {h,j,k,l}
-    wrs {-50 0,0 +50, 0 -50, +50 0} $(pfw)
-
-# focus
-super + Tab
-    focus.sh next
-
-# left/right snapping
-alt + {Left,Right}
-    snap.sh {le,ri}
-
-alt + {h,l}
-    snap.sh {le,ri}
-
-alt + {z,x,c}
-    size.sh {quarter,third,half}
 
 # "Workspaces"
 
@@ -83,6 +67,10 @@ super + c
 alt + {1,2,3,4,5,6,7,8}
     corner.sh {tl,ml,bl,mt,mb,tr,mr,br}
 
+# Snap windows to left/right
+alt + {Left,Right}
+    corner.sh {ml,mr}
+
 # close window
 super + q
     killwa $(pfw)
@@ -90,6 +78,13 @@ super + q
 # Make window fullscreen
 super + f
     fullscreen.sh
+
+# Resize terminal to it's original size
+# Haven't found a good way to get the size yet so it's
+# manual for the time being.
+alt + Return
+    wtp $(wattr xy $(pfw)) 355 234 $(pfw)
+
 
 # Application specific
 
@@ -117,13 +112,19 @@ super + p
 super + u
     scrot.sh
 
-# Change wallpaper to random wall
-super + w
-    wall.sh
+super + shift + u
+    pkill scrot.sh; \
+    pkill popup.sh
 
 # Other
 
 
+# Change wallpaper to random wall
+super + w
+    wall.sh
+
 # Restart sxhkd
 super + Escape
     pkill -USR1 -x sxhkd
+
+

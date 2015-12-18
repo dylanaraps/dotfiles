@@ -1,5 +1,5 @@
 #!/bin/mksh
-# Resize windows to predefined sizes
+# Resize windows to fractions of screen size
 #
 # Created by Dylan Araps
 # https://github.com/dylanaraps/dotfiles
@@ -7,28 +7,23 @@
 # Focused window
 wid=$(pfw)
 
-# Screen size
-sw=1920
-sh=1080
-
-# Padding
-padding=80
-
-xy=$(wattr xy $wid)
-
-# If window is on my second monitoet number!
+# Screen size and padding depending
+# on which monitor the window is on
 if [ $(wattr x $wid) -gt 1920 ]; then
     sw=1280
     sh=1024
+    paddingx=0
+    paddingy=0
+else
+    sw=1920
+    sh=1080
+    paddingx=80
+    paddingy=80
 fi
 
 case $1 in
-    half) w=$((sw / 2 - padding - padding/2)) ;;
-    third) w=$((sw / 3)) ;;
-    quarter) w=$((sw / 4)) ;;
+    h) wrs -$((sw / 8 - padding)) 0 $wid ;;
+    j) wrs 0 +$((sh / 8 - padding)) $wid ;;
+    k) wrs 0 -$((sh / 8 - padding)) $wid ;;
+    l) wrs +$((sw / 8 - padding)) 0 $wid ;;
 esac
-
-h=$((sh - padding*2))
-
-# Move the window
-wtp $xy $w $h $wid
