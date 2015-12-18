@@ -1,8 +1,7 @@
 # Dylan's Dotfiles
 
-![1](http://i.imgur.com/49m2WFT.png)
-![2](http://i.imgur.com/RvzglmC.png)
-![3](http://i.imgur.com/IKxf2QT.png)
+![1](http://i.imgur.com/TtZDiiK.png)
+![2](http://i.imgur.com/JZ3c6R3.png)
 
 <!--- My Setup {{{ -->
 
