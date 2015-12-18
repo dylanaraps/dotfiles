@@ -113,8 +113,13 @@ super + p
     popup.sh -e "Saved Screenshot" -s 4 -w 150 -x 1670 & sleep 1; \
     cd "$HOME/Pictures/scrots" && scrot &
 
+# Upload scrot/file to st.ht
 super + u
     scrot.sh
+
+# Change wallpaper to random wall
+super + w
+    wall.sh
 
 # Other
 

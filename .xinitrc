@@ -23,6 +23,6 @@ clock.sh &
 coverspawn.sh &
 
 # Set wallpaper
-feh --bg-fill ~/Pictures/wallpaper/wash/3.jpg &
+wall.sh --loop 15m
 
 exec sh -c 'while :; do sleep 10; done'
