@@ -41,4 +41,4 @@ fi
 echo "$url" | xsel -i -b
 
 # Create final popup
-popup.sh -e "Done!: $url" -s 5 -w 150 -x 1670 &
+popup.sh -e "Done!: $url" -s 5 -w $(txtw "Done!: $url") -x $((1820 - $(txtw "Done!: $url"))) &

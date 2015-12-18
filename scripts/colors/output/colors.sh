@@ -1,9 +1,9 @@
-black=434e4a
+black=475359
 red=99736e
 green=78a090
 yellow=bfb7a1
 blue=7c9fa6
 orange=ccad99
-cyan=8fb3ad
+cyan=b8ccc9
 white=f0eae6
 gray=70838c

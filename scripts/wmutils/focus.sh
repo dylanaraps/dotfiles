@@ -15,7 +15,7 @@ bw=6
 active=$white
 
 # inactive border color
-inactive=$gray
+inactive=$cyan
 
 # get current window id
 cur=$(pfw)
