@@ -61,9 +61,11 @@ super + s
 
 # Center window on screen
 super + c
+    chwso -l $(pfw); \
     corner.sh mm
 
 alt + c
+    chwso -l $(pfw); \
     corner.sh mm
 
 # Corners
@@ -91,6 +93,9 @@ super + f
 alt + Return
     wtp $(wattr xy $(pfw)) 355 234 $(pfw)
 
+
+alt + Tab
+    nextmon.sh
 
 # Application specific
 

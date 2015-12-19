@@ -23,6 +23,6 @@ clock.sh &
 coverspawn.sh &
 
 # Set wallpaper
-wall.sh --loop 15m
+wall.sh --loop 900
 
 exec sh -c 'while :; do sleep 10; done'
