@@ -35,8 +35,8 @@ main img {
    at browser heights of 700 px and below */
 @media only screen and (max-height: 700px) {
   main {
-    transform: translate(-50%, -50%);
-    -webkit-transform: translate(-50%, -50%);
+    transform: translate(-50%, -55%);
+    -webkit-transform: translate(-50%, -55%);
   }
 }
 
