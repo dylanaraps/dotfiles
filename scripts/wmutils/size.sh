@@ -22,8 +22,8 @@ else
 fi
 
 case $1 in
-    h) wrs -$((sw / 8 - padding)) 0 $wid ;;
-    j) wrs 0 +$((sh / 8 - padding)) $wid ;;
-    k) wrs 0 -$((sh / 8 - padding)) $wid ;;
-    l) wrs +$((sw / 8 - padding)) 0 $wid ;;
+    h) wrs -$((sw / $2 - padding)) 0 $wid ;;
+    j) wrs 0 +$((sh / $2 - padding)) $wid ;;
+    k) wrs 0 -$((sh / $2 - padding)) $wid ;;
+    l) wrs +$((sw / $2 - padding)) 0 $wid ;;
 esac

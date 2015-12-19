@@ -7,10 +7,17 @@
 
 spawn_at_cursor () {
     wid=$1
-    w=$(wattr w $wid)
-    h=$(wattr h $wid)
-    x=$((`wmp | cut -d\  -f1` - w))
-    y=$((`wmp | cut -d\  -f2` - h))
+
+    # Create array of window info
+    winfo=($(wattr wh $wid) $(wmp))
+
+    # Window height
+    w=${winfo[0]}
+    h=${winfo[1]}
+
+    # Place to spawn the window
+    x=$((${winfo[2]} - w/2))
+    y=$((${winfo[3]} - h/2))
 
     test $x -lt 0 && x=0
     test $y -lt 0 && y=0
@@ -18,7 +25,7 @@ spawn_at_cursor () {
     wtp $x $y $w $h $wid
 }
 
-# hacky hacky
+# hacky hacky way of ingoring a specific window
 ignore_cover () {
     # Get cover window id by width/height
     wid=$(wattr iwh $(lsw) | awk '/144 143/ {print $1;}')

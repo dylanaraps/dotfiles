@@ -30,7 +30,7 @@ super + {h,j,k,l}
 
 # Resize windows to fractions of screen size
 alt + {h,j,k,l}
-    size.sh {h,j,k,l}
+    size.sh {h,j,k,l} 8
 
 
 # "Workspaces"
