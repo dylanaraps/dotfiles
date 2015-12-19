@@ -18,7 +18,7 @@
 * Text Editor: [Neovim](https://github.com/neovim/neovim)
 * Color Scheme: ryuuko (In this repo)
 * Music Player: [Mpd](http://www.musicpd.org/) + [ncmpcpp](http://ncmpcpp.rybczak.net/)
-* Browser: Firefox
+* Browser: Iceweasel
 * Startpage: In this repo "/startpage/"
 * Video Player: [mpv](https://github.com/mpv-player/mpv)
 

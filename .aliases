@@ -38,5 +38,8 @@ alias sxiv="sxiv -b"
 # The erb command doesn't work inside of the shellscript(?)
 alias gencol.sh="gencol.sh; erb -T - ~/dotfiles/colorschemes/ryuuko/ryuuko.erb > ~/dotfiles/colorschemes/ryuuko/colors/ryuuko.vim"
 
+# Habits
+alias firefox="iceweasel"
+
 # }}}
 
