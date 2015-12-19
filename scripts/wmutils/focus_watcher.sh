@@ -28,7 +28,7 @@ spawn_at_cursor () {
 # hacky hacky way of ingoring a specific window
 ignore_cover () {
     # Get cover window id by width/height
-    wid=$(wattr iwh $(lsw) | awk '/144 143/ {print $1;}')
+    wid=$(wattr iwh $(lsw) | awk '/144 144/ {print $1;}')
 
     chwb -s 7 "$wid"
     wmv -a 1738 886 "$wid"
