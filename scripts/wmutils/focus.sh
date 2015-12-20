@@ -9,7 +9,7 @@
 source ~/dotfiles/scripts/colors/output/colors.sh
 
 # border width
-bw=6
+bw=0
 
 # active border color
 active=$white

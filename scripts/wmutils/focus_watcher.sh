@@ -6,10 +6,8 @@
 # Modified: https://github.com/dylanaraps/dotfiles
 
 spawn_at_cursor () {
-    wid=$1
-
     # Create array of window info
-    winfo=($(wattr wh $wid) $(wmp))
+    winfo=($(wattr wh $1) $(wmp))
 
     # Window height
     w=${winfo[0]}
@@ -22,32 +20,28 @@ spawn_at_cursor () {
     test $x -lt 0 && x=0
     test $y -lt 0 && y=0
 
-    wtp $x $y $w $h $wid
-}
+    # Disallow windows from spawning on my second
+    # monitor
+    if [ $x -gt 1920 ]; then
+        x=$((1920 - w - 80))
+    fi
 
-# hacky hacky way of ingoring a specific window
-ignore_cover () {
-    # Get cover window id by width/height
-    wid=$(wattr iwh $(lsw) | awk '/144 144/ {print $1;}')
-
-    chwb -s 7 "$wid"
-    wmv -a 1738 886 "$wid"
-    ignw -s "$wid"
+    wtp $x $y $w $h $1
 }
 
 # watch X events
 wew | while IFS=: read ev wid; do
     case $ev in
         # spawn windows at cursor if not overriden
-        16) wattr o $wid || spawn_at_cursor $wid; ignore_cover ;;
+        16) wattr o $wid || spawn_at_cursor $wid; titlebar.sh -s $wid ;;
 
         # focus windows if not overriden
-        19) wattr o $wid || ~/dotfiles/scripts/wmutils/focus.sh $wid ;;
+        19) wattr o $wid || focus.sh $wid ;;
 
-        # focus next window when deleting focused window
-        18) wattr $(pfw) || ~/dotfiles/scripts/wmutils/focus.sh prev ;;
+        # focus next window when deleting focused window and close titlebar
+        18) wattr $(pfw) || titlebar.sh -k $wid; focus.sh prev ;;
 
         # focus windows where the cursor enters
-        7) wattr o $wid || ~/dotfiles/scripts/wmutils/focus.sh $wid ;;
+        7) wattr o $wid || focus.sh $wid ;;
     esac
 done

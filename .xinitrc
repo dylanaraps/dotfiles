@@ -11,18 +11,21 @@ xrandr --output DVI-0 --mode 1920x1080 --rate 60 --primary --left-of DVI-1 --out
 
 sxhkd -f 100 &
 
+mpd &
+
+# Start focus_watcher
 ~/dotfiles/scripts/wmutils/focus_watcher.sh &
 
-mpd &
+# Start bar(s)
+clock.sh &
 
 # Start urxvt daemon
 urxvtd -q -f -o &
 
-# Start bar(s)
-clock.sh &
+# Open cover art
 coverspawn.sh &
 
 # Set wallpaper
-wall.sh --loop 900
+wall.sh --loop 900 &
 
 exec sh -c 'while :; do sleep 10; done'

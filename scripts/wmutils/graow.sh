@@ -5,8 +5,12 @@
 # Original: https://git.z3bra.org
 # Modified: https://github.com/dylanaraps/dotfiles
 
+# Vars
 groot=/tmp/groaw.d
 gnumber=5
+
+# Get titlebar wid
+titlebar=$(cat "/tmp/titlebar-$(pfw)" | cut -d " " -f 2)
 
 usage() {
     echo "$(basename $0) [-h] [-admtu <gid>]"
@@ -14,12 +18,13 @@ usage() {
 
 add_to_group() {
     :> $groot/$2/$1
+    :> $groot/$2/$titlebar
 }
 
 remove_from_group() {
     test "$2" = "all" \
-        && rm -f $groot/*/$1 \
-        || rm -f $groot/$2/$1
+        && rm -f $groot/*/$1; rm -f $groot/*/$titlebar \
+        || rm -f $groot/$2/$1; rm -f $groot/$2/$titlebar
 }
 
 find_group() {
@@ -30,6 +35,7 @@ find_group() {
 show_group() {
     for file in $groot/$1/*; do
         wid=$(basename $file)
+        mapw -m $titlebar &
         mapw -m $wid
     done
 }
@@ -37,6 +43,7 @@ show_group() {
 hide_group() {
     for file in $groot/$1/*; do
         wid=$(basename $file)
+        mapw -u $titlebar &
         mapw -u $wid
     done
 }
@@ -45,17 +52,9 @@ hide_group() {
 hide_group_all() {
     for file in $groot/*/*; do
         wid=$(basename $file)
+        mapw -u $titlebar &
         mapw -u $wid
     done
-}
-
-togg_group() {
-    wid=$(ls -1 $groot/$1 | sed 1q)
-
-    test -z "$wid" && return
-    wattr m $wid \
-        && hide_group $1 \
-        || show_group $1
 }
 
 check_groups_sanity() {
@@ -71,13 +70,12 @@ check_groups_sanity() {
 
 check_groups_sanity
 
-while getopts ":a:wd:ghm:t:u:U:" opt; do
+while getopts ":a:wd:ghm:u:U:" opt; do
     case $opt in
-        a) add_to_group `pfw` $OPTARG ;;
-        d) remove_from_group `pfw` $OPTARG ;;
-        g) find_group `pfw` ;;
+        a) add_to_group $(pfw) $OPTARG ;;
+        d) remove_from_group $(pfw) $OPTARG ;;
+        g) find_group $(pfw) ;;
         m) show_group $OPTARG ;;
-        t) togg_group $OPTARG ;;
         u) hide_group $OPTARG ;;
         U) hide_group_all $OPTARG ;;
         *) usage && exit 0;;

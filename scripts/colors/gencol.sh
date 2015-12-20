@@ -190,7 +190,7 @@ bar () {
 
 # Reopen cover art
 cover () {
-    killw $(wattr iwh $(lsw -o) | awk '/144 143/ {print $1;}')
+    killwa $(wattr iwh $(lsw -o) | awk '/144 144/ {print $1;}')
     coverspawn.sh &>/dev/null
 }
 
