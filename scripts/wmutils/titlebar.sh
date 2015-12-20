@@ -46,8 +46,8 @@ spawn () {
 # Move / Resize the bar
 update () {
     # Name of bar
-    winfo=($(wattr xyw $wid))
-    titlewid=($(cat /tmp/titlebar-$wid))
+    winfo=($(wattr xyw $1))
+    titlewid=($(cat /tmp/titlebar-$1))
 
     wtp ${winfo[0]} $((${winfo[1]} - height)) ${winfo[2]} $height ${titlewid[1]}
 }
@@ -66,10 +66,10 @@ killallbar () {
     done
 }
 
-while getopts "s:uk:K" opt; do
+while getopts "s:u:k:K" opt; do
     case $opt in
         s) spawn $OPTARG ;;
-        u) update ;;
+        u) update $OPTARG ;;
         k) killbar $OPTARG ;;
         K) killallbar ;;
     esac

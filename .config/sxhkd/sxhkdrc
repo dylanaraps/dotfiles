@@ -19,7 +19,7 @@ super + d
 # Control windows with the mouse
 super + !button{1,3}
     {wmv,wrs} -a %i %i $(pfw); \
-    titlebar.sh -u
+    titlebar.sh -u $(pfw)
 
 # Move window to top layer
 super + button1
@@ -29,12 +29,12 @@ super + button1
 # move
 super + {h,j,k,l}
     wmv {-40 0,0 +40, 0 -40, +40 0} $(pfw); \
-    titlebar.sh -u
+    titlebar.sh -u $(pfw)
 
 # Resize windows to fractions of screen size
 alt + {h,j,k,l}
     size.sh {h,j,k,l} 8; \
-    titlebar.sh -u
+    titlebar.sh -u $(pfw)
 
 
 # "Workspaces"
@@ -55,40 +55,30 @@ super + shift + {1,2,3,4,5}
 super + e
     graow.sh -d all
 
-# Exclude window from tiling
-super +  i
-    tile.sh -i
-
-# Tile windows
-super + s
-    tile.sh -t; \
-    titlebar.sh -u; \
-    mpc update &
-
 # Center window on screen
 super + c
     chwso -l $(pfw); \
     corner.sh mm; \
-    titlebar.sh -u
+    titlebar.sh -u $(pfw)
 
 alt + c
     chwso -l $(pfw); \
     corner.sh mm; \
-    titlebar.sh -u
+    titlebar.sh -u $(pfw)
 
 # Corners
 alt + {1,2,3,4,5,6,7,8}
     corner.sh {tl,ml,bl,mt,mb,tr,mr,br}; \
-    titlebar.sh -u
+    titlebar.sh -u $(pfw)
 
 # Snap windows to left/right
 super + {x,v}
     corner.sh {ml,mr}; \
-    titlebar.sh -u
+    titlebar.sh -u $(pfw)
 
 alt + {x,v}
     corner.sh {ml,mr}; \
-    titlebar.sh -u
+    titlebar.sh -u $(pfw)
 
 # close window and titlebar
 super + q
@@ -104,12 +94,12 @@ super + f
 # manual for the time being.
 alt + Return
     wtp $(wattr xy $(pfw)) 355 234 $(pfw); \
-    titlebar.sh -u
+    titlebar.sh -u $(pfw)
 
 
 alt + Tab
     nextmon.sh; \
-    titlebar.sh -u
+    titlebar.sh -u $(pfw)
 
 # Application specific
 

@@ -39,7 +39,10 @@ wew | while IFS=: read ev wid; do
         19) wattr o $wid || focus.sh $wid ;;
 
         # Kill titlebar with window
-        18) wattr $(pfw) || titlebar.sh -k $wid; focus.sh prev ;;
+        17) waatr $(pfw) || titlebar.sh -k $wid ;;
+
+        # Focus prev window
+        18) wattr $(pfw) || focus.sh prev ;;
 
         # focus windows where the cursor enters
         7) wattr o $wid || focus.sh $wid ;;

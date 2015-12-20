@@ -35,7 +35,7 @@ find_group() {
 show_group() {
     for file in $groot/$1/*; do
         wid=$(basename $file)
-        mapw -m $titlebar &
+        mapw -m $titlebar
         mapw -m $wid
     done
 }
