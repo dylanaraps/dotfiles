@@ -72,7 +72,7 @@
 	#TabsToolbar .tabbrowser-tab {
 		background: var(--white) !important;
 		border: none !important;
-		color: var(--black) !important;
+		color: var(--cyan) !important;
 		font-family: var(--tab-fonts) !important;
 		font-size: var(--tab-font-size) !important;
 		text-align: center !important;
@@ -82,7 +82,7 @@
 	/* Selected Tab */
 	#TabsToolbar .tabbrowser-tab[selected] {
 		background: var(--white) !important;
-		color: var(--gray) !important;
+		color: var(--black) !important;
 	}
 
 	/* Background behind Tabs */

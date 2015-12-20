@@ -15,46 +15,46 @@ body {
 
 main {
   display: block;
+  font-family: Roboto;
   left: 50%;
   position: absolute;
-  top: 50%;
-  transform: translate(-50%, -70%);
-  /* Fix centering in qutebrowser */
-  -webkit-transform: translate(-50%, -70%);
-  text-align: center;
+  top: 45%;
+  transform: translate(-50%, -50%);
   width: 100%;
-}
-
-main img {
-  display: block;
-  margin: 0 auto;
-  width: 300px;
 }
 
 /* Change the vertical center offset
    at browser heights of 700 px and below */
 @media only screen and (max-height: 700px) {
   main {
-    transform: translate(-50%, -55%);
-    -webkit-transform: translate(-50%, -55%);
+    transform: translate(-50%, -50%);
   }
+}
+
+h1 {
+  color: #99736e;
+  display: block;
+  margin: 0 auto;
+  text-align: left;
+  width: 400px;
 }
 
 hr {
   border: 0;
   border-top: 1px solid #70838c;
-  opacity: .5;
+  opacity: .4;
   width: 400px;
 }
 
 ul {
   display: block;
   margin: 0 auto;
+  width: 400px;
 }
 
 li {
+  color: #70838c;
   display: inline-block;
-  font-family: Roboto;
   font-size: 1.2em;
   line-height: 1.5;
   list-style: none;
