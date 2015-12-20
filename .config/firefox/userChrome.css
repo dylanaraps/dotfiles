@@ -70,7 +70,7 @@
 
 	/* Unselected Tabs */
 	#TabsToolbar .tabbrowser-tab {
-		background: var(--black) !important;
+		background: var(--white) !important;
 		border: none !important;
 		color: var(--gray) !important;
 		font-family: var(--tab-fonts) !important;
@@ -81,13 +81,13 @@
 
 	/* Selected Tab */
 	#TabsToolbar .tabbrowser-tab[selected] {
-		background: var(--black) !important;
-		color: var(--white) !important;
+		background: var(--white) !important;
+		color: var(--blue) !important;
 	}
 
 	/* Background behind Tabs */
 	#main-window[sizemode="normal"]:not([inFullscreen])  #TabsToolbar {
-		background: var(--black) !important;
+		background: var(--white) !important;
 		margin: 0 !important;
         padding-top: 4px !important;
 	}
@@ -101,7 +101,7 @@
 	#TabsToolbar,
 	#tabbrowser-tabs {
 		-moz-appearance: none !important;
-		background: var(--black) !important;
+		background: var(--white) !important;
 		border: none !important;
 		box-shadow: none !important;
 	}
@@ -135,8 +135,8 @@
 
 /* NAVBAR/URLBAR {{{ */
 
-	menubar, toolbar, nav-bar, #TabsToolbar > *{
-		background-color: var(--black) !important;
+	#TabsToolbar > *{
+		background-color: var(--white) !important;
 	}
 
 	#nav-bar {

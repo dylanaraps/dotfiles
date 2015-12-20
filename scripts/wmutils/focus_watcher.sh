@@ -38,7 +38,7 @@ wew | while IFS=: read ev wid; do
         # focus windows if not overriden
         19) wattr o $wid || focus.sh $wid ;;
 
-        # focus next window when deleting focused window and close titlebar
+        # Kill titlebar with window
         18) wattr $(pfw) || titlebar.sh -k $wid; focus.sh prev ;;
 
         # focus windows where the cursor enters

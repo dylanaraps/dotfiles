@@ -20,6 +20,9 @@ inactive=$cyan
 # get current window id
 cur=$(pfw)
 
+# Only list windows on my primary monitor
+lsw=$(wattr yxi $(lsw) | awk '$1 < 1080' | awk '$2 < 1920' | awk '{print $3}')
+
 usage() {
     echo "usage: $(basename $0) <next|prev|wid>"
     exit 1
@@ -40,8 +43,8 @@ setborder() {
 }
 
 case $1 in
-    next) wid=$(lsw | grep -v $cur | sed '1 p;d') ;;
-    prev) wid=$(lsw | grep -v $cur | sed '$ p;d') ;;
+    next) wid=$(echo "$lsw" | grep -v $cur | sed '1 p;d') ;;
+    prev) wid=$(echo "$lsw" | grep -v $cur | sed '$ p;d') ;;
     0x*) wattr $1 && wid=$1 ;;
     *) usage ;;
 esac

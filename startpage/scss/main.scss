@@ -12,7 +12,7 @@ ul {
 }
 
 body {
-	background: $white;
+	background: $black;
     height: 100%;
     width: 100%;
 }
@@ -46,7 +46,8 @@ main {
 
 hr {
     border: 0;
-    border-top: 1px solid $yellow;
+    border-top: 1px solid $gray;
+    opacity: .5;
     width: 400px;
 }
 
@@ -65,11 +66,11 @@ li {
 }
 
 a {
-	color: $gray;
+	color: $blue;
 	text-decoration: none;
 	transition: .2s;
 
     &:hover {
-        color: $blue;
+        color: $gray;
     }
 }
