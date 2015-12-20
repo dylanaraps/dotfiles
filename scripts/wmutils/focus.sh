@@ -20,8 +20,14 @@ inactive=$cyan
 # get current window id
 cur=$(pfw)
 
-# Only list windows on my primary monitor
-lsw=$(wattr yxi $(lsw) | awk '$1 < 1080' | awk '$2 < 1920' | awk '{print $3}')
+# multimon, focus.sh next/prev cycle through windows per monitor
+if [ "$(wattr x $cur)" -gt 1920 ]; then
+    lsw=$(wattr xi $(lsw) | awk '$1 > 1920' | awk '{print $2}')
+elif [ "$(wattr y $cur)" -gt 1080 ]; then
+    lsw=$(wattr yi $(lsw) | awk '$1 > 1080' | awk '{print $2}')
+else
+    lsw=$(wattr yxi $(lsw) | awk '$1 < 1080' | awk '$2 < 1920' | awk '{print $3}')
+fi
 
 usage() {
     echo "usage: $(basename $0) <next|prev|wid>"

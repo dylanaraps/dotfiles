@@ -97,9 +97,14 @@ alt + Return
     titlebar.sh -u $(pfw)
 
 
-alt + Tab
+# Move windows between monitors
+super + Tab
     nextmon.sh; \
     titlebar.sh -u $(pfw)
+
+# Focus next window
+alt + Tab
+    focus.sh next
 
 # Application specific
 
