@@ -27,8 +27,9 @@ spawn () {
         fi
 
         # launch lemonbar
-        # TODO: Fix center/right aligned text because the bar is only sent info once.
-        #       Soluton #1: Send new data to lemonbar on resize.
+        # TODO: Fix center/right aligned text because the bar is only sent info once
+        #       and on resize the text width isn't updated. This might not be possible
+        #       as I'm resizing lemonbar using wtp and lemonbar doesn't update it's size.
         echo "%{l}   %{A:titlebar.sh -k $1 & killwa $1:}x%{A}%{l}" |
         lemonbar -p -n "tbar-$1" -d -g "$width"x"$height"+"$xoffset"+"$yoffset" -B "#$white" -F "#$black" -f "lemon" | mksh &
 
@@ -55,6 +56,7 @@ killbar () {
     rm "/tmp/titlebar-$1"
 }
 
+# Usage: titlebar.sh -flag windowid
 while getopts "s:u:k:K" opt; do
     case $opt in
         s) spawn $OPTARG ;;
