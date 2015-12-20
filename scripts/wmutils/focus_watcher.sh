@@ -20,10 +20,13 @@ spawn_at_cursor () {
     test $x -lt 0 && x=0
     test $y -lt 0 && y=0
 
-    # Disallow windows from spawning on my second
-    # monitor
+    # Disallow windows from spawning on my other monitors
     if [ $x -gt 1920 ]; then
         x=$((1920 - w - 80))
+    fi
+
+    if [ $y -gt 1080 ]; then
+        y=$((1080 - h - 80))
     fi
 
     wtp $x $y $w $h $1
