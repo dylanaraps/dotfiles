@@ -5,9 +5,6 @@
 # Original: https://git.z3bra.org
 # Modified: https://github.com/dylanaraps/dotfiles
 
-# Source colors
-source ~/dotfiles/scripts/colors/output/colors.sh
-
 # border width
 bw=0
 
