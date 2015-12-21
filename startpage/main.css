@@ -15,20 +15,12 @@ body {
 
 main {
   display: block;
-  font-family: Roboto;
+  font-family: 'Roboto';
   left: 50%;
   position: absolute;
   top: 45%;
   transform: translate(-50%, -50%);
   width: 100%;
-}
-
-/* Change the vertical center offset
-   at browser heights of 700 px and below */
-@media only screen and (max-height: 700px) {
-  main {
-    transform: translate(-50%, -50%);
-  }
 }
 
 h1 {

@@ -39,8 +39,7 @@ uninstall () {
 
     for pkg in ${packages[@]}; do
         if [ -d $pkg ]; then
-            rm -rf "$pkg" && echo "Removed $aurdir/$pkg"
-            sudo pacman -R "$pkg"
+            rm -rf "$pkg" && echo "Removed $aurdir/$pkg" && sudo pacman -R "$pkg"
         else
             echo "$aurdir/$pkg doesn't exist, exiting"
         fi
@@ -51,9 +50,21 @@ uninstall () {
 update_all () {
     cd "$aurdir" || exit
 
-    for pkg in *; do
+    # List all packages and sort them alphabetically
+    packages=($(find . -mindepth 1 -maxdepth 1 -type d | sort))
+
+    # Packages to ignore.
+    ignore=(linux-libre-pck ttf-ms-fonts)
+
+    # Remove ignored packages from packages array
+    for pkg in ${ignore[@]}; do
+        packages=(${packages[@]/$pkg})
+    done
+
+    # Update unignored the packages
+    for pkg in ${packages[@]}; do
         # cd into the package's directory and run makepkg
-        cd "$pkg" || exit
+        cd "$(basename $pkg)" || exit
         makepkg $mkflags
         cd "$aurdir"
     done

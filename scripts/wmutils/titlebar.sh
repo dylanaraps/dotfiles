@@ -43,8 +43,10 @@ spawn () {
 
 # Move / Resize the bar
 update () {
-    # Name of bar
+    # Create array of window info
     winfo=($(wattr xyw $1))
+
+    # Name of bar
     titlewid=($(cat /tmp/titlebar-$1))
 
     wtp ${winfo[0]} $((${winfo[1]} - height)) ${winfo[2]} $height ${titlewid[1]}
