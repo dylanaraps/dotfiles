@@ -8,7 +8,7 @@
 source ~/dotfiles/scripts/colors/output/colors.sh
 
 # Spawn the terminal
-urxvtc -name "Music" -bg "#$white" -hold -fn "xft:fixed" -b 0 -g 18x8 -e mksh -c cover.sh >/dev/null
+urxvtc -name "Music" -bg "#$white" -fn "xft:fixed" -b 0 -g 18x8 -e mksh -c cover.sh >/dev/null
 
 # Redraw album art
 mpc update

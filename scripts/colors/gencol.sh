@@ -122,19 +122,41 @@ nvim () {
 sxiv () {
     colors
 
-    bg=$(xrdb -query | grep "\*\.color0:" | sort --version-sort | cut -f2 | sed -e "s/\#//" )
-    fg=$(xrdb -query | grep "\*\.color6:" | sort --version-sort | cut -f2 | sed -e "s/\#//" )
+    bg=$(xrdb -query | grep "\*\.color0:" | cut -f2)
+    fg=$(xrdb -query | grep "\*\.color6:" | cut -f2)
 
     echo "#ifdef _WINDOW_CONFIG"
     echo
     echo "/* colors:"
     echo " * (see X(7) section "COLOR NAMES" for valid values) "
     echo "*/"
-    echo "static const char * const WIN_BG_COLOR = \"#$bg\";"
-    echo "static const char * const WIN_FS_COLOR = \"#$bg\";"
-    echo "static const char * const SEL_COLOR    = \"#$fg\";"
-    echo "static const char * const BAR_BG_COLOR = \"#$bg\";"
-    echo "static const char * const BAR_FG_COLOR = \"#$bg\";"
+    echo "static const char * const WIN_BG_COLOR = \"$bg\";"
+    echo "static const char * const WIN_FS_COLOR = \"$bg\";"
+    echo "static const char * const SEL_COLOR    = \"$fg\";"
+    echo "static const char * const BAR_BG_COLOR = \"$bg\";"
+    echo "static const char * const BAR_FG_COLOR = \"$bg\";"
+    echo
+}
+
+openbox () {
+    colors
+
+    # Titlebar colors
+    titlebg=$(xrdb -query | grep "\*\.color1:" | cut -f2)
+    titlefg=$(xrdb -query | grep "\*\.color7:" | cut -f2)
+
+    # Menu colors
+    menubg=$titlefg
+    menufg=$(xrdb -query | grep "\*\.color0:" | cut -f2)
+
+    echo "# Openbox colors, generated using gencol.sh"
+    echo "window.*.title.bg.color: $titlebg"
+    echo "window.*.label.text.color: $titlefg"
+    echo "window.*.button.*.image.color: $titlefg"
+    echo "menu*.bg.color: $menubg"
+    echo "menu*.text.color: $menufg"
+    echo "menu.border.color: $menubg"
+    echo "menu.separator.color: $menubg"
     echo
 }
 
@@ -149,6 +171,7 @@ css > "$colordir/colors.css"; echo "Generated firefox css vars"
 scss > "$colordir/colors.scss"; echo "Generated Sass variables"
 erb > "$colordir/colors.erbvim"; echo "Generated vim erb vars"
 sxiv > "$colordir/colors.sxiv"; echo "Generated sxiv config colors"
+openbox > "$colordir/colors.openbox"; echo "Generated openbox colors"
 
 # Nvim uses 16 colors so lets generate all 16
 totalcolors=16
@@ -178,8 +201,17 @@ gencss () {
 
 # Generate config.h file
 sxivgen () {
-   configdir="$HOME/dotfiles/other/sxiv"
-   cat "$configdir/gen/colors.sxiv" "$configdir/gen/config.sxiv" > "$configdir/config.h"
+    configdir="$HOME/dotfiles/other/sxiv"
+    cat "$configdir/gen/colors.sxiv" "$configdir/gen/config.sxiv" > "$configdir/config.h"
+}
+
+# Generate openbox theme
+obthemegen () {
+    themedir="$HOME/dotfiles/themes/yellow/openbox-3"
+    cat "$themedir/colors.openbox" "$themedir/themerc.openbox" > "$themedir/themerc"
+
+    # Send signal to openbox to reload config files
+    killall -USR2 openbox
 }
 
 # Reopen lemonbar
@@ -190,12 +222,13 @@ bar () {
 
 # Reopen cover art
 cover () {
-    ps -ef | awk -v name="Music" '$0 ~ name {print $2}' | xargs kill 2>/dev/null
+    pkill cover.sh
     coverspawn.sh &>/dev/null
 }
 
 erbgen; echo "Generated Vim colorscheme template"
 gencss; echo "Generated css file using sass"
 sxivgen; echo "Generated sxiv config.h, please rebuild sxiv to see the changes"
+obthemegen; echo "Generated openbox themerc"
 bar & echo "Restarted lemonbar"
 cover & echo "Restarted cover script"

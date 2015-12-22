@@ -4,6 +4,9 @@
 # Created by Dylan Araps
 # https://github.com/dylanaraps/dotfiles
 
+# Set terminal title
+echo -e '\033]2;'Music'\007'
+
 # Hide terminal cursor
 tput civis
 
@@ -12,11 +15,11 @@ dir=$HOME/Music/covers/
 
 # Image size
 width=140
-height=139
+height=140
 
 # Image offset
 xoffset=0
-yoffset=
+yoffset=0
 
 # Image format
 format=jpg
