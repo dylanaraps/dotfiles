@@ -751,8 +751,8 @@
       <decor>no</decor>
       <layer>above</layer>
       <position force="yes">
-          <x>1673</x>
-          <y>825</y>
+          <x>1670</x>
+          <y>820</y>
       </position>
     </application>
     <application class="Firefox*">
