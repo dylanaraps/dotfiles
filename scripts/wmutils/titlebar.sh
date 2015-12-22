@@ -4,14 +4,21 @@
 # Created by Dylan Araps
 # https://github.com/dylanaraps/dotfiles
 
-# Source colors
-source ~/dotfiles/scripts/colors/output/colors.sh &
-
 # Height of titlebar
 height=30
 
 # Spawn the bar
-spawn () {
+spawnbar () {
+    # Source colors
+    source ~/dotfiles/scripts/colors/output/colors.sh
+
+    # Colors
+    bg=$orange
+    fg=$black
+
+    # Font
+    font="-benis-lemon-medium-r-normal--10-110-75-75-m-50-ISO8859-1"
+
     # Check to see if titlebar exists and the window isn't a popup or a dock
     if [ ! -f "/tmp/titlebar-$1" ] && [ ! -z $(lsw | grep "$1") ]; then
         # Create array of window info
@@ -31,7 +38,7 @@ spawn () {
         #       and on resize the text width isn't updated. This might not be possible
         #       as I'm resizing lemonbar using wtp and lemonbar doesn't update it's size.
         echo "%{l}   %{A:titlebar.sh -k $1 & killwa $1:}x%{A}%{l}" |
-        lemonbar -p -n "tbar-$1" -d -g "$width"x"$height"+"$xoffset"+"$yoffset" -B "#$white" -F "#$black" -f "lemon" | mksh &
+        lemonbar -p -n "tbar-$1" -d -g "$width"x"$height"+"$xoffset"+"$yoffset" -B "#$bg" -F "#$fg" -f "$font" | mksh &
 
         # Save window id and titlebar id to a file
         # This is how the bar/titlebar are "grouped"
@@ -42,14 +49,14 @@ spawn () {
 }
 
 # Move / Resize the bar
-update () {
+updatebar () {
     # Create array of window info
-    winfo=($(wattr xyw $1))
+    position=($(wattr xyw $1))
 
     # Name of bar
-    titlewid=($(cat /tmp/titlebar-$1))
+    titlewid=$(cat /tmp/titlebar-$1)
 
-    wtp ${winfo[0]} $((${winfo[1]} - height)) ${winfo[2]} $height ${titlewid[1]}
+    wtp ${position[0]} $((${position[1]} - height)) ${position[2]} $height ${titlewid##* }
 }
 
 # Kill titlebar of focused window
@@ -58,11 +65,20 @@ killbar () {
     rm "/tmp/titlebar-$1"
 }
 
-# Usage: titlebar.sh -flag windowid
-while getopts "s:u:k:K" opt; do
+# Restart all titlebars
+restartbar () {
+    for window in $(lsw); do
+        killbar $window
+        spawnbar $window
+    done
+}
+
+# Usage: titlebar.sh -r -suk windowid
+while getopts "s:u:k:r" opt; do
     case $opt in
-        s) spawn $OPTARG ;;
-        u) update $OPTARG ;;
+        s) spawnbar $OPTARG ;;
+        u) updatebar $OPTARG ;;
         k) killbar $OPTARG ;;
+        r) restartbar ;;
     esac
 done
