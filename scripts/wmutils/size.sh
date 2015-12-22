@@ -7,19 +7,11 @@
 # Focused window
 wid=$(pfw)
 
-# Screen size and padding depending
-# on which monitor the window is on
-if [ $(wattr x $wid) -gt 1920 ]; then
-    sw=1280
-    sh=1024
-    paddingx=0
-    paddingy=0
-else
-    sw=1920
-    sh=1080
-    paddingx=80
-    paddingy=80
-fi
+# Screen size and padding
+sw=1920
+sh=1080
+paddingx=80
+paddingy=80
 
 case $1 in
     h) wrs -$((sw / $2 - padding)) 0 $wid ;;

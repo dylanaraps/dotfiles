@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<openbox_menu xmlns="http://openbox.org/3.4/menu">
+
+	<menu id="root-menu" label="Openbox 3">
+
+		<menu id="Graphics" label="Graphics">
+			<item label="GNU Image Manipulation Program">
+				<action name="Execute"><execute>gimp-2.8 </execute></action>
+			</item>
+		</menu> <!-- Graphics -->
+
+		<separator />
+
+		<menu id="Internet" label="Internet">
+			<item label="Firefox">
+				<action name="Execute"><execute>iceweasel </execute></action>
+			</item>
+		</menu> <!-- Internet -->
+
+		<separator />
+
+		<menu id="Sound &amp; Video" label="Sound &amp; Video">
+			<item label="mpv Media Player">
+				<action name="Execute"><execute>mpv --profile=pseudo-gui -- </execute></action>
+			</item>
+		</menu> <!-- Sound & Video -->
+
+		<separator />
+
+		<menu id="System Tools" label="System Tools">
+			<item label="urxvt">
+				<action name="Execute"><execute>urxvtc</execute></action>
+			</item>
+		</menu> <!-- System Tools -->
+
+		<separator />
+
+		<menu id="system-menu" label="System">
+			<item label="scrot">
+                <action name="Execute"><execute>scrot</execute></action>
+			</item>
+
+            <separator />
+
+			<item label="Reconfigure Openbox">
+				<action name="Reconfigure" />
+			</item>
+		</menu>
+	</menu>
+
+</openbox_menu>
+

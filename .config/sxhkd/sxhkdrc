@@ -93,7 +93,7 @@ super + f
 # Haven't found a good way to get the size yet so it's
 # manual for the time being.
 alt + Return
-    wtp $(wattr xy $(pfw)) 355 234 $(pfw); \
+    wtp $(wattr xy $(pfw)) 355 284 $(pfw); \
     titlebar.sh -u $(pfw)
 
 

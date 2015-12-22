@@ -190,7 +190,7 @@ bar () {
 
 # Reopen cover art
 cover () {
-    killwa $(wattr iwh $(lsw -o) | awk '/144 144/ {print $1;}')
+    ps -ef | awk -v name="Music" '$0 ~ name {print $2}' | xargs kill 2>/dev/null
     coverspawn.sh &>/dev/null
 }
 
