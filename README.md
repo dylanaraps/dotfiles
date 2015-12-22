@@ -1,5 +1,6 @@
 # Dylan's Dotfiles
 
+### Screens are outdated
 ![1](http://i.imgur.com/TtZDiiK.png)
 ![2](http://i.imgur.com/JZ3c6R3.png)
 
@@ -8,7 +9,7 @@
 # My Setup
 
 * Linux Distro: [Arch Linux](https://www.archlinux.org/)
-* Window Manager: none (wmutils)
+* Window Manager: openbox
 * Gtk Icons: [Ultra Flat Icons](https://aur.archlinux.org/packages/ultra-flat-icons/)
 * Bar: [Lemonboy's Bar patched with xft support](https://github.com/krypt-n/bar)
 * Launcher: [Dmenu2](https://github.com/mrshankly/dmenu2)
