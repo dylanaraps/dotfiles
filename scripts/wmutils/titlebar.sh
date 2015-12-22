@@ -13,8 +13,8 @@ spawnbar () {
     source ~/dotfiles/scripts/colors/output/colors.sh
 
     # Colors
-    bg=$orange
-    fg=$black
+    bg=$red
+    fg=$white
 
     # Font
     font="-benis-lemon-medium-r-normal--10-110-75-75-m-50-ISO8859-1"
