@@ -1,0 +1,5 @@
+# Autostart programs with openbox
+
+# Open cover art
+gencol.sh
+
