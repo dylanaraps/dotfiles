@@ -43,7 +43,7 @@
   </placement>
   <theme>
     <name>yellow</name>
-    <titleLayout>DC</titleLayout>
+    <titleLayout>LC</titleLayout>
     <!--
       available characters are NDSLIMC, each can occur at most once.
       N: window icon
@@ -292,11 +292,11 @@
     </keybind>
     <!-- Always Ontop toggle -->
     <keybind key="W-e">
-      <action name="ToggleAlwaysOnTop"/>
+      <action name="ToggleOmnipresent"/>
     </keybind>
     <!-- Window Decorations Toggle -->
     <keybind key="W-a">
-      <action name="ToggleDecorations"/>
+     <action name="ToggleAlwaysOnTop"/>
     </keybind>
     <!-- Fullscreen -->
     <keybind key="W-f">
