@@ -201,46 +201,43 @@
     <keybind key="W-1">
       <action name="Execute">
         <name>musicfoc</name>
-        <command>~/dotfiles/scripts/openbox/musicfoc.sh 0</command>
-        <action name="GoToDesktop">
-          <to>1</to>
-        </action>
+        <command>keybinds.sh gotodesktop 0</command>
       </action>
     </keybind>
     <keybind key="W-2">
       <action name="Execute">
         <name>musicfoc</name>
-        <command>~/dotfiles/scripts/openbox/musicfoc.sh 1</command>
+        <command>keybinds.sh gotodesktop 1</command>
       </action>
     </keybind>
     <keybind key="W-3">
       <action name="Execute">
         <name>musicfoc</name>
-        <command>~/dotfiles/scripts/openbox/musicfoc.sh 2</command>
+        <command>keybinds.sh gotodesktop 2</command>
       </action>
     </keybind>
     <keybind key="W-4">
       <action name="Execute">
         <name>musicfoc</name>
-        <command>~/dotfiles/scripts/openbox/musicfoc.sh 3</command>
+        <command>keybinds.sh gotodesktop 3</command>
       </action>
     </keybind>
     <keybind key="W-5">
       <action name="Execute">
         <name>musicfoc</name>
-        <command>~/dotfiles/scripts/openbox/musicfoc.sh 4</command>
+        <command>keybinds.sh gotodesktop 4</command>
       </action>
     </keybind>
     <keybind key="W-6">
       <action name="Execute">
         <name>musicfoc</name>
-        <command>~/dotfiles/scripts/openbox/musicfoc.sh 5</command>
+        <command>keybinds.sh gotodesktop 5</command>
       </action>
     </keybind>
     <keybind key="W-7">
       <action name="Execute">
         <name>musicfoc</name>
-        <command>~/dotfiles/scripts/openbox/musicfoc.sh 6</command>
+        <command>keybinds.sh gotodesktop 6</command>
       </action>
     </keybind>
     <!-- Send program to desktop by number -->
@@ -339,52 +336,52 @@
     <keybind key="W-d">
       <action name="Execute">
         <name>dmenu</name>
-        <command>~/dotfiles/scripts/openbox/keybinds.sh dmenu</command>
+        <command>keybinds.sh dmenu</command>
       </action>
     </keybind>
     <keybind key="W-c">
-        <action name="MoveToCenter"/>
+      <action name="MoveToCenter"/>
     </keybind>
     <keybind key="W-Up">
       <action name="Execute">
         <name>Vol Up</name>
-        <command>~/dotfiles/scripts/openbox/keybinds.sh volup</command>
+        <command>keybinds.sh volup</command>
       </action>
     </keybind>
     <keybind key="W-Down">
       <action name="Execute">
         <name>Vol Down</name>
-        <command>~/dotfiles/scripts/openbox/keybinds.sh voldown</command>
+        <command>keybinds.sh voldown</command>
       </action>
     </keybind>
     <keybind key="W-Left">
       <action name="Execute">
         <name>Prev Song</name>
-        <command>~/dotfiles/scripts/openbox/keybinds.sh prevsong</command>
+        <command>keybinds.sh prevsong</command>
       </action>
     </keybind>
     <keybind key="W-Right">
       <action name="Execute">
         <name>Next Song</name>
-        <command>~/dotfiles/scripts/openbox/keybinds.sh nextsong</command>
+        <command>keybinds.sh nextsong</command>
       </action>
     </keybind>
     <keybind key="W-End">
       <action name="Execute">
         <name>Next Song</name>
-        <command>~/dotfiles/scripts/openbox/keybinds.sh togglesong</command>
+        <command>keybinds.sh togglesong</command>
       </action>
     </keybind>
     <keybind key="W-P">
       <action name="Execute">
         <name>Take Screenshot</name>
-        <command>~/dotfiles/scripts/openbox/keybinds.sh screenshot</command>
+        <command>keybinds.sh screenshot</command>
       </action>
     </keybind>
     <keybind key="A-Return">
       <action name="Execute">
         <name>Minify window</name>
-        <command>~/dotfiles/scripts/openbox/keybinds.sh minify</command>
+        <command>keybinds.sh minify</command>
       </action>
     </keybind>
     <keybind key="A-h">
@@ -419,49 +416,49 @@
     </keybind>
     <keybind key="A-1">
       <action name="Execute">
-          <name>Move window to corner</name>
+        <name>Move window to corner</name>
         <command>corner.sh tl</command>
       </action>
     </keybind>
     <keybind key="A-2">
       <action name="Execute">
-          <name>Move window to corner</name>
+        <name>Move window to corner</name>
         <command>corner.sh ml</command>
       </action>
     </keybind>
     <keybind key="A-3">
       <action name="Execute">
-          <name>Move window to corner</name>
+        <name>Move window to corner</name>
         <command>corner.sh bl</command>
       </action>
     </keybind>
     <keybind key="A-4">
       <action name="Execute">
-          <name>Move window to corner</name>
+        <name>Move window to corner</name>
         <command>corner.sh mt</command>
       </action>
     </keybind>
     <keybind key="A-5">
       <action name="Execute">
-          <name>Move window to corner</name>
+        <name>Move window to corner</name>
         <command>corner.sh mb</command>
       </action>
     </keybind>
     <keybind key="A-6">
       <action name="Execute">
-          <name>Move window to corner</name>
+        <name>Move window to corner</name>
         <command>corner.sh tr</command>
       </action>
     </keybind>
     <keybind key="A-7">
       <action name="Execute">
-          <name>Move window to corner</name>
+        <name>Move window to corner</name>
         <command>corner.sh mr</command>
       </action>
     </keybind>
     <keybind key="A-8">
       <action name="Execute">
-          <name>Move window to corner</name>
+        <name>Move window to corner</name>
         <command>corner.sh br</command>
       </action>
     </keybind>
@@ -751,8 +748,8 @@
       <decor>no</decor>
       <layer>above</layer>
       <position force="yes">
-          <x>1670</x>
-          <y>820</y>
+        <x>1670</x>
+        <y>820</y>
       </position>
     </application>
     <application class="Firefox*">
