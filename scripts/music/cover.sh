@@ -10,12 +10,15 @@ echo -e '\033]2;'Music'\007'
 # Hide terminal cursor
 tput civis
 
+# Clear terminal output
+clear
+
 # Cover directory
 dir=$HOME/Music/covers/
 
 # Image size
-width=140
-height=140
+width=$1
+height=$1
 
 # Image offset
 xoffset=0
