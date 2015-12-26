@@ -42,7 +42,7 @@ pad="                             "
 title="dylan's pc"
 
 # Custom text to print at the bottom, configurable at launch with "-e"
-customtext=$(colors2.sh)
+customtext=$(colors2.sh noblack 8)
 
 # Set up args
 while getopts ":c:e:w:h:t:p:x:y:" opt; do

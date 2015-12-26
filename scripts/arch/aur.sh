@@ -17,7 +17,7 @@ install () {
     for pkg in ${packages[@]}; do
         # If package isn't in aur folder, attempt to download PKGBUILD/etc using cower
         if [ ! -d "$pkg" ]; then
-            cower -d "$pkg"
+            cower -d "$pkg" || echo "Couldn't find $pkg in the aur."; break
 
             read -p "View PKGBUILD? (y/n) " -n 1 -r
             echo
