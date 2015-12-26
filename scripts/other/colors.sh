@@ -5,6 +5,9 @@
 # Created by Dylan Araps
 # https://github.com/dylanaraps/dotfiles
 
+# Add linebreak above colors
+echo
+
 eight () {
     number=-1
 
@@ -52,3 +55,6 @@ case $1 in
     9) nine ;;
     16) sixteen ;;
 esac
+
+# Add linebreak below colors
+echo
