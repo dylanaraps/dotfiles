@@ -12,9 +12,9 @@ geometry=($(identify $1 | awk '{printf $3}'))
 width=${geometry[0]}
 height=${geometry[1]}
 
-while [ $width -ge 1920 ]; do
+while [ $height -ge 1080 ] && [ $width -ge 1920 ]; do
     width=$((width / 4))
     height=$((height / 4))
 done
 
-feh -z -. -g "$width"x"$height" $1
+feh --zoom fill -. -g "$width"x"$height" $1
