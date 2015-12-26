@@ -1,5 +1,11 @@
 # Autostart programs with openbox
 
-# Open cover art
+# Start mpd
+mpd &
+
+# Start urxvt daemon
+urxvtd -q -f -o &
+
+# Gen colors
 gencol.sh
 
