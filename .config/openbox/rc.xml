@@ -462,6 +462,12 @@
         <command>corner.sh br</command>
       </action>
     </keybind>
+    <keybind key="W-w">
+      <action name="Execute">
+        <name>Change to random wallpaper</name>
+        <command>wall.sh</command>
+      </action>
+    </keybind>
   </keyboard>
   <mouse>
     <dragThreshold>1</dragThreshold>

@@ -14,7 +14,7 @@ changewall () {
     wall=$(basename $(cat $HOME/.fehbg | awk '/feh/ {printf $3}' | sed -e "s/'//g"))
 
     # Randomly set the wallpaper excluding the current wallpaper
-    find $walldir ! -name "$wall" -type f \( -name '*.jpg' \) -print0 |
+    find $walldir ! -name "$wall" -type f \( -name '*.jpg' -o -name '*.png' \) -print0 |
     shuf -n1 -z | xargs -0 feh --bg-fill
 }
 

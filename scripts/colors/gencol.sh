@@ -142,11 +142,11 @@ openbox () {
     colors
 
     # Titlebar colors
-    titlebg=$(xrdb -query | grep "\*\.color1:" | cut -f2)
-    titlefg=$(xrdb -query | grep "\*\.color7:" | cut -f2)
+    titlebg=$(xrdb -query | grep "\*\.color7:" | cut -f2)
+    titlefg=$(xrdb -query | grep "\*\.color8:" | cut -f2)
 
     # Menu colors
-    menubg=$titlefg
+    menubg=$(xrdb -query | grep "\*\.color7:" | cut -f2)
     menufg=$(xrdb -query | grep "\*\.color0:" | cut -f2)
 
     echo "# Openbox colors, generated using gencol.sh"
@@ -158,12 +158,6 @@ openbox () {
     echo "menu.border.color: $menubg"
     echo "menu.separator.color: $menubg"
     echo
-}
-
-# Set wallpaper
-wallpaper () {
-    color=$(xrdb -query | grep "\*\.color4:" | cut -f2)
-    xsetroot -solid $color
 }
 
 # Generate the colors
@@ -178,7 +172,6 @@ scss > "$colordir/colors.scss"; echo "Generated Sass variables"
 erb > "$colordir/colors.erbvim"; echo "Generated vim erb vars"
 sxiv > "$colordir/colors.sxiv"; echo "Generated sxiv config colors"
 openbox > "$colordir/colors.openbox"; echo "Generated openbox colors"
-wallpaper
 
 # Nvim uses 16 colors so lets generate all 16
 totalcolors=16
