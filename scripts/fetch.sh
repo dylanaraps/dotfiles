@@ -58,6 +58,9 @@ while getopts ":c:e:w:h:t:p:x:y:" opt; do
     esac
 done
 
+# Clear terminal before running
+clear
+
 # Get image from wallpaper
 # Requires feh
 if [ $usewall -eq 1 ]; then
@@ -84,9 +87,6 @@ underline=$(printf %"${#title}"s |tr " " "-")
 
 # Start printing info
 
-# Clear terminal before running
-clear
-
 echo "${pad}${bold}$title${clear}"
 echo "${pad}$underline"
 echo "${pad}${bold}${color}OS${clear}: $(cat /etc/*ease | awk '/^NAME=/' | cut -d '"' -f2)"
@@ -101,5 +101,4 @@ echo "${pad}${bold}${color}Song${clear}: $(mpc current | cut -c 1-30)"
 echo
 echo "$customtext"
 echo
-
 echo -e "0;1;$xoffset;$yoffset;$width;$height;;;;;$img\n4;\n3;" | /usr/lib/w3m/w3mimgdisplay

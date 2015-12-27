@@ -32,5 +32,5 @@ changewall () {
 
 case $1 in
     --loop|-l) while :; do changewall; sleep $2; done ;;
-    *) changewall ;;
+    *) changewall; mpc update ;;
 esac
