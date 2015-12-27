@@ -33,12 +33,12 @@ Xcursor.size: 16
 
 ! special
 *.foreground:   #f0eae6
-*.background:   #475359
+*.background:   #3e5059
 *.cursorColor:  #f0eae6
 
 ! black
 ! Second black is grey
-*.color0:       #475359
+*.color0:       #3e5059
 *.color8:       #70838c
 
 ! red
