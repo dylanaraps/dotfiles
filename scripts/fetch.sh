@@ -45,7 +45,7 @@ title="dylan's pc"
 customtext=$(colors2.sh noblack 8)
 
 # Clear output, set this to 0 to make calling this script from a
-# while loop bareable.
+# while loop bearable.
 clear=1
 
 # Set up args
