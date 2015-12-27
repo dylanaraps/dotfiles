@@ -6,9 +6,6 @@
 # Created by Dylan Araps
 # https://github.com/dylanaraps/dotfiles
 
-# Source colors
-source ~/dotfiles/scripts/colors/output/colors.sh
-
 # Wallpaper directory
 walldir="$HOME/Pictures/wallpaper/wash/*"
 
