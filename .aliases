@@ -46,7 +46,7 @@ alias nvimgen="erb -T - ~/dotfiles/colorschemes/ryuuko/ryuuko.erb > ~/dotfiles/c
 alias firefox="iceweasel"
 
 # Record screen
-alias record="ffmpeg -f x11grab -video_size 1920x1080 -i :0 -f alsa -i default -c:v ffvhuff -c:a flac $1"
+alias record="ffmpeg -f x11grab -s 1920x1080 -framerate 60 -an -i :0.0 -c:v libvpx -b:v 5M -crf 10 -quality realtime -y -loglevel quiet"
 
 # Run fetch.sh in a loop
 alias fetchloop="while :; do fetch.sh; mpc idle player update > /dev/null 2>&1; done"
