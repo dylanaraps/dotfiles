@@ -39,13 +39,18 @@ nine () {
 sixteen () {
     number=-1
 
-    for color in $(xrdb -query | awk '/*.color[0-7]:/ {print $2}'); do
+    # Add the hex colors to an array
+    colors=($(xrdb -query | grep "\*\.color[0-9]*[0-9]:" | sort --version-sort | cut -f2))
+
+    while [ $number -lt 7 ]; do
         number=$((number + 1))
 
         if [ $number -eq 0 ]; then
-            echo "$(tput setaf "$number")$(tput smso)       $(tput sgr0)$(tput setaf 8) $color $(tput setaf "$((number + 8))")$(tput smso)       $(tput sgr0)$(tput setaf "$((number + 8))") $color"
+            echo -n "$(tput setaf $number)$(tput smso)       $(tput sgr0)$(tput setaf $((number + 8))) ${colors[$number]}"
+            echo " $(tput setaf $((number + 8)))$(tput smso)       $(tput sgr0)$(tput setaf $((number + 8))) ${colors[$((number + 8))]}"
         else
-            echo "$(tput setaf "$number")$(tput smso)       $(tput sgr0)$(tput setaf "$number") $color $(tput setaf "$((number + 8))")$(tput smso)       $(tput sgr0)$(tput setaf "$((number + 8))") $color"
+            echo -n "$(tput setaf $number)$(tput smso)       $(tput sgr0)$(tput setaf $number) ${colors[$number]}"
+            echo " $(tput setaf $((number + 8)))$(tput smso)       $(tput sgr0)$(tput setaf $((number + 8))) ${colors[$((number + 8))]}"
         fi
     done
 }

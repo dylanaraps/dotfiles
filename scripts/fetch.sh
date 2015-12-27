@@ -44,10 +44,15 @@ title="dylan's pc"
 # Custom text to print at the bottom, configurable at launch with "-e"
 customtext=$(colors2.sh noblack 8)
 
+# Clear output, set this to 0 to make calling this script from a
+# while loop bareable.
+clear=1
+
 # Set up args
 while getopts ":c:e:w:h:t:p:x:y:" opt; do
     case $opt in
         c) color=$(tput setaf $OPTARG) ;;
+        C) clear=0 ;;
         e) customtext="$OPTARG" ;;
         w) width="$OPTARG" ;;
         h) height="$OPTARG" ;;
@@ -85,7 +90,9 @@ underline=$(printf %"${#title}"s |tr " " "-")
 # Start printing info
 
 # Clear terminal before running
-clear
+if [ $clear -eq 1 ]; then
+    clear
+fi
 
 echo "${pad}${bold}$title${clear}"
 echo "${pad}$underline"

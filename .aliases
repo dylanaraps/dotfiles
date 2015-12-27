@@ -45,5 +45,8 @@ alias nvimgen="erb -T - ~/dotfiles/colorschemes/ryuuko/ryuuko.erb > ~/dotfiles/c
 # Habits
 alias firefox="iceweasel"
 
+# Record screen
+record="ffmpeg -f x11grab -video_size 1920x1080 -i :0 -f alsa -i default -c:v ffvhuff -c:a flac $1"
+
 # }}}
 
