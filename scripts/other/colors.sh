@@ -11,7 +11,7 @@ echo
 eight () {
     number=-1
 
-    for color in $(xrdb -query | awk '/*.color[1-8]:/ {print $2}'); do
+    for color in $(xrdb -query | awk '/*.color[0-7]:/ {print $2}'); do
         number=$((number + 1))
 
         if [ $number -eq 0 ]; then
@@ -25,7 +25,7 @@ eight () {
 nine () {
     number=-1
 
-    for color in $(xrdb -query | awk '/*.color[1-9]:/ {print $2}'); do
+    for color in $(xrdb -query | awk '/*.color[0-8]:/ {print $2}'); do
         number=$((number + 1))
 
         if [ $number -eq 0 ]; then
@@ -39,7 +39,7 @@ nine () {
 sixteen () {
     number=-1
 
-    for color in $(xrdb -query | awk '/*.color[1-8]:/ {print $2}'); do
+    for color in $(xrdb -query | awk '/*.color[0-7]:/ {print $2}'); do
         number=$((number + 1))
 
         if [ $number -eq 0 ]; then

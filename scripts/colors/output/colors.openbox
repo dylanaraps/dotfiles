@@ -3,7 +3,7 @@ window.*.title.bg.color: #f0eae6
 window.*.label.text.color: #70838c
 window.*.button.*.image.color: #70838c
 menu*.bg.color: #f0eae6
-menu*.text.color: #475359
+menu*.text.color: #3e5059
 menu.border.color: #f0eae6
 menu.separator.color: #f0eae6
 

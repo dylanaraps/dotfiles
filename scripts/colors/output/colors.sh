@@ -1,4 +1,4 @@
-black=475359
+black=3e5059
 red=99736e
 green=78a090
 yellow=bfb7a1
