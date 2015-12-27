@@ -119,25 +119,6 @@ nvim () {
     echo "\" }}}"
 }
 
-sxiv () {
-    colors
-
-    bg=$(xrdb -query | grep "\*\.color0:" | cut -f2)
-    fg=$(xrdb -query | grep "\*\.color6:" | cut -f2)
-
-    echo "#ifdef _WINDOW_CONFIG"
-    echo
-    echo "/* colors:"
-    echo " * (see X(7) section "COLOR NAMES" for valid values) "
-    echo "*/"
-    echo "static const char * const WIN_BG_COLOR = \"$bg\";"
-    echo "static const char * const WIN_FS_COLOR = \"$bg\";"
-    echo "static const char * const SEL_COLOR    = \"$fg\";"
-    echo "static const char * const BAR_BG_COLOR = \"$bg\";"
-    echo "static const char * const BAR_FG_COLOR = \"$bg\";"
-    echo
-}
-
 openbox () {
     colors
 
@@ -170,7 +151,6 @@ gtk2 > "$colordir/colors.rc"; echo "Generated gtk2 colors"
 css > "$colordir/colors.css"; echo "Generated firefox css vars"
 scss > "$colordir/colors.scss"; echo "Generated Sass variables"
 erb > "$colordir/colors.erbvim"; echo "Generated vim erb vars"
-sxiv > "$colordir/colors.sxiv"; echo "Generated sxiv config colors"
 openbox > "$colordir/colors.openbox"; echo "Generated openbox colors"
 
 # Nvim uses 16 colors so lets generate all 16
@@ -199,12 +179,6 @@ gencss () {
     sassc --style expanded "$startpage/scss/main.scss" "$startpage/main.css"
 }
 
-# Generate config.h file
-sxivgen () {
-    configdir="$HOME/dotfiles/other/sxiv"
-    cat "$configdir/gen/colors.sxiv" "$configdir/gen/config.sxiv" > "$configdir/config.h"
-}
-
 # Generate openbox theme
 obthemegen () {
     themedir="$HOME/dotfiles/themes/yellow/openbox-3"
@@ -228,7 +202,6 @@ cover () {
 
 erbgen; echo "Generated Vim colorscheme template"
 gencss; echo "Generated css file using sass"
-sxivgen; echo "Generated sxiv config.h, please rebuild sxiv to see the changes"
 obthemegen; echo "Generated openbox themerc"
 bar & echo "Restarted lemonbar"
 cover & echo "Restarted cover script"
