@@ -1,5 +1,7 @@
 #!/bin/mksh
 # Grab Xresources colors and ouput them in various formats
+# The script is a huge clusterfuck atm, i'm going to rewrite it from scratch
+# soon.
 #
 # Created by Dylan Araps
 # https://github.com/dylanaraps/dotfiles
@@ -108,7 +110,7 @@ nvim () {
 
     echo
 
-    echo -e "\t\" Neovim Terminal Mode Colors"
+    echo -e "\t\" Neovim Terminal Mode Colors."
 
     for color in $getcolors; do
         pos=$((pos + 1))
@@ -122,9 +124,21 @@ nvim () {
 openbox () {
     colors
 
+    # Update titlebar colors
+    if [ -z $1 ]; then
+        cols=($(cat /tmp/tbarcol))
+        bg=${cols[0]}
+        fg=${cols[1]}
+    else
+        bg=$1
+        fg=$2
+        echo "$1 $2" > /tmp/tbarcol
+    fi
+
+
     # Titlebar colors
-    titlebg=$(xrdb -query | grep "\*\.color7:" | cut -f2)
-    titlefg=$(xrdb -query | grep "\*\.color8:" | cut -f2)
+    titlebg=$(xrdb -query | grep "\*\.color$bg:" | cut -f2)
+    titlefg=$(xrdb -query | grep "\*\.color$fg:" | cut -f2)
 
     # Menu colors
     menubg=$(xrdb -query | grep "\*\.color7:" | cut -f2)
@@ -140,27 +154,6 @@ openbox () {
     echo "menu.separator.color: $menubg"
     echo
 }
-
-# Generate the colors
-echo
-echo "Generating color files"
-echo
-envar > "$colordir/colors.envar"; echo "Generated envars"
-scripts > "$colordir/colors.sh"; echo "Generated variables"
-gtk2 > "$colordir/colors.rc"; echo "Generated gtk2 colors"
-css > "$colordir/colors.css"; echo "Generated firefox css vars"
-scss > "$colordir/colors.scss"; echo "Generated Sass variables"
-erb > "$colordir/colors.erbvim"; echo "Generated vim erb vars"
-openbox > "$colordir/colors.openbox"; echo "Generated openbox colors"
-
-# Nvim uses 16 colors so lets generate all 16
-totalcolors=16
-nvim > "$colordir/tui.erbvim"; echo "Generated neovim tui colors"
-
-# Other Generation
-echo
-echo "Doing other generation"
-echo
 
 # Neovim colorscheme
 # How it works:  colors.erbvim + theme.erbvim + tui.erbvim > ryuuko.erb
@@ -200,8 +193,35 @@ cover () {
     coverspawn.sh &>/dev/null
 }
 
-erbgen; echo "Generated Vim colorscheme template"
-gencss; echo "Generated css file using sass"
-obthemegen; echo "Generated openbox themerc"
-bar & echo "Restarted lemonbar"
-cover & echo "Restarted cover script"
+# Generate the colors
+all () {
+    echo
+    echo "Generating color files"
+    echo
+    envar > "$colordir/colors.envar"; echo "Generated envars"
+    scripts > "$colordir/colors.sh"; echo "Generated variables"
+    gtk2 > "$colordir/colors.rc"; echo "Generated gtk2 colors"
+    css > "$colordir/colors.css"; echo "Generated firefox css vars"
+    scss > "$colordir/colors.scss"; echo "Generated Sass variables"
+    erb > "$colordir/colors.erbvim"; echo "Generated vim erb vars"
+    openbox > "$colordir/colors.openbox"; echo "Generated openbox colors"
+
+    # Nvim uses 16 colors so lets generate all 16
+    totalcolors=16
+    nvim > "$colordir/tui.erbvim"; echo "Generated neovim tui colors"
+
+    # Other Generation
+    echo
+    echo "Doing other generation"
+    echo
+    erbgen; echo "Generated Vim colorscheme template"
+    gencss; echo "Generated css file using sass"
+    obthemegen; echo "Generated openbox themerc"
+    bar & echo "Restarted lemonbar"
+    cover & echo "Restarted cover script"
+}
+
+case $1 in
+    all) all ;;
+    openbox) openbox $2 $3 > "$colordir/colors.openbox"; obthemegen ;;
+esac

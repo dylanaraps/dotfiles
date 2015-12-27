@@ -1,5 +1,5 @@
 
-	" Neovim Terminal Mode Colors
+	" Neovim Terminal Mode Colors.
 	let g:terminal_color_0 = "#3e5059"
 	let g:terminal_color_1 = "#99736e"
 	let g:terminal_color_2 = "#78a090"

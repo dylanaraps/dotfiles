@@ -38,8 +38,9 @@ alias reboot="sudo systemctl reboot"
 # Launch sxiv without the bottom bar
 alias sxiv="sxiv -b"
 
-# The erb command doesn't work inside of the shellscript(?)
-alias gencol.sh="gencol.sh; erb -T - ~/dotfiles/colorschemes/ryuuko/ryuuko.erb > ~/dotfiles/colorschemes/ryuuko/colors/ryuuko.vim"
+# Gen neovim scheme
+# This line doesn't work inside of gencol.sh for some reason
+alias nvimgen="erb -T - ~/dotfiles/colorschemes/ryuuko/ryuuko.erb > ~/dotfiles/colorschemes/ryuuko/colors/ryuuko.vim"
 
 # Habits
 alias firefox="iceweasel"
