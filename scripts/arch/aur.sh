@@ -1,5 +1,5 @@
-#!/bin/bash
-# Hacked together script to install/update/remove aur packages
+#!/bin/mksh
+# Script to work with aur packages
 #
 # Created by Dylan Araps
 # https://github.com/dylanaraps/dotfiles
@@ -19,9 +19,9 @@ install () {
         if [ ! -d "$pkg" ]; then
             cower -d "$pkg" || break
 
-            read -p "View PKGBUILD? (y/n) " -n 1 -r
-            echo
-            if [[ $REPLY =~ ^[Yy]$ ]]; then
+            echo -n "View PKGBUILD? (y/n) "
+            read viewpkgbuild
+            if [ "$viewpkgbuild" == "y" ]; then
                 $EDITOR "$pkg/PKGBUILD"
             fi
         fi
