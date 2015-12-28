@@ -9,4 +9,4 @@ while :; do
 	sleep 1s
 done |
 
-lemonbar -g "150x40+1670+990" -f "-benis-lemon-medium-r-normal--10-110-75-75-m-50-ISO8859-1" -B "#$white" -F "#$black"
+lemonbar -b -g "150x40+1670+50" -f "-benis-lemon-medium-r-normal--10-110-75-75-m-50-ISO8859-1" -B "#$white" -F "#$black"
