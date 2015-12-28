@@ -612,15 +612,12 @@
     <context name="Client">
       <mousebind button="Left" action="Press">
         <action name="Focus"/>
-        <action name="Raise"/>
       </mousebind>
       <mousebind button="Middle" action="Press">
         <action name="Focus"/>
-        <action name="Raise"/>
       </mousebind>
       <mousebind button="Right" action="Press">
         <action name="Focus"/>
-        <action name="Raise"/>
       </mousebind>
     </context>
     <context name="Icon">
