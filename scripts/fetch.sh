@@ -8,15 +8,15 @@
 # Text Formatting
 
 
-# Set to nothing to disable bold text
-bold=$(tput bold)
+# Set to "" to disable bold text
+bold="\033[1m"
 
 # Clears formatting
-clear=$(tput sgr0)
+clear="\033[0m"
 
 # Default color
 # colors can also be defined with a launch option: "-c"
-color=$(tput setaf 1)
+color="\033[38;5;1m"
 
 
 # Custom Image
@@ -61,7 +61,7 @@ underline=$(printf %"${#title}"s |tr " " "-")
 # Set args
 while getopts ":c:e:w:h:m:t:p:x:y:" opt; do
     case $opt in
-        c) color=$(tput setaf $OPTARG) ;;
+        c) color="\033[38;5;$OPTARG""m" ;;
         e) customtext="$OPTARG" ;;
         w) width="$OPTARG" ;;
         h) height="$OPTARG" ;;
