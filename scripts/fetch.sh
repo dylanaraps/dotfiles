@@ -56,26 +56,29 @@ clear="\033[0m"
 color="\033[38;5;1m"
 
 
-# Other
+# Args
 
 
-# Underline title with length of title
-underline=$(printf %"${#title}"s |tr " " "-")
-
-# Set args
-while getopts ":c:e:w:h:m:t:p:x:y:" opt; do
+while getopts ":c:e:w:h:t:p:x:y:W:" opt; do
     case $opt in
         c) color="\033[38;5;$OPTARG""m" ;;
         e) customtext="$OPTARG" ;;
         w) width="$OPTARG" ;;
         h) height="$OPTARG" ;;
-        m) windowmanager="$OPTARG" ;;
         t) title="$OPTARG" ;;
         p) pad="$OPTARG" ;;
         x) xoffset="$OPTARG" ;;
         y) yoffset="$OPTARG" ;;
+        W) windowmanager="$OPTARG" ;;
     esac
 done
+
+
+# Other
+
+
+# Underline title with length of title
+underline=$(printf %"${#title}"s |tr " " "-")
 
 # Clear terminal before running
 clear
