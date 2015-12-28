@@ -23,7 +23,7 @@ changewall () {
     # Change openbox titlebar color based on wallpaper
     case $wall in
         1.jpg|3.jpg|4.jpg) gencol.sh openbox 1 7 ;;
-        2.jpg|6.jpg) gencol.sh openbox 2 7 ;;
+        2.jpg|6.jpg|9.jpg) gencol.sh openbox 2 7 ;;
         5.jpg|7.jpg) gencol.sh openbox 4 7 ;;
         8.jpg) gencol.sh openbox  8 7 ;;
         1.png) gencol.sh openbox 6 8 ;;
