@@ -2,6 +2,8 @@
 # Prints terminal colors with hex colors side by side
 # Only works with terminals that use .Xdefaults/.Xresources
 #
+# Dependencies: tput, terminal emu that uses Xresources/Xdefaults
+#
 # Created by Dylan Araps
 # https://github.com/dylanaraps/dotfiles
 

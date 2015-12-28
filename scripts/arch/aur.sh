@@ -1,6 +1,8 @@
 #!/bin/mksh
 # Script to work with aur packages
 #
+# Dependencies: arch linux, cower
+#
 # Created by Dylan Araps
 # https://github.com/dylanaraps/dotfiles
 
