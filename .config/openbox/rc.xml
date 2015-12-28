@@ -341,6 +341,7 @@
     </keybind>
     <keybind key="W-c">
       <action name="MoveToCenter"/>
+      <action name="Lower"/>
     </keybind>
     <keybind key="W-Up">
       <action name="Execute">
