@@ -5,18 +5,22 @@
 # https://github.com/dylanaraps/dotfiles
 
 
-# Text Formatting
+# General Settings
 
 
-# Set to "" to disable bold text
-bold="\033[1m"
+# Title (Can also be changed with -t at launch)
+# To use the usual "user@hostname" change the line below to:
+# title="$(whoami)@$(hostname)"
+title="dylan's pc"
 
-# Clears formatting
-clear="\033[0m"
+# Window manager (Also configurable with -m at launch)
+# If you'd like to set the window manager manually you can set
+# the var to a string like the line below.
+# windowmanager="openbox"
+windowmanager=$(wmctrl -m | awk '/Name:/ {printf $2}')
 
-# Default color
-# colors can also be defined with a launch option: "-c"
-color="\033[38;5;1m"
+# Custom text to print at the bottom, configurable at launch with "-e"
+customtext=$(colors2.sh noblack 8)
 
 
 # Custom Image
@@ -38,22 +42,22 @@ xoffset=0
 pad="                             "
 
 
+# Text Formatting
+
+
+# Set to "" to disable bold text
+bold="\033[1m"
+
+# Clears formatting
+clear="\033[0m"
+
+# Default color
+# colors can also be defined with a launch option: "-c"
+color="\033[38;5;1m"
+
+
 # Other
 
-
-# Window manager (Also configurable with -m at launch)
-# If you'd like to set the window manager manually you can set
-# the var to a string like the line below.
-# windowmanager="openbox"
-windowmanager=$(wmctrl -m | awk '/Name:/ {printf $2}')
-
-# Title (Can also be changed with -t at launch)
-# To use the usual "user@hostname" change the line below to:
-# title="$(whoami)@$(hostname)"
-title="dylan's pc"
-
-# Custom text to print at the bottom, configurable at launch with "-e"
-customtext=$(colors2.sh noblack 8)
 
 # Underline title with length of title
 underline=$(printf %"${#title}"s |tr " " "-")
