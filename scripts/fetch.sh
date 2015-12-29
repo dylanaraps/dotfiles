@@ -14,9 +14,6 @@
 # title="$(whoami)@$(hostname)"
 title="dylan's pc"
 
-# Underline title with length of title
-underline=$(printf %"${#title}"s |tr " " "-")
-
 # Operating System (Configurable with "-O" at launch)
 # You can manually set this if the command below doesn't work for you.
 os=$(cat /etc/*ease | awk '/^NAME=/' | sed -n 's/^NAME=//p' | tr -d '"')
@@ -93,35 +90,36 @@ color="\033[38;5;1m"
 # Args
 
 
-while getopts ":c:e:w:h:t:p:x:y:W:O:K:U:P:s:C:S:M:m:" opt; do
-    case $opt in
-        c) color="\033[38;5;$OPTARG""m" ;;
-        e) customtext="$OPTARG" ;;
-        w) width="$OPTARG" ;;
-        h) height="$OPTARG" ;;
-        t) title="$OPTARG" ;;
-        p) pad="$OPTARG" ;;
-        x) xoffset="$OPTARG" ;;
-        y) yoffset="$OPTARG" ;;
-        W) windowmanager="$OPTARG" ;;
-        O) os="$OPTARG" ;;
-        K) kernel="$OPTARG" ;;
-        U) uptime="$OPTARG" ;;
-        P) packages="$OPTARG" ;;
-        s) shell="$OPTARG" ;;
-        C) cpu="$OPTARG" ;;
-        S) speed="$OPTARG" ;;
-        M) memory="$OPTARG" ;;
-        m) song="$OPTARG" ;;
+args=($@)
+
+# Loop index
+index=0
+
+for argument in ${args[@]}; do
+    index=$((index + 1))
+
+    case $argument in
+        -c|--color) color="\033[38;5;$2""m" ;;
+        -w|--width) width="$2" ;;
+        -h|--height) height="$2" ;;
+        -t|--title) title="$2" ;;
+        --padding) pad="$2" ;;
+        -x|--xoffset) xoffset="$2" ;;
+        -y|--yoffset) yoffset="$2" ;;
+        -W|--windowmanager) windowmanager="$2" ;;
+        -O|--distro) os="$2" ;;
+        -K|--kernel) kernel="$2" ;;
+        -U|--uptime) uptime="$2" ;;
+        -P|--packages) packages="$2" ;;
+        -s|--shell) shell="$2" ;;
+        -C|--cpu) cpu="$2" ;;
+        -S|--cpu-speed) speed="$2" ;;
+        -M|--memory) memory="$2" ;;
+        -m|--song) song="$2" ;;
     esac
+
+    shift
 done
-
-
-# Other
-
-
-# Clear terminal before running
-clear
 
 
 # Wallpaper
@@ -158,6 +156,12 @@ fi
 
 
 # Print Info
+
+# Clear terminal before running
+clear
+
+# Underline title with length of title
+underline=$(printf %"${#title}"s |tr " " "-")
 
 # Hide the terminal cursor while we print the info
 # This fixes image display errors
