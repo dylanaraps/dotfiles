@@ -5,7 +5,26 @@
 # https://github.com/dylanaraps/dotfiles
 
 
-# General Info
+# Info Prefixes {{{
+# The titles that come before the info (Ram:, Cpu:, Uptime)
+# TODO: Add a way to specify these at launch.
+
+
+title_os="OS"
+title_kernel="Kernel"
+title_uptime="Uptime"
+title_packages="Packages"
+title_shell="Shell"
+title_windowmanager="Window Manager"
+title_cpu="Cpu"
+title_memory="Memory"
+title_song="Song"
+
+
+# }}}
+
+
+# Get Info {{{
 # Commands to use when gathering info
 
 
@@ -63,10 +82,13 @@ printcols () {
 }
 
 
-# Custom Image
+# }}}
 
 
-# If usewall=1 then fetch will use a cropped version of your wallpaper as the img
+# Custom Image {{{
+
+
+# If 1, fetch will use a cropped version of your wallpaper as the image
 usewall=1
 
 # The default image to use if usewall=0
@@ -82,7 +104,10 @@ xoffset=0
 pad="                             "
 
 
-# Text Formatting
+# }}}
+
+
+# Text Formatting {{{
 
 
 # Set to "" to disable bold text
@@ -95,8 +120,10 @@ clear="\033[0m"
 # colors can also be defined with a launch option: "-c"
 color="\033[38;5;1m"
 
+# }}}
 
-# Args
+
+# Args {{{
 
 
 args=($@)
@@ -126,13 +153,31 @@ for argument in ${args[@]}; do
         -S|--cpu-speed) speed="$2" ;;
         -M|--memory) memory="$2" ;;
         -m|--song) song="$2" ;;
+        --noimg) useimg=0; usewall=0 ;;
+        --nowall) usewall=0 ;;
     esac
 
     shift
 done
 
 
-# Wallpaper
+# }}}
+
+
+# Other {{{
+
+
+# If the script was called with --noimg, disable image and paddin
+if [ $useimg -eq 0 ]; then
+    img=""
+    pad=""
+fi
+
+
+# }}}
+
+
+# Wallpaper {{{
 
 
 if [ $usewall -eq 1 ]; then
@@ -165,7 +210,10 @@ if [ $usewall -eq 1 ]; then
 fi
 
 
-# Print Info
+# }}}
+
+
+# Print Info {{{
 
 # Clear terminal before running
 clear
@@ -176,17 +224,17 @@ underline=$(printf %"${#title}"s |tr " " "-")
 # Hide the terminal cursor while we print the info
 # This fixes image display errors
 echo -n -e "\033[?25l"
-echo -e "${pad}${bold}$title${clear}"
-echo -e "${pad}$underline"
-echo -e "${pad}${bold}${color}OS${clear}: $os"
-echo -e "${pad}${bold}${color}Kernel${clear}: $kernel"
-echo -e "${pad}${bold}${color}Uptime${clear}: $uptime"
-echo -e "${pad}${bold}${color}Packages${clear}: $packages"
-echo -e "${pad}${bold}${color}Shell${clear}: $shell"
-echo -e "${pad}${bold}${color}Window Manager${clear}: $windowmanager"
-echo -e "${pad}${bold}${color}Cpu${clear}: $cpu @ $speed"
-echo -e "${pad}${bold}${color}Ram${clear}: $memory"
-echo -e "${pad}${bold}${color}Song${clear}: $song"
+echo -e "${pad}${bold}${title}${clear}"
+echo -e "${pad}${underline}"
+echo -e "${pad}${bold}${color}${title_os}${clear}: $os"
+echo -e "${pad}${bold}${color}${title_kernel}${clear}: $kernel"
+echo -e "${pad}${bold}${color}${title_uptime}${clear}: $uptime"
+echo -e "${pad}${bold}${color}${title_packages}${clear}: $packages"
+echo -e "${pad}${bold}${color}${title_shell}${clear}: $shell"
+echo -e "${pad}${bold}${color}${title_windowmanager}${clear}: $windowmanager"
+echo -e "${pad}${bold}${color}${title_cpu}${clear}: $cpu @ $speed"
+echo -e "${pad}${bold}${color}${title_memory}${clear}: $memory"
+echo -e "${pad}${bold}${color}${title_song}${clear}: $song"
 echo
 echo
 echo -e "$(printcols)"
@@ -194,3 +242,6 @@ echo
 echo -e "0;1;$xoffset;$yoffset;$width;$height;;;;;$img\n4;\n3;" | /usr/lib/w3m/w3mimgdisplay
 # We're done! Show the cursor again
 echo -n -e "\033[?25h"
+
+
+# }}}
