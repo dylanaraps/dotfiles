@@ -45,7 +45,11 @@ uptime=$(uptime -p | sed -e 's/minutes/mins/')
 
 # Total number of packages (Configurable with "-P" and "--packages" at launch)
 # Change this to match your distro's package manager
-packages=$(pacman -Q | wc -l)
+case $os in
+    "Arch Linux") packages=$(pacman -Q | wc -l) ;;
+    "Fedora") packages=$(yum list installed | wc -l) ;;
+    "Debian") packages=$(dpkg --list | wc -l)
+esac
 
 # Shell (Configurable with "-s" and "--shell" at launch)
 shell="$SHELL"
