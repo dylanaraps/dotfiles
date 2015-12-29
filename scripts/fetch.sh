@@ -93,12 +93,15 @@ if [ $usewall -eq 1 ]; then
 
     # Check if the directory exists
     if [ ! -d "$walltempdir" ]; then
-        mkdir "$walltempdir" || echo "Failed to create wallpaper dir"; exit
+        mkdir "$walltempdir" || exit
     fi
 
+    # Get wallpaper height so that we can do a better crop
+    size=($(identify -format "%h" $wallpaper))
+
     # Crop the wallpaper and save it to  the wallpaperdir
-    # By default it crops a 1080x1080 square in the center of the image.
-    [ -f "$walltempdir/$(basename $wallpaper)" ] || convert -crop 1080x1080+480+0 "$wallpaper" "$walltempdir/$(basename $wallpaper)"
+    # By default it crops a $size x $size square in the center of the image.
+    [ -f "$walltempdir/$(basename $wallpaper)" ] || convert -crop "$size"x"$size"+0+0 -gravity center "$wallpaper" "$walltempdir/$(basename $wallpaper)"
 
     # The final image
     img="$walltempdir/$(basename $wallpaper)"
