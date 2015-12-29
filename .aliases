@@ -50,7 +50,7 @@ alias record="ffmpeg -f x11grab -s 1920x1080 -framerate 60 -an -i :0.0 -c:v libv
 
 # Run fetch.sh in a loop
 alias fetchloop="while :; do fetch.sh; mpc idle player update > /dev/null 2>&1; done"
-alias fetch="echo -e '\033]2;'fetch.sh'\007'; fetch.sh"
+alias fetch.sh="fetch.sh --printcols 1 8"
 
 # }}}
 
