@@ -83,32 +83,45 @@ underline=$(printf %"${#title}"s |tr " " "-")
 # Clear terminal before running
 clear
 
-# Get image to display from current wallpaper
-# Requires feh
+
+# Wallpaper
+
+
 if [ $usewall -eq 1 ]; then
+    # Get image to display from current wallpaper (only works with feh)
     wallpaper=$(cat $HOME/.fehbg | awk '/feh/ {printf $3}' | sed -e "s/'//g")
+    wallname=$(basename $wallpaper)
 
     # Directory to store cropped wallpapers.
     walltempdir="$HOME/.wallpaper"
 
-    # Check if the directory exists
-    if [ ! -d "$walltempdir" ]; then
-        mkdir "$walltempdir" || exit
+
+    if [ ! -f "$walltempdir/$wallname" ]; then
+        # Check if the directory exists
+        if [ ! -d "$walltempdir" ]; then
+            mkdir "$walltempdir" || exit
+        fi
+
+        # Get wallpaper height so that we can do a better crop
+        size=($(identify -format "%h" $wallpaper))
+
+        # Crop the wallpaper and save it to  the wallpaperdir
+        # By default we crop a square in the center of the image which is "wallpaper height x wallpaper height".
+        # We then resize it to the image size specified above. (default 128x128 px, uses var $height)
+        # This way we get a full image crop with the speed benefit of a tiny image.
+        convert -crop "$size"x"$size"+0+0 -gravity center "$wallpaper" -resize "$height"x"$height" "$walltempdir/$wallname"
     fi
 
-    # Get wallpaper height so that we can do a better crop
-    size=($(identify -format "%h" $wallpaper))
-
-    # Crop the wallpaper and save it to  the wallpaperdir
-    # By default it crops a $size x $size square in the center of the image.
-    [ -f "$walltempdir/$(basename $wallpaper)" ] || convert -crop "$size"x"$size"+0+0 -gravity center "$wallpaper" "$walltempdir/$(basename $wallpaper)"
-
     # The final image
-    img="$walltempdir/$(basename $wallpaper)"
+    img="$walltempdir/$wallname"
 fi
 
-# Start printing info
 
+# Print Info
+
+# Hide the terminal cursor while we print the info
+# This fixes image display errors
+echo -n "\033[?25l"
 echo "${pad}${bold}$title${clear}"
 echo "${pad}$underline"
 echo "${pad}${bold}${color}OS${clear}: $(cat /etc/*ease | awk '/^NAME=/' | cut -d '"' -f2)"
@@ -124,3 +137,5 @@ echo
 echo "$customtext"
 echo
 echo -e "0;1;$xoffset;$yoffset;$width;$height;;;;;$img\n4;\n3;" | /usr/lib/w3m/w3mimgdisplay
+# We're done! Show the cursor again
+echo -n "\033[?25h"

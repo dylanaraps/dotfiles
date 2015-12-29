@@ -1,5 +1,5 @@
 # Openbox colors, generated using gencol.sh
-window.*.title.bg.color: #78a090
+window.*.title.bg.color: #70838c
 window.*.label.text.color: #f0eae6
 window.*.button.*.image.color: #f0eae6
 menu*.bg.color: #f0eae6
