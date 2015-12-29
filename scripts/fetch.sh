@@ -111,6 +111,7 @@ yoffset=0
 xoffset=0
 
 # Padding to align text to the right
+# TODO: Find a reliable way to get this automatically
 pad="                             "
 
 
@@ -178,7 +179,7 @@ done
 
 
 # If the script was called with --noimg, disable image and paddin
-if [ $useimg -eq 0 ]; then
+if [ ! -z $useimg ]; then
     img=""
     pad=""
 fi
