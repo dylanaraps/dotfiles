@@ -199,6 +199,7 @@ fi
 # Get packages
 getpackages
 
+
 # }}}
 
 
@@ -239,6 +240,7 @@ fi
 
 
 # Print Info {{{
+
 
 clear
 

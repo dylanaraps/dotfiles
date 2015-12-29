@@ -49,7 +49,7 @@ alias firefox="iceweasel"
 alias record="ffmpeg -f x11grab -s 1920x1080 -framerate 60 -an -i :0.0 -c:v libvpx -b:v 5M -crf 10 -quality realtime -y -loglevel quiet"
 
 # Run fetch.sh in a loop
-alias fetchloop="while :; do fetch.sh; mpc idle player update > /dev/null 2>&1; done"
+alias loopfetch="while :; do fetch.sh; mpc idle player update > /dev/null 2>&1; done"
 alias fetch.sh="fetch.sh --printcols 1 8"
 
 # }}}
