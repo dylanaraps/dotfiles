@@ -190,7 +190,7 @@ done
 # Other {{{
 
 
-# If the script was called with --noimg, disable image and paddin
+# If the script was called with --noimg, disable image and padding
 if [ ! -z $useimg ]; then
     img=""
     pad=""
