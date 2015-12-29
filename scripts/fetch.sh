@@ -1,25 +1,59 @@
-#!/bin/mksh
+#!/usr/bin/env bash
 # Fetch info about your system
 #
 # Created by Dylan Araps
 # https://github.com/dylanaraps/dotfiles
 
 
-# General Settings
+# General Info
+# Commands to use when gathering info
 
 
-# Title (Can also be changed with -t at launch)
+# Title (Configurable with "-t" at launch)
 # To use the usual "user@hostname" change the line below to:
 # title="$(whoami)@$(hostname)"
 title="dylan's pc"
 
-# Window manager (Also configurable with -m at launch)
+# Underline title with length of title
+underline=$(printf %"${#title}"s |tr " " "-")
+
+# Operating System (Configurable with "-O" at launch)
+# You can manually set this if the command below doesn't work for you.
+os=$(cat /etc/*ease | awk '/^NAME=/' | sed -n 's/^NAME=//p' | tr -d '"')
+
+# Linux kernel name/version (Configurable with "-K" at launch)
+kernel=$(uname -r)
+
+# System Uptime (Configurable with "-U" at launch)
+uptime=$(uptime -p | sed -e 's/minutes/mins/')
+
+# Total number of packages (Configurable with "-P" at launch)
+# Change this to match your distro's package manager
+packages=$(pacman -Q | wc -l)
+
+# Shell (Configurable with "-s" at launch)
+shell="$SHELL"
+
+# Window manager (Configurable with "-W" at launch) (depends on wmctrl)
 # If you'd like to set the window manager manually you can set
 # the var to a string like the line below.
 # windowmanager="openbox"
 windowmanager=$(wmctrl -m | awk '/Name:/ {printf $2}')
 
-# Custom text to print at the bottom, configurable at launch with "-e"
+# Processor (Configurable with "-C" and "-S" at launch)
+cpu="$(cat /proc/cpuinfo | awk '/model name/ {printf $4 " "$5 "\n" }' | sed -e '$!d' -e 's/(tm)//')"
+speed="$(lscpu | awk '/CPU MHz:/ {printf "scale=1; " $3 " / 1000 \n"}' | bc -l)GHz"
+
+# Memory (Configurable with "-M" at launch)
+# Print the total amount of ram and amount of ram in use
+memory=$(free -m | awk '/Mem:/ {printf $3 "MB / " $2 "MB"}')
+
+# Currently playing song/artist (Configurable with "-m" at launch)
+song=$(mpc current | cut -c 1-30)
+
+# Custom text (Configurable with "-e" at launch)
+# By default it uses my colors2.sh script, you can find it here:
+# https://github.com/dylanaraps/dotfiles/blob/master/scripts/other/colors2.sh
 customtext=$(colors2.sh noblack 8)
 
 
@@ -59,7 +93,7 @@ color="\033[38;5;1m"
 # Args
 
 
-while getopts ":c:e:w:h:t:p:x:y:W:" opt; do
+while getopts ":c:e:w:h:t:p:x:y:W:O:K:U:P:s:C:S:M:m:" opt; do
     case $opt in
         c) color="\033[38;5;$OPTARG""m" ;;
         e) customtext="$OPTARG" ;;
@@ -70,15 +104,21 @@ while getopts ":c:e:w:h:t:p:x:y:W:" opt; do
         x) xoffset="$OPTARG" ;;
         y) yoffset="$OPTARG" ;;
         W) windowmanager="$OPTARG" ;;
+        O) os="$OPTARG" ;;
+        K) kernel="$OPTARG" ;;
+        U) uptime="$OPTARG" ;;
+        P) packages="$OPTARG" ;;
+        s) shell="$OPTARG" ;;
+        C) cpu="$OPTARG" ;;
+        S) speed="$OPTARG" ;;
+        M) memory="$OPTARG" ;;
+        m) song="$OPTARG" ;;
     esac
 done
 
 
 # Other
 
-
-# Underline title with length of title
-underline=$(printf %"${#title}"s |tr " " "-")
 
 # Clear terminal before running
 clear
@@ -121,21 +161,21 @@ fi
 
 # Hide the terminal cursor while we print the info
 # This fixes image display errors
-echo -n "\033[?25l"
-echo "${pad}${bold}$title${clear}"
-echo "${pad}$underline"
-echo "${pad}${bold}${color}OS${clear}: $(cat /etc/*ease | awk '/^NAME=/' | cut -d '"' -f2)"
-echo "${pad}${bold}${color}Kernel${clear}: $(uname -r)"
-echo "${pad}${bold}${color}Uptime${clear}: $(uptime -p | sed -e 's/minutes/mins/')"
-echo "${pad}${bold}${color}Packages${clear}: $(pacman -Q | wc -l)"
-echo "${pad}${bold}${color}Shell${clear}: $SHELL"
-echo "${pad}${bold}${color}Window Manager${clear}: $windowmanager"
-echo "${pad}${bold}${color}Cpu${clear}: AMD FX-6300 @ $(lscpu | awk '/CPU MHz:/ {printf "scale=1; " $3 " / 1000 \n"}' | bc -l)GHz"
-echo "${pad}${bold}${color}Ram${clear}: $(free -m | awk '/Mem:/ {printf $3 "MB / " $2 "MB"}')"
-echo "${pad}${bold}${color}Song${clear}: $(mpc current | cut -c 1-30)"
-echo
-echo "$customtext"
-echo
+echo -n -e "\033[?25l"
+echo -e "${pad}${bold}$title${clear}"
+echo -e "${pad}$underline"
+echo -e "${pad}${bold}${color}OS${clear}: $os"
+echo -e "${pad}${bold}${color}Kernel${clear}: $kernel"
+echo -e "${pad}${bold}${color}Uptime${clear}: $uptime"
+echo -e "${pad}${bold}${color}Packages${clear}: $packages"
+echo -e "${pad}${bold}${color}Shell${clear}: $shell"
+echo -e "${pad}${bold}${color}Window Manager${clear}: $windowmanager"
+echo -e "${pad}${bold}${color}Cpu${clear}: $cpu @ $speed"
+echo -e "${pad}${bold}${color}Ram${clear}: $memory"
+echo -e "${pad}${bold}${color}Song${clear}: $song"
+echo -e
+echo -e "$customtext"
+echo -e
 echo -e "0;1;$xoffset;$yoffset;$width;$height;;;;;$img\n4;\n3;" | /usr/lib/w3m/w3mimgdisplay
 # We're done! Show the cursor again
-echo -n "\033[?25h"
+echo -n -e "\033[?25h"
