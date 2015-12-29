@@ -7,7 +7,7 @@
 
 # Info Prefixes {{{
 # The titles that come before the info (Ram:, Cpu:, Uptime)
-# TODO: Add a way to specify these at launch.
+# TODO: Add an easy way to specify these at launch.
 
 
 title_os="OS"
@@ -111,7 +111,7 @@ yoffset=0
 xoffset=0
 
 # Padding to align text to the right
-# TODO: Find a reliable way to get this automatically
+# TODO: Find a reliable way to set this automatically
 pad="                             "
 
 
@@ -127,9 +127,13 @@ bold="\033[1m"
 # Clears formatting
 clear="\033[0m"
 
-# Default color
-# colors can also be defined with a launch option: "-c"
-color="\033[38;5;1m"
+# Default colors
+# Colors can be defined at launch with "--titlecol 1, --coloncol 2, --infocol 3"
+# Or the shorthand "-c/--color 1 2 3"
+title_color="\033[38;5;1m"
+colon_color="\033[38;5;7m"
+info_color="\033[38;5;7m"
+
 
 # }}}
 
@@ -146,7 +150,12 @@ for argument in ${args[@]}; do
     index=$((index + 1))
 
     case $argument in
-        -c|--color) color="\033[38;5;$2""m" ;;
+        -c|--color) title_color="\033[38;5;${2}m"; \
+            [ ! -z $3 ] && colon_color="\033[38;5;${3}m"; \
+            [ ! -z $4 ] && info_color="\033[38;5;${4}m" ;;
+        --titlecol) title_color="\033[38;5;${2}m" ;;
+        --coloncol) colon_color="\033[38;5;${2}m" ;;
+        --infocol) info_color="\033[38;5;${2}m" ;;
         -pc|--printcols) start=$2; end=$3 ;;
         -w|--width) width="$2" ;;
         -h|--height) height="$2" ;;
@@ -228,32 +237,39 @@ fi
 
 # Print Info {{{
 
-# Clear terminal before running
 clear
 
 # Underline title with length of title
 underline=$(printf %"${#title}"s |tr " " "-")
 
 # Hide the terminal cursor while we print the info
-# This fixes image display errors
 echo -n -e "\033[?25l"
-echo -e "${pad}${bold}${title}${clear}"
-echo -e "${pad}${underline}"
-echo -e "${pad}${bold}${color}${title_os}${clear}: $os"
-echo -e "${pad}${bold}${color}${title_kernel}${clear}: $kernel"
-echo -e "${pad}${bold}${color}${title_uptime}${clear}: $uptime"
-echo -e "${pad}${bold}${color}${title_packages}${clear}: $packages"
-echo -e "${pad}${bold}${color}${title_shell}${clear}: $shell"
-echo -e "${pad}${bold}${color}${title_windowmanager}${clear}: $windowmanager"
-echo -e "${pad}${bold}${color}${title_cpu}${clear}: $cpu @ $speed"
-echo -e "${pad}${bold}${color}${title_memory}${clear}: $memory"
-echo -e "${pad}${bold}${color}${title_song}${clear}: $song"
+
+# Print the title and underline
+echo -e "$pad$bold$title$clear"
+echo -e "$pad$underline"
+
+# Custom echo function to increase readability and useability
+echoinfo () {
+    echo -e "$pad$bold$title_color$1$clear$colon_color:$clear $info_color$2$clear"
+}
+
+echoinfo "$title_os" "$os"
+echoinfo "$title_kernel" "$kernel"
+echoinfo "$title_uptime" "$uptime"
+echoinfo "$title_packages" "$packages"
+echoinfo "$title_shell" "$shell"
+echoinfo "$title_windowmanager" "$windowmanager"
+echoinfo "$title_cpu" "$cpu"
+echoinfo "$title_memory" "$memory"
+echoinfo "$title_song" "$song"
+
 echo
 echo
 echo -e "$(printcols)"
 echo
 echo -e "0;1;$xoffset;$yoffset;$width;$height;;;;;$img\n4;\n3;" | /usr/lib/w3m/w3mimgdisplay
-# We're done! Show the cursor again
+# Show the cursor again
 echo -n -e "\033[?25h"
 
 
