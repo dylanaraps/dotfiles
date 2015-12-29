@@ -128,10 +128,11 @@ bold="\033[1m"
 clear="\033[0m"
 
 # Default colors
-# Colors can be defined at launch with "--titlecol 1, --coloncol 2, --infocol 3"
-# Or the shorthand "-c/--color 1 2 3"
-title_color="\033[38;5;1m"
-colon_color="\033[38;5;7m"
+# Colors can be defined at launch with "--titlecol 1, --subtitlecol 2, --coloncol 3, --infocol 4"
+# Or the shorthand "-c/--color 1 2 3 4"
+title_color="\033[38;5;7m"
+subtitle_color="\033[38;5;1m"
+colon_color="\033[38;5;7m" # Also changes underline color
 info_color="\033[38;5;7m"
 
 
@@ -151,9 +152,11 @@ for argument in ${args[@]}; do
 
     case $argument in
         -c|--color) title_color="\033[38;5;${2}m"; \
-            [ ! -z $3 ] && colon_color="\033[38;5;${3}m"; \
-            [ ! -z $4 ] && info_color="\033[38;5;${4}m" ;;
+            [ ! -z $3 ] && subtitle_color="\033[38;5;${3}m"; \
+            [ ! -z $4 ] && colon_color="\033[38;5;${4}m"; \
+            [ ! -z $5 ] && info_color="\033[38;5;${5}m" ;;
         --titlecol) title_color="\033[38;5;${2}m" ;;
+        --subtitlecol) subtitle_color="\033[38;5;${2}m" ;;
         --coloncol) colon_color="\033[38;5;${2}m" ;;
         --infocol) info_color="\033[38;5;${2}m" ;;
         -pc|--printcols) start=$2; end=$3 ;;
@@ -246,12 +249,12 @@ underline=$(printf %"${#title}"s |tr " " "-")
 echo -n -e "\033[?25l"
 
 # Print the title and underline
-echo -e "$pad$bold$title$clear"
-echo -e "$pad$underline"
+echo -e "$pad$bold$title_color$title$clear"
+echo -e "$pad$colon_color$underline$clear"
 
 # Custom echo function to increase readability and useability
 echoinfo () {
-    echo -e "$pad$bold$title_color$1$clear$colon_color:$clear $info_color$2$clear"
+    echo -e "$pad$bold$subtitle_color$1$clear$colon_color:$clear $info_color$2$clear"
 }
 
 echoinfo "$title_os" "$os"
