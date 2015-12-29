@@ -45,11 +45,17 @@ uptime=$(uptime -p | sed -e 's/minutes/mins/')
 
 # Total number of packages (Configurable with "-P" and "--packages" at launch)
 # Change this to match your distro's package manager
-case $os in
-    "Arch Linux") packages=$(pacman -Q | wc -l) ;;
-    "Fedora") packages=$(yum list installed | wc -l) ;;
-    "Debian") packages=$(dpkg --list | wc -l)
-esac
+getpackages () {
+    case $os in
+        'Arch Linux'|'Parabola GNU/Linux-libre'|'Manjaro'|'Antergos') packages=$(pacman -Q | wc -l) ;;
+        'Ubuntu'|'Mint'|'Debian'|'Kali Linux') packages=$(dpkg --get-selections | grep -v deinstall$ | wc -l) ;;
+        'Slackware') packages=$(ls -1 /var/log/packages | wc -l) ;;
+        'Gentoo'|'Funtoo') packages=$(ls -d /var/db/pkg/*/* | wc -l) ;;
+        'Fedora'|'openSUSE'|'Red Hat Enterprise Linux'|'CentOS') packages=$(rpm -qa | wc -l) ;;
+        'CRUX') packages=$(pkginfo -i | wc -l) ;;
+    esac
+}
+
 
 # Shell (Configurable with "-s" and "--shell" at launch)
 shell="$SHELL"
@@ -177,6 +183,8 @@ if [ $useimg -eq 0 ]; then
     pad=""
 fi
 
+# Get packages
+getpackages
 
 # }}}
 
