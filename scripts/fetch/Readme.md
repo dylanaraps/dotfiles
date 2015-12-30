@@ -1,7 +1,10 @@
 # fetch.sh
 
-This is the home of my fetch script, I've spent the past few days rewriting this
-<br/> and it now supports other distros as well as a ton of new features.
+This is the home of my fetch script! This script gathers info about your system
+<br\> and prints it to the terminal.
+
+I've spent the past few days rewriting this and it now supports other distros
+<br\> as well as a ton of new features and bug fixes.
 
 If you're having any issues or have any ideas, please open an issue! I can't test on many
 <br/> other distros and I want this to work for as many people as possible.
@@ -15,7 +18,7 @@ These are the script's dependencies:
 
 -  Displaying Images: w3m
 -  Image Cropping: ImageMagick
--  Wallpaper Display: feh
+-  Display Wallpaper: feh
 -  Current Song: mpc
 
 These are the script's optional dependencies
