@@ -98,7 +98,7 @@ title="dylan's pc"
 
 # Operating System (Configurable with "-O" and "--distro" at launch)
 # You can manually set this if the command below doesn't work for you.
-os=$(cat /etc/*ease | awk '/^NAME=/' | sed -n 's/^NAME=//p' | tr -d '"')
+os=$(awk '/^NAME=/' /etc/*ease | sed -n 's/^NAME=//p' | tr -d '"')
 
 # Linux kernel name/version (Configurable with "-K" and "--kernel" at launch)
 kernel=$(uname -r)
@@ -144,7 +144,7 @@ memory=$(free -m | awk '/Mem:/ {printf $3 "MB / " $2 "MB"}')
 # Currently playing song/artist (Configurable with "-m" and "--song" at launch)
 song=$(mpc current | cut -c 1-30)
 
-# Print terminal colors in a line (Configureable with "--printcols start end" at launch)
+# Print terminal colors in a line (Configurable with "--printcols start end" at launch)
 # Start/End are vars for the range of colors to print
 # The default values below print 8 colors in total.
 start=0
@@ -219,7 +219,7 @@ done
 # If the script was called with --noimg, disable images and padding
 if [ $enableimages -eq 1 ]; then
     # If usewall=1, Get image to display from current wallpaper (only works with feh)
-    [ $usewall -eq 1 ] && img=$(cat $HOME/.fehbg | awk '/feh/ {printf $3}' | sed -e "s/'//g")
+    [ $usewall -eq 1 ] && img=$(awk '/feh/ {printf $3}' "$HOME/.fehbg" | sed -e "s/'//g")
 
     # Get name of image
     imgname=$(basename $img)
