@@ -1,4 +1,4 @@
-#!/usr/bin/env bash
+#!/bin/mksh
 # Fetch info about your system
 #
 # Created by Dylan Araps
@@ -206,7 +206,8 @@ for argument in $args; do
         --clean) rm -rf "$imgtempdir" || exit ;;
     esac
 
-    shift
+    # The check here fixes shift in sh/mksh
+    [ ! -z "$1" ] && shift
 done
 
 
