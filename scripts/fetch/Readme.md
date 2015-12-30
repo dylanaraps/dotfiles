@@ -18,9 +18,9 @@ These are the script's optional dependencies
 -  Window Manager Detection: wmctrl
     - You can manually set this at launch with:
 
-    ```
-        scrot.sh --windowmanager wmname
-    ```
+        ```
+            scrot.sh --windowmanager wmname
+        ```
 
 
 ## TODO
