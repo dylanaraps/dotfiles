@@ -28,7 +28,7 @@ These are the script's optional dependencies
 
 ## Usage
 
-
+<pre>
     usage: scrot.sh [--colors 1 2 4 5] [--kernel "$(uname -rs)"]
 
         Info:
@@ -74,7 +74,7 @@ These are the script's optional dependencies
 
         Other:
         --help                 Print this text and exit
-
+</pre>
 
 
 ## TODO
