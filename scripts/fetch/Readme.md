@@ -18,7 +18,9 @@ These are the script's optional dependencies
 -  Window Manager Detection: wmctrl
     - You can manually set this at launch with:
 
-        --windowmanager wmname
+    ```
+    --windowmanager wmname
+    ```
 
 
 ## TODO
