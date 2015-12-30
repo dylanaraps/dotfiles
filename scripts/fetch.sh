@@ -24,6 +24,69 @@ title_song="Song"
 # }}}
 
 
+# Text Formatting {{{
+
+
+# Set to "" or comment this line to disable bold text
+bold="\033[1m"
+
+# This is a simple function to make the vars below easier to edit.
+color () {
+    echo "\033[38;5;${1}m"
+}
+
+# Default colors
+# Colors can be defined at launch with "--titlecol 1, --subtitlecol 2, --coloncol 3, --infocol 4"
+# Or the shorthand "-c/--color 1 2 3 4"
+# Or by editing them below.
+title_color=$(color 7)
+subtitle_color=$(color 1)
+colon_color=$(color 7) # Also changes underline color
+info_color=$(color 7)
+
+# Reset formatting
+# Removing this line will fuck up the text formatting
+clear="\033[0m"
+
+
+# }}}
+
+
+# Custom Image {{{
+
+# Enable or disable the use of images (Disable images at launch with "--noimg")
+enableimages=1
+
+# If 1, fetch will use a cropped version of your wallpaper as the image
+# (Disable this at launch with "--nowall")
+# NOTE: This is only compatible with feh, I can add support for more
+#       wallpaper setters but you'll need to show me a way to get the current
+#       wallpaper from the commandline.
+usewall=1
+
+# The image to use if usewall=0. There's also the launch flags "-i" and "--image"
+# to set a custom image at launch.
+img="$HOME/Pictures/avatars/gon.png"
+
+# Image size/offset
+# (Customizable at launch with these flags: --size 128 --xoffset 0 --yoffset 0")
+imgsize=128
+yoffset=0
+xoffset=0
+
+# Padding to align text to the right
+# TODO: Find a reliable way to set this dynamically. I can get
+#       this to work based on font width but there's no reliable way
+#       of getting fontwidth for every terminal.
+pad="                             "
+
+# Directory to store cropped images
+imgtempdir="$HOME/.fetchimages"
+
+
+# }}}
+
+
 # Get Info {{{
 # Commands to use when gathering info
 
@@ -67,7 +130,7 @@ shell="$SHELL"
 windowmanager=$(wmctrl -m | awk '/Name:/ {printf $2}')
 
 # Processor (Configurable with "-C", "-S" and "--cpu", "--speed" at launch)
-cpu="$(cat /proc/cpuinfo | awk '/model name/ {printf $4 " "$5 "\n" }' | sed -e '$!d' -e 's/(tm)//')"
+cpu="$(lscpu | awk '/Model name/ {printf $3 " "$4 "\n" }' | sed -e '$!d' -e 's/(tm)//')"
 speed="$(lscpu | awk '/CPU MHz:/ {printf "scale=1; " $3 " / 1000 \n"}' | bc -l)GHz"
 
 # Memory (Configurable with "-M" and "--memory" at launch)
@@ -88,52 +151,8 @@ printcols () {
         echo -n "\033[48;5;$color"m"       "
     done
 
-    echo -n "\033[0m"
+    echo -n "$clear"
 }
-
-
-# }}}
-
-
-# Custom Image {{{
-
-
-# If 1, fetch will use a cropped version of your wallpaper as the image
-usewall=1
-
-# The default image to use if usewall=0
-img="$HOME/Pictures/avatars/gon.png"
-
-# Image width/height/offset
-width=128
-height=128
-yoffset=0
-xoffset=0
-
-# Padding to align text to the right
-# TODO: Find a reliable way to set this automatically
-pad="                             "
-
-
-# }}}
-
-
-# Text Formatting {{{
-
-
-# Set to "" to disable bold text
-bold="\033[1m"
-
-# Clears formatting
-clear="\033[0m"
-
-# Default colors
-# Colors can be defined at launch with "--titlecol 1, --subtitlecol 2, --coloncol 3, --infocol 4"
-# Or the shorthand "-c/--color 1 2 3 4"
-title_color="\033[38;5;7m"
-subtitle_color="\033[38;5;1m"
-colon_color="\033[38;5;7m" # Also changes underline color
-info_color="\033[38;5;7m"
 
 
 # }}}
@@ -160,8 +179,7 @@ for argument in ${args[@]}; do
         --coloncol) colon_color="\033[38;5;${2}m" ;;
         --infocol) info_color="\033[38;5;${2}m" ;;
         -pc|--printcols) start=$2; end=$3 ;;
-        -w|--width) width="$2" ;;
-        -h|--height) height="$2" ;;
+        --size) imgsize="$2" ;;
         -t|--title) title="$2" ;;
         -p|--padding) pad="$2" ;;
         -x|--xoffset) xoffset="$2" ;;
@@ -178,6 +196,8 @@ for argument in ${args[@]}; do
         -m|--song) song="$2" ;;
         --noimg) useimg=0; usewall=0 ;;
         --nowall) usewall=0 ;;
+        -i|--image) usewall=0; img="$2" ;;
+        --clean) rm -rf "$imgtempdir" || exit ;;
     esac
 
     shift
@@ -187,52 +207,58 @@ done
 # }}}
 
 
-# Other {{{
+# Image Crop {{{
 
 
-# If the script was called with --noimg, disable image and padding
-if [ ! -z $useimg ]; then
-    img=""
-    pad=""
-fi
+# If the script was called with --noimg, disable images and padding
+if [ $enableimages -eq 1 ]; then
+    # If usewall=1, Get image to display from current wallpaper (only works with feh)
+    [ $usewall -eq 1 ] && img=$(cat $HOME/.fehbg | awk '/feh/ {printf $3}' | sed -e "s/'//g")
 
-# Get packages
-getpackages
+    # Get name of image
+    imgname=$(basename $img)
 
+    # If the image in the tempdir is a different size to $imgsize, delete it
+    # This check allows you to resize the image at launch
+    if [ -f "$imgtempdir/$imgname" ] && [ $(identify -format "%h" "$imgtempdir/$imgname") != $imgsize ]; then
+        rm "$imgtempdir/$imgname"
+    fi
 
-# }}}
-
-
-# Wallpaper {{{
-
-
-if [ $usewall -eq 1 ]; then
-    # Get image to display from current wallpaper (only works with feh)
-    wallpaper=$(cat $HOME/.fehbg | awk '/feh/ {printf $3}' | sed -e "s/'//g")
-    wallname=$(basename $wallpaper)
-
-    # Directory to store cropped wallpapers.
-    walltempdir="$HOME/.wallpaper"
-
-
-    if [ ! -f "$walltempdir/$wallname" ]; then
-        # Check if the directory exists
-        if [ ! -d "$walltempdir" ]; then
-            mkdir "$walltempdir" || exit
+    # Check to see if the tempfile exists before we do any cropping.
+    if [ ! -f "$imgtempdir/$imgname" ]; then
+        # Check if the directory exists and create it if it doesn't
+        if [ ! -d "$imgtempdir" ]; then
+            mkdir "$imgtempdir" || exit
         fi
 
-        # Get wallpaper height so that we can do a better crop
-        size=($(identify -format "%h" $wallpaper))
+        # Get wallpaper size so that we can do a better crop
+        size=($(identify -format "%w %h" $img))
 
-        # Crop the wallpaper and save it to  the wallpaperdir
-        # By default we crop a square in the center of the image which is "wallpaper height x wallpaper height".
-        # We then resize it to the image size specified above. (default 128x128 px, uses var $height)
+        # This checks to see if height is geater than width
+        # so we can do a better crop of portrait images.
+        if [ ${size[1]} -gt ${size[0]} ]; then
+            size=${size[0]}
+        else
+            size=${size[1]}
+        fi
+
+        # Crop the image and save it to  the $imgtempdir
+        # By default we crop a square in the center of the image which is
+        # "image height x image height".
+        # We then resize it to the image size specified above.
+        # (default 128x128 px, uses var $height)
         # This way we get a full image crop with the speed benefit of a tiny image.
-        convert -crop "$size"x"$size"+0+0 -gravity center "$wallpaper" -resize "$height"x"$height" "$walltempdir/$wallname"
+        convert \
+            -crop "$size"x"$size"+0+0 \
+            -gravity center "$img" \
+            -resize "$imgsize"x"$imgsize" "$imgtempdir/$imgname"
     fi
 
     # The final image
-    img="$walltempdir/$wallname"
+    img="$imgtempdir/$imgname"
+else
+    img=""
+    pad=""
 fi
 
 
@@ -241,6 +267,9 @@ fi
 
 # Print Info {{{
 
+
+# Get packages
+getpackages
 
 clear
 
@@ -265,7 +294,7 @@ echoinfo "$title_uptime" "$uptime"
 echoinfo "$title_packages" "$packages"
 echoinfo "$title_shell" "$shell"
 echoinfo "$title_windowmanager" "$windowmanager"
-echoinfo "$title_cpu" "$cpu"
+echoinfo "$title_cpu" "$cpu @ $speed"
 echoinfo "$title_memory" "$memory"
 echoinfo "$title_song" "$song"
 
@@ -273,7 +302,7 @@ echo
 echo
 echo -e "$(printcols)"
 echo
-echo -e "0;1;$xoffset;$yoffset;$width;$height;;;;;$img\n4;\n3;" | /usr/lib/w3m/w3mimgdisplay
+echo -e "0;1;$xoffset;$yoffset;$imgsize;$imgsize;;;;;$img\n4;\n3;" | /usr/lib/w3m/w3mimgdisplay
 # Show the cursor again
 echo -n -e "\033[?25h"
 
