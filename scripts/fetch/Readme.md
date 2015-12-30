@@ -38,7 +38,6 @@ Here's what's on my todo list
 - Find a quick and reliable way to get the current window manager. I had a
   <br/> solution that used an array of processes and pgrep but it doubled the
   <br/> startup time for the script.
-- Add an option to disable the color blocks at the bottom.
 
 If you've got any ideas on how to solve these problems, let me know!
 
