@@ -1,4 +1,4 @@
-#!/bin/mksh
+#!/usr/bin/env bash
 # Fetch info about your system
 #
 # Created by Dylan Araps
