@@ -43,7 +43,8 @@ color () {
 }
 
 # Default colors
-# Colors can be defined at launch with "--titlecol 1, --subtitlecol 2, --coloncol 3, --infocol 4"
+# Colors can be defined at launch with:
+# "--titlecol 1, --subtitlecol 2, --coloncol 3, --infocol 4"
 # Or the shorthand "-c/--color 1 2 3 4"
 # Or by editing them below.
 title_color=$(color 7)
@@ -71,7 +72,7 @@ enableimages=1
 #       wallpaper from the commandline.
 usewall=1
 
-# The image to use if usewall=0. There's also the launch flags "-i" and "--image"
+# The image to use if usewall=0. There's also the launch flags "-i" + "--image"
 # to set a custom image at launch.
 img="$HOME/Pictures/avatars/gon.png"
 
@@ -118,12 +119,18 @@ uptime=$(uptime -p | sed -e 's/minutes/mins/')
 # (Link is at the top)
 getpackages () {
     case $os in
-        'Arch Linux'|'Parabola GNU/Linux-libre'|'Manjaro'|'Antergos') packages=$(pacman -Q | wc -l) ;;
-        'Ubuntu'|'Mint'|'Debian'|'Kali Linux') packages=$(dpkg --get-selections | grep -v deinstall$ | wc -l) ;;
-        'Slackware') packages=$(ls -1 /var/log/packages | wc -l) ;;
-        'Gentoo'|'Funtoo') packages=$(ls -d /var/db/pkg/*/* | wc -l) ;;
-        'Fedora'|'openSUSE'|'Red Hat Enterprise Linux'|'CentOS') packages=$(rpm -qa | wc -l) ;;
-        'CRUX') packages=$(pkginfo -i | wc -l) ;;
+        'Arch Linux'|'Parabola GNU/Linux-libre'|'Manjaro'|'Antergos') \
+            packages=$(pacman -Q | wc -l) ;;
+        'Ubuntu'|'Mint'|'Debian'|'Kali Linux') \
+            packages=$(dpkg --get-selections | grep -v deinstall$ | wc -l) ;;
+        'Slackware') \
+            packages=$(ls -1 /var/log/packages | wc -l) ;;
+        'Gentoo'|'Funtoo') \
+            packages=$(ls -d /var/db/pkg/*/* | wc -l) ;;
+        'Fedora'|'openSUSE'|'Red Hat Enterprise Linux'|'CentOS') \
+            packages=$(rpm -qa | wc -l) ;;
+        'CRUX') \
+            packages=$(pkginfo -i | wc -l) ;;
         *) packages="unknown" ;;
     esac
 }
@@ -132,16 +139,20 @@ getpackages () {
 # Shell (Configurable with "-s" and "--shell" at launch)
 shell="$SHELL"
 
-# Window manager (Configurable with "-W" and "--windowmanager" at launch) (depends on wmctrl)
-# This can be detected without wmctrl by using an array of window manager process names and pgrep but it's
-# really slow (Doubles script startup time in some cases).
-# If you don't want to install wmctrl you can either edit the var below or run the script with:
-# --windowmanager wmname
+# Window manager (Configurable with "-W" and "--windowmanager" at launch)
+# (depends on wmctrl)
+# This can be detected without wmctrl by using an array of window manager
+# process names and pgrep but it's really slow.
+# (Doubles script startup time in some cases).
+# If you don't want to install wmctrl you can either edit the var below
+# or run the script with: --windowmanager wmname
 # windowmanager="openbox"
 windowmanager=$(wmctrl -m | awk '/Name:/ {printf $2}')
 
 # Processor (Configurable with "-C", "-S" and "--cpu", "--speed" at launch)
-cpu="$(awk 'BEGIN{FS=":"} /model name/ {print $2; exit}' /proc/cpuinfo | awk 'BEGIN{FS="@"; OFS="\n"} { print $1; exit }'| sed -e 's/\((tm)\|(TM)\)//' -e 's/\((R)\|(r)\)//' -e 's/^\ //')"
+cpu="$(awk 'BEGIN{FS=":"} /model name/ {print $2; exit}' /proc/cpuinfo |\
+    awk 'BEGIN{FS="@"; OFS="\n"} { print $1; exit }' |\
+    sed -e 's/\((tm)\|(TM)\)//' -e 's/\((R)\|(r)\)//' -e 's/^\ //')"
 speed="$(lscpu | awk '/CPU MHz:/ {printf "scale=1; " $3 " / 1000 \n"}' | bc -l)"
 
 # Memory (Configurable with "-M" and "--memory" at launch)
@@ -151,7 +162,8 @@ memory=$(free -m | awk '/Mem:/ {printf $3 "MB / " $2 "MB"}')
 # Currently playing song/artist (Configurable with "-m" and "--song" at launch)
 song=$(mpc current | cut -c 1-30)
 
-# Print terminal colors in a line (Configurable with "--printcols start end" at launch)
+# Print terminal colors in a line
+# (Configurable with "--printcols start end" at launch)
 # Start/End are vars for the range of colors to print
 # The default values below print 8 colors in total.
 start=0
@@ -233,17 +245,19 @@ done
 
 # If the script was called with --noimg, disable images and padding
 if [ $enableimages -eq 1 ]; then
-    # If usewall=1, Get image to display from current wallpaper (only works with feh)
-    [ $usewall -eq 1 ] && img=$(awk '/feh/ {printf $3}' "$HOME/.fehbg" | sed -e "s/'//g")
+    # If usewall=1, Get image to display from current wallpaper.
+    # (only works with feh)
+    [ $usewall -eq 1 ] && \
+        img=$(awk '/feh/ {printf $3}' "$HOME/.fehbg" | sed -e "s/'//g")
 
     # Get name of image
     imgname=${img##*/}
 
     # If the image in the tempdir is a different size to $imgsize, delete it
     # This check allows you to resize the image at launch
-    if [ -f "$imgtempdir/$imgname" ] && [ $(identify -format "%h" "$imgtempdir/$imgname") != $imgsize ]; then
+    [ -f "$imgtempdir/$imgname" ] && \
+    [ $(identify -format "%h" "$imgtempdir/$imgname") != $imgsize ] && \
         rm "$imgtempdir/$imgname"
-    fi
 
     # Check to see if the tempfile exists before we do any cropping.
     if [ ! -f "$imgtempdir/$imgname" ]; then
@@ -266,7 +280,8 @@ if [ $enableimages -eq 1 ]; then
         # "image height x image height".
         # We then resize it to the image size specified above.
         # (default 128x128 px, uses var $height)
-        # This way we get a full image crop with the speed benefit of a tiny image.
+        # This way we get a full image crop with the speed benefit
+        # of a tiny image.
         convert \
             -crop "$size"x"$size"+0+0 \
             -gravity center "$img" \
@@ -305,9 +320,11 @@ echo -n -e "\033[?25l"
 echo -e "$pad$bold$title_color$title$clear"
 echo -e "$pad$colon_color$underline$clear"
 
-# Custom echo function to increase readability and useability
+# Custom echo function to make it easier to edit the info lines.
 echoinfo () {
-    echo -e "$pad$bold$subtitle_color$1$clear$colon_color:$clear $info_color$2$clear"
+    echo -n -e "$pad$bold$subtitle_color$1$clear"
+    echo -n -e "$colon_color:$clear "
+    echo -e "$info_color$2$clear"
 }
 
 echoinfo "$title_os" "$os"
@@ -323,7 +340,8 @@ echoinfo "$title_song" "$song"
 echo
 echo
 echo -e "$(printcols)"
-echo -e "0;1;$xoffset;$yoffset;$imgsize;$imgsize;;;;;$img\n4;\n3;" | /usr/lib/w3m/w3mimgdisplay
+echo -e "0;1;$xoffset;$yoffset;$imgsize;$imgsize;;;;;$img\n4;\n3;" |\
+    /usr/lib/w3m/w3mimgdisplay
 # Show the cursor again
 echo -n -e "\033[?25h"
 
