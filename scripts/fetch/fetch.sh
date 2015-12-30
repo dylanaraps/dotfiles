@@ -194,6 +194,62 @@ printcols () {
 # }}}
 
 
+# Usage {{{
+
+
+usage () {
+    echo
+    echo "usage: ${0##*/} [--colors 1 2 4 5] [--kernel \"\$(uname -rs)\"]"
+    echo
+    echo "   Info:"
+    echo "   --title string         Change the title at the top"
+    echo "   --distro string/cmd    Manually set the distro"
+    echo "   --kernel string/cmd    Manually set the kernel"
+    echo "   --uptime string/cmd    Manually set the uptime"
+    echo "   --packages string/cmd  Manually set the package count"
+    echo "   --shell string/cmd     Manually set the shell"
+    echo "   --winman string/cmd Manually set the window manager"
+    echo "   --cpu string/cmd       Manually set the cpu name"
+    echo "   --memory string/cmd    Manually set the memory"
+    echo "   --speed string/cmd     Manually set the cpu speed"
+    echo "   --song string/cmd      Manually set the current song"
+    echo
+    echo "   Text Colors:"
+    echo "   --colors 1 2 3 4       Change the color of text"
+    echo "                          (title, subtitle, colon, info)"
+    echo "   --titlecol num         Change the color of the title"
+    echo "   --subtitlecol num      Change the color of the subtitle"
+    echo "   --coloncol num         Change the color of the colons"
+    echo "   --infocol num          Change the color of the info"
+    echo
+    echo "   Color Blocks:"
+    echo "   --printcols start end  Range of colors to print as blocks"
+    echo "   --nopal                Disable the color blocks"
+    echo
+    echo "   Image:"
+    echo "   --image                Image to display with the script"
+    echo "                          The image gets priority over other"
+    echo "                          images: (wallpaper, \$img)"
+    echo "   --size px              Change the size of the image"
+    echo "   --padding              How many spaces to pad the text"
+    echo "                          to the right"
+    echo "   --xoffset px           How close the image will be "
+    echo "                          to the left edge of the window"
+    echo "   --yoffset px           How close the image will be "
+    echo "                          to the top edge of the window"
+    echo "   --noimg                Disable all images"
+    echo "   --nowall               Disable the wallpaper function"
+    echo "                          and fallback to \$img"
+    echo "   --clean                Remove all cropped images"
+    echo
+    echo "   Other:"
+    echo "   --help                 Print this text and exit"
+    echo
+    exit 1
+}
+
+# }}}
+
 # Args {{{
 
 
@@ -207,7 +263,21 @@ for argument in $args; do
     index=$((index + 1))
 
     case $1 in
-        -c|--color) title_color="\033[38;5;${2}m"; \
+        # Info
+        --title) title="$2" ;;
+        --distro) os="$2" ;;
+        --kernel) kernel="$2" ;;
+        --uptime) uptime="$2" ;;
+        --packages) packages="$2" ;;
+        --shell) shell="$2" ;;
+        --winman) windowmanager="$2" ;;
+        --cpu) cpu="$2" ;;
+        --speed) speed="$2" ;;
+        --memory) memory="$2" ;;
+        --song) song="$2" ;;
+
+        # Text Colors
+        --colors) title_color="\033[38;5;${2}m"; \
             [ ! -z $3 ] && subtitle_color="\033[38;5;${3}m"; \
             [ ! -z $4 ] && colon_color="\033[38;5;${4}m"; \
             [ ! -z $5 ] && info_color="\033[38;5;${5}m" ;;
@@ -215,27 +285,23 @@ for argument in $args; do
         --subtitlecol) subtitle_color="\033[38;5;${2}m" ;;
         --coloncol) colon_color="\033[38;5;${2}m" ;;
         --infocol) info_color="\033[38;5;${2}m" ;;
-        -pc|--printcols) start=$2; end=$3 ;;
+
+        # Color Blocks
+        --printcols) start=$2; end=$3 ;;
+        --nopal) printcols=0 ;;
+
+        # Image
+        --image) usewall=0; img="$2" ;;
         --size) imgsize="$2" ;;
-        -t|--title) title="$2" ;;
-        -p|--padding) pad="$2" ;;
-        -x|--xoffset) xoffset="$2" ;;
-        -y|--yoffset) yoffset="$2" ;;
-        -W|--windowmanager) windowmanager="$2" ;;
-        -O|--distro) os="$2" ;;
-        -K|--kernel) kernel="$2" ;;
-        -U|--uptime) uptime="$2" ;;
-        -P|--packages) packages="$2" ;;
-        -s|--shell) shell="$2" ;;
-        -C|--cpu) cpu="$2" ;;
-        -S|--speed) speed="$2" ;;
-        -M|--memory) memory="$2" ;;
-        -m|--song) song="$2" ;;
+        --padding) pad="$2" ;;
+        --xoffset) xoffset="$2" ;;
+        --yoffset) yoffset="$2" ;;
         --noimg) enableimages=0 ;;
         --nowall) usewall=0 ;;
-        --nopal) printcols=0 ;;
-        -i|--image) usewall=0; img="$2" ;;
         --clean) rm -rf "$imgtempdir" || exit ;;
+
+        # Other
+        --help) usage ;;
     esac
 
     # The check here fixes shift in sh/mksh
