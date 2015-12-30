@@ -1,7 +1,7 @@
 # fetch.sh
 
 This is the home of my fetch script, I've spent the past few days rewriting this
-\n and it now supports other distros as well as a ton of new features.
+<br/> and it now supports other distros as well as a ton of new features.
 
 ![1](https://sr.ht/5aNV.png)
 
@@ -30,8 +30,8 @@ Here's what's on my todo list
 
 - Add an easy way to define info prefixes at launch.
 - Find a reliable way to set the text padding dynamically. I can get this to
-  work based on font width but there's no reliable way of getting fontwidth for
-  every terminal afaik.
+  <br/> work based on font width but there's no reliable way of getting
+  <br/> fontwidth for every terminal afaik.
 - Add an option to disable the color blocks at the bottom.
 
 If you've got any ideas on how to solve these problems, let me know!
