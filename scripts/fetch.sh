@@ -222,7 +222,7 @@ if [ $enableimages -eq 1 ]; then
     [ $usewall -eq 1 ] && img=$(awk '/feh/ {printf $3}' "$HOME/.fehbg" | sed -e "s/'//g")
 
     # Get name of image
-    imgname=$(basename $img)
+    imgname=${img##*/}
 
     # If the image in the tempdir is a different size to $imgsize, delete it
     # This check allows you to resize the image at launch
