@@ -92,6 +92,26 @@ Here's what's on my todo list
 If you've got any ideas on how to solve these problems, let me know!
 
 
+## Customization
+
+I launch fetch using a shell function and a ton of flags. Here's how it looks:
+
+```sh
+fetch () {
+    fetch.sh \
+        --printcols 1 7 \
+        --cpu "AMD FX-6300" \
+        --song "$(mpc current | cut -c 1-30)" \
+        --uptime "$(uptime -p | sed -e 's/minutes/mins/')" \
+        --title "dylan's pc" \
+        $@
+}
+```
+
+Notice how you can even pass commands? This allows you to easily use custom
+<br/> commands or even just bare strings to change the info.
+
+
 ## Screenshots
 
 #### The color script is now builtin.

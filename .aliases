@@ -48,6 +48,10 @@ alias firefox="iceweasel"
 # Record screen
 alias record="ffmpeg -f x11grab -s 1920x1080 -framerate 60 -an -i :0.0 -c:v libvpx -b:v 5M -crf 10 -quality realtime -y -loglevel quiet"
 
+# }}}
+
+# Functions {{{
+
 # Custom function to launch the script with my insane defaults
 fetch () {
     fetch.sh \
