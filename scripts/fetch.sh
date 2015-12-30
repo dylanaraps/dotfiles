@@ -1,6 +1,13 @@
 #!/usr/bin/env bash
 # Fetch info about your system
 #
+# Dependencies:
+#   Displaying Images: w3m
+#   Image Cropping: ImageMagick
+#   Wallpaper Display: feh
+#   Window Manager Detection: wmctrl
+#   Current Song: mpc
+#
 # Created by Dylan Araps
 # https://github.com/dylanaraps/dotfiles
 
