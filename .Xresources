@@ -38,7 +38,7 @@ Xcursor.size: 16
 
 ! black
 ! Second black is grey
-*.color0:       #3e5059
+*.color0:       #70838c
 *.color8:       #70838c
 
 ! red

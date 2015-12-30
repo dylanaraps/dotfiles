@@ -1,4 +1,4 @@
-# Dylan's shell aliases
+# Dylan's shell aliases and functions
 
 # Aliases {{{
 
@@ -48,9 +48,16 @@ alias firefox="iceweasel"
 # Record screen
 alias record="ffmpeg -f x11grab -s 1920x1080 -framerate 60 -an -i :0.0 -c:v libvpx -b:v 5M -crf 10 -quality realtime -y -loglevel quiet"
 
-# Run fetch.sh in a loop
-alias loopfetch="while :; do fetch.sh; mpc idle player update > /dev/null 2>&1; done"
-alias fetch.sh="fetch.sh --printcols 1 7 --cpu 'AMD FX-6300'"
+# Custom function to launch the script with my insane defaults
+fetch () {
+    fetch.sh \
+        --printcols 1 7 \
+        --cpu "AMD FX-6300" \
+        --song "$(mpc current | cut -c 1-30)" \
+        --uptime "$(uptime -p | sed -e 's/minutes/mins/')" \
+        --title "dylan's pc" \
+        $@
+}
 
 # }}}
 

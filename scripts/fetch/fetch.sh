@@ -101,8 +101,7 @@ imgtempdir="$HOME/.fetchimages"
 
 # Title (Configurable with "-t" and "--title" at launch)
 # To use the usual "user@hostname" change the line below to:
-# title="$(whoami)@$(hostname)"
-title="dylan's pc"
+title="$(whoami)@$(hostname)"
 
 # Operating System (Configurable with "-O" and "--distro" at launch)
 # You can manually set this if the command below doesn't work for you.
@@ -112,7 +111,7 @@ os=$(awk '/^NAME=/' /etc/*ease | sed -n 's/^NAME=//p' | tr -d '"')
 kernel=$(uname -r)
 
 # System Uptime (Configurable with "-U" and "--uptime" at launch)
-uptime=$(uptime -p | sed -e 's/minutes/mins/')
+uptime=$(uptime -p)
 
 # Total number of packages (Configurable with "-P" and "--packages" at launch)
 # If your package manager can't be found open an issue on my github repo.
@@ -160,7 +159,7 @@ speed="$(lscpu | awk '/CPU MHz:/ {printf "scale=1; " $3 " / 1000 \n"}' | bc -l)"
 memory=$(free -m | awk '/Mem:/ {printf $3 "MB / " $2 "MB"}')
 
 # Currently playing song/artist (Configurable with "-m" and "--song" at launch)
-song=$(mpc current | cut -c 1-30)
+song=$(mpc current)
 
 # Print terminal colors in a line
 # (Configurable with "--printcols start end" at launch)
@@ -226,7 +225,7 @@ for argument in $args; do
         -S|--speed) speed="$2" ;;
         -M|--memory) memory="$2" ;;
         -m|--song) song="$2" ;;
-        --noimg) useimg=0; usewall=0 ;;
+        --noimg) enableimages=0 ;;
         --nowall) usewall=0 ;;
         -i|--image) usewall=0; img="$2" ;;
         --clean) rm -rf "$imgtempdir" || exit ;;
