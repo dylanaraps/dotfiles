@@ -38,7 +38,7 @@ These are the script's optional dependencies
 The whitespace
 
 
-```sh
+```
 usage: scrot.sh [--colors 1 2 4 5] [--kernel "$(uname -rs)"]
 
 Info:
