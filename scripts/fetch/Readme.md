@@ -19,7 +19,7 @@ These are the script's optional dependencies
     - You can manually set this at launch with:
 
     ```
-    --windowmanager wmname
+        scrot.sh --windowmanager wmname
     ```
 
 
