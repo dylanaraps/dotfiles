@@ -28,6 +28,7 @@ These are the script's optional dependencies
 
 ## Usage
 
+<pre>
 ```
 usage: scrot.sh [--colors 1 2 4 5] [--kernel "$(uname -rs)"]
 
@@ -75,6 +76,7 @@ usage: scrot.sh [--colors 1 2 4 5] [--kernel "$(uname -rs)"]
     Other:
     --help                 Print this text and exit
 ```
+</pre>
 
 
 ## TODO
