@@ -3,6 +3,9 @@
 This is the home of my fetch script, I've spent the past few days rewriting this
 <br/> and it now supports other distros as well as a ton of new features.
 
+If you're having any issues or have any ideas, please open an issue! I can't test on many
+<br/> other distros and I want this to work for as many people as possible.
+
 ![1](https://sr.ht/5aNV.png)
 
 
