@@ -1,7 +1,7 @@
 # fetch.sh
 
 This is the home of my fetch script, I've spent the past few days rewriting this
-and it now supports other distros as well as a ton of new features.
+\n and it now supports other distros as well as a ton of new features.
 
 ![1](https://sr.ht/5aNV.png)
 
