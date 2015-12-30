@@ -2,6 +2,9 @@
 
 This is the home of my fetch script, I've spent the past few days rewriting this and it now supports distros other than arch as well as a ton of new features.
 
+![1](https://sr.ht/5aNV.png)
+
+
 ## Dependencies
 
 These are the script's dependencies:
@@ -16,8 +19,6 @@ These are the script's optional dependencies
     - You can manually set this at launch with
 
         --windowmanager wmname
-
-![1](https://sr.ht/5aNV.png)
 
 
 ## TODO
