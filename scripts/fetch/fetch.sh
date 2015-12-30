@@ -13,7 +13,7 @@
 
 
 # Info Prefixes {{{
-# The titles that come before the info (Ram:, Cpu:, Uptime)
+# The titles that come before the info (Ram:, Cpu:, Uptime:)
 # TODO: Add an easy way to specify these at launch.
 
 
