@@ -107,7 +107,8 @@ kernel=$(uname -r)
 uptime=$(uptime -p | sed -e 's/minutes/mins/')
 
 # Total number of packages (Configurable with "-P" and "--packages" at launch)
-# Change this to match your distro's package manager
+# If your package manager can't be found open an issue on my github repo.
+# (Link is at the top)
 getpackages () {
     case $os in
         'Arch Linux'|'Parabola GNU/Linux-libre'|'Manjaro'|'Antergos') packages=$(pacman -Q | wc -l) ;;
@@ -116,6 +117,7 @@ getpackages () {
         'Gentoo'|'Funtoo') packages=$(ls -d /var/db/pkg/*/* | wc -l) ;;
         'Fedora'|'openSUSE'|'Red Hat Enterprise Linux'|'CentOS') packages=$(rpm -qa | wc -l) ;;
         'CRUX') packages=$(pkginfo -i | wc -l) ;;
+        *) packages="unknown" ;;
     esac
 }
 
@@ -124,14 +126,16 @@ getpackages () {
 shell="$SHELL"
 
 # Window manager (Configurable with "-W" and "--windowmanager" at launch) (depends on wmctrl)
-# If you'd like to set the window manager manually you can set
-# the var to a string like the line below.
+# This can be detected without wmctrl by using an array of window manager process names and pgrep but it's
+# really slow (Doubles script startup time in some cases).
+# If you don't want to install wmctrl you can either edit the var below or run the script with:
+# --windowmanager wmname
 # windowmanager="openbox"
 windowmanager=$(wmctrl -m | awk '/Name:/ {printf $2}')
 
 # Processor (Configurable with "-C", "-S" and "--cpu", "--speed" at launch)
-cpu="$(lscpu | awk '/Model name/ {printf $3 " "$4 "\n" }' | sed -e '$!d' -e 's/(tm)//')"
-speed="$(lscpu | awk '/CPU MHz:/ {printf "scale=1; " $3 " / 1000 \n"}' | bc -l)GHz"
+cpu="$(awk 'BEGIN{FS=":"} /model name/ {print $2; exit}' /proc/cpuinfo | awk 'BEGIN{FS="@"; OFS="\n"} { print $1; exit }'| sed -e 's/\((tm)\|(TM)\)//' -e 's/\((R)\|(r)\)//' -e 's/^\ //')"
+speed="$(lscpu | awk '/CPU MHz:/ {printf "scale=1; " $3 " / 1000 \n"}' | bc -l)"
 
 # Memory (Configurable with "-M" and "--memory" at launch)
 # Print the total amount of ram and amount of ram in use
@@ -147,8 +151,9 @@ start=0
 end=7
 
 printcols () {
-    for color in $(seq $start $end); do
-        echo -n "\033[48;5;$color"m"       "
+    while [ "$start" -le "$end" ]; do
+        echo -n "\033[48;5;${start}m       "
+        start=$((start + 1))
     done
 
     echo -n "$clear"
@@ -161,15 +166,16 @@ printcols () {
 # Args {{{
 
 
-args=($@)
-
 # Loop index
 index=0
 
-for argument in ${args[@]}; do
+# Args
+args=$@
+
+for argument in $args; do
     index=$((index + 1))
 
-    case $argument in
+    case $1 in
         -c|--color) title_color="\033[38;5;${2}m"; \
             [ ! -z $3 ] && subtitle_color="\033[38;5;${3}m"; \
             [ ! -z $4 ] && colon_color="\033[38;5;${4}m"; \
@@ -191,7 +197,7 @@ for argument in ${args[@]}; do
         -P|--packages) packages="$2" ;;
         -s|--shell) shell="$2" ;;
         -C|--cpu) cpu="$2" ;;
-        -S|--cpu-speed) speed="$2" ;;
+        -S|--speed) speed="$2" ;;
         -M|--memory) memory="$2" ;;
         -m|--song) song="$2" ;;
         --noimg) useimg=0; usewall=0 ;;
@@ -227,9 +233,7 @@ if [ $enableimages -eq 1 ]; then
     # Check to see if the tempfile exists before we do any cropping.
     if [ ! -f "$imgtempdir/$imgname" ]; then
         # Check if the directory exists and create it if it doesn't
-        if [ ! -d "$imgtempdir" ]; then
-            mkdir "$imgtempdir" || exit
-        fi
+        [ ! -d "$imgtempdir" ] && (mkdir "$imgtempdir" || exit)
 
         # Get wallpaper size so that we can do a better crop
         size=($(identify -format "%w %h" $img))
@@ -269,7 +273,10 @@ fi
 
 
 # Get packages
-getpackages
+[ -z $packages ] && getpackages
+
+# Get window manager
+[ -z $windowmanager ] && getwindowmanager
 
 clear
 
@@ -294,7 +301,7 @@ echoinfo "$title_uptime" "$uptime"
 echoinfo "$title_packages" "$packages"
 echoinfo "$title_shell" "$shell"
 echoinfo "$title_windowmanager" "$windowmanager"
-echoinfo "$title_cpu" "$cpu @ $speed"
+echoinfo "$title_cpu" "$cpu @ ${speed}GHz"
 echoinfo "$title_memory" "$memory"
 echoinfo "$title_song" "$song"
 
