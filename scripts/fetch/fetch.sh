@@ -168,7 +168,13 @@ song=$(mpc current)
 start=0
 end=7
 
+# Print the color blocks by default.
+printcols=1
+
 printcols () {
+    echo
+    echo
+
     while [ "$start" -le "$end" ]; do
         echo -n "\033[48;5;${start}m      "
         start=$((start + 1))
@@ -227,6 +233,7 @@ for argument in $args; do
         -m|--song) song="$2" ;;
         --noimg) enableimages=0 ;;
         --nowall) usewall=0 ;;
+        --nopal) printcols=0 ;;
         -i|--image) usewall=0; img="$2" ;;
         --clean) rm -rf "$imgtempdir" || exit ;;
     esac
@@ -336,9 +343,10 @@ echoinfo "$title_cpu" "$cpu @ ${speed}GHz"
 echoinfo "$title_memory" "$memory"
 echoinfo "$title_song" "$song"
 
-echo
-echo
-echo -e "$(printcols)"
+# Display the color blocks
+[ $printcols -eq 1 ] && echo -e "$(printcols)"
+
+# Display the image
 echo -e "0;1;$xoffset;$yoffset;$imgsize;$imgsize;;;;;$img\n4;\n3;" |\
     /usr/lib/w3m/w3mimgdisplay
 # Show the cursor again
