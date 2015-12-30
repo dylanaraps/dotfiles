@@ -1,13 +1,14 @@
 # fetch.sh
 
-This is the home of my fetch script! This script gathers info about your system
-<br\> and prints it to the terminal.
+This is the home of my fetch script! This script gathers info
+<br\> about your system and prints it to the terminal.
 
-I've spent the past few days rewriting this and it now supports other distros
-<br\> as well as a ton of new features and bug fixes.
+I've spent the past few days rewriting this and it now supports
+<br\> other distros as well as a ton of new features and bug fixes.
 
-If you're having any issues or have any ideas, please open an issue! I can't test on many
-<br/> other distros and I want this to work for as many people as possible.
+If you're having any issues or have any ideas, please open an issue!
+<br\> I can't test on many other distros and I want this to work
+<br\> for as many people as possible.
 
 ![1](https://sr.ht/5aNV.png)
 
