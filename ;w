@@ -15,7 +15,6 @@ printcols () {
         echo -n "\033[48;5;${start}m      "
         start=$((start + 1))
 
-        # Split the blocks at 8 colors
         if [ "$end" -ge "8" ]; then
             [ $start -eq 8 ] && echo -e "\033[0m"
         fi

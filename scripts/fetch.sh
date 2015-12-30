@@ -159,10 +159,17 @@ end=7
 
 printcols () {
     while [ "$start" -le "$end" ]; do
-        echo -n "\033[48;5;${start}m       "
+        echo -n "\033[48;5;${start}m      "
         start=$((start + 1))
+
+        # Split the blocks at 8 colors
+        [ $end -ge 9 ] && [ $start -eq 8 ] && echo -e "\033[0m"
     done
 
+    # Vertically center colors if they're one row tall
+    [ $end -le 8 ] && echo
+
+    # Clear formatting
     echo -n "$clear"
 }
 
@@ -316,7 +323,6 @@ echoinfo "$title_song" "$song"
 echo
 echo
 echo -e "$(printcols)"
-echo
 echo -e "0;1;$xoffset;$yoffset;$imgsize;$imgsize;;;;;$img\n4;\n3;" | /usr/lib/w3m/w3mimgdisplay
 # Show the cursor again
 echo -n -e "\033[?25h"
