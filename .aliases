@@ -57,9 +57,9 @@ fetch () {
     fetch.sh \
         --printcols 1 7 \
         --cpu "AMD FX-6300" \
-        --song "$(mpc current | cut -c 1-30)" \
-        --uptime "$(uptime -p | sed -e 's/minutes/mins/')" \
         --title "dylan's pc" \
+        --nowrap \
+        --nobold \
         $@
 }
 
