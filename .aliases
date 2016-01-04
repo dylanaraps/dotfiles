@@ -1,6 +1,8 @@
 # Dylan's shell aliases and functions
 
+
 # Aliases {{{
+
 
 # Remove orphaned package dependencies
 alias cleandeps='sudo pacman -Rns $(pacman -Qtdq)'
@@ -48,20 +50,10 @@ alias firefox="iceweasel"
 # Record screen
 alias record="ffmpeg -f x11grab -s 1920x1080 -framerate 60 -an -i :0.0 -c:v libvpx -b:v 5M -crf 10 -quality realtime -y -loglevel quiet"
 
-# }}}
+alias fetch="fetch.sh --block_range 1 8 --title 'dylan'\''s pc' --line_wrap off --bold off --uptime_shorthand on"
 
-# Functions {{{
-
-# Custom function to launch the script with my insane defaults
-fetch () {
-    fetch.sh \
-        --printcols 1 7 \
-        --cpu "AMD FX-6300" \
-        --uptime "$(uptime -p | sed -e 's/minutes/mins/')" \
-        --title "dylan's pc" \
-        --linewrap "off" \
-        --bold "off"
-}
 
 # }}}
+
+
 

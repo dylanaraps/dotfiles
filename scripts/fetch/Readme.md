@@ -1,5 +1,7 @@
 # fetch.sh
 
+## Big update: Check the releases page.
+
 This is the home of my fetch script! This script gathers info <br\>
 about your system and prints it to the terminal.
 
@@ -7,7 +9,7 @@ If you're having any issues or have any ideas, please open an issue! <br\>
 I can't test on many other distros and I want this to work <br\>
 for as many people as possible.
 
-![1](https://sr.ht/xL9f.png)
+![1](https://sr.ht/Jd8Y.png)
 
 
 <!-- {{{ -->
@@ -57,6 +59,8 @@ Info:
 --distro string/cmd    Manually set the distro
 --kernel string/cmd    Manually set the kernel
 --uptime string/cmd    Manually set the uptime
+--uptime_shorthand on/off --v
+                       Shorten the output of uptime
 --packages string/cmd  Manually set the package count
 --shell string/cmd     Manually set the shell
 --winman string/cmd    Manually set the window manager
@@ -93,6 +97,7 @@ Image:
                        images: (wallpaper, \$img)
 
 --font_width px        Used to automatically size the image
+--image_position       Where to display the image: (Left/Right)
 --split_size num       Width of img/text splits
                        A value of 2 makes each split half the terminal
                        width and etc
@@ -127,9 +132,25 @@ Other:
 
 Here's what's on my todo list
 
-- Add uptime support for OS X
-- Add options to bold other text in the script (info, underline, colons)
+- Uptime doesn't work in OS X yet.
 
+- Windows support (I'm almost done)
+
+- OpenBSD support (Partially implemented, just needs testing)
+
+- Imagemagick optimizations
+
+- Cleanup of info array handling
+
+- More info outputs. Now that it's easy to customize what's printed and
+  everything is a function we can add optional support for pretty much anything.
+
+    - Resolution
+    - GTK themes
+    - Terminal Font
+    - GPU
+    - IP
+    - etc
 
 <!-- }}} -->
 

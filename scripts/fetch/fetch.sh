@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/usr/bin/env bash
 # Fetch info about your system
 #
 # Optional Dependencies: (You'll lose these features without them)
@@ -7,6 +7,7 @@
 #   Wallpaper Display: feh
 #   Current Song: mpc
 #   Text formatting, dynamic image size and padding: tput
+#   Resolution detection: xorg-xdpyinfo
 #
 # Created by Dylan Araps
 # https://github.com/dylanaraps/dotfiles
@@ -22,15 +23,21 @@ export LC_ALL=C
 
 # Info
 # What to display and in what order.
+#
 # Format is: "Subtitle: function name"
 # Additional lines you can use include:
 # "underline" "linebreak" "echo: msg here" "title: title here"
-# You can also include your own lines by using:
+#
+# You can also include your own custom lines by using:
 # "echo: subtitlehere: $(custom cmd here)"
+# "echo: Custom string to print"
+#
+# Optional info lines that are disabled by default are:
+# "getresolution" "getsong"
 info=(
     "gettitle"
     "underline"
-    "OS: getos"
+    "OS: getdistro"
     "Kernel: getkernel"
     "Uptime: getuptime"
     "Packages: getpackages"
@@ -38,10 +45,8 @@ info=(
     "Window Manager: getwindowmanager"
     "CPU: getcpu"
     "Memory: getmemory"
-    "Song: getsong"
     "linebreak"
     "getcols"
-    "linebreak"
 )
 
 # CPU
@@ -49,6 +54,12 @@ info=(
 # CPU speed type
 # --speed_type current/min/max
 speed_type="max"
+
+
+# Uptime
+
+# Shorten the output of the uptime function
+uptime_shorthand="off"
 
 
 # Color Blocks
@@ -64,7 +75,7 @@ color_blocks="on"
 
 # Color block width
 # --color_block_width num
-blockwidth=3
+block_width=3
 
 
 # }}}
@@ -135,6 +146,10 @@ imgtempdir="$HOME/.fetchimages"
 # --split_size num
 split_size=2
 
+# Image position
+# --image_position left/right
+image_position="left"
+
 # Use current wallpaper as the image
 # --wall on/off
 wall="on"
@@ -177,22 +192,47 @@ xoffset=0
 # Gather Info {{{
 
 
-# Get Operating System
+# Get Operating System Type
 case "$(uname)" in
     "Linux")
-        if type -p crux >/dev/null 2>&1; then
-            os="CRUX"
-        else
-            os="$(awk -F'=' '/^NAME=/ {printf $2; exit}' /etc/*ease)"
-            os=${os#\"*}
-            os=${os%*\"}
-        fi
+        os="Linux"
     ;;
 
     "Darwin")
         os="Mac OS X"
     ;;
+
+    "OpenBSD")
+        os="OpenBSD"
+    ;;
 esac
+
+# Get Distro
+getdistro () {
+    case "$os" in
+        "Linux" )
+            if type -p crux >/dev/null 2>&1; then
+                distro="CRUX"
+            else
+                distro="$(awk -F'=' '/^NAME=/ {printf $2; exit}' /etc/*ease)"
+                distro=${distro#\"*}
+                distro=${distro%*\"}
+            fi
+        ;;
+
+        "Mac OS X")
+            distro="Mac OS X $(sw_vers -productVersion)"
+        ;;
+
+        "OpenBSD")
+            distro="OpenBSD"
+        ;;
+
+        *)
+            distro="Unknown"
+        ;;
+    esac
+}
 
 # Get Title
 gettitle () {
@@ -207,18 +247,37 @@ getkernel() {
 # Get uptime
 getuptime () {
     case "$os" in
+        "Linux")
+            uptime="$(uptime -p)"
+        ;;
+
         "Mac OS X")
-            # TODO: Fix uptime for OS X
+            uptime=$(uptime | awk -F',' '{print $1}')
+            uptime=${uptime# }
+            uptime=${uptime/??:?? /}
+        ;;
+
+        "OpenBSD")
+            uptime=$(uptime | awk -F',' '{print $1}')
+            uptime=${uptime# }
+        ;;
+
+        *)
             uptime="Unknown"
         ;;
 
-        *)  uptime="$(uptime -p)" ;;
     esac
+
+    if [ "$uptime_shorthand" == "on" ]; then
+        uptime=${uptime/up/}
+        uptime=${uptime/minutes/mins}
+        uptime=${uptime# }
+    fi
 }
 
 # Get package count
 getpackages () {
-    case "$os" in
+    case "$distro" in
         "Arch Linux"|"Parabola GNU/Linux-libre"|"Manjaro"|"Antergos")
             packages="$(pacman -Q | wc -l)"
         ;;
@@ -247,12 +306,18 @@ getpackages () {
             packages="$(pkginfo -i | wc -l)"
         ;;
 
-        "Mac OS X")
+        "Mac OS X"*)
             packages="$(pkgutil --pkgs | wc -l)"
             packages=${packages//[[:blank:]]/}
         ;;
 
-        *) packages="Unknown" ;;
+        "OpenBSD")
+            packages=$(pkg_info | wc -l)
+        ;;
+
+        *)
+            packages="Unknown"
+        ;;
     esac
 }
 
@@ -263,7 +328,9 @@ getshell () {
 
 # Get window manager
 getwindowmanager () {
-    if [ -e "$HOME/.xinitrc" ]; then
+    if [ ! -z "${XDG_CURRENT_DESKTOP}" ]; then
+        windowmanager="${XDG_CURRENT_DESKTOP}"
+    elif [ -e "$HOME/.xinitrc" ]; then
         xinitrc=$(awk '/^[^#]*exec/ {print $2}' "${HOME}/.xinitrc")
         windowmanager="${xinitrc/-session/}"
     else
@@ -282,14 +349,11 @@ getwindowmanager () {
 
 # Get cpu
 getcpu () {
-    case $os in
-        "Mac OS X")
-            cpu="$(sysctl -n machdep.cpu.brand_string)"
-        ;;
-
-        *)
+    case "$os" in
+        "Linux")
             cpu="$(awk -F ': ' '/model name/ {printf $2; exit}' /proc/cpuinfo)"
 
+            # We're using lscpu because /proc/cpuinfo doesn't have min/max speed.
             case $speed_type in
                 current) speed="$(lscpu | awk '/CPU MHz:/ {printf $3}')" ;;
                 min) speed="$(lscpu | awk '/CPU min MHz:/ {printf $4}')" ;;
@@ -300,6 +364,18 @@ getcpu () {
             speed=$((${speed/.*/} / 100))
             speed=${speed:0:1}.${speed:1}
             cpu="$cpu @ ${speed}GHz"
+        ;;
+
+        "Mac OS X")
+            cpu="$(sysctl -n machdep.cpu.brand_string)"
+        ;;
+
+        "OpenBSD")
+            cpu="$(sysctl -n hw.model)"
+        ;;
+
+        *)
+            cpu="Unknown"
         ;;
     esac
 
@@ -316,17 +392,8 @@ getcpu () {
 
 # Get memory
 getmemory () {
-    case $os in
-        "Mac OS X")
-            memtotal=$(printf "$(sysctl -n hw.memsize)"/1024^2 | bc)
-            memwired=$(vm_stat | awk '/wired/ { print $4 }')
-            memactive=$(vm_stat | awk '/active / { print $3 }')
-            memcompressed=$(vm_stat | awk '/occupied/ { print $5 }')
-            memused=$(((${memwired//.} + ${memactive//.} + ${memcompressed//.}) * 4 / 1024))
-            memory="${memused}MB / ${memtotal}MB"
-        ;;
-
-        *)
+    case "$os" in
+        "Linux")
             mem="$(awk 'NR < 4 {printf $2 " "}' /proc/meminfo)"
 
             # Split the string above into 3 vars
@@ -339,6 +406,27 @@ getmemory () {
             memused="$((memtotal - memavail))"
             memory="$(( ${memused%% *} / 1024))MB / $(( ${memtotal%% *} / 1024))MB"
         ;;
+
+        "Mac OS X")
+            memtotal=$(printf "%s\n" "$(sysctl -n hw.memsize)"/1024^2 | bc)
+            memwired=$(vm_stat | awk '/wired/ { print $4 }')
+            memactive=$(vm_stat | awk '/active / { print $3 }')
+            memcompressed=$(vm_stat | awk '/occupied/ { print $5 }')
+            memused=$(((${memwired//.} + ${memactive//.} + ${memcompressed//.}) * 4 / 1024))
+            memory="${memused}MB / ${memtotal}MB"
+        ;;
+
+        "OpenBSD")
+            memtotal=$(dmesg | awk '/real mem/ {printf $5}')
+            memused=$(top -1 1 | awk '/Real:/ {print $3}')
+            memtotal=${memtotal/()MB/}
+            memused=${memused/M/}
+            memory="${memused}MB / ${memtotal}MB"
+        ;;
+
+        *)
+            memory="Unknown"
+        ;;
     esac
 }
 
@@ -347,11 +435,29 @@ getsong () {
     song=$(mpc current 2>/dev/null || printf "%s" "Unknown")
 }
 
+# Get Resolution
+getresolution () {
+    case "$os" in
+        "Linux"|"OpenBSD")
+            resolution=$(xdpyinfo | awk '/dimensions:/ {printf $2}')
+        ;;
+
+        "Mac OS X")
+            resolution=$(system_profiler SPDisplaysDataType | awk '/Resolution:/ {print $2"x"$4" "}')
+        ;;
+
+        *)
+            resolution="Unknown"
+        ;;
+    esac
+
+}
+
 getcols () {
     if [ "$color_blocks" == "on" ]; then
         printf "%s" "${padding}"
         while [ $start -le $end ]; do
-            printf "%s%${blockwidth}s" "$(tput setab $start)"
+            printf "%s%${block_width}s" "$(tput setab $start)"
             start=$((start + 1))
 
             # Split the blocks at 8 colors
@@ -381,8 +487,18 @@ getimage () {
     # Image size is half of the terminal
     imgsize=$((columns * font_width / split_size))
 
-    # Padding is half the terminal width + gap
-    padding="$(tput cuf $((columns / split_size + gap)))"
+    # Where to draw the image
+    case "$image_position" in
+        "left")
+            # Padding is half the terminal width + gap
+            padding="$(tput cuf $((columns / split_size + gap)))"
+        ;;
+
+        "right")
+            padding=$(tput cuf 0)
+            xoffset=$((columns * font_width / split_size - gap))
+        ;;
+    esac
 
     # If wall=on, Get image to display from current wallpaper.
     if [ "$wall" == "on" ]; then
@@ -489,9 +605,6 @@ clear="$(tput sgr0)"
 # }}}
 
 
-# Args {{{
-
-
 # Usage {{{
 
 
@@ -504,6 +617,8 @@ usage () {
     printf "%s\n" "   --distro string/cmd    Manually set the distro"
     printf "%s\n" "   --kernel string/cmd    Manually set the kernel"
     printf "%s\n" "   --uptime string/cmd    Manually set the uptime"
+    printf "%s\n" "   --uptime_shorthand on/off --v"
+    printf "%s\n" "                          Shorten the output of uptime"
     printf "%s\n" "   --packages string/cmd  Manually set the package count"
     printf "%s\n" "   --shell string/cmd     Manually set the shell"
     printf "%s\n" "   --winman string/cmd    Manually set the window manager"
@@ -539,6 +654,7 @@ usage () {
     printf "%s\n" "                          The image gets priority over other"
     printf "%s\n" "                          images: (wallpaper, \$img)"
     printf "%s\n" "   --font_width px        Used to automatically size the image"
+    printf "&s\n" "   --image_position       Where to display the image: (Left/Right)"
     printf "%s\n" "   --split_size num       Width of img/text splits"
     printf "%s\n" "                          A value of 2 makes each split half the terminal"
     printf "%s\n" "                          width and etc"
@@ -569,13 +685,17 @@ usage () {
 # }}}
 
 
-while [ ! -z $1 ]; do
+# Args {{{
+
+
+while [ ! -z "$1" ]; do
     case $1 in
         # Info
         --title) title="$2" ;;
         --os) os="$2" ;;
         --kernel) kernel="$2" ;;
         --uptime) uptime="$2" ;;
+        --uptime_shorthand) uptime_shorthand="$2" ;;
         --packages) packages="$2" ;;
         --shell) shell="$2" ;;
         --winman) windowmanager="$2" ;;
@@ -605,11 +725,12 @@ while [ ! -z $1 ]; do
         # Color Blocks
         --color_blocks) color_blocks="$2" ;;
         --block_range) start=$2; end=$3 ;;
-        --block_width) blockwidth="$2" ;;
+        --block_width) block_width="$2" ;;
 
         # Image
         --image) wall="off"; img="$2" ;;
         --font_width) font_width="$2" ;;
+        --image_position) image_position="$2" ;;
         --split_size) split_size="$2" ;;
         --crop_mode) crop_mode="$2" ;;
         --crop_offset) crop_offset="$2" ;;
@@ -643,8 +764,9 @@ printinfo () {
         case "$info" in
             echo:*:*)
                 info=${function#*: }
-                subtitle=${function%:*}
+                subtitle=${function/:*/}
                 string="${bold}${subtitle_color}${subtitle}${clear}${colon_color}: ${info_color}${info}"
+                length=${#function}
             ;;
 
             echo:*)
@@ -668,17 +790,12 @@ printinfo () {
                 fi
             ;;
 
-            *getos*)
-                continue
-            ;;
-
             *:*|*)
                 # Update the var
-                output=${function/get/}
-                typeset -n output=$output
+                var=${function/get/}
+                typeset -n output=$var
 
                 # Call the function
-                # [ -z "$output" ] && echo "$function"; time $function; continue
                 [ -z "$output" ] && $function
             ;;&
 
@@ -689,7 +806,7 @@ printinfo () {
 
             *:*)
                 string="${bold}${subtitle_color}${subtitle}${clear}${colon_color}: ${info_color}${output}"
-                length=${#subtitle}
+                length=$((${#subtitle} +  ${#output} + 2))
             ;;
 
             *)
@@ -707,7 +824,7 @@ printinfo () {
 # }}}
 
 
-# Print The Info {{{
+# Call Functions and Finish Up {{{
 
 
 # Get image
