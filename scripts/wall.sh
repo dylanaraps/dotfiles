@@ -27,6 +27,7 @@ changewall () {
         5.jpg|7.jpg|10.jpg|11.jpg) gencol.sh openbox 4 7 ;;
         8.jpg) gencol.sh openbox  8 7 ;;
         1.png) gencol.sh openbox 6 0 ;;
+        11.jpg) gencol.sh openbox 7 8 ;;
     esac
 }
 
