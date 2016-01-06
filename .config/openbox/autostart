@@ -1,11 +1,13 @@
 # Autostart programs with openbox
 
-# Start mpd
+# mpd
 mpd &
 
-# Start urxvt daemon
+# urxvt daemon
 urxvtd -q -f -o &
 
-# Gen colors
-gencol.sh
+# bar
+clock &
 
+# album art
+coverspawn &

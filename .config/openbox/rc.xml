@@ -201,43 +201,43 @@
     <keybind key="W-1">
       <action name="Execute">
         <name>musicfoc</name>
-        <command>keybinds.sh gotodesktop 0</command>
+        <command>keybinds gotodesktop 0</command>
       </action>
     </keybind>
     <keybind key="W-2">
       <action name="Execute">
         <name>musicfoc</name>
-        <command>keybinds.sh gotodesktop 1</command>
+        <command>keybinds gotodesktop 1</command>
       </action>
     </keybind>
     <keybind key="W-3">
       <action name="Execute">
         <name>musicfoc</name>
-        <command>keybinds.sh gotodesktop 2</command>
+        <command>keybinds gotodesktop 2</command>
       </action>
     </keybind>
     <keybind key="W-4">
       <action name="Execute">
         <name>musicfoc</name>
-        <command>keybinds.sh gotodesktop 3</command>
+        <command>keybinds gotodesktop 3</command>
       </action>
     </keybind>
     <keybind key="W-5">
       <action name="Execute">
         <name>musicfoc</name>
-        <command>keybinds.sh gotodesktop 4</command>
+        <command>keybinds gotodesktop 4</command>
       </action>
     </keybind>
     <keybind key="W-6">
       <action name="Execute">
         <name>musicfoc</name>
-        <command>keybinds.sh gotodesktop 5</command>
+        <command>keybinds gotodesktop 5</command>
       </action>
     </keybind>
     <keybind key="W-7">
       <action name="Execute">
         <name>musicfoc</name>
-        <command>keybinds.sh gotodesktop 6</command>
+        <command>keybinds gotodesktop 6</command>
       </action>
     </keybind>
     <!-- Send program to desktop by number -->
@@ -336,7 +336,7 @@
     <keybind key="W-d">
       <action name="Execute">
         <name>dmenu</name>
-        <command>keybinds.sh dmenu</command>
+        <command>keybinds dmenu</command>
       </action>
     </keybind>
     <keybind key="W-c">
@@ -346,127 +346,127 @@
     <keybind key="W-Up">
       <action name="Execute">
         <name>Vol Up</name>
-        <command>keybinds.sh volup</command>
+        <command>keybinds volup</command>
       </action>
     </keybind>
     <keybind key="W-Down">
       <action name="Execute">
         <name>Vol Down</name>
-        <command>keybinds.sh voldown</command>
+        <command>keybinds voldown</command>
       </action>
     </keybind>
     <keybind key="W-Left">
       <action name="Execute">
         <name>Prev Song</name>
-        <command>keybinds.sh prevsong</command>
+        <command>keybinds prevsong</command>
       </action>
     </keybind>
     <keybind key="W-Right">
       <action name="Execute">
         <name>Next Song</name>
-        <command>keybinds.sh nextsong</command>
+        <command>keybinds nextsong</command>
       </action>
     </keybind>
     <keybind key="W-End">
       <action name="Execute">
         <name>Next Song</name>
-        <command>keybinds.sh togglesong</command>
+        <command>keybinds togglesong</command>
       </action>
     </keybind>
     <keybind key="W-P">
       <action name="Execute">
         <name>Take Screenshot</name>
-        <command>keybinds.sh screenshot</command>
+        <command>keybinds screenshot</command>
       </action>
     </keybind>
     <keybind key="A-Return">
       <action name="Execute">
         <name>Minify window</name>
-        <command>keybinds.sh minify</command>
+        <command>keybinds minify</command>
       </action>
     </keybind>
     <keybind key="A-h">
       <action name="Execute">
         <name>Resize window</name>
-        <command>size.sh h 8</command>
+        <command>size h 8</command>
       </action>
     </keybind>
     <keybind key="A-j">
       <action name="Execute">
         <name>Resize window</name>
-        <command>size.sh j 8</command>
+        <command>size j 8</command>
       </action>
     </keybind>
     <keybind key="A-k">
       <action name="Execute">
         <name>Resize window</name>
-        <command>size.sh k 8</command>
+        <command>size k 8</command>
       </action>
     </keybind>
     <keybind key="A-l">
       <action name="Execute">
         <name>Resize window</name>
-        <command>size.sh l 8</command>
+        <command>size l 8</command>
       </action>
     </keybind>
     <keybind key="W-U">
       <action name="Execute">
         <name>Take Screenshot</name>
-        <command>scrot.sh</command>
+        <command>scrot</command>
       </action>
     </keybind>
     <keybind key="A-1">
       <action name="Execute">
         <name>Move window to corner</name>
-        <command>corner.sh tl</command>
+        <command>corner tl</command>
       </action>
     </keybind>
     <keybind key="A-2">
       <action name="Execute">
         <name>Move window to corner</name>
-        <command>corner.sh ml</command>
+        <command>corner ml</command>
       </action>
     </keybind>
     <keybind key="A-3">
       <action name="Execute">
         <name>Move window to corner</name>
-        <command>corner.sh bl</command>
+        <command>corner bl</command>
       </action>
     </keybind>
     <keybind key="A-4">
       <action name="Execute">
         <name>Move window to corner</name>
-        <command>corner.sh mt</command>
+        <command>corner mt</command>
       </action>
     </keybind>
     <keybind key="A-5">
       <action name="Execute">
         <name>Move window to corner</name>
-        <command>corner.sh mb</command>
+        <command>corner mb</command>
       </action>
     </keybind>
     <keybind key="A-6">
       <action name="Execute">
         <name>Move window to corner</name>
-        <command>corner.sh tr</command>
+        <command>corner tr</command>
       </action>
     </keybind>
     <keybind key="A-7">
       <action name="Execute">
         <name>Move window to corner</name>
-        <command>corner.sh mr</command>
+        <command>corner mr</command>
       </action>
     </keybind>
     <keybind key="A-8">
       <action name="Execute">
         <name>Move window to corner</name>
-        <command>corner.sh br</command>
+        <command>corner br</command>
       </action>
     </keybind>
     <keybind key="W-w">
       <action name="Execute">
         <name>Change to random wallpaper</name>
-        <command>wall.sh</command>
+        <command>wall</command>
       </action>
     </keybind>
   </keyboard>

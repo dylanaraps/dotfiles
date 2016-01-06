@@ -6,38 +6,38 @@
 
 volup () {
     amixer set Master 5+
-    popup.sh -e "$(amixer get Master | egrep -o '[0-9]+\%')" -w 150 -x 1670 &
+    popup -e "$(amixer get Master | egrep -o '[0-9]+\%')" -w 150 -x 1670 &
     mpc update
 }
 
 voldown () {
     amixer set Master 5-
-    popup.sh -e "$(amixer get Master | egrep -o '[0-9]+\%')" -w 150 -x 1670 &
+    popup -e "$(amixer get Master | egrep -o '[0-9]+\%')" -w 150 -x 1670 &
     mpc update
 }
 
 prevsong () {
     mpc -q prev
-    popup.sh -e "$(mpc current)" -w $(txtw "$(mpc current)") -x $((1820 - $(txtw "$(mpc current)"))) &
+    popup -e "$(mpc current)" -w $(txtw "$(mpc current)") -x $((1820 - $(txtw "$(mpc current)"))) &
 }
 
 nextsong () {
     mpc -q next
-    popup.sh -e "$(mpc current)" -w $(txtw "$(mpc current)") -x $((1820 - $(txtw "$(mpc current)"))) &
+    popup -e "$(mpc current)" -w $(txtw "$(mpc current)") -x $((1820 - $(txtw "$(mpc current)"))) &
 }
 
 togglesong () {
     mpc -q toggle
-    popup.sh -e "$(mpc status | egrep -o '\[.*\]' | sed 's/[][]//g')" -w 150 -x 1670 &
+    popup -e "$(mpc status | egrep -o '\[.*\]' | sed 's/[][]//g')" -w 150 -x 1670 &
 }
 
 dmenu () {
-    dmenu_recent_aliases -s 0 -nb "#$white" -nf "#$black" -sb "#$white" -sf "#$gray" -i -h 30 -w 120 -q -x 30 -y 30 -fn "lemon" -p ">" -l 1
+    dmenu_recent_aliases -s 0 -nb "#$white" -nf "#$black" -sb "#$white" -sf "#$gray" -i -h 30 -w 120 -q -x 30 -y 30 -fn "-benis-lemon-medium-r-normal--10-110-75-75-m-50-ISO8859-1" -p ">" -l 1
     mpc update
 }
 
 screenshot () {
-    popup.sh -e "Saved Screenshot" -s 4 -w 150 -x 1670 & sleep 1; \
+    popup -e "Saved Screenshot" -s 4 -w 150 -x 1670 & sleep 1; \
 
     # What to name the image and where to save it
     img="scrot-$(date "+%d%b")-$RANDOM.png"

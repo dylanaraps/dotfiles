@@ -144,7 +144,7 @@ openbox () {
     menubg=$(xrdb -query | grep "\*\.color7:" | cut -f2)
     menufg=$(xrdb -query | grep "\*\.color0:" | cut -f2)
 
-    echo "# Openbox colors, generated using gencol.sh"
+    echo "# Openbox colors, generated using gencol"
     echo "window.*.title.bg.color: $titlebg"
     echo "window.*.label.text.color: $titlefg"
     echo "window.*.button.*.image.color: $titlefg"
@@ -183,14 +183,14 @@ obthemegen () {
 
 # Reopen lemonbar
 bar () {
-    pkill clock.sh
-    clock.sh &>/dev/null
+    pkill clock
+    clock &>/dev/null
 }
 
 # Reopen cover art
 cover () {
-    pkill cover.sh
-    coverspawn.sh &>/dev/null
+    pkill cover
+    coverspawn &>/dev/null
 }
 
 # Generate the colors
