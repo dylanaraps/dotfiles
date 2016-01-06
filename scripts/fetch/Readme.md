@@ -1,18 +1,17 @@
-# fetch.sh
+# fetch
 
-## Big update: Check the releases page.
+## Big updates: Check the releases page.
 
 This is the home of my fetch script! This script gathers info <br\>
 about your system and prints it to the terminal.
 
-If you're having any issues or have any ideas, please open an issue! <br\>
-I can't test on many other distros and I want this to work <br\>
-for as many people as possible.
+The script currently supports Linux, Mac OS X and Windows (Cygwin), if your OS or distro isn't
+supported open an issue and I'll add support for it.
 
 ![1](https://sr.ht/Jd8Y.png)
 
 
-<!-- {{{ -->
+<!-- Dependences {{{ -->
 
 
 ## Dependencies
@@ -24,15 +23,19 @@ These are the script's required dependencies
 These are the script's optional dependencies:
 
 -  Displaying Images: w3m
+    - You may also need w3m-img
 -  Image Cropping: ImageMagick
 -  Display Wallpaper: feh
 -  Current Song: mpc
+-  Resolution Detection: xorg-xdpyinfo
+-  Window manager detection: wmctrl
+    - This is used as a fallback to parsing ```.xinitrc``` and ```$XDG_CURRENT_DESKTOP```.
 
 
 <!-- }}} -->
 
 
-<!-- {{{ -->
+<!-- Usage {{{ -->
 
 
 ## Usage
@@ -84,6 +87,8 @@ Text Formatting:
 --underline_char char  Character to use when underlineing title
 --line_wrap on/off     Enable/Disable line wrapping
 --bold on/off          Enable/Disable bold text
+--prompt_height num    Set this to your prompt height to fix
+                       issues with the text going off screen at the top
 
 Color Blocks:
 --color_blocks on/off  Enable/Disable the color blocks
@@ -125,14 +130,14 @@ Other:
 <!-- }}} -->
 
 
-<!-- {{{ -->
+<!-- TODO {{{ -->
 
 
 ## TODO
 
 Here's what's on my todo list
 
-- Uptime doesn't work in OS X yet.
+- Cleanup of info array handling
 
 - Windows support (I'm almost done)
 
@@ -140,12 +145,10 @@ Here's what's on my todo list
 
 - Imagemagick optimizations
 
-- Cleanup of info array handling
-
 - More info outputs. Now that it's easy to customize what's printed and
   everything is a function we can add optional support for pretty much anything.
 
-    - Resolution
+    - Resolution (Done!)
     - GTK themes
     - Terminal Font
     - GPU
@@ -162,3 +165,14 @@ Here's what's on my todo list
 
 #### Fill
 ![fill](https://imgur.com/LvxYwki.png)
+
+
+### Thanks
+
+Thanks to:
+
+- metakirby5: Providing great feedback as well as ideas for the script.
+
+- Screenfetch: I've used some snippets as a base for a few functions in this script.
+
+- @jrgz: Helping me test the Mac OS X version.

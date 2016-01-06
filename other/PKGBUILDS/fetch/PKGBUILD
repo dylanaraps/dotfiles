@@ -1,0 +1,32 @@
+pkgname=fetch-git
+_pkgname=fetch
+pkgrel=1
+pkgdesc="CLI script to show your system's info and display an image using w3m."
+arch=('any')
+url="https://github.com/dylanaraps/fetch"
+license=('GPL')
+provides=($_pkgname)
+conflicts=($_pkgname)
+depends=('bash')
+optdepends=(
+    'ncurses: (tput) Dynamic image sizing / padding'
+    'w3m: Display Images'
+    'imagemagick: Image cropping / Thumbnail creation'
+    'feh: Wallpaper Displau'
+    'mpc: Current Song Displau'
+    'xorg-xdpyinfo: Resolution Detection'
+    'wmctrl: Accurate window manager detection'
+)
+makedepends=('git')
+source=("$pkgname::git+https://github.com/dylanaraps/fetch.git")
+md5sums=('SKIP')
+
+pkgver() {
+  cd $pkgname
+  git describe --tags --long | sed -r -e 's,^[^0-9]*,,;s,([^-]*-g),r\1,;s,[-_],.,g'
+}
+
+package() {
+  cd $pkgname
+  install -Dm755 "fetch" "$pkgdir/usr/bin/fetch"
+}

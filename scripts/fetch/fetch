@@ -1,19 +1,22 @@
 #!/usr/bin/env bash
 # Fetch info about your system
+# https://github.com/dylanaraps/fetch
 #
 # Optional Dependencies: (You'll lose these features without them)
-#   Displaying Images: w3m
+#   Displaying Images: w3m + w3m-img
 #   Image Cropping: ImageMagick
 #   Wallpaper Display: feh
 #   Current Song: mpc
 #   Text formatting, dynamic image size and padding: tput
 #   Resolution detection: xorg-xdpyinfo
+#   More accurate window manager detection: wmctrl
 #
 # Created by Dylan Araps
-# https://github.com/dylanaraps/dotfiles
+# https://github.com/dylanaraps/
 
 # Speed up script by not using unicode
 export LC_ALL=C
+export LANG=C
 
 
 # Config Options {{{
@@ -49,9 +52,18 @@ info=(
     "getcols"
 )
 
+
+# Window Manager
+
+# Use wmctrl for a more accurate
+# window manager reading
+use_wmctrl=0
+
+
 # CPU
 
 # CPU speed type
+# Only works on Linux
 # --speed_type current/min/max
 speed_type="max"
 
@@ -123,6 +135,12 @@ underline="on"
 # --underline_char char
 underline_char="-"
 
+# Prompt height
+# You should only have to change this if your
+# prompt is greater than 2 lines high.
+# --prompt_height num
+prompt_height=1
+
 
 # }}}
 
@@ -136,6 +154,10 @@ images="on"
 
 # Thumbnail directory
 imgtempdir="$HOME/.fetchimages"
+
+# W3m-img path
+# Some systems have this in another location
+w3m_img_path="/usr/lib/w3m/w3mimgdisplay"
 
 # Split Size
 # Sizing for the img and text splits
@@ -205,34 +227,64 @@ case "$(uname)" in
     "OpenBSD")
         os="OpenBSD"
     ;;
+
+    "CYGWIN"*)
+        os="Windows"
+    ;;
 esac
 
 # Get Distro
-getdistro () {
-    case "$os" in
-        "Linux" )
-            if type -p crux >/dev/null 2>&1; then
-                distro="CRUX"
-            else
-                distro="$(awk -F'=' '/^NAME=/ {printf $2; exit}' /etc/*ease)"
-                distro=${distro#\"*}
-                distro=${distro%*\"}
-            fi
-        ;;
+case "$os" in
+    "Linux" )
+        if type -p crux >/dev/null 2>&1; then
+            distro="CRUX"
+        else
+            distro="$(grep -h '^NAME=' /etc/*ease)"
+            distro=${distro#NAME\=\"*}
+            distro=${distro%*\"}
+        fi
+    ;;
 
-        "Mac OS X")
-            distro="Mac OS X $(sw_vers -productVersion)"
-        ;;
+    "Mac OS X")
+        distro="Mac OS X $(sw_vers -productVersion)"
+    ;;
 
-        "OpenBSD")
-            distro="OpenBSD"
-        ;;
+    "OpenBSD")
+        distro="OpenBSD"
+    ;;
 
-        *)
-            distro="Unknown"
-        ;;
-    esac
-}
+   "Windows")
+        case "$(cmd /c ver)" in
+            *"XP"*)
+                distro="Windows XP"
+            ;;
+
+            *"7"*)
+                distro="Windows 7"
+            ;;
+
+            *"8.1"*)
+                distro="Windows 8.1"
+            ;;
+
+            *"8"*)
+                distro="Windows 8"
+            ;;
+
+            *"10"*)
+                distro="Windows 10"
+            ;;
+
+            *)
+                distro="Windows"
+            ;;
+        esac
+    ;;
+
+    *)
+        distro="Unknown"
+    ;;
+esac
 
 # Get Title
 gettitle () {
@@ -252,14 +304,46 @@ getuptime () {
         ;;
 
         "Mac OS X")
-            uptime=$(uptime | awk -F',' '{print $1}')
-            uptime=${uptime# }
-            uptime=${uptime/??:?? /}
+            # Get boot time in seconds
+            boot="$(sysctl -n kern.boottime)"
+            boot=${boot/{ sec = /}
+            boot=${boot/,*}
+
+            # Get current date in seconds
+            now=$(date +%s)
+            uptime=$((now - boot))
+
+            # Convert uptime to days/hours/mins
+            mins=$((uptime / 60%60))
+            hours=$((uptime / 3600%24))
+            days=$((uptime / 86400))
+
+            case "$mins" in
+                0) ;;
+                1) uptime="up ${mins} minute" ;;
+                *) uptime="up ${mins} minutes" ;;
+            esac
+
+            case "$hours" in
+                0) ;;
+                1) uptime="up ${hours} hour, ${uptime/up /}" ;;
+                *) uptime="up ${hours} hours, ${uptime/up /}" ;;
+            esac
+
+            case "$days" in
+                0) ;;
+                1) uptime="up ${days} day, ${uptime/up /}" ;;
+                *) uptime="up ${days} days, ${uptime/up /}" ;;
+            esac
         ;;
 
         "OpenBSD")
             uptime=$(uptime | awk -F',' '{print $1}')
             uptime=${uptime# }
+        ;;
+
+        "Windows")
+            uptime=$(uptime | awk -F ':[0-9]{2}+ |(, ){1}+' '{printf $2}')
         ;;
 
         *)
@@ -315,6 +399,10 @@ getpackages () {
             packages=$(pkg_info | wc -l)
         ;;
 
+        "Windows"*)
+            packages=$(cygcheck -cd | wc -l)
+        ;;
+
         *)
             packages="Unknown"
         ;;
@@ -328,15 +416,26 @@ getshell () {
 
 # Get window manager
 getwindowmanager () {
-    if [ ! -z "${XDG_CURRENT_DESKTOP}" ]; then
-        windowmanager="${XDG_CURRENT_DESKTOP}"
+    if [ "$use_wmctrl" == "on" ]; then
+        windowmanager="$(wmctrl -m | head -n1)"
+        windowmanager=${windowmanager/Name: /}
+
+    elif [ "$XDG_CURRENT_DESKTOP" ]; then
+        windowmanager="$XDG_CURRENT_DESKTOP"
+
     elif [ -e "$HOME/.xinitrc" ]; then
-        xinitrc=$(awk '/^[^#]*exec/ {print $2}' "${HOME}/.xinitrc")
-        windowmanager="${xinitrc/-session/}"
+        xinitrc=$(grep "^[^#]*exec" "${HOME}/.xinitrc")
+        windowmanager="${xinitrc/exec /}"
+        windowmanager="${windowmanager/-session/}"
+
     else
         case "$os" in
             "Mac OS X")
                 windowmanager="Quartz Compositor"
+            ;;
+
+            "Windows")
+                windowmanager="DWM"
             ;;
 
             *)
@@ -351,17 +450,17 @@ getwindowmanager () {
 getcpu () {
     case "$os" in
         "Linux")
-            cpu="$(awk -F ': ' '/model name/ {printf $2; exit}' /proc/cpuinfo)"
+            # Get cpu name
+            cpu="$(grep -F 'model name' /proc/cpuinfo)"
+            cpu=${cpu/model name*: /}
 
-            # We're using lscpu because /proc/cpuinfo doesn't have min/max speed.
-            case $speed_type in
-                current) speed="$(lscpu | awk '/CPU MHz:/ {printf $3}')" ;;
-                min) speed="$(lscpu | awk '/CPU min MHz:/ {printf $4}')" ;;
-                max) speed="$(lscpu | awk '/CPU max MHz:/ {printf $4}')" ;;
-            esac
+            # Get cpu speed
+            speed_type=${speed_type/rent/}
+            read -r speed < \
+                /sys/devices/system/cpu/cpu0/cpufreq/scaling_${speed_type}_freq
 
             # Convert mhz to ghz without bc
-            speed=$((${speed/.*/} / 100))
+            speed=$((speed / 100000))
             speed=${speed:0:1}.${speed:1}
             cpu="$cpu @ ${speed}GHz"
         ;;
@@ -372,6 +471,25 @@ getcpu () {
 
         "OpenBSD")
             cpu="$(sysctl -n hw.model)"
+        ;;
+
+        "Windows")
+            # Get cpu name
+            cpu="$(grep -F 'model name' /proc/cpuinfo)"
+            cpu=${cpu/model name*: /}
+            cpu=${cpu/ @*/}
+            cpu=${cpu//  /}
+            cpu=${cpu% }
+
+            # Get cpu speed
+            speed=$(grep -F 'cpu MHz' /proc/cpuinfo)
+            speed=${speed/cpu MHz*: /}
+            speed=${speed/\./}
+
+            # Convert mhz to ghz without bc
+            speed=$((speed / 100000))
+            speed=${speed:0:1}.${speed:1}
+            cpu="$cpu @ ${speed}GHz"
         ;;
 
         *)
@@ -394,17 +512,26 @@ getcpu () {
 getmemory () {
     case "$os" in
         "Linux")
-            mem="$(awk 'NR < 4 {printf $2 " "}' /proc/meminfo)"
+            # Read first 3 lines
+            exec 6< /proc/meminfo
+            read -r memtotal <&6
+            read -r memfree <&6
+            read -r memavail <&6
+            exec 6<&-
 
-            # Split the string above into 3 vars
-            # This is faster than using an array.
-            set $mem
+            # Do some substitution on each line
+            memtotal=${memtotal/MemTotal:/}
+            memtotal=${memtotal/kB*/}
+            memtotal=${memtotal// /}
+            memfree=${memfree/MemFree:/}
+            memfree=${memfree/kB*/}
+            memfree=${memfree// /}
+            memavail=${memavail/MemAvailable:/}
+            memavail=${memavail/kB*/}
+            memavail=${memavail// /}
 
-            memtotal=$1
-            memfree=$2
-            memavail=$3
-            memused="$((memtotal - memavail))"
-            memory="$(( ${memused%% *} / 1024))MB / $(( ${memtotal%% *} / 1024))MB"
+            memused=$((memtotal - memavail))
+            memory="$((memused / 1024))MB / $((memtotal / 1024))MB"
         ;;
 
         "Mac OS X")
@@ -412,7 +539,9 @@ getmemory () {
             memwired=$(vm_stat | awk '/wired/ { print $4 }')
             memactive=$(vm_stat | awk '/active / { print $3 }')
             memcompressed=$(vm_stat | awk '/occupied/ { print $5 }')
-            memused=$(((${memwired//.} + ${memactive//.} + ${memcompressed//.}) * 4 / 1024))
+            memused=$(((${memwired//.} + \
+                        ${memactive//.} + \
+                        ${memcompressed//.}) * 4 / 1024))
             memory="${memused}MB / ${memtotal}MB"
         ;;
 
@@ -422,6 +551,21 @@ getmemory () {
             memtotal=${memtotal/()MB/}
             memused=${memused/M/}
             memory="${memused}MB / ${memtotal}MB"
+        ;;
+
+        "Windows")
+            mem="$(awk 'NR < 3 {printf $2 " "}' /proc/meminfo)"
+
+            # Split the string above into 2 vars
+            # This is faster than using an array.
+            set $mem
+
+            memtotal=$1
+            memfree=$2
+            memavail=$((memtotal - memfree))
+            memused=$((memtotal - memavail))
+            memory="$((${memused%% *} / 1024))MB / "
+            memory+="$((${memtotal%% *} / 1024))MB"
         ;;
 
         *)
@@ -443,30 +587,30 @@ getresolution () {
         ;;
 
         "Mac OS X")
-            resolution=$(system_profiler SPDisplaysDataType | awk '/Resolution:/ {print $2"x"$4" "}')
+            resolution=$(system_profiler SPDisplaysDataType |\
+                        awk '/Resolution:/ {print $2"x"$4" "}')
         ;;
 
         *)
             resolution="Unknown"
         ;;
     esac
-
 }
 
 getcols () {
     if [ "$color_blocks" == "on" ]; then
-        printf "%s" "${padding}"
+        printf "${padding}%s"
         while [ $start -le $end ]; do
-            printf "%s%${block_width}s" "$(tput setab $start)"
+            printf "\e[48;5;${start}m%${block_width}s"
             start=$((start + 1))
 
             # Split the blocks at 8 colors
             [ $end -ge 9 ] && [ $start -eq 8 ] && \
-                printf "\n%s" "${clear}${padding}"
+                printf "\n%s${clear}${padding}"
         done
 
         # Clear formatting
-        printf "%s" "$clear"
+        printf "%b%s" "$clear"
     fi
 }
 
@@ -477,12 +621,34 @@ getcols () {
 # Images {{{
 
 
-getimage () {
-    # Check if the directory exists
-    [ ! -d "$imgtempdir" ] && (mkdir "$imgtempdir" || exit)
+getwallpaper () {
+    case "$os" in
+        "Linux")
+            img=$(awk '/feh/ {printf $3}' "$HOME/.fehbg")
+            img=${img#\'*}
+            img=${img%*\'}
+        ;;
 
-    # Get columns
-    columns=$(tput cols)
+        "Windows")
+            case "$distro" in
+                "Windows XP")
+                    img="/cygdrive/c/Documents and Settings/${USER}"
+                    img+="/Local Settings/Application Data/Microsoft"
+                    img+="/Wallpaper1.bmp"
+                ;;
+
+                "Windows"*)
+                    img="$APPDATA/Microsoft/Windows/Themes"
+                    img+="/TranscodedWallpaper.jpg"
+                ;;
+            esac
+        ;;
+    esac
+}
+
+getimage () {
+    # Make the directory if it doesn't exist
+    mkdir -p "$imgtempdir"
 
     # Image size is half of the terminal
     imgsize=$((columns * font_width / split_size))
@@ -491,35 +657,25 @@ getimage () {
     case "$image_position" in
         "left")
             # Padding is half the terminal width + gap
-            padding="$(tput cuf $((columns / split_size + gap)))"
+            padding="\e[$((columns / split_size + gap))C"
         ;;
 
         "right")
-            padding=$(tput cuf 0)
+            padding="\e[0C"
             xoffset=$((columns * font_width / split_size - gap))
         ;;
     esac
 
     # If wall=on, Get image to display from current wallpaper.
-    if [ "$wall" == "on" ]; then
-        img=$(awk '/feh/ {printf $3}' "$HOME/.fehbg")
-        img=${img#\'*}
-        img=${img%*\'}
-    fi
+    [ "$wall" == "on" ] && getwallpaper
 
     # Get name of image and prefix it with it's crop mode and offset
-    imgname="$crop_mode-$crop_offset-${img##*/}"
-
-    # This check allows you to resize the image at launch
-    if [ -f "$imgtempdir/$imgname" ]; then
-        imgheight=$(identify -format "%h" "$imgtempdir/$imgname")
-        [ $imgheight != $imgsize ] && rm "$imgtempdir/$imgname"
-    fi
+    imgname="$crop_mode-$crop_offset-$imgsize-${img##*/}"
 
     # Check to see if the thumbnail exists before we do any cropping.
     if [ ! -f "$imgtempdir/$imgname" ]; then
         # Get image size so that we can do a better crop
-        size=$(identify -format "%w %h" $img)
+        size=$(identify -format "%w %h" "$img")
         width=${size%% *}
         height=${size##* }
 
@@ -533,7 +689,10 @@ getimage () {
 
         case "$crop_mode" in
             fit)
-                c=$(convert "$img" -colorspace srgb -format "%[pixel:p{0,0}]" info:)
+                c=$(convert "$img" \
+                    -colorspace srgb \
+                    -format "%[pixel:p{0,0}]" info:)
+
                 convert \
                     "$img" \
                     -trim +repage \
@@ -545,12 +704,10 @@ getimage () {
             ;;
 
             fill)
-                c=$(convert "$img" -colorspace srgb -format "%[pixel:p{0,0}]" info:)
                 convert \
                     "$img" \
                     -trim +repage \
                     -scale "$imgsize"x"$imgsize"^ \
-                    -background "$c" \
                     -extent "$imgsize"x"$imgsize" \
                     "$imgtempdir/$imgname"
             ;;
@@ -560,6 +717,7 @@ getimage () {
                     "$img" \
                     -gravity $crop_offset \
                     -crop "$size"x"$size"+0+0 \
+                    -quality 95 \
                     -scale "$imgsize"x"$imgsize" \
                     "$imgtempdir/$imgname"
             ;;
@@ -579,27 +737,27 @@ getimage () {
 
 
 underline () {
-    uline=$(printf %"$length"s)
-    uline=${uline// /$underline_char}
+    underline=$(printf %"$length"s)
+    underline=${underline// /$underline_char}
 }
 
 colors () {
-    title_color="$(tput setaf $title_color)"
-    subtitle_color="$(tput setaf $subtitle_color)"
-    colon_color="$(tput setaf $colon_color)"
-    underline_color="$(tput setaf $underline_color)"
-    info_color="$(tput setaf $info_color)"
+    title_color="\e[38;5;${title_color}m"
+    subtitle_color="\e[38;5;${subtitle_color}m"
+    colon_color="\e[38;5;${colon_color}m"
+    underline_color="\e[38;5;${underline_color}m"
+    info_color="\e[38;5;${info_color}m"
 }
 
 bold () {
     if [ "$bold" == "on" ]; then
-        bold="$(tput bold)"
+        bold="\e[1m"
     else
         bold=""
     fi
 }
 
-clear="$(tput sgr0)"
+clear="\e[0m"
 
 
 # }}}
@@ -608,77 +766,81 @@ clear="$(tput sgr0)"
 # Usage {{{
 
 
-usage () {
-    printf "%s\n"
-    printf "%s\n" "usage: ${0##*/} [--colors 1 2 4 5] [--kernel \"\$(uname -rs)\"]"
-    printf "%s\n"
-    printf "%s\n" "   Info:"
-    printf "%s\n" "   --title string         Change the title at the top"
-    printf "%s\n" "   --distro string/cmd    Manually set the distro"
-    printf "%s\n" "   --kernel string/cmd    Manually set the kernel"
-    printf "%s\n" "   --uptime string/cmd    Manually set the uptime"
-    printf "%s\n" "   --uptime_shorthand on/off --v"
-    printf "%s\n" "                          Shorten the output of uptime"
-    printf "%s\n" "   --packages string/cmd  Manually set the package count"
-    printf "%s\n" "   --shell string/cmd     Manually set the shell"
-    printf "%s\n" "   --winman string/cmd    Manually set the window manager"
-    printf "%s\n" "   --cpu string/cmd       Manually set the cpu name"
-    printf "%s\n" "   --memory string/cmd    Manually set the memory"
-    printf "%s\n" "   --speed_type           Change the type of cpu speed to get"
-    printf "%s\n" "                          Possible values: current, min, max"
-    printf "%s\n" "   --song string/cmd      Manually set the current song"
-    printf "%s\n"
-    printf "%s\n" "   Text Colors:"
-    printf "%s\n" "   --colors 1 2 3 4 5     Change the color of text"
-    printf "%s\n" "                          (title, subtitle, colon, underline, info)"
-    printf "%s\n" "   --title_color num      Change the color of the title"
-    printf "%s\n" "   --subtitle_color num   Change the color of the subtitle"
-    printf "%s\n" "   --colon_color num      Change the color of the colons"
-    printf "%s\n" "   --underline_color num  Change the color of the underlines"
-    printf "%s\n" "   --info_color num       Change the color of the info"
-    printf "%s\n"
-    printf "%s\n" "   Text Formatting:"
-    printf "%s\n" "   --underline on/off     Enable/Disable title underline"
-    printf "%s\n" "   --underline_char char  Character to use when underlineing title"
-    printf "%s\n" "   --line_wrap on/off      Enable/Disable line wrapping"
-    printf "%s\n" "   --bold on/off          Enable/Disable bold text"
-    printf "%s\n"
-    printf "%s\n" "   Color Blocks:"
-    printf "%s\n" "   --color_blocks on/off  Enable/Disable the color blocks"
-    printf "%s\n" "   --block_width num      Width of color blocks"
-    printf "%s\n" "   --block_range start end --v  "
-    printf "%s\n" "                          Range of colors to print as blocks"
-    printf "%s\n"
-    printf "%s\n" "   Image:"
-    printf "%s\n" "   --image                Image to display with the script"
-    printf "%s\n" "                          The image gets priority over other"
-    printf "%s\n" "                          images: (wallpaper, \$img)"
-    printf "%s\n" "   --font_width px        Used to automatically size the image"
-    printf "&s\n" "   --image_position       Where to display the image: (Left/Right)"
-    printf "%s\n" "   --split_size num       Width of img/text splits"
-    printf "%s\n" "                          A value of 2 makes each split half the terminal"
-    printf "%s\n" "                          width and etc"
-    printf "%s\n" "   --crop_mode            Which crop mode to use"
-    printf "%s\n" "                          Takes the values: normal, fit, fill"
-    printf "%s\n" "   --crop_offset value    Change the crop offset for normal mode."
-    printf "%s\n" "                          Possible values: northwest, north, northeast,"
-    printf "%s\n" "                          west, center, east, southwest, south, southeast"
-    printf "%s\n"
-    printf "%s\n" "   --xoffset px           How close the image will be "
-    printf "%s\n" "                          to the left edge of the window"
-    printf "%s\n" "   --yoffset px           How close the image will be "
-    printf "%s\n" "                          to the top edge of the window"
-    printf "%s\n" "   --gap num              Gap between image and text right side"
-    printf "%s\n" "                          to the top edge of the window"
-    printf "%s\n" "   --images on/off        Enable/Disable all images"
-    printf "%s\n" "   --wall on/off          Enable/Disable the wallpaper function"
-    printf "%s\n" "                          and fallback to \$img"
-    printf "%s\n" "   --clean                Remove all cropped images"
-    printf "%s\n"
-    printf "%s\n" "   Other:"
-    printf "%s\n" "   --help                 Print this text and exit"
-    printf "%s\n"
-    exit 1
+usage () { cat << EOF
+
+ usage: ${0##*/} [--colors 1 2 3 4 5] [--kernel "\$\(uname -rs\)"]
+
+    Info:
+    --title string         Change the title at the top
+    --distro string/cmd    Manually set the distro
+    --kernel string/cmd    Manually set the kernel
+    --uptime string/cmd    Manually set the uptime
+    --uptime_shorthand on/off --v
+                           Shorten the output of uptime
+    --packages string/cmd  Manually set the package count
+    --shell string/cmd     Manually set the shell
+    --winman string/cmd    Manually set the window manager
+    --use_wmctrl on/off    Use wmctrl for a more accurate reading
+    --cpu string/cmd       Manually set the cpu name
+    --memory string/cmd    Manually set the memory
+    --speed_type           Change the type of cpu speed to get
+                           Possible values: current, min, max
+    --song string/cmd      Manually set the current song
+
+    Text Colors:
+    --colors 1 2 3 4 5     Change the color of text
+                           (title, subtitle, colon, underline, info)
+    --title_color num      Change the color of the title
+    --subtitle_color num   Change the color of the subtitle
+    --colon_color num      Change the color of the colons
+    --underline_color num  Change the color of the underlines
+    --info_color num       Change the color of the info
+
+    Text Formatting:
+    --underline on/off     Enable/Disable title underline
+    --underline_char char  Character to use when underlineing title
+    --line_wrap on/off     Enable/Disable line wrapping
+    --bold on/off          Enable/Disable bold text
+    --prompt_height num    Set this to your prompt height to fix
+                           issues with the text going off screen at the top
+
+    Color Blocks:
+    --color_blocks on/off  Enable/Disable the color blocks
+    --block_width num      Width of color blocks
+    --block_range start end --v
+                           Range of colors to print as blocks
+
+    Image:
+    --image                Image to display with the script
+                           The image gets priority over other
+                           images: (wallpaper, \$img)
+    --font_width px        Used to automatically size the image
+    --image_position       Where to display the image: (Left/Right)
+    --split_size num       Width of img/text splits
+                           A value of 2 makes each split half the terminal
+                           width and etc
+    --crop_mode            Which crop mode to use
+                           Takes the values: normal, fit, fill
+    --crop_offset value    Change the crop offset for normal mode.
+                           Possible values: northwest, north, northeast,
+                           west, center, east, southwest, south, southeast
+
+    --xoffset px           How close the image will be
+                           to the left edge of the window
+    --yoffset px           How close the image will be
+                           to the top edge of the window
+    --gap num              Gap between image and text right side
+                           to the top edge of the window
+    --images on/off        Enable/Disable all images
+    --wall on/off          Enable/Disable the wallpaper function
+                           and fallback to \$img
+    --clean                Remove all cropped images
+
+    Other:
+    --help                 Print this text and exit
+
+EOF
+exit 1
 }
 
 
@@ -688,7 +850,7 @@ usage () {
 # Args {{{
 
 
-while [ ! -z "$1" ]; do
+while [ "$1" ]; do
     case $1 in
         # Info
         --title) title="$2" ;;
@@ -699,17 +861,18 @@ while [ ! -z "$1" ]; do
         --packages) packages="$2" ;;
         --shell) shell="$2" ;;
         --winman) windowmanager="$2" ;;
+        --use_wmctrl) use_wmctrl="$2" ;;
         --cpu) cpu="$2" ;;
         --speed_type) speed_type="$2" ;;
         --memory) memory="$2" ;;
         --song) song="$2" ;;
 
         # Text Colors
-        --colors) title_color=$2; \
-            [ ! -z $3 ] && subtitle_color=$3; \
-            [ ! -z $4 ] && colon_color=$4; \
-            [ ! -z $4 ] && underline_color=$5; \
-            [ ! -z $5 ] && info_color=$6 ;;
+        --colors) title_color=$2
+            [ "$3" ] && subtitle_color=$3
+            [ "$4" ] && colon_color=$4
+            [ "$4" ] && underline_color=$5
+            [ "$5" ] && info_color=$6 ;;
         --title_color) title_color=$2 ;;
         --subtitle_color) subtitle_color=$2 ;;
         --colon_color) colon_color=$2 ;;
@@ -721,6 +884,7 @@ while [ ! -z "$1" ]; do
         --underline_char) underline_char="$2" ;;
         --line_wrap) line_wrap="$2" ;;
         --bold) bold="$2" ;;
+        --prompt_height) prompt_height="$2" ;;
 
         # Color Blocks
         --color_blocks) color_blocks="$2" ;;
@@ -745,8 +909,7 @@ while [ ! -z "$1" ]; do
         --help) usage ;;
     esac
 
-    # The check here fixes shift in sh/mksh
-    [ ! -z "$1" ] && shift
+    shift
 done
 
 
@@ -765,7 +928,8 @@ printinfo () {
             echo:*:*)
                 info=${function#*: }
                 subtitle=${function/:*/}
-                string="${bold}${subtitle_color}${subtitle}${clear}${colon_color}: ${info_color}${info}"
+                string="${bold}${subtitle_color}${subtitle}${clear}"
+                string+="${colon_color}: ${info_color}${info}"
                 length=${#function}
             ;;
 
@@ -786,7 +950,7 @@ printinfo () {
             underline)
                 if [ "$underline" == "on" ]; then
                     underline
-                    string="${underline_color}${uline}"
+                    string="${underline_color}${underline}"
                 fi
             ;;
 
@@ -805,7 +969,8 @@ printinfo () {
             ;;
 
             *:*)
-                string="${bold}${subtitle_color}${subtitle}${clear}${colon_color}: ${info_color}${output}"
+                string="${bold}${subtitle_color}${subtitle}${clear}"
+                string+="${colon_color}: ${info_color}${output}"
                 length=$((${#subtitle} +  ${#output} + 2))
             ;;
 
@@ -816,7 +981,7 @@ printinfo () {
 
         esac
 
-        printf "%s\n" "${padding}${string}${clear}"
+        printf "%b%s\n" "${padding}${string}${clear}"
     done
 }
 
@@ -827,17 +992,21 @@ printinfo () {
 # Call Functions and Finish Up {{{
 
 
+# Get lines and columns
+termsize=$(printf "lines \n cols" | tput -S)
+termsize=${termsize/$'\n'/ }
+lines=${termsize% *}
+columns=${termsize#* }
+
 # Get image
 [ "$images" == "on" ] && getimage
 
-# Hide the terminal cursor
-tput civis
-
-# Clear the terminal
+# Clear the terminal and hide the cursor
+printf "\e[?25l"
 clear
 
 # Disable line wrap
-[ $line_wrap == "off" ] && printf '\e[?7l'
+[ "$line_wrap" == "off" ] && printf '\e[?7l'
 
 # Call functions and display info
 colors
@@ -845,14 +1014,15 @@ bold
 printinfo
 
 # Display the image
-[ "$images" == "on" ] && printf "0;1;$xoffset;$yoffset;$imgsize;$imgsize;;;;;$img\n4;\n3;" |\
-    /usr/lib/w3m/w3mimgdisplay
+[ "$images" == "on" ] && \
+    printf "%b%s" "0;1;$xoffset;$yoffset;$imgsize;$imgsize;;;;;$img\n4;\n3;" |\
+    $w3m_img_path
 
 # Enable line wrap again
-[ $line_wrap == "off" ] && printf '\e[?7h'
+[ "$line_wrap" == "off" ] && printf '\e[?7h'
 
 # Move cursor to bottom and redisplay it.
-printf "cup $(tput lines) \n cuu1 \n cnorm" | tput -S
+printf "%b%s" "\e[${lines}H\e[${prompt_height}A\e[?25h"
 
 
 # }}}
