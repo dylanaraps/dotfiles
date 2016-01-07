@@ -15,25 +15,23 @@ voldown () {
 }
 
 prevsong () {
-    cmus-remote --prev &
+    cmus-remote --prev
     popup -e "$(cmus-current)" -w $(txtw "$(cmus-current)") -x $((1820 - $(txtw "$(cmus-current)"))) &
 }
 
 nextsong () {
-    cmus-remote --next &
+    cmus-remote --next
     popup -e "$(cmus-current)" -w $(txtw "$(cmus-current)") -x $((1820 - $(txtw "$(cmus-current)"))) &
 }
 
 togglesong () {
-    cmus-remote --pause &
+    cmus-remote --pause
 
     if [ "$(cmus-remote -Q | head -n1)" == "status playing" ]; then
-        status="$(cmus-current)"
+        popup -e "$(cmus-current)" -w $(txtw "$(cmus-current)") -x $((1820 - $(txtw "$(cmus-current)"))) &
     else
-        status="Paused"
+        popup -e "Paused" -w 150 -x 1670 &
     fi
-
-    popup -e "$status" -w $(txtw "$status") -x $((1820 - $(txtw "$status"))) &
 }
 
 dmenu () {

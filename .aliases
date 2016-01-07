@@ -31,21 +31,12 @@ alias steam="LD_PRELOAD=/usr/lib/libasound.so.2 STEAM_RUNTIME=1 SDL_AUDIODRIVER=
 # Always open urxvt clients
 alias urxvt="urxvtc"
 
-# # backup files on poweroff
-# alias poweroff="backup.sh; sudo systemctl poweroff"
-
-# # Reboot as user
-# alias reboot="sudo systemctl reboot"
-
 # Launch sxiv without the bottom bar
 alias sxiv="sxiv -b"
 
 # Gen neovim scheme
 # This line doesn't work inside of gencol.sh for some reason
 alias nvimgen="erb -T - ~/dotfiles/colorschemes/ryuuko/ryuuko.erb > ~/dotfiles/colorschemes/ryuuko/colors/ryuuko.vim"
-
-# Habits
-alias firefox="iceweasel"
 
 # Record screen
 alias record="ffmpeg -f x11grab -s 1920x1080 -framerate 60 -an -i :0.0 -c:v libvpx -b:v 5M -crf 10 -quality realtime -y -loglevel quiet"
