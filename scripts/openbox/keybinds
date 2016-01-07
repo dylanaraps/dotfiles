@@ -26,6 +26,14 @@ nextsong () {
 
 togglesong () {
     cmus-remote --pause &
+
+    if [ "$(cmus-remote -Q | head -n1)" == "status playing" ]; then
+        status="$(cmus-current)"
+    else
+        status="Paused"
+    fi
+
+    popup -e "$status" -w $(txtw "$status") -x $((1820 - $(txtw "$status"))) &
 }
 
 dmenu () {
