@@ -8,20 +8,19 @@
 
 # My Setup
 
-* Linux Distro: [Arch Linux](https://www.archlinux.org/)
+* Linux Distro: arch
 * Window Manager: openbox
-* Gtk Icons: [Ultra Flat Icons](https://aur.archlinux.org/packages/ultra-flat-icons/)
-* Bar: [Lemonboy's Bar patched with xft support](https://github.com/krypt-n/bar)
-* Launcher: [Dmenu2](https://github.com/mrshankly/dmenu2)
-* Terminal Emulator: [rxvt-unicode-24bit](https://aur4.archlinux.org/packages/rxvt-unicode-24bit/)
+* Bar: lemonbar
+* Launcher: dmenu2
+* Terminal Emulator: urxvt
 * Shell: mksh
 * Terminal Font: lemon
-* Text Editor: [Neovim](https://github.com/neovim/neovim)
+* Text Editor: neovim
 * Color Scheme: ryuuko (In this repo)
-* Music Player: [Mpd](http://www.musicpd.org/) + [ncmpcpp](http://ncmpcpp.rybczak.net/)
-* Browser: Iceweasel
+* Music Player: cmus
+* Browser: iceweasel
 * Startpage: In this repo "/startpage/"
-* Video Player: [mpv](https://github.com/mpv-player/mpv)
+* Video Player: mpv
 
 <!--- }}} -->
 
