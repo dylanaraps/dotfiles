@@ -187,12 +187,6 @@ bar () {
     clock &>/dev/null
 }
 
-# Reopen cover art
-cover () {
-    pkill cover
-    coverspawn &>/dev/null
-}
-
 # Generate the colors
 all () {
     echo
@@ -218,7 +212,6 @@ all () {
     gencss; echo "Generated css file using sass"
     obthemegen; echo "Generated openbox themerc"
     bar & echo "Restarted lemonbar"
-    cover & echo "Restarted cover script"
 }
 
 case $1 in

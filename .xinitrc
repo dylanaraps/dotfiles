@@ -12,5 +12,11 @@ xrandr --output DVI-0 --mode 1920x1080 --rate 60 --primary --left-of DVI-1 --out
 # Set wallpaper
 wall --loop 900 &
 
+# urxvt daemon
+urxvtd -q -f -o &
+
+# bar
+clock &
+
 #  Start openbox
 exec openbox-session

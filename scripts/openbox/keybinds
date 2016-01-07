@@ -7,13 +7,11 @@
 volup () {
     amixer set Master 5+
     popup -e "$(amixer get Master | egrep -o '[0-9]+\%')" -w 150 -x 1670 &
-    mpc update
 }
 
 voldown () {
     amixer set Master 5-
     popup -e "$(amixer get Master | egrep -o '[0-9]+\%')" -w 150 -x 1670 &
-    mpc update
 }
 
 prevsong () {
@@ -28,12 +26,10 @@ nextsong () {
 
 togglesong () {
     cmus-remote --pause &
-    popup -e "$(mpc status | egrep -o '\[.*\]' | sed 's/[][]//g')" -w 150 -x 1670 &
 }
 
 dmenu () {
     dmenu_recent_aliases -s 0 -nb "#$white" -nf "#$black" -sb "#$white" -sf "#$gray" -i -h 30 -w 120 -q -x 30 -y 30 -fn "-benis-lemon-medium-r-normal--10-110-75-75-m-50-ISO8859-1" -p ">" -l 1
-    mpc update
 }
 
 screenshot () {
@@ -57,7 +53,6 @@ minify () {
 # Fix blank album art on desktop switch
 gotodesktop () {
     wmctrl -s $1
-    mpc update
 }
 
 case $1 in

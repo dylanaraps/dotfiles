@@ -193,9 +193,6 @@
         <to>right</to>
         <wrap>yes</wrap>
       </action>
-      <action name="Execute">
-        <command>mpc update</command>
-      </action>
     </keybind>
     <!-- Go to desktop by number -->
     <keybind key="W-1">
