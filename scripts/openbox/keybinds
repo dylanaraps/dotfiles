@@ -17,17 +17,17 @@ voldown () {
 }
 
 prevsong () {
-    mpc -q prev
-    popup -e "$(mpc current)" -w $(txtw "$(mpc current)") -x $((1820 - $(txtw "$(mpc current)"))) &
+    cmus-remote --prev &
+    popup -e "$(cmus-current)" -w $(txtw "$(cmus-current)") -x $((1820 - $(txtw "$(cmus-current)"))) &
 }
 
 nextsong () {
-    mpc -q next
-    popup -e "$(mpc current)" -w $(txtw "$(mpc current)") -x $((1820 - $(txtw "$(mpc current)"))) &
+    cmus-remote --next &
+    popup -e "$(cmus-current)" -w $(txtw "$(cmus-current)") -x $((1820 - $(txtw "$(cmus-current)"))) &
 }
 
 togglesong () {
-    mpc -q toggle
+    cmus-remote --pause &
     popup -e "$(mpc status | egrep -o '\[.*\]' | sed 's/[][]//g')" -w 150 -x 1670 &
 }
 

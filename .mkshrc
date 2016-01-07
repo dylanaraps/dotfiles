@@ -22,13 +22,11 @@ eval "$(dircolors ~/.dircolors)"
 source "$HOME/dotfiles/scripts/colors/output/colors.envar"
 
 # Paths
-if [ -d "$HOME/bin" ] ; then
-  PATH="$HOME/bin:$PATH"
-fi
+[ -d "$HOME/bin" ] && PATH="$HOME/bin:$PATH"
+[ -d "$HOME/.gem/ruby/2.2.0/bin" ] && PATH="$HOME/.gem/ruby/2.2.0/bin:$PATH"
 
-if [ -d "$HOME/.gem/ruby/2.2.0/bin" ] ; then
-    PATH="$HOME/.gem/ruby/2.2.0/bin:$PATH"
-fi
+export INFINALITY_FT_BRIGHTNESS="-10"
+export INFINALITY_FT_FILTER_PARAMS="0.00 0.35 0.35 0.35 0.00"
 
 # Aliases
 # Still named .zsh_aliases so that dmenu can see the aliases

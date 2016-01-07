@@ -1,0 +1,108 @@
+# Dylan's cmus config
+
+set aaa_mode=all
+set altformat_current= %F
+set altformat_playlist= %f%= %d
+set altformat_title=%f
+set altformat_trackwin= %f%= %d
+set auto_expand_albums_follow=true
+set auto_expand_albums_search=true
+set auto_expand_albums_selcur=true
+set auto_reshuffle=true
+set buffer_seconds=10
+set color_cmdline_attr=default
+set color_cmdline_bg=default
+set color_cmdline_fg=default
+set color_cur_sel_attr=default
+set color_error=lightred
+set color_info=lightyellow
+set color_separator=blue
+set color_statusline_attr=default
+set color_statusline_bg=gray
+set color_statusline_fg=black
+set color_titleline_attr=default
+set color_titleline_bg=black
+set color_titleline_fg=white
+set color_win_attr=default
+set color_win_bg=default
+set color_win_cur=blue
+set color_win_cur_sel_attr=default
+set color_win_cur_sel_bg=blue
+set color_win_cur_sel_fg=white
+set color_win_dir=lightblue
+set color_win_fg=default
+set color_win_inactive_cur_sel_attr=default
+set color_win_inactive_cur_sel_bg=gray
+set color_win_inactive_cur_sel_fg=lightyellow
+set color_win_inactive_sel_attr=default
+set color_win_inactive_sel_bg=gray
+set color_win_inactive_sel_fg=black
+set color_win_sel_attr=default
+set color_win_sel_bg=gray
+set color_win_sel_fg=black
+set color_win_title_attr=default
+set color_win_title_bg=black
+set color_win_title_fg=black
+set confirm_run=true
+set continue=false
+set device=/dev/cdrom
+set display_artist_sort_name=false
+set dsp.alsa.device=default
+set dsp.ao.buffer_size=16384
+set dsp.ao.driver=
+set dsp.ao.wav_counter=1
+set dsp.ao.wav_dir=/home/dyl
+set dsp.oss.device=
+set follow=true
+set format_current=
+set format_playlist= %-21%a %3n %t%= %y %d %{?X!=0?%3X ?    }
+set format_playlist_va= %-21%A %3n %t (%a)%= %y %d %{?X!=0?%3X ?    }
+set format_statusline= %{status} %{artist} - %{title} | %{?show_playback_position?%{position} %{?duration?/ %{duration} }?%{?duration?%{duration} }} %{?show_current_bitrate & bitrate>=0? %{bitrate} kbps }%=
+set format_title=%a - %t
+set format_trackwin=%3n. %t%= %y %d
+set format_trackwin_album= %l
+set format_trackwin_va=%3n. %t (%a)%= %y %d
+set format_treewin=  %l
+set format_treewin_artist=%a
+set icecast_default_charset=ISO-8859-1
+set id3_default_charset=ISO-8859-1
+set lib_sort=albumartist date album discnumber tracknumber title filename play_count
+set mixer.alsa.channel=Master
+set mixer.alsa.device=default
+set mixer.oss.channel=PCM
+set mixer.oss.device=
+set mixer.pulse.restore_volume=1
+set mouse=false
+set output_plugin=alsa
+set passwd=
+set pl_sort=
+set play_library=true
+set play_sorted=false
+set repeat=true
+set repeat_current=false
+set replaygain=disabled
+set replaygain_limit=true
+set replaygain_preamp=0.000000
+set resume=true
+set rewind_offset=5
+set scroll_offset=0
+set set_term_title=true
+set show_all_tracks=true
+set show_current_bitrate=false
+set show_hidden=false
+set show_playback_position=true
+set show_remaining_time=false
+set shuffle=true
+set skip_track_info=false
+set smart_artist_sort=true
+set softvol=false
+set softvol_state=0 0
+set status_display_program=
+set wrap_search=true
+fset 90s=date>=1990&date<20001
+fset classical=genre="Classical"
+fset missing-tag=!stream&(artist=""|album=""|title=""|tracknumber=-1|date=-1)
+fset mp3=filename="*.mp3"
+fset ogg=filename="*.ogg"
+fset ogg-or-mp3=ogg|mp3
+fset unheard=play_count=0

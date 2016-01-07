@@ -31,11 +31,11 @@ alias steam="LD_PRELOAD=/usr/lib/libasound.so.2 STEAM_RUNTIME=1 SDL_AUDIODRIVER=
 # Always open urxvt clients
 alias urxvt="urxvtc"
 
-# backup files on poweroff
-alias poweroff="backup.sh; sudo systemctl poweroff"
+# # backup files on poweroff
+# alias poweroff="backup.sh; sudo systemctl poweroff"
 
-# Reboot as user
-alias reboot="sudo systemctl reboot"
+# # Reboot as user
+# alias reboot="sudo systemctl reboot"
 
 # Launch sxiv without the bottom bar
 alias sxiv="sxiv -b"
