@@ -18,7 +18,7 @@ install () {
 
     for pkg in ${packages[@]}; do
         # If package isn't in aur folder, attempt to download PKGBUILD/etc using cower
-        if [ ! -d "$pkg" ]; then
+        if [ ! -z "$pkg" ]; then
             cower -d "$pkg" || break
 
             echo -n "View PKGBUILD? (y/n) "
@@ -41,7 +41,7 @@ uninstall () {
 
     for pkg in ${packages[@]}; do
         if [ -d $pkg ]; then
-            rm -rf "$pkg" && echo "Removed $aurdir/$pkg" && sudo pacman -R "$pkg"
+            rm -rf "$pkg" && (echo "Removed $aurdir/$pkg" && sudo pacman -R "$pkg")
         else
             echo "$aurdir/$pkg doesn't exist, exiting"
         fi

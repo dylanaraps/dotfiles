@@ -25,7 +25,7 @@
 		[ "Todo", gray, yellow, "NONE" ],
 		[ "Type", "NONE", yellow, "NONE" ],
 		[ "Underlined", "NONE", red, "underline" ],
-		[ "StatusLine", black, gray, "NONE" ],
+		[ "StatusLine", white, black, "NONE" ],
 		[ "StatusLineNC", "NONE", "NONE", "NONE" ],
 		[ "TabLine", "NONE", gray, "NONE" ],
 		[ "TabLineFill", "NONE", gray, "NONE" ],

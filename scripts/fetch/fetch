@@ -150,9 +150,9 @@ prompt_height=1
 # Image Options {{{
 
 
-# Toggle all images
-# --images on/off
-images="on"
+# Image Source
+# --image wall, shuffle, /path/to/img, off
+image="wall"
 
 # Thumbnail directory
 imgtempdir="$HOME/.fetchimages"
@@ -174,13 +174,8 @@ split_size=2
 # --image_position left/right
 image_position="left"
 
-# Use current wallpaper as the image
-# --wall on/off
-wall="on"
-
-# Default image to use if wallpaper use is disabled
-# --image img
-img="$HOME/Pictures/avatars/gon.png"
+# Shuffle dir
+shuffledir="$HOME/Pictures/wallpapers/wash"
 
 # Crop mode
 # --crop_mode normal/fit/fill
@@ -205,6 +200,27 @@ gap=4
 # --yoffset px
 yoffset=0
 xoffset=0
+
+
+# }}}
+
+
+# Other Options {{{
+
+
+# Take a screenshot
+# --scrot on/off
+scrot="off"
+
+# Scrot dir
+# Where to save the screenshots
+# --scrotdir /path/to/screenshot/folder
+scrotdir="$HOME/Pictures"
+
+# Scrot filename
+# What to name the screenshots
+# --scrot
+scrotname="fetch-%Y-%m-%d-%H:%M.png"
 
 
 # }}}
@@ -238,7 +254,8 @@ case "$os" in
             distro="CRUX"
         else
             distro="$(grep -h '^NAME=' /etc/*ease)"
-            distro=${distro#NAME\=\"*}
+            distro=${distro#NAME\=*}
+            distro=${distro#\"*}
             distro=${distro%*\"}
         fi
     ;;
@@ -440,6 +457,7 @@ getcpu () {
             # Get cpu name
             cpu="$(grep -F 'model name' /proc/cpuinfo)"
             cpu=${cpu/model name*: /}
+            cpu=${cpu/ @*/}
 
             # Get cpu speed
             speed_type=${speed_type/rent/}
@@ -590,6 +608,30 @@ getcols () {
 }
 
 
+# Windows Specific Functions
+
+getvisualstyle () {
+    case "$os" in
+        "Windows XP")
+
+        ;;
+
+        "Windows"*)
+            path="/proc/registry/HKEY_CURRENT_USER/Software/Microsoft"
+            path+="/Windows/CurrentVersion/Themes/CurrentTheme"
+            visualstyle="$(head -n1 $path)"
+            visualstyle="${visualstyle##*\\}"
+            visualstyle="${visualstyle%.*}"
+            visualstyle="${visualstyle^}"
+        ;;
+
+        *)
+            visualstyle="This feature only works on Windows"
+        ;;
+    esac
+}
+
+
 # }}}
 
 
@@ -599,9 +641,7 @@ getcols () {
 getwallpaper () {
     case "$os" in
         "Linux")
-            img=$(awk '/feh/ {printf $3}' "$HOME/.fehbg")
-            img=${img#\'*}
-            img=${img%*\'}
+            img="$(awk -F\' '/feh/ {printf $2}' $HOME/.fehbg)"
         ;;
 
         "Windows")
@@ -619,6 +659,12 @@ getwallpaper () {
             esac
         ;;
     esac
+}
+
+getshuffle () {
+    # TODO: Test this on Windows.
+    img="$(find $shuffledir -type f \( -name '*.jpg' -o -name '*.png' \) -print0 |
+    shuf -n1 -z)"
 }
 
 getimage () {
@@ -642,7 +688,19 @@ getimage () {
     esac
 
     # If wall=on, Get image to display from current wallpaper.
-    [ "$wall" == "on" ] && getwallpaper
+    case "$image" in
+        "wall")
+            getwallpaper
+        ;;
+
+        "shuffle")
+            getshuffle
+        ;;
+
+        *)
+            img="$image"
+        ;;
+    esac
 
     # Get name of image and prefix it with it's crop mode and offset
     imgname="$crop_mode-$crop_offset-$imgsize-${img##*/}"
@@ -702,6 +760,10 @@ getimage () {
 
     # The final image
     img="$imgtempdir/$imgname"
+}
+
+takescrot () {
+    scrot -c -d 3 "$scrotdir/$scrotname"
 }
 
 
@@ -786,9 +848,9 @@ usage () { cat << EOF
                            Range of colors to print as blocks
 
     Image:
-    --image                Image to display with the script
-                           The image gets priority over other
-                           images: (wallpaper, \$img)
+    --image                Image source. Where and what image we display.
+                           Possible values: wall, shuffle, /path/to/img, off
+    --shuffledir           Which directory to shuffle for an image.
     --font_width px        Used to automatically size the image
     --image_position       Where to display the image: (Left/Right)
     --split_size num       Width of img/text splits
@@ -806,10 +868,12 @@ usage () { cat << EOF
                            to the top edge of the window
     --gap num              Gap between image and text right side
                            to the top edge of the window
-    --images on/off        Enable/Disable all images
-    --wall on/off          Enable/Disable the wallpaper function
-                           and fallback to \$img
     --clean                Remove all cropped images
+
+    Screenshot:
+    --scrot                Take a screenshot
+    --scrotdir             Directory to save the scrot
+    --scrotfile            File name of scrot
 
     Other:
     --help                 Print this text and exit
@@ -867,7 +931,8 @@ while [ "$1" ]; do
         --block_width) block_width="$2" ;;
 
         # Image
-        --image) wall="off"; img="$2" ;;
+        --image) image="$2" ;;
+        --shuffledir) shuffledir="$2" ;;
         --font_width) font_width="$2" ;;
         --image_position) image_position="$2" ;;
         --split_size) split_size="$2" ;;
@@ -876,9 +941,12 @@ while [ "$1" ]; do
         --xoffset) xoffset="$2" ;;
         --yoffset) yoffset="$2" ;;
         --gap) gap="$2" ;;
-        --images) images="$2" ;;
-        --wall) wall="$2" ;;
         --clean) rm -rf "$imgtempdir" || exit ;;
+
+        # Screenshot
+        --scrot|-s) scrot="on" ;;
+        --scrotdir) scrot="$2" ;;
+        --scrotfile) scrot="$2" ;;
 
         # Other
         --help) usage ;;
@@ -974,7 +1042,7 @@ lines=${termsize% *}
 columns=${termsize#* }
 
 # Get image
-[ "$images" == "on" ] && getimage
+[ "$image" != "off" ] && getimage
 
 # Clear the terminal and hide the cursor
 printf "\e[?25l"
@@ -989,7 +1057,7 @@ bold
 printinfo
 
 # Display the image
-[ "$images" == "on" ] && \
+[ "$image" != "off" ] && \
     printf "%b%s" "0;1;$xoffset;$yoffset;$imgsize;$imgsize;;;;;$img\n4;\n3;" |\
     $w3m_img_path
 
@@ -998,6 +1066,9 @@ printinfo
 
 # Move cursor to bottom and redisplay it.
 printf "%b%s" "\e[${lines}H\e[${prompt_height}A\e[?25h"
+
+# If enabled take a screenshot
+[ "$scrot" == "on" ] && takescrot
 
 
 # }}}

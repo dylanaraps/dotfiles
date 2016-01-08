@@ -124,28 +124,18 @@ nvim () {
 openbox () {
     colors
 
-    # Update titlebar colors
-    if [ -z $1 ]; then
-        cols=($(cat /tmp/tbarcol))
-        bg=${cols[0]}
-        fg=${cols[1]}
-    else
-        bg=$1
-        fg=$2
-        echo "$1 $2" > /tmp/tbarcol
-    fi
-
-
     # Titlebar colors
-    titlebg=$(xrdb -query | grep "\*\.color$bg:" | cut -f2)
-    titlefg=$(xrdb -query | grep "\*\.color$fg:" | cut -f2)
+    focused_titlebg=$(xrdb -query | grep "\*\.color1" | cut -f2)
+    unfocused_titlebg=$(xrdb -query | grep "\*\.color4:" | cut -f2)
+    titlefg=$(xrdb -query | grep "\*\.color7:" | cut -f2)
 
     # Menu colors
     menubg=$(xrdb -query | grep "\*\.color7:" | cut -f2)
     menufg=$(xrdb -query | grep "\*\.color0:" | cut -f2)
 
     echo "# Openbox colors, generated using gencol"
-    echo "window.*.title.bg.color: $titlebg"
+    echo "window.active.title.bg.color: $focused_titlebg"
+    echo "window.inactive.title.bg.color: $unfocused_titlebg"
     echo "window.*.label.text.color: $titlefg"
     echo "window.*.button.*.image.color: $titlefg"
     echo "menu*.bg.color: $menubg"
@@ -214,7 +204,4 @@ all () {
     bar & echo "Restarted lemonbar"
 }
 
-case $1 in
-    all) all ;;
-    openbox) openbox $2 $3 > "$colordir/colors.openbox"; obthemegen ;;
-esac
+all

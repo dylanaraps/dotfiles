@@ -1,3 +1,4 @@
+#!/bin/mksh
 # Get current artist/song
 
 artist="$(cmus-remote -Q | awk -F 'tag artist ' '/tag artist / {printf $2}')"

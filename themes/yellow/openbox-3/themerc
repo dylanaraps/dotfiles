@@ -1,5 +1,12 @@
 # Openbox colors, generated using gencol
-window.*.title.bg.color: #7c9fa6
+window.active.title.bg.color: #99736e
+#78a090
+#bfb7a1
+#7c9fa6
+#ccad99
+#b8ccc9
+#f0eae6
+window.inactive.title.bg.color: #7c9fa6
 window.*.label.text.color: #f0eae6
 window.*.button.*.image.color: #f0eae6
 menu*.bg.color: #f0eae6
@@ -19,8 +26,8 @@ border.width: 0
 # Title
 
 # Add some padding
-padding.width: 10
-padding.height: 10
+padding.width: 5
+padding.height: 5
 
 # Set title colors
 window.*.title.bg: Solid Flat

@@ -19,27 +19,9 @@ changewall () {
     # Randomly set the wallpaper excluding the current wallpaper
     find $walldir ! -name "$wall" -type f \( -name '*.jpg' -o -name '*.png' \) -print0 |
     shuf -n1 -z | xargs -0 feh --bg-fill
-
-    # Get wallpaper again
-    wall=$(awk '/feh/ {printf $3}' "$HOME/.fehbg")
-    wall=${wall#\'*}
-    wall=${wall%*\'}
-    wall=${wall##*/}
-
-    echo "$wall"
-
-    # Change openbox titlebar color based on wallpaper
-    case $wall in
-        1.jpg|3.jpg|4.jpg) gencol openbox 1 7 ;;
-        2.jpg|6.jpg|9.jpg) gencol openbox 2 7 ;;
-        5.jpg|7.jpg|10.jpg|11.jpg) gencol openbox 4 7 ;;
-        8.jpg) gencol openbox  8 7 ;;
-        1.png) gencol openbox 6 0 ;;
-        11.jpg) gencol openbox 7 8 ;;
-    esac
 }
 
 case $1 in
     --loop|-l) while :; do changewall; sleep $2; done ;;
-    *) changewall; mpc update ;;
+    *) changewall ;;
 esac

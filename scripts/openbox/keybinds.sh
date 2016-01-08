@@ -5,12 +5,14 @@
 # https://github.com/dylanaraps/dotfiles
 
 volup () {
-    amixer set Master 5+
+    # amixer set Master 5+
+    pulseaudio-ctl up
     popup -e "$(amixer get Master | egrep -o '[0-9]+\%')" -w 150 -x 1670 &
 }
 
 voldown () {
-    amixer set Master 5-
+    # amixer set Master 5-
+    pulseaudio-ctl down
     popup -e "$(amixer get Master | egrep -o '[0-9]+\%')" -w 150 -x 1670 &
 }
 

@@ -382,30 +382,6 @@
         <command>keybinds minify</command>
       </action>
     </keybind>
-    <keybind key="A-h">
-      <action name="Execute">
-        <name>Resize window</name>
-        <command>size h 8</command>
-      </action>
-    </keybind>
-    <keybind key="A-j">
-      <action name="Execute">
-        <name>Resize window</name>
-        <command>size j 8</command>
-      </action>
-    </keybind>
-    <keybind key="A-k">
-      <action name="Execute">
-        <name>Resize window</name>
-        <command>size k 8</command>
-      </action>
-    </keybind>
-    <keybind key="A-l">
-      <action name="Execute">
-        <name>Resize window</name>
-        <command>size l 8</command>
-      </action>
-    </keybind>
     <keybind key="W-U">
       <action name="Execute">
         <name>Take Screenshot</name>
@@ -464,6 +440,18 @@
       <action name="Execute">
         <name>Change to random wallpaper</name>
         <command>wall</command>
+      </action>
+    </keybind>
+    <keybind key="F7">
+      <action name="Execute">
+        <name>click mouse</name>
+        <command>xdotool click 1</command>
+      </action>
+    </keybind>
+    <keybind key="F8">
+      <action name="Execute">
+        <name>click mouse</name>
+        <command>xdotool click 3</command>
       </action>
     </keybind>
   </keyboard>
@@ -743,20 +731,9 @@
       <decor>yes</decor>
       <layer>above</layer>
     </application>
-    <application name="Music">
-      <desktop>all</desktop>
-      <maximized>no</maximized>
-      <decor>no</decor>
-      <layer>above</layer>
-      <position force="yes">
-        <x>1670</x>
-        <y>820</y>
-      </position>
-    </application>
     <application class="Firefox*">
       <desktop>1</desktop>
       <focus>no</focus>
-      <layer>below</layer>
     </application>
     <application class="Gimp*">
       <desktop>4</desktop>
