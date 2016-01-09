@@ -212,6 +212,10 @@ xoffset=0
 # --scrot on/off
 scrot="off"
 
+# Screenshot program to launch
+# --scrotcmd
+scrotcmd="scrot -c -d 3"
+
 # Scrot dir
 # Where to save the screenshots
 # --scrotdir /path/to/screenshot/folder
@@ -219,7 +223,7 @@ scrotdir="$HOME/Pictures"
 
 # Scrot filename
 # What to name the screenshots
-# --scrot
+# --scrot str
 scrotname="fetch-%Y-%m-%d-%H:%M.png"
 
 
@@ -369,7 +373,7 @@ getuptime () {
 # Get package count
 getpackages () {
     case "$distro" in
-        "Arch Linux"|"Parabola GNU/Linux-libre"|"Manjaro"|"Antergos")
+        "Arch Linux" | "Parabola GNU/Linux-libre" | "Manjaro" | "Antergos")
             packages="$(pacman -Q | wc -l)"
         ;;
 
@@ -377,7 +381,7 @@ getpackages () {
             packages="$(xbps-query -l | wc -l)"
         ;;
 
-        "Ubuntu"|"Mint"|"Debian"|"Kali Linux"|"Deepin Linux")
+        "Ubuntu" | "Mint" | "Debian" | "Kali Linux" | "Deepin Linux")
             packages="$(dpkg --get-selections | grep -v deinstall$ | wc -l)"
         ;;
 
@@ -385,11 +389,11 @@ getpackages () {
             packages="$(ls -1 /var/log/packages | wc -l)"
         ;;
 
-        "Gentoo"|"Funtoo")
+        "Gentoo" | "Funtoo")
             packages="$(ls -d /var/db/pkg/*/* | wc -l)"
         ;;
 
-        "Fedora"|"openSUSE"|"Red Hat Enterprise Linux"|"CentOS")
+        "Fedora" | "openSUSE"|"Red Hat Enterprise Linux"|"CentOS")
             packages="$(rpm -qa | wc -l)"
         ;;
 
@@ -439,7 +443,7 @@ getwindowmanager () {
             ;;
 
             "Windows")
-                windowmanager="DWM"
+                windowmanager="Explorer"
             ;;
 
             *)
@@ -662,7 +666,6 @@ getwallpaper () {
 }
 
 getshuffle () {
-    # TODO: Test this on Windows.
     img="$(find $shuffledir -type f \( -name '*.jpg' -o -name '*.png' \) -print0 |
     shuf -n1 -z)"
 }
@@ -763,7 +766,7 @@ getimage () {
 }
 
 takescrot () {
-    scrot -c -d 3 "$scrotdir/$scrotname"
+    $scrotcmd "$scrotdir/$scrotname"
 }
 
 
@@ -874,6 +877,7 @@ usage () { cat << EOF
     --scrot                Take a screenshot
     --scrotdir             Directory to save the scrot
     --scrotfile            File name of scrot
+    --scrotcmd             Screenshot program to launch
 
     Other:
     --help                 Print this text and exit
@@ -944,9 +948,10 @@ while [ "$1" ]; do
         --clean) rm -rf "$imgtempdir" || exit ;;
 
         # Screenshot
-        --scrot|-s) scrot="on" ;;
+        --scrot | -s) scrot="on" ;;
         --scrotdir) scrot="$2" ;;
         --scrotfile) scrot="$2" ;;
+        --scrotcmd) scrot="$2" ;;
 
         # Other
         --help) usage ;;

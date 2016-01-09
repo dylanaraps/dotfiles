@@ -1,8 +1,8 @@
 # Dylan's Dotfiles
 
-### Screens are outdated
-![1](http://i.imgur.com/TtZDiiK.png)
-![2](http://i.imgur.com/JZ3c6R3.png)
+![1](http://i.imgur.com/0kO1WF3.png)
+![2](http://i.imgur.com/LJ48EKH.png)
+![3](http://i.imgur.com/er2XKrq.png)
 
 <!--- My Setup {{{ -->
 

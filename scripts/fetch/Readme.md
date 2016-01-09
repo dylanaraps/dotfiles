@@ -1,14 +1,39 @@
 # fetch
 
-## Big updates: Check the releases page.
-
 This is the home of my fetch script! This script gathers info <br\>
-about your system and prints it to the terminal.
+about your system and prints it to the terminal next to an image of your choice!
 
-The script currently supports Linux, Mac OS X and Windows (Cygwin), if your OS or distro isn't
-supported open an issue and I'll add support for it.
 
 ![1](https://sr.ht/Jd8Y.png)
+
+
+<!-- Features {{{ -->
+
+
+## Features
+
+
+- **Supports Linux, Mac OS X and Windows (Cygwin)!**
+    - If the script isn't working on your system
+      open an issue.
+- **It's Fast**
+    - The script makes heavy use of bash builtins
+      and string manipulation.
+- **Display an image next to the info. (or not)**
+    - The script can use your wallpaper, shuffle through a
+      directory or just display an image.
+- **Highly Customizable**
+    - You can customize almost everything.
+        - See Usage below or lines 23-233 in script
+- **Take a screenshot at the end.**
+    - It's disabled by default and you can specify the cmd
+      to use with ```--scrotcmd cmd``` at launch or by
+      changing the value of ```$scrotcmd``` in the script.
+- **Smart crop (or Waifu crop)**
+    - See https://github.com/dylanaraps/fetch/wiki/What-is-Smart-Crop%3F
+
+
+<!-- }}} -->
 
 
 <!-- Dependences {{{ -->
@@ -33,7 +58,28 @@ These are the script's optional dependencies:
 -  Window manager detection: wmctrl
     - This is used as a fallback to parsing ```.xinitrc``` and ```$XDG_CURRENT_DESKTOP```.
 -  Take a screenshot on script finish: scrot
-    - I'll add an option to specify a custom cmd soon.
+    - You can change this to another program with a ```--scrotcmd``` and an in script option.
+
+
+<!-- }}} -->
+
+
+<!-- Installation {{{ -->
+
+
+## Installation
+
+
+### Arch
+
+1. Install ```fetch-git``` from the aur.
+
+
+### Others
+
+1. Download the latest source at https://github.com/dylanaraps/fetch
+2. Make the file executable using chmod. ```chmod +x /path/to/fetch```
+3. Move the script to somewhere in your $PATH or just run it from where it is.
 
 
 <!-- }}} -->
@@ -144,9 +190,9 @@ Please report any bugs or issues you're having with this as I can't
 
 Here's what's on my todo list
 
-- Cleanup of info array handling
+- Add Windows resolution detection
 
-- Windows support (I'm almost done)
+- Cleanup of info array handling
 
 - Imagemagick optimizations
 
@@ -163,13 +209,7 @@ Here's what's on my todo list
 <!-- }}} -->
 
 
-### Crop mode comparison
-
-#### Fit
-![fit](https://imgur.com/MI0UtSV.png)
-
-#### Fill
-![fill](https://imgur.com/LvxYwki.png)
+<!-- Thanks {{{ -->
 
 
 ### Thanks
@@ -181,3 +221,8 @@ Thanks to:
 - Screenfetch: I've used some snippets as a base for a few functions in this script.
 
 - @jrgz: Helping me test the Mac OS X version.
+
+- @xDemonessx: Helping me test the Windows version.
+
+
+<!-- }}} -->

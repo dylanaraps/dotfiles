@@ -1,15 +1,14 @@
+# Maintainer: Dylan Araps <dyl@tfwno.gf>
 pkgname=fetch-git
 _pkgname=fetch
 pkgrel=1
 pkgdesc="CLI script to show your system's info and display an image using w3m."
 arch=('any')
 url="https://github.com/dylanaraps/fetch"
-license=('GPL')
 provides=($_pkgname)
 conflicts=($_pkgname)
-depends=('bash')
+depends=('bash' 'ncurses')
 optdepends=(
-    'ncurses: (tput) Dynamic image sizing / padding'
     'w3m: Display Images'
     'imagemagick: Image cropping / Thumbnail creation'
     'feh: Wallpaper Displau'
