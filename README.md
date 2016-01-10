@@ -1,4 +1,5 @@
 # Dylan's Dotfiles
+### Do not copy my setup completely. Take parts you like and make it your own.
 
 ![1](http://i.imgur.com/0kO1WF3.png)
 ![2](http://i.imgur.com/LJ48EKH.png)

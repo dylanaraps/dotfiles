@@ -18,6 +18,9 @@
     --url-fonts: lemon;
     --url-font-size: 9px;
     --url-text-align: left;
+
+    /* Don't touch this */
+    --backbutton-urlbar-overlap: 10px;
 }
 
 /* }}} */
@@ -151,7 +154,6 @@
 
 	#urlbar {
 		background: var(--black) !important;
-		border: none !important;
 		box-shadow: none !important;
 		color: var(--gray) !important;
 		font-family: var(--url-fonts) !important;
@@ -161,9 +163,15 @@
 		text-align: var(--url-text-align) !important;
 	}
 
+    #ctraddon_addon-bar {
+        background: var(--black) !important;
+    }
+
 	/* Hides border on navbar */
 	#TabsToolbar:not([collapsed="true"]) + #nav-bar,
-	#browser-bottombox {
+	#browser-bottombox,
+    #ctraddon_addon-bar,
+    #urlbar {
 		border: none !important;
 	}
 
@@ -212,10 +220,6 @@
 		list-style-image: url('data:image/png,%89PNG%0D%0A%1A%0A%00%00%00%0DIHDR%00%00%00%10%00%00%00%10%08%06%00%00%00%1F%F3%FFa%00%00%00%04sBIT%08%08%08%08%7C%08d%88%00%00%00%09pHYs%00%00%0D%D7%00%00%0D%D7%01B%28%9Bx%00%00%00%19tEXtSoftware%00www.inkscape.org%9B%EE%3C%1A%00%00%009IDAT8%8Dc%60%A0%1002000TT%B4%0B%92%A3%B9%A3%A3%F2%3DciES%0A%03%23%E3l%B2%AC%FF%FF%3F%95%89%2C%8D%83%0A%8C%06"%15%C0h%20R%01%00%00%E2%86%1A%86%C2%C8%D8%A4%00%00%00%00IEND%AEB%60%82') !important;
 		width: 0px !important;
 	}
-
-    #ctraddon_addon-bar {
-        background: none !important;
-    }
 
 /* }}} */
 
