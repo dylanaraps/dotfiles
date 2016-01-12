@@ -99,7 +99,7 @@ erb () {
 
     for color in $getcolors; do
         pos=$((pos + 1))
-        echo -e "\t${colors[$pos]} = [\"#$color\", $pos, \"${colors[$pos]}\"]"
+        echo -e "\t${colors[$pos]} = [\"\#$color\", $pos, \"${colors[$pos]}\"]"
     done
 
     echo
@@ -114,7 +114,7 @@ nvim () {
 
     for color in $getcolors; do
         pos=$((pos + 1))
-        echo -e "\tlet g:terminal_color_$pos = \"#$color\""
+        echo -e "\tlet g:terminal_color_$pos = \"\#$color\""
     done
 
     echo
@@ -165,7 +165,7 @@ gencss () {
 # Generate openbox theme
 obthemegen () {
     themedir="$HOME/dotfiles/themes/yellow/openbox-3"
-    cat "$themedir/colors.openbox" "$themedir/themerc.openbox" > "$themedir/themerc"
+    cat "$themedir/gen/colors.openbox" "$themedir/gen/themerc.openbox" > "$themedir/themerc"
 
     # Send signal to openbox to reload config files
     killall -USR2 openbox
