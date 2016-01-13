@@ -58,11 +58,6 @@ minify () {
     wrs -a 355 270 $(pfw)
 }
 
-# Fix blank album art on desktop switch
-gotodesktop () {
-    wmctrl -s $1
-}
-
 case $1 in
     volup) volup ;;
     voldown) voldown ;;
@@ -72,6 +67,5 @@ case $1 in
     dmenu) dmenu ;;
     screenshot) screenshot ;;
     minify) minify ;;
-    gotodesktop) gotodesktop $2 ;;
 esac
 

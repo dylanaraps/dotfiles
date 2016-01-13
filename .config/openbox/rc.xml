@@ -196,46 +196,25 @@
     </keybind>
     <!-- Go to desktop by number -->
     <keybind key="W-1">
-      <action name="Execute">
-        <name>musicfoc</name>
-        <command>keybinds gotodesktop 0</command>
-      </action>
+        <action name="GoToDesktop"><to>1</to></action>
     </keybind>
     <keybind key="W-2">
-      <action name="Execute">
-        <name>musicfoc</name>
-        <command>keybinds gotodesktop 1</command>
-      </action>
+        <action name="GoToDesktop"><to>2</to></action>
     </keybind>
     <keybind key="W-3">
-      <action name="Execute">
-        <name>musicfoc</name>
-        <command>keybinds gotodesktop 2</command>
-      </action>
+        <action name="GoToDesktop"><to>3</to></action>
     </keybind>
     <keybind key="W-4">
-      <action name="Execute">
-        <name>musicfoc</name>
-        <command>keybinds gotodesktop 3</command>
-      </action>
+        <action name="GoToDesktop"><to>4</to></action>
     </keybind>
     <keybind key="W-5">
-      <action name="Execute">
-        <name>musicfoc</name>
-        <command>keybinds gotodesktop 4</command>
-      </action>
+        <action name="GoToDesktop"><to>5</to></action>
     </keybind>
     <keybind key="W-6">
-      <action name="Execute">
-        <name>musicfoc</name>
-        <command>keybinds gotodesktop 5</command>
-      </action>
+        <action name="GoToDesktop"><to>6</to></action>
     </keybind>
     <keybind key="W-7">
-      <action name="Execute">
-        <name>musicfoc</name>
-        <command>keybinds gotodesktop 6</command>
-      </action>
+        <action name="GoToDesktop"><to>7</to></action>
     </keybind>
     <!-- Send program to desktop by number -->
     <keybind key="W-S-1">
