@@ -38,7 +38,7 @@ alias nvimgen="erb -T - ~/dotfiles/colorschemes/ryuuko/ryuuko.erb > ~/dotfiles/c
 # Record screen
 alias record="ffmpeg -f x11grab -s 1920x1080 -framerate 60 -an -i :0.0 -c:v libvpx -b:v 5M -crf 10 -quality realtime -y -loglevel quiet"
 
-alias fetch2="fetch --block_range 1 8 --title 'dylan'\''s pc' --line_wrap off --bold off --uptime_shorthand on --colors 6 4 6 8 7"
+alias fetch2="fetch --block_range 1 8 --line_wrap off --bold off --uptime_shorthand on --gtk_shorthand on --exclude 'Icons: getgtkicons' --exclude 'Resolution: getresolution'"
 
 alias vbox="sudo modprobe vboxdrv vboxnetflt vboxnetadp"
 

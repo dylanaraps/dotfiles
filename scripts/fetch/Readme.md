@@ -4,7 +4,7 @@ This is the home of my fetch script! This script gathers info <br\>
 about your system and prints it to the terminal next to an image of your choice!
 
 
-![1](https://sr.ht/Jd8Y.png)
+![1](http://i.imgur.com/bORHxT5.png)
 
 
 <!-- Features {{{ -->
@@ -91,6 +91,10 @@ These are the script's optional dependencies:
 
 ## Usage
 
+There's an array near the top of the script that allows you
+to pick and choose what to display and where! You can also add custom
+info to print!
+
 The script now supports dynamic image sizing and padding,
 <br\> it's enabled by default and there's a variable you
 <br\> need to set for it to work correctly.
@@ -101,14 +105,12 @@ You can either change the variable $fontwidth inside of the
 Once you set the var the script will scale the image and padding
 <br\> to fit your terminal window.
 
-Please report any bugs or issues you're having with this as I can't
-<br\> test with many configurations.
-
 
 ```
  usage: ${0##*/} [--colors 1 2 3 4 5] [--kernel "\$\(uname -rs\)"]
 
     Info:
+    --exclude "OS: getos"  Disable an info line at launch
     --title string         Change the title at the top
     --distro string/cmd    Manually set the distro
     --kernel string/cmd    Manually set the kernel
@@ -119,6 +121,7 @@ Please report any bugs or issues you're having with this as I can't
     --shell string/cmd     Manually set the shell
     --winman string/cmd    Manually set the window manager
     --use_wmctrl on/off    Use wmctrl for a more accurate reading
+    --gtk_shorthand on/off Shorten output of gtk theme/icons
     --cpu string/cmd       Manually set the cpu name
     --memory string/cmd    Manually set the memory
     --speed_type           Change the type of cpu speed to get
@@ -175,6 +178,7 @@ Please report any bugs or issues you're having with this as I can't
     --scrot                Take a screenshot
     --scrotdir             Directory to save the scrot
     --scrotfile            File name of scrot
+    --scrotcmd             Screenshot program to launch
 
     Other:
     --help                 Print this text and exit
@@ -201,7 +205,7 @@ Here's what's on my todo list
   everything is a function we can add optional support for pretty much anything.
 
     - Resolution (Done!)
-    - GTK themes
+    - GTK themes (Done!)
     - Terminal Font
     - GPU
     - IP

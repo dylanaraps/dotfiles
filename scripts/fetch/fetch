@@ -38,7 +38,12 @@ export LANGUAGE=C
 # "echo: Custom string to print"
 #
 # Optional info lines that are disabled by default are:
-# "getresolution" "getsong"
+# "getresolution" "getsong" "getvisualstyle"
+#
+# Info lines enabled by default are:
+# "gettitle" "getdistro" "getkernel" "getuptime" "getpackages"
+# "getshell" "getresolution" "getwindowmanager" "getgtktheme"
+# "getgtkicons" "getcpu" "getmemory" "getcols"
 info=(
     "gettitle"
     "underline"
@@ -47,7 +52,10 @@ info=(
     "Uptime: getuptime"
     "Packages: getpackages"
     "Shell: getshell"
+    "Resolution: getresolution"
     "Window Manager: getwindowmanager"
+    "GTK Theme: getgtktheme"
+    "Icons: getgtkicons"
     "CPU: getcpu"
     "Memory: getmemory"
     "linebreak"
@@ -73,8 +81,15 @@ speed_type="max"
 # Uptime
 
 # Shorten the output of the uptime function
+# --uptime_shorthand on/off
 uptime_shorthand="off"
 
+
+# Gtk Theme / Icons
+
+# Shorten output (Hide [GTK2] etc)
+# --gtk_shorthand on/off
+gtk_shorthand="off"
 
 # Color Blocks
 
@@ -101,6 +116,10 @@ block_width=3
 
 # --title_color num
 title_color=4
+
+# Color of "@" symbol in title
+# --at_color num
+at_color=6
 
 # --subtitle_color num
 subtitle_color=1
@@ -580,7 +599,7 @@ getsong () {
 getresolution () {
     case "$os" in
         "Linux")
-            resolution=$(xdpyinfo | awk '/dimensions:/ {printf $2}')
+            resolution=$(xdpyinfo 2>/dev/null | awk '/dimensions:/ {printf $2}')
         ;;
 
         "Mac OS X")
@@ -592,6 +611,64 @@ getresolution () {
             resolution="Unknown"
         ;;
     esac
+}
+
+getgtktheme () {
+    if [ -f "$HOME/.gtkrc-2.0" ]; then
+        gtk2theme=$(grep -F 'gtk-theme-name' $HOME/.gtkrc-2.0)
+        gtk2theme=${gtk2theme/gtk-theme-name=/}
+        gtk2theme=${gtk2theme//\"/}
+        gtk2theme="$gtk2theme"
+        gtktheme="$gtk2theme [GTK2] "
+    fi
+
+    if [ -f "$HOME/.config/gtk-3.0/settings.ini" ]; then
+        gtk3theme=$(grep -F 'gtk-theme-name=' $HOME/.config/gtk-3.0/settings.ini)
+        gtk3theme=${gtk3theme/gtk-theme-name=/}
+        gtk3theme=${gtk3theme//\"/}
+        gtk3theme="$gtk3theme"
+        gtktheme+="$gtk3theme [GTK3]"
+    fi
+
+    if [ "$gtk2theme" ] && [ "$gtk2theme" == "$gtk3theme" ]; then
+        gtktheme="$gtk2theme [GTK2/3]"
+    elif [ -z "$gtk2theme" ] && [ -z "$gtk3theme" ]; then
+        gtktheme="None"
+    fi
+
+    if [ "$gtk_shorthand" == "on" ]; then
+        gtktheme=${gtktheme/ [GTK2]/}
+        gtktheme=${gtktheme/ [GTK3]/}
+        gtktheme=${gtktheme/ [GTK2\/\3\]/}
+    fi
+}
+
+getgtkicons () {
+    if [ -f "$HOME/.gtkrc-2.0" ]; then
+        gtk2icons=$(grep -F 'gtk-icon-theme' $HOME/.gtkrc-2.0)
+        gtk2icons=${gtk2icons/gtk-icon-theme-name=/}
+        gtk2icons=${gtk2icons//\"/}
+        gtkicons="$gtk2icons [GTK2] "
+    fi
+
+    if [ -f "$HOME/.config/gtk-3.0/settings.ini" ]; then
+        gtk3icons=$(grep -F 'gtk-icon-theme' $HOME/.gtkrc-2.0)
+        gtk3icons=${gtk3icons/gtk-icon-theme-name=/}
+        gtk3icons=${gtk3icons//\"/}
+        gtkicons+="$gtk3icons [GTK3]"
+    fi
+
+    if [ "$gtk2icons" ] && [ "$gtk2icons" == "$gtk3icons" ]; then
+        gtkicons="$gtk2icons [GTK2/3]"
+    elif [ -z "$gtk2icons" ] && [ -z "$gtk3icons" ]; then
+        gtkicons="None"
+    fi
+
+    if [ "$gtk_shorthand" == "on" ]; then
+        gtkicons=${gtkicons/ [GTK2]/}
+        gtkicons=${gtkicons/ [GTK3]/}
+        gtkicons=${gtkicons/ [GTK2\/\3\]/}
+    fi
 }
 
 getcols () {
@@ -783,6 +860,7 @@ underline () {
 
 colors () {
     title_color="\e[38;5;${title_color}m"
+    at_color="\e[38;5;${at_color}m"
     subtitle_color="\e[38;5;${subtitle_color}m"
     colon_color="\e[38;5;${colon_color}m"
     underline_color="\e[38;5;${underline_color}m"
@@ -811,6 +889,7 @@ usage () { cat << EOF
  usage: ${0##*/} [--colors 1 2 3 4 5] [--kernel "\$\(uname -rs\)"]
 
     Info:
+    --exclude "OS: getos"  Disable an info line at launch
     --title string         Change the title at the top
     --distro string/cmd    Manually set the distro
     --kernel string/cmd    Manually set the kernel
@@ -821,6 +900,7 @@ usage () { cat << EOF
     --shell string/cmd     Manually set the shell
     --winman string/cmd    Manually set the window manager
     --use_wmctrl on/off    Use wmctrl for a more accurate reading
+    --gtk_shorthand on/off Shorten output of gtk theme/icons
     --cpu string/cmd       Manually set the cpu name
     --memory string/cmd    Manually set the memory
     --speed_type           Change the type of cpu speed to get
@@ -828,9 +908,10 @@ usage () { cat << EOF
     --song string/cmd      Manually set the current song
 
     Text Colors:
-    --colors 1 2 3 4 5     Change the color of text
-                           (title, subtitle, colon, underline, info)
+    --colors 1 2 3 4 5 6   Change the color of text
+                           (title, @, subtitle, colon, underline, info)
     --title_color num      Change the color of the title
+    --at_color num         Change the color of "@" in title
     --subtitle_color num   Change the color of the subtitle
     --colon_color num      Change the color of the colons
     --underline_color num  Change the color of the underlines
@@ -896,6 +977,7 @@ exit 1
 while [ "$1" ]; do
     case $1 in
         # Info
+        --exclude) info=("${info[@]/$2}") ;;
         --title) title="$2" ;;
         --os) os="$2" ;;
         --kernel) kernel="$2" ;;
@@ -905,6 +987,7 @@ while [ "$1" ]; do
         --shell) shell="$2" ;;
         --winman) windowmanager="$2" ;;
         --use_wmctrl) use_wmctrl="$2" ;;
+        --gtk_shorthand) gtk_shorthand="$2" ;;
         --cpu) cpu="$2" ;;
         --speed_type) speed_type="$2" ;;
         --memory) memory="$2" ;;
@@ -913,10 +996,12 @@ while [ "$1" ]; do
         # Text Colors
         --colors) title_color=$2
             [ "$3" ] && subtitle_color=$3
-            [ "$4" ] && colon_color=$4
-            [ "$4" ] && underline_color=$5
-            [ "$5" ] && info_color=$6 ;;
+            [ "$4" ] && at_color=$4
+            [ "$5" ] && colon_color=$5
+            [ "$6" ] && underline_color=$6
+            [ "$7" ] && info_color=$7 ;;
         --title_color) title_color=$2 ;;
+        --at_color) at_color=$2 ;;
         --subtitle_color) subtitle_color=$2 ;;
         --colon_color) colon_color=$2 ;;
         --underline_color) underline_color=$2 ;;
@@ -1002,6 +1087,10 @@ printinfo () {
                 fi
             ;;
 
+            "")
+                continue
+            ;;
+
             *:*|*)
                 # Update the var
                 var=${function/get/}
@@ -1013,6 +1102,7 @@ printinfo () {
 
             gettitle)
                 string="${bold}${title_color}${output}"
+                string="${string/@/${at_color}@${title_color}}"
                 length=${#output}
             ;;
 
