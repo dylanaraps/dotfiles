@@ -5,5 +5,5 @@ yellow=bfb7a1
 blue=7c9fa6
 orange=ccad99
 cyan=b8ccc9
-white=f0eae6
+white=f0f0f0
 gray=70838c

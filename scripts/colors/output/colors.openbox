@@ -1,16 +1,10 @@
 # Openbox colors, generated using gencol
-window.active.title.bg.color: #99736e
-#78a090
-#bfb7a1
-#7c9fa6
-#ccad99
-#b8ccc9
-#f0eae6
-window.inactive.title.bg.color: #7c9fa6
-window.*.label.text.color: #f0eae6
-window.*.button.*.image.color: #f0eae6
-menu*.bg.color: #f0eae6
-menu*.text.color: #3e5059
-menu.border.color: #f0eae6
-menu.separator.color: #f0eae6
+window.active.title.bg.color: #70838c
+window.inactive.title.bg.color: #70838c
+window.*.label.text.color: #f0f0f0
+window.*.button.*.image.color: #f0f0f0
+menu*.bg.color: #f0f0f0
+menu*.text.color: #70838c
+menu.border.color: #f0f0f0
+menu.separator.color: #f0f0f0
 

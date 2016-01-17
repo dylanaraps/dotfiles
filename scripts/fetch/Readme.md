@@ -1,6 +1,8 @@
 # fetch
 
-This is the home of my fetch script! This script gathers info <br\>
+[[Features](#features)]  [[Dependencies](#dependencies)]  [[Installation](#installation)]  [[Usage](#usage)]  [[TODO](#todo)]  [[Thanks](#thanks)]
+
+This is the home of my fetch script! This script gathers info <br />
 about your system and prints it to the terminal next to an image of your choice!
 
 
@@ -91,19 +93,28 @@ These are the script's optional dependencies:
 
 ## Usage
 
-There's an array near the top of the script that allows you
-to pick and choose what to display and where! You can also add custom
-info to print!
+**NOTE:** For the images to be sized correctly you need to set the ```$font_width``` variable.
+If you don't know your font width in pixels keep trying values until the image is sized correctly.
 
-The script now supports dynamic image sizing and padding,
-<br\> it's enabled by default and there's a variable you
-<br\> need to set for it to work correctly.
+You can also use the launch flag ```--font_width``` to set it on the fly.
 
-You can either change the variable $fontwidth inside of the
-<br\> script or launch it with ```--font_width num```.
+You can customize what info to print by editing the info array near the top of the script.
+The array looks like this:
 
-Once you set the var the script will scale the image and padding
-<br\> to fit your terminal window.
+```sh
+info=(
+    "gettitle"
+    "underline"
+    "OS: getdistro"
+    "Kernel: getkernel"
+    "Uptime: getuptime"
+    "Packages: getpackages"
+    etc...
+)
+```
+
+See these comments inside the script for more info:
+https://github.com/dylanaraps/fetch/blob/master/fetch#L29
 
 
 ```
@@ -181,6 +192,8 @@ Once you set the var the script will scale the image and padding
     --scrotcmd             Screenshot program to launch
 
     Other:
+    --clear on/off         Whether or not to clear the terminal
+                           before printing.
     --help                 Print this text and exit
 ```
 

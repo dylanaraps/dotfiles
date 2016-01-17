@@ -18,7 +18,7 @@ xoffset=1670
 yoffset=35
 
 bg="#$white"
-fg="#$black"
+fg="#$gray"
 
 font="-benis-lemon-medium-r-normal--10-110-75-75-m-50-ISO8859-1"
 

@@ -58,7 +58,7 @@
     <animateIconify>no</animateIconify>
     <font place="ActiveWindow">
       <name>lemon</name>
-      <size>8</size>
+      <size>9</size>
       <!-- font size in points -->
       <weight>Normal</weight>
       <!-- 'bold' or 'normal' -->
@@ -67,7 +67,7 @@
     </font>
     <font place="InactiveWindow">
       <name>lemon</name>
-      <size>8</size>
+      <size>9</size>
       <!-- font size in points -->
       <weight>Normal</weight>
       <!-- 'bold' or 'normal' -->
@@ -196,25 +196,39 @@
     </keybind>
     <!-- Go to desktop by number -->
     <keybind key="W-1">
-        <action name="GoToDesktop"><to>1</to></action>
+      <action name="GoToDesktop">
+        <to>1</to>
+      </action>
     </keybind>
     <keybind key="W-2">
-        <action name="GoToDesktop"><to>2</to></action>
+      <action name="GoToDesktop">
+        <to>2</to>
+      </action>
     </keybind>
     <keybind key="W-3">
-        <action name="GoToDesktop"><to>3</to></action>
+      <action name="GoToDesktop">
+        <to>3</to>
+      </action>
     </keybind>
     <keybind key="W-4">
-        <action name="GoToDesktop"><to>4</to></action>
+      <action name="GoToDesktop">
+        <to>4</to>
+      </action>
     </keybind>
     <keybind key="W-5">
-        <action name="GoToDesktop"><to>5</to></action>
+      <action name="GoToDesktop">
+        <to>5</to>
+      </action>
     </keybind>
     <keybind key="W-6">
-        <action name="GoToDesktop"><to>6</to></action>
+      <action name="GoToDesktop">
+        <to>6</to>
+      </action>
     </keybind>
     <keybind key="W-7">
-        <action name="GoToDesktop"><to>7</to></action>
+      <action name="GoToDesktop">
+        <to>7</to>
+      </action>
     </keybind>
     <!-- Send program to desktop by number -->
     <keybind key="W-S-1">
@@ -419,18 +433,6 @@
       <action name="Execute">
         <name>Change to random wallpaper</name>
         <command>wall</command>
-      </action>
-    </keybind>
-    <keybind key="F7">
-      <action name="Execute">
-        <name>click mouse</name>
-        <command>xdotool click 1</command>
-      </action>
-    </keybind>
-    <keybind key="F8">
-      <action name="Execute">
-        <name>click mouse</name>
-        <command>xdotool click 3</command>
       </action>
     </keybind>
   </keyboard>
