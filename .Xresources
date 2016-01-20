@@ -33,12 +33,12 @@ Xcursor.size: 16
 
 ! special
 *.foreground:   #f0f0f0
-*.background:   #3e5059
+*.background:   #394952
 *.cursorColor:  #f0f0f0
 
 ! black
 ! Second black is grey
-*.color0:       #3e5059
+*.color0:       #394952
 *.color8:       #70838c
 
 ! red
@@ -58,12 +58,12 @@ Xcursor.size: 16
 *.color12:      #7c9fa6
 
 ! magenta
-*.color5:       #ccad99
-*.color13:      #ccad99
+*.color5:       #BF9C86
+*.color13:      #BF9C86
 
 ! cyan
-*.color6:       #b8ccc9
-*.color14:      #b8ccc9
+*.color6:       #99BFBA
+*.color14:      #99BFBA
 
 ! white
 *.color7:       #f0f0f0

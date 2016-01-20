@@ -125,9 +125,11 @@ openbox () {
     colors
 
     # Titlebar colors
-    focused_titlebg=$(xrdb -query | grep "\*\.color8" | cut -f2)
-    unfocused_titlebg=$(xrdb -query | grep "\*\.color8:" | cut -f2)
+    focused_titlebg=$(xrdb -query | grep "\*\.color5" | cut -f2)
+    focused_titlebg="#BF9C86"
+    unfocused_titlebg=$(xrdb -query | grep "\*\.color2:" | cut -f2)
     titlefg=$(xrdb -query | grep "\*\.color7:" | cut -f2)
+
 
     # Menu colors
     menubg=$(xrdb -query | grep "\*\.color7:" | cut -f2)

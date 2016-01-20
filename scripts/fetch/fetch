@@ -73,9 +73,16 @@ use_wmctrl=0
 # CPU
 
 # CPU speed type
-# Only works on Linux
+# Only works on Linux with cpufreq.
 # --speed_type current/min/max
 speed_type="max"
+
+
+# GPU
+
+# Shorten output of the getgpu funcion
+# --gpu_shorthand on/off
+gpu_shorthand="off"
 
 
 # Uptime
@@ -90,6 +97,7 @@ uptime_shorthand="off"
 # Shorten output (Hide [GTK2] etc)
 # --gtk_shorthand on/off
 gtk_shorthand="off"
+
 
 # Color Blocks
 
@@ -175,6 +183,11 @@ image="wall"
 
 # Thumbnail directory
 imgtempdir="$HOME/.fetchimages"
+
+# Image Backend
+# Which program to draw images with
+# --image_backend w3m, iterm2
+image_backend="w3m"
 
 # W3m-img path
 # Some systems have this in another location
@@ -270,8 +283,21 @@ case "$(uname)" in
         os="Mac OS X"
     ;;
 
+    "OpenBSD")
+        os="OpenBSD"
+    ;;
+
+    *"BSD")
+        os="BSD"
+    ;;
+
     "CYGWIN"*)
         os="Windows"
+    ;;
+
+    *)
+        printf "%s\n" "Couldn't detect OS, exiting"
+        exit
     ;;
 esac
 
@@ -280,6 +306,9 @@ case "$os" in
     "Linux" )
         if type -p crux >/dev/null 2>&1; then
             distro="CRUX"
+        elif type -p lsb_release >/dev/null 2>&1; then
+            distro="$(lsb_release -a | awk -F':' '/Description/ {printf $2}')"
+            distro=${distro/[[:space:]]/}
         else
             distro="$(grep -h '^NAME=' /etc/*ease)"
             distro=${distro#NAME\=*}
@@ -292,7 +321,16 @@ case "$os" in
         distro="Mac OS X $(sw_vers -productVersion)"
     ;;
 
-   "Windows")
+    "OpenBSD")
+        distro="OpenBSD"
+    ;;
+
+    "BSD")
+        distro="$(uname -v)"
+        distro=${distro%% *}
+    ;;
+
+    "Windows")
         case "$(cmd /c ver)" in
             *"XP"*)
                 distro="Windows XP"
@@ -342,10 +380,10 @@ getuptime () {
             uptime="$(uptime -p)"
         ;;
 
-        "Mac OS X")
+        "Mac OS X" | *"BSD")
             # Get boot time in seconds
             boot="$(sysctl -n kern.boottime)"
-            boot=${boot/{ sec = /}
+            boot="${boot/{ sec = /}"
             boot=${boot/,*}
 
             # Get current date in seconds
@@ -397,27 +435,27 @@ getuptime () {
 # Get package count
 getpackages () {
     case "$distro" in
-        "Arch Linux" | "Parabola GNU/Linux-libre" | "Manjaro" | "Antergos")
-            packages="$(pacman -Q | wc -l)"
+        "Arch Linux"* | "Parabola GNU/Linux-libre"* | "Manjaro"* | "Antergos"*)
+            packages="$(pacman -Qq --color never | wc -l)"
         ;;
 
-        "void")
+        "void"*)
             packages="$(xbps-query -l | wc -l)"
         ;;
 
-        "Ubuntu" | "Mint" | "Debian" | "Kali Linux" | "Deepin Linux")
+        "Ubuntu"* | "Mint"* | "Debian"* | "Kali Linux"* | "Deepin Linux"*)
             packages="$(dpkg --get-selections | grep -v deinstall$ | wc -l)"
         ;;
 
-        "Slackware")
+        "Slackware"*)
             packages="$(ls -1 /var/log/packages | wc -l)"
         ;;
 
-        "Gentoo" | "Funtoo")
+        "Gentoo"* | "Funtoo"*)
             packages="$(ls -d /var/db/pkg/*/* | wc -l)"
         ;;
 
-        "Fedora" | "openSUSE"|"Red Hat Enterprise Linux"|"CentOS")
+        "Fedora"* | "openSUSE"* | "Red Hat Enterprise Linux"* | "CentOS"*)
             packages="$(rpm -qa | wc -l)"
         ;;
 
@@ -426,8 +464,33 @@ getpackages () {
         ;;
 
         "Mac OS X"*)
-            packages="$(pkgutil --pkgs | wc -l)"
-            packages=${packages//[[:blank:]]/}
+            if [ -d "/usr/local/bin" ]; then
+                local_packages=$(ls -l /usr/local/bin/ | grep -v "\(../Cellar/\|brew\)" | wc -l)
+                packages=$((local_packages - 1))
+            fi
+
+            if type -p port >/dev/null 2>&1; then
+                port_packages=$(port installed 2>/dev/null | wc -l)
+                packages=$((packages + $((port_packages - 1))))
+            fi
+
+            if type -p brew >/dev/null 2>&1; then
+                brew_packages=$(brew list -1 2>/dev/null | wc -l)
+                packages=$((packages + brew_packages))
+            fi
+
+            if type -p pkgin >/dev/null 2>&1; then
+                pkgsrc_packages=$(pkgin list 2>/dev/null | wc -l)
+                packages=$((packages + pkgsrc_packages))
+            fi
+        ;;
+
+        "OpenBSD" | "NetBSD")
+            packages=$(pkg_info | wc -l)
+        ;;
+
+        "FreeBSD")
+            packages=$(pkg info | wc -l)
         ;;
 
         "Windows"*)
@@ -438,6 +501,8 @@ getpackages () {
             packages="Unknown"
         ;;
     esac
+
+    packages=${packages// }
 }
 
 # Get shell
@@ -488,18 +553,74 @@ getcpu () {
             cpu=${cpu/ @*/}
 
             # Get cpu speed
-            speed_type=${speed_type/rent/}
-            read -r speed < \
-                /sys/devices/system/cpu/cpu0/cpufreq/scaling_${speed_type}_freq
+            case "$distro" in
+                *"buntu"*)
+                    speed=$(awk -F ': ' '/cpu MHz/ {printf $2; exit}' /proc/cpuinfo)
+                    speed=${speed/\./}
+                ;;
+
+                *)
+                    speed_type=${speed_type/rent/}
+                    read -r speed < \
+                        /sys/devices/system/cpu/cpu0/cpufreq/scaling_${speed_type}_freq
+                ;;
+            esac
 
             # Convert mhz to ghz without bc
             speed=$((speed / 100000))
             speed=${speed:0:1}.${speed:1}
+
             cpu="$cpu @ ${speed}GHz"
         ;;
 
         "Mac OS X")
             cpu="$(sysctl -n machdep.cpu.brand_string)"
+        ;;
+
+        *"BSD")
+            case "$distro" in
+                "OpenBSD")
+                    # Get cpu name
+                    cpu="$(sysctl -n hw.model)"
+                    cpu=${cpu/ @*/}
+                    cpu=${cpu//  /}
+                    cpu=${cpu% }
+
+                    # Get cpu speed
+                    speed=$(sysctl -n hw.cpuspeed)
+                    speed=$((speed / 100))
+                ;;
+
+                "FreeBSD")
+                    # Get cpu name
+                    cpu="$(sysctl -n hw.model)"
+                    cpu=${cpu/ @*/}
+                    cpu=${cpu//  /}
+                    cpu=${cpu% }
+
+                    # Get cpu speed
+                    speed="$(sysctl -n hw.clockrate)"
+                    speed=$((speed / 100))
+                ;;
+
+                "NetBSD")
+                    # Get cpu name
+                    cpu="$(grep -F 'model name' /proc/cpuinfo)"
+                    cpu=${cpu/model name*: /}
+                    cpu=${cpu/ @*/}
+                    cpu=${cpu//  /}
+                    cpu=${cpu% }
+
+                    # Get cpu speed
+                    speed="$(grep -F 'cpu MHz' /proc/cpuinfo)"
+                    speed=${speed/cpu MHz*: /}
+                    speed=${speed/\./}
+                    speed=$((speed / 10000))
+                ;;
+            esac
+
+            speed=${speed:0:1}.${speed:1}
+            cpu="$cpu @ ${speed}GHz"
         ;;
 
         "Windows")
@@ -537,6 +658,92 @@ getcpu () {
     cpu=${cpu// Six-Core/}
 }
 
+getgpu () {
+   case "$os" in
+       "Linux" | "OpenBSD")
+            if type -p nvidia-smi >/dev/null 2>&1; then
+                gpu="$(nvidia-smi | awk -F':' '/Product Name/ {printf $2}')"
+            else
+                gpu="$(lspci | grep "VGA")"
+                gpu=${gpu/* VGA compatible controller: }
+                gpu=${gpu/(rev*)}
+
+                shopt -s nocasematch
+                case "$gpu" in
+                    intel*)
+                        gpu=${gpu/'Intel Corporation' }
+                        gpu=${gpu/'Haswell-'??? }
+
+                        brand="Intel"
+                    ;;
+
+                    advanced*)
+                        gpu=${gpu/'Advanced Micro Devices, Inc.' }
+                        gpu=${gpu/'[AMD/ATI]' }
+                        gpu=${gpu/'Tahiti PRO'}
+                        gpu=${gpu/'Mars'}
+                        gpu=${gpu/' ['}
+                        gpu=${gpu/']'}
+
+                        brand="AMD"
+                    ;;
+
+                    nvidia*)
+                        gpu=${gpu/'NVIDIA Corporation' }
+                        gpu=${gpu/'nVidia Corporation' }
+                        gpu=${gpu/G???? }
+                        gpu=${gpu/'['}
+                        gpu=${gpu/']'}
+
+                        brand="Nvidia"
+                    ;;
+                esac
+
+                gpu="$brand $gpu"
+            fi
+        ;;
+
+        "Mac OS X")
+            gpu=$( \
+                system_profiler SPDisplaysDataType | \
+                awk -F': ' '/^\ *Chipset Model:/ {print $2}' | \
+                awk '{ printf "%s / ", $0 }'
+            )
+            gpu=${gpu//'/ $'}
+        ;;
+
+        "BSD")
+            case "$distro" in
+                "FreeBSD")
+                    gpu=$(pciconf -lv 2>/dev/null | grep -B 4 "VGA" | grep "device")
+                    gpu=${gpu/device*= /}
+                    gpu=${gpu//\'/}
+                    gpu=${gpu//[[:space:]]/ }
+                    gpu=${gpu//  /}
+                ;;
+            esac
+        ;;
+
+
+        "Windows")
+            gpu=$(wmic path Win32_VideoController get caption)
+            gpu=${gpu/Caption /}
+            gpu=${gpu//[[:space:]]/ }
+            gpu=${gpu//  /}
+        ;;
+    esac
+
+    if [ "$gpu_shorthand" == "on" ]; then
+        gpu=${gpu/'Rev. '?}
+        gpu=${gpu/'AMD/ATI'/AMD}
+        gpu=${gpu/'Tahiti' }
+        gpu=${gpu/'PRO' }
+        gpu=${gpu/'OEM' }
+        gpu=${gpu/'Mars' }
+        gpu=${gpu/\/*}
+    fi
+}
+
 # Get memory
 getmemory () {
     case "$os" in
@@ -565,13 +772,48 @@ getmemory () {
 
         "Mac OS X")
             memtotal=$(printf "%s\n" "$(sysctl -n hw.memsize)"/1024^2 | bc)
-            memwired=$(vm_stat | awk '/wired/ { print $4 }')
             memactive=$(vm_stat | awk '/active / { print $3 }')
             memcompressed=$(vm_stat | awk '/occupied/ { print $5 }')
-            memused=$(((${memwired//.} + \
-                        ${memactive//.} + \
-                        ${memcompressed//.}) * 4 / 1024))
+            memused=$(((${memactive//.} + ${memcompressed//.}) * 4 / 1024))
             memory="${memused}MB / ${memtotal}MB"
+        ;;
+
+        "OpenBSD" | "BSD")
+            case "$distro" in
+                "OpenBSD")
+                    memtotal=$(dmesg | awk '/real mem/ {printf $5}')
+                    memtotal=${memtotal/\(/}
+                    memtotal=${memtotal/MB\)/}
+
+                    memfree=$(top -d 1 | awk '/Real:/ {print $6}')
+                    memfree=${memfree/M/}
+
+                    memused=$((memtotal - memfree))
+                    memory="${memused}MB / ${memtotal}MB"
+                ;;
+
+                "FreeBSD")
+                    memtotal=$(dmesg | awk '/real mem/ {printf $5}')
+                    memtotal=${memtotal/\(/}
+                    memtotal=${memtotal/MB\)/}
+
+                    memfree=$(top -d 1 | awk '/Mem:/ {printf $10}')
+                    memfree=${memfree/M/}
+
+                    memused=$((memtotal - memfree))
+                    memory="${memused}MB / ${memtotal}MB"
+                ;;
+
+                "NetBSD")
+                    memfree=$(($(vmstat | awk 'END{printf $4}') / 1000))
+                    memused=$(($(vmstat | awk 'END{printf $3}') / 1000))
+                    memtotal=$((memused + memfree))
+
+                    memused=$((memtotal - memfree))
+                    memory="${memused}MB / ${memtotal}MB"
+                ;;
+            esac
+
         ;;
 
         "Windows")
@@ -603,7 +845,7 @@ getsong () {
 # Get Resolution
 getresolution () {
     case "$os" in
-        "Linux")
+        "Linux" | *"BSD")
             resolution=$(xdpyinfo 2>/dev/null | awk '/dimensions:/ {printf $2}')
         ;;
 
@@ -611,11 +853,9 @@ getresolution () {
             resolution=$(system_profiler SPDisplaysDataType |\
                         awk '/Resolution:/ {print $2"x"$4" "}')
         ;;
-
-        *)
-            resolution="Unknown"
-        ;;
     esac
+
+    [ -z "$resolution" ] && resolution="Unknown"
 }
 
 getgtk () {
@@ -712,8 +952,12 @@ getvisualstyle () {
 
 getwallpaper () {
     case "$os" in
-        "Linux")
+        "Linux" | *"BSD")
             img="$(awk -F\' '/feh/ {printf $2}' $HOME/.fehbg)"
+        ;;
+
+        "Mac OS X")
+            img="$(osascript -e 'tell app "finder" to get posix path of (get desktop picture as text)')"
         ;;
 
         "Windows")
@@ -885,18 +1129,19 @@ usage () { cat << EOF
     --distro string/cmd    Manually set the distro
     --kernel string/cmd    Manually set the kernel
     --uptime string/cmd    Manually set the uptime
-    --uptime_shorthand on/off --v
-                           Shorten the output of uptime
     --packages string/cmd  Manually set the package count
     --shell string/cmd     Manually set the shell
     --winman string/cmd    Manually set the window manager
     --use_wmctrl on/off    Use wmctrl for a more accurate reading
-    --gtk_shorthand on/off Shorten output of gtk theme/icons
     --cpu string/cmd       Manually set the cpu name
     --memory string/cmd    Manually set the memory
     --speed_type           Change the type of cpu speed to get
                            Possible values: current, min, max
     --song string/cmd      Manually set the current song
+
+    --uptime_shorthand     Shorten the output of uptime
+    --gtk_shorthand on/off Shorten output of gtk theme/icons
+    --gpu_shorthand on/off Shorten the output of GPU
 
     Text Colors:
     --colors 1 2 3 4 5 6   Change the color of text
@@ -925,6 +1170,7 @@ usage () { cat << EOF
     Image:
     --image                Image source. Where and what image we display.
                            Possible values: wall, shuffle, /path/to/img, off
+    --image_backend          Which program to use to draw images.
     --shuffledir           Which directory to shuffle for an image.
     --font_width px        Used to automatically size the image
     --image_position       Where to display the image: (Left/Right)
@@ -975,16 +1221,18 @@ while [ "$1" ]; do
         --os) os="$2" ;;
         --kernel) kernel="$2" ;;
         --uptime) uptime="$2" ;;
-        --uptime_shorthand) uptime_shorthand="$2" ;;
         --packages) packages="$2" ;;
         --shell) shell="$2" ;;
         --winman) windowmanager="$2" ;;
         --use_wmctrl) use_wmctrl="$2" ;;
-        --gtk_shorthand) gtk_shorthand="$2" ;;
         --cpu) cpu="$2" ;;
         --speed_type) speed_type="$2" ;;
         --memory) memory="$2" ;;
         --song) song="$2" ;;
+
+        --uptime_shorthand) uptime_shorthand="$2" ;;
+        --gtk_shorthand) gtk_shorthand="$2" ;;
+        --gpu_shorthand) gpu_shorthand="$2" ;;
 
         # Text Colors
         --colors) title_color=$2
@@ -1014,6 +1262,7 @@ while [ "$1" ]; do
 
         # Image
         --image) image="$2" ;;
+        --image_backend) image_backend="$2" ;;
         --shuffledir) shuffledir="$2" ;;
         --font_width) font_width="$2" ;;
         --image_position) image_position="$2" ;;
@@ -1051,6 +1300,17 @@ printinfo () {
         function=${info#*: }
         subtitle=${info%:*}
 
+        # Update the var
+        case "$function" in
+            "get"*)
+                var=${function/get/}
+                typeset -n output=$var
+
+                # Call the function
+                [ -z "$output" ] && $function
+            ;;
+        esac
+
         case "$info" in
             echo:*:*)
                 info=${function#*: }
@@ -1085,15 +1345,6 @@ printinfo () {
                 continue
             ;;
 
-            *:*|*)
-                # Update the var
-                var=${function/get/}
-                typeset -n output=$var
-
-                # Call the function
-                [ -z "$output" ] && $function
-            ;;&
-
             gettitle)
                 string="${bold}${title_color}${output}"
                 string="${string/@/${at_color}@${title_color}}"
@@ -1125,10 +1376,8 @@ printinfo () {
 
 
 # Get lines and columns
-termsize=$(printf "lines \n cols" | tput -S)
-termsize=${termsize/$'\n'/ }
-lines=${termsize% *}
-columns=${termsize#* }
+lines=$(tput lines)
+columns=$(tput cols)
 
 [ "$image" != "off" ] && getimage
 
@@ -1139,23 +1388,42 @@ if [ "$clear_terminal" == "on" ]; then
 fi
 
 # Disable line wrap
-[ "$line_wrap" == "off" ] && printf '\e[?7l'
+[ "$line_wrap" == "off" ] && printf "\e[?7l"
 
-# Call functions and display info
+# Display the image
+if [ "$image" != "off" ]; then
+    case "$image_backend" in
+        "w3m")
+            printf "%b%s" "0;1;$xoffset;$yoffset;$imgsize;$imgsize;;;;;$img\n4;\n3;" |\
+            $w3m_img_path
+        ;;
+
+        "iterm2")
+            printf "%b%s\a\n" "\033]1337;File=width=${imgsize}px;height=${imgsize}px;inline=1:$(base64 < "$img")"
+        ;;
+    esac
+fi
+
+# Get colors / bold
 colors
 bold
+
+# Move the cursor to the top and display the info
+tput cup 0
 printinfo
 
-[ "$image" != "off" ] && \
-    printf "%b%s" "0;1;$xoffset;$yoffset;$imgsize;$imgsize;;;;;$img\n4;\n3;" |\
-    $w3m_img_path
-
 # Move cursor to bottom and redisplay it.
-[ "$clear_terminal" == "on" ] && \
-    printf "%b%s" "\e[${lines}H\e[${prompt_height}A\e[?25h"
+if [ "$clear_terminal" == "on" ]; then
+    case "$os" in
+        "BSD") tput DO $lines ;;
+        *) tput cud $lines ;;
+    esac
+
+    printf "%b%s" "\e[${prompt_height}A\e[?25h"
+fi
 
 # Enable line wrap again
-[ "$line_wrap" == "off" ] && printf '\e[?7h'
+[ "$line_wrap" == "off" ] && printf "\e[?7h"
 
 # If enabled take a screenshot
 [ "$scrot" == "on" ] && takescrot
