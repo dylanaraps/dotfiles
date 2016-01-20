@@ -29,26 +29,42 @@
 
 /* HIDDEN STUFF {{{  */
 
-    .tab-background-start,
-    .tab-background-end,
-    .tabbrowser-tab:after,
-    .tabbrowser-tab:before,
-    #back-button,
-    #forward-button,
-    #identity-box,
-    .autocomplete-history-dropmarker,
-    .tab-icon,
-    .scrollbutton-up,
-    .scrollbutton-down,
-    .tab-icon-image,
-    .tab-throbber,
-    .tab-close-button,
-    .tabs-closebutton-box,
-    .tabs-newtab-button,
-    #urlbar-reload-button,
-    #urlbar-go-button,
-    #urlbar-stop-button {
+	#TabsToolbar .tab-background-start,
+	#TabsToolbar .tab-background-end,
+	#back-button,
+	#forward-button,
+	#TabsToolbar .tabbrowser-tab:after,
+	#TabsToolbar .tabbrowser-tab:before,
+	tab .tab-icon,
+	.tab-icon-image,
+	.tab-throbber,
+	#addonbar-closebutton,
+	#feed-button,
+	#go-button,
+	#star-button,
+	#identity-box,
+	.autocomplete-history-dropmarker,
+	.scrollbutton-up,
+	.scrollbutton-down,
+	#identity-box,
+	#notification-popup-box,
+	#new-tab-button,
+	#private-browsing-indicator,
+	.tabs-closebutton-box,
+	.tab-close-button,
+	#plugins-notification-icon,
+	#TabsToolbar:not(:-moz-lwtheme)::after,
+	.tabs-newtab-button {
 		display: none !important;
+	}
+
+	/* Hides the glassy hover background on toolbar icon hover */
+	.toolbarbutton-icon,
+	.toolbarbutton-text,
+	.toolbarbutton-badge-container {
+		background: none !important;
+		border: none !important;
+		box-shadow: none !important;
 	}
 
 /* }}} */
@@ -57,69 +73,103 @@
 
 	/* Unselected Tabs */
 	#TabsToolbar .tabbrowser-tab {
-		background: var(--black);
-		border: none;
-		color: var(--gray);
-		font-family: var(--tab-fonts);
-		font-size: var(--tab-font-size);
-		height: var(--tab-height);
-		margin: -4px 50px 0 0;
-		min-height: var(--tab-height);
-		text-align: center;
+		background: var(--black) !important;
+		border: none !important;
+		color: var(--gray) !important;
+		font-family: var(--tab-fonts) !important;
+		font-size: var(--tab-font-size) !important;
+		text-align: center !important;
+		margin: 0 50px 0 0;
 	}
 
 	/* Selected Tab */
 	#TabsToolbar .tabbrowser-tab[selected] {
-		color: var(--white);
+		background: var(--black) !important;
+		color: var(--white) !important;
 	}
 
 	/* Background behind Tabs */
-	#TabsToolbar {
-        margin: 0;
-        padding-top: 4px;
+	#main-window[sizemode="normal"]:not([inFullscreen])  #TabsToolbar {
+		background: var(--black) !important;
+		margin: 0 !important;
+        padding-top: 4px !important;
+	}
+
+	#main-window[sizemode="normal"]:not([inFullscreen])  #TabsToolbar .tabbrowser-tabs {
+		height: var(--tab-height) !important;
+		margin-top: -4px !important;
+		min-height: var(--tab-height) !important;
+	}
+
+	#TabsToolbar,
+	#tabbrowser-tabs {
+		-moz-appearance: none !important;
+		background: var(--black) !important;
+		border: none !important;
+		box-shadow: none !important;
+	}
+
+	/* Hides the new tab button */
+	.tabbrowser-tab *,
+	.tabs-newtab-button * {
+		-moz-appearance: none !important;
+		background: none !important;
+        list-style-image: none !important;
 	}
 
 	/* Makes tabs use all the space available */
 	.tabbrowser-tab[fadein]:not([pinned]) {
-        max-width: 100%;
-        min-width: 100px;
+		max-width: 100% !important;
+		min-width: 100px !important;
 	}
 
 	/* Disable Australis Styles */
-	#TabsToolbar .tab-background,
-	#TabsToolbar .tab-background-middle {
+	#TabsToolbar .tab-background {
+		-moz-appearance: none !important;
 		background: transparent;
+		margin: 0 !important;
 	}
+
+	#TabsToolbar .tab-background-middle {
+		background: transparent !important;
+	}
+
+	#TabsToolbar > *{
+		background-color: var(--black) !important;
+	}
+
 
 /* }}} */
 
 /* NAVBAR/URLBAR {{{ */
 
 	#nav-bar {
-		background: var(--black);
-		border: none;
-		box-shadow: none;
-		height: var(--url-height);
+		background: var(--black) !important;
+		border: none !important;
+		box-shadow: none !important;
+		height: var(--url-height) !important;
+		margin: -2px 0 0 -5px !important;
+		padding: 2px 0px !important;
 	}
 
 	#urlbar {
-		background: var(--black);
-		color: var(--gray);
-		font-family: var(--url-fonts);
-		font-size: var(--url-font-size);
-		margin: 0;
-		padding: 10px 5px 10px 25px;
-		text-align: var(--url-text-align);
+		background: var(--black) !important;
+		box-shadow: none !important;
+		color: var(--gray) !important;
+		font-family: var(--url-fonts) !important;
+		font-size: var(--url-font-size) !important;
+		margin: 0 !important;
+		padding: 10px 5px 10px 20px !important;
+		text-align: var(--url-text-align) !important;
 	}
 
-    /* Addon Bar background color */
     #ctraddon_addon-bar {
-    background: var(--black);
+        background: var(--black) !important;
     }
 
 	/* Hides border on navbar */
-    #TabsToolbar:not([collapsed="true"]) + #nav-bar,
-    #browser-bottombox,
+	#TabsToolbar:not([collapsed="true"]) + #nav-bar,
+	#browser-bottombox,
     #ctraddon_addon-bar,
     #urlbar {
 		border: none !important;
@@ -127,21 +177,48 @@
 
 	/* Hides Seperator */
 	#navigator-toolbox:after {
-		height: 0px;
+		height: 0px !important;
+	}
+
+	#main-window {
+		-moz-appearance: -moz-win-borderless-glass !important;
+		-moz-appearance: -moz-win-glass !important;
+	}
+
+	/* Hides Urlbar reload icon */
+	#urlbar-container #urlbar-reload-button,
+	#urlbar-container #urlbar-go-button,
+	#urlbar-container #urlbar-stop-button {
+		visibility: collapse !important;
 	}
 
 	/* Changes menu button image */
 	#PanelUI-menu-button {
-		background: transparent;
-		border: transparent;
-		list-style-image: url('data:image/png,%89PNG%0D%0A%1A%0A%00%00%00%0DIHDR%00%00%00%10%00%00%00%10%08%06%00%00%00%1F%F3%FFa%00%00%00%04sBIT%08%08%08%08%7C%08d%88%00%00%00%09pHYs%00%00%0D%D7%00%00%0D%D7%01B%28%9Bx%00%00%00%19tEXtSoftware%00www.inkscape.org%9B%EE%3C%1A%00%00%009IDAT8%8Dc%60%A0%1002000TT%B4%0B%92%A3%B9%A3%A3%F2%3DciES%0A%03%23%E3l%B2%AC%FF%FF%3F%95%89%2C%8D%83%0A%8C%06"%15%C0h%20R%01%00%00%E2%86%1A%86%C2%C8%D8%A4%00%00%00%00IEND%AEB%60%82');
-		margin-bottom: 4px;
-		padding: 0px 5px 0px 0px;
-		-moz-image-region: rect(0,16px,16px,0);
+		padding: 0px 5px 0px 0px !important;
+		margin-bottom: 4px !important;
+		-moz-image-region: rect(0,16px,16px,0) !important;
+		background: transparent !important;
+		border: transparent !important;
+		list-style-image: url('data:image/png,%89PNG%0D%0A%1A%0A%00%00%00%0DIHDR%00%00%00%10%00%00%00%10%08%06%00%00%00%1F%F3%FFa%00%00%00%04sBIT%08%08%08%08%7C%08d%88%00%00%00%09pHYs%00%00%0D%D7%00%00%0D%D7%01B%28%9Bx%00%00%00%19tEXtSoftware%00www.inkscape.org%9B%EE%3C%1A%00%00%009IDAT8%8Dc%60%A0%1002000TT%B4%0B%92%A3%B9%A3%A3%F2%3DciES%0A%03%23%E3l%B2%AC%FF%FF%3F%95%89%2C%8D%83%0A%8C%06"%15%C0h%20R%01%00%00%E2%86%1A%86%C2%C8%D8%A4%00%00%00%00IEND%AEB%60%82') !important;
+	}
+
+	#PanelUI-menu-button:hover:not([disabled="true"]) {
+		-moz-image-region: rect(0,16px,16px,0px) !important;
+		background: transparent !important;
+		border: transparent !important;
+	}
+
+	#PanelUI-menu-button[open] {
+		-moz-image-region: rect(0,16px,16px,0px) !important;
+		background: transparent !important;
+		border: transparent !important;
+		list-style-image: url('data:image/png,%89PNG%0D%0A%1A%0A%00%00%00%0DIHDR%00%00%00%10%00%00%00%10%08%06%00%00%00%1F%F3%FFa%00%00%00%04sBIT%08%08%08%08%7C%08d%88%00%00%00%09pHYs%00%00%0D%D7%00%00%0D%D7%01B%28%9Bx%00%00%00%19tEXtSoftware%00www.inkscape.org%9B%EE%3C%1A%00%00%00%3AIDAT8%8Dc%60%A0%1002000444p%91%A3%B9%A1%A1%E1%1Bcyy%8B%CD%3Ff%86Xr%0C%60%FA%CB%B0%98%89%1C%8D%83%0B%8C%06"%15%C0h%20R%01%00%00l%A5%1A%17%2A%AE_%A5%00%00%00%00IEND%AEB%60%82') !important;
 	}
 
 	#PanelUI-button {
-		border-inline-start: none;
+		background: none !important;
+		list-style-image: url('data:image/png,%89PNG%0D%0A%1A%0A%00%00%00%0DIHDR%00%00%00%10%00%00%00%10%08%06%00%00%00%1F%F3%FFa%00%00%00%04sBIT%08%08%08%08%7C%08d%88%00%00%00%09pHYs%00%00%0D%D7%00%00%0D%D7%01B%28%9Bx%00%00%00%19tEXtSoftware%00www.inkscape.org%9B%EE%3C%1A%00%00%009IDAT8%8Dc%60%A0%1002000TT%B4%0B%92%A3%B9%A3%A3%F2%3DciES%0A%03%23%E3l%B2%AC%FF%FF%3F%95%89%2C%8D%83%0A%8C%06"%15%C0h%20R%01%00%00%E2%86%1A%86%C2%C8%D8%A4%00%00%00%00IEND%AEB%60%82') !important;
+		width: 0px !important;
 	}
 
 /* }}} */
