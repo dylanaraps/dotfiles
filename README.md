@@ -1,9 +1,10 @@
 # Dylan's Dotfiles
 ### Do not copy my setup completely. Take parts you like and make it your own.
 
-![1](http://i.imgur.com/0kO1WF3.png)
-![2](http://i.imgur.com/LJ48EKH.png)
-![3](http://i.imgur.com/er2XKrq.png)
+![1](https://i.imgur.com/WY3Y13v.png)
+![2](https://i.imgur.com/FFDA8CH.png)
+![3](https://i.imgur.com/cx2Akfb.png)
+![4](http://i.imgur.com/layRUAC.png)
 
 <!--- My Setup {{{ -->
 
