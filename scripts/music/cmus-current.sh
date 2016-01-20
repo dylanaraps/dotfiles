@@ -1,7 +1,9 @@
-#!/bin/mksh
+#!/bin/bash
 # Get current artist/song
 
-artist="$(cmus-remote -Q | awk -F 'tag artist ' '/tag artist / {printf $2}')"
-song="$(cmus-remote -Q | awk -F 'tag title ' '/tag title / {printf $2}')"
+song="$(cmus-remote -Q | grep "tag artist\|title")"
+song=${song/tag artist }
+song=${song/tag title/-}
+song=${song//[[:space:]]/ }
 
-echo "$artist - $song"
+echo "$song"

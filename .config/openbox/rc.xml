@@ -390,40 +390,64 @@
     <keybind key="A-2">
       <action name="Execute">
         <name>Move window to corner</name>
-        <command>corner ml</command>
+        <command>corner mml</command>
       </action>
     </keybind>
     <keybind key="A-3">
       <action name="Execute">
         <name>Move window to corner</name>
-        <command>corner bl</command>
+        <command>corner ml</command>
       </action>
     </keybind>
     <keybind key="A-4">
       <action name="Execute">
         <name>Move window to corner</name>
-        <command>corner mt</command>
+        <command>corner mmml</command>
       </action>
     </keybind>
     <keybind key="A-5">
       <action name="Execute">
         <name>Move window to corner</name>
-        <command>corner mb</command>
+        <command>corner bl</command>
       </action>
     </keybind>
     <keybind key="A-6">
       <action name="Execute">
         <name>Move window to corner</name>
-        <command>corner tr</command>
+        <command>corner mmm</command>
       </action>
     </keybind>
     <keybind key="A-7">
       <action name="Execute">
         <name>Move window to corner</name>
-        <command>corner mr</command>
+        <command>corner mmmm</command>
       </action>
     </keybind>
     <keybind key="A-8">
+      <action name="Execute">
+        <name>Move window to corner</name>
+        <command>corner tr</command>
+      </action>
+    </keybind>
+    <keybind key="A-9">
+      <action name="Execute">
+        <name>Move window to corner</name>
+        <command>corner mmr</command>
+      </action>
+    </keybind>
+    <keybind key="A-0">
+      <action name="Execute">
+        <name>Move window to corner</name>
+        <command>corner mr</command>
+      </action>
+    </keybind>
+    <keybind key="A-minus">
+      <action name="Execute">
+        <name>Move window to corner</name>
+        <command>corner mmmr</command>
+      </action>
+    </keybind>
+    <keybind key="A-equal">
       <action name="Execute">
         <name>Move window to corner</name>
         <command>corner br</command>

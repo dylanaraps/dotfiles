@@ -25,29 +25,51 @@ titlebar=30
 x=$padding
 y=$padding
 
+# Screen size
+sw=1920
+sh=1080
+
 case $1 in
     # Keeping this here for readability
     tl) x=$padding ;;
 
-    tr) x=$((1920 - padding - w)) ;;
+    tr) x=$((sw - padding - w)) ;;
 
-    bl) y=$((1080 - padding - h - titlebar)) ;;
+    bl) y=$((sh - padding - h - titlebar)) ;;
 
-    br) x=$((1920 - padding - w))
-        y=$((1080 - padding - h - titlebar)) ;;
+    br) x=$((sw - padding - w))
+        y=$((sh - padding - h - titlebar)) ;;
 
-    ml) y=$((1080/2 - h/2 - titlebar/2)) ;;
+    ml) y=$((sh/2 - h/2 - titlebar/2)) ;;
 
-    mr) x=$((1920 - padding - w))
-        y=$((1080/2 - h/2 - titlebar/2)) ;;
+    mr) x=$((sw - padding - w))
+        y=$((sh/2 - h/2 - titlebar/2)) ;;
 
-    mt) x=$((1920/2 - w/2)) ;;
+    mt) x=$((sw/2 - w/2)) ;;
 
-    mb) x=$((1920/2 - w/2))
-        y=$((1080 - padding - h - titlebar)) ;;
+    mb) x=$((sw/2 - w/2))
+        y=$((sh - padding - h - titlebar)) ;;
 
-    mm) x=$((1920/2 - w/2))
-        y=$((1080/2 - h/2 - titlebar/2)) ;;
+    mm) x=$((sw/2 - w/2))
+        y=$((sh/2 - h/2 - titlebar/2)) ;;
+
+    mml) y=$((sh/2 - h - titlebar/2)) ;;
+
+    mmr) x=$((sw - padding - w))
+         y=$((sh/2 - h - h/4 - titlebar/2)) ;;
+
+    mmm) x=$((sw/2 -w/2))
+         y=$((sh/2 - h - titlebar/2)) ;;
+
+    mmml) # This works somehow and I cbf fixing it.
+          y=$((sh/2 - + - h/4 - titlebar/2)) ;;
+
+    mmmr) x=$((sw - padding - w))
+          # This works somehow and I cbf fixing it.
+          y=$((sh/2 - + - h/4 - titlebar/2)) ;;
+
+    mmmm) x=$((sw/2 -w/2))
+          y=$((sh/2 - + - h/4 - titlebar/2)) ;;
 esac
 
 # Move the window
