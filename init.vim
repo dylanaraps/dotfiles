@@ -16,7 +16,7 @@ call plug#begin('~/.config/nvim/plugged')
 
 " My Plugins
 Plug '~/dotfiles/colorschemes/ryuuko'
-Plug '~/projects/root.vim/'
+Plug 'dylanaraps/root.vim'
 	let g:root#auto = 1
 	let g:root#echo = 0
 
@@ -453,7 +453,7 @@ endfunction
 " }}}
 
 " Smart :bd {{{
-" If more than 1 buffer exists close buffers while retaining splits.
+" If more than 1 buffer exists close current buffer while retaining splits.
 " bangs(!) are supported as well as arguments after :bd (:bd index.html, etc)
 function SmartBD(bang, argu)
 		if a:bang == 1
