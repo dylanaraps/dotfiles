@@ -19,7 +19,7 @@ w=${window[0]}
 h=${window[1]}
 
 # Titlebar height
-titlebar=30
+titlebar=26
 
 # Default x/y values
 x=$padding
@@ -53,23 +53,23 @@ case $1 in
     mm) x=$((sw/2 - w/2))
         y=$((sh/2 - h/2 - titlebar/2)) ;;
 
-    mml) y=$((sh/2 - h - titlebar/2)) ;;
+    mml) y=$((sh/2 - h - titlebar)) ;;
 
     mmr) x=$((sw - padding - w))
-         y=$((sh/2 - h - h/4 - titlebar/2)) ;;
+         y=$((sh/2 - h - titlebar)) ;;
 
     mmm) x=$((sw/2 -w/2))
-         y=$((sh/2 - h - titlebar/2)) ;;
+         y=$((sh/2 - h - titlebar)) ;;
 
     mmml) # This works somehow and I cbf fixing it.
-          y=$((sh/2 - + - h/4 - titlebar/2)) ;;
+          y=$((sh/2 - + - h/4 - titlebar)) ;;
 
     mmmr) x=$((sw - padding - w))
           # This works somehow and I cbf fixing it.
-          y=$((sh/2 - + - h/4 - titlebar/2)) ;;
+          y=$((sh/2 - + - h/4 - titlebar)) ;;
 
     mmmm) x=$((sw/2 -w/2))
-          y=$((sh/2 - + - h/4 - titlebar/2)) ;;
+          y=$((sh/2 - + - h/4 - titlebar)) ;;
 esac
 
 # Move the window
