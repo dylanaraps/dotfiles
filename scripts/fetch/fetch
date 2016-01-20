@@ -28,39 +28,50 @@ export LANGUAGE=C
 
 # Info
 # What to display and in what order.
+# You can use ANY bash syntax in the function below!
+# For example you could use if statments to only print info
+# when a condition is true!
 #
-# Format is: "Subtitle: function name"
-# Additional lines you can use include:
-# "underline" "linebreak" "echo: msg here" "title: title here"
+# The script comes with two helper functions:
+# info:
+#       info "subtitle" funcname
+# prin:
+#       prin "Custom message to print"
+#       prin "Subtitle: Custom message to print"
+#       prin "Subtitle: $(date)"
 #
-# You can also include your own custom lines by using:
-# "echo: subtitlehere: $(custom cmd here)"
-# "echo: Custom string to print"
+# You can also just use printf / echo to add lines but you'll
+# need to prefix your msg with "${padding}", for example:
+# echo -e "${padding} My custom message here"
 #
-# Optional info lines that are disabled by default are:
-# "getresolution" "getsong" "getvisualstyle"
+# Info functions enabled by default are:
+# "title" "distro" "kernel" "uptime" "packages"
+# "shell" "resolution" "windowmanager" "gtktheme"
+# "gtkicons" "cpu" "memory" "cols"
 #
-# Info lines enabled by default are:
-# "gettitle" "getdistro" "getkernel" "getuptime" "getpackages"
-# "getshell" "getresolution" "getwindowmanager" "getgtktheme"
-# "getgtkicons" "getcpu" "getmemory" "getcols"
-info=(
-    "gettitle"
-    "underline"
-    "OS: getdistro"
-    "Kernel: getkernel"
-    "Uptime: getuptime"
-    "Packages: getpackages"
-    "Shell: getshell"
-    "Resolution: getresolution"
-    "Window Manager: getwindowmanager"
-    "GTK Theme: getgtktheme"
-    "Icons: getgtkicons"
-    "CPU: getcpu"
-    "Memory: getmemory"
-    "linebreak"
-    "getcols"
-)
+# Info functions that are disabled by default are:
+# "resolution" "song" "visualstyle" "gpu"
+#
+# See this wiki page for more info:
+# https://github.com/dylanaraps/fetch/wiki/Customizing-Info
+printinfo () {
+    info title
+    info underline
+
+    info "OS" distro
+    info "Kernel" kernel
+    info "Uptime" uptime
+    info "Packages" packages
+    info "Shell" shell
+    info "Window Manager" windowmanager
+    info "GTK Theme" gtktheme
+    info "Icons" gtkicons
+    info "CPU" cpu
+    info "Memory" memory
+
+    info linebreak
+    info cols
+}
 
 
 # Window Manager
@@ -554,7 +565,7 @@ getcpu () {
 
             # Get cpu speed
             case "$distro" in
-                *"buntu"*)
+                *"buntu"* | "CentOS"*)
                     speed=$(awk -F ': ' '/cpu MHz/ {printf $2; exit}' /proc/cpuinfo)
                     speed=${speed/\./}
                 ;;
@@ -661,46 +672,43 @@ getcpu () {
 getgpu () {
    case "$os" in
        "Linux" | "OpenBSD")
-            if type -p nvidia-smi >/dev/null 2>&1; then
-                gpu="$(nvidia-smi | awk -F':' '/Product Name/ {printf $2}')"
-            else
-                gpu="$(lspci | grep "VGA")"
-                gpu=${gpu/* VGA compatible controller: }
-                gpu=${gpu/(rev*)}
+            gpu="$(lspci | grep "VGA")"
+            gpu=${gpu/* VGA compatible controller: }
+            gpu=${gpu/(rev*)}
 
-                shopt -s nocasematch
-                case "$gpu" in
-                    intel*)
-                        gpu=${gpu/'Intel Corporation' }
-                        gpu=${gpu/'Haswell-'??? }
+            shopt -s nocasematch
+            case "$gpu" in
+                intel*)
+                    gpu=${gpu/'Intel Corporation' }
+                    gpu=${gpu/'Haswell-'??? }
 
-                        brand="Intel"
-                    ;;
+                    brand="Intel"
+                ;;
 
-                    advanced*)
-                        gpu=${gpu/'Advanced Micro Devices, Inc.' }
-                        gpu=${gpu/'[AMD/ATI]' }
-                        gpu=${gpu/'Tahiti PRO'}
-                        gpu=${gpu/'Mars'}
-                        gpu=${gpu/' ['}
-                        gpu=${gpu/']'}
+                advanced*)
+                    gpu=${gpu/'Advanced Micro Devices, Inc.' }
+                    gpu=${gpu/'[AMD/ATI]' }
+                    gpu=${gpu/'Tahiti PRO'}
+                    gpu=${gpu/'Mars'}
+                    gpu=${gpu/' ['}
+                    gpu=${gpu/']'}
 
-                        brand="AMD"
-                    ;;
+                    brand="AMD"
+                ;;
 
-                    nvidia*)
-                        gpu=${gpu/'NVIDIA Corporation' }
-                        gpu=${gpu/'nVidia Corporation' }
-                        gpu=${gpu/G???? }
-                        gpu=${gpu/'['}
-                        gpu=${gpu/']'}
+                nvidia*)
+                    gpu=${gpu/'NVIDIA Corporation' }
+                    gpu=${gpu/'nVidia Corporation' }
+                    gpu=${gpu/G????M }
+                    gpu=${gpu/G???? }
+                    gpu=${gpu/'['}
+                    gpu=${gpu/']'}
 
-                        brand="Nvidia"
-                    ;;
-                esac
+                    brand="Nvidia"
+                ;;
+            esac
 
-                gpu="$brand $gpu"
-            fi
+            gpu="$brand $gpu"
         ;;
 
         "Mac OS X")
@@ -1088,7 +1096,6 @@ getimage () {
                     -scale "$imgsize"x"$imgsize" \
                     "$imgtempdir/$imgname"
             ;;
-
         esac
     fi
 
@@ -1100,14 +1107,68 @@ takescrot () {
     $scrotcmd "$scrotdir/$scrotname"
 }
 
-
 # }}}
 
 
 # Text Formatting {{{
 
 
-underline () {
+info () {
+    # Call the function and update variable
+    if [ -z "$2" ]; then
+        get$1 2>/dev/null
+        eval output="\$${1}"
+    else
+        get$2 2>/dev/null
+        eval output="\$${2}"
+    fi
+
+    case "$1" in
+        title)
+            string="${bold}${title_color}${output}"
+            string="${string/@/${at_color}@${title_color}}"
+            length=${#output}
+        ;;
+
+        underline)
+            string="${underline_color}${output}"
+        ;;
+
+        linebreak | cols)
+            string=""
+        ;;
+
+        *)
+            string="${bold}${subtitle_color}${1}${clear}"
+            string+="${colon_color}: ${info_color}${output}"
+            length=$((${#subtitle} +  ${#output} + 2))
+        ;;
+    esac
+
+    printf "%b%s\n" "${padding}${string}${clear}"
+}
+
+prin () {
+    case "$1" in
+        *:*)
+            subtitle=${1%%:*}
+            output=${1#*: }
+
+            string="${bold}${subtitle_color}${subtitle}${clear}"
+            string+="${colon_color}: ${info_color}${output}"
+            length=$((${#subtitle} +  ${#output} + 1))
+        ;;
+
+        *)
+            string="${info_color}${1}"
+            length=${#1}
+        ;;
+    esac
+
+    printf "%b%s\n" "${padding}${string}${clear}"
+}
+
+getunderline () {
     underline=$(printf %"$length"s)
     underline=${underline// /$underline_char}
 }
@@ -1119,6 +1180,10 @@ colors () {
     colon_color="\e[38;5;${colon_color}m"
     underline_color="\e[38;5;${underline_color}m"
     info_color="\e[38;5;${info_color}m"
+}
+
+color () {
+   printf "\e[38;5;${1}m"
 }
 
 bold () {
@@ -1311,86 +1376,6 @@ done
 # }}}
 
 
-# Print Info {{{
-
-
-printinfo () {
-    for info in "${info[@]}"; do
-        function=${info#*: }
-        subtitle=${info%:*}
-
-        # Update the var
-        case "$function" in
-            "get"*)
-                var=${function/get/}
-                typeset -n output=$var
-
-                # Call the function
-                [ -z "$output" ] && $function
-            ;;
-        esac
-
-        case "$info" in
-            echo:*:*)
-                info=${function#*: }
-                subtitle=${function/:*/}
-                string="${bold}${subtitle_color}${subtitle}${clear}"
-                string+="${colon_color}: ${info_color}${info}"
-                length=${#function}
-            ;;
-
-            echo:*)
-                string="${info_color}${function}"
-                length=${#function}
-            ;;
-
-            title:*)
-                string="${bold}${title_color}${function}"
-                length=${#function}
-            ;;
-
-            linebreak)
-                string=""
-            ;;
-
-            underline)
-                if [ "$underline" == "on" ]; then
-                    underline
-                    string="${underline_color}${underline}"
-                fi
-            ;;
-
-            "")
-                continue
-            ;;
-
-            gettitle)
-                string="${bold}${title_color}${output}"
-                string="${string/@/${at_color}@${title_color}}"
-                length=${#output}
-            ;;
-
-            *:*)
-                string="${bold}${subtitle_color}${subtitle}${clear}"
-                string+="${colon_color}: ${info_color}${output}"
-                length=$((${#subtitle} +  ${#output} + 2))
-            ;;
-
-            *)
-                string="$output"
-                length=${#output}
-            ;;
-
-        esac
-
-        printf "%b%s\n" "${padding}${string}${clear}"
-    done
-}
-
-
-# }}}
-
-
 # Call Functions and Finish Up {{{
 
 
@@ -1413,7 +1398,7 @@ fi
 if [ "$image" != "off" ]; then
     case "$image_backend" in
         "w3m")
-            printf "%b%s" "0;1;$xoffset;$yoffset;$imgsize;$imgsize;;;;;$img\n4;\n3;" |\
+            printf "%b%s\n" "0;1;$xoffset;$yoffset;$imgsize;$imgsize;;;;;$img\n4;\n3;" |\
             $w3m_img_path
         ;;
 
