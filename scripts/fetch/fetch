@@ -313,7 +313,7 @@ case "$os" in
         if type -p crux >/dev/null 2>&1; then
             distro="CRUX"
         elif type -p lsb_release >/dev/null 2>&1; then
-            distro="$(lsb_release -a | awk -F':' '/Description/ {printf $2}')"
+            distro="$(lsb_release -a 2>/dev/null | awk -F':' '/Description/ {printf $2}')"
             distro=${distro/[[:space:]]/}
         else
             distro="$(grep -h '^NAME=' /etc/*ease)"
@@ -936,10 +936,6 @@ getcols () {
 
 getvisualstyle () {
     case "$os" in
-        "Windows XP")
-
-        ;;
-
         "Windows"*)
             path="/proc/registry/HKEY_CURRENT_USER/Software/Microsoft"
             path+="/Windows/CurrentVersion/Themes/CurrentTheme"
