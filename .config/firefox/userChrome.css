@@ -29,42 +29,30 @@
 
 /* HIDDEN STUFF {{{  */
 
-	#TabsToolbar .tab-background-start,
-	#TabsToolbar .tab-background-end,
+	#TabsToolbar:not(:-moz-lwtheme)::after,
+	#addonbar-closebutton,
 	#back-button,
+	#feed-button,
 	#forward-button,
-	#TabsToolbar .tabbrowser-tab:after,
-	#TabsToolbar .tabbrowser-tab:before,
-	tab .tab-icon,
+	#identity-box,
+	#new-tab-button,
+	#notification-popup-box,
+	#plugins-notification-icon,
+	#private-browsing-indicator,
+	.autocomplete-history-dropmarker,
+	.scrollbutton-down,
+	.scrollbutton-up,
+	.tab-background-end,
+	.tab-background-start,
+	.tab-close-button,
+	.tab-icon,
 	.tab-icon-image,
 	.tab-throbber,
-	#addonbar-closebutton,
-	#feed-button,
-	#go-button,
-	#star-button,
-	#identity-box,
-	.autocomplete-history-dropmarker,
-	.scrollbutton-up,
-	.scrollbutton-down,
-	#identity-box,
-	#notification-popup-box,
-	#new-tab-button,
-	#private-browsing-indicator,
+	.tabbrowser-tab:after,
+	.tabbrowser-tab:before,
 	.tabs-closebutton-box,
-	.tab-close-button,
-	#plugins-notification-icon,
-	#TabsToolbar:not(:-moz-lwtheme)::after,
 	.tabs-newtab-button {
 		display: none !important;
-	}
-
-	/* Hides the glassy hover background on toolbar icon hover */
-	.toolbarbutton-icon,
-	.toolbarbutton-text,
-	.toolbarbutton-badge-container {
-		background: none !important;
-		border: none !important;
-		box-shadow: none !important;
 	}
 
 /* }}} */
@@ -78,8 +66,8 @@
 		color: var(--gray) !important;
 		font-family: var(--tab-fonts) !important;
 		font-size: var(--tab-font-size) !important;
-		text-align: center !important;
 		margin: 0 50px 0 0;
+		text-align: center !important;
 	}
 
 	/* Selected Tab */
@@ -90,8 +78,6 @@
 
 	/* Background behind Tabs */
 	#main-window[sizemode="normal"]:not([inFullscreen])  #TabsToolbar {
-		background: var(--black) !important;
-		margin: 0 !important;
         padding-top: 4px !important;
 	}
 
@@ -104,17 +90,8 @@
 	#TabsToolbar,
 	#tabbrowser-tabs {
 		-moz-appearance: none !important;
-		background: var(--black) !important;
 		border: none !important;
 		box-shadow: none !important;
-	}
-
-	/* Hides the new tab button */
-	.tabbrowser-tab *,
-	.tabs-newtab-button * {
-		-moz-appearance: none !important;
-		background: none !important;
-        list-style-image: none !important;
 	}
 
 	/* Makes tabs use all the space available */
@@ -124,17 +101,19 @@
 	}
 
 	/* Disable Australis Styles */
-	#TabsToolbar .tab-background {
+	#TabsToolbar .tab-background,
+	.tabbrowser-tab * {
 		-moz-appearance: none !important;
-		background: transparent;
+		background: none !important;
 		margin: 0 !important;
+        list-style-image: none !important;
 	}
 
 	#TabsToolbar .tab-background-middle {
 		background: transparent !important;
 	}
 
-	#TabsToolbar > *{
+	#TabsToolbar > * {
 		background-color: var(--black) !important;
 	}
 
@@ -185,40 +164,14 @@
 		-moz-appearance: -moz-win-glass !important;
 	}
 
-	/* Hides Urlbar reload icon */
-	#urlbar-container #urlbar-reload-button,
-	#urlbar-container #urlbar-go-button,
-	#urlbar-container #urlbar-stop-button {
-		visibility: collapse !important;
-	}
-
 	/* Changes menu button image */
 	#PanelUI-menu-button {
-		padding: 0px 5px 0px 0px !important;
-		margin-bottom: 4px !important;
 		-moz-image-region: rect(0,16px,16px,0) !important;
 		background: transparent !important;
 		border: transparent !important;
 		list-style-image: url('data:image/png,%89PNG%0D%0A%1A%0A%00%00%00%0DIHDR%00%00%00%10%00%00%00%10%08%06%00%00%00%1F%F3%FFa%00%00%00%04sBIT%08%08%08%08%7C%08d%88%00%00%00%09pHYs%00%00%0D%D7%00%00%0D%D7%01B%28%9Bx%00%00%00%19tEXtSoftware%00www.inkscape.org%9B%EE%3C%1A%00%00%009IDAT8%8Dc%60%A0%1002000TT%B4%0B%92%A3%B9%A3%A3%F2%3DciES%0A%03%23%E3l%B2%AC%FF%FF%3F%95%89%2C%8D%83%0A%8C%06"%15%C0h%20R%01%00%00%E2%86%1A%86%C2%C8%D8%A4%00%00%00%00IEND%AEB%60%82') !important;
-	}
-
-	#PanelUI-menu-button:hover:not([disabled="true"]) {
-		-moz-image-region: rect(0,16px,16px,0px) !important;
-		background: transparent !important;
-		border: transparent !important;
-	}
-
-	#PanelUI-menu-button[open] {
-		-moz-image-region: rect(0,16px,16px,0px) !important;
-		background: transparent !important;
-		border: transparent !important;
-		list-style-image: url('data:image/png,%89PNG%0D%0A%1A%0A%00%00%00%0DIHDR%00%00%00%10%00%00%00%10%08%06%00%00%00%1F%F3%FFa%00%00%00%04sBIT%08%08%08%08%7C%08d%88%00%00%00%09pHYs%00%00%0D%D7%00%00%0D%D7%01B%28%9Bx%00%00%00%19tEXtSoftware%00www.inkscape.org%9B%EE%3C%1A%00%00%00%3AIDAT8%8Dc%60%A0%1002000444p%91%A3%B9%A1%A1%E1%1Bcyy%8B%CD%3Ff%86Xr%0C%60%FA%CB%B0%98%89%1C%8D%83%0B%8C%06"%15%C0h%20R%01%00%00l%A5%1A%17%2A%AE_%A5%00%00%00%00IEND%AEB%60%82') !important;
-	}
-
-	#PanelUI-button {
-		background: none !important;
-		list-style-image: url('data:image/png,%89PNG%0D%0A%1A%0A%00%00%00%0DIHDR%00%00%00%10%00%00%00%10%08%06%00%00%00%1F%F3%FFa%00%00%00%04sBIT%08%08%08%08%7C%08d%88%00%00%00%09pHYs%00%00%0D%D7%00%00%0D%D7%01B%28%9Bx%00%00%00%19tEXtSoftware%00www.inkscape.org%9B%EE%3C%1A%00%00%009IDAT8%8Dc%60%A0%1002000TT%B4%0B%92%A3%B9%A3%A3%F2%3DciES%0A%03%23%E3l%B2%AC%FF%FF%3F%95%89%2C%8D%83%0A%8C%06"%15%C0h%20R%01%00%00%E2%86%1A%86%C2%C8%D8%A4%00%00%00%00IEND%AEB%60%82') !important;
-		width: 0px !important;
+		margin-bottom: 4px !important;
+		padding: 0px 5px 0px 0px !important;
 	}
 
 /* }}} */

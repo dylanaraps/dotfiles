@@ -50,7 +50,7 @@ alias fetch2="fetch \
 --colors 4 1 8 8 8 7 \
 "
 
-alias vbox="sudo modprobe vboxdrv vboxnetflt vboxnetadp"
+alias vbox="sudo modprobe vboxdrv vboxnetflt vboxnetadp vboxguest vboxsf vboxvideo"
 
 # }}}
 

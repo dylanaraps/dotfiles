@@ -7,7 +7,7 @@
 mode = normal
 
 # Framerate Default: 60. Accepts only non-negative values.
-; framerate = 60
+framerate = 60
 
 # Sensitivity in  %. If you think the bars are to low/response is to littei, try
 # increasing this value 200 means double height. Accepts only non-negative values.
@@ -20,7 +20,7 @@ sensitivity = 50
 # width of bras and space between bars in number of characters. Default witdth 3 and space 1.
 ; bars = 0
 bar_width = 0
-; bar_spacing = 1
+bar_spacing = 1
 
 
 # Lower cutoff freq for lowest bar and higheset for highest bar
@@ -62,7 +62,7 @@ source = 1
 # visual styles, may be 'stereo' or 'mono'.
 # Stereo mirrors both channels with low frequencies in center.
 # Mono avrages both channels and outputs left to right lowest to highest frequencies
-; style = stereo
+style = stereo
 
 
 [color]

@@ -8,7 +8,7 @@ about your system and prints it to the terminal next to an image of your choice!
 https://github.com/dylanaraps/fetch/wiki/Customizing-Info
 
 
-![1](http://i.imgur.com/bORHxT5.png)
+![1](http://i.imgur.com/oTxq5fA.png)
 
 
 <!-- Table of Contents {{{ -->
@@ -132,8 +132,6 @@ alias fetch2="fetch \
 --bold off \
 --uptime_shorthand on \
 --gtk_shorthand on \
---exclude 'Icons: getgtkicons' \
---exclude 'Resolution: getresolution' \
 --colors 4 1 8 8 8 7 \
 "
 ```
@@ -150,7 +148,6 @@ alias fetch2="fetch \
     usage: ${0##*/} [--colors 1 2 3 4 5] [--kernel "\$\(uname -rs\)"]
 
     Info:
-    --exclude "OS: getos"  Disable an info line at launch
     --title string         Change the title at the top
     --distro string/cmd    Manually set the distro
     --kernel string/cmd    Manually set the kernel
@@ -222,8 +219,6 @@ alias fetch2="fetch \
     --scrotcmd             Screenshot program to launch
 
     Other:
-    --clear on/off         Whether or not to clear the terminal
-                           before printing.
     --help                 Print this text and exit
 
 
@@ -274,10 +269,12 @@ There are a few ways to fix this.
 # In script options
 $uptime_shorthand on
 $gtk_shorthand on
+$gpu_shorthand on
 
 # Launch flags
 --uptime_shorthand on
 --gtk_shorthand on
+--gpu_shorthand on
 ```
 
 * Edit the info array to make the subtitles shorter
@@ -287,7 +284,7 @@ $gtk_shorthand on
 
 #### getgpu doesn't show my exact video card name
 
-If you're output looks like this:
+If your `lspci | grep "VGA"` output looks like this:
 
 ```
 01:00.0 VGA compatible controller: NVIDIA Corporation Device 1401 (rev a1)
@@ -318,19 +315,16 @@ sudo update-pciids
 
 Here's what's on my todo list
 
-- Cleanup of info array handling
-
-- Imagemagick optimizations
-
 - More info outputs. Now that it's easy to customize what's printed and<br \>
   everything is a function we can add optional support for pretty much anything.
 
     - Resolution (Just missing Windows support)
-    - GTK themes (Done!)
+    - ~~GTK themes~~
     - Terminal Font
+        - This will be difficult to add as there's no standard way of getting this info. We can't check<br \>
+        for terminal config files because the user may have multiple terminals installed.<br \>
+        Using `$PPID` isn't an option because it won't work in tmux/screen, subshells or neovim terminal splits.
     - GPU (In master but experimental) See **[issue #21](https://github.com/dylanaraps/fetch/issues/21)**.
-    - IP
-    - etc
 
 
 <!-- }}} -->

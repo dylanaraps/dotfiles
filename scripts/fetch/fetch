@@ -251,11 +251,6 @@ xoffset=0
 # Other Options {{{
 
 
-# Clear terminal before printing?
-# Needs to be on for images to work
-# --clear on/off
-clear_terminal="on"
-
 # Take a screenshot
 # --scrot on/off
 scrot="off"
@@ -882,7 +877,7 @@ getgtk () {
     esac
 
     if [ -f "$HOME/.gtkrc-2.0" ]; then
-        gtk2theme=$(grep -F "$name" $HOME/.gtkrc-2.0)
+        gtk2theme=$(grep "^[^#]*$name" $HOME/.gtkrc-2.0)
         gtk2theme=${gtk2theme/${name}=/}
         gtk2theme=${gtk2theme//\"/}
         gtk2theme="$gtk2theme"
@@ -890,7 +885,7 @@ getgtk () {
     fi
 
     if [ -f "$HOME/.config/gtk-3.0/settings.ini" ]; then
-        gtk3theme=$(grep -F "$name" $HOME/.config/gtk-3.0/settings.ini)
+        gtk3theme=$(grep "^[^#]*$name" $HOME/.config/gtk-3.0/settings.ini)
         gtk3theme=${gtk3theme/${name}=/}
         gtk3theme=${gtk3theme//\"/}
         gtk3theme="$gtk3theme"
@@ -1208,7 +1203,6 @@ usage () { cat << EOF
  usage: ${0##*/} [--colors 1 2 3 4 5] [--kernel "\$\(uname -rs\)"]
 
     Info:
-    --exclude "OS: getos"  Disable an info line at launch
     --title string         Change the title at the top
     --distro string/cmd    Manually set the distro
     --kernel string/cmd    Manually set the kernel
@@ -1282,8 +1276,6 @@ usage () { cat << EOF
     --scrotcmd             Screenshot program to launch
 
     Other:
-    --clear on/off         Whether or not to clear the terminal
-                           before printing.
     --help                 Print this text and exit
 
 EOF
@@ -1300,7 +1292,6 @@ exit 1
 while [ "$1" ]; do
     case $1 in
         # Info
-        --exclude) info=("${info[@]/$2}") ;;
         --title) title="$2" ;;
         --os) os="$2" ;;
         --kernel) kernel="$2" ;;
@@ -1365,7 +1356,6 @@ while [ "$1" ]; do
         --scrotcmd) scrot="$2" ;;
 
         # Other
-        --clear) clear_terminal="$2" ;;
         --help) usage ;;
     esac
 
@@ -1379,17 +1369,21 @@ done
 # Call Functions and Finish Up {{{
 
 
+# Restore cursor and clear screen on ctrl+c
+trap 'printf "\e[?25h"; clear; exit' 2
+
 # Get lines and columns
 lines=$(tput lines)
 columns=$(tput cols)
 
-[ "$image" != "off" ] && getimage
+# Clear the terminal
+clear
 
-# Clear the terminal and hide the cursor
-if [ "$clear_terminal" == "on" ]; then
-    clear
-    printf "\e[?25l"
-fi
+# Hide the cursor
+printf "\e[?25l"
+
+# Get image
+[ "$image" != "off" ] && getimage
 
 # Disable line wrap
 [ "$line_wrap" == "off" ] && printf "\e[?7l"
@@ -1416,15 +1410,14 @@ bold
 tput cup 0
 printinfo
 
-# Move cursor to bottom and redisplay it.
-if [ "$clear_terminal" == "on" ]; then
-    case "$os" in
-        "BSD") tput DO $lines ;;
-        *) tput cud $lines ;;
-    esac
+# Move the cursor to the bottom
+case "$os" in
+    "BSD") tput DO $lines ;;
+    *) tput cup $lines ;;
+esac
 
-    printf "%b%s" "\e[${prompt_height}A\e[?25h"
-fi
+# Show the cursor
+printf "\e[?25h"
 
 # Enable line wrap again
 [ "$line_wrap" == "off" ] && printf "\e[?7h"
