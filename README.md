@@ -2,9 +2,11 @@
 
 ### Do not copy my setup completely. Take parts you like and make it your own.
 
+<hr>
+
 <!--- My Setup {{{ -->
 
-#### My Setup
+### My Setup
 
 * Linux Distro: `arch`
 * Window Manager: `openbox`
@@ -22,6 +24,8 @@
 * Video Player: `mpv`
 
 <!--- }}} -->
+
+### Screenshots
 
 ![1](https://i.imgur.com/WY3Y13v.png)
 ![2](https://i.imgur.com/FFDA8CH.png)
