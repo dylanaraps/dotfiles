@@ -4,7 +4,7 @@
 
 <!--- My Setup {{{ -->
 
-# My Setup
+#### My Setup
 
 * Linux Distro: `arch`
 * Window Manager: `openbox`
