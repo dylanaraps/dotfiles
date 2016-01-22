@@ -2,14 +2,19 @@
 # Fetch info about your system
 # https://github.com/dylanaraps/fetch
 #
+# Required Dependencies:
+#   Bash 4.0+
+#   Text formatting, dynamic image size and padding: tput
+#   [Linux / BSD / Windows] Uptime detection: procps or procps-ng
+#
+#
 # Optional Dependencies: (You'll lose these features without them)
 #   Displaying Images: w3m + w3m-img
 #   Image Cropping: ImageMagick
-#   Wallpaper Display: feh
-#   Current Song: mpc
-#   Text formatting, dynamic image size and padding: tput
-#   Resolution detection: xorg-xdpyinfo
 #   More accurate window manager detection: wmctrl
+#   [ Linux / BSD ] Wallpaper Display: feh or nitrogen
+#   [ Linux / BSD ] Current Song: mpc or cmus
+#   [ Linux / BSD ] Resolution detection: xorg-xdpyinfo
 #
 # Created by Dylan Araps
 # https://github.com/dylanaraps/
@@ -75,10 +80,6 @@ printinfo () {
 
 
 # Window Manager
-
-# Use wmctrl for a more accurate
-# window manager reading
-use_wmctrl=0
 
 
 # CPU
@@ -251,23 +252,23 @@ xoffset=0
 # Other Options {{{
 
 
-# Take a screenshot
-# --scrot on/off
+# Whether or not to always take a screenshot
+# You can manually take a screenshot with "--scrot" or "-s"
 scrot="off"
 
 # Screenshot program to launch
-# --scrotcmd
-scrotcmd="scrot -c -d 3"
+# --scrot_cmd
+scrot_cmd="scrot -c -d 3"
 
 # Scrot dir
 # Where to save the screenshots
-# --scrotdir /path/to/screenshot/folder
-scrotdir="$HOME/Pictures"
+# --scrot_dir /path/to/screenshot/folder
+scrot_dir="$HOME/Pictures"
 
 # Scrot filename
 # What to name the screenshots
-# --scrot str
-scrotname="fetch-%Y-%m-%d-%H:%M.png"
+# --scrot_name str
+scrot_name="fetch-%Y-%m-%d-%H:%M.png"
 
 
 # }}}
@@ -518,7 +519,7 @@ getshell () {
 
 # Get window manager
 getwindowmanager () {
-    if [ "$use_wmctrl" == "on" ]; then
+    if type -p wmctrl >/dev/null 2>&1; then
         windowmanager="$(wmctrl -m | head -n1)"
         windowmanager=${windowmanager/Name: /}
 
@@ -709,7 +710,7 @@ getgpu () {
         "Mac OS X")
             gpu=$( \
                 system_profiler SPDisplaysDataType | \
-                awk -F': ' '/^\ *Chipset Model:/ {print $2}' | \
+                awk -F': ' '/^\ *Chipset Model:/ {printf $2}' | \
                 awk '{ printf "%s / ", $0 }'
             )
             gpu=${gpu//'/ $'}
@@ -775,8 +776,8 @@ getmemory () {
 
         "Mac OS X")
             memtotal=$(printf "%s\n" "$(sysctl -n hw.memsize)"/1024^2 | bc)
-            memactive=$(vm_stat | awk '/active / { print $3 }')
-            memcompressed=$(vm_stat | awk '/occupied/ { print $5 }')
+            memactive=$(vm_stat | awk '/active / { printf $3 }')
+            memcompressed=$(vm_stat | awk '/occupied/ { printf $5 }')
             memused=$(((${memactive//.} + ${memcompressed//.}) * 4 / 1024))
             memory="${memused}MB / ${memtotal}MB"
         ;;
@@ -788,7 +789,7 @@ getmemory () {
                     memtotal=${memtotal/\(/}
                     memtotal=${memtotal/MB\)/}
 
-                    memfree=$(top -d 1 | awk '/Real:/ {print $6}')
+                    memfree=$(top -d 1 | awk '/Real:/ {printf $6}')
                     memfree=${memfree/M/}
 
                     memused=$((memtotal - memfree))
@@ -863,7 +864,7 @@ getresolution () {
 
         "Mac OS X")
             resolution=$(system_profiler SPDisplaysDataType |\
-                        awk '/Resolution:/ {print $2"x"$4" "}')
+                        awk '/Resolution:/ {printf $2"x"$4" "}')
         ;;
     esac
 
@@ -1094,8 +1095,9 @@ getimage () {
     img="$imgtempdir/$imgname"
 }
 
+scrot_path="$scrot_dir/$scrot_name"
 takescrot () {
-    $scrotcmd "$scrotdir/$scrotname"
+    $scrot_cmd "$scrot_path"
 }
 
 # }}}
@@ -1206,7 +1208,6 @@ usage () { cat << EOF
     --packages string/cmd  Manually set the package count
     --shell string/cmd     Manually set the shell
     --winman string/cmd    Manually set the window manager
-    --use_wmctrl on/off    Use wmctrl for a more accurate reading
     --cpu string/cmd       Manually set the cpu name
     --memory string/cmd    Manually set the memory
     --speed_type           Change the type of cpu speed to get
@@ -1266,10 +1267,10 @@ usage () { cat << EOF
     --clean                Remove all cropped images
 
     Screenshot:
-    --scrot                Take a screenshot
-    --scrotdir             Directory to save the scrot
-    --scrotfile            File name of scrot
-    --scrotcmd             Screenshot program to launch
+    --scrot /path/to/img   Take a screenshot, if path is left empty
+                           the screenshot function will use
+                           \$scrot_dir and \$scrot_name.
+    --scrot_cmd            Screenshot program to launch
 
     Other:
     --help                 Print this text and exit
@@ -1295,7 +1296,6 @@ while [ "$1" ]; do
         --packages) packages="$2" ;;
         --shell) shell="$2" ;;
         --winman) windowmanager="$2" ;;
-        --use_wmctrl) use_wmctrl="$2" ;;
         --cpu) cpu="$2" ;;
         --speed_type) speed_type="$2" ;;
         --memory) memory="$2" ;;
@@ -1346,10 +1346,9 @@ while [ "$1" ]; do
         --clean) rm -rf "$imgtempdir" || exit ;;
 
         # Screenshot
-        --scrot | -s) scrot="on" ;;
-        --scrotdir) scrot="$2" ;;
-        --scrotfile) scrot="$2" ;;
-        --scrotcmd) scrot="$2" ;;
+        --scrot | -s) scrot="on"; \
+            [ "$2" ] && scrot_path="$2" ;;
+        --scrot_cmd) scrot_cmd="$2" ;;
 
         # Other
         --help) usage ;;

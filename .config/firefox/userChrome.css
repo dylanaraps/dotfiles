@@ -78,6 +78,7 @@
 
 	/* Background behind Tabs */
 	#main-window[sizemode="normal"]:not([inFullscreen])  #TabsToolbar {
+        margin: 0 !important;
         padding-top: 4px !important;
 	}
 
