@@ -174,19 +174,10 @@ alias fetch2="fetch \
     usage: ${0##*/} [--colors 1 2 3 4 5] [--kernel "\$\(uname -rs\)"]
 
     Info:
-    --title string         Change the title at the top
-    --distro string/cmd    Manually set the distro
-    --kernel string/cmd    Manually set the kernel
-    --uptime string/cmd    Manually set the uptime
-    --packages string/cmd  Manually set the package count
-    --shell string/cmd     Manually set the shell
-    --winman string/cmd    Manually set the window manager
-    --cpu string/cmd       Manually set the cpu name
-    --memory string/cmd    Manually set the memory
-    --speed_type           Change the type of cpu speed to get
-                           Possible values: current, min, max
-    --song string/cmd      Manually set the current song
-
+    --speed_type           Change the type of cpu speed to display.
+                           Possible values: current, min, max, bios,
+                           scaling_current, scaling_min, scaling_max
+                           NOTE: This only support Linux with cpufreq.
     --uptime_shorthand     Shorten the output of uptime
     --gtk_shorthand on/off Shorten output of gtk theme/icons
     --gpu_shorthand on/off Shorten the output of GPU
@@ -235,6 +226,8 @@ alias fetch2="fetch \
                            to the top edge of the window
     --gap num              Gap between image and text right side
                            to the top edge of the window
+                           NOTE: --gap can take a negative value which will
+                           move the text closer to the left side.
     --clean                Remove all cropped images
 
     Screenshot:
@@ -305,6 +298,12 @@ gpu_shorthand="on"
 * Edit the info array to make the subtitles shorter
 
 * Resizing the terminal so that the lines don't wrap.
+
+
+#### The text is pushed over too far to the right
+
+The easiest way to fix this is to change the value of `--gap` or `$gap`<br \>
+to a negative value. For example `--gap -10` will move the text 10 spaces to the left.
 
 
 #### getgpu doesn't show my exact video card name

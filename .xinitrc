@@ -7,7 +7,7 @@ xrdb -merge ~/.Xresources
 setxkbmap -option caps:none
 
 # Set up multi mon
-xrandr --output DVI-0 --mode 1920x1080 --rate 60 --primary --left-of DVI-1 --output DVI-1 --mode 1280x1024 --rate 75 --output HDMI-0 --mode 1920x1080 --rate 60 --below DVI-0 &
+xrandr --output DVI-0 --mode 1920x1080 --rate 60 --primary --output HDMI-0 --mode 3840x2160 --rate 24 --below DVI-0 &
 
 # Set wallpaper
 feh  --bg-fill ~/Pictures/wallpapers/wash/17.jpg &

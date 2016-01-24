@@ -86,7 +86,8 @@ printinfo () {
 
 # CPU speed type
 # Only works on Linux with cpufreq.
-# --speed_type current/min/max
+# --speed_type current, min, max, bios,
+# scaling_current, scaling_min, scaling_max
 speed_type="max"
 
 
@@ -313,9 +314,11 @@ case "$os" in
     "Linux" )
         if type -p crux >/dev/null 2>&1; then
             distro="CRUX"
+
         elif type -p lsb_release >/dev/null 2>&1; then
             distro="$(lsb_release -a 2>/dev/null | awk -F':' '/Description/ {printf $2}')"
             distro=${distro/[[:space:]]/}
+
         else
             distro="$(grep -h '^NAME=' /etc/*ease)"
             distro=${distro#NAME\=*}
@@ -450,7 +453,7 @@ getpackages () {
             packages="$(xbps-query -l | wc -l)"
         ;;
 
-        "Ubuntu"* | "Mint"* | "Debian"* | "Kali Linux"* | "Deepin Linux"*)
+        "Ubuntu"* | "Mint"* | "Debian"* | "Kali Linux"* | "Deepin Linux"* | "elementary"*)
             packages="$(dpkg --get-selections | grep -v deinstall$ | wc -l)"
         ;;
 
@@ -557,7 +560,8 @@ getcpu () {
             # Get cpu name
             cpu="$(grep -F 'model name' /proc/cpuinfo)"
             cpu=${cpu/model name*: /}
-            cpu=${cpu/ @*/}
+            cpu=${cpu%%  *}
+            cpu=${cpu/@*/}
 
             # Get cpu speed
             case "$distro" in
@@ -567,9 +571,18 @@ getcpu () {
                 ;;
 
                 *)
-                    speed_type=${speed_type/rent/}
+                    case "$speed_type" in
+                        current) speed_type="scaling_cur_freq" ;;
+                        min) speed_type="scaling_min_freq" ;;
+                        max) speed_type="scaling_max_freq" ;;
+                        bios) speed_type="bios_limit" ;;
+                        scaling_current) speed_type="scaling_cur_freq" ;;
+                        scaling_min) speed_type="scaling_min_freq" ;;
+                        scaling_max) speed_type="scaling_max_freq" ;;
+                    esac
+
                     read -r speed < \
-                        /sys/devices/system/cpu/cpu0/cpufreq/scaling_${speed_type}_freq
+                        /sys/devices/system/cpu/cpu0/cpufreq/${speed_type}
                 ;;
             esac
 
@@ -656,13 +669,14 @@ getcpu () {
 
     # Remove uneeded patterns from cpu output
     # This is faster than sed/gsub
-    cpu=${cpu//(tm)/}
-    cpu=${cpu//(TM)/}
-    cpu=${cpu//(r)/}
-    cpu=${cpu//(R)/}
-    cpu=${cpu// CPU/}
-    cpu=${cpu// Processor/}
-    cpu=${cpu// Six-Core/}
+    cpu=${cpu//'(tm)'}
+    cpu=${cpu//'(TM)'}
+    cpu=${cpu//'(r)'}
+    cpu=${cpu//'(R)'}
+    cpu=${cpu// 'CPU'}
+    cpu=${cpu// 'Processor'}
+    cpu=${cpu// 'Six-Core'}
+    cpu=${cpu// 'with Radeon HD Graphics'}
 }
 
 getgpu () {
@@ -685,7 +699,7 @@ getgpu () {
                     gpu=${gpu/'Advanced Micro Devices, Inc.' }
                     gpu=${gpu/'[AMD/ATI]' }
                     gpu=${gpu/'Tahiti PRO'}
-                    gpu=${gpu/'Mars'}
+                    gpu=${gpu/'Seymour'}
                     gpu=${gpu/' ['}
                     gpu=${gpu/']'}
 
@@ -738,12 +752,13 @@ getgpu () {
     esac
 
     if [ "$gpu_shorthand" == "on" ]; then
-        gpu=${gpu/'Rev. '?}
-        gpu=${gpu/'AMD/ATI'/AMD}
-        gpu=${gpu/'Tahiti' }
-        gpu=${gpu/'PRO' }
-        gpu=${gpu/'OEM' }
-        gpu=${gpu/'Mars' }
+        gpu=${gpu// 'Rev. '?}
+        gpu=${gpu//'AMD/ATI'/AMD}
+        gpu=${gpu// 'Tahiti'}
+        gpu=${gpu// 'PRO'}
+        gpu=${gpu// 'OEM'}
+        gpu=${gpu// 'Mars'}
+        gpu=${gpu// 'Series'}
         gpu=${gpu/\/*}
     fi
 }
@@ -845,11 +860,13 @@ getmemory () {
 getsong () {
     if type -p mpc >/dev/null 2>&1; then
         song="$(mpc current)"
+
     elif type -p cmus >/dev/null 2>&1; then
         song="$(cmus-remote -Q | grep "tag artist\|title")"
         song=${song/tag artist }
         song=${song/tag title/-}
         song=${song//[[:space:]]/ }
+
     else
         song="Unknown"
     fi
@@ -877,32 +894,48 @@ getgtk () {
         icons) name="gtk-icon-theme-name" ;;
     esac
 
+    # Check for gtk2 theme
     if [ -f "$HOME/.gtkrc-2.0" ]; then
         gtk2theme=$(grep "^[^#]*$name" $HOME/.gtkrc-2.0)
-        gtk2theme=${gtk2theme/${name}=/}
-        gtk2theme=${gtk2theme//\"/}
-        gtk2theme="$gtk2theme"
-        gtktheme="$gtk2theme [GTK2] "
+    elif [ -f "/etc/gtk-2.0/gtkrc" ]; then
+        gtk2theme=$(grep "^[^#]*$name" /etc/gtk-2.0/gtkrc)
     fi
 
-    if [ -f "$HOME/.config/gtk-3.0/settings.ini" ]; then
+    # Check for gtk3 theme
+    if type -p gsettings >/dev/null 2>&1; then
+        gtk3theme="$(gsettings get org.gnome.desktop.interface gtk-theme)"
+        gtk3theme=${gtk3theme//\'}
+    elif [ -f "$HOME/.config/gtk-3.0/settings.ini" ]; then
         gtk3theme=$(grep "^[^#]*$name" $HOME/.config/gtk-3.0/settings.ini)
-        gtk3theme=${gtk3theme/${name}=/}
-        gtk3theme=${gtk3theme//\"/}
-        gtk3theme="$gtk3theme"
-        gtktheme="$gtk2theme $gtk3theme [GTK3]"
+    else
+        gtk3theme=$(grep "^[^#]*$name" /etc/gtk-3.0/settings.ini)
     fi
 
+    # Format the strings
+    gtk2theme=${gtk2theme/${name}*=/}
+    gtk2theme=${gtk2theme//\"/}
+
+    [ "$gtk2theme" ] && \
+        gtk2theme="$gtk2theme [GTK2], "
+
+    # Format the string
+    gtk3theme=${gtk3theme/${name}*=/}
+    gtk3theme=${gtk3theme//\"/}
+    gtk3theme=${gtk3theme/[[:space:]]}
+    gtktheme="${gtk2theme}${gtk3theme} [GTK3] "
+
+    # Check to see if gtk2 and gtk3 theme are identical
     if [ "$gtk2theme" ] && [ "$gtk2theme" == "$gtk3theme" ]; then
         gtktheme="$gtk2theme [GTK2/3]"
     elif [ -z "$gtk2theme" ] && [ -z "$gtk3theme" ]; then
         gtktheme="None"
     fi
 
+    # Make the output shorter by removing "[GTKX]" from the string
     if [ "$gtk_shorthand" == "on" ]; then
-        gtktheme=${gtktheme/ [GTK2]/}
-        gtktheme=${gtktheme/ [GTK3]/}
-        gtktheme=${gtktheme/ [GTK2\/\3\]/}
+        gtktheme=${gtktheme/ '[GTK2]'}
+        gtktheme=${gtktheme/ '[GTK3]'}
+        gtktheme=${gtktheme/ '[GTK2/3]'}
     fi
 }
 
@@ -962,10 +995,16 @@ getvisualstyle () {
 getwallpaper () {
     case "$os" in
         "Linux" | *"BSD")
-            if type -p feh >/dev/null 2>&1; then
+            if type -p feh >/dev/null 2>&1 && [ -f "$HOME/.fehbg" ]; then
                 img="$(awk -F\' '/feh/ {printf $2}' "$HOME/.fehbg")"
+
             elif type -p nitrogen >/dev/null 2>&1; then
                 img="$(awk -F'=' '/file/ {printf $2}' "$HOME/.config/nitrogen/bg-saved.cfg")"
+
+            elif type -p gsettings >/dev/null 2>&1; then
+                img="$(gsettings get org.gnome.desktop.background picture-uri 2>/dev/null)"
+                img=${img/'file://'}
+                img=${img//\'}
             fi
         ;;
 
@@ -1036,8 +1075,19 @@ getimage () {
         return
     fi
 
-    # Get name of image and prefix it with it's crop mode and offset
-    imgname="$crop_mode-$crop_offset-$imgsize-${img##*/}"
+    # Check to see if the image has a file extension
+    case "${img##*/}" in
+        *"."*)
+            # Get name of image and prefix it with it's crop mode and offset
+            imgname="$crop_mode-$crop_offset-$imgsize-${img##*/}"
+        ;;
+
+        *)
+            # Add a file extension if the image doesn't have one. This
+            # fixes w3m not being able to display them.
+            imgname="$crop_mode-$crop_offset-$imgsize-${img##*/}.jpg"
+        ;;
+    esac
 
     # Check to see if the thumbnail exists before we do any cropping.
     if [ ! -f "$imgtempdir/$imgname" ]; then
@@ -1201,19 +1251,10 @@ usage () { cat << EOF
  usage: ${0##*/} [--colors 1 2 3 4 5] [--kernel "\$\(uname -rs\)"]
 
     Info:
-    --title string         Change the title at the top
-    --distro string/cmd    Manually set the distro
-    --kernel string/cmd    Manually set the kernel
-    --uptime string/cmd    Manually set the uptime
-    --packages string/cmd  Manually set the package count
-    --shell string/cmd     Manually set the shell
-    --winman string/cmd    Manually set the window manager
-    --cpu string/cmd       Manually set the cpu name
-    --memory string/cmd    Manually set the memory
-    --speed_type           Change the type of cpu speed to get
-                           Possible values: current, min, max
-    --song string/cmd      Manually set the current song
-
+    --speed_type           Change the type of cpu speed to display.
+                           Possible values: current, min, max, bios,
+                           scaling_current, scaling_min, scaling_max
+                           NOTE: This only support Linux with cpufreq.
     --uptime_shorthand     Shorten the output of uptime
     --gtk_shorthand on/off Shorten output of gtk theme/icons
     --gpu_shorthand on/off Shorten the output of GPU
@@ -1264,6 +1305,8 @@ usage () { cat << EOF
                            to the top edge of the window
     --gap num              Gap between image and text right side
                            to the top edge of the window
+                           NOTE: --gap can take a negative value which will
+                           move the text closer to the left side.
     --clean                Remove all cropped images
 
     Screenshot:
@@ -1289,18 +1332,7 @@ exit 1
 while [ "$1" ]; do
     case $1 in
         # Info
-        --title) title="$2" ;;
-        --os) os="$2" ;;
-        --kernel) kernel="$2" ;;
-        --uptime) uptime="$2" ;;
-        --packages) packages="$2" ;;
-        --shell) shell="$2" ;;
-        --winman) windowmanager="$2" ;;
-        --cpu) cpu="$2" ;;
         --speed_type) speed_type="$2" ;;
-        --memory) memory="$2" ;;
-        --song) song="$2" ;;
-
         --uptime_shorthand) uptime_shorthand="$2" ;;
         --gtk_shorthand) gtk_shorthand="$2" ;;
         --gpu_shorthand) gpu_shorthand="$2" ;;
