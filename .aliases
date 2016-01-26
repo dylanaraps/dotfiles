@@ -41,9 +41,8 @@ alias fetch2="fetch \
 --uptime_shorthand on \
 --gtk_shorthand on \
 --gpu_shorthand on \
---exclude 'Icons: gtkicons' \
---exclude 'Resolution: resolution' \
 --colors 4 1 8 8 8 7 \
+--gtk3 off \
 "
 
 alias vbox="sudo modprobe vboxdrv vboxnetflt vboxnetadp vboxguest vboxsf vboxvideo"

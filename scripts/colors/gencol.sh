@@ -206,4 +206,5 @@ all () {
     bar & echo "Restarted lemonbar"
 }
 
+xrdb "$HOME/.Xresources"
 all

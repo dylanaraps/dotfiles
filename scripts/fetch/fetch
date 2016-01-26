@@ -52,10 +52,10 @@ export LANGUAGE=C
 # Info functions enabled by default are:
 # "title" "distro" "kernel" "uptime" "packages"
 # "shell" "resolution" "windowmanager" "gtktheme"
-# "gtkicons" "cpu" "memory" "cols"
+# "gtkicons" "cpu" "gpu" "memory" "cols"
 #
 # Info functions that are disabled by default are:
-# "resolution" "song" "visualstyle" "gpu"
+# "resolution" "song" "visualstyle" "font"
 #
 # See this wiki page for more info:
 # https://github.com/dylanaraps/fetch/wiki/Customizing-Info
@@ -72,6 +72,7 @@ printinfo () {
     info "GTK Theme" gtktheme
     info "Icons" gtkicons
     info "CPU" cpu
+    info "GPU" gpu
     info "Memory" memory
 
     info linebreak
@@ -101,7 +102,7 @@ gpu_shorthand="off"
 # Uptime
 
 # Shorten the output of the uptime function
-# --uptime_shorthand on/off
+# --uptime_shorthand tiny, on, off
 uptime_shorthand="off"
 
 
@@ -110,6 +111,15 @@ uptime_shorthand="off"
 # Shorten output (Hide [GTK2] etc)
 # --gtk_shorthand on/off
 gtk_shorthand="off"
+
+
+# Enable/Disable gtk2 theme/icons output
+# --gtk2 on/off
+gtk2="on"
+
+# Enable/Disable gtk3 theme/icons output
+# --gtk3 on/off
+gtk3="on"
 
 
 # Color Blocks
@@ -216,6 +226,7 @@ w3m_img_path="/usr/lib/w3m/w3mimgdisplay"
 split_size=2
 
 # Image position
+# Only works with the w3m backend
 # --image_position left/right
 image_position="left"
 
@@ -317,7 +328,7 @@ case "$os" in
 
         elif type -p lsb_release >/dev/null 2>&1; then
             distro="$(lsb_release -a 2>/dev/null | awk -F':' '/Description/ {printf $2}')"
-            distro=${distro/[[:space:]]/}
+            distro=${distro/[[:space:]]}
 
         else
             distro="$(grep -h '^NAME=' /etc/*ease)"
@@ -393,7 +404,7 @@ getuptime () {
         "Mac OS X" | *"BSD")
             # Get boot time in seconds
             boot="$(sysctl -n kern.boottime)"
-            boot="${boot/{ sec = /}"
+            boot="${boot/{ sec = }"
             boot=${boot/,*}
 
             # Get current date in seconds
@@ -407,20 +418,20 @@ getuptime () {
 
             case "$mins" in
                 0) ;;
-                1) uptime="up ${mins} minute" ;;
-                *) uptime="up ${mins} minutes" ;;
+                1) uptime="up $mins minute" ;;
+                *) uptime="up $mins minutes" ;;
             esac
 
             case "$hours" in
                 0) ;;
-                1) uptime="up ${hours} hour, ${uptime/up /}" ;;
-                *) uptime="up ${hours} hours, ${uptime/up /}" ;;
+                1) uptime="up $hours hour, ${uptime/up }" ;;
+                *) uptime="up $hours hours, ${uptime/up }" ;;
             esac
 
             case "$days" in
                 0) ;;
-                1) uptime="up ${days} day, ${uptime/up /}" ;;
-                *) uptime="up ${days} days, ${uptime/up /}" ;;
+                1) uptime="up $days day, ${uptime/up }" ;;
+                *) uptime="up $days days, ${uptime/up }" ;;
             esac
         ;;
 
@@ -435,11 +446,26 @@ getuptime () {
 
     esac
 
-    if [ "$uptime_shorthand" == "on" ]; then
-        uptime=${uptime/up/}
-        uptime=${uptime/minutes/mins}
-        uptime=${uptime# }
-    fi
+    case "$uptime_shorthand" in
+        "on")
+            uptime=${uptime/up}
+            uptime=${uptime/minutes/mins}
+            uptime=${uptime/minute/min}
+            uptime=${uptime# }
+        ;;
+
+        "tiny")
+            uptime=${uptime/up}
+            uptime=${uptime/ days/d}
+            uptime=${uptime/ day/d}
+            uptime=${uptime/ hours/h}
+            uptime=${uptime/ hour/h}
+            uptime=${uptime/ minutes/m}
+            uptime=${uptime/ minute/m}
+            uptime=${uptime/,}
+            uptime=${uptime# }
+        ;;
+    esac
 }
 
 # Get package count
@@ -454,7 +480,7 @@ getpackages () {
         ;;
 
         "Ubuntu"* | "Mint"* | "Debian"* | "Kali Linux"* | "Deepin Linux"* | "elementary"*)
-            packages="$(dpkg --get-selections | grep -v deinstall$ | wc -l)"
+            packages="$(dpkg --get-selections | grep -cv deinstall$)"
         ;;
 
         "Slackware"*)
@@ -524,15 +550,15 @@ getshell () {
 getwindowmanager () {
     if type -p wmctrl >/dev/null 2>&1; then
         windowmanager="$(wmctrl -m | head -n1)"
-        windowmanager=${windowmanager/Name: /}
+        windowmanager=${windowmanager/Name: }
 
     elif [ "$XDG_CURRENT_DESKTOP" ]; then
         windowmanager="$XDG_CURRENT_DESKTOP"
 
     elif [ -e "$HOME/.xinitrc" ]; then
         xinitrc=$(grep "^[^#]*exec" "${HOME}/.xinitrc")
-        windowmanager="${xinitrc/exec /}"
-        windowmanager="${windowmanager/-session/}"
+        windowmanager="${xinitrc/exec }"
+        windowmanager="${windowmanager/-session}"
         windowmanager="${windowmanager^}"
 
     else
@@ -559,32 +585,29 @@ getcpu () {
         "Linux")
             # Get cpu name
             cpu="$(grep -F 'model name' /proc/cpuinfo)"
-            cpu=${cpu/model name*: /}
+            cpu=${cpu/model name*: }
             cpu=${cpu%%  *}
-            cpu=${cpu/@*/}
+            cpu=${cpu/@*}
 
             # Get cpu speed
-            case "$distro" in
-                *"buntu"* | "CentOS"*)
-                    speed=$(awk -F ': ' '/cpu MHz/ {printf $2; exit}' /proc/cpuinfo)
-                    speed=${speed/\./}
-                ;;
+            if [ -d "/sys/devices/system/cpu/cpu0/cpufreq" ]; then
+                case "$speed_type" in
+                    current) speed_type="scaling_cur_freq" ;;
+                    min) speed_type="scaling_min_freq" ;;
+                    max) speed_type="scaling_max_freq" ;;
+                    bios) speed_type="bios_limit" ;;
+                    scaling_current) speed_type="scaling_cur_freq" ;;
+                    scaling_min) speed_type="scaling_min_freq" ;;
+                    scaling_max) speed_type="scaling_max_freq" ;;
+                esac
 
-                *)
-                    case "$speed_type" in
-                        current) speed_type="scaling_cur_freq" ;;
-                        min) speed_type="scaling_min_freq" ;;
-                        max) speed_type="scaling_max_freq" ;;
-                        bios) speed_type="bios_limit" ;;
-                        scaling_current) speed_type="scaling_cur_freq" ;;
-                        scaling_min) speed_type="scaling_min_freq" ;;
-                        scaling_max) speed_type="scaling_max_freq" ;;
-                    esac
+                read -r speed < \
+                    /sys/devices/system/cpu/cpu0/cpufreq/${speed_type}
 
-                    read -r speed < \
-                        /sys/devices/system/cpu/cpu0/cpufreq/${speed_type}
-                ;;
-            esac
+            else
+                speed=$(awk -F ': ' '/cpu MHz/ {printf $2; exit}' /proc/cpuinfo)
+                speed=${speed/\.}
+            fi
 
             # Convert mhz to ghz without bc
             speed=$((speed / 100000))
@@ -602,8 +625,8 @@ getcpu () {
                 "OpenBSD")
                     # Get cpu name
                     cpu="$(sysctl -n hw.model)"
-                    cpu=${cpu/ @*/}
-                    cpu=${cpu//  /}
+                    cpu=${cpu/ @*}
+                    cpu=${cpu//  }
                     cpu=${cpu% }
 
                     # Get cpu speed
@@ -614,8 +637,8 @@ getcpu () {
                 "FreeBSD")
                     # Get cpu name
                     cpu="$(sysctl -n hw.model)"
-                    cpu=${cpu/ @*/}
-                    cpu=${cpu//  /}
+                    cpu=${cpu/ @*}
+                    cpu=${cpu//  }
                     cpu=${cpu% }
 
                     # Get cpu speed
@@ -626,15 +649,15 @@ getcpu () {
                 "NetBSD")
                     # Get cpu name
                     cpu="$(grep -F 'model name' /proc/cpuinfo)"
-                    cpu=${cpu/model name*: /}
-                    cpu=${cpu/ @*/}
-                    cpu=${cpu//  /}
+                    cpu=${cpu/model name*: }
+                    cpu=${cpu/ @*}
+                    cpu=${cpu//  }
                     cpu=${cpu% }
 
                     # Get cpu speed
                     speed="$(grep -F 'cpu MHz' /proc/cpuinfo)"
-                    speed=${speed/cpu MHz*: /}
-                    speed=${speed/\./}
+                    speed=${speed/cpu MHz*: }
+                    speed=${speed/\.}
                     speed=$((speed / 10000))
                 ;;
             esac
@@ -646,15 +669,15 @@ getcpu () {
         "Windows")
             # Get cpu name
             cpu="$(grep -F 'model name' /proc/cpuinfo)"
-            cpu=${cpu/model name*: /}
-            cpu=${cpu/ @*/}
-            cpu=${cpu//  /}
+            cpu=${cpu/model name*: }
+            cpu=${cpu/ @*}
+            cpu=${cpu//  }
             cpu=${cpu% }
 
             # Get cpu speed
             speed=$(grep -F 'cpu MHz' /proc/cpuinfo)
-            speed=${speed/cpu MHz*: /}
-            speed=${speed/\./}
+            speed=${speed/cpu MHz*: }
+            speed=${speed/\.}
 
             # Convert mhz to ghz without bc
             speed=$((speed / 100000))
@@ -669,56 +692,60 @@ getcpu () {
 
     # Remove uneeded patterns from cpu output
     # This is faster than sed/gsub
-    cpu=${cpu//'(tm)'}
-    cpu=${cpu//'(TM)'}
-    cpu=${cpu//'(r)'}
-    cpu=${cpu//'(R)'}
-    cpu=${cpu// 'CPU'}
-    cpu=${cpu// 'Processor'}
-    cpu=${cpu// 'Six-Core'}
-    cpu=${cpu// 'with Radeon HD Graphics'}
+    cpu=${cpu//(tm)}
+    cpu=${cpu//(TM)}
+    cpu=${cpu//(r)}
+    cpu=${cpu//(R)}
+    cpu=${cpu// CPU}
+    cpu=${cpu// Processor}
+    cpu=${cpu// Six-Core}
+    cpu=${cpu// with Radeon HD Graphics}
 }
 
 getgpu () {
    case "$os" in
-       "Linux" | "OpenBSD")
-            gpu="$(lspci | grep "VGA")"
+       "Linux")
+            gpu="$(lspci | grep -F "VGA")"
             gpu=${gpu/* VGA compatible controller: }
             gpu=${gpu/(rev*)}
 
             shopt -s nocasematch
             case "$gpu" in
                 intel*)
-                    gpu=${gpu/'Intel Corporation' }
-                    gpu=${gpu/'Haswell-'??? }
+                    gpu=${gpu/Intel Corporation }
+                    gpu=${gpu/Haswell-??? }
 
-                    brand="Intel"
+                    brand="Intel "
                 ;;
 
                 advanced*)
-                    gpu=${gpu/'Advanced Micro Devices, Inc.' }
+                    gpu=${gpu/Advanced Micro Devices, Inc\. }
                     gpu=${gpu/'[AMD/ATI]' }
-                    gpu=${gpu/'Tahiti PRO'}
-                    gpu=${gpu/'Seymour'}
-                    gpu=${gpu/' ['}
-                    gpu=${gpu/']'}
+                    gpu=${gpu/Tahiti PRO}
+                    gpu=${gpu/Seymour}
+                    gpu=${gpu/ \[}
+                    gpu=${gpu/\]}
 
-                    brand="AMD"
+                    brand="AMD "
                 ;;
 
                 nvidia*)
-                    gpu=${gpu/'NVIDIA Corporation' }
-                    gpu=${gpu/'nVidia Corporation' }
+                    gpu=${gpu/NVIDIA Corporation }
+                    gpu=${gpu/nVidia Corporation }
                     gpu=${gpu/G????M }
                     gpu=${gpu/G???? }
-                    gpu=${gpu/'['}
-                    gpu=${gpu/']'}
+                    gpu=${gpu/\[}
+                    gpu=${gpu/\]}
 
-                    brand="Nvidia"
+                    brand="Nvidia "
+                ;;
+
+                *virtualbox*)
+                    gpu="VirtualBox Graphics Adapter"
                 ;;
             esac
 
-            gpu="$brand $gpu"
+            gpu="${brand}${gpu}"
         ;;
 
         "Mac OS X")
@@ -730,14 +757,18 @@ getgpu () {
             gpu=${gpu//'/ $'}
         ;;
 
-        "BSD")
+        *"BSD")
             case "$distro" in
                 "FreeBSD")
                     gpu=$(pciconf -lv 2>/dev/null | grep -B 4 "VGA" | grep "device")
-                    gpu=${gpu/device*= /}
-                    gpu=${gpu//\'/}
+                    gpu=${gpu/device*= }
+                    gpu=${gpu//\'}
                     gpu=${gpu//[[:space:]]/ }
-                    gpu=${gpu//  /}
+                    gpu=${gpu//  }
+                ;;
+
+                *)
+                    gpu="Unknown"
                 ;;
             esac
         ;;
@@ -745,20 +776,20 @@ getgpu () {
 
         "Windows")
             gpu=$(wmic path Win32_VideoController get caption)
-            gpu=${gpu/Caption /}
+            gpu=${gpu/Caption }
             gpu=${gpu//[[:space:]]/ }
-            gpu=${gpu//  /}
+            gpu=${gpu//  }
         ;;
     esac
 
     if [ "$gpu_shorthand" == "on" ]; then
-        gpu=${gpu// 'Rev. '?}
-        gpu=${gpu//'AMD/ATI'/AMD}
-        gpu=${gpu// 'Tahiti'}
-        gpu=${gpu// 'PRO'}
-        gpu=${gpu// 'OEM'}
-        gpu=${gpu// 'Mars'}
-        gpu=${gpu// 'Series'}
+        gpu=${gpu// Rev\. ?}
+        gpu=${gpu//AMD\/ATI/AMD}
+        gpu=${gpu// Tahiti}
+        gpu=${gpu// PRO}
+        gpu=${gpu// OEM}
+        gpu=${gpu// Mars}
+        gpu=${gpu// Series}
         gpu=${gpu/\/*}
     fi
 }
@@ -770,20 +801,15 @@ getmemory () {
             # Read first 3 lines
             exec 6< /proc/meminfo
             read -r memtotal <&6
-            read -r memfree <&6
+            read -r memfree <&6 # We don't actually use this var
             read -r memavail <&6
             exec 6<&-
 
             # Do some substitution on each line
-            memtotal=${memtotal/MemTotal:/}
-            memtotal=${memtotal/kB*/}
-            memtotal=${memtotal// /}
-            memfree=${memfree/MemFree:/}
-            memfree=${memfree/kB*/}
-            memfree=${memfree// /}
-            memavail=${memavail/MemAvailable:/}
-            memavail=${memavail/kB*/}
-            memavail=${memavail// /}
+            memtotal=${memtotal/MemTotal:}
+            memtotal=${memtotal/kB*}
+            memavail=${memavail/MemAvailable:}
+            memavail=${memavail/kB*}
 
             memused=$((memtotal - memavail))
             memory="$((memused / 1024))MB / $((memtotal / 1024))MB"
@@ -801,11 +827,11 @@ getmemory () {
             case "$distro" in
                 "OpenBSD")
                     memtotal=$(dmesg | awk '/real mem/ {printf $5}')
-                    memtotal=${memtotal/\(/}
-                    memtotal=${memtotal/MB\)/}
+                    memtotal=${memtotal/\(}
+                    memtotal=${memtotal/MB\)}
 
                     memfree=$(top -d 1 | awk '/Real:/ {printf $6}')
-                    memfree=${memfree/M/}
+                    memfree=${memfree/M}
 
                     memused=$((memtotal - memfree))
                     memory="${memused}MB / ${memtotal}MB"
@@ -813,11 +839,11 @@ getmemory () {
 
                 "FreeBSD")
                     memtotal=$(dmesg | awk '/real mem/ {printf $5}')
-                    memtotal=${memtotal/\(/}
-                    memtotal=${memtotal/MB\)/}
+                    memtotal=${memtotal/\(}
+                    memtotal=${memtotal/MB\)}
 
                     memfree=$(top -d 1 | awk '/Mem:/ {printf $10}')
-                    memfree=${memfree/M/}
+                    memfree=${memfree/M}
 
                     memused=$((memtotal - memfree))
                     memory="${memused}MB / ${memtotal}MB"
@@ -890,45 +916,71 @@ getresolution () {
 
 getgtk () {
     case "$1" in
-        theme) name="gtk-theme-name" ;;
-        icons) name="gtk-icon-theme-name" ;;
+        theme)
+            name="gtk-theme-name"
+            gsettings="gtk-theme"
+        ;;
+
+        icons)
+            name="gtk-icon-theme-name"
+            gsettings="icon-theme"
+        ;;
+
+        font)
+            name="gtk-font-name"
+            gsettings="font-name"
+        ;;
     esac
 
     # Check for gtk2 theme
     if [ -f "$HOME/.gtkrc-2.0" ]; then
-        gtk2theme=$(grep "^[^#]*$name" $HOME/.gtkrc-2.0)
+        gtk2theme=$(grep "^[^#]*$name" "$HOME/.gtkrc-2.0")
+
     elif [ -f "/etc/gtk-2.0/gtkrc" ]; then
         gtk2theme=$(grep "^[^#]*$name" /etc/gtk-2.0/gtkrc)
     fi
 
     # Check for gtk3 theme
     if type -p gsettings >/dev/null 2>&1; then
-        gtk3theme="$(gsettings get org.gnome.desktop.interface gtk-theme)"
+        gtk3theme="$(gsettings get org.gnome.desktop.interface $gsettings)"
         gtk3theme=${gtk3theme//\'}
+
     elif [ -f "$HOME/.config/gtk-3.0/settings.ini" ]; then
-        gtk3theme=$(grep "^[^#]*$name" $HOME/.config/gtk-3.0/settings.ini)
+        gtk3theme=$(grep "^[^#]*$name" "$HOME/.config/gtk-3.0/settings.ini")
+
     else
         gtk3theme=$(grep "^[^#]*$name" /etc/gtk-3.0/settings.ini)
     fi
 
     # Format the strings
-    gtk2theme=${gtk2theme/${name}*=/}
-    gtk2theme=${gtk2theme//\"/}
+    gtk2theme=${gtk2theme/${name}*=}
+    gtk2theme=${gtk2theme//\"}
 
     [ "$gtk2theme" ] && \
         gtk2theme="$gtk2theme [GTK2], "
 
     # Format the string
-    gtk3theme=${gtk3theme/${name}*=/}
-    gtk3theme=${gtk3theme//\"/}
-    gtk3theme=${gtk3theme/[[:space:]]}
+    gtk3theme=${gtk3theme/${name}*=}
+    gtk3theme=${gtk3theme//\"}
+    gtk3theme=${gtk3theme/[[:space:]]/ }
     gtktheme="${gtk2theme}${gtk3theme} [GTK3] "
 
     # Check to see if gtk2 and gtk3 theme are identical
     if [ "$gtk2theme" ] && [ "$gtk2theme" == "$gtk3theme" ]; then
         gtktheme="$gtk2theme [GTK2/3]"
+
     elif [ -z "$gtk2theme" ] && [ -z "$gtk3theme" ]; then
         gtktheme="None"
+    fi
+
+    # Hide gtk2 from gtk theme output
+    if [ "$gtk2" == "off" ]; then
+        gtktheme=${gtktheme/*'[GTK2], '}
+    fi
+
+    # Hide gtk3 from gtk theme output
+    if [ "$gtk3" == "off" ]; then
+        gtktheme=${gtktheme/'[GTK2],'*/'[GTK2]'}
     fi
 
     # Make the output shorter by removing "[GTKX]" from the string
@@ -946,6 +998,11 @@ getgtktheme () {
 getgtkicons () {
     getgtk icons
     gtkicons="$gtktheme"
+}
+
+getgtkfont () {
+    getgtk font
+    gtkfont="$gtktheme"
 }
 
 getcols () {
@@ -1098,7 +1155,7 @@ getimage () {
 
         # This checks to see if height is geater than width
         # so we can do a better crop of portrait images.
-        if [ $height -gt $width ]; then
+        if [ "$height" -gt "$width" ]; then
             size=$width
         else
             size=$height
@@ -1159,10 +1216,10 @@ takescrot () {
 info () {
     # Call the function and update variable
     if [ -z "$2" ]; then
-        get$1 2>/dev/null
+        time "get$1" 2>/dev/null
         eval output="\$${1}"
     else
-        get$2 2>/dev/null
+        time "get$2" 2>/dev/null
         eval output="\$${2}"
     fi
 
@@ -1226,7 +1283,7 @@ colors () {
 }
 
 color () {
-   printf "\e[38;5;${1}m"
+   printf "%b%s" "\e[38;5;${1}m"
 }
 
 bold () {
@@ -1255,9 +1312,11 @@ usage () { cat << EOF
                            Possible values: current, min, max, bios,
                            scaling_current, scaling_min, scaling_max
                            NOTE: This only support Linux with cpufreq.
-    --uptime_shorthand     Shorten the output of uptime
-    --gtk_shorthand on/off Shorten output of gtk theme/icons
+    --uptime_shorthand     Shorten the output of uptime (tiny, on, off)
     --gpu_shorthand on/off Shorten the output of GPU
+    --gtk_shorthand on/off Shorten output of gtk theme/icons
+    --gtk2 on/off          Enable/Disable gtk2 theme/icons output
+    --gtk3 on/off          Enable/Disable gtk3 theme/icons output
 
     Text Colors:
     --colors 1 2 3 4 5 6   Change the color of text
@@ -1286,7 +1345,7 @@ usage () { cat << EOF
     Image:
     --image                Image source. Where and what image we display.
                            Possible values: wall, shuffle, /path/to/img, off
-    --image_backend          Which program to use to draw images.
+    --image_backend        Which program to use to draw images.
     --shuffledir           Which directory to shuffle for an image.
     --font_width px        Used to automatically size the image
     --image_position       Where to display the image: (Left/Right)
@@ -1301,8 +1360,10 @@ usage () { cat << EOF
 
     --xoffset px           How close the image will be
                            to the left edge of the window
+                           NOTE: This only works with w3m
     --yoffset px           How close the image will be
                            to the top edge of the window
+                           NOTE: This only works with w3m
     --gap num              Gap between image and text right side
                            to the top edge of the window
                            NOTE: --gap can take a negative value which will
@@ -1334,8 +1395,10 @@ while [ "$1" ]; do
         # Info
         --speed_type) speed_type="$2" ;;
         --uptime_shorthand) uptime_shorthand="$2" ;;
-        --gtk_shorthand) gtk_shorthand="$2" ;;
         --gpu_shorthand) gpu_shorthand="$2" ;;
+        --gtk_shorthand) gtk_shorthand="$2" ;;
+        --gtk2) gtk2="$2" ;;
+        --gtk3) gtk3="$2" ;;
 
         # Text Colors
         --colors) title_color=$2
@@ -1403,10 +1466,8 @@ trap 'printf "\e[?25h"; clear; exit' 2
 lines=$(tput lines)
 columns=$(tput cols)
 
-# Clear the terminal
+# Clear the terminal and hide the cursor
 clear
-
-# Hide the cursor
 printf "\e[?25l"
 
 # Get image
@@ -1434,17 +1495,11 @@ colors
 bold
 
 # Move the cursor to the top and display the info
-tput cup 0
+printf "\e[0H"
 printinfo
 
-# Move the cursor to the bottom
-case "$os" in
-    "BSD") tput DO $lines ;;
-    *) tput cup $lines ;;
-esac
-
-# Show the cursor
-printf "\e[?25h"
+# Move the cursor to the bottom and Show the cursor
+printf "%b%s" "\e[${lines}H\e[${prompt_height}A\e[?25h"
 
 # Enable line wrap again
 [ "$line_wrap" == "off" ] && printf "\e[?7h"

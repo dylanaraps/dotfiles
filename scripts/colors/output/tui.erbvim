@@ -5,7 +5,7 @@
 	let g:terminal_color_2 = "\#78a090"
 	let g:terminal_color_3 = "\#bfb7a1"
 	let g:terminal_color_4 = "\#7c9fa6"
-	let g:terminal_color_5 = "\#BFA28F"
+	let g:terminal_color_5 = "\#BF9C86"
 	let g:terminal_color_6 = "\#99BFBA"
 	let g:terminal_color_7 = "\#f0f0f0"
 	let g:terminal_color_8 = "\#70838c"
@@ -13,7 +13,7 @@
 	let g:terminal_color_10 = "\#78a090"
 	let g:terminal_color_11 = "\#bfb7a1"
 	let g:terminal_color_12 = "\#7c9fa6"
-	let g:terminal_color_13 = "\#BFA28F"
+	let g:terminal_color_13 = "\#BF9C86"
 	let g:terminal_color_14 = "\#99BFBA"
 	let g:terminal_color_15 = "\#f0f0f0"
 

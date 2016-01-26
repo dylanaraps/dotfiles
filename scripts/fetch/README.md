@@ -65,7 +65,6 @@ https://github.com/dylanaraps/fetch/wiki/Customizing-Info
 **All OS:**
 
 -  `Bash 4.0+`
--  Text formatting, dynamic image size and padding: `tput`
 
 **Linux / BSD / Windows:**
 
@@ -78,10 +77,9 @@ https://github.com/dylanaraps/fetch/wiki/Customizing-Info
 -  Displaying Images: `w3m`
     - You may also need `w3m-img`
     - **Note:** The script can now also use iTerm2's builtin image rendering instead of w3m!
-        - Enable it by changing `image_backend` to `iterm2` or by using the launch flag `--image_backend`.
+        - Enable it by changing `$image_backend` to `iterm2` or by using the launch flag `--image_backend`.
 -  Image Cropping, Resizing etc: `ImageMagick`
--  Window manager detection: `wmctrl`
-    - This is used as a fallback to parsing `.xinitrc` and `$XDG_CURRENT_DESKTOP`.
+-  More accurate window manager detection: `wmctrl`
 
 **Linux / BSD:**
 
@@ -178,14 +176,17 @@ alias fetch2="fetch \
                            Possible values: current, min, max, bios,
                            scaling_current, scaling_min, scaling_max
                            NOTE: This only support Linux with cpufreq.
-    --uptime_shorthand     Shorten the output of uptime
-    --gtk_shorthand on/off Shorten output of gtk theme/icons
+    --uptime_shorthand     Shorten the output of uptime (tiny, on, off)
     --gpu_shorthand on/off Shorten the output of GPU
+    --gtk_shorthand on/off Shorten output of gtk theme/icons
+    --gtk2 on/off          Enable/Disable gtk2 theme/icons output
+    --gtk3 on/off          Enable/Disable gtk3 theme/icons output
 
     Text Colors:
-    --colors 1 2 3 4 5     Change the color of text
-                           (title, subtitle, colon, underline, info)
+    --colors 1 2 3 4 5 6   Change the color of text
+                           (title, @, subtitle, colon, underline, info)
     --title_color num      Change the color of the title
+    --at_color num         Change the color of "@" in title
     --subtitle_color num   Change the color of the subtitle
     --colon_color num      Change the color of the colons
     --underline_color num  Change the color of the underlines
@@ -208,6 +209,7 @@ alias fetch2="fetch \
     Image:
     --image                Image source. Where and what image we display.
                            Possible values: wall, shuffle, /path/to/img, off
+    --image_backend        Which program to use to draw images.
     --shuffledir           Which directory to shuffle for an image.
     --font_width px        Used to automatically size the image
     --image_position       Where to display the image: (Left/Right)
@@ -222,8 +224,10 @@ alias fetch2="fetch \
 
     --xoffset px           How close the image will be
                            to the left edge of the window
+                           NOTE: This only works with w3m
     --yoffset px           How close the image will be
                            to the top edge of the window
+                           NOTE: This only works with w3m
     --gap num              Gap between image and text right side
                            to the top edge of the window
                            NOTE: --gap can take a negative value which will
@@ -267,9 +271,19 @@ or you know where it's stored then adding support won't be a problem!<br \>
 ## Issues and Workarounds
 
 
+#### The image is blank and won't show up.
+
+
+If the images display in `ranger` and `w3m` then it's an issue with my script and not<br \>
+your terminal emulator.
+
+Some terminal emulators don't support viewing images with w3m. You can either disable<br \>
+images with `--image off` at launch or `image=off` inside the script.
+
+
 #### The image is rendering with black lines in Urxvt while using an xft font.
 
-This is an issue with w3mimgdisplay and not the script. You can find a workaround here:
+This is an issue with w3mimgdisplay and not the script. You can find a possible workaround here:
 
 https://github.com/hut/ranger/issues/86#issuecomment-17346249
 
@@ -278,7 +292,7 @@ https://github.com/hut/ranger/issues/86#issuecomment-17346249
 
 There are a few ways to fix this.
 
-* Disable line wrapping with `$line_wrap off` in the script or with the launch flag `--line_wrap off`
+* Disable line wrapping with `line_wrap=off` in the script or with the launch flag `--line_wrap off`
 
 * The uptime and gtk info lines each have a shorthand option that makes their output smaller. You can <br \>
   enable them by changing these variables or using these flags.
