@@ -1,4 +1,5 @@
 #!/usr/bin/env bash
+# vim:fdm=marker
 # Fetch info about your system
 # https://github.com/dylanaraps/fetch
 #
@@ -7,12 +8,11 @@
 #   Text formatting, dynamic image size and padding: tput
 #   [Linux / BSD / Windows] Uptime detection: procps or procps-ng
 #
-#
 # Optional Dependencies: (You'll lose these features without them)
 #   Displaying Images: w3m + w3m-img
 #   Image Cropping: ImageMagick
 #   More accurate window manager detection: wmctrl
-#   [ Linux / BSD ] Wallpaper Display: feh or nitrogen
+#   [ Linux / BSD ] Wallpaper Display: feh, nitrogen or gsettings
 #   [ Linux / BSD ] Current Song: mpc or cmus
 #   [ Linux / BSD ] Resolution detection: xorg-xdpyinfo
 #
@@ -55,7 +55,7 @@ export LANGUAGE=C
 # "gtkicons" "cpu" "gpu" "memory" "cols"
 #
 # Info functions that are disabled by default are:
-# "resolution" "song" "visualstyle" "font"
+# "resolution" "song" "visualstyle" "font" "disk"
 #
 # See this wiki page for more info:
 # https://github.com/dylanaraps/fetch/wiki/Customizing-Info
@@ -74,6 +74,12 @@ printinfo () {
     info "CPU" cpu
     info "GPU" gpu
     info "Memory" memory
+
+    # info "Font" gtkfont
+    # info "Disk" disk
+    # info "Resolution" resolution
+    # info "Song" song
+    # info "Visual Style" visualstyle
 
     info linebreak
     info cols
@@ -140,7 +146,6 @@ block_width=3
 
 # }}}
 
-
 # Text Colors {{{
 # --colors 1 2 3 4 5
 
@@ -166,7 +171,6 @@ info_color=6
 
 
 # }}}
-
 
 # Text Options {{{
 
@@ -195,7 +199,6 @@ prompt_height=1
 
 
 # }}}
-
 
 # Image Options {{{
 
@@ -231,7 +234,7 @@ split_size=2
 image_position="left"
 
 # Shuffle dir
-shuffledir="$HOME/Pictures/wallpapers/wash"
+shuffle_dir="$HOME/Pictures/wallpapers/wash"
 
 # Crop mode
 # --crop_mode normal/fit/fill
@@ -259,7 +262,6 @@ xoffset=0
 
 
 # }}}
-
 
 # Other Options {{{
 
@@ -292,7 +294,8 @@ scrot_name="fetch-%Y-%m-%d-%H:%M.png"
 # Gather Info {{{
 
 
-# Get Operating System Type
+# Operating System {{{
+
 case "$(uname)" in
     "Linux")
         os="Linux"
@@ -320,16 +323,17 @@ case "$(uname)" in
     ;;
 esac
 
-# Get Distro
+# }}}
+
+# Distro {{{
+
 case "$os" in
     "Linux" )
-        if type -p crux >/dev/null 2>&1; then
-            distro="CRUX"
-
-        elif type -p lsb_release >/dev/null 2>&1; then
+        if type -p lsb_release >/dev/null 2>&1; then
             distro="$(lsb_release -a 2>/dev/null | awk -F':' '/Description/ {printf $2}')"
             distro=${distro/[[:space:]]}
-
+        elif type -p crux >/dev/null 2>&1; then
+            distro="CRUX"
         else
             distro="$(grep -h '^NAME=' /etc/*ease)"
             distro=${distro#NAME\=*}
@@ -384,17 +388,26 @@ case "$os" in
     ;;
 esac
 
-# Get Title
+# }}}
+
+# Title {{{
+
 gettitle () {
     title="${USER}@$(hostname)"
 }
 
-# Get kernel version
+# }}}
+
+# Kernel {{{
+
 getkernel() {
     kernel="$(uname -r)"
 }
 
-# Get uptime
+# }}}
+
+# Uptime {{{
+
 getuptime () {
     case "$os" in
         "Linux")
@@ -416,6 +429,7 @@ getuptime () {
             hours=$((uptime / 3600%24))
             days=$((uptime / 86400))
 
+            # Format the output like Linux's "uptime -p" cmd.
             case "$mins" in
                 0) ;;
                 1) uptime="up $mins minute" ;;
@@ -446,6 +460,7 @@ getuptime () {
 
     esac
 
+    # Make the output of uptime smaller.
     case "$uptime_shorthand" in
         "on")
             uptime=${uptime/up}
@@ -468,7 +483,10 @@ getuptime () {
     esac
 }
 
-# Get package count
+# }}}
+
+# Package Count {{{
+
 getpackages () {
     case "$distro" in
         "Arch Linux"* | "Parabola GNU/Linux-libre"* | "Manjaro"* | "Antergos"*)
@@ -531,6 +549,12 @@ getpackages () {
 
         "Windows"*)
             packages=$(cygcheck -cd | wc -l)
+
+            # Count chocolatey packages
+            if [ -d "/cygdrive/c/ProgramData/chocolatey/lib" ]; then
+                choco_packages=$(ls -1 /cygdrive/c/ProgramData/chocolatey/lib | wc -l)
+                packages=$((packages + choco_packages))
+            fi
         ;;
 
         *)
@@ -541,12 +565,18 @@ getpackages () {
     packages=${packages// }
 }
 
-# Get shell
+# }}}
+
+# Shell {{{
+
 getshell () {
     shell="$SHELL"
 }
 
-# Get window manager
+# }}}
+
+# Window Manager {{{
+
 getwindowmanager () {
     if type -p wmctrl >/dev/null 2>&1; then
         windowmanager="$(wmctrl -m | head -n1)"
@@ -579,7 +609,10 @@ getwindowmanager () {
     fi
 }
 
-# Get cpu
+# }}}
+
+# CPU {{{
+
 getcpu () {
     case "$os" in
         "Linux")
@@ -702,6 +735,10 @@ getcpu () {
     cpu=${cpu// with Radeon HD Graphics}
 }
 
+# }}}
+
+# GPU {{{
+
 getgpu () {
    case "$os" in
        "Linux")
@@ -794,7 +831,10 @@ getgpu () {
     fi
 }
 
-# Get memory
+# }}}
+
+# Memory {{{
+
 getmemory () {
     case "$os" in
         "Linux")
@@ -882,7 +922,10 @@ getmemory () {
     esac
 }
 
-# Get song
+# }}}
+
+# Song {{{
+
 getsong () {
     if type -p mpc >/dev/null 2>&1; then
         song="$(mpc current)"
@@ -898,7 +941,10 @@ getsong () {
     fi
 }
 
-# Get Resolution
+# }}}
+
+# Resolution {{{
+
 getresolution () {
     case "$os" in
         "Linux" | *"BSD")
@@ -913,6 +959,10 @@ getresolution () {
 
     [ -z "$resolution" ] && resolution="Unknown"
 }
+
+# }}}
+
+# GTK Theme/Icons/Font {{{
 
 getgtk () {
     case "$1" in
@@ -933,55 +983,54 @@ getgtk () {
     esac
 
     # Check for gtk2 theme
-    if [ -f "$HOME/.gtkrc-2.0" ]; then
-        gtk2theme=$(grep "^[^#]*$name" "$HOME/.gtkrc-2.0")
+    if [ "$gtk2" == "on" ]; then
+        if [ -f "$HOME/.gtkrc-2.0" ]; then
+            gtk2theme=$(grep "^[^#]*$name" "$HOME/.gtkrc-2.0")
 
-    elif [ -f "/etc/gtk-2.0/gtkrc" ]; then
-        gtk2theme=$(grep "^[^#]*$name" /etc/gtk-2.0/gtkrc)
+        elif [ -f "/etc/gtk-2.0/gtkrc" ]; then
+            gtk2theme=$(grep "^[^#]*$name" /etc/gtk-2.0/gtkrc)
+        fi
+
+        gtk2theme=${gtk2theme/${name}*=}
+        gtk2theme=${gtk2theme//\"}
     fi
 
     # Check for gtk3 theme
-    if type -p gsettings >/dev/null 2>&1; then
-        gtk3theme="$(gsettings get org.gnome.desktop.interface $gsettings)"
-        gtk3theme=${gtk3theme//\'}
+    if [ "$gtk3" == "on" ]; then
+        if type -p gsettings >/dev/null 2>&1; then
+            gtk3theme="$(gsettings get org.gnome.desktop.interface $gsettings)"
+            gtk3theme=${gtk3theme//\'}
 
-    elif [ -f "$HOME/.config/gtk-3.0/settings.ini" ]; then
-        gtk3theme=$(grep "^[^#]*$name" "$HOME/.config/gtk-3.0/settings.ini")
+        elif [ -f "$HOME/.config/gtk-3.0/settings.ini" ]; then
+            gtk3theme=$(grep "^[^#]*$name" "$HOME/.config/gtk-3.0/settings.ini")
 
+        else
+            gtk3theme=$(grep "^[^#]*$name" /etc/gtk-3.0/settings.ini)
+        fi
+
+        gtk3theme=${gtk3theme/${name}*=}
+        gtk3theme=${gtk3theme//\"}
+        gtk3theme=${gtk3theme/[[:space:]]/ }
+    fi
+
+    # Format the string based on which themes exist
+    if  [ "$gtk2theme" ] && [ "$gtk2theme" == "$gtk3theme" ]; then
+        gtk3theme+=" [GTK2/3]"
+        unset gtk2theme
+
+    elif [ "$gtk2theme" ] && [ "$gtk3theme" ]; then
+        gtk2theme+=" [GTK2], "
+        gtk3theme+=" [GTK3] "
     else
-        gtk3theme=$(grep "^[^#]*$name" /etc/gtk-3.0/settings.ini)
+        [ "$gtk2theme" ] && gtk2theme+=" [GTK2] "
+        [ "$gtk3theme" ] && gtk3theme+=" [GTK3] "
     fi
 
-    # Format the strings
-    gtk2theme=${gtk2theme/${name}*=}
-    gtk2theme=${gtk2theme//\"}
+    # Final string
+    gtktheme="${gtk2theme}${gtk3theme}"
 
-    [ "$gtk2theme" ] && \
-        gtk2theme="$gtk2theme [GTK2], "
-
-    # Format the string
-    gtk3theme=${gtk3theme/${name}*=}
-    gtk3theme=${gtk3theme//\"}
-    gtk3theme=${gtk3theme/[[:space:]]/ }
-    gtktheme="${gtk2theme}${gtk3theme} [GTK3] "
-
-    # Check to see if gtk2 and gtk3 theme are identical
-    if [ "$gtk2theme" ] && [ "$gtk2theme" == "$gtk3theme" ]; then
-        gtktheme="$gtk2theme [GTK2/3]"
-
-    elif [ -z "$gtk2theme" ] && [ -z "$gtk3theme" ]; then
-        gtktheme="None"
-    fi
-
-    # Hide gtk2 from gtk theme output
-    if [ "$gtk2" == "off" ]; then
-        gtktheme=${gtktheme/*'[GTK2], '}
-    fi
-
-    # Hide gtk3 from gtk theme output
-    if [ "$gtk3" == "off" ]; then
-        gtktheme=${gtktheme/'[GTK2],'*/'[GTK2]'}
-    fi
+    # If the final string is empty print "None"
+    [ -z "$gtktheme" ] && gtktheme="None"
 
     # Make the output shorter by removing "[GTKX]" from the string
     if [ "$gtk_shorthand" == "on" ]; then
@@ -1005,6 +1054,41 @@ getgtkfont () {
     gtkfont="$gtktheme"
 }
 
+# }}}
+
+# Disk Usage {{{
+
+getdisk () {
+    # df flags
+    case "$os" in
+        "Linux" | "Windows") df_flags="-h --total" ;;
+        "Mac OS X") df_flags="-H /" ;;
+
+        *"BSD")
+            case "$os" in
+                "FreeBSD") df_flags="-h -c" ;;
+                *) disk="Unknown"; return ;;
+            esac
+        ;;
+    esac
+
+    # Get the disk info
+    disk=$(df $df_flags 2>/dev/null | awk 'END{print $2 ":" $3 ":" $5}')
+
+    # Format the output
+    disk_used=${disk#*:}
+    disk_used=${disk_used%%:*}
+    disk_total=${disk%%:*}
+    disk_total_per=${disk#*:*:}
+
+    # Put it all together
+    disk="${disk_used} / ${disk_total} (${disk_total_per})"
+}
+
+# }}}
+
+# Terminal colors {{{
+
 getcols () {
     if [ "$color_blocks" == "on" ]; then
         printf "${padding}%s"
@@ -1022,8 +1106,9 @@ getcols () {
     fi
 }
 
+# }}}
 
-# Windows Specific Functions
+# Windows Specific Functions {{{
 
 getvisualstyle () {
     case "$os" in
@@ -1042,12 +1127,16 @@ getvisualstyle () {
     esac
 }
 
+# }}}
+
 
 # }}}
 
 
 # Images {{{
 
+
+# Wallpaper {{{
 
 getwallpaper () {
     case "$os" in
@@ -1086,10 +1175,18 @@ getwallpaper () {
     esac
 }
 
+# }}}
+
+# Shuffle {{{
+
 getshuffle () {
-    img=$(find "$shuffledir" -type f \( -name '*.jpg' -o -name '*.png' \) -print0 |
+    img=$(find "$shuffle_dir" -type f \( -name '*.jpg' -o -name '*.png' \) -print0 |
     shuf -n1 -z)
 }
+
+# }}}
+
+# Image {{{
 
 getimage () {
     # Make the directory if it doesn't exist
@@ -1210,16 +1307,21 @@ takescrot () {
 # }}}
 
 
+# }}}
+
+
 # Text Formatting {{{
 
+
+# Info {{{
 
 info () {
     # Call the function and update variable
     if [ -z "$2" ]; then
-        time "get$1" 2>/dev/null
+        "get$1" 2>/dev/null
         eval output="\$${1}"
     else
-        time "get$2" 2>/dev/null
+        "get$2" 2>/dev/null
         eval output="\$${2}"
     fi
 
@@ -1248,6 +1350,10 @@ info () {
     printf "%b%s\n" "${padding}${string}${clear}"
 }
 
+# }}}
+
+# Prin {{{
+
 prin () {
     case "$1" in
         *:*)
@@ -1268,10 +1374,18 @@ prin () {
     printf "%b%s\n" "${padding}${string}${clear}"
 }
 
+# }}}
+
+# Underline {{{
+
 getunderline () {
     underline=$(printf %"$length"s)
     underline=${underline// /$underline_char}
 }
+
+# }}}
+
+# Colors {{{
 
 colors () {
     title_color="\e[38;5;${title_color}m"
@@ -1286,6 +1400,10 @@ color () {
    printf "%b%s" "\e[38;5;${1}m"
 }
 
+# }}}
+
+# Bold {{{
+
 bold () {
     if [ "$bold" == "on" ]; then
         bold="\e[1m"
@@ -1293,6 +1411,9 @@ bold () {
         bold=""
     fi
 }
+
+# }}}
+
 
 clear="\e[0m"
 
@@ -1346,7 +1467,7 @@ usage () { cat << EOF
     --image                Image source. Where and what image we display.
                            Possible values: wall, shuffle, /path/to/img, off
     --image_backend        Which program to use to draw images.
-    --shuffledir           Which directory to shuffle for an image.
+    --shuffle_dir           Which directory to shuffle for an image.
     --font_width px        Used to automatically size the image
     --image_position       Where to display the image: (Left/Right)
     --split_size num       Width of img/text splits
@@ -1429,7 +1550,7 @@ while [ "$1" ]; do
         # Image
         --image) image="$2" ;;
         --image_backend) image_backend="$2" ;;
-        --shuffledir) shuffledir="$2" ;;
+        --shuffle_dir) shuffle_dir="$2" ;;
         --font_width) font_width="$2" ;;
         --image_position) image_position="$2" ;;
         --split_size) split_size="$2" ;;

@@ -83,11 +83,11 @@ https://github.com/dylanaraps/fetch/wiki/Customizing-Info
 
 **Linux / BSD:**
 
--  Display Wallpaper: `feh` or `nitrogen`
+-  Display Wallpaper: `feh`, `nitrogen` or `gsettings`
 -  Current Song: `mpc` or `cmus`
 -  Resolution Detection: `xorg-xdpyinfo`
 -  Take a screenshot on script finish: `scrot`
-    - You can change this to another program with a `--scrotcmd` and an in script option.
+    - You can change this to another program with a `--scrot_cmd` and an in script option.
 
 
 <!-- }}} -->
@@ -210,7 +210,7 @@ alias fetch2="fetch \
     --image                Image source. Where and what image we display.
                            Possible values: wall, shuffle, /path/to/img, off
     --image_backend        Which program to use to draw images.
-    --shuffledir           Which directory to shuffle for an image.
+    --shuffle_dir           Which directory to shuffle for an image.
     --font_width px        Used to automatically size the image
     --image_position       Where to display the image: (Left/Right)
     --split_size num       Width of img/text splits
