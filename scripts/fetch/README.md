@@ -23,7 +23,6 @@ https://github.com/dylanaraps/fetch/wiki/Customizing-Info
 - [Usage](#usage)
 - [Frequently Asked Questions](#frequently-asked-questions)
 - [Issues and Workarounds](#issues-and-workarounds)
-- [Todo](#todo)
 - [Thanks](#thanks)
 
 
@@ -39,9 +38,11 @@ https://github.com/dylanaraps/fetch/wiki/Customizing-Info
     - If the script doesn't work on your system, open an issue.
 - **It's Fast**
     - The script makes heavy use of bash builtins and <br \>string manipulation.
-- **Display an image next to the info. (or don't!)**
+- **Display an image next to the info.**
     - Use your current wallpaper, shuffle through a directory or just <br \>display an image of your choice.
     - Supports using w3m or iTerm2 to display the images.
+- **Display ascii next to the info.**
+    - Use a file containing ascii art as the image.
 - **Highly Customizable**
     - You can customize almost everything.
         - See Usage below or lines 23-233 in script
@@ -59,7 +60,6 @@ https://github.com/dylanaraps/fetch/wiki/Customizing-Info
 
 ## Dependencies
 
-
 ### Required dependencies:
 
 **All OS:**
@@ -70,14 +70,17 @@ https://github.com/dylanaraps/fetch/wiki/Customizing-Info
 
 -  Uptime detection: `procps` or `procps-ng`
 
+
 ### Optional dependencies:
+
+**NOTE:** If `w3m` or `Imagemagick` aren't found then image support will be disabled.
 
 **All OS:**
 
 -  Displaying Images: `w3m`
     - You may also need `w3m-img`
-    - **Note:** The script can now also use iTerm2's builtin image rendering instead of w3m!
-        - Enable it by changing `$image_backend` to `iterm2` or by using the launch flag `--image_backend`.
+    - **Note:** The script can now also use iTerm2's builtin image rendering instead of w3m!<br \>
+    Enable it by changing `$image_backend` to `iterm2` or by using the launch flag `--image_backend`.
 -  Image Cropping, Resizing etc: `ImageMagick`
 -  More accurate window manager detection: `wmctrl`
 
@@ -102,6 +105,18 @@ https://github.com/dylanaraps/fetch/wiki/Customizing-Info
 ### Arch
 
 1. Install **[fetch-git](https://aur.archlinux.org/packages/fetch-git/)** from the aur.
+
+
+### Gentoo / Funtoo
+
+1. Add the 3rd party repo
+    - `layman -o https://gist.githubusercontent.com/z1lt0id/24d45b15800b98975260/raw/2fdf6645cdc3c1ca0b0af83a7bf8f86598e386ae/fs0ciety.xml -f -a fs0ciety`
+2. Sync the repos
+    - `layman -S`
+3. To enable w3m and scrot support, enable the appropriate flags.
+    - `echo "x11-apps/fetch" >> /etc/portage/package.use`
+4. Install the package
+    - `emerge -a x11-apps/fetch`
 
 
 ### Others
@@ -169,18 +184,22 @@ alias fetch2="fetch \
 ## Usage
 
 
-    usage: ${0##*/} [--colors 1 2 3 4 5] [--kernel "\$\(uname -rs\)"]
+    usage: ${0##*/} --option "value" --option
 
     Info:
+    --osx_buildversion     Hide/Show Mac OS X build version.
     --speed_type           Change the type of cpu speed to display.
                            Possible values: current, min, max, bios,
                            scaling_current, scaling_min, scaling_max
                            NOTE: This only support Linux with cpufreq.
+    --kernel_shorthand     Shorten the output of kernel
     --uptime_shorthand     Shorten the output of uptime (tiny, on, off)
     --gpu_shorthand on/off Shorten the output of GPU
     --gtk_shorthand on/off Shorten output of gtk theme/icons
     --gtk2 on/off          Enable/Disable gtk2 theme/icons output
     --gtk3 on/off          Enable/Disable gtk3 theme/icons output
+    --shell_path on/off    Enable/Disable showing \$SHELL path
+    --shell_version on/off Enable/Disable showing \$SHELL version
 
     Text Colors:
     --colors 1 2 3 4 5 6   Change the color of text
@@ -208,7 +227,8 @@ alias fetch2="fetch \
 
     Image:
     --image                Image source. Where and what image we display.
-                           Possible values: wall, shuffle, /path/to/img, off
+                           Possible values: wall, shuffle, ascii,
+                           /path/to/img, off
     --image_backend        Which program to use to draw images.
     --shuffle_dir           Which directory to shuffle for an image.
     --font_width px        Used to automatically size the image
@@ -234,6 +254,14 @@ alias fetch2="fetch \
                            move the text closer to the left side.
     --clean                Remove all cropped images
 
+
+    Ascii:
+    --ascii                Where to get the ascii from, Possible values:
+                           'distro', '/path/to/ascii'
+    --ascii_color          Color to print the ascii art
+    --ascii_distro distro  Which Distro's ascii art to print
+
+
     Screenshot:
     --scrot /path/to/img   Take a screenshot, if path is left empty
                            the screenshot function will use
@@ -253,6 +281,15 @@ alias fetch2="fetch \
 ## Frequently Asked Questions
 
 
+#### How do I enable screenfetch mode?
+
+Launching the script with `--ascii distro` or setting `ascii="distro"` and `image="ascii"` <br \>
+inside the script will launch the script in "screenfetch mode". The script will display your<br \>
+distro's ascii next to the info, exactly like screenfetch.
+
+![arch](https://camo.githubusercontent.com/972490362219f4aa087a0a9491df24d506590542/687474703a2f2f692e696d6775722e636f6d2f746741504a76322e706e67)
+
+
 #### Why doesn't fetch support my wallpaper setter?
 
 It's hard to add support for other wallpaper setters as<br \>
@@ -269,6 +306,21 @@ or you know where it's stored then adding support won't be a problem!<br \>
 
 
 ## Issues and Workarounds
+
+
+#### fetch: line 1655: /usr/lib/w3m/w3mimgdisplay: No such file or directory
+
+
+You're getting this error because the script can't find w3mimgdisplay in it's<br \>
+default location. You can fix this by setting the config option `$w3m_img_path`<br \>
+to the correct location of w3mimgdisplay.
+
+Other places that `w3mimgdisplay` could located be are:
+
+    /usr/lib/w3m/w3mimgdisplay
+    /usr/libexec/w3m/w3mimgdisplay
+    /usr/lib64/w3m/w3mimgdisplay
+    /usr/libexec64/w3m/w3mimgdisplay
 
 
 #### The image is blank and won't show up.
@@ -346,28 +398,6 @@ sudo update-pciids
 <!-- }}} -->
 
 
-<!-- Todo {{{ -->
-
-
-## Todo
-
-Here's what's on my todo list
-
-- More info outputs. Now that it's easy to customize what's printed and<br \>
-  everything is a function we can add optional support for pretty much anything.
-
-    - Resolution (Just missing Windows support)
-    - ~~GTK themes~~
-    - Terminal Font
-        - This will be difficult to add as there's no standard way of getting this info. We can't check<br \>
-        for terminal config files because the user may have multiple terminals installed.<br \>
-        Using `$PPID` isn't an option because it won't work in tmux/screen, subshells or neovim terminal splits.
-    - GPU (In master but experimental) See **[issue #21](https://github.com/dylanaraps/fetch/issues/21)**.
-
-
-<!-- }}} -->
-
-
 <!-- Thanks {{{ -->
 
 
@@ -377,7 +407,9 @@ Thanks to:
 
 - metakirby5: Providing great feedback as well as ideas for the script.
 
-- Screenfetch: I've used some snippets as a base for a few functions in this script.
+- Screenfetch:
+    - I've used some snippets as a base for a few functions in this script.
+    - I've used the ascii art from here.
 
 - @jrgz: Helping me test the Mac OS X version.
 

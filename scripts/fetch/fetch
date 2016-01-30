@@ -1,5 +1,6 @@
 #!/usr/bin/env bash
 # vim:fdm=marker
+#
 # Fetch info about your system
 # https://github.com/dylanaraps/fetch
 #
@@ -21,7 +22,7 @@
 
 # Speed up script by not using unicode
 export LC_ALL=C
-export LANG=C
+export LANG=c
 export LANGUAGE=C
 
 
@@ -32,34 +33,11 @@ export LANGUAGE=C
 
 
 # Info
-# What to display and in what order.
-# You can use ANY bash syntax in the function below!
-# For example you could use if statments to only print info
-# when a condition is true!
-#
-# The script comes with two helper functions:
-# info:
-#       info "subtitle" funcname
-# prin:
-#       prin "Custom message to print"
-#       prin "Subtitle: Custom message to print"
-#       prin "Subtitle: $(date)"
-#
-# You can also just use printf / echo to add lines but you'll
-# need to prefix your msg with "${padding}", for example:
-# echo -e "${padding} My custom message here"
-#
-# Info functions enabled by default are:
-# "title" "distro" "kernel" "uptime" "packages"
-# "shell" "resolution" "windowmanager" "gtktheme"
-# "gtkicons" "cpu" "gpu" "memory" "cols"
-#
-# Info functions that are disabled by default are:
-# "resolution" "song" "visualstyle" "font" "disk"
-#
 # See this wiki page for more info:
 # https://github.com/dylanaraps/fetch/wiki/Customizing-Info
 printinfo () {
+    info linebreak
+
     info title
     info underline
 
@@ -83,10 +61,40 @@ printinfo () {
 
     info linebreak
     info cols
+    info linebreak
 }
 
 
-# Window Manager
+# Kernel
+
+# Show more kernel info
+# --kernel_shorthand on/off
+kernel_shorthand="on"
+
+
+# Distro
+
+# Mac OS X hide/show build version
+# --osx_buildversion on/off
+osx_buildversion="on"
+
+
+# Uptime
+
+# Shorten the output of the uptime function
+# --uptime_shorthand tiny, on, off
+uptime_shorthand="off"
+
+
+# Shell
+
+# Show the path to $SHELL
+# --shell_path on/off
+shell_path="on"
+
+# Show $SHELL's version
+# --shell_version on/off
+shell_version="off"
 
 
 # CPU
@@ -103,13 +111,6 @@ speed_type="max"
 # Shorten output of the getgpu funcion
 # --gpu_shorthand on/off
 gpu_shorthand="off"
-
-
-# Uptime
-
-# Shorten the output of the uptime function
-# --uptime_shorthand tiny, on, off
-uptime_shorthand="off"
 
 
 # Gtk Theme / Icons
@@ -204,7 +205,7 @@ prompt_height=1
 
 
 # Image Source
-# --image wall, shuffle, /path/to/img, off
+# --image wall, shuffle, ascii, /path/to/img, off
 image="wall"
 
 # Thumbnail directory
@@ -263,7 +264,25 @@ xoffset=0
 
 # }}}
 
-# Other Options {{{
+# Ascii Options {{{
+
+
+# Default ascii image to use
+# When this is set to distro it will use your
+# distro's logo as the ascii.
+# --ascii 'distro', path/to/ascii
+ascii="distro"
+
+# Ascii color
+# When this is set to distro it will use your
+# ditro's colors to color the ascii.
+# --ascii_color distro, number
+ascii_color="distro"
+
+
+# }}}
+
+# Scrot Options {{{
 
 
 # Whether or not to always take a screenshot
@@ -283,6 +302,19 @@ scrot_dir="$HOME/Pictures"
 # What to name the screenshots
 # --scrot_name str
 scrot_name="fetch-%Y-%m-%d-%H:%M.png"
+
+
+# }}}
+
+# Config Options {{{
+
+
+# Enable/Disable config file
+config="on"
+
+# Path to custom config file location
+# --config path/to/config
+config_file="$HOME/.config/fetch/config"
 
 
 # }}}
@@ -319,7 +351,7 @@ case "$(uname)" in
 
     *)
         printf "%s\n" "Couldn't detect OS, exiting"
-        exit
+        exit 1
     ;;
 esac
 
@@ -344,6 +376,9 @@ case "$os" in
 
     "Mac OS X")
         distro="Mac OS X $(sw_vers -productVersion)"
+
+        [ "$osx_buildversion" == "on" ] && \
+            distro+=" $(sw_vers -buildVersion)"
     ;;
 
     "OpenBSD")
@@ -387,6 +422,12 @@ case "$os" in
         distro="Unknown"
     ;;
 esac
+ascii_distro="$distro"
+
+getdistro () {
+    distro="$distro"
+}
+
 
 # }}}
 
@@ -401,7 +442,10 @@ gettitle () {
 # Kernel {{{
 
 getkernel() {
-    kernel="$(uname -r)"
+    case "$kernel_shorthand" in
+        "on")  kernel="$(uname -r)" ;;
+        "off") kernel="$(uname -srm)" ;;
+    esac
 }
 
 # }}}
@@ -489,7 +533,7 @@ getuptime () {
 
 getpackages () {
     case "$distro" in
-        "Arch Linux"* | "Parabola GNU/Linux-libre"* | "Manjaro"* | "Antergos"*)
+        "Arch Linux"* | "Parabola"* | "Manjaro"* | "Antergos"*)
             packages="$(pacman -Qq --color never | wc -l)"
         ;;
 
@@ -497,7 +541,7 @@ getpackages () {
             packages="$(xbps-query -l | wc -l)"
         ;;
 
-        "Ubuntu"* | "Mint"* | "Debian"* | "Kali Linux"* | "Deepin Linux"* | "elementary"*)
+        "Ubuntu"* | *"Mint"* | "CrunchBang"* | "Debian"* | "Kali Linux"* | "Deepin Linux"* | "elementary"*)
             packages="$(dpkg --get-selections | grep -cv deinstall$)"
         ;;
 
@@ -570,7 +614,37 @@ getpackages () {
 # Shell {{{
 
 getshell () {
-    shell="$SHELL"
+    case "$shell_path" in
+        "on")  shell="$SHELL " ;;
+        "off") shell="${SHELL##*/} " ;;
+    esac
+
+    if [ "$shell_version" == "on" ]; then
+        case "$shell" in
+            *"bash"*)
+                shell+="$(bash --version | head -n 1)"
+                shell=${shell/ *, version}
+            ;;
+
+            *"zsh"*)
+                shell+="$(zsh --version)"
+                shell=${shell/ zsh}
+            ;;
+
+            *"mksh"* | *"ksh")
+                shell+="$("$SHELL" -c 'printf "%s" "$KSH_VERSION"')"
+                shell=${shell/ * KSH}
+            ;;
+
+            *"tcsh"* | *"csh"*)
+                shell+="$("$SHELL" --version)"
+                shell=${shell/tcsh}
+                shell=${shell/\(*}
+            ;;
+        esac
+
+        shell="${shell/\(*\)}"
+    fi
 }
 
 # }}}
@@ -585,11 +659,11 @@ getwindowmanager () {
     elif [ "$XDG_CURRENT_DESKTOP" ]; then
         windowmanager="$XDG_CURRENT_DESKTOP"
 
+    elif [ "$XINITRC" ]; then
+        windowmanager=$(grep "^[^#]*exec" "$XINITRC")
+
     elif [ -e "$HOME/.xinitrc" ]; then
-        xinitrc=$(grep "^[^#]*exec" "${HOME}/.xinitrc")
-        windowmanager="${xinitrc/exec }"
-        windowmanager="${windowmanager/-session}"
-        windowmanager="${windowmanager^}"
+        windowmanager=$(grep "^[^#]*exec" "${HOME}/.xinitrc")
 
     else
         case "$os" in
@@ -607,6 +681,10 @@ getwindowmanager () {
 
         esac
     fi
+
+    windowmanager="${windowmanager/exec }"
+    windowmanager="${windowmanager/-session}"
+    windowmanager="${windowmanager^}"
 }
 
 # }}}
@@ -732,6 +810,7 @@ getcpu () {
     cpu=${cpu// CPU}
     cpu=${cpu// Processor}
     cpu=${cpu// Six-Core}
+    cpu=${cpu// Eight-Core}
     cpu=${cpu// with Radeon HD Graphics}
 }
 
@@ -760,6 +839,7 @@ getgpu () {
                     gpu=${gpu/'[AMD/ATI]' }
                     gpu=${gpu/Tahiti PRO}
                     gpu=${gpu/Seymour}
+                    gpu=${gpu/ OEM}
                     gpu=${gpu/ \[}
                     gpu=${gpu/\]}
 
@@ -789,7 +869,7 @@ getgpu () {
             gpu=$( \
                 system_profiler SPDisplaysDataType | \
                 awk -F': ' '/^\ *Chipset Model:/ {printf $2}' | \
-                awk '{ printf "%s / ", $0 }'
+                awk '{ printf "%s ", $0 }'
             )
             gpu=${gpu//'/ $'}
         ;;
@@ -857,9 +937,10 @@ getmemory () {
 
         "Mac OS X")
             memtotal=$(printf "%s\n" "$(sysctl -n hw.memsize)"/1024^2 | bc)
+            memwired=$(vm_stat | awk '/wired/ { print $4 }')
             memactive=$(vm_stat | awk '/active / { printf $3 }')
             memcompressed=$(vm_stat | awk '/occupied/ { printf $5 }')
-            memused=$(((${memactive//.} + ${memcompressed//.}) * 4 / 1024))
+            memused=$(((${wiredmem//.} + ${memactive//.} + ${memcompressed//.}) * 4 / 1024))
             memory="${memused}MB / ${memtotal}MB"
         ;;
 
@@ -948,16 +1029,22 @@ getsong () {
 getresolution () {
     case "$os" in
         "Linux" | *"BSD")
-            resolution=$(xdpyinfo 2>/dev/null | awk '/dimensions:/ {printf $2}')
+            if type -p xdpyinfo >/dev/null 2>&1; then
+                resolution=$(xdpyinfo 2>/dev/null | awk '/dimensions:/ {printf $2}')
+            else
+                resolution="Unknown"
+            fi
         ;;
 
         "Mac OS X")
             resolution=$(system_profiler SPDisplaysDataType |\
                         awk '/Resolution:/ {printf $2"x"$4" "}')
         ;;
-    esac
 
-    [ -z "$resolution" ] && resolution="Unknown"
+        "*")
+            resolution="Unknown"
+        ;;
+    esac
 }
 
 # }}}
@@ -997,12 +1084,12 @@ getgtk () {
 
     # Check for gtk3 theme
     if [ "$gtk3" == "on" ]; then
-        if type -p gsettings >/dev/null 2>&1; then
+        if [ -f "$HOME/.config/gtk-3.0/settings.ini" ]; then
+            gtk3theme=$(grep "^[^#]*$name" "$HOME/.config/gtk-3.0/settings.ini")
+
+        elif type -p gsettings >/dev/null 2>&1; then
             gtk3theme="$(gsettings get org.gnome.desktop.interface $gsettings)"
             gtk3theme=${gtk3theme//\'}
-
-        elif [ -f "$HOME/.config/gtk-3.0/settings.ini" ]; then
-            gtk3theme=$(grep "^[^#]*$name" "$HOME/.config/gtk-3.0/settings.ini")
 
         else
             gtk3theme=$(grep "^[^#]*$name" /etc/gtk-3.0/settings.ini)
@@ -1093,7 +1180,7 @@ getcols () {
     if [ "$color_blocks" == "on" ]; then
         printf "${padding}%s"
         while [ $start -le $end ]; do
-            printf "\e[48;5;${start}m%${block_width}s"
+            printf "\033[48;5;${start}m%${block_width}s"
             start=$((start + 1))
 
             # Split the blocks at 8 colors
@@ -1186,9 +1273,202 @@ getshuffle () {
 
 # }}}
 
+# Ascii {{{
+
+getascii () {
+    # Change color of logo based on distro
+    shopt -s nocasematch
+    case "$ascii_distro" in
+        "Arch Linux"* | "Antergos"*)
+            c1=$(color 6)
+            c2=$(color 4)
+        ;;
+
+        "CentOS"*)
+            c1=$(color 3)
+            c2=$(color 2)
+            c3=$(color 4)
+            c4=$(color 5)
+            c5=$(color 7)
+        ;;
+
+        "CRUX")
+            c1=$(color 4)
+            c2=$(color 5)
+            c3=$(color 7)
+        ;;
+
+        "Debian"* | "FreeBSD"* | "Red Hat"* | "elementary"* | "CrunchBang"* | "Ubuntu"*)
+            c1=$(color 7)
+            c2=$(color 1)
+            c3=$(color 3)
+        ;;
+
+        "Fedora"*)
+            c1=$(color 7)
+            c2=$(color 4)
+        ;;
+
+        "Gentoo"* | "Funtoo"*)
+            c1=$(color 7)
+            c2=$(color 5)
+        ;;
+
+        "Kali"*)
+            c1=$(color 4)
+            c2=$(color 8)
+        ;;
+
+        "Mac OS X"* | "Manjaro"* | "Deepin"*)
+            c1=$(color 2)
+            c2=$(color 3)
+            c3=$(color 1)
+            c4=$(color 1)
+            c5=$(color 5)
+            c6=$(color 4)
+        ;;
+
+        *"Mint"*)
+            c1=$(color 7)
+            c2=$(color 2)
+
+            ascii_distro="mint"
+        ;;
+
+        "NetBSD"* | "Parabola"*)
+            c1=$(color 5)
+            c2=$(color 7)
+        ;;
+
+        "OpenBSD"*)
+            c1=$(color 3)
+            c2=$(color 3)
+            c3=$(color 6)
+            c4=$(color 1)
+            c5=$(color 8)
+        ;;
+
+        "OpenSuse"*)
+            c1=$(color 2)
+            c2=$(color 7)
+        ;;
+
+        "Slackware"*)
+            c1=$(color 4)
+            c2=$(color 7)
+        ;;
+
+        "void"*)
+            c1=$(color 2)
+            c2=$(color 2)
+            c3=$(color 8)
+        ;;
+
+        "Windows 10"*)
+            c1=$(color 6)
+            ascii_distro="windows10"
+        ;;
+
+        "Windows"*)
+            c1=$(color 1)
+            c2=$(color 2)
+            c3=$(color 4)
+            c4=$(color 3)
+        ;;
+    esac
+
+    if [ "$ascii" == "distro" ]; then
+        # Lowercase the distro name
+        ascii=${ascii_distro,,}
+
+        # Check /usr/share/fetch for ascii before
+        # looking in the script's directory.
+        if [ -f "/usr/share/fetch/ascii/distro/${ascii/ *}" ]; then
+            ascii="/usr/share/fetch/ascii/distro/${ascii/ *}"
+        else
+            getscriptdir
+
+            # If the ascii file doesn't exist
+            # fallback to text mode.
+            if [ ! -f "$script_dir/ascii/distro/${ascii/ *}" ]; then
+                padding="\033[0C"
+                image="off"
+                return
+            fi
+
+            ascii="$script_dir/ascii/distro/${ascii/ *}"
+        fi
+
+        # Overwrite distro colors if '$ascii_color` doesn't
+        # equal 'distro'.
+        if [ "$ascii_color" != "distro" ]; then
+            c1=$(color $ascii_color)
+            c2=$(color $ascii_color)
+            c3=$(color $ascii_color)
+            c4=$(color $ascii_color)
+            c5=$(color $ascii_color)
+            c6=$(color $ascii_color)
+        fi
+
+        # We only use eval in the distro ascii files.
+        print="$(eval printf "$(<"$ascii")")"
+    else
+        case "$ascii_color" in
+            "distro") ascii_color="$c1" ;;
+            *) ascii_color="$(color $ascii_color)" ;;
+        esac
+
+        # If the ascii file doesn't exist
+        # fallback to text mode.
+        if [ ! -f "$ascii" ]; then
+            padding="\033[0C"
+            image="off"
+            return
+        fi
+
+        print="${ascii_color}$(<"$ascii")"
+    fi
+
+    # Turn the file into a variable.
+    ascii_strip=$(<$ascii)
+
+    # Strip escape codes backslashes from contents of
+    ascii_strip=${ascii_strip//\$\{??\}}
+    ascii_strip=${ascii_strip//\\}
+
+    # Get length of longest line
+    length="$(LC_ALL="en_US.UTF8" wc -L 2>/dev/null <<< "$ascii_strip")"
+
+    # Get the height in lines
+    lines="$(($(LC_ALL="en_US.UTF8" wc -l 2>/dev/null <<< "$ascii_strip") + 1))"
+
+    # Fallback to using awk on systems without 'wc -L'
+    [ -z "$length" ] && \
+        length="$(LC_ALL="en_US.UTF8" awk 'length>max{max=length}END{print max}' <<< "$ascii_strip")"
+
+    # Set the text padding
+    padding="\033[$((length + gap))C"
+
+    # Print the ascii
+    printf "%b%s" "$print"
+}
+
+
+# }}}
+
 # Image {{{
 
 getimage () {
+    # Fallback to ascii mode if imagemagick isn't installed.
+    if ! type -p convert >/dev/null 2>&1; then
+        image="ascii"
+    fi
+
+    # Fallback to ascii mode if image mode is 'w3m' and 'w3m' isn't installed.
+    if [ "$image_backend" == "w3m" ] && ! type -p $w3m_img_path >/dev/null 2>&1; then
+        image="ascii"
+    fi
+
     # Make the directory if it doesn't exist
     mkdir -p "$imgtempdir"
 
@@ -1199,11 +1479,11 @@ getimage () {
     case "$image_position" in
         "left")
             # Padding is half the terminal width + gap
-            padding="\e[$((columns / split_size + gap))C"
+            padding="\033[$((columns / split_size + gap))C"
         ;;
 
         "right")
-            padding="\e[0C"
+            padding="\033[0C"
             xoffset=$((columns * font_width / split_size - gap))
         ;;
     esac
@@ -1218,6 +1498,11 @@ getimage () {
             getshuffle
         ;;
 
+        "ascii")
+            getascii
+            return
+        ;;
+
         *)
             img="$image"
         ;;
@@ -1225,7 +1510,7 @@ getimage () {
 
     # If $img is empty, reset padding to 0 and exit the function
     if [ -z "$img" ]; then
-        padding="\e[0C"
+        padding="\033[0C"
         return
     fi
 
@@ -1294,6 +1579,9 @@ getimage () {
             ;;
         esac
     fi
+
+    # Lines equals terminal height
+    lines=$(tput lines)
 
     # The final image
     img="$imgtempdir/$imgname"
@@ -1388,16 +1676,16 @@ getunderline () {
 # Colors {{{
 
 colors () {
-    title_color="\e[38;5;${title_color}m"
-    at_color="\e[38;5;${at_color}m"
-    subtitle_color="\e[38;5;${subtitle_color}m"
-    colon_color="\e[38;5;${colon_color}m"
-    underline_color="\e[38;5;${underline_color}m"
-    info_color="\e[38;5;${info_color}m"
+    title_color="\033[38;5;${title_color}m"
+    at_color="\033[38;5;${at_color}m"
+    subtitle_color="\033[38;5;${subtitle_color}m"
+    colon_color="\033[38;5;${colon_color}m"
+    underline_color="\033[38;5;${underline_color}m"
+    info_color="\033[38;5;${info_color}m"
 }
 
 color () {
-   printf "%b%s" "\e[38;5;${1}m"
+   printf "%b%s" "\033[38;5;${1}m"
 }
 
 # }}}
@@ -1406,7 +1694,7 @@ color () {
 
 bold () {
     if [ "$bold" == "on" ]; then
-        bold="\e[1m"
+        bold="\033[1m"
     else
         bold=""
     fi
@@ -1414,8 +1702,77 @@ bold () {
 
 # }}}
 
+# Linebreak {{{
 
-clear="\e[0m"
+getlinebreak () {
+   linebreak=""
+}
+
+# }}}
+
+clear="\033[0m"
+
+
+# }}}
+
+
+# Other {{{
+
+
+# Get script directory {{{
+
+getscriptdir () {
+    # Use $0 to get the script's physical path.
+    cd "${0%/*}"
+    script_dir=${0##*/}
+
+    # Iterate down a (possible) chain of symlinks.
+    while [ -L "$script_dir" ]; do
+        script_dir="$(readlink $script_dir)"
+        cd "${script_dir%/*}"
+        script_dir="${script_dir##*/}"
+    done
+
+    # Final directory
+    script_dir="$(pwd -P)"
+}
+
+# }}}
+
+# Source Config {{{
+
+
+# Check for $config_file first
+getconfig () {
+    if [ -f "$config_file" ]; then
+        source "$config_file"
+        return
+    fi
+
+    # Check $HOME/.config/fetch and create the
+    # dir/files if they don't exist.
+    if [ -f "$HOME/.config/fetch/config" ]; then
+        source "$HOME/.config/fetch/config"
+
+    elif [ -f "/usr/share/fetch/config" ]; then
+        mkdir -p "$HOME/.config/fetch/"
+        cp "/usr/share/fetch/config" "$HOME/.config/fetch"
+        source "$HOME/.config/fetch/config"
+
+    else
+        getscriptdir
+
+        mkdir -p "$HOME/.config/fetch/"
+        cp "$script_dir/config" "$HOME/.config/fetch"
+        source "$HOME/.config/fetch/config"
+    fi
+}
+
+# If config files are enabled
+[ "$config" == "on" ] && getconfig
+
+
+# }}}
 
 
 # }}}
@@ -1426,18 +1783,22 @@ clear="\e[0m"
 
 usage () { cat << EOF
 
- usage: ${0##*/} [--colors 1 2 3 4 5] [--kernel "\$\(uname -rs\)"]
+    usage: ${0##*/} --option "value"
 
     Info:
+    --osx_buildversion     Hide/Show Mac OS X build version.
     --speed_type           Change the type of cpu speed to display.
                            Possible values: current, min, max, bios,
                            scaling_current, scaling_min, scaling_max
                            NOTE: This only support Linux with cpufreq.
+    --kernel_shorthand     Shorten the output of kernel
     --uptime_shorthand     Shorten the output of uptime (tiny, on, off)
     --gpu_shorthand on/off Shorten the output of GPU
     --gtk_shorthand on/off Shorten output of gtk theme/icons
     --gtk2 on/off          Enable/Disable gtk2 theme/icons output
     --gtk3 on/off          Enable/Disable gtk3 theme/icons output
+    --shell_path on/off    Enable/Disable showing \$SHELL path
+    --shell_version on/off Enable/Disable showing \$SHELL version
 
     Text Colors:
     --colors 1 2 3 4 5 6   Change the color of text
@@ -1465,7 +1826,8 @@ usage () { cat << EOF
 
     Image:
     --image                Image source. Where and what image we display.
-                           Possible values: wall, shuffle, /path/to/img, off
+                           Possible values: wall, shuffle, ascii,
+                           /path/to/img, off
     --image_backend        Which program to use to draw images.
     --shuffle_dir           Which directory to shuffle for an image.
     --font_width px        Used to automatically size the image
@@ -1491,6 +1853,14 @@ usage () { cat << EOF
                            move the text closer to the left side.
     --clean                Remove all cropped images
 
+
+    Ascii:
+    --ascii                Where to get the ascii from, Possible values:
+                           distro, /path/to/ascii
+    --ascii_color          Color to print the ascii art
+    --ascii_distro distro  Which Distro\'s ascii art to print
+
+
     Screenshot:
     --scrot /path/to/img   Take a screenshot, if path is left empty
                            the screenshot function will use
@@ -1514,12 +1884,16 @@ exit 1
 while [ "$1" ]; do
     case $1 in
         # Info
+        --osx_buildversion) osx_buildversion="$2" ;;
         --speed_type) speed_type="$2" ;;
+        --kernel_shorthand) kernel_shorthand="$2" ;;
         --uptime_shorthand) uptime_shorthand="$2" ;;
         --gpu_shorthand) gpu_shorthand="$2" ;;
         --gtk_shorthand) gtk_shorthand="$2" ;;
         --gtk2) gtk2="$2" ;;
         --gtk3) gtk3="$2" ;;
+        --shell_path) shell_path="$2" ;;
+        --shell_version) shell_version="$2" ;;
 
         # Text Colors
         --colors) title_color=$2
@@ -1548,7 +1922,16 @@ while [ "$1" ]; do
         --block_width) block_width="$2" ;;
 
         # Image
-        --image) image="$2" ;;
+        --image) image="$2"
+            [ -z "$2" ] && image="ascii"
+
+            case "$2" in
+                "--"*)
+                    image="ascii"
+                ;;
+            esac
+        ;;
+
         --image_backend) image_backend="$2" ;;
         --shuffle_dir) shuffle_dir="$2" ;;
         --font_width) font_width="$2" ;;
@@ -1561,12 +1944,27 @@ while [ "$1" ]; do
         --gap) gap="$2" ;;
         --clean) rm -rf "$imgtempdir" || exit ;;
 
+        # Ascii
+        --ascii) image="ascii"; ascii="$2"
+            [ -z "$2" ] && ascii="distro"
+
+            case "$2" in
+                "--"*)
+                    ascii="distro"
+                ;;
+            esac
+        ;;
+
+        --ascii_color) ascii_color="$2" ;;
+        --ascii_distro) ascii_distro="$2" ;;
+
         # Screenshot
         --scrot | -s) scrot="on"; \
             [ "$2" ] && scrot_path="$2" ;;
         --scrot_cmd) scrot_cmd="$2" ;;
 
         # Other
+        --config) config_file="$2"; getconfig ;;
         --help) usage ;;
     esac
 
@@ -1581,28 +1979,27 @@ done
 
 
 # Restore cursor and clear screen on ctrl+c
-trap 'printf "\e[?25h"; clear; exit' 2
+trap 'printf "\033[?25h"; clear; exit' 2
 
-# Get lines and columns
-lines=$(tput lines)
+# Get columns
 columns=$(tput cols)
 
 # Clear the terminal and hide the cursor
-clear
-printf "\e[?25l"
+[ "$image" != "off" ] && clear
+printf "\033[?25l"
 
-# Get image
+# Get the image
 [ "$image" != "off" ] && getimage
 
 # Disable line wrap
-[ "$line_wrap" == "off" ] && printf "\e[?7l"
+[ "$line_wrap" == "off" ] && printf "\033[?7l"
 
-# Display the image
-if [ "$image" != "off" ]; then
+# Display the image if enabled
+if [ "$image" != "off" ] && [ "$image" != "ascii" ]; then
     case "$image_backend" in
         "w3m")
             printf "%b%s\n" "0;1;$xoffset;$yoffset;$imgsize;$imgsize;;;;;$img\n4;\n3;" |\
-            $w3m_img_path
+            $w3m_img_path 2>/dev/null || padding="\033[0C"
         ;;
 
         "iterm2")
@@ -1616,17 +2013,28 @@ colors
 bold
 
 # Move the cursor to the top and display the info
-printf "\e[0H"
+[ "$image" != "off" ] && printf "\033[0H"
 printinfo
 
 # Move the cursor to the bottom and Show the cursor
-printf "%b%s" "\e[${lines}H\e[${prompt_height}A\e[?25h"
+if [ "$image" != "off" ]; then
+    # Set cursor position dynamically based on height of ascii/text.
+    info_height="$(IFS=';' read -sdR -p $'\E[6n' ROW COL; printf "%s" "${ROW#*[}")"
+    [ "$lines" -lt "$info_height" ] && lines="$info_height"
+
+    printf "%b%s" "\033[${lines}H\033[${prompt_height}A"
+fi
 
 # Enable line wrap again
-[ "$line_wrap" == "off" ] && printf "\e[?7h"
+[ "$line_wrap" == "off" ] && printf "\033[?7h"
+
+# Show the cursor
+printf "%b%s" "\033[?25h"
 
 # If enabled take a screenshot
-[ "$scrot" == "on" ] && takescrot
+if [ "$scrot" == "on" ]; then
+    takescrot
+fi
 
 
 # }}}
