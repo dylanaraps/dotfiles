@@ -28,12 +28,12 @@ printinfo () {
     info "Shell" shell
     info "Window Manager" windowmanager
     info "GTK Theme" gtktheme
-    info "Icons" gtkicons
     info "CPU" cpu
     info "GPU" gpu
     info "Memory" memory
     info "Disk" disk
 
+    # info "Battery" battery
     # info "Font" gtkfont
     # info "Resolution" resolution
     # info "Song" song
@@ -41,7 +41,6 @@ printinfo () {
 
     info linebreak
     info cols
-    info linebreak
 }
 
 
@@ -58,12 +57,16 @@ kernel_shorthand="on"
 # --osx_buildversion on/off
 osx_buildversion="on"
 
+# Show 'x86_64' and 'x86' in 'Distro:' output.
+# --os_arch on/off
+os_arch="off"
+
 
 # Uptime
 
 # Shorten the output of the uptime function
 # --uptime_shorthand tiny, on, off
-uptime_shorthand="off"
+uptime_shorthand="on"
 
 
 # Shell
@@ -107,6 +110,19 @@ gtk2="on"
 # Enable/Disable gtk3 theme/icons output
 # --gtk3 on/off
 gtk3="on"
+
+
+# Birthday
+
+# Whether to show a long pretty output
+# or a shortened one
+# NOTE: Long pretty output doesn't work on OpenBSD or NetBSD.
+# --birthday_shorthand on/off
+birthday_shorthand="off"
+
+# Whether to show the time in the output
+# --birthday_time on/off
+birthday_time="on"
 
 
 # Color Blocks
@@ -164,10 +180,6 @@ line_wrap="on"
 # --bold on/off
 bold="off"
 
-# Toggle title underline
-# --underline on/off
-underline="on"
-
 # Underline character
 # --underline_char char
 underline_char="-"
@@ -189,7 +201,7 @@ prompt_height=0
 image="wall"
 
 # Thumbnail directory
-imgtempdir="$HOME/.fetchimages"
+imgtempdir="$HOME/.cache/thumbnails/fetch"
 
 # Image Backend
 # Which program to draw images with
@@ -238,7 +250,7 @@ gap=4
 # Image offsets
 # --xoffset px
 # --yoffset px
-yoffset=0
+yoffset=10
 xoffset=0
 
 

@@ -125,10 +125,10 @@ openbox () {
     colors
 
     # Titlebar colors
-    focused_titlebg=$(xrdb -query | grep "\*\.color5" | cut -f2)
-    focused_titlebg="#BF9C86"
-    unfocused_titlebg=$(xrdb -query | grep "\*\.color2:" | cut -f2)
-    titlefg=$(xrdb -query | grep "\*\.color7:" | cut -f2)
+    active_titlebg=$(xrdb -query | grep "\*\.color2" | cut -f2)
+    inactive_titlebg=$(xrdb -query | grep "\*\.color2:" | cut -f2)
+    active_titlefg=$(xrdb -query | grep "\*\.color7:" | cut -f2)
+    inactive_titlefg=$(xrdb -query | grep "\*\.color7:" | cut -f2)
 
 
     # Menu colors
@@ -136,9 +136,10 @@ openbox () {
     menufg=$(xrdb -query | grep "\*\.color8:" | cut -f2)
 
     echo "# Openbox colors, generated using gencol"
-    echo "window.active.title.bg.color: $focused_titlebg"
-    echo "window.inactive.title.bg.color: $unfocused_titlebg"
-    echo "window.*.label.text.color: $titlefg"
+    echo "window.active.title.bg.color: $active_titlebg"
+    echo "window.inactive.title.bg.color: $inactive_titlebg"
+    echo "window.active.label.text.color: $active_titlefg"
+    echo "window.inactive.label.text.color: $inactive_titlefg"
     echo "window.*.button.*.image.color: $titlefg"
     echo "menu*.bg.color: $menubg"
     echo "menu*.text.color: $menufg"

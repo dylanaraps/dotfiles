@@ -1,14 +1,10 @@
 # fetch
 
 This is the home of my fetch script! This script gathers info <br />
-about your system and prints it to the terminal next to an image of your choice!
+about your system and prints it to the terminal next to an image, <br \>
+your distro's logo or any ascii art of your choice!
 
-**NOTE: See this wiki page for info on the new info function and it's usage**
-
-https://github.com/dylanaraps/fetch/wiki/Customizing-Info
-
-
-![1](http://i.imgur.com/oTxq5fA.png)
+![1](http://i.imgur.com/t1V9crb.png)
 
 
 <!-- Table of Contents {{{ -->
@@ -16,6 +12,7 @@ https://github.com/dylanaraps/fetch/wiki/Customizing-Info
 
 ## Table of Contents
 
+- [Screenshots](#screenshots)
 - [Features](#features)
 - [Dependencies](#dependencies)
 - [Installation](#installation)
@@ -29,27 +26,32 @@ https://github.com/dylanaraps/fetch/wiki/Customizing-Info
 <!-- }}} -->
 
 
+<!-- Screenshots {{{ -->
+
+
+## Screenshots
+
+![Windows](https://i.imgur.com/oVv5gHn.png)
+![Mac OS X](http://i.imgur.com/KEi9EEi.png)
+![Linux](https://ipfs.pics/ipfs/QmQL7jbxuRAX8HxL2ePNH7zUpXnePV3LRuodXZQvdiFiWk)
+![Linux](https://i.imgur.com/6fgnvcq.png)
+![Linux](http://i.imgur.com/CBpGjnw.png)
+
+
+<!-- }}} -->
+
+
 <!-- Features {{{ -->
 
 
 ## Features
 
-- **Supports Linux, Mac OS X, BSD and Windows (Cygwin)!**
-    - If the script doesn't work on your system, open an issue.
-- **It's Fast**
-    - The script makes heavy use of bash builtins and <br \>string manipulation.
-- **Display an image next to the info.**
-    - Use your current wallpaper, shuffle through a directory or just <br \>display an image of your choice.
-    - Supports using w3m or iTerm2 to display the images.
-- **Display ascii next to the info.**
-    - Use a file containing ascii art as the image.
-- **Highly Customizable**
-    - You can customize almost everything.
-        - See Usage below or lines 23-233 in script
-- **Take a screenshot at the end.**
-    - It's disabled by default and you can specify the cmd <br \>to use with `--scrotcmd cmd` at launch or by <br \>changing the value of `$scrotcmd` in the script.
-- **Smart crop (or Waifu crop)**
-    - See https://github.com/dylanaraps/fetch/wiki/What-is-Smart-Crop%3F
+- Supports **Linux**, **Mac OS X**, **BSD** and **Windows** (Cygwin)
+- Display a **full color image**, a file containing **ascii art** or your **distro's logo** in ascii next to the info.
+- The script is **fast**. We use bash builtins wherever possible and only spawn external processes when necessary.
+- Take a screenshot of your desktop on script finish.
+- Customize **which** info is displayed, **where** it's displayed and **when** it's displayed.
+    - See this **[wiki page](https://github.com/dylanaraps/fetch/wiki/Customizing-Info)**
 
 
 <!-- }}} -->
@@ -77,10 +79,10 @@ https://github.com/dylanaraps/fetch/wiki/Customizing-Info
 
 **All OS:**
 
--  Displaying Images: `w3m`
-    - You may also need `w3m-img`
-    - **Note:** The script can now also use iTerm2's builtin image rendering instead of w3m!<br \>
-    Enable it by changing `$image_backend` to `iterm2` or by using the launch flag `--image_backend`.
+-  Displaying Images: `w3m-img` or `iTerm2`
+    - `w3m-img` is sometimes bundled together with `w3m`. (Arch)
+    - **Note:** To enable iTerm2 mode, you need to change `$image_backend` to `iterm2`
+    or use the launch flag `--image_backend iterm2`.
 -  Image Cropping, Resizing etc: `ImageMagick`
 -  More accurate window manager detection: `wmctrl`
 
@@ -90,7 +92,7 @@ https://github.com/dylanaraps/fetch/wiki/Customizing-Info
 -  Current Song: `mpc` or `cmus`
 -  Resolution Detection: `xorg-xdpyinfo`
 -  Take a screenshot on script finish: `scrot`
-    - You can change this to another program with a `--scrot_cmd` and an in script option.
+    - You can change this to another program with `--scrot_cmd` and `$scrot_cmd`.
 
 
 <!-- }}} -->
@@ -122,8 +124,12 @@ https://github.com/dylanaraps/fetch/wiki/Customizing-Info
 ### Others
 
 1. Download the latest source at https://github.com/dylanaraps/fetch
-2. Make the file executable using chmod. `chmod +x /path/to/fetch`
-3. Move the script to somewhere in your $PATH or just run it from where it is.
+2. Run `make install` inside the script directory to install the script.
+
+**NOTE:** Fetch can be uninstalled easily using `make uninstall`.
+
+**NOTE:** Fetch can also be run from any directory like a normal script,<br \>
+you'll just be missing the ascii distro logos and config file functionality.
 
 
 <!-- }}} -->
@@ -131,20 +137,40 @@ https://github.com/dylanaraps/fetch/wiki/Customizing-Info
 
 <!-- Post Install {{{ -->
 
+
 ## Post Install
+
+
+#### Using the config file
+
+Fetch will by default create a config file at `$HOME/.config/fetch/config` and this file<br \>
+contains all of the script's options/settings. The config file allows you to keep your<br \>
+customizations between script versions and allows you to easily share your customizations<br \>
+with other people.
+
+You can launch the script without a config file by using the flag `--config none` and you can<br \>
+specify a custom config location using `--config path/to/config`.
 
 
 #### Sizing the image correctly
 
-**NOTE:** For the images to be sized correctly you need to set the `$font_width` variable.
+**NOTE:** For the images to be sized correctly you need to set the `$font_width` variable.<br \>
 If you don't know your font width in pixels keep trying values until the image is sized correctly.
 
 You can also use the launch flag `--font_width` to set it on the fly.
 
 
+#### Setting the prompt height
+
+If your shell prompt's height is greater than 1 line high, you'll need to change a config<br \>
+option to avoid issues with the top lines in the script output getting cut off. Set the variable<br \>
+`$prompt_height` to your shell prompt's height in lines or use the launch flag `--prompt_height`.
+
+
 #### Customizing what info gets displayed
 
-At the top of the script there's a function that allows you to customize all of the info that gets displayed.
+In the config file there's a function that allows you to customize all of the info that<br \>
+gets displayed.
 
 Here's what you can do:
 
@@ -160,7 +186,7 @@ https://github.com/dylanaraps/fetch/wiki/Customizing-Info
 
 #### Customizing the script using a custom alias
 
-If you don't want to edit the script you can customize almost everything using launch flags!
+If you don't want to use the config file you can customize almost everything using launch flags!
 
 Here's what my fetch alias looks like:
 
@@ -184,9 +210,14 @@ alias fetch2="fetch \
 ## Usage
 
 
-    usage: ${0##*/} --option "value" --option
+    usage: ${0##*/} --option "value"
 
     Info:
+    --disable infoname     Allows you to disable an info line from
+                           appearing in the output.
+                           NOTE: You can supply multiple args. eg.
+                           'fetch --disable cpu gpu disk shell'
+    --os_arch on/off       Hide/Show Windows architecture.
     --osx_buildversion     Hide/Show Mac OS X build version.
     --speed_type           Change the type of cpu speed to display.
                            Possible values: current, min, max, bios,
@@ -200,10 +231,12 @@ alias fetch2="fetch \
     --gtk3 on/off          Enable/Disable gtk3 theme/icons output
     --shell_path on/off    Enable/Disable showing \$SHELL path
     --shell_version on/off Enable/Disable showing \$SHELL version
+    --battery_num          Which battery to display, default value is 'all'
+    --battery_shorthand    Whether or not each battery gets its own line and title
+    --birthday_shorthand   Shorten the output of birthday
+    --birthday_time        Enable/Disable showing the time in birthday output
 
     Text Colors:
-    --colors 1 2 3 4 5 6   Change the color of text
-                           (title, @, subtitle, colon, underline, info)
     --title_color num      Change the color of the title
     --at_color num         Change the color of "@" in title
     --subtitle_color num   Change the color of the subtitle
@@ -212,7 +245,6 @@ alias fetch2="fetch \
     --info_color num       Change the color of the info
 
     Text Formatting:
-    --underline on/off     Enable/Disable title underline
     --underline_char char  Character to use when underlineing title
     --line_wrap on/off     Enable/Disable line wrapping
     --bold on/off          Enable/Disable bold text
@@ -257,9 +289,9 @@ alias fetch2="fetch \
 
     Ascii:
     --ascii                Where to get the ascii from, Possible values:
-                           'distro', '/path/to/ascii'
+                           distro, /path/to/ascii
     --ascii_color          Color to print the ascii art
-    --ascii_distro distro  Which Distro's ascii art to print
+    --ascii_distro distro  Which Distro\'s ascii art to print
 
 
     Screenshot:
@@ -269,6 +301,8 @@ alias fetch2="fetch \
     --scrot_cmd            Screenshot program to launch
 
     Other:
+    --config               Specify a path to a custom config file
+    --config none          Launch the script without a config file
     --help                 Print this text and exit
 
 
@@ -284,10 +318,10 @@ alias fetch2="fetch \
 #### How do I enable screenfetch mode?
 
 Launching the script with `--ascii distro` or setting `ascii="distro"` and `image="ascii"` <br \>
-inside the script will launch the script in "screenfetch mode". The script will display your<br \>
+inside the config file will launch the script in "screenfetch mode". The script will display your<br \>
 distro's ascii next to the info, exactly like screenfetch.
 
-![arch](https://camo.githubusercontent.com/972490362219f4aa087a0a9491df24d506590542/687474703a2f2f692e696d6775722e636f6d2f746741504a76322e706e67)
+![arch](http://i.imgur.com/uCMjgf6.png)
 
 
 #### Why doesn't fetch support my wallpaper setter?
@@ -308,38 +342,6 @@ or you know where it's stored then adding support won't be a problem!<br \>
 ## Issues and Workarounds
 
 
-#### fetch: line 1655: /usr/lib/w3m/w3mimgdisplay: No such file or directory
-
-
-You're getting this error because the script can't find w3mimgdisplay in it's<br \>
-default location. You can fix this by setting the config option `$w3m_img_path`<br \>
-to the correct location of w3mimgdisplay.
-
-Other places that `w3mimgdisplay` could located be are:
-
-    /usr/lib/w3m/w3mimgdisplay
-    /usr/libexec/w3m/w3mimgdisplay
-    /usr/lib64/w3m/w3mimgdisplay
-    /usr/libexec64/w3m/w3mimgdisplay
-
-
-#### The image is blank and won't show up.
-
-
-If the images display in `ranger` and `w3m` then it's an issue with my script and not<br \>
-your terminal emulator.
-
-Some terminal emulators don't support viewing images with w3m. You can either disable<br \>
-images with `--image off` at launch or `image=off` inside the script.
-
-
-#### The image is rendering with black lines in Urxvt while using an xft font.
-
-This is an issue with w3mimgdisplay and not the script. You can find a possible workaround here:
-
-https://github.com/hut/ranger/issues/86#issuecomment-17346249
-
-
 #### The text is too long for my terminal window and wraps to the next line causing the image to not render correctly.
 
 There are a few ways to fix this.
@@ -350,18 +352,21 @@ There are a few ways to fix this.
   enable them by changing these variables or using these flags.
 
 ```sh
-# In script options
+# Config options
 uptime_shorthand="on"
 gtk_shorthand="on"
 gpu_shorthand="on"
+birthday_shorthand="on"
 
 # Launch flags
 --uptime_shorthand on
 --gtk_shorthand on
 --gpu_shorthand on
+--birthday_shorthand on
+
 ```
 
-* Edit the info array to make the subtitles shorter
+* Edit the config to make the subtitles shorter
 
 * Resizing the terminal so that the lines don't wrap.
 
@@ -414,6 +419,8 @@ Thanks to:
 - @jrgz: Helping me test the Mac OS X version.
 
 - @xDemonessx: Helping me test the Windows version.
+
+- Everyone else who has helped test the script and given feedback.
 
 
 <!-- }}} -->
