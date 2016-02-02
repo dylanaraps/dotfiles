@@ -1,8 +1,8 @@
 ! Dylans Xresources
 
 ! Set the font
-URxvt*font: xft:lemon:pixelsize=10:antialias=false
-URxvt*boldFont: xft:lemon:pixelsize=10:antialias=false
+URxvt*font: -benis-lemon-medium-r-normal--10-110-75-75-m-50-ISO8859-1
+URxvt*boldFont: -benis-lemon-medium-r-normal--10-110-75-75-m-50-ISO8859-1
 
 ! Increase line spacing
 URxvt*lineSpace: 2
