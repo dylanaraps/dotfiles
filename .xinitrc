@@ -22,5 +22,8 @@ clock &
 # Pulseaudio
 pulseaudio --start &
 
+# Redshift
+redshift -m randr &
+
 #  Start openbox
 exec openbox

@@ -21,7 +21,7 @@ Plug 'dylanaraps/root.vim'
 	let g:root#echo = 0
 
 " Hide view ui
-Plug 'junegunn/goyo.vim'
+Plug 'dylanaraps/goyo.vim'
 
 " Clicking v expands region
 Plug 'kana/vim-textobj-user'
