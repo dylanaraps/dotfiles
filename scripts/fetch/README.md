@@ -1,5 +1,7 @@
 # fetch
 
+[![Gitter](https://badges.gitter.im/dylanaraps/fetch.svg)](https://gitter.im/dylanaraps/fetch?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge)
+
 This is the home of my fetch script! This script gathers info <br />
 about your system and prints it to the terminal next to an image, <br \>
 your distro's logo or any ascii art of your choice!
@@ -31,11 +33,10 @@ your distro's logo or any ascii art of your choice!
 
 ## Screenshots
 
+![Linux](https://u.teknik.io/sW22K.png)
 ![Windows](https://i.imgur.com/oVv5gHn.png)
 ![Mac OS X](http://i.imgur.com/KEi9EEi.png)
-![Linux](https://ipfs.pics/ipfs/QmQL7jbxuRAX8HxL2ePNH7zUpXnePV3LRuodXZQvdiFiWk)
-![Linux](https://i.imgur.com/6fgnvcq.png)
-![Linux](http://i.imgur.com/CBpGjnw.png)
+![Linux](https://ipfs.pics/ipfs/QmbqDatmoA9zyxBSXXsgj21XxaTvc5jsmvhWNccTeJVeUC)
 
 
 <!-- }}} -->
@@ -46,7 +47,7 @@ your distro's logo or any ascii art of your choice!
 
 ## Features
 
-- Supports **Linux**, **Mac OS X**, **BSD** and **Windows** (Cygwin)
+- Supports **Linux**, **Mac OS X**, **BSD (FreeBSD, OpenBSD & NetBSD)** and **Windows** (Cygwin)
 - Display a **full color image**, a file containing **ascii art** or your **distro's logo** in ascii next to the info.
 - The script is **fast**. We use bash builtins wherever possible and only spawn external processes when necessary.
 - Take a screenshot of your desktop on script finish.
@@ -65,8 +66,9 @@ your distro's logo or any ascii art of your choice!
 
 ### Required dependencies:
 
--  `Bash 4.0+`
--  `procps-ng`
+- `Bash 4.0+`
+- `xprop` \[3\]
+- `procps-ng`
     - Not required on OS X
 
 
@@ -77,7 +79,6 @@ your distro's logo or any ascii art of your choice!
 
 ##### Linux / BSD
 
-- Window Manager: `wmctrl` \[3\]
 - Wallpaper: `feh`, `nitrogen` or `gsettings`
 - Current Song: `mpc` or `cmus`
 - Resolution: `xorg-xdpyinfo`
@@ -88,8 +89,7 @@ your distro's logo or any ascii art of your choice!
 \[2\] You can enable the `iTerm2` image backend by using the launch flag `--image_backend iterm2` or by<br \>
 changing the config option `$image_backend` to `iterm2`.
 
-\[3\] You should install wmctrl if the builtin window manager detection isn't working for you. The builtin<br \>
-detection works for most people and is generally faster which is why wmctrl isn't default.
+\[3\] See **[#79](https://github.com/dylanaraps/fetch/issues/79)** about why this is now a required dependency.
 
 \[4\] You can use the launch flag `--scrot_cmd` or change the config option `$scrot_cmd` to your screenshot<br \>
 program's cmd and fetch will use it instead of scrot.
@@ -103,6 +103,11 @@ program's cmd and fetch will use it instead of scrot.
 
 ## Installation
 
+Those using a git version of fetch should check this page after<br \>
+updating, this page lists any breaking changes that were made and<br \>
+how you can workaround them.
+
+https://github.com/dylanaraps/fetch/wiki/Following-HEAD
 
 ### Arch
 
@@ -121,10 +126,23 @@ program's cmd and fetch will use it instead of scrot.
     - `emerge -a x11-apps/fetch`
 
 
+### CRUX
+
+1. Install git and the git ports(8) driver
+    - `sudo prt-get depinst git`
+2. Add the 3rd party repo
+    - `sudo wget -O /etc/ports/arcetera.git https://git.io/vgNJ6`
+3. Sync the repos
+    - `sudo ports -u`
+4. Install the package
+    - `sudo prt-get depinst fetch`
+
+
 ### Others
 
 1. Download the latest source at https://github.com/dylanaraps/fetch
 2. Run `make install` inside the script directory to install the script.
+    - **El Captain**: `PREFIX=/usr/local make install`
 
 **NOTE:** Fetch can be uninstalled easily using `make uninstall`.
 
@@ -238,6 +256,8 @@ alias fetch2="fetch \
     --shell_version on/off      Enable/Disable showing \$SHELL version
     --battery_num num           Which battery to display, default value is 'all'
     --battery_shorthand on/off  Whether or not each battery gets its own line/title
+    --ip_host url               Url to ping for public IP
+    --song_shorthand on/off     Print the Artist/Title on seperate lines
     --birthday_shorthand on/off Shorten the output of birthday
     --birthday_time on/off      Enable/Disable showing the time in birthday output
 
@@ -272,8 +292,6 @@ alias fetch2="fetch \
     --shuffle_dir path/to/dir   Which directory to shuffle for an image.
     --font_width px             Used to automatically size the image
     --image_position left/right Where to display the image: (Left/Right)
-    --split_size num            Width of img/text splits, A value of 2 makes each
-                                split half the terminal width and etc.
     --crop_mode mode            Which crop mode to use
                                 Takes the values: normal, fit, fill
     --crop_offset value         Change the crop offset for normal mode.

@@ -26,17 +26,20 @@ printinfo () {
     info "Uptime" uptime
     info "Packages" packages
     info "Shell" shell
-    info "Window Manager" windowmanager
-    info "GTK Theme" gtktheme
-    info "Icons" gtkicons
+    info "Desktop Environment" de
+    info "Window Manager" wm
+    info "Theme" theme
+    info "Icons" icons
     info "CPU" cpu
     info "GPU" gpu
     info "Memory" memory
 
-    # info "Font" gtkfont
+    # info "Font" font
     # info "Disk" disk
     # info "Resolution" resolution
     # info "Battery" battery
+    # info "Local IP" localip
+    # info "Public IP" public
     # info "Birthday" birthday
     # info "Song" song
     # info "Visual Style" visualstyle
@@ -96,7 +99,7 @@ speed_type="max"
 
 # Shorten output of the getgpu funcion
 # --gpu_shorthand on/off
-gpu_shorthand="off"
+gpu_shorthand="on"
 
 
 # Gtk Theme / Icons
@@ -128,6 +131,20 @@ battery_num="all"
 # NOTE: Only works on Linux.
 # --battery_shorthand on/off
 battery_shorthand="off"
+
+
+# IP Address
+
+# Website to ping for the public IP
+# --ip_host url
+public_ip_host="http://ident.me"
+
+
+# Song
+
+# Print the Artist and Title on seperate lines
+# --song_shorthand on/off
+song_shorthand="off"
 
 
 # Birthday

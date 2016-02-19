@@ -6,13 +6,12 @@
 #
 # Required Dependencies:
 #   Bash 4.0+
-#   Text formatting, dynamic image size and padding: tput
+#   xprop
 #   [Linux / BSD / Windows] Uptime detection: procps or procps-ng
 #
 # Optional Dependencies: (You'll lose these features without them)
 #   Displaying Images: w3m + w3m-img
 #   Image Cropping: ImageMagick
-#   More accurate window manager detection: wmctrl
 #   [ Linux / BSD ] Wallpaper Display: feh, nitrogen or gsettings
 #   [ Linux / BSD ] Current Song: mpc or cmus
 #   [ Linux / BSD ] Resolution detection: xorg-xdpyinfo
@@ -21,10 +20,9 @@
 # https://github.com/dylanaraps/
 
 # Speed up script by not using unicode
+SYS_LOCALE="$LANG"
 export LC_ALL=C
 export LANG=C
-export LANGUAGE=C
-
 
 # Config Options {{{
 
@@ -46,9 +44,10 @@ printinfo () {
     info "Uptime" uptime
     info "Packages" packages
     info "Shell" shell
-    info "Window Manager" windowmanager
-    info "GTK Theme" gtktheme
-    info "Icons" gtkicons
+    info "Desktop Environment" de
+    info "Window Manager" wm
+    info "Theme" theme
+    info "Icons" icons
     info "CPU" cpu
     info "GPU" gpu
     info "Memory" memory
@@ -58,6 +57,8 @@ printinfo () {
     # info "Resolution" resolution
     # info "Battery" battery
     # info "Song" song
+    # info "Local IP" localip
+    # info "Public IP" public
     # info "Birthday" birthday
     # info "Visual Style" visualstyle
 
@@ -116,7 +117,7 @@ speed_type="max"
 
 # Shorten output of the getgpu funcion
 # --gpu_shorthand on/off
-gpu_shorthand="off"
+gpu_shorthand="on"
 
 
 # Gtk Theme / Icons
@@ -148,6 +149,20 @@ battery_num="all"
 # NOTE: Only works on Linux.
 # --battery_shorthand on/off
 battery_shorthand="off"
+
+
+# IP Address
+
+# Website to ping for the public IP
+# --ip_host url
+public_ip_host="http://ident.me"
+
+
+# Song
+
+# Print the Artist and Title on seperate lines
+# --song_shorthand on/off
+song_shorthand="off"
 
 
 # Birthday
@@ -415,23 +430,27 @@ x32="x86"
 case "$os" in
     "Linux" )
         if type -p lsb_release >/dev/null 2>&1; then
-            distro="$(lsb_release -a 2>/dev/null | awk -F':' '/Description/ {printf $2}')"
+            distro="$(lsb_release -d 2>/dev/null | awk -F':' '/Description/ {printf $2}')"
             distro=${distro/[[:space:]]}
+
         elif type -p crux >/dev/null 2>&1; then
             distro="CRUX"
+
         else
             distro="$(grep -h '^NAME=' /etc/*ease)"
-            distro=${distro#NAME\=*}
-            distro=${distro#\"*}
-            distro=${distro%*\"}
+
+            # Workaround for distros that store the value differently.
+            [ -z "$distro" ] && distro="$(grep -h 'TAILS_PRODUCT_NAME' /etc/*ease)"
+            [ -z "$distro" ] && distro="$(awk '/BLAG/ {print $1; exit}' /etc/*ease)"
+
+            distro=${distro/*NAME\=}
+            distro=${distro//\"}
         fi
     ;;
 
     "Mac OS X")
         distro="Mac OS X $(sw_vers -productVersion)"
-
-        [ "$osx_buildversion" == "on" ] && \
-            distro+=" $(sw_vers -buildVersion)"
+        [ "$osx_buildversion" == "on" ] && distro+=" $(sw_vers -buildVersion)"
     ;;
 
     "OpenBSD")
@@ -500,7 +519,22 @@ getkernel() {
 getuptime () {
     case "$os" in
         "Linux")
-            uptime="$(uptime -p)"
+            case "$distro" in
+                "Puppy Linux"* | "Quirky Werewolf"* | "Precise Puppy"*)
+                    uptime=$(uptime | awk -F ':[0-9]{2}+ |(, ){1}+' '{printf $2}')
+                    uptime=${uptime/  / }
+                ;;
+
+                "openSUSE"*)
+                    uptime=$(uptime | awk -F ':[0-9]{2}+[a-z][a-z]  |(, ){1}+' '{printf $2}')
+                    uptime=${uptime/   / }
+                ;;
+
+                *)
+                    uptime="$(uptime -p)"
+                    [ "$uptime" == "up " ] && uptime="up $(awk -F'.' '{print $1}' /proc/uptime) seconds"
+                ;;
+            esac
         ;;
 
         "Mac OS X" | *"BSD")
@@ -554,6 +588,7 @@ getuptime () {
             uptime=${uptime/up}
             uptime=${uptime/minutes/mins}
             uptime=${uptime/minute/min}
+            uptime=${uptime/seconds/secs}
             uptime=${uptime# }
         ;;
 
@@ -565,6 +600,7 @@ getuptime () {
             uptime=${uptime/ hour/h}
             uptime=${uptime/ minutes/m}
             uptime=${uptime/ minute/m}
+            uptime=${uptime/ seconds/s}
             uptime=${uptime/,}
             uptime=${uptime# }
         ;;
@@ -576,36 +612,49 @@ getuptime () {
 # Package Count {{{
 
 getpackages () {
-    case "$distro" in
-        "Arch Linux"* | "Parabola"* | "Manjaro"* | "Antergos"*)
-            packages="$(pacman -Qq --color never | wc -l)"
+    case "$os" in
+        "Linux")
+            if type -p dpkg >/dev/null 2>&1; then
+                packages="$(dpkg --get-selections | grep -cv deinstall$)"
+
+            elif type -p pacman >/dev/null 2>&1; then
+                packages="$(pacman -Qq --color never | wc -l)"
+
+            elif type -p pkgtool >/dev/null 2>&1; then
+                packages="$(ls -1 /var/log/packages | wc -l)"
+
+            elif type -p rpm >/dev/null 2>&1; then
+                packages="$(rpm -qa | wc -l)"
+
+            elif type -p xbps-query >/dev/null 2>&1; then
+                packages="$(xbps-query -l | wc -l)"
+
+            elif type -p pkginfo >/dev/null 2>&1; then
+                packages="$(pkginfo -i | wc -l)"
+
+            elif type -p pisi >/dev/null 2>&1; then
+                packages="$(pisi list-installed | wc -l)"
+
+            elif type -p pkg >/dev/null 2>&1; then
+                packages="$(ls -1 /var/db/pkg | wc -l)"
+
+            elif type -p emerge >/dev/null 2>&1; then
+                packages="$(ls -d /var/db/pkg/*/* | wc -l)"
+
+            elif type -p nix-env >/dev/null 2>&1; then
+                packages="$(ls -d -1 /nix/store/*/ | wc -l)"
+
+            elif type -p pacman-g2 >/dev/null 2>&1; then
+                packages="$(pacman-g2 -Q | wc -l)"
+
+            elif type -p cave >/dev/null 2>&1; then
+                cross_packages=$(ls -d -1 /var/db/paludis/repositories/cross-installed/*/data/* | wc -l)
+                packages=$(ls -d -1 /var/db/paludis/repositories/installed/data/* | wc -l)
+                packages=$((packages + cross_packages))
+            fi
         ;;
 
-        "void"*)
-            packages="$(xbps-query -l | wc -l)"
-        ;;
-
-        "Ubuntu"* | *"Mint"* | "CrunchBang"* | "Debian"* | "Kali Linux"* | "Deepin Linux"* | "elementary"*)
-            packages="$(dpkg --get-selections | grep -cv deinstall$)"
-        ;;
-
-        "Slackware"*)
-            packages="$(ls -1 /var/log/packages | wc -l)"
-        ;;
-
-        "Gentoo"* | "Funtoo"*)
-            packages="$(ls -d /var/db/pkg/*/* | wc -l)"
-        ;;
-
-        "Fedora"* | "openSUSE"* | "Red Hat Enterprise Linux"* | "CentOS"*)
-            packages="$(rpm -qa | wc -l)"
-        ;;
-
-        "CRUX"*)
-            packages="$(pkginfo -i | wc -l)"
-        ;;
-
-        "Mac OS X"*)
+        "Mac OS X")
             if [ -d "/usr/local/bin" ]; then
                 local_packages=$(ls -l /usr/local/bin/ | grep -v "\(../Cellar/\|brew\)" | wc -l)
                 packages=$((local_packages - 1))
@@ -627,15 +676,16 @@ getpackages () {
             fi
         ;;
 
-        "OpenBSD"* | "NetBSD"*)
-            packages=$(pkg_info | wc -l)
+        *"BSD")
+            if type -p pkg_info >/dev/null 2>&1; then
+                packages=$(pkg_info | wc -l)
+
+            elif type -p pkg >/dev/null 2>&1; then
+                packages=$(pkg info | wc -l)
+            fi
         ;;
 
-        "FreeBSD"*)
-            packages=$(pkg info | wc -l)
-        ;;
-
-        "Windows"*)
+        "Windows")
             packages=$(cygcheck -cd | wc -l)
 
             # Count chocolatey packages
@@ -644,13 +694,10 @@ getpackages () {
                 packages=$((packages + choco_packages))
             fi
         ;;
-
-        *)
-            packages="Unknown"
-        ;;
     esac
-
     packages=${packages// }
+
+    [ -z "$packages" ] && packages="Unknown"
 }
 
 # }}}
@@ -694,33 +741,31 @@ getshell () {
 
 # }}}
 
+# Desktop Environment {{{
+
+getde () {
+    [ "$XDG_CURRENT_DESKTOP" ] && de="$XDG_CURRENT_DESKTOP"
+}
+
+# }}}
+
 # Window Manager {{{
 
-getwindowmanager () {
-    if type -p wmctrl >/dev/null 2>&1; then
-        windowmanager="$(wmctrl -m | head -n1)"
-        windowmanager=${windowmanager/Name: }
-
-    elif [ "$XDG_CURRENT_DESKTOP" ]; then
-        windowmanager="$XDG_CURRENT_DESKTOP"
-
-    elif [ "$XINITRC" ]; then
-        windowmanager=$(grep "^[^#]*exec" "$XINITRC")
-
-    elif [ -e "$HOME/.xinitrc" ]; then
-        windowmanager=$(grep "^[^#]*exec" "${HOME}/.xinitrc")
+getwm () {
+    if [ -n "$DISPLAY" ]; then
+        id="$(xprop -root -notype | \awk '$1=="_NET_SUPPORTING_WM_CHECK:"{print $5}')"
+        wm="$(xprop -id "$id" -notype -f _NET_WM_NAME 8t)"
+        wm=${wm/*_NET_WM_NAME = }
+        wm=${wm/\"}
+        wm=${wm/\"*}
 
     else
         case "$os" in
-            "Mac OS X") windowmanager="Quartz Compositor" ;;
-            "Windows") windowmanager="Explorer" ;;
-            *) windowmanager="Unknown" ;;
+            "Mac OS X") wm="Quartz Compositor" ;;
+            "Windows") wm="Explorer" ;;
+            *) wm="Unknown" ;;
         esac
     fi
-
-    windowmanager="${windowmanager/exec }"
-    windowmanager="${windowmanager/-session}"
-    windowmanager="${windowmanager^}"
 }
 
 # }}}
@@ -734,6 +779,7 @@ getcpu () {
             cpu="$(grep -F 'model name' /proc/cpuinfo)"
             cpu=${cpu/model name*: }
             cpu=${cpu/ @*}
+            cpu=${cpu//  }
             cpu=${cpu%% }
 
             # Get cpu speed
@@ -848,13 +894,18 @@ getcpu () {
 getgpu () {
    case "$os" in
        "Linux")
-            # Get the GPUs
-            gpu="$(lspci | grep -F "VGA")"
+            gpu="$(PATH="/sbin:$PATH" lspci | grep -F "3D")"
+
+            # If a GPU with a prefix of '3D' doesn't exist
+            # fallback to looking for a prefix of 'VGA'
+            [ -z "$gpu" ] && \
+            gpu="$(PATH="/sbin:$PATH" lspci | grep -F "VGA")"
             gpu=${gpu//??':'??'.'?}
 
             # Count the number of GPUs
             count="$(printf "%s" "$gpu" | uniq -c)"
             count=${count/ VGA*}
+            count=${count/ 3D*}
             count=${count//[[:space:]]}
 
             # If there's more than one gpu
@@ -867,6 +918,7 @@ getgpu () {
 
             # Format the output
             gpu=${gpu/* VGA compatible controller: }
+            gpu=${gpu/* 3D controller: }
             gpu=${gpu/(rev*)}
 
             shopt -s nocasematch
@@ -874,6 +926,9 @@ getgpu () {
                 intel*)
                     gpu=${gpu/Intel Corporation }
                     gpu=${gpu/Haswell-??? }
+                    gpu=${gpu/?th Gen Core Processor}
+                    gpu=${gpu/ Mobile}
+                    gpu=${gpu/ Express}
 
                     brand="Intel "
                 ;;
@@ -884,6 +939,7 @@ getgpu () {
                     gpu=${gpu/Tahiti PRO}
                     gpu=${gpu/Seymour}
                     gpu=${gpu/ OEM}
+                    gpu=${gpu/ Cape Verde}
                     gpu=${gpu/ \[}
                     gpu=${gpu/\]}
 
@@ -951,6 +1007,7 @@ getgpu () {
         gpu=${gpu// OEM}
         gpu=${gpu// Mars}
         gpu=${gpu// Series}
+        gpu=${gpu// Controller}
         gpu=${gpu/\/*}
     fi
 
@@ -1045,17 +1102,47 @@ getmemory () {
 # Song {{{
 
 getsong () {
-    if type -p mpc >/dev/null 2>&1; then
-        song="$(mpc current)"
+    if pgrep "mpd" >/dev/null 2>&1; then
+        song="$(mpc current 2>/dev/null)"
+        state=$(mpc | awk -F '\\[|\\]' '/\[/ {printf $2}' 2>/dev/null)
 
-    elif type -p cmus >/dev/null 2>&1; then
-        song="$(cmus-remote -Q | grep "tag artist\|title")"
+    elif pgrep "cmus" >/dev/null 2>&1; then
+        song="$(cmus-remote -Q | grep "tag artist\|title" 2>/dev/null)"
         song=${song/tag artist }
         song=${song/tag title/-}
         song=${song//[[:space:]]/ }
+        state=$(cmus-remote -Q | awk -F ' ' '/status/ {printf $2}' 2>/dev/null)
+
+    elif pgrep "mocp" >/dev/null 2>&1; then
+        song="$(mocp -Q "%artist - %song" 2>/dev/null)"
+        state="$(mocp -Q "%state" 2>/dev/null)"
 
     else
         song="Unknown"
+    fi
+
+    case "$state" in
+        "paused" | "PAUSE")
+            song="Paused"
+        ;;
+
+        "stopped" | "STOP" | "")
+            song="Stopped"
+        ;;
+    esac
+
+    # Display Artist and song on seperate lines.
+    if [ "$song_shorthand" == "on" ]; then
+        artist="${song/ -*}"
+        song=${song/*- }
+
+        if [ "$song" != "$artist" ]; then
+            prin "Artist: ${artist}"
+            prin "Song: ${song}"
+        else
+            prin "${subtitle}: ${song}"
+        fi
+        unset song
     fi
 }
 
@@ -1086,28 +1173,101 @@ getresolution () {
 
 # }}}
 
-# GTK Theme/Icons/Font {{{
+# Theme/Icons/Font {{{
 
-getgtk () {
+getstyle () {
+    # Fix weird output when the function
+    # is run multiple times.
+    unset gtk2theme gtk3theme
+
     case "$1" in
         theme)
             name="gtk-theme-name"
             gsettings="gtk-theme"
+            gconf="gtk_theme"
+            xfconf="ThemeName"
+            kde="widgetStyle"
         ;;
 
         icons)
             name="gtk-icon-theme-name"
             gsettings="icon-theme"
+            gconf="icon_theme"
+            xfconf="IconThemeName"
+            kde="Theme"
         ;;
 
         font)
             name="gtk-font-name"
             gsettings="font-name"
+            gconf="font_theme"
+            xfconf="FontName"
+            kde="font"
+        ;;
+    esac
+
+    # Current DE
+    desktop="$XDG_CURRENT_DESKTOP"
+    desktop=${desktop,,}
+    desktop=${desktop^}
+
+    case "$desktop" in
+        "KDE"*)
+            if type -p kde5-config >/dev/null 2>&1; then
+                kde_config_dir=$(kde5-config --localprefix)
+
+            elif type -p kde4-config >/dev/null 2>&1; then
+                kde_config_dir=$(kde4-config --localprefix)
+
+            elif type -p kde-config >/dev/null 2>&1; then
+                kde_config_dir=$(kde-config --localprefix)
+            fi
+
+            if [ -f "${kde_config_dir}/share/config/kdeglobals" ]; then
+                kde_config_file="${kde_config_dir}/share/config/kdeglobals"
+
+                theme=$(grep "^[^#]*$kde" "$kde_config_file")
+                theme=${theme/${kde}*=}
+                theme=${theme^}
+
+                gtk_shorthand="on"
+                return
+            fi
+        ;;
+
+        "Cinnamon")
+            if type -p gsettings >/dev/null 2>&1; then
+                gtk3theme=$(gsettings get org.cinnamon.desktop.interface $gsettings)
+                gtk3theme=${gtk3theme//"'"}
+                gtk2theme=${gtk3theme}
+            fi
+        ;;
+
+        "Gnome"* | "Unity"* | "Budgie")
+            if type -p gsettings >/dev/null 2>&1; then
+                gtk3theme=$(gsettings get org.gnome.desktop.interface $gsettings)
+                gtk3theme=${gtk3theme//"'"}
+                gtk2theme=${gtk3theme}
+
+            elif type -p gconftool-2 >/dev/null 2>&1; then
+                gtk2theme=$(gconftool-2 -g /desktop/gnome/interface/$gconf)
+            fi
+        ;;
+
+        "Mate"*)
+            gtk3theme=$(gsettings get org.mate.interface $gsettings)
+            gtk2theme=${gtk3theme}
+        ;;
+
+        "Xfce"*)
+            if type -p xfconf-query >/dev/null 2>&1; then
+                gtk2theme=$(xfconf-query -c xsettings -p /Net/$xfconf)
+            fi
         ;;
     esac
 
     # Check for gtk2 theme
-    if [ "$gtk2" == "on" ]; then
+    if [ -z "$gtk2theme" ]; then
         if [ -f "$HOME/.gtkrc-2.0" ]; then
             gtk2theme=$(grep "^[^#]*$name" "$HOME/.gtkrc-2.0")
 
@@ -1120,7 +1280,7 @@ getgtk () {
     fi
 
     # Check for gtk3 theme
-    if [ "$gtk3" == "on" ]; then
+    if [ -z "$gtk3theme" ]; then
         if [ -f "$HOME/.config/gtk-3.0/settings.ini" ]; then
             gtk3theme=$(grep "^[^#]*$name" "$HOME/.config/gtk-3.0/settings.ini")
 
@@ -1137,6 +1297,10 @@ getgtk () {
         gtk3theme=${gtk3theme/[[:space:]]/ }
     fi
 
+    # Toggle visibility of gtk themes.
+    [ "$gtk2" == "off" ] && unset gtk2theme
+    [ "$gtk3" == "off" ] && unset gtk3theme
+
     # Format the string based on which themes exist
     if  [ "$gtk2theme" ] && [ "$gtk2theme" == "$gtk3theme" ]; then
         gtk3theme+=" [GTK2/3]"
@@ -1151,31 +1315,33 @@ getgtk () {
     fi
 
     # Final string
-    gtktheme="${gtk2theme}${gtk3theme}"
+    theme="${gtk2theme}${gtk3theme}"
+    theme=${theme//\"}
+    theme=${theme//\'}
 
     # If the final string is empty print "None"
-    [ -z "$gtktheme" ] && gtktheme="None"
+    [ -z "$theme" ] && theme="None"
 
     # Make the output shorter by removing "[GTKX]" from the string
     if [ "$gtk_shorthand" == "on" ]; then
-        gtktheme=${gtktheme/ '[GTK2]'}
-        gtktheme=${gtktheme/ '[GTK3]'}
-        gtktheme=${gtktheme/ '[GTK2/3]'}
+        theme=${theme/ '[GTK2]'}
+        theme=${theme/ '[GTK3]'}
+        theme=${theme/ '[GTK2/3]'}
     fi
 }
 
-getgtktheme () {
-    getgtk theme
+gettheme () {
+    getstyle theme
 }
 
-getgtkicons () {
-    getgtk icons
-    gtkicons="$gtktheme"
+geticons () {
+    getstyle icons
+    icons="$theme"
 }
 
-getgtkfont () {
-    getgtk font
-    gtkfont="$gtktheme"
+getfont () {
+    getstyle font
+    font="$theme"
 }
 
 # }}}
@@ -1266,6 +1432,47 @@ getbattery () {
             battery+="%"
         ;;
     esac
+}
+
+# }}}
+
+# IP Address {{{
+
+getlocalip () {
+    case "$os" in
+        "Linux")
+            localip="$(ip route get 1 | awk '{print $NF;exit}')"
+        ;;
+
+        "Mac OS X")
+            localip="$(ipconfig getifaddr en0)"
+            [ -z "$localip" ] && localip="$(ipconfig getifaddr en1)"
+        ;;
+
+        *"BSD")
+            localip="$(ifconfig | awk '/broadcast/ {print $2}')"
+        ;;
+
+        "Windows")
+            localip="$(ipconfig | awk -F ': ' '/IPv4 Address/ {printf $2}')"
+        ;;
+
+        *)
+            localip="Unknown"
+        ;;
+    esac
+}
+
+getpublicip () {
+    if type -p curl >/dev/null 2>&1; then
+        publicip="$(curl -w '\n' "$public_ip_host")"
+
+    elif type -p wget >/dev/null 2>&1; then
+        publicip="$(wget -qO- "$public_ip_host"; printf "%s")"
+
+    else
+        publicip="Unknown"
+    fi
 }
 
 # }}}
@@ -1395,7 +1602,12 @@ getwallpaper () {
                 img="$(awk -F'=' '/file/ {printf $2}' "$HOME/.config/nitrogen/bg-saved.cfg")"
 
             elif type -p gsettings >/dev/null 2>&1; then
-                img="$(gsettings get org.gnome.desktop.background picture-uri 2>/dev/null)"
+                case "$XDG_CURRENT_DESKTOP" in
+                    "MATE"*) img="$(gsettings get org.mate.background picture-filename 2>/dev/null)" ;;
+                    *) img="$(gsettings get org.gnome.desktop.background picture-uri 2>/dev/null)" ;;
+                esac
+
+                # Strip quotes etc from the path.
                 img=${img/'file://'}
                 img=${img//\'}
             fi
@@ -1420,6 +1632,9 @@ getwallpaper () {
             esac
         ;;
     esac
+
+    # If img is an xml file don't use it.
+    [ "${img/*\./}" == "xml" ] && img=""
 }
 
 # }}}
@@ -1431,99 +1646,119 @@ getascii () {
     shopt -s nocasematch
     case "$ascii_distro" in
         "Arch Linux"* | "Antergos"*)
-            c1=$(color 6)
-            c2=$(color 4)
+            ascii_colors 6 4
         ;;
 
         "CentOS"*)
-            c1=$(color 3)
-            c2=$(color 2)
-            c3=$(color 4)
-            c4=$(color 5)
-            c5=$(color 7)
+            ascii_colors 3 2 4 5 7
         ;;
 
-        "CRUX")
-            c1=$(color 4)
-            c2=$(color 5)
-            c3=$(color 7)
+        "CRUX"* | "Chakra"* | "gNewSense"* | "SailfishOS"*)
+            ascii_colors 4 5 7
         ;;
 
-        "Debian"* | "FreeBSD"* | "Red Hat"* | "elementary"* | "CrunchBang"* | "Ubuntu"*)
-            c1=$(color 7)
-            c2=$(color 1)
-            c3=$(color 3)
+        "Chrom"*)
+            ascii_colors 2 1 3 4 7
+            ascii_distro="chrome"
         ;;
 
-        "Fedora"*)
-            c1=$(color 7)
-            c2=$(color 4)
+        "Debian"* | "FreeBSD"* | "Elementary"* | "CrunchBang"* | "Ubuntu"*)
+            ascii_colors 7 1 3
+        ;;
+
+        "Red Hat"*)
+            ascii_colors 7 1 3
+            ascii_distro="redhat"
+        ;;
+
+        "Fedora"* | "Sabayon"* | "Frugalware"* | "Exherbo"*)
+            ascii_colors 7 4 1
         ;;
 
         "Gentoo"* | "Funtoo"*)
-            c1=$(color 7)
-            c2=$(color 5)
+            ascii_colors 7 5
         ;;
 
         "Kali"*)
-            c1=$(color 4)
-            c2=$(color 8)
+            ascii_colors 4 8
+        ;;
+
+        "KaOS"*)
+            ascii_colors 4 7 1
         ;;
 
         "Mac OS X"* | "Manjaro"* | "Deepin"*)
-            c1=$(color 2)
-            c2=$(color 3)
-            c3=$(color 1)
-            c4=$(color 1)
-            c5=$(color 5)
-            c6=$(color 4)
+            ascii_colors 2 3 1 1 5 4
+        ;;
+
+        "OpenMandriva"*)
+            ascii_colors 4 3
+        ;;
+
+        "Mageia"*)
+            ascii_colors 7 6
+        ;;
+
+        "Peppermint"*)
+            ascii_colors 7 1
         ;;
 
         *"Mint"*)
-            c1=$(color 7)
-            c2=$(color 2)
+            ascii_colors 7 2
             ascii_distro="mint"
         ;;
 
-        "NetBSD"* | "Parabola"*)
-            c1=$(color 5)
-            c2=$(color 7)
+        "LMDE"* | "Chapeau"*)
+            ascii_colors 7 2
+        ;;
+
+        "NetBSD"* | "Parabola"* | "Tails"* | "BLAG"*)
+            ascii_colors 5 7
         ;;
 
         "OpenBSD"*)
-            c1=$(color 3)
-            c2=$(color 3)
-            c3=$(color 6)
-            c4=$(color 1)
-            c5=$(color 8)
+            ascii_colors 3 3 6 1 8
         ;;
 
         "OpenSuse"*)
-            c1=$(color 2)
-            c2=$(color 7)
+            ascii_colors 2 7
         ;;
 
-        "Slackware"*)
-            c1=$(color 4)
-            c2=$(color 7)
+        "PCLinuxOS"* | "Slackware"*)
+            ascii_colors 4 7
+        ;;
+
+        "Raspbian"*)
+            ascii_colors 2 1
+        ;;
+
+        "Scientific"*)
+            ascii_colors 4 1 7
+        ;;
+
+        "Solus"*)
+            ascii_colors 7 8
+        ;;
+
+        "Trisquel"* | "NixOS"*)
+            ascii_colors 4 6
         ;;
 
         "void"*)
-            c1=$(color 2)
-            c2=$(color 2)
-            c3=$(color 8)
+            ascii_colors 2 2 8
         ;;
 
         "Windows 10"*)
-            c1=$(color 6)
+            ascii_colors 6
             ascii_distro="windows10"
         ;;
 
         "Windows"*)
-            c1=$(color 1)
-            c2=$(color 2)
-            c3=$(color 4)
-            c4=$(color 3)
+            ascii_colors 1 2 4 3
+        ;;
+
+        "Zorin"*)
+            ascii_colors 4
         ;;
     esac
 
@@ -1539,6 +1774,10 @@ getascii () {
         # looking in the script's directory.
         if [ -f "/usr/share/fetch/ascii/distro/${ascii/ *}" ]; then
             ascii="/usr/share/fetch/ascii/distro/${ascii/ *}"
+
+        elif [ -f "/usr/local/share/fetch/ascii/distro/${ascii/ *}" ]; then
+            ascii="/usr/local/share/fetch/ascii/distro/${ascii/ *}"
+
         else
             getscriptdir
 
@@ -1555,14 +1794,8 @@ getascii () {
 
         # Overwrite distro colors if '$ascii_colors' doesn't
         # equal 'distro'.
-        if [ "$ascii_colors" != "distro" ]; then
-            c1=$(color ${ascii_colors[0]})
-            c2=$(color ${ascii_colors[1]})
-            c3=$(color ${ascii_colors[2]})
-            c4=$(color ${ascii_colors[3]})
-            c5=$(color ${ascii_colors[4]})
-            c6=$(color ${ascii_colors[5]})
-        fi
+        [ "${ascii_colors[0]}" != "distro" ] && \
+            ascii_colors ${ascii_colors[@]}
 
         # We only use eval in the distro ascii files.
         print="$(eval printf "$(<"$ascii")")"
@@ -1575,6 +1808,9 @@ getascii () {
         print="${ascii_color}$(<"$ascii")"
     fi
 
+    # Set locale to get correct padding
+    export LC_ALL="$SYS_LOCALE"
+
     # Turn the file into a variable.
     ascii_strip=$(<"$ascii")
 
@@ -1583,20 +1819,32 @@ getascii () {
     ascii_strip=${ascii_strip//\\}
 
     # Get length of longest line
-    length="$(LC_ALL="en_US.UTF8" wc -L 2>/dev/null <<< "$ascii_strip")"
+    length="$(wc -L 2>/dev/null <<< "$ascii_strip")"
 
     # Get the height in lines
-    lines="$(($(LC_ALL="en_US.UTF8" wc -l 2>/dev/null <<< "$ascii_strip") + 1))"
+    lines="$(($(wc -l 2>/dev/null <<< "$ascii_strip") + 1))"
 
     # Fallback to using awk on systems without 'wc -L'
     [ -z "$length" ] && \
-        length="$(LC_ALL="en_US.UTF8" awk 'length>max{max=length}END{print max}' <<< "$ascii_strip")"
+        length="$(awk 'length>max{max=length}END{print max}' <<< "$ascii_strip")"
 
     # Set the text padding
     padding="\033[$((length + gap))C"
 
     # Print the ascii
     printf "%b%s" "$print"
+
+    # Set locale to get correct padding
+    export LC_ALL=C
+}
+
+ascii_colors () {
+    c1=$(color "$1")
+    c2=$(color "$2")
+    c3=$(color "$3")
+    c4=$(color "$4")
+    c5=$(color "$5")
+    c6=$(color "$6")
 }
 
 
@@ -1980,20 +2228,25 @@ getconfig () {
         return
     fi
 
+    # Make the directory if it doesn't exist
+    mkdir -p "$HOME/.config/fetch/"
+
     # Check $HOME/.config/fetch and create the
     # dir/files if they don't exist.
     if [ -f "$HOME/.config/fetch/config" ]; then
         source "$HOME/.config/fetch/config"
 
     elif [ -f "/usr/share/fetch/config" ]; then
-        mkdir -p "$HOME/.config/fetch/"
         cp "/usr/share/fetch/config" "$HOME/.config/fetch"
+        source "$HOME/.config/fetch/config"
+
+    elif [ -f "/usr/local/share/fetch/config" ]; then
+        cp "/usr/local/share/fetch/config" "$HOME/.config/fetch"
         source "$HOME/.config/fetch/config"
 
     else
         getscriptdir
 
-        mkdir -p "$HOME/.config/fetch/"
         cp "$script_dir/config/config" "$HOME/.config/fetch"
         source "$HOME/.config/fetch/config"
     fi
@@ -2044,6 +2297,8 @@ usage () { cat << EOF
     --shell_version on/off      Enable/Disable showing \$SHELL version
     --battery_num num           Which battery to display, default value is 'all'
     --battery_shorthand on/off  Whether or not each battery gets its own line/title
+    --ip_host url               Url to ping for public IP
+    --song_shorthand on/off     Print the Artist/Title on seperate lines
     --birthday_shorthand on/off Shorten the output of birthday
     --birthday_time on/off      Enable/Disable showing the time in birthday output
 
@@ -2148,6 +2403,8 @@ while [ "$1" ]; do
         --shell_version) shell_version="$2" ;;
         --battery_num) battery_num="$2" ;;
         --battery_shorthand) battery_shorthand="$2" ;;
+        --ip_host) public_ip_host="$2" ;;
+        --song_shorthand) song_shorthand="$2" ;;
         --birthday_shorthand) birthday_shorthand="$2" ;;
         --birthday_time) birthday_time="$2" ;;
         --disable)
@@ -2216,7 +2473,12 @@ while [ "$1" ]; do
             done
             ascii_colors+=(7 7 7 7 7 7)
         ;;
-        --ascii_distro) ascii_distro="$2" ;;
+
+        --ascii_distro)
+            image="ascii"
+            ascii_distro="$2"
+            case "$2" in "--"* | "") ascii_distro="$distro" ;; esac
+        ;;
 
         # Screenshot
         --scrot | -s) scrot="on"; [ "$2" ] && scrot_path="$2" ;;
@@ -2229,7 +2491,7 @@ while [ "$1" ]; do
         --stdout)
             case "$2" in
                 "--"* | "") stdout="on" ;;
-                *) stdout="on"; stdout_args="on"; args=("$@"); stdout ;;
+                *) stdout="on"; args=("$@"); stdout ;;
             esac
 
             unset info_color colors
@@ -2328,5 +2590,4 @@ fi
 
 
 # }}}
-
 

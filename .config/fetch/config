@@ -26,17 +26,18 @@ printinfo () {
     info "Uptime" uptime
     info "Packages" packages
     info "Shell" shell
-    info "Window Manager" windowmanager
-    info "GTK Theme" gtktheme
+    info "Window Manager" wm
+    info "Theme" theme
     info "CPU" cpu
     info "GPU" gpu
     info "Memory" memory
     info "Disk" disk
+    info "Local IP" localip
+    info "Song" song
 
     # info "Battery" battery
     # info "Font" gtkfont
     # info "Resolution" resolution
-    # info "Song" song
     # info "Visual Style" visualstyle
 
     info linebreak
@@ -238,10 +239,6 @@ crop_mode="normal"
 # --crop_offset northwest/north/northeast/west/center
 #               east/southwest/south/southeast
 crop_offset="center"
-
-# Font width
-# Used when calculating dynamic image size
-font_width=5
 
 # Right gap between image and text
 # --gap num
