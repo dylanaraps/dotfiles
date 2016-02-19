@@ -736,6 +736,16 @@
       <decor>yes</decor>
       <layer>above</layer>
     </application>
+  <application name="Music">
+      <desktop>all</desktop>
+      <maximized>no</maximized>
+      <decor>no</decor>
+      <layer>above</layer>
+      <position force="yes">
+        <x>1670</x>
+        <y>820</y>
+      </position>
+</application>
     <application class="Firefox*">
       <desktop>1</desktop>
       <focus>no</focus>

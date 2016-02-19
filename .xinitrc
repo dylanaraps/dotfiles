@@ -32,4 +32,4 @@ pulseaudio --start &
 redshift -m randr &
 
 #  Start openbox
-exec openbox
+exec openbox-session
