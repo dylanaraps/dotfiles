@@ -1,4 +1,4 @@
-#!/bin/mksh
+#!/bin/bash
 #
 # setup.sh
 # Install my dotfiles
@@ -44,7 +44,7 @@ for script in "$HOME/bin/"*.sh; do mv "$script" "${script/'.sh'}"; done
 
 # We use cp here instead of ln because cp excludes folders
 # from linking.
-cp $flags "${dotfile_dir}"/.* "$HOME/test"
+cp $flags "${dotfile_dir}"/.* "$HOME"
 
 
 # Neovim

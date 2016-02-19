@@ -22,6 +22,9 @@ urxvtd -q -f -o &
 # bar
 clock &
 
+# mpd
+mpd &
+
 # Pulseaudio
 pulseaudio --start &
 

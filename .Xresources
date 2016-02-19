@@ -29,6 +29,15 @@ URxvt.keysym.Shift-Control-V: perl:clipboard:paste
 ! Size of cursor
 Xcursor.size: 16
 
+! Font stuff
+Xft.lcdfilter: lcddefault
+Xft.antialias: true
+Xft.autohint: 0
+Xft.hinting: true
+Xft.hintstyle: hintslight
+Xft.rgba: rgb
+Xft.dpi: 96
+
 ! Colors {{{
 
 ! special

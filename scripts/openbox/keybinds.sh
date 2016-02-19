@@ -17,20 +17,20 @@ voldown () {
 }
 
 prevsong () {
-    cmus-remote --prev
-    popup -e "$(cmus-current)" -w $(txtw "$(cmus-current)") -x $((1820 - $(txtw "$(cmus-current)"))) &
+    mpc prev
+    popup -e "$(mpc current)" -w $(txtw "$(mpc current)") -x $((1820 - $(txtw "$(mpc current)"))) &
 }
 
 nextsong () {
-    cmus-remote --next
-    popup -e "$(cmus-current)" -w $(txtw "$(cmus-current)") -x $((1820 - $(txtw "$(cmus-current)"))) &
+    mpc next
+    popup -e "$(mpc current)" -w $(txtw "$(mpc current)") -x $((1820 - $(txtw "$(mpc current)"))) &
 }
 
 togglesong () {
-    cmus-remote --pause
+    mpc toggle
 
-    if [ "$(cmus-remote -Q | head -n1)" == "status playing" ]; then
-        popup -e "$(cmus-current)" -w $(txtw "$(cmus-current)") -x $((1820 - $(txtw "$(cmus-current)"))) &
+    if [ "$(mpc | awk -F '\\[|\\]' '/\[/ {printf $2}' 2>/dev/null)" == "playing" ]; then
+        popup -e "$(mpc current)" -w $(txtw "$(mpc current)") -x $((1820 - $(txtw "$(mpc current)"))) &
     else
         popup -e "Paused" -w 150 -x 1670 &
     fi
