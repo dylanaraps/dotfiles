@@ -23,8 +23,6 @@ ln $flags "${dotfile_dir}/.config/cava" "$HOME/.config/cava"
 ln $flags "${dotfile_dir}/.config/cmus" "$HOME/.config/cmus"
 ln $flags "${dotfile_dir}/.config/mpv" "$HOME/.config/mpv"
 ln $flags "${dotfile_dir}/.config/openbox" "$HOME/.config/openbox"
-ln $flags "${dotfile_dir}/.config/ranger" "$HOME/.config/ranger"
-ln $flags "${dotfile_dir}/.config/fetch" "$HOME/.config/fetch"
 
 
 # Scripts
