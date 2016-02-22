@@ -19,21 +19,25 @@ voldown () {
 prevsong () {
     mpc prev
     current="$(mpc current)"
-    popup -e "$current" -w $(txtw "$current") -x $((1820 - $(txtw "$current"))) &
+    width=$(txtw "$current")
+    popup -e "$current" -w $width -x $((1820 - width)) &
 }
 
 nextsong () {
     mpc next
+
     current="$(mpc current)"
-    popup -e "$current" -w $(txtw "$current") -x $((1820 - $(txtw "$current"))) &
+    width=$(txtw "$current")
+    popup -e "$current" -w $width -x $((1820 - width)) &
 }
 
 togglesong () {
     mpc toggle
 
     current="$(mpc current)"
+    width=$(txtw "$current")
     if [ "$(mpc | awk -F '\\[|\\]' '/\[/ {printf $2}' 2>/dev/null)" == "playing" ]; then
-        popup -e "$current" -w $(txtw "$current") -x $((1820 - $(txtw "$current"))) &
+        popup -e "$current" -w $width -x $((1820 - width)) &
     else
         popup -e "Paused" -w 150 -x 1670 &
     fi
