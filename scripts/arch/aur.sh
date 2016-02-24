@@ -19,6 +19,15 @@ install () {
     for pkg in ${packages[@]}; do
         # If package isn't in aur folder, attempt to download PKGBUILD/etc using cower
         if [ ! -d "$pkg" ]; then
+            # If cower isn't found then manually download the PKGBUILD and install it.
+            if ! type -p cower >/dev/null 2>&1; then
+                mkdir -p "$aurdir/cower"
+                curl https://aur.archlinux.org/cgit/aur.git/plain/PKGBUILD?h=cower --output "$aurdir"/cower/PKGBUILD
+                cd cower || exit
+                makepkg $mkflags
+                cd "$aurdir"
+            fi
+
             cower -d "$pkg" || break
 
             echo -n "View PKGBUILD? (y/n) "
