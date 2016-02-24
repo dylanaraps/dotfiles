@@ -35,10 +35,6 @@ Plug 'benekastah/neomake'
         \ 'text': 'W>',
         \ 'texthl': 'TermCursorNC',
     \ }
-    " Navigate through lint errors opening/closing any
-    " folds in the way
-    nnoremap ln :lnext<CR>
-    nnoremap lp :lprev<CR>
 
 " Clicking v expands region
 Plug 'kana/vim-textobj-user'

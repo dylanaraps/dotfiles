@@ -29,7 +29,7 @@ export INFINALITY_FT_BRIGHTNESS="-10"
 export INFINALITY_FT_FILTER_PARAMS="0.00 0.35 0.35 0.35 0.00"
 
 # Ignore shellcheck error
-export SHELLCHECK_OPTS="-e SC2034"
+export SHELLCHECK_OPTS="-e SC2034 SC2016"
 
 # Aliases
 # Still named .zsh_aliases so that dmenu can see the aliases
