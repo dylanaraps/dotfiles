@@ -23,6 +23,9 @@ Plug 'dylanaraps/root.vim'
 " Hide view ui
 Plug 'junegunn/goyo.vim'
 
+" Async lint
+Plug 'benekastah/neomake'
+
 " Clicking v expands region
 Plug 'kana/vim-textobj-user'
 \| Plug 'kana/vim-textobj-line'
@@ -79,6 +82,9 @@ augroup Filetypes
 
 	" Remove Whitespace on save
 	autocmd BufWritePre * :%s/\s\+$//e
+
+    " Run neomake on every save of fetch
+    autocmd BufWritePost *.sh,fetch Neomake
 
 	" Clear cmdline on bufread/enter
 	autocmd BufEnter,BufReadPost,BufWinEnter,CmdwinEnter,CmdwinLeave * redraw!
