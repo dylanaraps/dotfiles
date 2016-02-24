@@ -25,6 +25,20 @@ Plug 'junegunn/goyo.vim'
 
 " Async lint
 Plug 'benekastah/neomake'
+    let g:neomake_open_list = 1
+    let g:neomake_place_signs = 1
+    let g:neomake_error_sign = {
+        \ 'text': 'E>',
+        \ 'texthl': 'Error',
+    \ }
+    let g:neomake_warning_sign = {
+        \ 'text': 'W>',
+        \ 'texthl': 'TermCursorNC',
+    \ }
+    " Navigate through lint errors opening/closing any
+    " folds in the way
+    nnoremap ln :lnext<CR>
+    nnoremap lp :lprev<CR>
 
 " Clicking v expands region
 Plug 'kana/vim-textobj-user'
