@@ -32,8 +32,8 @@ battery () {
 }
 
 while :; do
-    echo "   $(battery) %{c}$(date "+%a %d %b %l:%M %p")%{c}"
+    echo "       $(fetch --stdout memory) %{c}$(date "+%a %d %b %l:%M %p")%{c} %{r}$(battery)     %{r}"
 	sleep 1s
 done |
 
-lemonbar -b -g "1000x75+1100+50" -f "roboto-16" -f "fontawesome-18" -B "#$white" -F "#$gray"
+lemonbar -d -b -g "1000x75+1100+50" -f "roboto-16" -f "fontawesome-18" -B "#$white" -F "#$gray"

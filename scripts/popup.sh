@@ -12,15 +12,15 @@ source ~/dotfiles/scripts/colors/output/colors.sh
 barname="popups"
 sleep=2
 
-width=150
-height=40
-xoffset=1670
-yoffset=35
+width=300
+height=75
+xoffset=2700
+yoffset=100
 
 bg="#$white"
 fg="#$gray"
 
-font="-benis-lemon-medium-r-normal--10-110-75-75-m-50-ISO8859-1"
+font="roboto-16"
 
 # Options
 
@@ -48,4 +48,4 @@ ps -ef | awk -v name="$barname" '$0 ~ name {print $2}' | xargs kill 2>/dev/null
 (echo "%{c} $echo %{c}"; sleep $sleep) |
 
 # Pipe to bar
-lemonbar -n "$barname" -d -g "$width"x"$height+$xoffset+$yoffset" -f "$font" -B "$bg" -F "$fg"
+lemonbar -n "$barname" -g "$width"x"$height"+"$xoffset"+"$yoffset" -f "$font" -B "$bg" -F "$fg"

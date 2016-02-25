@@ -5,22 +5,22 @@
 # https://github.com/dylanaraps/dotfiles
 
 volup () {
-    # amixer set Master 5+
-    pulseaudio-ctl up
-    popup -e "$(amixer get Master | egrep -o '[0-9]+\%')" -w 150 -x 1670 &
+    amixer set Master 5+
+    # pulseaudio-ctl up
+    popup -e "$(amixer get Master | egrep -o '[0-9]+\%')" &
 }
 
 voldown () {
-    # amixer set Master 5-
-    pulseaudio-ctl down
-    popup -e "$(amixer get Master | egrep -o '[0-9]+\%')" -w 150 -x 1670 &
+    amixer set Master 5-
+    # pulseaudio-ctl down
+    popup -e "$(amixer get Master | egrep -o '[0-9]+\%')" &
 }
 
 prevsong () {
     mpc prev
     current="$(mpc current)"
     width=$(txtw "$current")
-    popup -e "$current" -w $width -x $((1820 - width)) &
+    popup -e "$current" -w $width -x $((3100 - width)) &
 }
 
 nextsong () {
@@ -28,7 +28,7 @@ nextsong () {
 
     current="$(mpc current)"
     width=$(txtw "$current")
-    popup -e "$current" -w $width -x $((1820 - width)) &
+    popup -e "$current" -w $width -x $((3100 - width)) &
 }
 
 togglesong () {
@@ -37,7 +37,7 @@ togglesong () {
     current="$(mpc current)"
     width=$(txtw "$current")
     if [ "$(mpc | awk -F '\\[|\\]' '/\[/ {printf $2}' 2>/dev/null)" == "playing" ]; then
-        popup -e "$current" -w $width -x $((1820 - width)) &
+        popup -e "$current" -w $width -x $((3100 - width)) &
     else
         popup -e "Paused" -w 150 -x 1670 &
     fi
