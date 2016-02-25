@@ -23,6 +23,9 @@ URxvt.keysym.Shift-Control-V: perl:clipboard:paste
 ! Size of cursor
 Xcursor.size: 32
 
+! Xscreensaver
+xscreensaver.Dialog.*Font: xft:roboto mono:size=16
+
 ! Colors {{{
 
 ! special

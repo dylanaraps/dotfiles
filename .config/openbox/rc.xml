@@ -375,12 +375,12 @@
         <command>keybinds minify</command>
       </action>
     </keybind>
-    <keybind key="W-U">
-      <action name="Execute">
-        <name>Take Screenshot</name>
-        <command>scrot</command>
-      </action>
-    </keybind>
+    <!-- <keybind key="W-U"> -->
+    <!--   <action name="Execute"> -->
+    <!--     <name>Take Screenshot</name> -->
+    <!--     <command>scrot</command> -->
+    <!--   </action> -->
+    <!-- </keybind> -->
     <keybind key="A-1">
       <action name="Execute">
         <name>Move window to corner</name>
@@ -453,10 +453,16 @@
         <command>corner br</command>
       </action>
     </keybind>
-    <keybind key="W-w">
+    <keybind key="F11">
       <action name="Execute">
         <name>Change to random wallpaper</name>
-        <command>wall</command>
+        <command>keybinds brightnessdown</command>
+      </action>
+    </keybind>
+    <keybind key="F12">
+      <action name="Execute">
+        <name>Change to random wallpaper</name>
+        <command>keybinds brightnessup</command>
       </action>
     </keybind>
   </keyboard>

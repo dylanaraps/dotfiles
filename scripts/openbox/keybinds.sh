@@ -4,6 +4,20 @@
 # Created by Dylan Araps
 # https://github.com/dylanaraps/dotfiles
 
+brightnessup () {
+    xbacklight -inc 10
+    current=$(xbacklight)
+    current=${current/\.*}
+    popup -e "$current" &
+}
+
+brightnessdown () {
+    xbacklight -dec 10
+    current=$(xbacklight)
+    current=${current/\.*}
+    popup -e "$current" &
+}
+
 volup () {
     amixer set Master 5+
     # pulseaudio-ctl up
@@ -66,6 +80,8 @@ minify () {
 }
 
 case $1 in
+    brightnessup) brightnessup ;;
+    brightnessdown) brightnessdown ;;
     volup) volup ;;
     voldown) voldown ;;
     prevsong) prevsong ;;

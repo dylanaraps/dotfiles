@@ -48,4 +48,4 @@ ps -ef | awk -v name="$barname" '$0 ~ name {print $2}' | xargs kill 2>/dev/null
 (echo "%{c} $echo %{c}"; sleep $sleep) |
 
 # Pipe to bar
-lemonbar -n "$barname" -g "$width"x"$height"+"$xoffset"+"$yoffset" -f "$font" -B "$bg" -F "$fg"
+lemonbar -d -n "$barname" -g "$width"x"$height"+"$xoffset"+"$yoffset" -f "$font" -B "$bg" -F "$fg"
