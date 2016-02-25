@@ -29,4 +29,4 @@ mpd &
 redshift -m randr &
 
 #  Start openbox
-exec openbox-session
+exec openbox
