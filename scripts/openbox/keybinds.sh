@@ -44,7 +44,7 @@ togglesong () {
 }
 
 dmenu () {
-    dmenu_recent_aliases -s 0 -nb "#$white" -nf "#$black" -sb "#$white" -sf "#$gray" -i -h 30 -w 120 -q -x 30 -y 30 -fn "-benis-lemon-medium-r-normal--10-110-75-75-m-50-ISO8859-1" -p ">" -l 1
+    dmenu_run -s 0 -nb "#$white" -nf "#$black" -sb "#$white" -sf "#$gray" -i -h 60 -w 250 -q -x 30 -y 30 -fn "roboto-16" -p ">" -l 1
 }
 
 screenshot () {

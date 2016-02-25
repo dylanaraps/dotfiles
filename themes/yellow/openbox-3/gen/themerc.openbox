@@ -10,8 +10,8 @@ border.width: 0
 # Title
 
 # Add some padding
-padding.width: 7
-padding.height: 7
+padding.width: 10
+padding.height: 10
 
 # Set title colors
 window.*.title.bg: Solid Flat

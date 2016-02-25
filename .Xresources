@@ -1,14 +1,8 @@
 ! Dylans Xresources
 
 ! Set the font
-URxvt*font: xft:lemon:pixelsize=10:antialias=false
-URxvt*boldFont: xft:lemon:pixelsize=10:antialias=false
-
-! Increase line spacing
-URxvt*lineSpace: 2
-
-! Terminal window size
-URxvt*geometry: 65x17
+URxvt*font: xft:roboto mono:size=16
+! URxvt*boldFont: xft:lemon:pixelsize=10:antialias=false
 
 ! Disable scrollbar
 URxvt.scrollBar: false
@@ -27,7 +21,7 @@ URxvt.keysym.Shift-Control-C: perl:clipboard:copy
 URxvt.keysym.Shift-Control-V: perl:clipboard:paste
 
 ! Size of cursor
-Xcursor.size: 16
+Xcursor.size: 32
 
 ! Colors {{{
 

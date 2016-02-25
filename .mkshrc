@@ -33,4 +33,4 @@ export SHELLCHECK_OPTS="-e SC2034 SC2016"
 
 # Aliases
 # Still named .zsh_aliases so that dmenu can see the aliases
-source ~/.bash_aliases
+# source ~/.bash_aliases
