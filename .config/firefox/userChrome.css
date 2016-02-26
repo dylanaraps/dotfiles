@@ -10,13 +10,13 @@
 :root {
 	/* Tabs */
     --tab-height: 30px;
-    --tab-fonts: lemon;
-    --tab-font-size: 9px;
+    --tab-fonts: roboto;
+    --tab-font-size: 12px;
 
 	/* Url Bar */
     --url-height: 30px;
-    --url-fonts: lemon;
-    --url-font-size: 9px;
+    --url-fonts: roboto;
+    --url-font-size: 12px;
     --url-text-align: left;
 
     /* Don't touch this */

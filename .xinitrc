@@ -18,7 +18,7 @@ feh  --bg-fill ~/Pictures/wall2.jpg &
 # wall --loop 900 &
 
 # urxvt daemon
-urxvtd -q -f -o &
+# urxvtd -q -f -o &
 
 # bar
 clock &
