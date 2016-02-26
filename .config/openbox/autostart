@@ -1,1 +1,2 @@
-xscreensaver -no-splash
+xscreensaver -no-splash &
+devmon &
