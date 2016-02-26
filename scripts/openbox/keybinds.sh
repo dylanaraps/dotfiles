@@ -62,7 +62,7 @@ dmenu () {
 }
 
 screenshot () {
-    popup -e "Saved Screenshot" -s 4 -w 150 -x 1670 & sleep 1; \
+    popup -e "Saved Screenshot" -s 4 -w 250 -x 2750 & sleep 1; \
 
     # What to name the image and where to save it
     img="scrot-$(date "+%d%b")-$RANDOM.png"
