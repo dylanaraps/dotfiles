@@ -32,28 +32,28 @@ voldown () {
 
 prevsong () {
     mpc prev
-    current="$(mpc current)"
+    current="  $(mpc current)  "
     width=$(txtw "$current")
-    popup -e "$current" -w $width -x $((3100 - width)) &
+    popup -e "$current" -w $width -x $((3000 - width)) &
 }
 
 nextsong () {
     mpc next
 
-    current="$(mpc current)"
+    current="  $(mpc current)  "
     width=$(txtw "$current")
-    popup -e "$current" -w $width -x $((3100 - width)) &
+    popup -e "$current" -w $width -x $((3000 - width)) &
 }
 
 togglesong () {
     mpc toggle
 
-    current="$(mpc current)"
+    current="  $(mpc current)  "
     width=$(txtw "$current")
     if [ "$(mpc | awk -F '\\[|\\]' '/\[/ {printf $2}' 2>/dev/null)" == "playing" ]; then
-        popup -e "$current" -w $width -x $((3100 - width)) &
+        popup -e "$current" -w $width -x $((3000 - width)) &
     else
-        popup -e "Paused" -w 150 -x 1670 &
+        popup -e "Paused" -w 200 -x 2800 &
     fi
 }
 
