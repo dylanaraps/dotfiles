@@ -5,29 +5,34 @@
 source ~/dotfiles/scripts/colors/output/colors.sh
 
 battery () {
-    battery="$(fetch --stdout battery)"
-    num=${battery/\%*}
-    case "$num" in
+    battery="$(</sys/class/power_supply/BAT1/capacity)"
+    charging="$(</sys/class/power_supply/BAT1/status)"
+
+    case "$battery" in
         [0-9]|10)
-            battery="${battery}"
+            battery="${battery}%  "
         ;;
 
         1[0-9]|2[0-5])
-            battery="${battery}"
+            battery="${battery}%  "
         ;;
 
         2[0-6]|3[0-9]|4[0-9]|50)
-            battery="${battery}"
+            battery="${battery}%  "
         ;;
 
         5[1-9]|6[0-9]|7[0-5])
-            battery="${battery}"
+            battery="${battery}%  "
         ;;
 
         7[6-9]|8[0-9]|9[0-9]|100)
-            battery="${battery}"
+            battery="${battery}%  "
         ;;
     esac
+
+    [ "$charging" == "Charging" ] && \
+        battery="Charging  $battery"
+
     printf "%s" "$battery"
 }
 

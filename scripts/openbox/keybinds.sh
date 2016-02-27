@@ -67,12 +67,13 @@ screenshot () {
     # What to name the image and where to save it
     img="scrot-$(date "+%d%b")-$RANDOM.png"
     dir="$HOME/Pictures/scrots"
+    mkdir -p "$dir"
 
     # Take the scrot
     scrot -q 100 "$img" -e "mv $img $dir"
 
     # Crop out the surrounding monitors
-    convert -crop 1920x1080+0+0 "$dir/$img" "$dir/$img"
+    # convert -crop 1920x1080+0+0 "$dir/$img" "$dir/$img"
 }
 
 minify () {
