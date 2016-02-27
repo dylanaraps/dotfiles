@@ -31,5 +31,8 @@ pulseaudio --start &
 # Redshift
 redshift -m randr &
 
+# Devmon
+devmon &
+
 #  Start openbox
 exec openbox-session

@@ -94,7 +94,7 @@ augroup Filetypes
 	autocmd BufWritePre * :%s/\s\+$//e
 
     " Run neomake on every save of fetch
-    autocmd BufWritePost *.sh,fetch Neomake
+    " autocmd BufWritePost *.sh,fetch Neomake
 
 	" Clear cmdline on bufread/enter
 	autocmd BufEnter,BufReadPost,BufWinEnter,CmdwinEnter,CmdwinLeave * redraw!
