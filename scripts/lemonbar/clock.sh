@@ -37,7 +37,7 @@ battery () {
 }
 
 while :; do
-    echo "       $(fetch --stdout memory) %{c}$(date "+%a %d %b %l:%M %p")%{c} %{r}$(battery)     %{r}"
+    echo "       $(fetch --stdout memory) %{c}$(date "+%a %d %b %l:%M %p")%{r}$(battery)     %{r}"
 	sleep 2s
 done |
 
