@@ -1,5 +1,7 @@
 # Dylan's Dotfiles
 
+[![Join the chat at https://gitter.im/dylanaraps/dotfiles](https://badges.gitter.im/dylanaraps/dotfiles.svg)](https://gitter.im/dylanaraps/dotfiles?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge)
+
 ### Do not copy my setup completely. Take parts you like and make it your own.
 
 <hr>
