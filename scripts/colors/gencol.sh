@@ -140,7 +140,7 @@ openbox () {
     echo "window.inactive.title.bg.color: $inactive_titlebg"
     echo "window.active.label.text.color: $active_titlefg"
     echo "window.inactive.label.text.color: $inactive_titlefg"
-    echo "window.*.button.*.image.color: $titlefg"
+    echo "window.*.button.*.image.color: $active_titlefg"
     echo "menu*.bg.color: $menubg"
     echo "menu*.text.color: $menufg"
     echo "menu.border.color: $menubg"

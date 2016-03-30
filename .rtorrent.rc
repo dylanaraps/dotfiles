@@ -1,8 +1,8 @@
 # Dylan's rtorrentrc
 
 # Maximum and minimum number of peers to connect to per torrent.
-min_peers = 26
-max_peers = 26
+min_peers = 50
+max_peers = 50
 
 # Same as above but for seeding completed torrents (-1 = same as downloading)
 min_peers_seed = -1
@@ -51,17 +51,17 @@ color_finished_bg = 2
 #bind = rakshasa.no
 
 # Port range to use for listening.
-port_range = 49164-49164
+port_range = 49000-49164
 
 # Start opening ports at a random position within the port range.
-#port_random = no
+port_random = yes
 
 # Check hash for finished torrents. Might be usefull until the bug is
 # fixed that causes lack of diskspace not to be properly reported.
 check_hash = yes
 
 # Set whether the client should try to connect to UDP trackers.
-#use_udp_trackers = yes
+use_udp_trackers = yes
 
 # Alternative calls to bind and ip that should handle dynamic ip's.
 #schedule = ip_tick,0,1800,ip=rakshasa

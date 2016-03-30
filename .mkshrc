@@ -22,8 +22,8 @@ eval "$(dircolors ~/.dircolors)"
 source "$HOME/dotfiles/scripts/colors/output/colors.envar"
 
 # Paths
-[ -d "$HOME/bin" ] && PATH="$HOME/bin:$PATH"
-[ -d "$HOME/.gem/ruby/2.2.0/bin" ] && PATH="$HOME/.gem/ruby/2.2.0/bin:$PATH"
+PATH="$HOME/bin:$PATH"
+PATH="/home/dyl/.gem/ruby/2.3.0/bin:$PATH"
 
 export INFINALITY_FT_BRIGHTNESS="-10"
 export INFINALITY_FT_FILTER_PARAMS="0.00 0.35 0.35 0.35 0.00"

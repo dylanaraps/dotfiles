@@ -47,6 +47,9 @@ alias fetch2="fetch \
 
 alias vbox="sudo modprobe vboxdrv vboxnetflt vboxnetadp vboxguest vboxsf vboxvideo"
 
+alias fixtime="sudo ntpd -qg"
+alias mlg="livestreamer http://tv.majorleaguegaming.com/channel/csgo 720p --player mpv"
+
 # }}}
 
 

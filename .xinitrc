@@ -10,7 +10,8 @@ setxkbmap -option caps:none
 xinput set-button-map 10 1 2 3 0 0
 
 # Set up multi mon
-xrandr --output DVI-0 --mode 1920x1080 --rate 60 --primary --output HDMI-0 --mode 3840x2160 --rate 24 --below DVI-0 &
+xrandr --output DVI-0 --mode 1920x1080 --rate 60 --primary --output HDMI-0 --mode 3840x2160 --rate 30 --below DVI-0 &
+# xrandr --output DVI-0 --mode 1920x1080 --rate 60 --primary
 
 # Set wallpaper
 feh  --bg-fill ~/Pictures/wallpapers/wash/17.jpg &
@@ -33,6 +34,9 @@ redshift -m randr &
 
 # Devmon
 devmon &
+
+# Compton
+compton --backend xrender --paint-on-overlay --glx-no-stencil --vsync opengl-swc --unredir-if-possible --no-fading-openclose -o 0 -b
 
 #  Start openbox
 exec openbox-session

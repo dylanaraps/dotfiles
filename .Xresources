@@ -8,7 +8,7 @@ URxvt*boldFont: xft:lemon:pixelsize=10:antialias=false
 URxvt*lineSpace: 2
 
 ! Terminal window size
-URxvt*geometry: 65x17
+URxvt*geometry: 65x15
 
 ! Disable scrollbar
 URxvt.scrollBar: false

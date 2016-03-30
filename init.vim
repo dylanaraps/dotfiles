@@ -16,6 +16,7 @@ call plug#begin('~/.config/nvim/plugged')
 
 " My Plugins
 Plug '~/dotfiles/colorschemes/ryuuko'
+Plug 'dylanaraps/taskrunner.nvim'
 Plug 'dylanaraps/root.vim'
 	let g:root#auto = 1
 	let g:root#echo = 0
@@ -74,6 +75,7 @@ Plug 'JulesWang/css.vim'
 Plug 'cakebaker/scss-syntax.vim'
 Plug 'hail2u/vim-css3-syntax'
 Plug 'othree/html5.vim'
+Plug 'kchmck/vim-coffee-script'
 
 call plug#end()
 

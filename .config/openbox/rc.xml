@@ -43,7 +43,7 @@
   </placement>
   <theme>
     <name>yellow</name>
-    <titleLayout>L</titleLayout>
+    <titleLayout>LIMC</titleLayout>
     <!--
       available characters are NDSLIMC, each can occur at most once.
       N: window icon
@@ -736,7 +736,7 @@
       <decor>yes</decor>
       <layer>above</layer>
     </application>
-  <application name="Music">
+    <application name="Music">
       <desktop>all</desktop>
       <maximized>no</maximized>
       <decor>no</decor>
@@ -745,7 +745,7 @@
         <x>1670</x>
         <y>820</y>
       </position>
-</application>
+    </application>
     <application class="Firefox*">
       <desktop>1</desktop>
       <focus>no</focus>
