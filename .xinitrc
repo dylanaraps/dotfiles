@@ -14,7 +14,7 @@ xrandr --output DVI-0 --mode 1920x1080 --rate 60 --primary --output HDMI-0 --mod
 # xrandr --output DVI-0 --mode 1920x1080 --rate 60 --primary
 
 # Set wallpaper
-feh  --bg-fill ~/Pictures/wallpapers/wash/17.jpg &
+feh  --bg-fill ~/Pictures/wallpapers/wash/18.jpg &
 # wall --loop 900 &
 
 # urxvt daemon
@@ -40,3 +40,5 @@ compton --backend xrender --paint-on-overlay --glx-no-stencil --vsync opengl-swc
 
 #  Start openbox
 exec openbox-session
+# exec icewm-session
+
