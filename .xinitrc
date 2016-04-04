@@ -40,5 +40,6 @@ compton --backend xrender --paint-on-overlay --glx-no-stencil --vsync opengl-swc
 
 #  Start openbox
 exec openbox-session
+# exec /home/dyl/projects/jbwm/jbwm
 # exec icewm-session
 

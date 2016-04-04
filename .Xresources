@@ -8,7 +8,7 @@ URxvt*boldFont: xft:lemon:pixelsize=10:antialias=false
 URxvt*lineSpace: 2
 
 ! Terminal window size
-URxvt*geometry: 65x15
+URxvt*geometry: 85x20
 
 ! Disable scrollbar
 URxvt.scrollBar: false
@@ -33,12 +33,12 @@ Xcursor.size: 16
 
 ! special
 *.foreground:   #f0f0f0
-*.background:   #394952
+*.background:   #232c33
 *.cursorColor:  #f0f0f0
 
 ! black
 ! Second black is grey
-*.color0:       #394952
+*.color0:       #232c33
 *.color8:       #70838c
 
 ! red

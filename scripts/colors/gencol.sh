@@ -125,7 +125,7 @@ openbox () {
     colors
 
     # Titlebar colors
-    active_titlebg=$(xrdb -query | grep "\*\.color4" | cut -f2)
+    active_titlebg=$(xrdb -query | grep "\*\.color5" | cut -f2)
     inactive_titlebg=$(xrdb -query | grep "\*\.color2:" | cut -f2)
     active_titlefg=$(xrdb -query | grep "\*\.color7:" | cut -f2)
     inactive_titlefg=$(xrdb -query | grep "\*\.color7:" | cut -f2)
