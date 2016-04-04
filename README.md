@@ -13,12 +13,12 @@
 * Bar: `lemonbar`
 * Launcher: `dmenu2`
 * Terminal Emulator: `urxvt`
-* Shell: `mksh`
+* Shell: `zsh`
 * Terminal Font: `lemon`
-* File Manager: `thunar` and `ranger`
+* File Manager: `thunar`
 * Text Editor: `neovim`
 * Color Scheme: `ryuuko` (In this repo)
-* Music Player: `cmus`
+* Music Player: `mpd` + `ncmpcpp`
 * Browser: `firefox`
 * Startpage: In this repo under "/startpage/"
 * Video Player: `mpv`
@@ -27,11 +27,7 @@
 
 ### Screenshots
 
-![1](https://i.imgur.com/WY3Y13v.png)
-![2](https://i.imgur.com/FFDA8CH.png)
-![3](https://i.imgur.com/cx2Akfb.png)
-![4](https://i.imgur.com/RVD3iqa.png)
-![5](https://i.imgur.com/layRUAC.png)
-
-
-
+![1](http://i.imgur.com/9PIjfg8.png)
+![2](http://i.imgur.com/TWsaxnX.png)
+![3](http://i.imgur.com/iWjPDZh.png)
+![4](http://i.imgur.com/gnkvBI6.png)
