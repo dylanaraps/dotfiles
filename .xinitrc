@@ -14,7 +14,7 @@ xrandr --output DVI-0 --mode 1920x1080 --rate 60 --primary --output HDMI-0 --mod
 # xrandr --output DVI-0 --mode 1920x1080 --rate 60 --primary
 
 # Set wallpaper
-feh  --bg-fill ~/Pictures/wallpapers/wash/18.jpg &
+feh  --bg-fill ~/Pictures/wallpapers/wash/22.jpg &
 # wall --loop 900 &
 
 # urxvt daemon
@@ -33,7 +33,7 @@ pulseaudio --start &
 redshift -m randr &
 
 # Devmon
-devmon &
+udiskie &
 
 # Compton
 compton --backend xrender --paint-on-overlay --glx-no-stencil --vsync opengl-swc --unredir-if-possible --no-fading-openclose -o 0 -b
