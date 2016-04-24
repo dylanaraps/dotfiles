@@ -1,6 +1,8 @@
 # Dylan's Dotfiles
 
-### Do not copy my setup completely. Take parts you like and make it your own.
+## Do not copy my setup completely. Take parts you like and make it your own.
+
+#### I only post my desktops on `/r/unixporn` and `G+`, if you see them posted elsewhere (`/g/`) it isn't me.
 
 <hr>
 
