@@ -135,6 +135,9 @@ openbox () {
     menubg=$(xrdb -query | grep "\*\.color7:" | cut -f2)
     menufg=$(xrdb -query | grep "\*\.color8:" | cut -f2)
 
+    active_border=$(xrdb -query | grep "\*\.color7:" | cut -f2)
+    inactive_border=$(xrdb -query | grep "\*\.color7:" | cut -f2)
+
     echo "# Openbox colors, generated using gencol"
     echo "window.active.title.bg.color: $active_titlebg"
     echo "window.inactive.title.bg.color: $inactive_titlebg"
@@ -145,6 +148,8 @@ openbox () {
     echo "menu*.text.color: $menufg"
     echo "menu.border.color: $menubg"
     echo "menu.separator.color: $menubg"
+    echo "window.active.border.color: $active_border"
+    echo "window.inactive.border.color: $inactive_border"
     echo
 }
 

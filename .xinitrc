@@ -39,6 +39,7 @@ udiskie &
 compton --backend xrender --paint-on-overlay --glx-no-stencil --vsync opengl-swc --unredir-if-possible --no-fading-openclose -o 0 -b
 
 #  Start openbox
+# exec i3
 exec openbox-session
 # exec /home/dyl/projects/jbwm/jbwm
 # exec icewm-session

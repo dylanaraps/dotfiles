@@ -754,5 +754,8 @@
       <desktop>4</desktop>
       <focus>no</focus>
     </application>
+    <!-- <application class="*"> -->
+    <!--   <decor>no</decor> -->
+    <!-- </application> -->
   </applications>
 </openbox_config>
