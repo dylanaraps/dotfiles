@@ -1,0 +1,14 @@
+# Clearlooks XFWM4 by Casey Kirsle
+
+show_app_icon=true
+active_text_color=#f0f0f0
+inactive_text_color=#70838c
+title_shadow_active=none
+title_shadow_inactive=false
+button_layout=|HMC
+button_offset=2
+button_spacing=2
+full_width_title=true
+maximized_offset=0
+title_vertical_offset_active=1
+title_vertical_offset_inactive=1

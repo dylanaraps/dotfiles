@@ -7,7 +7,7 @@ xrdb -merge ~/.Xresources
 setxkbmap -option caps:none
 
 # Disable mousewheel as mine is fucked
-xinput set-button-map 10 1 2 3 0 0
+# xinput set-button-map 10 1 2 3 0 0
 
 # Set up multi mon
 xrandr --output DVI-0 --mode 1920x1080 --rate 60 --primary --output HDMI-0 --mode 3840x2160 --rate 30 --below DVI-0 &
@@ -24,7 +24,7 @@ urxvtd -q -f -o &
 clock &
 
 # mpd
-mpd &
+# mpd &
 
 # Pulseaudio
 pulseaudio --start &

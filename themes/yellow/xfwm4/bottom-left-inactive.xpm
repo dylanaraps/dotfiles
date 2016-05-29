@@ -1,0 +1,10 @@
+/* XPM */
+static char * bottom_left_inactive_xpm[] = {
+"4 4 3 1",
+" 	c None",
+".	c #232C33",
+"+	c #85827E",
+"....",
+"....",
+"....",
+"+..."};
