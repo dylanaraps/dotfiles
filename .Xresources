@@ -5,10 +5,10 @@ URxvt*font: xft:lemon:pixelsize=10:antialias=false
 URxvt*boldFont: xft:lemon:pixelsize=10:antialias=false
 
 ! Increase line spacing
-URxvt*lineSpace: 2
+! URxvt*lineSpace: 1
 
 ! Terminal window size
-URxvt*geometry: 85x20
+URxvt*geometry: 85x25
 
 ! Disable scrollbar
 URxvt.scrollBar: false
