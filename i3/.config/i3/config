@@ -135,6 +135,11 @@ client.background       #edd4b2
 #         status_command i3status
 # }
 
+# Add a 5px border to all windows.
 for_window [class="^.*"] border pixel 5
+
 smart_borders on
 gaps inner 25
+
+# Toggle sticky windows
+bindsym $mod+e sticky toggle
