@@ -1,1 +1,3 @@
-.config/mpv/watch_later
+nvim/.config/nvim/autoload/*
+nvim/.config/nvim/plugged/*
+nvim/.config/nvim/tmp/*
