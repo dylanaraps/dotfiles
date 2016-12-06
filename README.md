@@ -7,11 +7,12 @@ My dotfiles are now managed with GNU stow so you can easily install and uninstal
 
 ## Setup
 
-- Window Manager: `i3-gaps`
--  Terminal Emulator: `termite`
-- Web Browser: `Firefox`
-- Text Editor: `neovim`
+- Application Launcher: `dmenu2`
 - Shell: `bash`
+- Terminal Emulator: `termite`
+- Text Editor: `neovim`
+- Web Browser: `Firefox`
+- Window Manager: `i3-gaps`
 
 
 ## Screenshots
