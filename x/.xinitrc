@@ -1,2 +1,3 @@
-feh --bg-fill "$HOME/Pictures/Wallpapers/1.jpg"
+devmon &
+feh --bg-fill "$HOME/Pictures/Wallpapers/1.jpg" &
 exec i3
