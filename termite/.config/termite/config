@@ -1,2 +1,4 @@
 [options]
-font = lemon 7 
+font = lemon 7
+allow_bold = false
+cursor_blink = off
