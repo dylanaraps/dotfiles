@@ -2,4 +2,4 @@
 
 # Set the prompt.
 # $USER ~/path/to/dir >
-export PS1="$USER \w \[\033[35m\]>\[\033[0m\]"
+export PS1="$USER \w \[$(tput setaf 5)\]>\[$(tput sgr0)\]"
