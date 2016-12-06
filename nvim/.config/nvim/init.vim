@@ -15,7 +15,6 @@ endif
 call plug#begin('~/.config/nvim/plugged')
 
 " My Plugins
-Plug 'dylanaraps/ryuuko'
 Plug 'dylanaraps/taskrunner.nvim'
 Plug 'dylanaraps/root.vim'
 	let g:root#auto = 1
@@ -193,7 +192,7 @@ set noshowmode
 " Always show statusline
 set laststatus=2
 
-colorscheme ryuuko
+colorscheme termcolors
 
 " }}}
 
