@@ -12,7 +12,7 @@ My dotfiles are now managed with GNU stow so you can easily install and uninstal
 - Compositor: `compton`
 - Shell: `bash`
 - Notifications: `dunst`
-- Terminal Emulator: `termite`
+- Terminal Emulator: `urxvt`
 - Text Editor: `neovim`
 - Web Browser: `Firefox`
 - Window Manager: `i3-gaps`
