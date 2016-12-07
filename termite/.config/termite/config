@@ -10,35 +10,35 @@ dynamic_title = true
 foreground      = #f0f0f0
 foreground_bold = #f0f0f0
 cursor          = #f0f0f0
-background      = #282b32
+background      = #2b3635
 
 # black
-color0  = #282b32
+color0  = #2b3635
 color8  = #70838c
 
 # red
-color1  = #b26b4f
-color9  = #b26b4f
+color1  = #99736e
+color9  = #99736e
 
 # green
-color2  = #949f5a
-color10 = #949f5a
+color2  = #78a090
+color10 = #78a090
 
 # yellow
-color3  = #edd4b2
-color11 = #edd4b2
+color3  = #bfb7a1
+color11 = #bfb7a1
 
 # blue
-color4  = #6993ad
-color12 = #6993ad
+color4  = #7c9fa6
+color12 = #7c9fa6
 
 # magenta
-color5  = #e7b190
-color13 = #e7b190
+color5  = #bf9c86
+color13 = #bf9c86
 
 # cyan
-color6  = #bcdbdd
-color14 = #bcdbdd
+color6  = #99bfba
+color14 = #99bfba
 
 # white
 color7  = #f0f0f0
