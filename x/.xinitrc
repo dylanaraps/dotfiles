@@ -1,6 +1,8 @@
 compton &
 dunst &
 devmon &
-feh --bg-fill "$HOME/Pictures/Wallpapers/2.jpg" &
+wal &
 bar &
+xrdb "$HOME/.Xresources"
+urxvtd -q -f &
 exec i3

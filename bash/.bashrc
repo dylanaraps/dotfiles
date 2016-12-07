@@ -17,3 +17,4 @@ export XDG_CONFIG_HOME="$HOME/.config"
 # ALIASES
 
 alias steam="steam-native"
+alias sxiv="sxiv -b -s f"
