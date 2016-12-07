@@ -17,6 +17,13 @@ My dotfiles are now managed with GNU stow so you can easily install and uninstal
 - Window Manager: `i3-gaps`
 
 
+## Scripts
+
+You can find my scripts in this repo:
+
+https://github.com/dylanaraps/bin
+
+
 ## Screenshots
 
 Coming soon :)
