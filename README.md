@@ -9,6 +9,7 @@ My dotfiles are now managed with GNU stow so you can easily install and uninstal
 
 - Application Launcher: `dmenu2`
 - Bar: `lemonbar`
+- Compositor: `compton`
 - Shell: `bash`
 - Notifications: `dunst`
 - Terminal Emulator: `termite`
@@ -27,3 +28,29 @@ https://github.com/dylanaraps/bin
 ## Screenshots
 
 Coming soon :)
+
+
+## Installation
+
+My dotfiles can now be easily installed using `stow`.
+
+1. Clone this repo.
+    - `git clone https://github.com/dylanaraps/dotfiles`
+2. Change directory to `dotfiles`
+    - `cd dotfiles`
+3. Install dotfiles using stow.
+
+
+```sh
+# Install i3 config
+stow i3
+
+# Install termite config
+stow termite
+
+# Uninstall i3 config
+stow -D i3
+
+# Uninstall termite config
+stow -D termite
+```
