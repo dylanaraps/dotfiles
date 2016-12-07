@@ -12,3 +12,8 @@ PATH="$PATH:$HOME/bin"
 
 # Set XDG_CONFIG_HOME
 export XDG_CONFIG_HOME="$HOME/.config"
+
+
+# ALIASES
+
+alias steam="steam-native"

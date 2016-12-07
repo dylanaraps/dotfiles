@@ -44,6 +44,8 @@ print_info() {
     info line_break
     info cols
     info line_break
+    info line_break
+    info line_break
 }
 
 
@@ -401,7 +403,7 @@ color_blocks="on"
 # Default:  '3'
 # Values:   'num'
 # Flag:     --block_width
-block_width=5
+block_width=3
 
 # Color block height in lines
 #

@@ -2,6 +2,7 @@
 font = lemon 7
 allow_bold = false
 cursor_blink = off
+dynamic_title = true
 
 
 [colors]

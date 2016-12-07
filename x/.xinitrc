@@ -2,4 +2,5 @@ compton &
 dunst &
 devmon &
 feh --bg-fill "$HOME/Pictures/Wallpapers/1.jpg" &
+bar &
 exec i3
