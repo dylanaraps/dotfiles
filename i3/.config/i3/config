@@ -136,7 +136,7 @@ client.background       #edd4b2
 # }
 
 # Add a 5px border to all windows.
-for_window [class="^.*"] border normal 5
+for_window [class="^.*"] border normal 0
 
 smart_borders on
 gaps inner 25
