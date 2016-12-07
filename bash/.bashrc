@@ -9,3 +9,6 @@ export EDITOR="nvim"
 
 # Add ~/bin to path
 PATH="$PATH:$HOME/bin"
+
+# Set XDG_CONFIG_HOME
+export XDG_CONFIG_HOME="$HOME/.config"
