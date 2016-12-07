@@ -121,25 +121,28 @@ mode "resize" {
 bindsym $mod+r mode "resize"
 
 # class                 border  backgr. text    indicator child_border
-client.focused          #ffffff #ffffff #ffffff #ffffff   #ffffff
-client.focused_inactive #edd4b2 #edd4b2 #edd4b2 #edd4b2   #edd4b2
-client.unfocused        #edd4b2 #edd4b2 #edd4b2 #edd4b2   #edd4b2
-client.urgent           #edd4b2 #edd4b2 #edd4b2 #edd4b2   #edd4b2
-client.placeholder      #edd4b2 #edd4b2 #edd4b2 #edd4b2   #edd4b2
+client.focused          #ffffff #ffffff #000000 #ffffff   #ffffff
+client.focused_inactive #edd4b2 #edd4b2 #000000 #edd4b2   #edd4b2
+client.unfocused        #edd4b2 #edd4b2 #000000 #edd4b2   #edd4b2
+client.urgent           #edd4b2 #edd4b2 #000000 #edd4b2   #edd4b2
+client.placeholder      #edd4b2 #edd4b2 #000000 #edd4b2   #edd4b2
 
 client.background       #edd4b2
 
 # Start i3bar to display a workspace bar (plus the system information i3status
 # finds out, if available)
 # bar {
-#         status_command i3status
+#     height 25
 # }
 
 # Add a 5px border to all windows.
-for_window [class="^.*"] border pixel 5
+for_window [class="^.*"] border normal 5
 
 smart_borders on
 gaps inner 25
 
 # Toggle sticky windows
 bindsym $mod+e sticky toggle
+
+# Title bar format
+for_window [class=".*"] title_format " > %title"

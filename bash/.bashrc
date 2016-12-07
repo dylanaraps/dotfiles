@@ -6,3 +6,6 @@ export PS1="$USER \w \[$(tput setaf 5)\]>\[$(tput sgr0)\]"
 
 # Set nvim as editor.
 export EDITOR="nvim"
+
+# Add ~/bin to path
+PATH="$PATH:$HOME/bin"
