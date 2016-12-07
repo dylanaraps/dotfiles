@@ -8,7 +8,7 @@ My dotfiles are now managed with GNU stow so you can easily install and uninstal
 ## Setup
 
 - Application Launcher: `dmenu2`
-- Bar: ???
+- Bar: `lemonbar`
 - Shell: `bash`
 - Notifications: `dunst`
 - Terminal Emulator: `termite`
