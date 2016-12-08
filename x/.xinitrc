@@ -1,8 +1,6 @@
 compton &
-dunst &
 devmon &
-wal &
-bar &
+wal -i "$HOME/Pictures/Wallpapers"
 xrdb "$HOME/.Xresources"
 urxvtd -q -f &
 exec i3

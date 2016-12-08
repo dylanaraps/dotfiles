@@ -120,12 +120,12 @@ mode "resize" {
 
 bindsym $mod+r mode "resize"
 
-# class                 border  backgr. fg    indicator child_border
-client.focused          $bg $bg $fg $bg   $bg
-client.focused_inactive $bg $bg $fg $bg   $bg
-client.unfocused        $bg $bg $fg $bg   $bg
-client.urgent           $bg $bg $fg $bg   $bg
-client.placeholder      $bg $bg $fg $bg   $bg
+# class                 border  backgr. text indicator child_border
+client.focused          $bg     $bg     $fg  $bg       $bg
+client.focused_inactive $bg     $bg     $fg  $bg       $bg
+client.unfocused        $bg     $bg     $fg  $bg       $bg
+client.urgent           $bg     $bg     $fg  $bg       $bg
+client.placeholder      $bg     $bg     $fg  $bg       $bg
 
 client.background       $bg
 
@@ -170,4 +170,4 @@ bindsym XF86AudioPrev exec playerctl previous
 bindsym $mod+p exec scr
 
 # Cylce wallpapers
-bindsym $mod+w exec wal
+bindsym $mod+w exec "wal -i $HOME/Pictures/Wallpapers"
