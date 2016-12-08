@@ -10,10 +10,12 @@ My dotfiles are now managed with GNU stow so you can easily install and uninstal
 - Application Launcher: `dmenu2`
 - Bar: `lemonbar`
 - Compositor: `compton`
-- Shell: `bash`
+- Icons: `flattr (modified)`
 - Notifications: `dunst`
+- Shell: `bash`
 - Terminal Emulator: `urxvt`
 - Text Editor: `neovim`
+- Theme: `Arc (modified)`
 - Web Browser: `Firefox`
 - Window Manager: `i3-gaps`
 
