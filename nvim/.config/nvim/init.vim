@@ -89,6 +89,10 @@ filetype plugin indent on
 augroup Filetypes
 	au!
 
+    autocmd Filetype sh let g:sh_fold_enabled=3
+    autocmd Filetype sh let g:is_bash=1
+    autocmd Filetype sh setlocal foldmethod=syntax
+
 	" All Filetypes
 	" Disable comment on newline
 	autocmd FileType * setlocal formatoptions-=c formatoptions-=r formatoptions-=o
@@ -123,6 +127,8 @@ augroup Filetypes
     " Set rtorrent config to zsh filetype to fix syntax highlighting
 	autocmd BufRead .rtorrent.rc set filetype=markdown
 augroup END
+
+syntax enable
 
 " }}}
 
