@@ -20,3 +20,6 @@ source "$HOME/.cache/wal/colors.sh"
 
 alias steam="steam-native"
 alias sxiv="sxiv -b -s f"
+
+# Import colorscheme from 'wal'
+printf "%b" "$(< "${HOME}/.cache/wal/colors")"
