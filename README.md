@@ -16,6 +16,7 @@ My dotfiles are now managed with GNU stow so you can easily install and uninstal
 - Terminal Emulator: `urxvt`
 - Text Editor: `neovim`
 - Theme: `Arc (modified)`
+- Video Player: `mpv`
 - Web Browser: `Firefox`
 - Window Manager: `i3-gaps`
 
