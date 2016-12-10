@@ -17,12 +17,11 @@ call plug#begin('~/.config/nvim/plugged')
 " My Plugins
 Plug 'dylanaraps/wal'
 Plug 'dylanaraps/taskrunner.nvim'
-Plug 'dylanaraps/taskrunner.nvim'
 Plug 'dylanaraps/root.vim'
 	let g:root#auto = 1
 	let g:root#echo = 0
 
-" Hide view ui
+" Hide vim ui
 Plug 'junegunn/goyo.vim'
 
 " Async lint
@@ -89,6 +88,7 @@ filetype plugin indent on
 augroup Filetypes
 	au!
 
+    " Syntax folding for bash
     autocmd Filetype sh let g:sh_fold_enabled=3
     autocmd Filetype sh let g:is_bash=1
     autocmd Filetype sh setlocal foldmethod=syntax
@@ -99,9 +99,6 @@ augroup Filetypes
 
 	" Remove Whitespace on save
 	autocmd BufWritePre * :%s/\s\+$//e
-
-    " Run neomake on every save of fetch
-    " autocmd BufWritePost *.sh,fetch Neomake
 
 	" Clear cmdline on bufread/enter
 	autocmd BufEnter,BufReadPost,BufWinEnter,CmdwinEnter,CmdwinLeave * redraw!
@@ -171,7 +168,7 @@ set breakindent
 " Look and Feel {{{
 
 " Enable true color for neovim
-let $NVIM_TUI_ENABLE_TRUE_COLOR = 1
+let $NVIM_TUI_ENABLE_TRUE_COLOR = 0
 
 " Enables cursor similar to gui programs
 let $NVIM_TUI_ENABLE_CURSOR_SHAPE = 1
@@ -257,10 +254,6 @@ noremap ; :
 " Save files with root privliges
 cmap w!! w !sudo tee % >/dev/null
 
-" Terminal Splits
-cmap Hterm sp <bar> terminal
-cmap Vterm vsp <bar> terminal
-
 " Maps Tab to indent blocks of text in visual mode
 vmap <TAB> >gv
 vmap <BS> <gv
@@ -293,12 +286,6 @@ nmap a <nop>
 " za/az toggle folds
 " ezpz to spam open/close folds now
 nmap az za
-
-" Easier split navigation
-nnoremap <Leader>h <C-W><C-H>
-nnoremap <Leader>j <C-W><C-J>
-nnoremap <Leader>k <C-W><C-K>
-nnoremap <Leader>l <C-W><C-L>
 
 " Shows the highlight group of whatever's under the cursor
 map <F10> :echo "hi<" . synIDattr(synID(line("."),col("."),1),"name") . '> trans<'
