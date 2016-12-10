@@ -169,5 +169,5 @@ bindsym XF86AudioPrev exec playerctl previous
 # Take a screenshot
 bindsym $mod+p exec scr
 
-# Cylce wallpapers
+# Cycle wallpapers
 bindsym $mod+w exec "wal -i $HOME/Pictures/Wallpapers && wal-set"

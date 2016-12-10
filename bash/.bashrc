@@ -21,5 +21,9 @@ source "$HOME/.cache/wal/colors.sh"
 alias steam="steam-native"
 alias sxiv="sxiv -b -s f"
 
+wal() {
+    ~/projects/wal/wal "$@" && wal-set
+}
+
 # Import colorscheme from 'wal'
-wal -r
+# wal -r
