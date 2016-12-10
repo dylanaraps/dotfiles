@@ -30,7 +30,9 @@ https://github.com/dylanaraps/bin
 
 ## Screenshots
 
-Coming soon :)
+**[Album](http://imgur.com/a/26qCj)**
+
+![scrot](http://i.imgur.com/xhK7YiP.png)
 
 
 ## Installation
