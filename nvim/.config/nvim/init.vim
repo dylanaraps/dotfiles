@@ -15,7 +15,7 @@ endif
 call plug#begin('~/.config/nvim/plugged')
 
 " My Plugins
-Plug 'dylanaraps/wal'
+Plug '~/projects/wal'
 Plug 'dylanaraps/taskrunner.nvim'
 Plug 'dylanaraps/root.vim'
 	let g:root#auto = 1
@@ -58,8 +58,8 @@ Plug 'junegunn/vim-oblique'
 	let g:oblique#clear_highlight = 1
 	let g:oblique#prefix = "\\v" " Very Magic
 
-Plug 'tpope/vim-commentary'
 Plug 'rstacruz/vim-closer'
+Plug 'tpope/vim-commentary'
 Plug 'tpope/vim-surround'
 	" Maps ss to surround word
 	nmap ss ysiw
@@ -75,7 +75,18 @@ Plug 'JulesWang/css.vim'
 Plug 'cakebaker/scss-syntax.vim'
 Plug 'hail2u/vim-css3-syntax'
 Plug 'othree/html5.vim'
-Plug 'kchmck/vim-coffee-script'
+
+" Show yanked region
+Plug 'machakann/vim-highlightedyank'
+    let g:highlightedyank_highlight_duration = 200
+
+" Generate Markdown TOC
+Plug 'mzlogin/vim-markdown-toc'
+
+" Fast folds
+" Plug 'Konfekt/FastFold'
+    " let sh_fold_enabled=1
+    " let g:vimsyn_folding='af'
 
 call plug#end()
 
@@ -88,6 +99,12 @@ filetype plugin indent on
 augroup Filetypes
 	au!
 
+    " Prevent saving files starting with ':' or ';'.
+    autocmd BufWritePre [:;]* throw 'Forbidden file name: ' . expand('<afile>')
+
+    " Enable spellcheck in markdown files.
+    autocmd Filetype markdown setlocal spell
+
     " Syntax folding for bash
     autocmd Filetype sh let g:sh_fold_enabled=3
     autocmd Filetype sh let g:is_bash=1
@@ -99,9 +116,6 @@ augroup Filetypes
 
 	" Remove Whitespace on save
 	autocmd BufWritePre * :%s/\s\+$//e
-
-	" Clear cmdline on bufread/enter
-	autocmd BufEnter,BufReadPost,BufWinEnter,CmdwinEnter,CmdwinLeave * redraw!
 
 	" Html
 	" Map </ to auto close tags
@@ -120,9 +134,6 @@ augroup Filetypes
     " Plugins
     autocmd FileType xdefaults setlocal commentstring=!\ %s
     autocmd FileType scss setlocal commentstring=/*%s*/
-
-    " Set rtorrent config to zsh filetype to fix syntax highlighting
-	autocmd BufRead .rtorrent.rc set filetype=markdown
 augroup END
 
 syntax enable
@@ -185,8 +196,12 @@ set noruler
 " Don't redraw screen as often
 set lazyredraw
 
-" Limit syntax highlighting length
-set synmaxcol=1000
+set nocursorcolumn
+set nocursorline
+
+" syntax sync minlines=256
+" set synmaxcol=300
+" set re=1
 
 " Don’t show the intro message when starting Vim
 set shortmess=atI
@@ -195,7 +210,7 @@ set shortmess=atI
 set noshowmode
 
 " Always show statusline
-set laststatus=2
+set laststatus=0
 
 colorscheme wal
 
@@ -379,6 +394,7 @@ set foldmethod=marker
 set foldlevel=99
 set foldlevelstart=0
 set foldnestmax=10
+set nofoldenable
 
 " Only saves folds/cursor pos in mkview
 set viewoptions=folds,cursor

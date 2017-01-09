@@ -144,6 +144,16 @@ for_window [class="^.*"] floating enable
 smart_borders on
 gaps inner 25
 
+workspace 1 output DVI-0
+workspace 2 output DVI-0
+workspace 3 output DVI-0
+workspace 4 output DVI-0
+workspace 5 output DVI-0
+workspace 6 output DVI-0
+workspace 7 output DVI-0
+workspace 8 output DVI-0
+workspace 9 output HDMI-0
+
 # Toggle sticky windows
 bindsym $mod+e sticky toggle
 
@@ -162,12 +172,14 @@ bindsym XF86AudioLowerVolume exec --no-startup-id "vol down &"
 bindsym XF86AudioMute exec --no-startup-id "vol mute &"
 
 # Media player controls
-bindsym XF86AudioPlay exec playerctl play-pause
-bindsym XF86AudioNext exec playerctl next
-bindsym XF86AudioPrev exec playerctl previous
+bindsym XF86AudioPlay exec "mpc toggle"
+bindsym XF86AudioNext exec "song next"
+bindsym XF86AudioPrev exec "song prev"
 
-# Take a screenshot
+# Take a screensho
 bindsym $mod+p exec scr
 
 # Cycle wallpapers
-bindsym $mod+w exec "wal -i $HOME/Pictures/Wallpapers && wal-set"
+bindsym $mod+w exec "wal -i $HOME/Pictures/Wallpapers -o wal-set"
+
+exec wal -i "$(< "${HOME}/.cache/wal/wal")" -o "wal-set"
