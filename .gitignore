@@ -2,3 +2,6 @@ nvim/.config/nvim/autoload/*
 nvim/.config/nvim/plugged/*
 nvim/.config/nvim/tmp/*
 nvim/.config/nvim/.*
+nvim/.config/nvim/Ditto/*
+nvim/.config/nvim/spell/*
+nvim/.config/nvim/spell/*
