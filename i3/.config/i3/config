@@ -36,7 +36,7 @@ set_from_resource $fg i3wm.color7 #f0f0f0
 set_from_resource $bg i3wm.color2 #f0f0f0
 
 # start dmenu (a program launcher)
-bindsym $mod+d exec dmenu_run -i -q -fn "lemon-7" -w 200 -l 3 -x 25 -y 25 -nb "$fg" -nf "$bg" -sb "$bg" -sf "$fg"
+bindsym $mod+d exec dmenu_run -i -q -fn "-benis-lemon-medium-r-normal--10-110-75-75-m-50-iso8859-9" -w 200 -l 3 -x 25 -y 25 -nb "$fg" -nf "$bg" -sb "$bg" -sf "$fg"
 # There also is the (new) i3-dmenu-desktop which only displays applications
 # shipping a .desktop file. It is a wrapper around dmenu, so you need that
 # installed.
@@ -161,8 +161,8 @@ bindsym $mod+e sticky toggle
 # We first set the titlebar font size to a large size to get a good padding amount.
 # We then use pango markup to force i3 to print with the desired font.
 # This gives us large titlebars with a small font. :P
-font pango:lemon 15
-for_window [class=".*"] title_format "<span font='Lemon 7'> > %title</span>"
+font pango:lemon 11
+for_window [class=".*"] title_format "<span font='Artwiz Lemon 7'> > %title</span>"
 
 # Media Keys
 

@@ -1,16 +1,16 @@
 ! Dylans Xresources
 
-Xft.lcdfilter: lcddefault
-Xft.antialias: true
 Xft.autohint: 0
+Xft.antialias: 1
 Xft.hinting: true
 Xft.hintstyle: hintslight
-Xft.rgba: rgb
 Xft.dpi: 96
+Xft.rgba: rgb
+Xft.lcdfilter: lcddefault
 
 ! Set the font
-URxvt*font: xft:lemon:pixelsize=10:antialias=false
-URxvt*boldFont: xft:lemon:pixelsize=10:antialias=false
+URxvt*font: -benis-lemon-medium-r-normal--10-110-75-75-m-50-iso8859-9
+URxvt*boldFont: -benis-lemon-medium-r-normal--10-110-75-75-m-50-iso8859-9
 
 ! Disable scrollbar
 URxvt.scrollBar: false

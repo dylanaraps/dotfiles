@@ -11,9 +11,9 @@ regular_expressions = "extended"
 playlist_disable_highlight_delay = 1
 jump_to_now_playing_song_at_start = "yes"
 song_columns_list_format = "(6f)[cyan]{l} (40)[red]{a} (25)[blue]{t|f}"
-now_playing_prefix = "$b"
+now_playing_prefix = ">>>> "
 now_playing_suffix = "$/b"
-playlist_display_mode = "columns" (classic/columns)
+playlist_display_mode = "columns"
 centered_cursor = "yes"
 
 # Bars
