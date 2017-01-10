@@ -1,4 +1,4 @@
-xrandr --output DVI-0 --primary --mode 1920x1080 --output HDMI-0 --mode 1920x1080 --below DVI-0
+xrandr --output DVI-I-0 --primary --mode 1920x1080 --output HDMI-A-0 --mode 1920x1080 --below DVI-I-0
 compton &
 devmon &
 dunst &

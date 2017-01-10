@@ -1,6 +1,6 @@
 # vim: ft=cfg
 [global]
-    font = lemon 7
+    font = Artwiz Lemon 7
 
     # Allow a small subset of html markup in notifications and formats:
     #   <b>bold</b>
