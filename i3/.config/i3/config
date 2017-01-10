@@ -172,7 +172,7 @@ bindsym XF86AudioLowerVolume exec --no-startup-id "vol down &"
 bindsym XF86AudioMute exec --no-startup-id "vol mute &"
 
 # Media player controls
-bindsym XF86AudioPlay exec "mpc toggle"
+bindsym XF86AudioPlay exec "song toggle"
 bindsym XF86AudioNext exec "song next"
 bindsym XF86AudioPrev exec "song prev"
 
@@ -181,5 +181,4 @@ bindsym $mod+p exec scr
 
 # Cycle wallpapers
 bindsym $mod+w exec "wal -i $HOME/Pictures/Wallpapers -o wal-set"
-
 exec wal -i "$(< "${HOME}/.cache/wal/wal")" -o "wal-set"
