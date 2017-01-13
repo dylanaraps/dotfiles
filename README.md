@@ -4,9 +4,9 @@ Welcome to my dotfiles repo. Around 6 months ago I stopped using Linux on my mai
 
 My dotfiles are now managed with GNU stow so you can easily install and uninstall parts of it with ease. This should satisfy those who find my setup and ask for help installing it. \^\^
 
-**[Screenshot Album](http://imgur.com/a/26qCj)**
+**[Screenshot Album](https://imgur.com/gallery/PntxG)**
 
-![scrot](http://i.imgur.com/xhK7YiP.png)
+![scrot](https://i.imgur.com/rD8BJyF.png)
 
 ## Setup
 
