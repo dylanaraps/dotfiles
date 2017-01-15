@@ -27,3 +27,6 @@ alias handbrake="ghb"
 
 # Import colorscheme from 'wal'
 [[ -z "$VTE_VERSION" ]] && wal -r
+
+# Auto start X.
+[[ -z "$DISPLAY" && "$XDG_VTNR" -eq 1 ]] && exec startx -- vt1 &> /dev/null

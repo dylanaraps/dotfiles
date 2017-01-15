@@ -157,10 +157,11 @@ workspace 9 output HDMI-A-0
 # Toggle sticky windows
 bindsym $mod+e sticky toggle
 
-# Title bar format
-# We first set the titlebar font size to a large size to get a good padding amount.
-# We then use pango markup to force i3 to print with the desired font.
-# This gives us large titlebars with a small font. :P
+# Title bars with padding.
+# We first set the titlebar font size to a larger font size than desired
+# to get a good padding amount. We then use pango markup to force i3 to
+# print the desired font size. This gives us large titlebars with a small
+# font.
 font pango:lemon 11
 for_window [class=".*"] title_format "<span font='Artwiz Lemon 7'> > %title</span>"
 
