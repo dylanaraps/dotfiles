@@ -28,9 +28,6 @@ alias steam="steam-native"
 alias sxiv="sxiv -b -s f"
 alias handbrake="ghb"
 
-# Use Roboto Mono on laptop.
-[[ "$HOSTNAME" == "rosebud" ]] && printf "\033]710;%s\007" "xft:Roboto Mono:size=20"
-
 # Import colorscheme from 'wal'
 [[ -z "$VTE_VERSION" ]] && (wal -r &)
 
