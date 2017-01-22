@@ -11,7 +11,7 @@ export EDITOR="nvim"
 PATH="$PATH:$HOME/bin"
 
 # Set XDG_CONFIG_HOME
-export XDG_CONFIG_HOME="$HOME/.config"
+export XDG_CONFIG_HOME="${HOME}/.config"
 
 # Fix CSGO mouse issues
 export SDL_VIDEO_X11_DGAMOUSE=0

@@ -1,21 +1,16 @@
 ! Dylans Xresources
 
+URxvt*font: -benis-lemon-medium-r-normal--10-110-75-75-m-50-iso8859-9
+URxvt*boldFont: -benis-lemon-medium-r-normal--10-110-75-75-m-50-iso8859-9
+! URxvt*font: xft:Roboto Mono:size=20
+
+Xft.dpi: 96
 Xft.autohint: 0
 Xft.antialias: 1
 Xft.hinting: true
 Xft.hintstyle: hintslight
 Xft.rgba: rgb
 Xft.lcdfilter: lcddefault
-
-! Check for PC or Laptop
-#if (HOSTNAME == celeste)
-    Xft.dpi: 96
-
-    URxvt*font: -benis-lemon-medium-r-normal--10-110-75-75-m-50-iso8859-9
-    URxvt*boldFont: -benis-lemon-medium-r-normal--10-110-75-75-m-50-iso8859-9
-#elif (HOSTNAME == rosebud)
-    URxvt*font: xft:Roboto Mono:pixelsize=20
-#endif
 
 ! Disable scrollbar
 URxvt.scrollBar: false
