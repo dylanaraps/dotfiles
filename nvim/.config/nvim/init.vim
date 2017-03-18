@@ -17,9 +17,9 @@ call plug#begin('~/.config/nvim/plugged')
 " My Plugins
 Plug '~/projects/wal'
 Plug 'dylanaraps/taskrunner.nvim'
-Plug 'dylanaraps/root.vim'
-	let g:root#auto = 1
-	let g:root#echo = 0
+" Plug 'dylanaraps/root.vim'
+" 	let g:root#auto = 1
+" 	let g:root#echo = 0
 
 " Hide vim ui
 Plug 'junegunn/goyo.vim'
@@ -36,6 +36,13 @@ Plug 'benekastah/neomake'
         \ 'text': 'W>',
         \ 'texthl': 'TermCursorNC',
     \ }
+
+" Async auto complete
+Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
+    let g:deoplete#enable_at_startup = 1
+    inoremap <expr><TAB> pumvisible() ? "\<C-n>" : "\<TAB>"
+
+Plug 'godlygeek/tabular'
 
 " Clicking v expands region
 Plug 'kana/vim-textobj-user'
@@ -75,6 +82,7 @@ Plug 'JulesWang/css.vim'
 Plug 'cakebaker/scss-syntax.vim'
 Plug 'hail2u/vim-css3-syntax'
 Plug 'othree/html5.vim'
+Plug 'boeckmann/vim-freepascal'
 
 " Show yanked region
 Plug 'machakann/vim-highlightedyank'
@@ -342,7 +350,6 @@ set undoreload=500
 " Improve Neovim startup time by disabling python and host check
 let g:python_host_skip_check= 1
 let g:loaded_python_provider = 1
-let g:loaded_python3_provider = 1
 
 " Auto change dir to file directory
 set autochdir

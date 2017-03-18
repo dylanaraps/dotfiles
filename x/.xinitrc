@@ -7,4 +7,5 @@ xrdb "$HOME/.Xresources"
 urxvtd -q -f &
 redshift &
 mopidy &
+dropbox &
 exec i3
