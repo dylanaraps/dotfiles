@@ -10,10 +10,11 @@ My dotfiles are now managed with GNU stow so you can easily install and uninstal
 
 ## Setup
 
-- Application Launcher: `dmenu2`
-- Bar: `lemonbar`
+- Application Launcher: `rofi`
+- Bar: `none`
 - Compositor: `compton`
 - Icons: `flattr (modified)`
+- Music Player: `spotify`
 - Notifications: `dunst`
 - Shell: `bash`
 - Terminal Emulator: `urxvt`
@@ -51,7 +52,4 @@ stow termite
 
 # Uninstall i3 config
 stow -D i3
-
-# Uninstall termite config
-stow -D termite
 ```
