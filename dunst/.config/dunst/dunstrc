@@ -1,7 +1,5 @@
 # vim: ft=cfg
 [global]
-    font = Artwiz Lemon 7
-
     # Allow a small subset of html markup in notifications and formats:
     #   <b>bold</b>
     #   <i>italic</i>
@@ -68,7 +66,6 @@
     # the top and down respectively.
     # The width can be negative.  In this case the actual width is the
     # screen width minus the width defined in within the geometry option.
-    geometry = "300x30-40+40"
 
     # Shrink window if it's smaller than the width.  Will be ignored if
     # width is 0.
