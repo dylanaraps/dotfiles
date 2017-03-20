@@ -5,7 +5,7 @@
 # PC/Laptop Specific commands.
 if [[ "$HOSTNAME" == "bonez" ]]; then
     dunst \
-        -fn "Roboto 30" \
+        -fn "Roboto 25" \
         -geometry "600x60-80+80" &
 
     # Create i3 config.
