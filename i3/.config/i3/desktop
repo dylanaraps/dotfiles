@@ -1,0 +1,27 @@
+# i3 config options for my Desktop.
+
+# Title bars with padding.
+# We first set the titlebar font size to a larger font size than desired
+# to get a good padding amount. We then use pango markup to force i3 to
+# print the desired font size. This gives us large titlebars with a small
+# font.
+font pango:lemon 11
+for_window [class=".*"] title_format "<span font='Artwiz Lemon 7'> > %title</span>"
+
+# Workspaces.
+workspace 1 output DVI-0
+workspace 2 output DVI-0
+workspace 3 output DVI-0
+workspace 4 output DVI-0
+workspace 5 output DVI-0
+workspace 6 output DVI-0
+workspace 7 output DVI-0
+workspace 8 output DVI-0
+workspace 9 output HDMI-0
+
+# Float all windows by default.
+for_window [class="^.*"] floating enable
+
+smart_borders on
+gaps inner 25
+

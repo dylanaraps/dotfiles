@@ -1,0 +1,6 @@
+# i3 config options for my Laptop.
+
+new_window normal
+hide_edge_borders vertical
+gaps inner 0
+for_window [class="^.*"] border pixel 0

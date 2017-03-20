@@ -1,9 +1,18 @@
 ! Dylans Xresources
 
-URxvt*font: -benis-lemon-medium-r-normal--10-110-75-75-m-50-iso8859-9
-URxvt*boldFont: -benis-lemon-medium-r-normal--10-110-75-75-m-50-iso8859-9
+! Desktop/Laptop Settings.
+#ifdef SRVR_bonez
+    URxvt*font: xft:Roboto Mono:size=12
+    URxvt*boldFont:
 
-Xft.dpi: 96
+    Xft.dpi: 192
+#else
+    URxvt*font: -benis-lemon-medium-r-normal--10-110-75-75-m-50-iso8859-9
+    URxvt*boldFont: -benis-lemon-medium-r-normal--10-110-75-75-m-50-iso8859-9
+
+    Xft.dpi: 96
+#endif
+
 Xft.autohint: 0
 Xft.antialias: 1
 Xft.hinting: true

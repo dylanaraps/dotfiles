@@ -1,7 +1,8 @@
-" Dylan's Init.vim
+" Dylan's init.vim
+scriptencoding utf-8
 
 " Leader
-let mapleader = "\<space>"
+let g:mapleader = "\<space>"
 
 " Plugins {{{
 
@@ -9,7 +10,11 @@ let mapleader = "\<space>"
 if empty(glob('~/.config/nvim/autoload/plug.vim'))
 	silent !curl -fLo ~/.config//nvim/autoload/plug.vim --create-dirs
 	\ https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
-	autocmd VimEnter * PlugInstall
+
+    augroup PLUG
+        au!
+        autocmd VimEnter * PlugInstall
+    augroup END
 endif
 
 call plug#begin('~/.config/nvim/plugged')
@@ -18,31 +23,35 @@ call plug#begin('~/.config/nvim/plugged')
 Plug '~/projects/wal'
 Plug 'dylanaraps/taskrunner.nvim'
 " Plug 'dylanaraps/root.vim'
-" 	let g:root#auto = 1
-" 	let g:root#echo = 0
+Plug '~/projects/root.vim'
+	let g:root#auto = 0
+	let g:root#echo = 1
 
-" Hide vim ui
+Plug 'dylanaraps/pascal_lint.nvim'
+    let g:pascal_lint#args = '-S2 -vw'
+
+Plug 'mzlogin/vim-markdown-toc'
 Plug 'junegunn/goyo.vim'
+Plug 'godlygeek/tabular'
 
-" Async lint
-Plug 'benekastah/neomake'
-    let g:neomake_open_list = 1
-    let g:neomake_place_signs = 1
-    let g:neomake_error_sign = {
-        \ 'text': 'E>',
-        \ 'texthl': 'Error',
-    \ }
-    let g:neomake_warning_sign = {
-        \ 'text': 'W>',
-        \ 'texthl': 'TermCursorNC',
-    \ }
+" Fuzzy finder
+Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
+Plug 'junegunn/fzf.vim'
+    nmap <C-x> :FZF ~<CR>
 
-" Async auto complete
+" Async Linting
+Plug 'w0rp/ale'
+    let g:ale_lint_on_save = 1
+    let g:ale_lint_on_text_changed = 0
+    let g:ale_lint_on_enter = 0
+    let g:ale_linters_sh_shellcheck_exclusions = 'SC1090,SC2155'
+    nmap <silent> <C-n> <Plug>(ale_next_wrap)
+    nmap <silent> <C-N> <Plug>(ale_previous_wrap)
+
+" Async Completion
 Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
     let g:deoplete#enable_at_startup = 1
-    inoremap <expr><TAB> pumvisible() ? "\<C-n>" : "\<TAB>"
-
-Plug 'godlygeek/tabular'
+    inoremap <expr><tab> pumvisible() ? "\<c-n>" : "\<tab>"
 
 " Clicking v expands region
 Plug 'kana/vim-textobj-user'
@@ -82,19 +91,12 @@ Plug 'JulesWang/css.vim'
 Plug 'cakebaker/scss-syntax.vim'
 Plug 'hail2u/vim-css3-syntax'
 Plug 'othree/html5.vim'
+Plug 'alvan/vim-closetag'
 Plug 'boeckmann/vim-freepascal'
 
 " Show yanked region
 Plug 'machakann/vim-highlightedyank'
     let g:highlightedyank_highlight_duration = 200
-
-" Generate Markdown TOC
-Plug 'mzlogin/vim-markdown-toc'
-
-" Fast folds
-" Plug 'Konfekt/FastFold'
-    " let sh_fold_enabled=1
-    " let g:vimsyn_folding='af'
 
 call plug#end()
 
@@ -117,6 +119,9 @@ augroup Filetypes
     autocmd Filetype sh let g:sh_fold_enabled=3
     autocmd Filetype sh let g:is_bash=1
     autocmd Filetype sh setlocal foldmethod=syntax
+
+    " Compile Pascal on file size
+    autocmd BufWritePost *.pas :FPC
 
 	" All Filetypes
 	" Disable comment on newline
@@ -141,7 +146,7 @@ augroup Filetypes
 
     " Plugins
     autocmd FileType xdefaults setlocal commentstring=!\ %s
-    autocmd FileType scss setlocal commentstring=/*%s*/
+    autocmd FileType scss setlocal commentstring=/*%s*/ shiftwidth=2 softtabstop=2 expandtab
 augroup END
 
 syntax enable
@@ -159,7 +164,7 @@ set softtabstop=4
 set expandtab
 
 " Show “invisible” characters
-set lcs=tab:▸\ ,trail:·,eol:¬,nbsp:_
+set listchars=tab:▸\ ,trail:·,eol:¬,nbsp:_
 
 " }}}
 
@@ -331,11 +336,11 @@ set undodir=~/.config/nvim/tmp/undo//
 
 " Make the folders automatically if they don't already exist.
 if !isdirectory(expand(&backupdir))
-	call mkdir(expand(&backupdir), "p")
+	call mkdir(expand(&backupdir), 'p')
 endif
 
 if !isdirectory(expand(&undodir))
-	call mkdir(expand(&undodir), "p")
+	call mkdir(expand(&undodir), 'p')
 endif
 
 " Persistent Undo, Vim remembers everything even after the file is closed.
@@ -350,6 +355,7 @@ set undoreload=500
 " Improve Neovim startup time by disabling python and host check
 let g:python_host_skip_check= 1
 let g:loaded_python_provider = 1
+" let g:loaded_python3_provider = 1
 
 " Auto change dir to file directory
 set autochdir
@@ -372,7 +378,7 @@ set wildignore+=*/.sass-cache/*,*.map
 set backspace=indent,eol,start
 
 set esckeys
-set noeol
+set noendofline
 set showcmd
 set autoread
 set hidden
@@ -417,9 +423,9 @@ set fillchars=fold:-
 " If they're unmodifiable it maps <Tab> to cycle through splits.
 
 function! BetterBufferNav(bcmd)
-	if &modifiable == 1 || &ft == 'help'
+	if &modifiable == 1 || &filetype ==? 'help'
 		execute a:bcmd
-		call PersistentEcho(" ")
+		call PersistentEcho(' ')
 	else
 		wincmd w
 	endif
@@ -439,11 +445,12 @@ function QuitTerminal()
 	setlocal buflisted
 	silent! bd! quickterm
 	silent! bd! term://*//*/home/dyl/.fzf/bin/fzf*
+    execute "normal \<C-W>="
 endfunction
 
 function! QuickTerminal()
 	10new
-	terminal
+	call termopen()
 	file quickterm
 endfunction
 
@@ -459,8 +466,8 @@ nnoremap <silent> <Leader>t :call QuickTerminal()<CR>
 " This works by opening a blank buffer and setting it's buffer type to 'help'. Now when you run 'help ...' the blank buffer will show the helpfile in fullscreen. The function then adds the buffer to the bufferlist so you can use :bn, :bp, etc.
 function FullScreenHelp(helpfile)
 	enew
-	set bt=help
-	execute "help " . a:helpfile
+	set buftype=help
+	execute 'help ' . a:helpfile
 	set buflisted
 endfunction
 
@@ -480,7 +487,7 @@ augroup line_return
 augroup END
 
 function! LineReturn()
-	if line("'\"") > 0 && line("'\"") <= line("$")
+	if line("'\"") > 0 && line("'\"") <= line('$')
 		execute 'normal! g`"zvzzzm'
 	endif
 endfunction
@@ -492,16 +499,16 @@ endfunction
 " bangs(!) are supported as well as arguments after :bd (:bd index.html, etc)
 function SmartBD(bang, argu)
 		if a:bang == 1
-			let bang = "!"
+			let l:bang = '!'
 		else
-			let bang = " "
+			let l:bang = ' '
 		endif
 
 		if len(filter(range(1, bufnr('$')), 'buflisted(v:val)')) == 1
-			execute "bd" . bang . " " . a:argu
+			execute 'bd' . l:bang . ' ' . a:argu
 		else
 			bp
-			execute "bd" . bang . " #"
+			execute 'bd' . l:bang . ' #'
 		endif
 
 endfunction
@@ -521,7 +528,7 @@ endfun
 
 let g:PersistentEcho=''
 
-if &ut>200|let &ut=0|endif
+if &updatetime>200|let &updatetime=0|endif
 
 augroup Echo
 	au CursorHold * if PersistentEcho!=''|echo PersistentEcho|let PersistentEcho=''|endif
@@ -533,19 +540,19 @@ augroup END
 
 function SaveRO(bang, argu)
 	if a:bang == 1
-		let bang = "!"
+		let l:bang = '!'
 	else
-		let bang = " "
+		let l:bang = ' '
 	endif
 
 	if &readonly
 		w !sudo tee % >/dev/null
 		redraw
-		call PersistentEcho("saved readonly file")
+		call PersistentEcho('saved readonly file')
 	else
-		execute "w" . bang . " " . a:argu
+		execute 'w' . l:bang . ' ' . a:argu
 		redraw
-		call PersistentEcho("saved")
+		call PersistentEcho('saved')
 	endif
 endfunction
 
@@ -558,7 +565,7 @@ cnoreabbrev w W
 " Open current file with another program {{{
 
 function! Openwith(program)
-	silent! execute "!" . a:program . " " . expand('%:p') . " &"
+	silent! execute '!' . a:program . ' ' . '"' . expand('%:p') . '"' . ' &'
 endfunction
 
 command! -bang -nargs=* Openwith call Openwith(<q-args>)
@@ -568,7 +575,7 @@ command! -bang -nargs=* Openwith call Openwith(<q-args>)
 " Chmod +x current file {{{
 
 function! Chmox()
-	execute "!chmod +x " . expand('%:p')
+	execute '!chmod +x ' . expand('%:p')
 endfunction
 
 command! Chmox call Chmox()
