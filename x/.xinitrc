@@ -30,6 +30,7 @@ fi
 
 dunst -fn "$DUNST_FONT" -geometry "$DUNST_SIZE" &
 xset m 1/1
+setxkbmap -option caps:escape
 compton &
 devmon &
 xrdb -merge "$HOME/.Xresources"
