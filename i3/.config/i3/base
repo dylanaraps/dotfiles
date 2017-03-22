@@ -117,6 +117,9 @@ client.background       $bg
 
 for_window [class="^.*"] border normal 0
 
+# Always float virtualbox.
+for_window [class="VirtualBox"] floating enable
+
 # Toggle sticky windows
 bindsym $mod+e sticky toggle
 
