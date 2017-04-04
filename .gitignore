@@ -5,3 +5,4 @@ nvim/.config/nvim/.*
 nvim/.config/nvim/Ditto/*
 nvim/.config/nvim/spell/*
 i3/.config/i3/config
+mpv/.config/scripts/*
