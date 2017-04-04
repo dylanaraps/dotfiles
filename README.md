@@ -1,12 +1,18 @@
 # Dylan's Dotfiles
 
-Welcome to my dotfiles repo. Around 6 months ago I stopped using Linux on my main PC due to university requiring some Windows only programs. University is over and I can run Linux on my PC again so I've decided to redo my dotfiles from scratch.
+These are my dotfiles for both my Desktop and my Laptop. The Laptop runs at 4K whereas the Desktop runs at 1080p, this means that I need to have wildly different configs for each system. I can't use my 7px bitmap font at 4K can I? The solution I've come up with is to use the system hostname as an identifier in my `.xinitrc` and my `.Xresources`. 
 
-My dotfiles are now managed with GNU stow so you can easily install and uninstall parts of it with ease. This should satisfy those who find my setup and ask for help installing it. \^\^
+This way I can set fonts, resolutions and other settings on a per system basis. I've also set it up so I can add a 3rd or 4th system if I ever need to. The only downside to this is that anyone who stumbles across my dotfiles will find them unusable unless their hostname matches one of the 2 machines in the config files.
+
+This actually works out well because I'm against people just installing these dotfiles as a whole. I want you to to look at these configs, take what you like and then incorporate it into your own setup. These configs are very much a personal thing and I've made some very retarded decisions when it comes to hotkey choices and etc. 
+
+I get an endless amount of messages from people installing the dotfiles and then complaining that they don't know how to use their desktop afterwards. Again, take what you like and incorporate it into your own setup, you won't learn otherwise.   
+
 
 **[Screenshots](https:/dylanaraps.com/pages/rice)**
 
 ![scrot](https://i.imgur.com/rD8BJyF.png)
+
 
 ## Setup
 
@@ -34,22 +40,6 @@ https://github.com/dylanaraps/bin
 
 ## Installation
 
-My dotfiles can now be easily installed using `stow`.
-
-1. Clone this repo.
-    - `git clone https://github.com/dylanaraps/dotfiles`
-2. Change directory to `dotfiles`
-    - `cd dotfiles`
-3. Install dotfiles using stow.
-
-
-```sh
-# Install i3 config
-stow i3
-
-# Install termite config
-stow termite
-
-# Uninstall i3 config
-stow -D i3
-```
+1. Inspect dotfiles.
+2. Find cool thing.
+3. Add cool thing to your dotfiles.
