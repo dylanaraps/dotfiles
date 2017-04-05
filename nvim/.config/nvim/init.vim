@@ -75,6 +75,7 @@ Plug 'junegunn/vim-oblique'
 	let g:oblique#prefix = "\\v" " Very Magic
 
 Plug 'rstacruz/vim-closer'
+Plug 'tpope/vim-repeat'
 Plug 'tpope/vim-commentary'
 Plug 'tpope/vim-surround'
 	" Maps ss to surround word
@@ -450,7 +451,7 @@ endfunction
 
 function! QuickTerminal()
 	10new
-	call termopen()
+    terminal
 	file quickterm
 endfunction
 
