@@ -39,6 +39,11 @@ Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
 Plug 'junegunn/fzf.vim'
     nmap <C-x> :FZF ~<CR>
 
+" Async syntax highlighting using clang.
+Plug 'arakashic/chromatica.nvim'
+    let g:chromatica#enable_at_startup=1
+    " let g:chromatica#responsive_mode=1
+
 " Async Linting
 Plug 'w0rp/ale'
     let g:ale_lint_on_save = 1
@@ -51,9 +56,7 @@ Plug 'w0rp/ale'
 " Async Completion
 Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
 Plug 'Shougo/neoinclude.vim', { 'do': ':UpdateRemotePlugins' }
-Plug 'zchee/deoplete-clang', { 'do': ':UpdateRemotePlugins' }
-    let g:deoplete#sources#clang#libclang_path = "/usr/lib/libclang.so"
-    let g:deoplete#sources#clang#clang_header = "/usr/lib/clang/4.0.0/include"
+Plug 'tweekmonster/deoplete-clang2'
     let g:deoplete#enable_at_startup = 1
     inoremap <expr><tab> pumvisible() ? "\<c-n>" : "\<tab>"
 
@@ -230,7 +233,7 @@ set nocursorline
 " set re=1
 
 " Don’t show the intro message when starting Vim
-set shortmess=atI
+set shortmess=atIc
 
 " Hide mode indicator
 set noshowmode
