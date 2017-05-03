@@ -50,8 +50,19 @@ Plug 'w0rp/ale'
 
 " Async Completion
 Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
+Plug 'Shougo/neoinclude.vim', { 'do': ':UpdateRemotePlugins' }
+Plug 'zchee/deoplete-clang', { 'do': ':UpdateRemotePlugins' }
+    let g:deoplete#sources#clang#libclang_path = "/usr/lib/libclang.so"
+    let g:deoplete#sources#clang#clang_header = "/usr/lib/clang/4.0.0/include"
     let g:deoplete#enable_at_startup = 1
     inoremap <expr><tab> pumvisible() ? "\<c-n>" : "\<tab>"
+
+" Snippets
+Plug 'SirVer/ultisnips'
+Plug 'honza/vim-snippets'
+    let g:UltiSnipsExpandTrigger="<c-e>"
+    let g:UltiSnipsJumpForwardTrigger="<c-b>"
+    let g:UltiSnipsJumpBackwardTrigger="<c-z>"
 
 " Clicking v expands region
 Plug 'kana/vim-textobj-user'
@@ -148,6 +159,7 @@ augroup Filetypes
     " Plugins
     autocmd FileType xdefaults setlocal commentstring=!\ %s
     autocmd FileType scss setlocal commentstring=/*%s*/ shiftwidth=2 softtabstop=2 expandtab
+    autocmd FileType css setlocal commentstring=/*%s*/ shiftwidth=2 softtabstop=2 expandtab
 augroup END
 
 syntax enable
@@ -378,7 +390,7 @@ set wildignore+=*/.sass-cache/*,*.map
 " Saner backspacing
 set backspace=indent,eol,start
 
-set esckeys
+" set esckeys
 set noendofline
 set showcmd
 set autoread

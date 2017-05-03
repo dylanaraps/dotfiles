@@ -36,7 +36,7 @@ dunst -fn "$DUNST_FONT" -geometry "$DUNST_SIZE" &
 xset m 1/1
 setxkbmap -option caps:escape
 xset s off -dpms
-compton &
+compton --config /dev/null &
 devmon &
 xrdb -merge "$HOME/.Xresources"
 urxvtd -q -f &
