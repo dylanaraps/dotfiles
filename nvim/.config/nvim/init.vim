@@ -21,18 +21,17 @@ call plug#begin('~/.config/nvim/plugged')
 
 " My Plugins
 Plug '~/projects/wal'
-Plug 'dylanaraps/taskrunner.nvim'
+" Plug 'dylanaraps/taskrunner.nvim'
 " Plug 'dylanaraps/root.vim'
-Plug '~/projects/root.vim'
-	let g:root#auto = 0
-	let g:root#echo = 1
+" Plug '~/projects/root.vim'
+" 	let g:root#auto = 0
+" 	let g:root#echo = 1
 
 Plug 'dylanaraps/pascal_lint.nvim'
     let g:pascal_lint#args = '-S2 -vw'
 
 Plug 'mzlogin/vim-markdown-toc'
 Plug 'junegunn/goyo.vim'
-Plug 'godlygeek/tabular'
 
 " Fuzzy finder
 Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
@@ -57,7 +56,10 @@ Plug 'w0rp/ale'
 Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
 Plug 'Shougo/neoinclude.vim', { 'do': ':UpdateRemotePlugins' }
 Plug 'tweekmonster/deoplete-clang2'
+Plug 'Shougo/neco-vim'
+Plug 'Shougo/neco-syntax'
     let g:deoplete#enable_at_startup = 1
+    let g:deoplete#auto_complete_delay = 0
     inoremap <expr><tab> pumvisible() ? "\<c-n>" : "\<tab>"
 
 " Snippets
@@ -67,31 +69,13 @@ Plug 'honza/vim-snippets'
     let g:UltiSnipsJumpForwardTrigger="<c-b>"
     let g:UltiSnipsJumpBackwardTrigger="<c-z>"
 
-" File Tree
-Plug 'scrooloose/nerdtree'
-    let g:NERDTreeChDirMode = 2
-    augroup NERD
-        au!
-        autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTree") && b:NERDTree.isTabTree()) | q | endif
-        autocmd StdinReadPre * let s:std_in=1
-        autocmd VimEnter * if argc() == 0 && !exists("s:std_in") | NERDTree | endif
-        autocmd vimenter * NERDTree | wincmd w
-    augroup END
-
-
 " Clicking v expands region
 Plug 'kana/vim-textobj-user'
-\| Plug 'kana/vim-textobj-line'
-\| Plug 'terryma/vim-expand-region'
+Plug 'kana/vim-textobj-line'
+Plug 'kana/vim-textobj-line'
+Plug 'terryma/vim-expand-region'
 	vmap v <Plug>(expand_region_expand)
 	vmap <C-v> <Plug>(expand_region_shrink)
-
-Plug 'terryma/vim-multiple-cursors'
-	let g:multi_cursor_use_default_mapping = 0
-	let g:multi_cursor_next_key='<C-j>'
-	let g:multi_cursor_prev_key='<C-k>'
-	let g:multi_cursor_skip_key='<C-l>'
-	let g:multi_cursor_quit_key='<Esc>'
 
 " Shows search results as you're typing
 Plug 'junegunn/vim-pseudocl'
@@ -100,7 +84,10 @@ Plug 'junegunn/vim-oblique'
 	let g:oblique#clear_highlight = 1
 	let g:oblique#prefix = "\\v" " Very Magic
 
+" Insert brackets on enter.
 Plug 'rstacruz/vim-closer'
+
+" Tpope
 Plug 'tpope/vim-repeat'
 Plug 'tpope/vim-commentary'
 Plug 'tpope/vim-surround'
@@ -114,11 +101,9 @@ Plug 'tpope/vim-surround'
 	vmap s S
 
 " Filetype Plugins
-Plug 'JulesWang/css.vim'
 Plug 'cakebaker/scss-syntax.vim'
 Plug 'hail2u/vim-css3-syntax'
 Plug 'othree/html5.vim'
-Plug 'alvan/vim-closetag'
 Plug 'boeckmann/vim-freepascal'
 
 " Show yanked region
@@ -147,7 +132,7 @@ augroup Filetypes
     autocmd Filetype sh let g:is_bash=1
     autocmd Filetype sh setlocal foldmethod=syntax
 
-    " Compile Pascal on file size
+    " Compile Pascal on file save
     autocmd BufWritePost *.pas :FPC
 
 	" All Filetypes
@@ -173,8 +158,7 @@ augroup Filetypes
 
     " Plugins
     autocmd FileType xdefaults setlocal commentstring=!\ %s
-    autocmd FileType scss setlocal commentstring=/*%s*/ shiftwidth=2 softtabstop=2 expandtab
-    autocmd FileType css setlocal commentstring=/*%s*/ shiftwidth=2 softtabstop=2 expandtab
+    autocmd FileType scss,css setlocal commentstring=/*%s*/ shiftwidth=2 softtabstop=2 expandtab
 augroup END
 
 syntax enable
@@ -273,6 +257,9 @@ set smartcase
 
 " Mapping {{{
 
+" Really simple Multi cursors
+nnoremap <C-j> *Ncgn
+
 " Unmap space in normal and visual modes
 nnoremap <SPACE> <nop>
 vnoremap <SPACE> <nop>
@@ -296,7 +283,7 @@ nnoremap K <nop>
 xnoremap p pgvy
 
 " Cylces through splits using a double press of enter in normal mode
-nmap <CR><CR> <C-w><C-w>
+nnoremap <CR><CR> <C-w><C-w>
 
 " Unmaps the arrow keys
 map <Up> <nop>
@@ -313,7 +300,6 @@ cmap w!! w !sudo tee % >/dev/null
 " Maps Tab to indent blocks of text in visual mode
 vmap <TAB> >gv
 vmap <BS> <gv
-vmap <S-TAB> <gv
 
 " use hjkl-movement between rows when soft wrapping:
 nnoremap j gj
@@ -349,7 +335,6 @@ map <F10> :echo "hi<" . synIDattr(synID(line("."),col("."),1),"name") . '> trans
 \ . synIDattr(synIDtrans(synID(line("."),col("."),1)),"name") . ">"<CR>
 
 nmap <F1> :set number!<CR>
-nmap <silent> <F2> :call Chmox() <CR>
 
 " }}}
 
@@ -379,11 +364,6 @@ set undoreload=500
 " }}}
 
 " Misc {{{
-
-" Improve Neovim startup time by disabling python and host check
-let g:python_host_skip_check= 1
-let g:loaded_python_provider = 1
-" let g:loaded_python3_provider = 1
 
 " Auto change dir to file directory
 set autochdir
@@ -448,42 +428,16 @@ set fillchars=fold:-
 
 " Better Buffer Navigation {{{
 " Maps <Tab> to cycle though buffers but only if they're modifiable.
-" If they're unmodifiable it maps <Tab> to cycle through splits.
 
 function! BetterBufferNav(bcmd)
 	if &modifiable == 1 || &filetype ==? 'help'
 		execute a:bcmd
-		call PersistentEcho(' ')
-	else
-		wincmd w
 	endif
 endfunction
 
 " Maps Tab and Shift Tab to cycle through buffers
 nmap <silent> <Tab> :call BetterBufferNav("bn") <Cr>
 nmap <silent> <S-Tab> :call BetterBufferNav("bp") <Cr>
-
-" }}}
-
-" Quick Terminal {{{
-" Spawns a terminal in a small split for quick typing of commands
-" Also maps <Esc> to quit out of the terminal
-
-function QuitTerminal()
-	setlocal buflisted
-	silent! bd! quickterm
-	silent! bd! term://*//*/home/dyl/.fzf/bin/fzf*
-    execute "normal \<C-W>="
-endfunction
-
-function! QuickTerminal()
-	10new
-    terminal
-	file quickterm
-endfunction
-
-tnoremap <silent> <Esc> <C-\><C-n>:call QuitTerminal()<CR>
-nnoremap <silent> <Leader>t :call QuickTerminal()<CR>
 
 " }}}
 
@@ -546,24 +500,6 @@ cnoreabbrev bd BD
 
 " }}}
 
-" Persistent Echo {{{
-" Keeps echo on screen, mainly used by me in other functions to clear the cmdline
-
-func! PersistentEcho(msg)
-	echo a:msg
-	let g:PersistentEcho=a:msg
-endfun
-
-let g:PersistentEcho=''
-
-if &updatetime>200|let &updatetime=0|endif
-
-augroup Echo
-	au CursorHold * if PersistentEcho!=''|echo PersistentEcho|let PersistentEcho=''|endif
-augroup END
-
-" }}}
-
 " Custom message on save {{{
 
 function SaveRO(bang, argu)
@@ -576,11 +512,9 @@ function SaveRO(bang, argu)
 	if &readonly
 		w !sudo tee % >/dev/null
 		redraw
-		call PersistentEcho('saved readonly file')
 	else
 		execute 'w' . l:bang . ' ' . a:argu
 		redraw
-		call PersistentEcho('saved')
 	endif
 endfunction
 
