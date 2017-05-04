@@ -41,7 +41,7 @@ Plug 'junegunn/fzf.vim'
 
 " Async syntax highlighting using clang.
 Plug 'arakashic/chromatica.nvim'
-    let g:chromatica#enable_at_startup=1
+    let g:chromatica#enable_at_startup = 1
     " let g:chromatica#responsive_mode=1
 
 " Async Linting
@@ -66,6 +66,18 @@ Plug 'honza/vim-snippets'
     let g:UltiSnipsExpandTrigger="<c-e>"
     let g:UltiSnipsJumpForwardTrigger="<c-b>"
     let g:UltiSnipsJumpBackwardTrigger="<c-z>"
+
+" File Tree
+Plug 'scrooloose/nerdtree'
+    let g:NERDTreeChDirMode = 2
+    augroup NERD
+        au!
+        autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTree") && b:NERDTree.isTabTree()) | q | endif
+        autocmd StdinReadPre * let s:std_in=1
+        autocmd VimEnter * if argc() == 0 && !exists("s:std_in") | NERDTree | endif
+        autocmd vimenter * NERDTree | wincmd w
+    augroup END
+
 
 " Clicking v expands region
 Plug 'kana/vim-textobj-user'
