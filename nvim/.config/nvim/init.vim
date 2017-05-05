@@ -31,7 +31,13 @@ Plug 'dylanaraps/pascal_lint.nvim'
     let g:pascal_lint#args = '-S2 -vw'
 
 Plug 'mzlogin/vim-markdown-toc'
+
+" Writing plugins
 Plug 'junegunn/goyo.vim'
+    augroup Writing
+        au!
+        autocmd FileType markdown,text setlocal spell
+    augroup END
 
 " Fuzzy finder
 Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
@@ -123,9 +129,6 @@ augroup Filetypes
 
     " Prevent saving files starting with ':' or ';'.
     autocmd BufWritePre [:;]* throw 'Forbidden file name: ' . expand('<afile>')
-
-    " Enable spellcheck in markdown files.
-    autocmd Filetype markdown setlocal spell
 
     " Syntax folding for bash
     autocmd Filetype sh let g:sh_fold_enabled=3
@@ -259,6 +262,7 @@ set smartcase
 
 " Really simple Multi cursors
 nnoremap <C-j> *Ncgn
+vnoremap <C-j> <Esc>*Ncgn
 
 " Unmap space in normal and visual modes
 nnoremap <SPACE> <nop>
