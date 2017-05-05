@@ -44,11 +44,6 @@ Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
 Plug 'junegunn/fzf.vim'
     nmap <C-x> :FZF ~<CR>
 
-" Async syntax highlighting using clang.
-Plug 'arakashic/chromatica.nvim'
-    let g:chromatica#enable_at_startup = 1
-    " let g:chromatica#responsive_mode=1
-
 " Async Linting
 Plug 'w0rp/ale'
     let g:ale_lint_on_save = 1
@@ -157,7 +152,7 @@ augroup Filetypes
 	autocmd VimResized * execute "normal \<C-W>="
 
     " Always use goyo
-    autocmd BufRead * Goyo 80%x90%
+    autocmd BufReadPre * Goyo 80%x90%
 
     " Plugins
     autocmd FileType xdefaults setlocal commentstring=!\ %s
@@ -368,6 +363,11 @@ set undoreload=500
 " }}}
 
 " Misc {{{
+
+" Disable python 2
+let g:loaded_python_provider = 1
+let g:python_host_skip_check = 1
+let g:python3_host_skip_check = 1
 
 " Auto change dir to file directory
 set autochdir
