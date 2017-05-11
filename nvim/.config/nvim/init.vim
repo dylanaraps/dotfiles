@@ -66,9 +66,9 @@ Plug 'Shougo/neco-syntax'
 " Snippets
 Plug 'SirVer/ultisnips'
 Plug 'honza/vim-snippets'
-    let g:UltiSnipsExpandTrigger="<c-e>"
-    let g:UltiSnipsJumpForwardTrigger="<c-b>"
-    let g:UltiSnipsJumpBackwardTrigger="<c-z>"
+    let g:UltiSnipsExpandTrigger='<c-e>'
+    let g:UltiSnipsJumpForwardTrigger='<c-b>'
+    let g:UltiSnipsJumpBackwardTrigger='<c-z>'
 
 " Clicking v expands region
 Plug 'kana/vim-textobj-user'
@@ -152,7 +152,7 @@ augroup Filetypes
 	autocmd VimResized * execute "normal \<C-W>="
 
     " Always use goyo
-    autocmd BufReadPre * Goyo 80%x90%
+    autocmd BufReadPost * Goyo 80%x90%
 
     " Plugins
     autocmd FileType xdefaults setlocal commentstring=!\ %s
