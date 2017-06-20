@@ -1,5 +1,6 @@
 " Dylan's init.vim
 scriptencoding utf-8
+set encoding=utf-8
 
 " Leader
 let g:mapleader = "\<space>"
@@ -56,6 +57,7 @@ Plug 'w0rp/ale'
 " Async Completion
 Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
 Plug 'Shougo/neoinclude.vim', { 'do': ':UpdateRemotePlugins' }
+Plug 'zchee/deoplete-jedi'
 Plug 'tweekmonster/deoplete-clang2'
 Plug 'Shougo/neco-vim'
 Plug 'Shougo/neco-syntax'
@@ -160,6 +162,7 @@ augroup Filetypes
 augroup END
 
 syntax enable
+let python_highlight_all=1
 
 " }}}
 

@@ -47,7 +47,11 @@ alias handbrake="ghb"
 [[ -z "$DISPLAY" && "$XDG_VTNR" -eq 1 ]] && exec startx -- vt1 &> /dev/null
 
 # Import colorscheme from 'wal'
-[[ -z "$VTE_VERSION" ]] && (wal -r &)
+if [[ "$VTE_VERSION" ]]; then
+    (~/projects/wal/wal -rt &)
+else
+    (~/projects/wal/wal -r &)
+fi
 
 brightness() {
     sudo tee /sys/class/backlight/intel_backlight/brightness <<< "${1:-937}"

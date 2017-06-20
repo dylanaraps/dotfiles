@@ -72,5 +72,6 @@ URxvt.keysym.Shift-Control-V: perl:clipboard:paste
 ! white
 *color7:       #f0f0f0
 *color15:      #f0f0f0
+*color16:      #232c33
 
 ! }}}
