@@ -143,7 +143,7 @@ bindsym $mod+c move position center
 
 # Cycle wallpapers
 bindsym $mod+w exec "${HOME}/projects/wal-py/wal -i ${HOME}/Pictures/Wallpapers -o wal-set"
-exec "${HOME}/projects/wal-py/wal" -i "$(< "${HOME}/.cache/wal/wal")" -o "wal-set"
+# exec "${HOME}/projects/wal-py/wal" -i "$(< "${HOME}/.cache/wal/wal")" -o "wal-set"
 
 # Start firefox on workspace 1
 exec --no-startup-id i3-msg 'workspace 1; exec /usr/bin/firefox'
