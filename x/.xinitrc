@@ -42,5 +42,6 @@ xrdb -merge "$HOME/.Xresources"
 urxvtd -q -f &
 redshift &
 dropbox &
+"${HOME}/projects/wal-py/wal" -i "$(< "${HOME}/.cache/wal/wal")"
 
 exec i3

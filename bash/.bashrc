@@ -48,7 +48,8 @@ alias handbrake="ghb"
 
 # Import colorscheme from 'wal'
 if [[ "$VTE_VERSION" ]]; then
-    (~/projects/wal/wal -rt &)
+    :
+    # (~/projects/wal/wal -rt &)
 else
     (~/projects/wal/wal -r &)
 fi
@@ -60,3 +61,5 @@ brightness() {
 [[ -f "${HOME}/.fzf.bash" ]] && source "${HOME}/.fzf.bash"
 
 [ -f ~/.fzf.bash ] && source ~/.fzf.bash
+
+PATH="/usr/games/:${PATH}"
