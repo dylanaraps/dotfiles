@@ -12,7 +12,7 @@ bindsym $mod+Return exec urxvtc
 bindsym $mod+q kill
 
 # Set colors from Xresources
-set_from_resource $fg i3wm.color7 #f0f0f0
+set_from_resource $fg i3wm.colorr7 #f0f0f0
 set_from_resource $bg i3wm.color2 #f0f0f0
 
 # start dmenu (a program launcher)
@@ -142,8 +142,8 @@ bindsym $mod+p exec scr
 bindsym $mod+c move position center
 
 # Cycle wallpapers
-bindsym $mod+w exec "${HOME}/projects/wal-py/wal -i ${HOME}/Pictures/Wallpapers -o wal-set"
-exec "${HOME}/projects/wal-py/wal -i $(< ${HOME}/.cache/wal/wal) -o wal-set"
+bindsym $mod+w exec "wal -i ${HOME}/Pictures/Wallpapers -o wal-set"
+exec "wal -i $(< ${HOME}/.cache/wal/wal) -o wal-set"
 
 # Start firefox on workspace 1
 exec --no-startup-id i3-msg 'workspace 1; exec /usr/bin/firefox-nightly'

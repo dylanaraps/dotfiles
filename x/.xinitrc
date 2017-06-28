@@ -32,6 +32,7 @@ elif [[ "$HOSTNAME" == "bones" ]]; then
         "${HOME}/.config/i3/desktop" > "${HOME}/.config/i3/config"
 fi
 
+pulseaudio --start &
 dunst -fn "$DUNST_FONT" -geometry "$DUNST_SIZE" &
 xset m 1/1
 setxkbmap -option caps:escape
