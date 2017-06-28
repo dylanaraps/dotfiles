@@ -12,8 +12,9 @@ bindsym $mod+Return exec urxvtc
 bindsym $mod+q kill
 
 # Set colors from Xresources
-set_from_resource $fg i3wm.colorr7 #f0f0f0
-set_from_resource $bg i3wm.color2 #f0f0f0
+set_from_resource $fg  i3wm.colorr7 #FFFFFF
+set_from_resource $bg2 i3wm.color1 #f0f0f0
+set_from_resource $bg  i3wm.color3 #f0f0f0
 
 # start dmenu (a program launcher)
 bindsym $mod+d exec rof
@@ -101,11 +102,12 @@ mode "resize" {
 bindsym $mod+r mode "resize"
 
 # class                 border  backgr. text indicator child_border
-client.focused          $bg     $bg     $fg  $bg       $bg
-client.focused_inactive $bg     $bg     $fg  $bg       $bg
-client.unfocused        $bg     $bg     $fg  $bg       $bg
-client.urgent           $bg     $bg     $fg  $bg       $bg
-client.placeholder      $bg     $bg     $fg  $bg       $bg
+# class                 border  backgr. text indicator child_border
+client.focused          $bg      $bg    $fg  $bg       $bg
+client.focused_inactive $bg2      $bg2  $fg  $bg2      $bg2
+client.unfocused        $bg2     $bg2   $fg  $bg2      $bg2
+client.urgent           $bg      $bg    $fg  $bg       $bg
+client.placeholder      $bg      $bg    $fg  $bg       $bg
 
 client.background       $bg
 

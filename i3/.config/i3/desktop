@@ -6,7 +6,7 @@
 # print the desired font size. This gives us large titlebars with a small
 # font.
 font pango:lemon 11
-for_window [class=".*"] title_format "<span font='Artwiz Lemon 7'> > %title</span>"
+for_window [class=".*"] title_format "<span font='Artwiz Lemon 7'> \>\<\(\(\(\'\> %title</span>"
 
 # Workspaces.
 workspace 1 output DVI-0
@@ -21,6 +21,7 @@ workspace 9 output HDMI-0
 
 # Float all windows by default.
 for_window [class="^.*"] floating enable
+for_window [class="Firefox"] floating disable
 
 smart_borders on
 gaps inner 25
