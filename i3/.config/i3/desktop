@@ -6,7 +6,7 @@
 # print the desired font size. This gives us large titlebars with a small
 # font.
 font pango:lemon 11
-for_window [class=".*"] title_format "<span font='Artwiz Lemon 7'> \>\<\(\(\(\'\> %title</span>"
+for_window [class=".*"] title_format "<span font='Artwiz Lemon 7'> くコ:彡</span>"
 
 # Workspaces.
 workspace 1 output DVI-0
