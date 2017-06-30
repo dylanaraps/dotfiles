@@ -12,15 +12,13 @@ export EDITOR="nvim"
 # Add ~/bin to path
 PATH="${PATH}:${HOME}/bin"
 PATH="${HOME}/.gem/ruby/2.4.0/bin:${PATH}"
+PATH="${PATH}:${HOME}/.local/bin/"
 
-# Set XDG_CONFIG_HOME
 export XDG_CONFIG_HOME="${HOME}/.config"
+export STEAM_FRAME_FORCE_CLOSE=0
 
 # Fix CSGO mouse issues
 export SDL_VIDEO_X11_DGAMOUSE=0
-
-# Make steam not close to tray.
-export STEAM_FRAME_FORCE_CLOSE=0
 
 # Fix smooth scroll in Firefox.
 export MOZ_USE_OMTC=1
@@ -48,19 +46,10 @@ alias handbrake="ghb"
 [[ -z "$DISPLAY" && "$XDG_VTNR" -eq 1 ]] && exec startx -- vt1 &> /dev/null
 
 # Import colorscheme from 'wal'
-if [[ "$VTE_VERSION" ]]; then
-    :
-    # (~/projects/wal/wal -rt &)
-else
-    (~/projects/wal/wal -r &)
-fi
+(wal -r"${VTE_VERSION:+"t"}" &)
 
 brightness() {
     sudo tee /sys/class/backlight/intel_backlight/brightness <<< "${1:-937}"
 }
 
 [[ -f "${HOME}/.fzf.bash" ]] && source "${HOME}/.fzf.bash"
-
-[ -f ~/.fzf.bash ] && source ~/.fzf.bash
-
-PATH="/usr/games/:${PATH}"

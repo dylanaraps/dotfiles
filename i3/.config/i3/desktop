@@ -25,6 +25,7 @@ for_window [class="Firefox"] floating disable
 
 smart_borders on
 gaps inner 25
+gaps outer 40
 
 # Start pmp on workspace 9
 exec --no-startup-id i3-msg 'workspace 9; exec /usr/bin/plexmediaplayer --scale-factor 1.5 --fullscreen'
