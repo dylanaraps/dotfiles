@@ -22,6 +22,9 @@ workspace 9 output HDMI-0
 # Float all windows by default.
 for_window [class="^.*"] floating enable
 for_window [class="Firefox"] floating disable
+for_window [title="qiv.*"] border pixel 0
+for_window [title="qiv.*"] floating enable
+for_window [title="qiv.*"] hide_edge_borders vertical
 
 smart_borders on
 gaps inner 25

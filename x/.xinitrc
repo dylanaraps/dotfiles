@@ -25,7 +25,7 @@ elif [[ "$HOSTNAME" == "bones" ]]; then
         --below DVI-0
 
      export DUNST_FONT='Artwiz Lemon 7'
-     export DUNST_SIZE='300x30-40+40'
+     export DUNST_SIZE='300x30-40+70'
 
     # Create i3 config.
     cat "${HOME}/.config/i3/base" \
