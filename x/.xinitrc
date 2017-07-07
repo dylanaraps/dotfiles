@@ -32,17 +32,19 @@ elif [[ "$HOSTNAME" == "bones" ]]; then
         "${HOME}/.config/i3/desktop" > "${HOME}/.config/i3/config"
 fi
 
+xset m 1/1
+xset s off -dpms
+setxkbmap -option caps:escape
+
 pulseaudio --start &
 dunst -fn "$DUNST_FONT" -geometry "$DUNST_SIZE" &
-xset m 1/1
-setxkbmap -option caps:escape
-xset s off -dpms
 compton --config /dev/null &
 devmon &
-xrdb -merge "$HOME/.Xresources"
 urxvtd -q -f &
 redshift &
 dropbox &
-"${HOME}/projects/wal-py/wal" -i "$(< "${HOME}/.cache/wal/wal")"
+
+xrdb -merge "${HOME}/.Xresources"
+wal -i "$(< "${HOME}/.cache/wal/wal")"
 
 exec i3
