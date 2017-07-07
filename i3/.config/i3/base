@@ -1,27 +1,32 @@
 # Dylan's i3 Config.
 
+
+# GENERAL {{{
+
+
 set $mod Mod4
 
 # Use Mouse+$mod to drag floating windows to their wanted position
 floating_modifier $mod
 
-# start a terminal
-bindsym $mod+Return exec urxvtc
-
-# kill focused window
-bindsym $mod+q kill
-
 # Set colors from Xresources
-set_from_resource $fg  i3wm.colorr7 #FFFFFF
-set_from_resource $bg2 i3wm.color1 #f0f0f0
-set_from_resource $bg  i3wm.color3 #f0f0f0
+set_from_resource $bg2 i3wm.color1  #f0f0f0
+set_from_resource $bg  i3wm.color3  #f0f0f0
 
-# start dmenu (a program launcher)
-bindsym $mod+d exec rof
-# There also is the (new) i3-dmenu-desktop which only displays applications
-# shipping a .desktop file. It is a wrapper around dmenu, so you need that
-# installed.
-# bindsym $mod+d exec --no-startup-id i3-dmenu-desktop
+# class                 border  backgr. text indicator child_border
+client.focused          $bg      $bg    #FFFFFF  $bg       $bg
+client.focused_inactive $bg2     $bg2   #FFFFFF  $bg2      $bg2
+client.unfocused        $bg2     $bg2   #FFFFFF  $bg2      $bg2
+client.urgent           $bg      $bg    #FFFFFF  $bg       $bg
+client.placeholder      $bg      $bg    #FFFFFF  $bg       $bg
+client.background       $bg
+
+
+# }}}
+
+
+# KEYBINDS {{{
+
 
 # change focus
 bindsym $mod+h focus left
@@ -74,21 +79,36 @@ bindsym $mod+Shift+8 move container to workspace 8
 bindsym $mod+Shift+9 move container to workspace 9
 bindsym $mod+Shift+0 move container to workspace 10
 
+# start a terminal
+bindsym $mod+Return exec urxvtc
+
+# kill focused window
+bindsym $mod+q kill
+
+# start dmenu (a program launcher)
+bindsym $mod+d exec rof
+
+# Toggle sticky windows
+bindsym $mod+e sticky toggle
+
 # reload the configuration file
 bindsym $mod+Shift+c reload
+
 # restart i3 inplace (preserves your layout/session, can be used to upgrade i3)
 bindsym $mod+Shift+r restart
+
+# Take a screenshot
+bindsym $mod+p exec scr
+
+# Center window
+bindsym $mod+c move position center
+
 # exit i3 (logs you out of your X session)
 bindsym $mod+Shift+e exec "i3-nagbar -t warning -m 'You pressed the exit shortcut. Do you really want to exit i3? This will end your X session.' -b 'Yes, exit i3' 'i3-msg exit'"
 
 # resize window (you can also use the mouse for that)
 mode "resize" {
         # These bindings trigger as soon as you enter the resize mode
-
-        # Pressing left will shrink the window’s width.
-        # Pressing right will grow the window’s width.
-        # Pressing up will shrink the window’s height.
-        # Pressing down will grow the window’s height.
         bindsym h resize shrink width 10 px or 10 ppt
         bindsym j resize grow height 10 px or 10 ppt
         bindsym k resize shrink height 10 px or 10 ppt
@@ -101,32 +121,6 @@ mode "resize" {
 
 bindsym $mod+r mode "resize"
 
-# class                 border  backgr. text indicator child_border
-# class                 border  backgr. text indicator child_border
-client.focused          $bg      $bg    $fg  $bg       $bg
-client.focused_inactive $bg2      $bg2  $fg  $bg2      $bg2
-client.unfocused        $bg2     $bg2   $fg  $bg2      $bg2
-client.urgent           $bg      $bg    $fg  $bg       $bg
-client.placeholder      $bg      $bg    $fg  $bg       $bg
-
-client.background       $bg
-
-# Start i3bar to display a workspace bar (plus the system information i3status
-# finds out, if available)
-# bar {
-#     height 25
-# }
-
-for_window [class="^.*"] border normal 0
-
-# Always float virtualbox.
-for_window [class="VirtualBox"] floating enable
-
-# Toggle sticky windows
-bindsym $mod+e sticky toggle
-
-# Media Keys
-
 # Pulse Audio controls
 bindsym XF86AudioRaiseVolume exec --no-startup-id "vol up &"
 bindsym XF86AudioLowerVolume exec --no-startup-id "vol down &"
@@ -137,15 +131,28 @@ bindsym XF86AudioPlay exec "song toggle"
 bindsym XF86AudioNext exec "song next"
 bindsym XF86AudioPrev exec "song prev"
 
-# Take a screenshot
-bindsym $mod+p exec scr
-
-# Center window
-bindsym $mod+c move position center
-
 # Cycle wallpapers
 bindsym $mod+w exec "wal -i ${HOME}/Pictures/Wallpapers -o wal-set"
-exec "wal -i $(< ${HOME}/.cache/wal/wal) -o wal-set"
 
-# Start firefox on workspace 1
+
+# }}}
+
+
+# WINDOW RULES {{{
+
+
+for_window [class="^.*"] border normal 0
+for_window [class="VirtualBox"] floating enable
+
+
+# }}}
+
+
+# PROGRAM AUTOSTARt. {{{
+
+
+exec "wal -i $(< ${HOME}/.cache/wal/wal) -o wal-set"
 exec --no-startup-id i3-msg 'workspace 1; exec /usr/bin/firefox-nightly'
+
+
+# }}}
