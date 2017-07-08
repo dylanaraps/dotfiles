@@ -21,19 +21,12 @@ endif
 call plug#begin('~/.config/nvim/plugged')
 
 " My Plugins
-Plug '~/projects/wal'
-" Plug 'dylanaraps/taskrunner.nvim'
-" Plug 'dylanaraps/root.vim'
-" Plug '~/projects/root.vim'
-" 	let g:root#auto = 0
-" 	let g:root#echo = 1
-
+Plug '~/projects/wal.vim'
 Plug 'dylanaraps/pascal_lint.nvim'
     let g:pascal_lint#args = '-S2 -vw'
 
-Plug 'mzlogin/vim-markdown-toc'
-
 " Writing plugins
+Plug 'mzlogin/vim-markdown-toc'
 Plug 'junegunn/goyo.vim'
     augroup Writing
         au!
