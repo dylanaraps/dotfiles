@@ -11,7 +11,7 @@ I get an endless amount of messages from people installing the dotfiles and then
 
 **[Screenshots](https:/dylanaraps.com/pages/rice)**
 
-![scrot](https://i.imgur.com/rD8BJyF.png)
+![scrot](https://dylanaraps.com/img/rice/0717/1.png)
 
 
 ## Setup
