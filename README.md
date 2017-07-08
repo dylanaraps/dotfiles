@@ -9,7 +9,7 @@ This actually works out well because I'm against people just installing these do
 I get an endless amount of messages from people installing the dotfiles and then complaining that they don't know how to use their desktop afterwards. Again, take what you like and incorporate it into your own setup, you won't learn otherwise.
 
 
-**Screenshots: https:/dylanaraps.com/pages/rice**
+**Screenshots: [https:/dylanaraps.com/pages/rice](https:/dylanaraps.com/pages/rice)**
 
 ![scrot](https://dylanaraps.com/img/rice/0717/1.png)
 
