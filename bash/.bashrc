@@ -3,7 +3,7 @@
 
 # Set the prompt.
 export PS1
-PS1="\w \[$(tput setaf 6)\]><((('> \[$(tput sgr0)\]"
+PS1="\w \[$(tput setaf 6)\]ily \[$(tput sgr0)\]"
 
 # Add ~/bin to path
 PATH="${PATH}:${HOME}/bin"
