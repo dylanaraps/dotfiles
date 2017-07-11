@@ -10,15 +10,15 @@ set $mod Mod4
 floating_modifier $mod
 
 # Set colors from Xresources
-set_from_resource $bg2 i3wm.color1  #f0f0f0
-set_from_resource $bg  i3wm.color3  #f0f0f0
+set_from_resource $bg  i3wm.color15  #f0f0f0
+set_from_resource $fg  i3wm.color8   #f0f0f0
 
 # class                 border  backgr. text indicator child_border
-client.focused          $bg      $bg    #FFFFFF  $bg       $bg
-client.focused_inactive $bg2     $bg2   #FFFFFF  $bg2      $bg2
-client.unfocused        $bg2     $bg2   #FFFFFF  $bg2      $bg2
-client.urgent           $bg      $bg    #FFFFFF  $bg       $bg
-client.placeholder      $bg      $bg    #FFFFFF  $bg       $bg
+client.focused          $bg      $bg    $fg  $bg   $bg
+client.focused_inactive $bg      $bg    $fg  $bg   $bg
+client.unfocused        $bg      $bg    $fg  $bg   $bg
+client.urgent           $bg      $bg    $fg  $bg   $bg
+client.placeholder      $bg      $bg    $fg  $bg   $bg
 client.background       $bg
 
 
@@ -134,6 +134,10 @@ bindsym XF86AudioPrev exec "song prev"
 # Cycle wallpapers
 bindsym $mod+w exec "wal -i ${HOME}/Pictures/Wallpapers -o wal-set"
 
+# Borders
+bindsym $mod+b border pixel 5
+bindsym $mod+n border normal 0
+
 
 # }}}
 
@@ -148,11 +152,10 @@ for_window [class="VirtualBox"] floating enable
 # }}}
 
 
-# PROGRAM AUTOSTARt. {{{
+# PROGRAM AUTOSTART. {{{
 
 
 exec "wal -i $(< ${HOME}/.cache/wal/wal) -o wal-set"
-exec --no-startup-id i3-msg 'workspace 1; exec /usr/bin/firefox-nightly'
 
 
 # }}}
