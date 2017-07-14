@@ -10,8 +10,9 @@ set $mod Mod4
 floating_modifier $mod
 
 # Set colors from Xresources
-set_from_resource $bg  i3wm.color15  #f0f0f0
+# set_from_resource $bg  i3wm.color15  #f0f0f0
 set_from_resource $fg  i3wm.color8   #f0f0f0
+set $bg #000000
 
 # class                 border  backgr. text indicator child_border
 client.focused          $bg      $bg    $fg  $bg   $bg
