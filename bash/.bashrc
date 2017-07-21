@@ -39,6 +39,9 @@ export NNN_DE_FILE_MANAGER=thunar
 alias steam="steam-native"
 alias sxiv="sxiv -b -s f"
 alias handbrake="ghb"
+alias mp3="youtube-dl --extract-audio --audio-format mp3"
+alias album="youtube-dl --extract-audio --audio-format mp3 \
+    -o '%(playlist)s/%(playlist_index)s - %(title)s.%(ext)s'"
 
 
 # OTHER
@@ -52,3 +55,5 @@ alias handbrake="ghb"
 
 # Import colorscheme from 'wal'
 (wal -r"${VTE_VERSION:+"t"}" &)
+
+[ -f ~/.fzf.bash ] && source ~/.fzf.bash

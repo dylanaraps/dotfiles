@@ -21,7 +21,7 @@ endif
 call plug#begin('~/.config/nvim/plugged')
 
 " My Plugins
-Plug '~/projects/wal.vim'
+Plug 'dylanaraps/wal.vim'
 Plug 'dylanaraps/pascal_lint.nvim'
     let g:pascal_lint#args = '-S2 -vw'
 
