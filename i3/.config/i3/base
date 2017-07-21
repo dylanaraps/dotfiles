@@ -159,3 +159,4 @@ exec "wal -i $(< ${HOME}/.cache/wal/wal) -o wal-set"
 
 
 # }}}
+
