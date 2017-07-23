@@ -1,11 +1,11 @@
 " Dylan's init.vim
 scriptencoding utf-8
 set encoding=utf-8
-
-" Leader
 let g:mapleader = "\<space>"
 
+
 " Plugins {{{
+
 
 " Auto install plug if not found
 if empty(glob('~/.config/nvim/autoload/plug.vim'))
@@ -25,7 +25,6 @@ Plug '~/projects/wal.vim'
 Plug 'dylanaraps/pascal_lint.nvim'
     let g:pascal_lint#args = '-S2 -vw'
 
-" Writing plugins
 Plug 'mzlogin/vim-markdown-toc'
 Plug 'junegunn/goyo.vim'
     augroup Writing
@@ -33,12 +32,10 @@ Plug 'junegunn/goyo.vim'
         autocmd FileType markdown,text setlocal spell
     augroup END
 
-" Fuzzy finder
 Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
 Plug 'junegunn/fzf.vim'
     nmap <C-x> :FZF ~<CR>
 
-" Async Linting
 Plug 'w0rp/ale'
     let g:ale_lint_on_save = 1
     let g:ale_lint_on_text_changed = 0
@@ -47,7 +44,6 @@ Plug 'w0rp/ale'
     nmap <silent> <C-n> <Plug>(ale_next_wrap)
     nmap <silent> <C-N> <Plug>(ale_previous_wrap)
 
-" Async Completion
 Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
 Plug 'Shougo/neoinclude.vim', { 'do': ':UpdateRemotePlugins' }
 Plug 'zchee/deoplete-jedi'
@@ -58,14 +54,12 @@ Plug 'Shougo/neco-syntax'
     let g:deoplete#auto_complete_delay = 0
     inoremap <expr><tab> pumvisible() ? "\<c-n>" : "\<tab>"
 
-" Snippets
 Plug 'SirVer/ultisnips'
 Plug 'honza/vim-snippets'
     let g:UltiSnipsExpandTrigger='<c-e>'
     let g:UltiSnipsJumpForwardTrigger='<c-b>'
     let g:UltiSnipsJumpBackwardTrigger='<c-z>'
 
-" Clicking v expands region
 Plug 'kana/vim-textobj-user'
 Plug 'kana/vim-textobj-line'
 Plug 'kana/vim-textobj-line'
@@ -73,17 +67,13 @@ Plug 'terryma/vim-expand-region'
 	vmap v <Plug>(expand_region_expand)
 	vmap <C-v> <Plug>(expand_region_shrink)
 
-" Shows search results as you're typing
 Plug 'junegunn/vim-pseudocl'
 Plug 'junegunn/vim-oblique'
 	let g:oblique#incsearch_highlight_all = 1
 	let g:oblique#clear_highlight = 1
 	let g:oblique#prefix = "\\v" " Very Magic
 
-" Insert brackets on enter.
 Plug 'rstacruz/vim-closer'
-
-" Tpope
 Plug 'tpope/vim-repeat'
 Plug 'tpope/vim-commentary'
 Plug 'tpope/vim-surround'
@@ -96,21 +86,20 @@ Plug 'tpope/vim-surround'
 	" Surround Visual selection
 	vmap s S
 
-" Filetype Plugins
 Plug 'cakebaker/scss-syntax.vim'
 Plug 'hail2u/vim-css3-syntax'
 Plug 'othree/html5.vim'
 Plug 'boeckmann/vim-freepascal'
-
-" Show yanked region
 Plug 'machakann/vim-highlightedyank'
     let g:highlightedyank_highlight_duration = 200
 
 call plug#end()
 
+
 " }}}
 
 " Filetypes {{{
+
 
 filetype plugin indent on
 
@@ -157,9 +146,11 @@ augroup END
 syntax enable
 let python_highlight_all=1
 
+
 " }}}
 
 " Spaces and Tabs {{{
+
 
 " Set indent to 4 spaces wide
 set tabstop=4
@@ -169,12 +160,14 @@ set shiftwidth=4
 set softtabstop=4
 set expandtab
 
-" Show “invisible” characters
+" Show invisible characters
 set listchars=tab:▸\ ,trail:·,eol:¬,nbsp:_
+
 
 " }}}
 
 " Line Wrap {{{
+
 
 " Soft wraps lines without editing file
 set wrap
@@ -182,7 +175,6 @@ set wrap
 " Stops words from being cut off during linebreak
 set linebreak
 
-" Set textwidth to 80 characters
 set textwidth=0
 set nolist
 set wrapmargin=0
@@ -193,71 +185,58 @@ set autoindent
 " Linebreaks keep indent level
 set breakindent
 
+
 " }}}
 
 " Look and Feel {{{
 
-" Enable true color for neovim
-let $NVIM_TUI_ENABLE_TRUE_COLOR = 0
-
-" Enables cursor similar to gui programs
-let $NVIM_TUI_ENABLE_CURSOR_SHAPE = 1
-
-" Change window title to filename
-set title
-
-" Turn off linenumbers
-set nonumber
-
-" Hide ruler
-set noruler
 
 " Don't redraw screen as often
 set lazyredraw
 
+" Hide stuff
+set nonumber
+set noruler
 set nocursorcolumn
 set nocursorline
-
-" syntax sync minlines=256
-" set synmaxcol=300
-" set re=1
-
-" Don’t show the intro message when starting Vim
 set shortmess=atIc
-
-" Hide mode indicator
 set noshowmode
-
-" Always show statusline
 set laststatus=0
 
 colorscheme wal
+
 
 " }}}
 
 " Searching {{{
 
-" Highlight search matches
+
 set hlsearch
-
-" Show search results as you type
 set incsearch
-
-" Ignore case in searches if query doesn't include capitals
 set ignorecase
 set smartcase
+
 
 " }}}
 
 " Mapping {{{
 
-" Really simple Multi cursors
+
+noremap ; :
+
+" Really simple multi cursors
 nnoremap <C-j> *Ncgn
 vnoremap <C-j> <Esc>*Ncgn
 
-" Unmap space in normal and visual modes
+" nop
+nnoremap K <nop>
 nnoremap <SPACE> <nop>
 vnoremap <SPACE> <nop>
+map <Up> <nop>
+map <Down> <nop>
+map <Left> <nop>
+map <Right> <nop>
+nmap a <nop>
 
 " Map ctrl c to escape to fix multiple cursors issue
 noremap <C-c> <Esc>
@@ -270,24 +249,12 @@ cabbrev Q q
 " Map q to qa to quickly exit when using goyo
 cnoreabbrev q qa
 
-" unmap capital K
-nnoremap K <nop>
-
 " Copies what was just pasted
 " Allows you to paste the same thing over and over and over and over and over and over
 xnoremap p pgvy
 
 " Cylces through splits using a double press of enter in normal mode
 nnoremap <CR><CR> <C-w><C-w>
-
-" Unmaps the arrow keys
-map <Up> <nop>
-map <Down> <nop>
-map <Left> <nop>
-map <Right> <nop>
-
-" Map ; to :
-noremap ; :
 
 " Save files with root privliges
 cmap w!! w !sudo tee % >/dev/null
@@ -317,9 +284,6 @@ nnoremap H 0
 vnoremap H 0
 vnoremap L $
 
-" unmap a in normal mode
-nmap a <nop>
-
 " za/az toggle folds
 " ezpz to spam open/close folds now
 nmap az za
@@ -331,18 +295,17 @@ map <F10> :echo "hi<" . synIDattr(synID(line("."),col("."),1),"name") . '> trans
 
 nmap <F1> :set number!<CR>
 
+
 " }}}
 
 " Temp Files {{{
 
+
 " Fuck swapfiles
 set noswapfile
-
-" Set backup/undo dirs
 set backupdir=~/.config/nvim/tmp/backups//
 set undodir=~/.config/nvim/tmp/undo//
 
-" Make the folders automatically if they don't already exist.
 if !isdirectory(expand(&backupdir))
 	call mkdir(expand(&backupdir), 'p')
 endif
@@ -351,27 +314,24 @@ if !isdirectory(expand(&undodir))
 	call mkdir(expand(&undodir), 'p')
 endif
 
-" Persistent Undo, Vim remembers everything even after the file is closed.
+" Persistent undo
 set undofile
 set undolevels=500
 set undoreload=500
+
 
 " }}}
 
 " Misc {{{
 
-" Disable python 2
+
+" Speed up nvim start by skipping checks for Python.
 let g:loaded_python_provider = 1
 let g:python_host_skip_check = 1
 let g:python3_host_skip_check = 1
 
-" Auto change dir to file directory
 set autochdir
-
-" Use the OS clipboard by default
 set clipboard+=unnamedplus
-
-" Dictionary
 set dictionary=/usr/share/dict/words
 
 " Enhance command-line completion
@@ -385,14 +345,11 @@ set wildignore+=*/.sass-cache/*,*.map
 " Saner backspacing
 set backspace=indent,eol,start
 
-" set esckeys
 set noendofline
 set showcmd
 set autoread
 set hidden
 set noerrorbells
-
-" Don’t reset cursor to start of line when moving around.
 set nostartofline
 
 " Better auto complete
@@ -407,20 +364,20 @@ set nottimeout
 set splitbelow
 set splitright
 
+
 " }}}
 
 " Folding {{{
+
 
 set foldmethod=marker
 set foldlevel=99
 set foldlevelstart=0
 set foldnestmax=10
 set nofoldenable
-
-" Only saves folds/cursor pos in mkview
 set viewoptions=folds,cursor
-
 set fillchars=fold:-
+
 
 " }}}
 
