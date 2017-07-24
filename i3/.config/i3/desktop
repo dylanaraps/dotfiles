@@ -6,18 +6,15 @@
 # print the desired font size. This gives us large titlebars with a small
 # font.
 font pango:Roboto 15
-for_window [class=".*"] title_format "<span font='Artwiz Lemon 7'>  &lt;3</span>"
+for_window [class=".*"] title_format "<span font='Artwiz Lemon 7'>  ♥</span>"
 
 # Workspaces.
-workspace 1 output DVI-0
-workspace 2 output DVI-0
-workspace 3 output DVI-0
-workspace 4 output DVI-0
-workspace 5 output DVI-0
-workspace 6 output DVI-0
-workspace 7 output DVI-0
-workspace 8 output DVI-0
-workspace 9 output HDMI-0
+workspace "1: www" output DVI-0
+workspace "2: vim" output DVI-0
+workspace "3: gam" output DVI-0
+workspace "4: jun" output DVI-0
+workspace "5: scr" output DVI-0
+workspace "9: mov" output HDMI-0
 
 # Float all windows by default.
 for_window [class="^.*"] floating enable
