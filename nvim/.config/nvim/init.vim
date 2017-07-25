@@ -32,10 +32,6 @@ Plug 'junegunn/goyo.vim'
         autocmd FileType markdown,text setlocal spell
     augroup END
 
-Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
-Plug 'junegunn/fzf.vim'
-    nmap <C-x> :FZF ~<CR>
-
 Plug 'w0rp/ale'
     let g:ale_lint_on_save = 1
     let g:ale_lint_on_text_changed = 0
@@ -47,7 +43,7 @@ Plug 'w0rp/ale'
 Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
 Plug 'Shougo/neoinclude.vim', { 'do': ':UpdateRemotePlugins' }
 Plug 'zchee/deoplete-jedi'
-Plug 'tweekmonster/deoplete-clang2'
+" Plug 'tweekmonster/deoplete-clang2'
 Plug 'Shougo/neco-vim'
 Plug 'Shougo/neco-syntax'
     let g:deoplete#enable_at_startup = 1
