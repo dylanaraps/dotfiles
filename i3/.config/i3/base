@@ -42,14 +42,14 @@ bindsym $mod+b border pixel 5
 bindsym $mod+n border normal 0
 
 bindsym $mod+1 workspace number 1 www
-bindsym $mod+2 workspace number 2 vim
+bindsym $mod+2 workspace number 2 cod
 bindsym $mod+3 workspace number 3 gam
 bindsym $mod+4 workspace number 4 jun
 bindsym $mod+5 workspace number 5 scr
 bindsym $mod+6 workspace number 6 mov
 
 bindsym $mod+Shift+1 move container to workspace number 1 www
-bindsym $mod+Shift+2 move container to workspace number 2 vim
+bindsym $mod+Shift+2 move container to workspace number 2 cod
 bindsym $mod+Shift+3 move container to workspace number 3 gam
 bindsym $mod+Shift+4 move container to workspace number 4 jun
 bindsym $mod+Shift+5 move container to workspace number 5 scr

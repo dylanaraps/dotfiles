@@ -10,7 +10,7 @@ for_window [class=".*"] title_format "<span font='Artwiz Lemon 7'>  ♥</span>"
 
 # Workspaces.
 workspace "1: www" output DVI-0
-workspace "2: vim" output DVI-0
+workspace "2: cod" output DVI-0
 workspace "3: gam" output DVI-0
 workspace "4: jun" output DVI-0
 workspace "5: scr" output DVI-0

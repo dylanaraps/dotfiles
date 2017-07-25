@@ -44,6 +44,7 @@ setxkbmap -option caps:escape
 pulseaudio --start &
 dunst -fn "$DUNST_FONT" -geometry "$DUNST_SIZE" &
 compton --config /dev/null &
+mopidy &
 devmon &
 urxvtd -q -f &
 redshift &
