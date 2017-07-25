@@ -9,17 +9,20 @@ regular_expressions = "extended"
 
 # Playlist
 playlist_disable_highlight_delay = 1
-jump_to_now_playing_song_at_start = "yes"
-song_columns_list_format = "(6f)[cyan]{l} (40)[red]{a} (25)[blue]{t|f}"
-now_playing_prefix = ""
-now_playing_suffix = "<"
-playlist_display_mode = "columns"
+song_columns_list_format = "(40)[blue]{a} (25)[blue]{t|f}"
+song_list_format = "$3{%A}$R$2{%t}"
+playlist_display_mode = "classic"
 centered_cursor = "yes"
+
+# Now Playing
+jump_to_now_playing_song_at_start = "yes"
+now_playing_prefix = "$5> "
+# now_playing_suffix = ""
 
 # Bars
 progressbar_color = "black"
-progressbar_elapsed_color = "black"
-progressbar_look = "__ "
+progressbar_elapsed_color = "blue"
+progressbar_look = "__"
 
 # UI
 header_visibility = "no"
