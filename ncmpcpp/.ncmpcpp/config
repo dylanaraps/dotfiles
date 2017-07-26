@@ -29,3 +29,5 @@ header_visibility = "no"
 titles_visibility = "no"
 statusbar_visibility = "no"
 
+# Execute bum on song change.
+execute_on_song_change = "pkill -USR1 -f -x 'python3 /home/dylan/bin/bum'"
