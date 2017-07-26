@@ -28,11 +28,11 @@ for_window [window_role="pop-up"] floating enable
 for_window [class="Dialog"] floating enable
 
 # bum
-for_window [title="bum"] border pixel 0
-for_window [title="bum"] floating enable
-for_window [title="bum"] hide_edge_borders vertical
-for_window [title="bum"] sticky enable
-for_window [title="bum"] move absolute position 1607 px 766 px
+for_window [title="^bum$"] border pixel 0
+for_window [title="^bum$"] floating enable
+for_window [title="^bum$"] hide_edge_borders vertical
+for_window [title="^bum$"] sticky enable
+for_window [title="^bum$"] move absolute position 1607 px 766 px
 
 smart_borders on
 gaps inner 25

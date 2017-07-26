@@ -30,4 +30,4 @@ titles_visibility = "no"
 statusbar_visibility = "no"
 
 # Execute bum on song change.
-execute_on_song_change = "pkill -USR1 -f '/bin/bum'"
+execute_on_song_change = "pkill -USR1 bum"
