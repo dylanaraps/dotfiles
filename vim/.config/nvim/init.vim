@@ -230,6 +230,7 @@ set undoreload=500
 
 " Misc {{{
 
+
 " Disable language support.
 let g:loaded_python_provider = 1
 let g:loaded_ruby_provider = 1
@@ -241,6 +242,7 @@ set clipboard+=unnamedplus
 set nostartofline
 set notimeout
 set nottimeout
+set nrformats-=octal
 
 
 " }}}
