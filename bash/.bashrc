@@ -43,8 +43,5 @@ alias album="youtube-dl --extract-audio --audio-format mp3 \
 [[ -z "$DISPLAY" && "$XDG_VTNR" -eq 1 ]] && \
     exec startx -- vt1 &> /dev/null
 
-[[ -f "${HOME}/.fzf.bash" ]] && \
-    source "${HOME}/.fzf.bash"
-
 # Import colorscheme from 'wal'
 (wal -r"${VTE_VERSION:+"t"}" &)
