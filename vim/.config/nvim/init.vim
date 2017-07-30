@@ -50,6 +50,17 @@ Plug 'tpope/vim-surround'
 Plug 'machakann/vim-highlightedyank'
     let g:highlightedyank_highlight_duration = 100
 
+Plug 'roxma/nvim-completion-manager'
+    " Map <Tab> to control completion menu.
+    inoremap <expr> <Tab> pumvisible() ? "\<C-n>" : "\<Tab>"
+    inoremap <expr> <S-Tab> pumvisible() ? "\<C-p>" : "\<S-Tab>"
+
+    " Vim requires an additional dependency.
+    if !has('nvim')
+        Plug 'roxma/vim-hug-neovim-rpc'
+    endif
+
+
 
 call plug#end()
 
@@ -63,6 +74,7 @@ call plug#end()
 " Hide UI.
 set noshowmode
 set laststatus=0
+set shortmess=atI
 
 colorscheme wal
 
@@ -116,10 +128,10 @@ nnoremap <S-Tab> :bp<CR>
 " }}}
 
 
-" Filetypes {{{
+" Auto Commands {{{
 
 
-augroup Filetypes
+augroup General
     au!
     autocmd FileType markdown,text setlocal spell
 
