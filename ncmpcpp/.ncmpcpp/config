@@ -28,6 +28,3 @@ progressbar_look = "__"
 header_visibility = "no"
 titles_visibility = "no"
 statusbar_visibility = "no"
-
-# Execute bum on song change.
-execute_on_song_change = "pkill -USR1 bum"
