@@ -13,11 +13,11 @@ set_from_resource $bg2 i3wm.color7  #f0f0f0
 set_from_resource $fg  i3wm.color0 #f0f0f0
 
 # class                 border  backgr. text indicator child_border
-client.focused          $bg      $bg    $fg  $bg   $fg
-client.focused_inactive $bg2     $bg2   $fg  $bg   $fg
-client.unfocused        $bg2     $bg2   $fg  $bg   $fg
-client.urgent           $bg      $bg    $fg  $bg   $fg
-client.placeholder      $bg2     $bg2   $fg  $bg   $fg
+client.focused          $bg      $bg    $fg  $bg   $bg
+client.focused_inactive $bg2     $bg2   $fg  $bg   $bg
+client.unfocused        $bg2     $bg2   $fg  $bg   $bg
+client.urgent           $bg      $bg    $fg  $bg   $bg
+client.placeholder      $bg2     $bg2   $fg  $bg   $bg
 client.background       $bg
 
 
@@ -111,4 +111,3 @@ exec "wal -i $(< ${HOME}/.cache/wal/wal) -o wal-set"
 
 
 # }}}
-

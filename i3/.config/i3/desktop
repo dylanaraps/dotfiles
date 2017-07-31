@@ -28,7 +28,7 @@ for_window [window_role="pop-up"] floating enable
 for_window [class="Dialog"] floating enable
 
 # bum
-for_window [title="^bum$"] border pixel 0
+for_window [title="^bum$"] border pixel 10
 for_window [title="^bum$"] floating enable
 for_window [title="^bum$"] hide_edge_borders vertical
 for_window [title="^bum$"] sticky enable

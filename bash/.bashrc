@@ -36,6 +36,7 @@ alias steam="steam-native"
 alias sxiv="sxiv -b -s f"
 alias album="youtube-dl --extract-audio --audio-format mp3 \
     -o '%(playlist)s/%(playlist_index)s - %(title)s.%(ext)s'"
+alias bum="bum --size 150"
 
 
 # OTHER
