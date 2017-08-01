@@ -32,7 +32,7 @@ for_window [title="^bum$"] border pixel 10
 for_window [title="^bum$"] floating enable
 for_window [title="^bum$"] hide_edge_borders vertical
 for_window [title="^bum$"] sticky enable
-for_window [title="^bum$"] move absolute position 1607 px 766 px
+for_window [title="^bum$"] move absolute position 1657 px 820 px
 
 smart_borders on
 gaps inner 25
