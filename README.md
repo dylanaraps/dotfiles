@@ -23,10 +23,10 @@ I get an endless amount of messages from people installing the dotfiles and then
 - Notifications: `dunst`
 - Shell: `bash`
 - Terminal Emulator: `urxvt`
-- Text Editor: `neovim`
+- Text Editor: `neovim` / `vim`
 - Video Player: `mpv`
 - Web Browser: `Firefox (Nightly)`
-- Window Manager: `i3-gaps`
+- Window Manager: `i3-gaps` / `openbox`
 
 
 ## Scripts
