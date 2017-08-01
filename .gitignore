@@ -10,6 +10,8 @@ vim/.vim/tmp/*
 vim/.vim/.*
 vim/.vim/Ditto/*
 vim/.vim/spell/*
-i3/.config/i3/config
 mpv/.config/mpv/scripts/*
 mpv/.config/mpv/shaders/*
+openbox/.config/openbox/autostart
+openbox/.config/openbox/environment
+openbox/.config/openbox/menu.xml

@@ -104,10 +104,22 @@ for_window [class="VirtualBox"] floating enable
 # }}}
 
 
-# PROGRAM AUTOSTART. {{{
+# PROGRAM AUTOSTART {{{
 
 
 exec "wal -i $(< ${HOME}/.cache/wal/wal) -o wal-set"
+
+
+# }}}
+
+
+# MISC {{{
+
+
+new_window normal
+new_window border pixel 0
+hide_edge_borders vertical
+gaps inner 0
 
 
 # }}}

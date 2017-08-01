@@ -14,10 +14,7 @@ if [[ "$HOSTNAME" == "bonez" ]]; then
     export BAR_FONT="xft:Roboto Mono 40"
     export BAR_HEIGHT="60"
 
-    # Create i3 config.
-    cat "${HOME}/.config/i3/base" \
-        "${HOME}/.config/i3/laptop" > \
-        "${HOME}/.config/i3/config"
+    wm="i3"
 
 elif [[ "$HOSTNAME" == "bones" ]]; then
     xrandr \
@@ -31,10 +28,7 @@ elif [[ "$HOSTNAME" == "bones" ]]; then
     export DUNST_FONT='Artwiz Lemon 7'
     export DUNST_SIZE='300x30-40+70'
 
-    # Create i3 config.
-    cat "${HOME}/.config/i3/base" \
-        "${HOME}/.config/i3/desktop" > \
-        "${HOME}/.config/i3/config"
+    wm="openbox"
 fi
 
 xset m 1/1
@@ -53,4 +47,4 @@ dropbox &
 xrdb -merge "${HOME}/.Xresources"
 wal -i "$(< "${HOME}/.cache/wal/wal")" -o wal-set
 
-exec i3
+exec "${wm:-i3}"
