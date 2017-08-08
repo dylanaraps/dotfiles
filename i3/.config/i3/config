@@ -7,19 +7,6 @@
 set $mod Mod4
 floating_modifier $mod
 
-# Set colors from Xresources
-set_from_resource $bg  i3wm.color7  #f0f0f0
-set_from_resource $bg2 i3wm.color7  #f0f0f0
-set_from_resource $fg  i3wm.color0 #f0f0f0
-
-# class                 border  backgr. text indicator child_border
-client.focused          $bg      $bg    $fg  $bg   $bg
-client.focused_inactive $bg2     $bg2   $fg  $bg   $bg
-client.unfocused        $bg2     $bg2   $fg  $bg   $bg
-client.urgent           $bg      $bg    $fg  $bg   $bg
-client.placeholder      $bg2     $bg2   $fg  $bg   $bg
-client.background       $bg
-
 
 # }}}
 
@@ -42,19 +29,19 @@ bindsym $mod+e sticky toggle
 bindsym $mod+b border pixel 5
 bindsym $mod+n border normal 0
 
-bindsym $mod+1 workspace number 1 www
-bindsym $mod+2 workspace number 2 cod
-bindsym $mod+3 workspace number 3 gam
-bindsym $mod+4 workspace number 4 jun
-bindsym $mod+5 workspace number 5 scr
-bindsym $mod+6 workspace number 6 mov
+bindsym $mod+1 workspace 1
+bindsym $mod+2 workspace 2
+bindsym $mod+3 workspace 3
+bindsym $mod+4 workspace 4
+bindsym $mod+5 workspace 5
+bindsym $mod+6 workspace 6
 
-bindsym $mod+Shift+1 move container to workspace number 1 www
-bindsym $mod+Shift+2 move container to workspace number 2 cod
-bindsym $mod+Shift+3 move container to workspace number 3 gam
-bindsym $mod+Shift+4 move container to workspace number 4 jun
-bindsym $mod+Shift+5 move container to workspace number 5 scr
-bindsym $mod+Shift+6 move container to workspace number 6 mov
+bindsym $mod+Shift+1 move container to workspace 1
+bindsym $mod+Shift+2 move container to workspace 2
+bindsym $mod+Shift+3 move container to workspace 3
+bindsym $mod+Shift+4 move container to workspace 4
+bindsym $mod+Shift+5 move container to workspace 5
+bindsym $mod+Shift+6 move container to workspace 6
 
 bindsym $mod+Return exec urxvtc
 bindsym $mod+q kill
@@ -97,7 +84,7 @@ bindsym $mod+w exec "wal -i ${HOME}/Pictures/Wallpapers -o wal-set"
 # WINDOW RULES {{{
 
 
-for_window [class="^.*"] border normal 0
+for_window [class="^.*"] border pixel 0
 for_window [class="VirtualBox"] floating enable
 
 
@@ -108,18 +95,6 @@ for_window [class="VirtualBox"] floating enable
 
 
 exec "wal -i $(< ${HOME}/.cache/wal/wal) -o wal-set"
-
-
-# }}}
-
-
-# MISC {{{
-
-
-new_window normal
-new_window border pixel 0
-hide_edge_borders vertical
-gaps inner 0
 
 
 # }}}
