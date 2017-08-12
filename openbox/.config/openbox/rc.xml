@@ -21,6 +21,7 @@
   <theme>
     <name>thicc</name>
     <titleLayout>LMC</titleLayout>
+    <cornerRadius>8</cornerRadius>
     <keepBorder>no</keepBorder>
     <animateIconify>no</animateIconify>
     <font place="ActiveWindow">
@@ -428,6 +429,9 @@
       <focus>no</focus>
       <decor>no</decor>
       <fullscreen>yes</fullscreen>
+    </application>
+    <application title="bum" class="mpv">
+      <decor>no</decor>
     </application>
   </applications>
 </openbox_config>

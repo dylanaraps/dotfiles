@@ -45,6 +45,6 @@ redshift &
 dropbox &
 
 xrdb -merge "${HOME}/.Xresources"
-wal -i "$(< "${HOME}/.cache/wal/wal")" -o wal-set
+wal -R -o wal-set
 
 exec "${wm:-i3}"
