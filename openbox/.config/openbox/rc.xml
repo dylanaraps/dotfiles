@@ -433,5 +433,8 @@
     <application title="bum" class="mpv">
       <decor>no</decor>
     </application>
+    <application title="qiv*">
+      <decor>no</decor>
+    </application>
   </applications>
 </openbox_config>
