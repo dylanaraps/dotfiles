@@ -48,6 +48,18 @@
       <weight>Normal</weight>
       <slant>Normal</slant>
     </font>
+    <font place="MenuHeader">
+      <name>Sans</name>
+      <size>8</size>
+      <weight></weight>
+      <slant></slant>
+    </font>
+    <font place="MenuItem">
+      <name>Sans</name>
+      <size>8</size>
+      <weight></weight>
+      <slant></slant>
+    </font>
   </theme>
   <desktops>
     <number>6</number>
@@ -81,25 +93,39 @@
     <chainQuitKey>C-g</chainQuitKey>
     <!-- Go to desktop by number -->
     <keybind key="W-1">
-        <action name="GoToDesktop"><to>1</to></action>
+      <action name="GoToDesktop">
+        <to>1</to>
+      </action>
     </keybind>
     <keybind key="W-2">
-        <action name="GoToDesktop"><to>2</to></action>
+      <action name="GoToDesktop">
+        <to>2</to>
+      </action>
     </keybind>
     <keybind key="W-3">
-        <action name="GoToDesktop"><to>3</to></action>
+      <action name="GoToDesktop">
+        <to>3</to>
+      </action>
     </keybind>
     <keybind key="W-4">
-        <action name="GoToDesktop"><to>4</to></action>
+      <action name="GoToDesktop">
+        <to>4</to>
+      </action>
     </keybind>
     <keybind key="W-5">
-        <action name="GoToDesktop"><to>5</to></action>
+      <action name="GoToDesktop">
+        <to>5</to>
+      </action>
     </keybind>
     <keybind key="W-6">
-        <action name="GoToDesktop"><to>6</to></action>
+      <action name="GoToDesktop">
+        <to>6</to>
+      </action>
     </keybind>
     <keybind key="W-7">
-        <action name="GoToDesktop"><to>6</to></action>
+      <action name="GoToDesktop">
+        <to>6</to>
+      </action>
     </keybind>
     <!-- Send program to desktop by number -->
     <keybind key="W-S-1">
@@ -151,7 +177,11 @@
       <action name="ToggleAlwaysOnTop"/>
     </keybind>
     <keybind key="W-f">
-      <action name="ToggleFullscreen"/>
+      <action name="Execute">
+        <command>wal-set</command>
+      </action>
+      <action name="ToggleMaximize"/>
+      <action name="ToggleDecorations"/>
     </keybind>
     <keybind key="W-q">
       <action name="Close"/>
@@ -436,5 +466,19 @@
     <application title="qiv*">
       <decor>no</decor>
     </application>
+    <application type="dock">
+      <decor>no</decor>
+    </application>
   </applications>
+  <dock>
+    <position>Top</position>
+    <floatingX>0</floatingX>
+    <floatingY>0</floatingY>
+    <stacking>Above</stacking>
+    <direction>Horizontal</direction>
+    <noStrut>no</noStrut>
+    <autoHide>no</autoHide>
+    <hideDelay>300</hideDelay>
+    <showDelay>300</showDelay>
+  </dock>
 </openbox_config>
