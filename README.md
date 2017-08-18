@@ -41,3 +41,5 @@ https://github.com/dylanaraps/bin
 1. Inspect dotfiles.
 2. Find cool thing.
 3. Add cool thing to your dotfiles.
+
+**Note:** Use `git clone --depth 1` to avoid downloading the entire repo history. (*70MB*)
