@@ -16,6 +16,8 @@ if [[ "$HOSTNAME" == "bonez" ]]; then
 
     wm="i3"
 
+    compton --config /dev/null &
+
 elif [[ "$HOSTNAME" == "bones" ]]; then
     xrandr \
         --output DVI-0 \
@@ -37,7 +39,6 @@ setxkbmap -option caps:escape
 
 pulseaudio --start &
 dunst -fn "$DUNST_FONT" -geometry "$DUNST_SIZE" &
-compton --config /dev/null &
 mopidy &
 devmon &
 urxvtd -q -f &
@@ -45,6 +46,6 @@ redshift &
 dropbox &
 
 xrdb -merge "${HOME}/.Xresources"
-wal -i "$(< "${HOME}/.cache/wal/wal")" -o wal-set
+wal -R -o wal-set
 
 exec "${wm:-i3}"

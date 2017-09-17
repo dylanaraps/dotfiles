@@ -1,6 +1,7 @@
 " Dylan\'s init.vim
 set encoding=utf-8
 scriptencoding utf-8
+let g:mapleader = "\<Space>"
 
 
 " Plugins {{{
@@ -30,6 +31,10 @@ Plug 'w0rp/ale'
     let g:ale_lint_on_text_changed = 0
     let g:ale_lint_on_enter = 1
     let g:ale_linters_sh_shellcheck_exclusions = 'SC1090,SC2155'
+    let g:ale_echo_msg_error_str = 'E'
+    let g:ale_echo_msg_warning_str = 'W'
+    let g:ale_echo_msg_format = '[%linter%] %s [%severity%]'
+    nmap <silent> <Leader-e> <Plug>(ale_next_wrap)
 
 Plug 'kana/vim-textobj-user'
 Plug 'kana/vim-textobj-line'
@@ -53,18 +58,26 @@ Plug 'tpope/vim-surround'
 Plug 'machakann/vim-highlightedyank'
     let g:highlightedyank_highlight_duration = 100
 
-Plug 'roxma/nvim-completion-manager'
+Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
+Plug 'Shougo/neco-syntax'
+Plug 'Shougo/neco-vim'
+Plug 'zchee/deoplete-jedi'
+    let g:deoplete#enable_at_startup = 1
+
     " Map <Tab> to control completion menu.
     inoremap <expr> <Tab> pumvisible() ? "\<C-n>" : "\<Tab>"
     inoremap <expr> <S-Tab> pumvisible() ? "\<C-p>" : "\<S-Tab>"
 
-    " Vim requires an additional dependency.
-    if !has('nvim')
-        Plug 'roxma/vim-hug-neovim-rpc'
-    endif
-
+Plug 'autozimu/deoplete-omnisharp'
+Plug 'tpope/vim-dispatch'
+Plug 'OmniSharp/omnisharp-vim', { 'do': 'cd server && xbuild' }
+    set noshowmatch
+    set hidden
+    set cmdheight=2
+    set updatetime=500
 
 call plug#end()
+filetype plugin on
 
 
 " }}}
@@ -80,6 +93,10 @@ set shortmess=atI
 set cmdheight=2
 
 colorscheme wal
+
+" Highlight characters over 80 columns.
+command Col80  match WarningMsg '\%>80v.\+'
+command Col100 match WarningMsg '\%>100v.\+'
 
 
 " }}}
@@ -235,6 +252,10 @@ set undoreload=500
 
 
 " Disable language support.
+<<<<<<< HEAD
+=======
+" let g:loaded_python_provider = 1
+>>>>>>> c72a9faa89c5332c86f855c5815691015179418a
 let g:loaded_ruby_provider = 1
 
 " Change pwd to file location.

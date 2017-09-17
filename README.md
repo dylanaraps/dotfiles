@@ -11,7 +11,7 @@ I get an endless amount of messages from people installing the dotfiles and then
 
 **Screenshots: [https://dylanaraps.com/pages/rice](https://dylanaraps.com/pages/rice)**
 
-![scrot](https://i.imgur.com/hkAJjJg.png)
+![scrot](https://i.imgur.com/AoME7yC.png)
 
 
 ## Setup
@@ -41,3 +41,5 @@ https://github.com/dylanaraps/bin
 1. Inspect dotfiles.
 2. Find cool thing.
 3. Add cool thing to your dotfiles.
+
+**Note:** Use `git clone --depth 1` to avoid downloading the entire repo history. (*70MB*)
