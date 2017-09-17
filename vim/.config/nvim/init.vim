@@ -252,10 +252,7 @@ set undoreload=500
 
 
 " Disable language support.
-<<<<<<< HEAD
-=======
 " let g:loaded_python_provider = 1
->>>>>>> c72a9faa89c5332c86f855c5815691015179418a
 let g:loaded_ruby_provider = 1
 
 " Change pwd to file location.

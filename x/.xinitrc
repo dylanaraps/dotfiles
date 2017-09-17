@@ -48,4 +48,5 @@ dropbox &
 xrdb -merge "${HOME}/.Xresources"
 wal -R -o wal-set
 
-exec "${wm:-i3}"
+# exec "${wm:-i3}"
+exec openbox
