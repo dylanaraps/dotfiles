@@ -19,6 +19,9 @@ endif
 
 call plug#begin('~/.config/nvim/plugged')
 
+Plug 'vim-airline/vim-airline'
+Plug 'vim-airline/vim-airline-themes'
+    let g:airline#extensions#tabline#enabled = 1
 
 Plug '~/projects/wal.vim'
 Plug 'junegunn/goyo.vim'
@@ -61,7 +64,6 @@ Plug 'roxma/nvim-completion-manager'
     endif
 
 
-
 call plug#end()
 
 
@@ -75,6 +77,7 @@ call plug#end()
 set noshowmode
 set laststatus=0
 set shortmess=atI
+set cmdheight=2
 
 colorscheme wal
 
@@ -232,7 +235,6 @@ set undoreload=500
 
 
 " Disable language support.
-let g:loaded_python_provider = 1
 let g:loaded_ruby_provider = 1
 
 " Change pwd to file location.

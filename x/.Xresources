@@ -3,7 +3,7 @@
 ! Desktop/Laptop Settings.
 #ifdef SRVR_bonez
     URxvt*font: xft:Roboto Mono:size=12
-    URxvt*boldFont:
+    URxvt*boldFont: xft:Roboto Mono:size=12
 
     Xft.dpi: 192
 #else
