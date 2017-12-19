@@ -1,5 +1,5 @@
 # ~/.bashrc
-export PS1="\e[32m\u \e[90m\w \e[31m>\e[0m "
+export PS1="\[\e[32m\]\u \[\e[90m\]\w \[\e[31m\]>\[\e[0m\] "
 export QT_AUTO_SCREEN_SCALE_FACTOR=1
 export APULSE_PLAYBACK_DEVICE=plugdmix
 
