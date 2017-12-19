@@ -2,7 +2,7 @@
 
 My dotfiles, now with an actual working installer!
 
-**Screenshots: [https://www.reddit.com/r/unixporn/search?q=author%3Adylan112&sort=new&restrict_sr=on&t=all)**
+**Screenshots: [link](https://www.reddit.com/r/unixporn/search?q=author%3Adylan112&sort=new&restrict_sr=on&t=all)**
 
 ![scrot](https://i.imgur.com/AoME7yC.png)
 
