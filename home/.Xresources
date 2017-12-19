@@ -1,29 +1,18 @@
 ! Dylans Xresources
-
-
-
-
-
-
-
-
-! Desktop/Laptop Settings.
 URxvt*font: xft:Roboto Mono:size=12
 XTerm*font: xft:Roboto Mono:size=12
-URxvt*boldFont: xft:Roboto Mono:size=12
 URxvt.internalBorder: 60
 URxvt.geometry: 70x20
+URxvt.scrollBar: false
 
+! DPI/Font
 Xft.dpi: 192
-
 Xft.autohint: 0
 Xft.antialias: 1
 Xft.hinting: true
 Xft.hintstyle: hintslight
 Xft.rgba: rgb
 Xft.lcdfilter: lcddefault
-
-URxvt.scrollBar: false
 
 ! Enables copy/paste with Ctrl-Shift-C/V
 URxvt.iso14755: false

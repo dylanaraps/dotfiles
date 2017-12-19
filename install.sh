@@ -9,4 +9,6 @@ q() {
 }
 
 q "Install dotfiles for home?" && stow home
+q "Install dotfiles for openbox?" && stow openbox 
+q "Install dotfiles for (n)vim/?" && stow vim 
 q "Install dotfiles for system (requires sudo)?" && sudo stow system -t /
