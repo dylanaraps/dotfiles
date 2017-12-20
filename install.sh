@@ -6,8 +6,8 @@
 
 for dir in */; do
     child=("$dir"*); root=
-    [[ "${child[0]}" =~ $dir(bin|etc|var|usr|opt) ]] && root="root required"
-    read -r -n 1 -p "install ${dir/\/*}${root:+ ($root)}? [y/n] " ans; echo
+    [[ "$child" =~ $dir(bin|etc|var|usr|opt) ]] && root="root required"
+    read -rn 1 -p "install ${dir/\/*}${root:+ ($root)}? [y/n] " ans; echo
     [[ "${ans,,}" != "y" ]] && continue
     [[ "$root" ]] && { sudo stow "$dir" -t /;:; } || stow "$dir"
 done
