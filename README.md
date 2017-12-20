@@ -4,7 +4,7 @@ My dotfiles, now with an actual working installer!
 
 **Screenshots: [link](https://www.reddit.com/r/unixporn/search?q=author%3Adylan112&sort=new&restrict_sr=on&t=all)**
 
-![scrot](https://i.imgur.com/AoME7yC.png)
+![scrot](https://i.redd.it/26971w3g82501.png)
 
 
 ## Setup
