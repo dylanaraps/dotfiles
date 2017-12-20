@@ -21,7 +21,7 @@
   <theme>
     <name>thicc</name>
     <titleLayout>L</titleLayout>
-    <cornerRadius>0</cornerRadius>
+    <cornerRadius>8</cornerRadius>
     <keepBorder>no</keepBorder>
     <animateIconify>no</animateIconify>
     <font place="ActiveWindow">
