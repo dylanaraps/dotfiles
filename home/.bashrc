@@ -6,7 +6,7 @@ export APULSE_PLAYBACK_DEVICE=plugdmix
 PATH+=:~/.local/bin
 PATH+=:~/bin
 
-source ~/.cache/wal/colors.sh
+. ~/.cache/wal/colors.sh
 
 # History completion.
 bind '"\e[A": history-search-backward'
