@@ -1,15 +1,13 @@
 #!/usr/bin/env bash
 #
-# Install dotfiles.
+# Install dotfiles using stow dynamically.
+#
+# Created by Dylan Araps.
 
-q() {
-    read -r -n 1 -p "$1 [y/n] " response
-    printf "\n"
-    [[ "${response,,}" == "y" ]] && local result=0
-}
-
-q "Install dotfiles for home?"    && stow home
-q "Install dotfiles for openbox?" && stow openbox
-q "Install dotfiles for (n)vim?"  && stow vim
-q "Install dotfiles for mpv?"     && stow mpv
-q "Install dotfiles for system (requires sudo)?" && sudo stow system -t /
+for dir in */; do
+    child=("$dir"*); root=
+    [[ "${child[0]}" =~ $dir(bin|etc|var|usr|opt) ]] && root="root required"
+    read -r -n 1 -p "install ${dir/\/*}${root:+ ($root)}? [y/n] " ans; echo
+    [[ "${ans,,}" != "y" ]] && continue
+    [[ "$root" ]] && { sudo stow "$dir" -t /;:; } || stow "$dir"
+done

@@ -36,24 +36,6 @@
       <weight>Normal</weight>
       <slant>Normal</slant>
     </font>
-    <font place="ActiveOnScreenDisplay">
-      <name>Roboto</name>
-      <size>12</size>
-      <weight>Normal</weight>
-      <slant>Normal</slant>
-    </font>
-    <font place="InactiveOnScreenDisplay">
-      <name>Roboto</name>
-      <size>12</size>
-      <weight>Normal</weight>
-      <slant>Normal</slant>
-    </font>
-    <font place="MenuHeader">
-      <name>Roboto</name>
-      <size>15</size>
-      <weight></weight>
-      <slant></slant>
-    </font>
   </theme>
   <desktops>
     <number>6</number>
@@ -198,7 +180,7 @@
     <keybind key="W-d">
       <action name="Execute">
         <name>rofi</name>
-        <command>rof</command>
+        <command>rofi -show run -font "Roboto 25" -separator-style none -scrollbar-width 0 -location 1 -yoffset 0  -lines 10 -width 20 -bw 0</command>
       </action>
     </keybind>
     <keybind key="W-c">
@@ -206,72 +188,48 @@
     </keybind>
     <keybind key="XF86AudioRaiseVolume">
       <action name="Execute">
-        <name>Vol Up</name>
-        <command>vol up</command>
+        <command>amixer -q sset Master 5%+</command>
       </action>
     </keybind>
     <keybind key="XF86AudioLowerVolume">
       <action name="Execute">
-        <name>Vol Down</name>
-        <command>vol down</command>
-      </action>
-    </keybind>
-    <keybind key="XF86AudioPrev">
-      <action name="Execute">
-        <name>Prev Song</name>
-        <command>song prev</command>
-      </action>
-    </keybind>
-    <keybind key="XF86AudioNext">
-      <action name="Execute">
-        <name>Next Song</name>
-        <command>song next</command>
-      </action>
-    </keybind>
-    <keybind key="XF86AudioPlay">
-      <action name="Execute">
-        <name>Next Song</name>
-        <command>song toggle</command>
+        <command>amixer -q sset Master 5%-</command>
       </action>
     </keybind>
     <keybind key="W-P">
       <action name="Execute">
-        <name>Take Screenshot</name>
         <command>scr</command>
       </action>
     </keybind>
     <keybind key="W-w">
       <action name="Execute">
-        <name>Change to random wallpaper</name>
         <command>wal -i ~/Pictures/Wallpapers -o wal-set</command>
       </action>
     </keybind>
-    <keybind key="W-Left">        # HalfLeftScreen
+    <keybind key="W-Left">
         <action name="UnmaximizeFull"/>
         <action name="MoveResizeTo"><x>0</x><y>0</y><height>100%</height><width>50%</width></action>
     </keybind>
-    <keybind key="W-Right">       # HalfRightScreen
+    <keybind key="W-Right">
         <action name="UnmaximizeFull"/>
         <action name="MoveResizeTo"><x>-0</x><y>0</y><height>100%</height><width>50%</width></action>
     </keybind>
-    <keybind key="W-Up">          # HalfUpperScreen
+    <keybind key="W-Up">
         <action name="UnmaximizeFull"/>
         <action name="MoveResizeTo"><x>0</x><y>0</y><width>100%</width><height>50%</height></action>
     </keybind>
-    <keybind key="W-Down">        # HalfLowerScreen
+    <keybind key="W-Down">
         <action name="UnmaximizeFull"/>
         <action name="MoveResizeTo"><x>0</x><y>-0</y><width>100%</width><height>50%</height></action>
     </keybind>
-
     <keybind key="XF86MonBrightnessUp">
       <action name="Execute">
         <command>xbacklight -inc 5</command>
       </action>
     </keybind>
-
     <keybind key="XF86MonBrightnessDown">
       <action name="Execute">
-        <command>xbacklight -dec 5</command>  
+        <command>xbacklight -dec 5</command>
       </action>
     </keybind>
   </keyboard>
@@ -446,44 +404,11 @@
     </context>
   </mouse>
   <applications>
-    <application class="Firefox*">
-      <desktop>1</desktop>
-      <focus>no</focus>
-      <layer>below</layer>
-    </application>
-    <application class="Steam*">
-      <desktop>3</desktop>
-      <focus>no</focus>
-    </application>
-    <application class="Gimp*">
-      <desktop>4</desktop>
-      <focus>no</focus>
-    </application>
-    <application class="csgo*">
-      <desktop>3</desktop>
-      <focus>no</focus>
-      <decor>no</decor>
-      <fullscreen>yes</fullscreen>
-    </application>
     <application class="mpv">
       <decor>no</decor>
     </application>
     <application title="qiv*">
       <decor>no</decor>
     </application>
-    <application type="dock">
-      <decor>no</decor>
-    </application>
   </applications>
-  <dock>
-    <position>Top</position>
-    <floatingX>0</floatingX>
-    <floatingY>0</floatingY>
-    <stacking>Above</stacking>
-    <direction>Horizontal</direction>
-    <noStrut>no</noStrut>
-    <autoHide>no</autoHide>
-    <hideDelay>300</hideDelay>
-    <showDelay>300</showDelay>
-  </dock>
 </openbox_config>
