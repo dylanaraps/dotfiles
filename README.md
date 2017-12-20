@@ -22,7 +22,7 @@ My dotfiles, now with an actual working installer!
 
 ## Installation
 
-1. Install `stow`.
+1. Install `stow`
 2. `cd ~`
 3. `git clone --depth 1 https://github.com/dylanaraps/dotfiles`
 4. `cd dotfiles`
