@@ -6,6 +6,7 @@ urxvtd -q -f -o &
 
 xset s 60 60
 xset m 1/1
+xset r rate 200 30
 setxkbmap -option caps:escape
 
 xrdb ~/.Xresources
