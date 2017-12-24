@@ -152,10 +152,10 @@
     <keybind key="W-a">
       <action name="ToggleAlwaysOnTop"/>
     </keybind>
-    <keybind key="W-m">
+    <keybind key="W-f">
       <action name="ToggleMaximize"/>
     </keybind>
-    <keybind key="W-f">
+    <keybind key="W-m">
       <action name="ToggleFullscreen"/>
     </keybind>
     <keybind key="W-q">

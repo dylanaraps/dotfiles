@@ -1,0 +1,3 @@
+#!/usr/bin/env bash
+echo "$SSID ${ACTION,,}" > /tmp/ssid
+chmod 644 /tmp/ssid
