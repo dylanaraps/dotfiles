@@ -1,0 +1,30 @@
+# Dylan's ncmpcpp config
+
+# General
+autocenter_mode = "yes"
+message_delay_time = "1"
+external_editor = "/usr/bin/nvim"
+use_console_editor = "yes"
+regular_expressions = "extended"
+
+# Playlist
+playlist_disable_highlight_delay = 1
+song_columns_list_format = "(40)[blue]{a} (25)[blue]{t|f}"
+song_list_format = "$3{%A}$R$2{%t}"
+playlist_display_mode = "classic"
+centered_cursor = "yes"
+
+# Now Playing
+jump_to_now_playing_song_at_start = "yes"
+now_playing_prefix = "$5> "
+# now_playing_suffix = ""
+
+# Bars
+progressbar_color = "black"
+progressbar_elapsed_color = "blue"
+progressbar_look = "__"
+
+# UI
+header_visibility = "no"
+titles_visibility = "no"
+statusbar_visibility = "no"
