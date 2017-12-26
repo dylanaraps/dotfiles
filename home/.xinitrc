@@ -10,6 +10,7 @@ xset r rate 200 30
 setxkbmap -option caps:escape
 
 xrdb ~/.Xresources
+bar &
 wal -R -o wal-set
 xrandr --dpi 144
 

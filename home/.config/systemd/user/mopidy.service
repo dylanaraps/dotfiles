@@ -1,0 +1,15 @@
+[Unit]
+Description=Mopidy music server
+After=avahi-daemon.service
+After=dbus.service
+After=network.target
+After=nss-lookup.target
+After=pulseaudio.service
+After=remote-fs.target
+After=sound.target
+
+[Service]
+ExecStart=/usr/bin/mopidy
+
+[Install]
+WantedBy=multi-user.target

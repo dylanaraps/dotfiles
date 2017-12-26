@@ -180,11 +180,14 @@
     <keybind key="W-d">
       <action name="Execute">
         <name>rofi</name>
-        <command>rofi -show run -font "Roboto 25" -separator-style none -scrollbar-width 0 -location 1 -yoffset 0 -padding 40  -lines 10 -width 20 -bw 0</command>
+        <command>rofi -show run -font "Roboto 25" -separator-style none -scrollbar-width 0 -location 1 -yoffset 100 -xoffset 80 -padding 40  -lines 5 -width 20 -bw 0</command>
       </action>
     </keybind>
     <keybind key="W-c">
       <action name="MoveToCenter"/>
+      <action name="MoveRelative">
+        <y>-100</y>
+      </action>
     </keybind>
     <keybind key="XF86AudioMute">
       <action name="Execute">
