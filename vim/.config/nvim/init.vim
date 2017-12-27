@@ -159,7 +159,7 @@ augroup General
     autocmd BufWritePre [:;]* throw 'Forbidden file name: ' . expand('<afile>')
 
     " Always enable Goyo.
-    autocmd BufReadPost * Goyo
+    autocmd BufReadPost * Goyo 80%
 
 	" Equalize splits on resize, mainly used with Goyo to fix it's padding on resize.
 	autocmd VimResized * execute "normal \<C-W>="
