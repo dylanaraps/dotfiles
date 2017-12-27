@@ -14,6 +14,17 @@ Xft.hintstyle: hintslight
 Xft.rgba: rgb
 Xft.lcdfilter: lcddefault
 
+rofi.font: Roboto 25
+rofi.separator-style: none
+rofi.scrollbar-width: 0
+rofi.location: 1
+rofi.yoffset: 100
+rofi.xoffset: 80
+rofi.padding: 40
+rofi.lines: 5
+rofi.width: 20
+rofi.bw: 0
+
 ! Enables copy/paste with Ctrl-Shift-C/V
 URxvt.iso14755: false
 URxvt.iso14755_52: false
