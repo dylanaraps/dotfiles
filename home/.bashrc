@@ -19,7 +19,7 @@ alias anakin="sudo pacman -Rns \$(pacman -Qtdq)"
 alias neofetch="clear; neofetch"
 alias refugees="pacman -Qm"
 
-(cat ~/.cache/wal/sequences &)
+cat ~/.cache/wal/sequences
 
 [[ -z $DISPLAY && $XDG_VTNR -eq 1 ]] && \
     exec startx -- -keeptty > ~/.xorg.log 2>&1
