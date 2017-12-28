@@ -204,6 +204,21 @@
         <command>amixer -q sset Master 5%-</command>
       </action>
     </keybind>
+    <keybind key="W-XF86AudioMute">
+      <action name="Execute">
+        <command>mpc toggle</command>
+      </action>
+    </keybind>
+    <keybind key="W-XF86AudioRaiseVolume">
+      <action name="Execute">
+        <command>mpc next</command>
+      </action>
+    </keybind>
+    <keybind key="W-XF86AudioLowerVolume">
+      <action name="Execute">
+        <command>mpc prev</command>
+      </action>
+    </keybind>
     <keybind key="W-P">
       <action name="Execute">
         <command>scr</command>
