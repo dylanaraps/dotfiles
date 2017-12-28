@@ -1,4 +1,4 @@
-#define BG #FFFFFF
+#define BG {color15}
 #define HI #FF{color0.strip}
 #define FG {color0}
 #define TX {color15}
