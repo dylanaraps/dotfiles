@@ -18,7 +18,7 @@ set format_playlist=%-30%a %t%=%d
 set mouse=true
 set resume=true
 set set_term_title=false
-set status_display_program=cmus-test
+set status_display_program=cmus-status
 
 
 # Theme (for use with wal)
