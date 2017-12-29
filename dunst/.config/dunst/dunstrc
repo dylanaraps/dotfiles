@@ -6,7 +6,7 @@
     horizontal_padding = 8
     indicate_hidden = yes
     line_height = 5
-    markup = no
+    markup = yes
     monitor = 0
     notification_height = 30
     padding = 8
