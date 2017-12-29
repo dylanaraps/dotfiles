@@ -206,17 +206,17 @@
     </keybind>
     <keybind key="W-XF86AudioMute">
       <action name="Execute">
-        <command>mpc toggle</command>
+        <command>cmus-remote -C player-pause</command>
       </action>
     </keybind>
     <keybind key="W-XF86AudioRaiseVolume">
       <action name="Execute">
-        <command>mpc next</command>
+        <command>cmus-remote -C player-next</command>
       </action>
     </keybind>
     <keybind key="W-XF86AudioLowerVolume">
       <action name="Execute">
-        <command>mpc prev</command>
+        <command>cmus-remote -C player-prev</command>
       </action>
     </keybind>
     <keybind key="W-P">

@@ -17,7 +17,8 @@ set format_playlist=%-30%a %t%=%d
 # Settings
 set mouse=true
 set resume=true
-set set_term_ttle=false
+set set_term_title=false
+set status_display_program=cmus-test
 
 
 # Theme (for use with wal)
