@@ -1,3 +1,9 @@
+# Alsa settings
+set output_plugin=alsa
+set dsp.alsa.device=default
+set mixer.alsa.device=default
+set mixer.alsa.channel=Master
+
 # Unbind default keys
 unbind common <
 unbind common >

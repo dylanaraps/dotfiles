@@ -1,0 +1,1 @@
+SUBSYSTEM=="module", ACTION=="add", KERNEL=="acpi_cpufreq", RUN+=" /bin/sh -c ' echo powersaving | tee /sys/devices/system/cpu/cpufreq/policy[0-9]/scaling_governor ' "
