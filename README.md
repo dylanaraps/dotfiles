@@ -10,13 +10,13 @@ My dotfiles, now with an actual working installer!
 ## Setup
 
 - Application Launcher: `rofi`
-- Music Player: `spotify (website)`
+- Music Player: `spotifyd` + `cmus`
 - Notifications: `dunst`
 - Shell: `bash`
 - Terminal Emulator: `urxvt`
 - Text Editor: `neovim`
 - Video Player: `mpv`
-- Web Browser: `firefox-nightly`
+- Web Browser: `chromium-snapshots`
 - Window Manager: `openbox-patched`
 
 
