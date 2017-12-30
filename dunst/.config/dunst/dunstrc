@@ -7,7 +7,6 @@
     indicate_hidden = yes
     line_height = 5
     markup = yes
-    monitor = 0
     notification_height = 30
     padding = 8
     plain_text = no

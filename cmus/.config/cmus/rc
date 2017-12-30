@@ -26,7 +26,6 @@ set resume=true
 set set_term_title=false
 set status_display_program=cmus-status
 
-
 # Theme (for use with wal)
 set color_cmdline_bg=0
 set color_cmdline_fg=7
