@@ -1,6 +1,11 @@
 #!/bin/sh
 #
 # .xinitrc
+
+# My locale randomly gets set to C
+# and I don't know why..
+export LC_ALL=en_US.UTF-8
+
 redshift -l "37.8136:144.9631" &
 urxvtd -q -f -o &
 

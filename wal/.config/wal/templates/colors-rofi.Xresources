@@ -1,10 +1,5 @@
-#define BG {color15}
-#define HI {color0}
-#define FG {color0}
-#define TX {color15}
-
-! State:           bg, fg, bg2, hlbg, hlfg
-rofi.color-normal: BG, FG, BG,  HI,   TX
-rofi.color-active: BG, FG, BG,  HI,   TX
-rofi.color-urgent: BG, HI, BG,  HI,   FG
-rofi.color-window: BG, BG, BG
+! State:           bg,        fg,        bg2,        hlbg,       hlfg
+rofi.color-normal: {color15}, {color0},  {color15},  {color0},   {color15}
+rofi.color-active: {color15}, {color0},  {color15},  {color0},   {color15}
+rofi.color-urgent: {color15}, {color0},  {color15},  {color0},   {color0}
+rofi.color-window: {color15}, {color15}, {color15}
