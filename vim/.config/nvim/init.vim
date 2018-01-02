@@ -21,9 +21,14 @@ endif
 call plug#begin('~/.config/nvim/plugged')
 
 
+Plug '~/projects/root.vim'
+    let g:root#auto = 1
+    let g:root#echo = 1
 Plug '~/projects/wal.vim'
 Plug 'junegunn/goyo.vim'
 Plug 'junegunn/limelight.vim'
+Plug 'vim-python/python-syntax'
+
 Plug 'w0rp/ale'
     let g:ale_lint_on_save = 1
     let g:ale_lint_on_text_changed = 0
