@@ -21,9 +21,6 @@ endif
 call plug#begin('~/.config/nvim/plugged')
 
 
-Plug '~/projects/root.vim'
-    let g:root#auto = 1
-    let g:root#echo = 1
 Plug '~/projects/wal.vim'
 Plug 'junegunn/goyo.vim'
 Plug 'junegunn/limelight.vim'
@@ -266,6 +263,7 @@ set nostartofline
 set notimeout
 set nottimeout
 set nrformats-=octal
+set modeline
 
 
 " }}}

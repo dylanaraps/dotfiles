@@ -1,3 +1,4 @@
 #!/usr/bin/env bash
-echo "$SSID ${ACTION,,}" > /tmp/ssid
+
+echo "${CONNECTION_ID-X}" > /tmp/ssid
 chmod 644 /tmp/ssid

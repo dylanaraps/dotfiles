@@ -13,9 +13,12 @@ xset s 60 60
 xset m 1/1
 xset r rate 200 30
 setxkbmap -option caps:escape
+xmodmap -e 'keycode 70 = 0x0000'
+# xmodmap -e 'keycode 64 = 0x0000'
 
 xrdb ~/.Xresources
 wal -R -o wal-set
+compton &
 xrandr --dpi 144
 
 exec dbus-launch openbox

@@ -3,6 +3,7 @@ export PS1='\[\e[32m\]\u \[\e[90m\]\w \[\e[31m\]>\[\e[0m\] '
 export QT_AUTO_SCREEN_SCALE_FACTOR=1
 export HISTCONTROL=ignoredups
 export HISTSIZE=1000000
+export PATH="${HOME}/.gem/ruby/2.5.0/bin:${PATH}"
 export PATH+=:~/.local/bin
 export PATH+=:~/bin
 
@@ -31,7 +32,7 @@ alias refugees="pacman -Qm"
 
 # pywal.
 . ~/.cache/wal/colors.sh
-cat ~/.cache/wal/sequences
+(cat ~/.cache/wal/sequences &)
 
 [[ -z $DISPLAY && $XDG_VTNR -eq 1 ]] && \
     exec startx -- -keeptty > ~/.xorg.log 2>&1
