@@ -1,4 +1,0 @@
-#!/usr/bin/env bash
-
-echo "$2" > /tmp/ssid
-chmod 644 /tmp/ssid
