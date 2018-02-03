@@ -19,8 +19,8 @@ rofi.font: Roboto 25
 rofi.separator-style: none
 rofi.scrollbar-width: 0
 rofi.location: 1
-rofi.yoffset: 100
-rofi.xoffset: 80
+rofi.yoffset: 120
+rofi.xoffset: 120
 rofi.padding: 40
 rofi.lines: 5
 rofi.width: 20

@@ -20,7 +20,7 @@
   </placement>
   <theme>
     <name>thicc</name>
-    <titleLayout>L</titleLayout>
+    <titleLayout>LC</titleLayout>
     <cornerRadius>8</cornerRadius>
     <keepBorder>no</keepBorder>
     <animateIconify>no</animateIconify>
