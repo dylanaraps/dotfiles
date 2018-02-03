@@ -20,6 +20,7 @@ xrdb ~/.Xresources
 wal -R -o wal-set
 compton &
 polybar bar &
+polybar bar2 &
 xrandr --dpi 192
 
 exec dbus-launch openbox
