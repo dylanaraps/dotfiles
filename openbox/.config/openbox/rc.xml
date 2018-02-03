@@ -146,7 +146,7 @@
         <follow>no</follow>
       </action>
     </keybind>
-    <keybind key="W-e">
+    <keybind key="W-o">
       <action name="ToggleOmnipresent"/>
     </keybind>
     <keybind key="W-a">
