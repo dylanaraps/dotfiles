@@ -229,6 +229,11 @@
         <command>wal -i ~/Pictures/Wallpapers -o wal-set</command>
       </action>
     </keybind>
+    <keybind key="W-e">
+      <action name="Execute">
+        <command>wal -i ~/Pictures/Wallpapers -o wal-set -l</command>
+      </action>
+    </keybind>
     <keybind key="W-Left">
         <action name="UnmaximizeFull"/>
         <action name="MoveResizeTo"><x>0</x><y>0</y><height>100%</height><width>50%</width></action>

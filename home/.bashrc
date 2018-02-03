@@ -1,5 +1,5 @@
 # ~/.bashrc
-export PS1='\[\e[32m\]\u \[\e[90m\]\w \[\e[31m\]>\[\e[0m\] '
+export PS1='\[\e[31m\]\u \[\e[90m\]\w \[\e[31m\]>\[\e[0m\] '
 export QT_AUTO_SCREEN_SCALE_FACTOR=1
 export HISTCONTROL=ignoredups
 export HISTSIZE=1000000
@@ -29,6 +29,7 @@ alias wifi-menu="sudo wifi-menu -o"
 alias anakin="sudo pacman -Rns \$(pacman -Qtdq)"
 alias neofetch="clear; neofetch"
 alias refugees="pacman -Qm"
+alias fixwifi="sudo modprobe -r iwlmvm; modprobe iwlmvm"
 
 # pywal.
 . ~/.cache/wal/colors.sh
