@@ -1,0 +1,80 @@
+[colors]
+background = ${xrdb:color0:#222}
+foreground = ${xrdb:color7:#222}
+foreground-alt = ${xrdb:color7:#222}
+primary = ${xrdb:color1:#222}
+secondary = ${xrdb:color2:#222}
+alert = ${xrdb:color3:#222}
+
+[bar/bar]
+bottom = true
+fixed-center = true
+width = 1800
+height = 110
+radius = 6.0
+offset-x = 700
+offset-y = 75
+override-redirect = true
+wm-name = bar
+
+background = ${colors.background}
+foreground = ${colors.foreground}
+
+padding = 10
+
+module-margin-left = 2
+module-margin-right = 2
+
+font-0 = Roboto:size=24;3
+font-1 = Font Awesome:size=30;5
+
+modules-left = text
+modules-center = date
+modules-right = backlight volume wlan battery
+
+tray-position = right
+tray-padding = 2
+cursor-click = pointer
+cursor-scroll = pointer
+
+[module/text]
+type = custom/text
+content = we made plans~
+
+[module/date]
+type = internal/date
+interval = 60
+date = %a %d %b  - %l:%M %p
+label = %date%
+
+[module/backlight]
+type = internal/xbacklight
+label = %percentage%%  
+
+[module/battery]
+type = internal/battery
+battery = BAT1
+adapter = ADP1
+poll-interval = 0
+format-discharging = <label-discharging>  <ramp-capacity>
+format-full = <label-full>  <ramp-capacity>
+format-charging = <label-charging>  <ramp-capacity>  
+ramp-capacity-0 = 
+ramp-capacity-1 = 
+ramp-capacity-2 = 
+ramp-capacity-3 = 
+ramp-capacity-4 = 
+
+[module/wlan]
+type = internal/network
+interface = wlp1s0
+interval = 5
+label-connected = %essid%  
+
+[module/volume]
+type = internal/volume
+format-volume = <label-volume>  <ramp-volume>
+format-muted = 0%  
+ramp-volume-0 = 
+ramp-volume-1 = 
+ramp-volume-2 = 

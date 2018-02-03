@@ -29,7 +29,7 @@ alias wifi-menu="sudo wifi-menu -o"
 alias anakin="sudo pacman -Rns \$(pacman -Qtdq)"
 alias neofetch="clear; neofetch"
 alias refugees="pacman -Qm"
-alias fixwifi="sudo modprobe -r iwlmvm; modprobe iwlmvm"
+alias fixwifi="sudo modprobe -r iwlmvm; sudo modprobe iwlmvm"
 
 # pywal.
 . ~/.cache/wal/colors.sh
