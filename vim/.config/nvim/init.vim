@@ -164,7 +164,6 @@ augroup General
 
     " Always enable Goyo.
     autocmd BufReadPost * Goyo 80x80%
-    autocmd BufReadPost * Limelight
 
 	" Equalize splits on resize, mainly used with Goyo to fix it's padding on resize.
 	autocmd VimResized * execute "normal \<C-W>="
