@@ -1,10 +1,6 @@
-[colors]
+[bar/bar]
 background = ${xrdb:color0:#222}
 foreground = ${xrdb:color7:#222}
-
-[bar/bar]
-background = ${colors.background}
-foreground = ${colors.foreground}
 
 height = 110
 width = 15%
@@ -20,7 +16,6 @@ font-2 = NotoEmoji:size=100;
 modules-center = date
 module-margin = 2
 
-
 tray-position = none
 override-redirect = true
 
@@ -35,11 +30,6 @@ modules-center = backlight volume wlan battery
 height = 110
 width = 25%
 offset-x = 70%
-
-
-[module/text]
-type = custom/text
-content = 🦑
 
 
 [module/date]

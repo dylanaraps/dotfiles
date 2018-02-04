@@ -185,9 +185,6 @@
     </keybind>
     <keybind key="W-c">
       <action name="MoveToCenter"/>
-      <action name="MoveRelative">
-        <y>-100</y>
-      </action>
     </keybind>
     <keybind key="XF86AudioMute">
       <action name="Execute">
