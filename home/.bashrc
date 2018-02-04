@@ -35,5 +35,6 @@ alias fixwifi="sudo modprobe -r iwlmvm; sudo modprobe iwlmvm"
 . ~/.cache/wal/colors.sh
 (cat ~/.cache/wal/sequences &)
 
+# Start x on login.
 [[ -z $DISPLAY && $XDG_VTNR -eq 1 ]] && \
     exec startx -- -keeptty > ~/.xorg.log 2>&1
