@@ -14,3 +14,4 @@
     shrink = no
     sort = yes
     word_wrap = yes
+    corner_radius = 6

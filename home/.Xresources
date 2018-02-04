@@ -1,5 +1,6 @@
 ! Dylans Xresources
-*font: xft:Roboto Mono:size=12
+URxvt.font: xft:Roboto Mono:size=12
+URxvt.boldFont: xft:Roboto Mono:size=12
 URxvt.internalBorder: 75
 URxvt.geometry: 55x15
 URxvt.scrollBar: false
