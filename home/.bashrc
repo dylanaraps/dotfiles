@@ -25,11 +25,11 @@ bind '"\e[A": history-search-backward'
 bind '"\e[B": history-search-forward'
 
 # Aliases.
-alias wifi-menu="sudo wifi-menu -o"
 alias anakin="sudo pacman -Rns \$(pacman -Qtdq)"
 alias neofetch="clear; neofetch"
 alias refugees="pacman -Qm"
 alias fixwifi="sudo modprobe -r iwlmvm; sudo modprobe iwlmvm"
+alias yeah="yes"
 
 # pywal.
 . ~/.cache/wal/colors.sh

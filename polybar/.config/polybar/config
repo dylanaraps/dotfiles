@@ -3,7 +3,7 @@ background = ${xrdb:color0:#222}
 foreground = ${xrdb:color7:#222}
 
 height = 110
-width = 15%
+width = 18%
 offset-x = 5%
 offset-y = 100
 
@@ -28,15 +28,16 @@ wm-name = bar
 inherit = bar/bar
 modules-center = backlight volume wlan battery
 height = 110
-width = 25%
+width = 23%
 offset-x = 70%
 
 
 [module/date]
 type = internal/date
 interval = 60
-date = %a %d %b  - %l:%M %p
-label =   %date%
+date = %a %d %b
+time = %l:%M %p
+label =   %date%     %time%
 
 
 [module/backlight]
