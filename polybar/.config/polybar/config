@@ -1,6 +1,6 @@
 [bar/bar]
 background = ${xrdb:color0:#222}
-foreground = ${xrdb:color7:#222}
+foreground = ${xrdb:color15:#222}
 
 height = 110
 width = 18%
@@ -20,13 +20,13 @@ tray-position = none
 override-redirect = true
 
 padding = 10
-radius = 6.0
+radius = 8.0
 wm-name = bar
 
 
 [bar/bar2]
 inherit = bar/bar
-modules-center = backlight volume wlan battery
+modules-center = backlight volume wlan wlan2 battery
 height = 110
 width = 23%
 offset-x = 70%
@@ -62,10 +62,13 @@ ramp-capacity-4 = 
 
 [module/wlan]
 type = internal/network
-interface = wlp1s0
+interface = wlan0
 interval = 5
 label-connected = %essid%  
 
+[module/wlan2]
+inherit = module/wlan
+interface = wlp1s0
 
 [module/volume]
 type = internal/volume
