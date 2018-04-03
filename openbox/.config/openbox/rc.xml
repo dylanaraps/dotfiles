@@ -158,6 +158,11 @@
     <keybind key="W-m">
       <action name="ToggleFullscreen"/>
     </keybind>
+    <keybind key="W-v">
+      <action name="Execute">
+        <command>tog Polybar</command>
+      </action>
+    </keybind>
     <keybind key="W-q">
       <action name="Close"/>
     </keybind>
@@ -223,12 +228,12 @@
     </keybind>
     <keybind key="W-w">
       <action name="Execute">
-        <command>wal -i ~/Pictures/Wallpapers -o wal-set</command>
+        <command>wal -q --backend random -i ~/Pictures/Wallpapers -o wal-set</command>
       </action>
     </keybind>
     <keybind key="W-e">
       <action name="Execute">
-        <command>wal -i ~/Pictures/Wallpapers -o wal-set -l</command>
+        <command>wal -q --backend random -i ~/Pictures/Wallpapers -o wal-set -l</command>
       </action>
     </keybind>
     <keybind key="W-Left">

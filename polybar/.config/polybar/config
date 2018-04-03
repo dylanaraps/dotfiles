@@ -1,6 +1,6 @@
 [bar/bar]
-background = ${xrdb:color0:#222}
-foreground = ${xrdb:color15:#222}
+background = ${xrdb:color15:#222}
+foreground = ${xrdb:color0:#222}
 
 height = 110
 width = 18%

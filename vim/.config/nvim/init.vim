@@ -22,7 +22,6 @@ call plug#begin('~/.config/nvim/plugged')
 
 
 Plug '~/projects/wal.vim'
-Plug 'DougBeney/pickachu'
 Plug 'junegunn/goyo.vim'
 Plug 'junegunn/limelight.vim'
 Plug 'junegunn/limelight.vim'

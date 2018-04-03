@@ -1,9 +1,10 @@
 # ~/.bashrc
-export PS1='\[\e[31m\]\u \[\e[90m\]\w \[\e[31m\]>\[\e[0m\] '
+export PS1='\[\e[39m\]\u \[\e[90m\]\w \[\e[39m\]>\[\e[0m\] '
 export QT_AUTO_SCREEN_SCALE_FACTOR=1
 export HISTCONTROL=ignoredups
 export HISTSIZE=1000000
 export PATH="${HOME}/.gem/ruby/2.5.0/bin:${PATH}"
+export PATH="$PATH:$HOME/go/bin"
 export PATH+=:~/.local/bin
 export PATH+=:~/bin
 

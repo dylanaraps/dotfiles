@@ -1,0 +1,5 @@
+{color1}
+{color1.strip}
+{color1.alpha.strip}
+{color1.octal}
+{color1.octal_strip}
