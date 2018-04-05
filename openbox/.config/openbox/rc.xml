@@ -441,4 +441,7 @@
       <decor>no</decor>
     </application>
   </applications>
+  <applications>
+      <application class="Chromium"> <decor>no</decor> </application>
+  </applications>
 </openbox_config>
