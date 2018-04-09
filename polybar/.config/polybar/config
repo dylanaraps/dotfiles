@@ -11,7 +11,7 @@ bottom = true
 fixed-center = true
 font-0 = Roboto:size=24;3
 font-1 = Font Awesome:size=30;5
-font-2 = NotoEmoji:size=100;
+font-2 = NotoEmoji:size=24;5
 
 modules-center = date
 module-margin = 2
@@ -29,7 +29,7 @@ inherit = bar/bar
 modules-center = backlight volume wlan wlan2 battery
 height = 110
 width = 23%
-offset-x = 70%
+offset-x = 73%
 
 
 [module/date]

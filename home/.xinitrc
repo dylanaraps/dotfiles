@@ -18,7 +18,6 @@ xmodmap -e 'keycode 70 = 0x0000'
 xrdb ~/.Xresources
 wal -R -o wal-set -l
 compton &
-polybar bar &
 polybar bar2 &
 xrandr --dpi 192
 

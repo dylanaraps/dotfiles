@@ -1,5 +1,9 @@
 # ~/.bashrc
-export PS1='\[\e[39m\]\u \[\e[90m\]\w \[\e[39m\]>\[\e[0m\] '
+
+# Prompt
+export PROMPT_COMMAND='printf "\\e[38;5;8m%$((COLUMNS - 5))s%(%l:%M)T\\e[0m\\r"'
+export PS1='\[\e[8m\]✝\[\e[0m\] '
+
 export QT_AUTO_SCREEN_SCALE_FACTOR=1
 export HISTCONTROL=ignoredups
 export HISTSIZE=1000000
@@ -7,6 +11,8 @@ export PATH="${HOME}/.gem/ruby/2.5.0/bin:${PATH}"
 export PATH="$PATH:$HOME/go/bin"
 export PATH+=:~/.local/bin
 export PATH+=:~/bin
+export EDITOR="nvim"
+export EXA_COLORS="*.*=37"
 
 # Shell settings.
 shopt -s checkwinsize
@@ -25,12 +31,18 @@ bind 'set completion-query-items 0'
 bind '"\e[A": history-search-backward'
 bind '"\e[B": history-search-forward'
 
+# Functions.
+. ~/bin/lcd
+
 # Aliases.
 alias anakin="sudo pacman -Rns \$(pacman -Qtdq)"
 alias neofetch="clear; neofetch"
 alias refugees="pacman -Qm"
 alias fixwifi="sudo modprobe -r iwlmvm; sudo modprobe iwlmvm"
 alias yeah="yes"
+alias gj="git add .; git commit -m .; git push"
+alias ls="exa -x --group-directories-first -a"
+alias cd="lcd"
 
 # pywal.
 . ~/.cache/wal/colors.sh

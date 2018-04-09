@@ -228,12 +228,12 @@
     </keybind>
     <keybind key="W-w">
       <action name="Execute">
-        <command>wal -q --backend random -i ~/Pictures/Wallpapers -o wal-set</command>
+        <command>wal -q --backend colorz -i ~/Pictures/Wallpapers -o wal-set</command>
       </action>
     </keybind>
     <keybind key="W-e">
       <action name="Execute">
-        <command>wal -q --backend random -i ~/Pictures/Wallpapers -o wal-set -l</command>
+        <command>wal -q --backend colorz -i ~/Pictures/Wallpapers -o wal-set -l</command>
       </action>
     </keybind>
     <keybind key="W-Left">
