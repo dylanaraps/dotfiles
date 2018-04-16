@@ -5,7 +5,7 @@ foreground = ${xrdb:color0:#222}
 height = 110
 width = 18%
 offset-x = 5%
-offset-y = 100
+offset-y = 50
 
 bottom = true
 fixed-center = true
@@ -29,7 +29,7 @@ inherit = bar/bar
 modules-center = backlight volume wlan wlan2 battery
 height = 110
 width = 23%
-offset-x = 73%
+offset-x = 39.5%
 
 
 [module/date]

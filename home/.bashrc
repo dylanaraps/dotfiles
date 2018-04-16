@@ -45,7 +45,6 @@ alias ls="exa -x --group-directories-first -a"
 alias cd="lcd"
 
 # pywal.
-. ~/.cache/wal/colors.sh
 (cat ~/.cache/wal/sequences &)
 
 # Start x on login.

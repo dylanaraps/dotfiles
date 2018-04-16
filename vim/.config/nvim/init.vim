@@ -24,7 +24,6 @@ call plug#begin('~/.config/nvim/plugged')
 Plug '~/projects/wal.vim'
 Plug 'junegunn/goyo.vim'
 Plug 'junegunn/limelight.vim'
-Plug 'junegunn/limelight.vim'
 Plug 'vim-python/python-syntax'
 
 Plug 'w0rp/ale'
@@ -164,6 +163,11 @@ augroup General
 
     " Always enable Goyo.
     autocmd BufReadPost * Goyo 80x80%
+    autocmd BufReadPost neofetch Goyo 100x80%
+    autocmd BufReadPost *
+        \  if &readonly
+        \|  Limelight
+        \| endif
 
 	" Equalize splits on resize, mainly used with Goyo to fix it's padding on resize.
 	autocmd VimResized * execute "normal \<C-W>="
