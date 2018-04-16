@@ -4,19 +4,13 @@
 export PROMPT_COMMAND='printf "\\e[38;5;8m%$((COLUMNS - 5))s%(%l:%M)T\\e[0m\\r"'
 export PS1='\[\e[8m\]✝\[\e[0m\] '
 
+# Envars
 export QT_AUTO_SCREEN_SCALE_FACTOR=1
 export HISTCONTROL=ignoredups
 export HISTSIZE=1000000
-export PATH="${HOME}/.gem/ruby/2.5.0/bin:${PATH}"
-export PATH="$PATH:$HOME/go/bin"
-export PATH+=:~/.local/bin
-export PATH+=:~/bin
+export PATH+=:~/.gem/ruby/2.5.0/bin:~/go/bin:~/.local/bin:~/bin
 export EDITOR="nvim"
 export EXA_COLORS="*.*=37"
-
-# Shell settings.
-shopt -s checkwinsize
-complete -d cd
 
 # Better TAB completion.
 bind 'TAB: menu-complete'
@@ -33,6 +27,7 @@ bind '"\e[B": history-search-forward'
 
 # Functions.
 . ~/bin/lcd
+(cat ~/.cache/wal/sequences &)
 
 # Aliases.
 alias anakin="sudo pacman -Rns \$(pacman -Qtdq)"
@@ -44,9 +39,6 @@ alias gj="git add .; git commit -m .; git push"
 alias ls="exa -x --group-directories-first -a"
 alias cd="lcd"
 
-# pywal.
-(cat ~/.cache/wal/sequences &)
-
 # Start x on login.
-[[ -z $DISPLAY && $XDG_VTNR -eq 1 ]] && \
+[[ -z "$DISPLAY" && "$XDG_VTNR" -eq 1 ]] && \
     exec startx -- -keeptty > ~/.xorg.log 2>&1
