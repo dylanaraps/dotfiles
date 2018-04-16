@@ -4,6 +4,7 @@ URxvt.internalBorder: 75
 URxvt.geometry: 55x15
 URxvt.scrollBar: false
 URxvt*buffered: false
+URxvt*saveLines: 0
 
 ! DPI/Font
 Xft.dpi: 192
@@ -27,8 +28,5 @@ rofi.width: 20
 rofi.bw: 0
 
 ! Enables copy/paste with Ctrl-Shift-C/V
-URxvt.iso14755: false
-URxvt.iso14755_52: false
-URxvt.perl-ext-common: default,clipboard
-URxvt.keysym.Shift-Control-C: perl:clipboard:copy
-URxvt.keysym.Shift-Control-V: perl:clipboard:paste
+URxvt.keysym.Shift-Control-V: eval:paste_clipboard
+URxvt.keysym.Shift-Control-C: eval:selection_to_clipboard

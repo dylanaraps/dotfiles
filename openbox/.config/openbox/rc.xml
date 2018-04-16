@@ -13,7 +13,7 @@
     <raiseOnFocus>no</raiseOnFocus>
   </focus>
   <placement>
-    <policy>UnderMouse</policy>
+    <policy>Smart</policy>
     <center>yes</center>
     <monitor>Mouse</monitor>
     <primaryMonitor>1</primaryMonitor>
@@ -444,4 +444,10 @@
   <applications>
       <application class="Chromium"> <decor>no</decor> </application>
   </applications>
+  <application class="*" type="normal">
+      <position force="yes">
+          <x>center</x>
+          <y>center</y>
+      </position>
+  </application>
 </openbox_config>

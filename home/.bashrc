@@ -1,4 +1,5 @@
 # ~/.bashrc
+# printf '\e]710;%s\007' "9x15bold,xft:Kochi Gothic"
 
 # Prompt
 PROMPT_COMMAND='printf "\\e[38;5;8m%$((COLUMNS - 5))s%(%l:%M)T\\e[0m\\r"'

@@ -33,8 +33,7 @@ Plug 'w0rp/ale'
     let g:ale_linters_sh_shellcheck_exclusions = 'SC1090,SC2155'
     let g:ale_echo_msg_error_str = 'E'
     let g:ale_echo_msg_warning_str = 'W'
-    let g:ale_echo_msg_format = '[%linter%] %s [%severity%]'
-    nmap <silent> <Leader-e> <Plug>(ale_next_wrap)
+    nmap <silent> e <Plug>(ale_next_wrap)
 
 Plug 'kana/vim-textobj-user'
 Plug 'kana/vim-textobj-line'
