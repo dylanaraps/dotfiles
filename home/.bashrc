@@ -1,8 +1,8 @@
 # ~/.bashrc
 
 # Prompt
-export PROMPT_COMMAND='printf "\\e[38;5;8m%$((COLUMNS - 5))s%(%l:%M)T\\e[0m\\r"'
-export PS1='\[\e[8m\]✝\[\e[0m\] '
+PROMPT_COMMAND='printf "\\e[38;5;8m%$((COLUMNS - 5))s%(%l:%M)T\\e[0m\\r"'
+PS1='\[\e[8m\]✝\[\e[0m\] '
 
 # Envars
 export QT_AUTO_SCREEN_SCALE_FACTOR=1
