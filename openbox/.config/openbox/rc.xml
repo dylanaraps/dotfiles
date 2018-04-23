@@ -179,7 +179,7 @@
     <!-- Keybindings for running applications -->
     <keybind key="W-Return">
       <action name="Execute">
-        <command>urxvtc</command>
+        <command>st</command>
       </action>
     </keybind>
     <keybind key="W-d">
@@ -434,20 +434,19 @@
     </context>
   </mouse>
   <applications>
-    <application class="mpv">
-      <decor>no</decor>
-    </application>
-    <application title="qiv*">
-      <decor>no</decor>
-    </application>
-  </applications>
-  <applications>
+      <application class="mpv">
+          <decor>no</decor>
+      </application>
+      <application title="qiv*">
+          <decor>no</decor>
+      </application>
       <application class="Chromium"> <decor>no</decor> </application>
+      <application class="Nightly"> <decor>no</decor> </application>
+      <application class="*" type="normal">
+          <position force="yes">
+              <x>center</x>
+              <y>center</y>
+          </position>
+      </application>
   </applications>
-  <application class="*" type="normal">
-      <position force="yes">
-          <x>center</x>
-          <y>center</y>
-      </position>
-  </application>
 </openbox_config>

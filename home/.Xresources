@@ -1,12 +1,3 @@
-! Dylans Xresources
-URxvt.font: xft:Roboto Mono:size=12
-URxvt.internalBorder: 75
-URxvt.geometry: 55x15
-URxvt.scrollBar: false
-URxvt*buffered: false
-URxvt*saveLines: 0
-
-! DPI/Font
 Xft.dpi: 192
 Xft.autohint: 0
 Xft.antialias: 1
@@ -14,19 +5,3 @@ Xft.hinting: true
 Xft.hintstyle: hintslight
 Xft.rgba: rgb
 Xft.lcdfilter: lcddefault
-
-! Rofi
-rofi.font: Roboto 25
-rofi.separator-style: none
-rofi.scrollbar-width: 0
-rofi.location: 1
-rofi.yoffset: 120
-rofi.xoffset: 120
-rofi.padding: 40
-rofi.lines: 5
-rofi.width: 20
-rofi.bw: 0
-
-! Enables copy/paste with Ctrl-Shift-C/V
-URxvt.keysym.Shift-Control-V: eval:paste_clipboard
-URxvt.keysym.Shift-Control-C: eval:selection_to_clipboard

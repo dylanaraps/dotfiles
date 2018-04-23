@@ -2,8 +2,7 @@
 # printf '\e]710;%s\007' "9x15bold,xft:Kochi Gothic"
 
 # Prompt
-PROMPT_COMMAND='printf "\\e[38;5;8m%$((COLUMNS - 5))s%(%l:%M)T\\e[0m\\r"'
-PS1='\[\e[8m\]✝\[\e[0m\] '
+PS1='\[\e[1m\]✝\[\e[0m\] '
 
 # Envars
 export QT_AUTO_SCREEN_SCALE_FACTOR=1
@@ -36,7 +35,7 @@ alias neofetch="clear; neofetch"
 alias refugees="pacman -Qm"
 alias fixwifi="sudo modprobe -r iwlmvm; sudo modprobe iwlmvm"
 alias yeah="yes"
-alias gj="git add .; git commit -m .; git push"
+alias gj="git add .; git commit -m 'docs: update'; git push"
 alias ls="exa -x --group-directories-first -a"
 alias cd="lcd"
 
