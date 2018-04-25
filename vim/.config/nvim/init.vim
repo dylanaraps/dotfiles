@@ -33,6 +33,7 @@ Plug 'w0rp/ale'
     let g:ale_linters_sh_shellcheck_exclusions = 'SC1090,SC2155'
     let g:ale_echo_msg_error_str = 'E'
     let g:ale_echo_msg_warning_str = 'W'
+    let g:ale_linters = {'rust': ['rls']}
     nmap <silent> e <Plug>(ale_next_wrap)
 
 Plug 'kana/vim-textobj-user'
@@ -69,11 +70,7 @@ Plug 'zchee/deoplete-jedi'
 
 Plug 'autozimu/deoplete-omnisharp'
 Plug 'tpope/vim-dispatch'
-Plug 'OmniSharp/omnisharp-vim', { 'do': 'cd server && xbuild' }
-    set noshowmatch
-    set hidden
-    set cmdheight=2
-    set updatetime=500
+Plug 'rust-lang/rust.vim'
 
 call plug#end()
 filetype plugin on

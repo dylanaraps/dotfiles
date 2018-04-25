@@ -179,7 +179,7 @@
     <!-- Keybindings for running applications -->
     <keybind key="W-Return">
       <action name="Execute">
-        <command>st</command>
+        <command>urxvtc</command>
       </action>
     </keybind>
     <keybind key="W-d">
