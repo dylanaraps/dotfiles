@@ -3,21 +3,21 @@ background = ${xrdb:color0:#222}
 foreground = ${xrdb:color15:#222}
 
 height = 110
-width = 40%
-offset-x = 30%
-offset-y = 75
+width = 100%
+offset-x = 0%
+offset-y = 0
 
 bottom = true
 fixed-center = true
-font-0 = Roboto:size=24;3
-font-1 = Font Awesome:size=30;5
+font-0 = Roboto:size=30;3
+font-1 = Font Awesome:size=33;5
 
 modules-left = date
 modules-right = backlight volume wlan wlan2 battery
 module-margin = 2
 
 tray-position = none
-override-redirect = true
+override-redirect = false
 
 padding = 10
 radius = 8.0

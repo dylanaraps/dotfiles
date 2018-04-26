@@ -60,7 +60,4 @@ bindsym $mod+b exec "tog Polybar"
 bindsym $mod+w exec "wal --backend colorz -i ~/Pictures/Wallpapers/ -o wal-set"
 bindsym $mod+p exec "scr"
 
-for_window [class="^.*"] border normal 0
-for_window [class="^.*"] title_format "<span font='Roboto Mono 12'> </span>"
-for_window [class="[.]*"] floating enable
-for_window [class="^Chromium$"] fullscreen
+for_window [class="^.*"] border pixel 0
