@@ -1,19 +1,19 @@
 [bar/bar]
-background = ${xrdb:color15:#222}
-foreground = ${xrdb:color0:#222}
+background = ${xrdb:color0:#222}
+foreground = ${xrdb:color15:#222}
 
 height = 110
-width = 18%
-offset-x = 5%
-offset-y = 50
+width = 40%
+offset-x = 30%
+offset-y = 75
 
 bottom = true
 fixed-center = true
 font-0 = Roboto:size=24;3
 font-1 = Font Awesome:size=30;5
-font-2 = NotoEmoji:size=24;5
 
-modules-center = date
+modules-left = date
+modules-right = backlight volume wlan wlan2 battery
 module-margin = 2
 
 tray-position = none
@@ -22,14 +22,6 @@ override-redirect = true
 padding = 10
 radius = 8.0
 wm-name = bar
-
-
-[bar/bar2]
-inherit = bar/bar
-modules-center = backlight volume wlan wlan2 battery
-height = 110
-width = 23%
-offset-x = 39.5%
 
 
 [module/date]
@@ -41,7 +33,8 @@ label =   %date%     %time%
 
 
 [module/backlight]
-type = internal/xbacklight
+type = internal/backlight
+card = intel_backlight
 label = %percentage%%  
 
 

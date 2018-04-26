@@ -1,0 +1,66 @@
+# Dylan's i3 config file (v4)
+set $mod Mod4
+floating_modifier $mod
+font pango:Roboto Mono 25
+
+set_from_resource $fg i3wm.color0 #f0f0f0
+set_from_resource $bg i3wm.color1 #f0f0f0
+
+# class                 border  backgr. text indicator child_border
+client.focused          $bg      $bg    $fg  $bg   $bg
+client.focused_inactive $bg2     $bg2   $fg  $bg   $bg
+client.unfocused        $bg2     $bg2   $fg  $bg   $bg
+client.urgent           $bg      $bg    $fg  $bg   $bg
+client.placeholder      $bg2     $bg2   $fg  $bg   $bg
+client.background       $bg
+
+bindsym $mod+Return exec urxvtc
+bindsym $mod+q kill
+bindsym $mod+d exec "rofi -show run"
+bindsym $mod+g split h
+bindsym $mod+v split v
+bindsym $mod+f fullscreen toggle
+bindsym $mod+s floating toggle
+bindsym $mod+space focus mode_toggle
+
+# switch to workspace
+bindsym $mod+1 workspace 1
+bindsym $mod+2 workspace 2
+bindsym $mod+3 workspace 3
+bindsym $mod+4 workspace 4
+bindsym $mod+5 workspace 5
+bindsym $mod+6 workspace 6
+bindsym $mod+7 workspace 7
+bindsym $mod+8 workspace 8
+bindsym $mod+9 workspace 9
+bindsym $mod+0 workspace 10
+
+# move focused container to workspace
+bindsym $mod+Shift+1 move container to workspace 1
+bindsym $mod+Shift+2 move container to workspace 2
+bindsym $mod+Shift+3 move container to workspace 3
+bindsym $mod+Shift+4 move container to workspace 4
+bindsym $mod+Shift+5 move container to workspace 5
+bindsym $mod+Shift+6 move container to workspace 6
+bindsym $mod+Shift+7 move container to workspace 7
+bindsym $mod+Shift+8 move container to workspace 8
+bindsym $mod+Shift+9 move container to workspace 9
+bindsym $mod+Shift+0 move container to workspace 10
+
+bindsym $mod+Shift+c reload
+bindsym $mod+Shift+r restart
+bindsym $mod+c move position center
+bindsym Alt+Tab focus right
+
+bindsym XF86AudioRaiseVolume exec --no-startup-id "vol 5%+ &"
+bindsym XF86AudioLowerVolume exec --no-startup-id "vol 5%- &"
+bindsym XF86AudioMute        exec --no-startup-id "vol toggle &"
+
+bindsym $mod+b exec "tog Polybar"
+bindsym $mod+w exec "wal --backend colorz -i ~/Pictures/Wallpapers/ -o wal-set"
+bindsym $mod+p exec "scr"
+
+for_window [class="^.*"] border normal 0
+for_window [class="^.*"] title_format "<span font='Roboto Mono 12'> </span>"
+for_window [class="[.]*"] floating enable
+for_window [class="^Chromium$"] fullscreen
