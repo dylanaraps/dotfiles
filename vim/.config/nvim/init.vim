@@ -139,6 +139,8 @@ nmap az za
 nnoremap <Tab> :bn<CR>
 nnoremap <S-Tab> :bp<CR>
 
+" Easy escape from terminal mode.
+" tnoremap <Esc> <C-\><C-n>
 
 
 " }}}
@@ -159,11 +161,9 @@ augroup General
 
     " Always enable Goyo.
     autocmd BufReadPost * Goyo 80x80%
+    " autocmd TermOpen * Goyo 80x80% | startinsert | call feedkeys("printf '\\e[2J\\e[H'\<CR>")
     autocmd BufReadPost neofetch Goyo 100x80%
-    autocmd BufReadPost *
-        \  if &readonly
-        \|  Limelight
-        \| endif
+    " autocmd BufReadPost Limelight
 
 	" Equalize splits on resize, mainly used with Goyo to fix it's padding on resize.
 	autocmd VimResized * execute "normal \<C-W>="

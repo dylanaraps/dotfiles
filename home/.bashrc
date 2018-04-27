@@ -42,3 +42,7 @@ alias cd="lcd"
 # Start x on login.
 [[ -z "$DISPLAY" && "$XDG_VTNR" -eq 1 ]] && \
     exec startx -- -keeptty > ~/.xorg.log 2>&1
+
+# Tmux
+[[ -z "$TMUX"  ]] && exec tmux
+
