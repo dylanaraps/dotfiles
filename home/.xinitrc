@@ -18,4 +18,4 @@ xrdb ~/.Xresources
 wal -R -o wal-set -l
 xrandr --dpi 192
 
-exec dbus-launch i3
+exec dbus-launch "${1:-i3}"
