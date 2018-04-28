@@ -2,16 +2,17 @@
 set $mod Mod4
 floating_modifier $mod
 font pango:Roboto Mono 25
+for_window [class=".*"] title_format "<span font='Roboto Mono 0'></span>"
 
 set_from_resource $fg i3wm.color0 #f0f0f0
 set_from_resource $bg i3wm.color1 #f0f0f0
 
 # class                 border  backgr. text indicator child_border
-client.focused          $bg      $bg    $fg  $bg   $bg
-client.focused_inactive $bg2     $bg2   $fg  $bg   $bg
-client.unfocused        $bg2     $bg2   $fg  $bg   $bg
-client.urgent           $bg      $bg    $fg  $bg   $bg
-client.placeholder      $bg2     $bg2   $fg  $bg   $bg
+client.focused          $bg      $bg    $bg  $bg   $bg
+client.focused_inactive $bg2     $bg2   $bg  $bg   $bg
+client.unfocused        $bg2     $bg2   $bg  $bg   $bg
+client.urgent           $bg      $bg    $bg  $bg   $bg
+client.placeholder      $bg2     $bg2   $bg  $bg   $bg
 client.background       $bg
 
 bindsym $mod+Return exec "st"
@@ -20,8 +21,10 @@ bindsym $mod+d exec "rofi -show run -fullscreen"
 bindsym $mod+g split h
 bindsym $mod+v split v
 bindsym $mod+f fullscreen toggle
-bindsym $mod+s floating toggle
 bindsym $mod+space focus mode_toggle
+
+# Titlebars on floating windows.
+bindsym $mod+s "mark --add _; [con_mark=f] floating disable, border none, mark --add --toggle _; [con_mark=_] floating enable, border normal 0; mark --add --toggle f;"
 
 # switch to workspace
 bindsym $mod+1 workspace 1
