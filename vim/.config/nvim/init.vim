@@ -1,7 +1,6 @@
 " Dylan\'s init.vim
 set encoding=utf-8
 scriptencoding utf-8
-let g:mapleader = "\<Space>"
 
 
 " Plugins {{{
@@ -20,18 +19,16 @@ endif
 
 call plug#begin('~/.config/nvim/plugged')
 
-
 Plug '~/projects/wal.vim'
 Plug 'junegunn/goyo.vim'
 Plug 'junegunn/limelight.vim'
 Plug 'vim-python/python-syntax'
-Plug 'reedes/vim-wordy'
 
+Plug 'reedes/vim-wordy'
 Plug 'reedes/vim-pencil'
-    let g:lexical#thesaurus = ['~/wordstxt',]
-    augroup pencil
+    augroup writing
       autocmd!
-      autocmd FileType markdown,mkd,text call pencil#init()
+      autocmd FileType markdown,mkd call pencil#init()
     augroup END
 
 Plug 'w0rp/ale'
@@ -54,13 +51,8 @@ Plug 'rstacruz/vim-closer'
 Plug 'tpope/vim-repeat'
 Plug 'tpope/vim-commentary'
 Plug 'tpope/vim-surround'
-	" Maps ss to surround word
 	nmap ss ysiw
-
-	" Maps sl to surround line
 	nmap sl yss
-
-	" Surround Visual selection
 	vmap s S
 
 Plug 'machakann/vim-highlightedyank'
@@ -75,10 +67,6 @@ Plug 'zchee/deoplete-jedi'
     " Map <Tab> to control completion menu.
     inoremap <expr> <Tab> pumvisible() ? "\<C-n>" : "\<Tab>"
     inoremap <expr> <S-Tab> pumvisible() ? "\<C-p>" : "\<S-Tab>"
-
-Plug 'autozimu/deoplete-omnisharp'
-Plug 'tpope/vim-dispatch'
-Plug 'rust-lang/rust.vim'
 
 call plug#end()
 filetype plugin on
