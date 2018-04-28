@@ -46,7 +46,7 @@ Plug 'w0rp/ale'
     let g:ale_linters_sh_shellcheck_exclusions = 'SC1090,SC2155'
     let g:ale_echo_msg_error_str = 'E'
     let g:ale_echo_msg_warning_str = 'W'
-    let g:ale_linters = {'rust': ['rls']}
+    let g:ale_linters = {'python': ['pyls', 'flake8', 'pylint']}
     nmap <silent> e <Plug>(ale_next_wrap)
 
 Plug 'kana/vim-textobj-user'
@@ -66,10 +66,11 @@ Plug 'tpope/vim-surround'
 Plug 'machakann/vim-highlightedyank'
     let g:highlightedyank_highlight_duration = 100
 
+Plug 'zchee/deoplete-jedi'
+Plug 'wellle/tmux-complete.vim'
 Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
 Plug 'Shougo/neco-syntax'
 Plug 'Shougo/neco-vim'
-Plug 'zchee/deoplete-jedi'
     let g:deoplete#enable_at_startup = 1
 
     " Map <Tab> to control completion menu.
