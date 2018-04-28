@@ -26,6 +26,13 @@ Plug 'junegunn/goyo.vim'
 Plug 'junegunn/limelight.vim'
 Plug 'vim-python/python-syntax'
 
+Plug 'reedes/vim-pencil'
+    augroup pencil
+      autocmd!
+      autocmd FileType markdown,mkd call pencil#init()
+      autocmd FileType text         call pencil#init()
+    augroup END
+
 Plug 'w0rp/ale'
     let g:ale_lint_on_save = 1
     let g:ale_lint_on_text_changed = 0

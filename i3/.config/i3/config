@@ -1,4 +1,4 @@
-# Dylan's i3 config file (v4)
+# Dylan's i3 config file
 set $mod Mod4
 floating_modifier $mod
 font pango:Roboto Mono 25
@@ -16,6 +16,7 @@ client.placeholder      $bg2     $bg2   $bg  $bg   $bg
 client.background       $bg
 
 bindsym $mod+Return exec "st"
+
 bindsym $mod+q kill
 bindsym $mod+d exec "rofi -show run -fullscreen"
 bindsym $mod+g split h

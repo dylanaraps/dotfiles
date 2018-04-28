@@ -1,6 +1,3 @@
-# ~/.bashrc
-# printf '\e]710;%s\007' "9x15bold,xft:Kochi Gothic"
-
 # Prompt
 PS1='\[\e[1m\]✝\[\e[0m\] '
 
