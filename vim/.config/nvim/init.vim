@@ -2,9 +2,7 @@
 set encoding=utf-8
 scriptencoding utf-8
 
-
 " Plugins {{{
-
 
 " Auto install plug if not found
 if empty(glob('~/.config/nvim/autoload/plug.vim'))
@@ -20,9 +18,19 @@ endif
 call plug#begin('~/.config/nvim/plugged')
 
 Plug '~/projects/wal.vim'
+Plug 'vim-python/python-syntax'
+
 Plug 'junegunn/goyo.vim'
 Plug 'junegunn/limelight.vim'
-Plug 'vim-python/python-syntax'
+    augroup goyo
+        autocmd!
+        " Always enable Goyo.
+        autocmd BufReadPost * Goyo 80x80%
+        autocmd BufReadPost neofetch Goyo 100x80%
+
+        " Equalize splits on resize.
+        autocmd VimResized * execute "normal \<C-W>="
+    augroup END
 
 Plug 'reedes/vim-wordy'
 Plug 'reedes/vim-pencil'
@@ -71,14 +79,10 @@ Plug 'zchee/deoplete-jedi'
 call plug#end()
 filetype plugin on
 
-
 " }}}
-
 
 " Look and feel {{{
 
-
-" Hide UI.
 set noshowmode
 set laststatus=0
 set shortmess=atI
@@ -90,12 +94,9 @@ colorscheme wal
 command Col80  match WarningMsg '\%>80v.\+'
 command Col100 match WarningMsg '\%>100v.\+'
 
-
 " }}}
 
-
 " Keybinds {{{
-
 
 noremap ; :
 
@@ -105,7 +106,7 @@ cnoreabbrev q qa
 " Copies what was just pasted.
 xnoremap p pgvy
 
-" Save files with root privliges.
+" Save files with root privileges.
 cmap w!! w !sudo tee % >/dev/null
 
 " Maps Tab to indent blocks of text in visual mode.
@@ -130,7 +131,6 @@ nnoremap L A
 " Makes it easier to open/close folds.
 nmap az za
 
-
 " Buffers with <TAB>.
 nnoremap <Tab> :bn<CR>
 nnoremap <S-Tab> :bp<CR>
@@ -138,12 +138,9 @@ nnoremap <S-Tab> :bp<CR>
 " Easy escape from terminal mode.
 " tnoremap <Esc> <C-\><C-n>
 
-
 " }}}
 
-
 " Auto Commands {{{
-
 
 augroup General
     au!
@@ -155,15 +152,6 @@ augroup General
     " Prevent saving files starting with ':' or ';'.
     autocmd BufWritePre [:;]* throw 'Forbidden file name: ' . expand('<afile>')
 
-    " Always enable Goyo.
-    autocmd BufReadPost * Goyo 80x80%
-    " autocmd TermOpen * Goyo 80x80% | startinsert | call feedkeys("printf '\\e[2J\\e[H'\<CR>")
-    autocmd BufReadPost neofetch Goyo 100x80%
-    " autocmd BufReadPost Limelight
-
-	" Equalize splits on resize, mainly used with Goyo to fix it's padding on resize.
-	autocmd VimResized * execute "normal \<C-W>="
-
 	" Remove Whitespace on save.
 	autocmd BufWritePre * :%s/\s\+$//e
 
@@ -171,12 +159,9 @@ augroup General
     autocmd FileType scss,css setlocal commentstring=/*%s*/ shiftwidth=2 softtabstop=2
 augroup END
 
-
 " }}}
 
-
 " Text {{{
-
 
 " Show invisible characters.
 set listchars=tab:▸\ ,trail:·,eol:¬,nbsp:_
@@ -193,35 +178,26 @@ set shiftwidth=4
 " On pressing tab, insert 4 spaces.
 set expandtab
 
-
 " }}}
 
-
 " Folding {{{
-
 
 set foldmethod=marker
 set foldlevel=99
 set foldlevelstart=0
 
-
 " }}}
 
-
 " Searching {{{
-
 
 set hlsearch
 set incsearch
 set ignorecase
 set smartcase
 
-
 " }}}
 
-
 " Temp Files {{{
-
 
 " Fuck swapfiles
 set noswapfile
@@ -241,12 +217,9 @@ set undofile
 set undolevels=500
 set undoreload=500
 
-
 " }}}
 
-
 " Misc {{{
-
 
 " Disable language support.
 " let g:loaded_python_provider = 1
@@ -261,6 +234,5 @@ set notimeout
 set nottimeout
 set nrformats-=octal
 set modeline
-
 
 " }}}
