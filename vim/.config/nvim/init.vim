@@ -25,12 +25,13 @@ Plug '~/projects/wal.vim'
 Plug 'junegunn/goyo.vim'
 Plug 'junegunn/limelight.vim'
 Plug 'vim-python/python-syntax'
+Plug 'reedes/vim-wordy'
 
 Plug 'reedes/vim-pencil'
+    let g:lexical#thesaurus = ['~/wordstxt',]
     augroup pencil
       autocmd!
-      autocmd FileType markdown,mkd call pencil#init()
-      autocmd FileType text         call pencil#init()
+      autocmd FileType markdown,mkd,text call pencil#init()
     augroup END
 
 Plug 'w0rp/ale'

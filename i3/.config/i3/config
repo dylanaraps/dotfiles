@@ -56,9 +56,12 @@ bindsym $mod+Shift+r restart
 bindsym $mod+c move position center
 bindsym Alt+Tab focus right
 
-bindsym XF86AudioRaiseVolume exec --no-startup-id "vol 5%+ &"
-bindsym XF86AudioLowerVolume exec --no-startup-id "vol 5%- &"
-bindsym XF86AudioMute        exec --no-startup-id "vol toggle &"
+bindsym XF86AudioRaiseVolume  exec "vol 5%+ &"
+bindsym XF86AudioLowerVolume  exec "vol 5%- &"
+bindsym XF86AudioMute         exec "vol toggle &"
+
+bindsym XF86MonBrightnessUp   exec "xbacklight -inc 5"
+bindsym XF86MonBrightnessDown exec "xbacklight -dec 5"
 
 bindsym $mod+b exec "tog Polybar"
 bindsym $mod+w exec "wal --backend colorz -i ~/Pictures/Wallpapers/ -o wal-set"
