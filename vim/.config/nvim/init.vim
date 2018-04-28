@@ -22,7 +22,7 @@ Plug 'vim-python/python-syntax'
 
 Plug 'junegunn/goyo.vim'
 Plug 'junegunn/limelight.vim'
-    augroup goyo
+    augroup Goyo
         autocmd!
         " Always enable Goyo.
         autocmd BufReadPost * Goyo 80x80%
@@ -34,7 +34,7 @@ Plug 'junegunn/limelight.vim'
 
 Plug 'reedes/vim-wordy'
 Plug 'reedes/vim-pencil'
-    augroup writing
+    augroup Writing
       autocmd!
       autocmd FileType markdown,mkd call pencil#init()
     augroup END
