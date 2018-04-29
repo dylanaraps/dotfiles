@@ -19,6 +19,7 @@ call plug#begin('~/.config/nvim/plugged')
 
 Plug '~/projects/wal.vim'
 Plug 'vim-python/python-syntax'
+Plug 'rhysd/vim-grammarous'
 
 Plug 'junegunn/goyo.vim'
 Plug 'junegunn/limelight.vim'
