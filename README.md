@@ -4,20 +4,18 @@ My dotfiles, now with an actual working installer!
 
 **Screenshots: [link](https://www.reddit.com/r/unixporn/search?q=author%3Adylan112&sort=new&restrict_sr=on&t=all)**
 
-![scrot](https://i.imgur.com/mtg2Io1.jpg)
+![scrot](https://i.imgur.com/0xflBsT.png)
 
 
 ## Setup
 
 - Application Launcher: `rofi`
 - Music Player: `spotify`
-- Notifications: `dunst`
 - Shell: `bash`
-- Terminal Emulator: `urxvt`
-- Text Editor: `neovim`
-- Video Player: `mpv`
+- Terminal Emulator: `st`
+- Text Editor: `nvim`
 - Web Browser: `chromium`
-- Window Manager: `openbox-patched`
+- Window Manager: `i3`
 
 
 ## Installation
