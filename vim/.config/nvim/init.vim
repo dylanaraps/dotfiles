@@ -26,6 +26,7 @@ Plug 'junegunn/limelight.vim'
         autocmd!
         " Always enable Goyo.
         autocmd BufReadPost * Goyo 80x80%
+        autocmd BufReadPost *.md Goyo 60x80%
         autocmd BufReadPost neofetch Goyo 100x80%
 
         " Equalize splits on resize.
@@ -33,7 +34,6 @@ Plug 'junegunn/limelight.vim'
     augroup END
 
 Plug 'reedes/vim-textobj-quote'
-Plug 'reedes/vim-wordy'
 Plug 'reedes/vim-pencil'
     function! Prose()
         call pencil#init()
