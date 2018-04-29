@@ -19,7 +19,6 @@ call plug#begin('~/.config/nvim/plugged')
 
 Plug '~/projects/wal.vim'
 Plug 'vim-python/python-syntax'
-Plug 'rhysd/vim-grammarous'
 
 Plug 'junegunn/goyo.vim'
 Plug 'junegunn/limelight.vim'
@@ -33,6 +32,7 @@ Plug 'junegunn/limelight.vim'
         autocmd VimResized * execute "normal \<C-W>="
     augroup END
 
+Plug 'reedes/vim-textobj-quote'
 Plug 'reedes/vim-wordy'
 Plug 'reedes/vim-pencil'
     augroup Writing
