@@ -35,9 +35,20 @@ Plug 'junegunn/limelight.vim'
 Plug 'reedes/vim-textobj-quote'
 Plug 'reedes/vim-wordy'
 Plug 'reedes/vim-pencil'
+    function! Prose()
+        call pencil#init()
+        call textobj#quote#init()
+
+        iabbrev <buffer> -- –
+        iabbrev <buffer> --- —
+        iabbrev <buffer> << «
+        iabbrev <buffer> >> »
+        iabbrev <buffer> ... …
+    endfunction
+
     augroup Writing
       autocmd!
-      autocmd FileType markdown,mkd call pencil#init()
+      autocmd FileType markdown,mkd,text call Prose()
     augroup END
 
 Plug 'w0rp/ale'
