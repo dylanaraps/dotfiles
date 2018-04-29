@@ -103,10 +103,6 @@ set cmdheight=2
 
 colorscheme wal
 
-" Highlight characters over 80 columns.
-command Col80  match WarningMsg '\%>80v.\+'
-command Col100 match WarningMsg '\%>100v.\+'
-
 " }}}
 
 " Keybinds {{{
