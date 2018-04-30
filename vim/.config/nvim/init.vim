@@ -18,7 +18,12 @@ endif
 call plug#begin('~/.config/nvim/plugged')
 
 Plug '~/projects/wal.vim'
-Plug 'vim-python/python-syntax'
+Plug '~/projects/root.vim'
+    let g:root#auto = 1
+    let g:root#echo = 0
+
+Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
+Plug 'junegunn/fzf.vim'
 
 Plug 'junegunn/goyo.vim'
 Plug 'junegunn/limelight.vim'
@@ -89,6 +94,8 @@ Plug 'Shougo/neco-vim'
     inoremap <expr> <Tab> pumvisible() ? "\<C-n>" : "\<Tab>"
     inoremap <expr> <S-Tab> pumvisible() ? "\<C-p>" : "\<S-Tab>"
 
+Plug 'vim-python/python-syntax'
+
 call plug#end()
 filetype plugin on
 
@@ -111,6 +118,9 @@ noremap ; :
 
 " Always exit all files.
 cnoreabbrev q qa
+
+" Run fzf on e.
+nnoremap e :FZF<CR>
 
 " Copies what was just pasted.
 xnoremap p pgvy

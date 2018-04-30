@@ -9,6 +9,7 @@ export PATH+=:~/.gem/ruby/2.5.0/bin:~/go/bin:~/.local/bin:~/bin:~/.npm-packages/
 export NODE_PATH="${HOME}/.npm-packages/lib/node_modules:${NODE_PATH}"
 export EDITOR="nvim"
 export EXA_COLORS="*.*=37"
+export FZF_DEFAULT_COMMAND='rg --files --no-ignore --hidden --follow --glob "!.git/*"'
 
 # Better TAB completion.
 bind 'TAB: menu-complete'
@@ -43,4 +44,3 @@ alias cd="lcd"
 
 # Tmux
 [[ -z "$TMUX"  ]] && exec tmux
-
