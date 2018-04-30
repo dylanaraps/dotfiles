@@ -18,7 +18,7 @@ client.background       $bg
 bindsym $mod+Return exec "st"
 
 bindsym $mod+q kill
-bindsym $mod+d exec "rofi -show run -fullscreen"
+bindsym $mod+d exec "rofi -show run"
 bindsym $mod+g split h
 bindsym $mod+v split v
 bindsym $mod+f fullscreen toggle

@@ -26,16 +26,13 @@ Xft.rgba: rgb
 Xft.lcdfilter: lcddefault
 
 ! Rofi
-rofi.font: Roboto 25
+rofi.font: Roboto 60
 rofi.separator-style: none
 rofi.scrollbar-width: 0
-rofi.location: 1
-rofi.yoffset: 120
-rofi.xoffset: 120
-rofi.padding: 40
-rofi.lines: 5
-rofi.width: 20
-rofi.bw: 0
+rofi.lines: 2
+rofi.padding: 400
+rofi.width: 100%
+rofi.bw: 400
 
 ! Enables copy/paste with Ctrl-Shift-C/V
 URxvt.keysym.Shift-Control-V: eval:paste_clipboard
