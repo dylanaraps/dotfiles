@@ -24,6 +24,9 @@ bind 'set completion-query-items 0'
 bind '"\e[A": history-search-backward'
 bind '"\e[B": history-search-forward'
 
+# FZF file finder
+bind '"": "fze\n"'
+
 # Functions.
 . ~/bin/lcd
 (cat ~/.cache/wal/sequences &)
@@ -37,9 +40,6 @@ alias yeah="yes"
 alias gj="git add .; git commit -m 'docs: update'; git push"
 alias ls="exa -x --group-directories-first -a"
 alias cd="lcd"
-
-# FZF
-bind '"": "fze\n"'
 
 # Start x on login.
 [[ -z "$DISPLAY" && "$XDG_VTNR" -eq 1 ]] && \
