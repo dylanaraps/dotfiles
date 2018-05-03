@@ -120,7 +120,7 @@ noremap ; :
 cnoreabbrev q qa
 
 " Run fzf on e.
-nnoremap e :FZF<CR>
+nnoremap <C-e> :FZF<CR>
 
 " Copies what was just pasted.
 xnoremap p pgvy

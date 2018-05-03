@@ -9,7 +9,7 @@ redshift -l "37.8136:144.9631" &
 
 xset s 60 60
 xset m 1/1
-xset r rate 200 30
+xset r rate 200 40
 setxkbmap -option caps:escape
 xmodmap -e 'keycode 70 = 0x0000'
 

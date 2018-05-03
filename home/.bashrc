@@ -5,11 +5,11 @@ PS1='\[\e[1m\]✝\[\e[0m\] '
 export QT_AUTO_SCREEN_SCALE_FACTOR=1
 export HISTCONTROL=ignoredups
 export HISTSIZE=1000000
-export PATH+=:~/.gem/ruby/2.5.0/bin:~/go/bin:~/.local/bin:~/bin:~/.npm-packages/bin
+export PATH+=:~/.gem/ruby/2.5.0/bin:~/go/bin:~/.local/bin:~/bin:~/.npm-packages/bin:~/.fzf/bin
 export NODE_PATH="${HOME}/.npm-packages/lib/node_modules:${NODE_PATH}"
 export EDITOR="nvim"
 export EXA_COLORS="*.*=37"
-export FZF_DEFAULT_COMMAND='rg --files --no-ignore --hidden --follow --glob "!.git/*"'
+export FZF_DEFAULT_COMMAND='rg --files'
 
 # Better TAB completion.
 bind 'TAB: menu-complete'
@@ -37,6 +37,9 @@ alias yeah="yes"
 alias gj="git add .; git commit -m 'docs: update'; git push"
 alias ls="exa -x --group-directories-first -a"
 alias cd="lcd"
+
+# FZF
+bind '"": "fze\n"'
 
 # Start x on login.
 [[ -z "$DISPLAY" && "$XDG_VTNR" -eq 1 ]] && \
