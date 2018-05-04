@@ -19,7 +19,7 @@ call plug#begin('~/.config/nvim/plugged')
 
 Plug '~/projects/wal.vim'
 Plug '~/projects/root.vim'
-    let g:root#auto = 1
+    let g:root#auto = 0
     let g:root#echo = 0
 
 Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
@@ -31,7 +31,7 @@ Plug 'junegunn/limelight.vim'
         autocmd!
         " Always enable Goyo.
         autocmd BufReadPost * Goyo 80x80%
-        autocmd BufReadPost *.md Goyo 60x80%
+        autocmd BufReadPost *.md Goyo 74x80%
         autocmd BufReadPost neofetch Goyo 100x80%
 
         " Equalize splits on resize.
@@ -85,6 +85,7 @@ Plug 'machakann/vim-highlightedyank'
 
 Plug 'zchee/deoplete-jedi'
 Plug 'wellle/tmux-complete.vim'
+Plug 'ujihisa/neco-look'
 Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
 Plug 'Shougo/neco-syntax'
 Plug 'Shougo/neco-vim'

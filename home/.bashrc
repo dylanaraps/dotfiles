@@ -6,9 +6,7 @@ export QT_AUTO_SCREEN_SCALE_FACTOR=1
 export HISTCONTROL=ignoredups
 export HISTSIZE=1000000
 export PATH+=:~/.gem/ruby/2.5.0/bin:~/go/bin:~/.local/bin:~/bin:~/.npm-packages/bin:~/.fzf/bin
-export NODE_PATH="${HOME}/.npm-packages/lib/node_modules:${NODE_PATH}"
 export EDITOR="nvim"
-export EXA_COLORS="*.*=37"
 export FZF_DEFAULT_COMMAND='rg --files --hidden'
 
 # Better TAB completion.
@@ -38,7 +36,6 @@ alias refugees="pacman -Qm"
 alias fixwifi="sudo modprobe -r iwlmvm; sudo modprobe iwlmvm"
 alias yeah="yes"
 alias gj="git add .; git commit -m 'docs: update'; git push"
-alias ls="exa -x --group-directories-first -a"
 alias cd="lcd"
 
 # Start x on login.
@@ -47,3 +44,5 @@ alias cd="lcd"
 
 # Tmux
 [[ -z "$TMUX"  ]] && exec tmux
+
+[ -f ~/.fzf.bash ] && source ~/.fzf.bash
