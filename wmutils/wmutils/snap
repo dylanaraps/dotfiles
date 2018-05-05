@@ -1,0 +1,17 @@
+#!/bin/bash
+#
+# Snap windows in positions.
+
+panel="${PANEL:-0}"
+gap="${GAP:-0}"
+cur="$(pfw)"
+bw="$(wattr b "$cur")"
+
+read -ra scr < <(wattr wh "$(lsw -r)")
+scr[1]="$((scr[1] - panel))"
+
+wtp "${1:+$((scr[0]/2 + gap))}" \
+    "$((gap + panel))" \
+    "$((scr[0]/2 - 2*bw - gap - gap/2))" \
+    "$((scr[1] - 2*BW - 2*gap))" \
+    "$cur"

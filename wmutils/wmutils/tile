@@ -2,8 +2,8 @@
 #
 # Tile windows.
 
-panel="0"
-gap="0"
+panel="${PANEL:-0}"
+gap="${GAP:-0}"
 
 cur=$(pfw)
 bw=$(wattr b "$cur")

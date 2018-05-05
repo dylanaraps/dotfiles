@@ -1,0 +1,14 @@
+#!/bin/bash
+#
+# Snap windows in center.
+
+curr="$(pfw)"
+root="$(lsw -r)"
+
+read -ra win < <(wattr wh "$curr")
+read -ra scr < <(wattr wh "$root")
+
+wtp "$(((scr[0] - win[0])/2))" \
+    "$(((scr[1] - win[1])/2))" \
+    "${win[@]}" \
+    "$curr"
