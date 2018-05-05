@@ -1,0 +1,20 @@
+#!/bin/bash
+#
+# Reset window to initial size.
+tmp_dir="/tmp/win"
+cur="$(pfw)"
+
+save_size() {
+    mkdir -p "$tmp_dir"
+    wattr wh "$cur" > "${tmp_dir}/win-${cur}"
+}
+
+initial() {
+    read -ra win < "${tmp_dir}/win-${cur}"
+    wrs "${win[@]}" "cur"
+}
+
+case "$1" in
+    save) save_size ;;
+    *)    initial ;;
+esac
