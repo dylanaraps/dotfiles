@@ -2,7 +2,7 @@
 #
 # Snap windows in center.
 
-curr="$(pfw)"
+curr="${1:-$(pfw)}"
 root="$(lsw -r)"
 
 read -ra win < <(wattr wh "$curr")

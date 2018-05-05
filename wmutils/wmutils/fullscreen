@@ -2,18 +2,18 @@
 #
 # Fullscreen window
 #
-# usage: fullscreen
+# usage: fullscreen <wid>
 
-cur="$(pfw)"
+cur="${1:-$(pfw)}"
 state_file="/tmp/.win-${cur}"
 
 if [[ -f "$state_file" ]]; then
     read -ra attr < "$state_file"
-    wtp "${attr[@]}"
+    wtp "${attr[@]}" "$cur"
     rm -f "$state_file"
 
 else
-    wattr xywhi "$cur" > "$state_file"
+    wattr xywh "$cur" > "$state_file"
     read -ra attr < <(wattr wh "$(lsw -r)")
     wtp 0 0 "${attr[@]}" "$cur"
 fi

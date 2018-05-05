@@ -1,11 +1,6 @@
 #!/bin/bash
 #
 # Workspaces
-#
-# usage: workspace [-i] [-g ws_num] [-m ws_num]
-# 	-i: Initialize workspaces. Should be called once in a startup script.
-# 	-g, <ws_num>: go to the workspace specified by <ws_num>
-# 	-m, <ws_num>: move the currently focused window to the worskpace specified by <ws_num>
 
 ws_tot=5
 ws_dir="/tmp/workspaces"
@@ -14,11 +9,11 @@ ws_init() {
     # Create the workspaces.
 	mkdir -p "$ws_dir"
 
-    for i in $(seq 0 "$ws_tot"); do
+    for ((i=0; i<=ws_tot; i++)); do
 		:> "${ws_dir}/ws${i}"
 	done
 
-	echo 0 > "${ws_dir}/curr"
+	echo "0" > "${ws_dir}/curr"
 }
 
 ws_save() {
@@ -47,10 +42,11 @@ move_cur_win() {
     (($1 > ws_tot || $1 < 0)) && return
 
 	curr_ws=$(< "${ws_dir}/curr");
+    curr="$(pfw)"
 
     [[ "$1" != "$curr_ws" ]] && {
-        pfw >> "${ws_dir}/ws${1}"
-        mapw -u "$(pfw)"
+        echo "$curr" >> "${ws_dir}/ws${1}"
+        mapw -u "$curr"
     }
 }
 
