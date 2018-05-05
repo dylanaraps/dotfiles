@@ -1,4 +1,5 @@
 #!/bin/sh
+
 #
 # .xinitrc
 
@@ -17,4 +18,8 @@ xrdb ~/.Xresources
 wal -R -o wal-set -l
 xrandr --dpi 192
 
-exec dbus-launch "${1:-i3}"
+# wmutils
+sxhkd &
+focus-watch &
+
+exec sh -c 'while :; do sleep 10; done'

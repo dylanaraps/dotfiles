@@ -1,0 +1,69 @@
+#!/bin/sh
+#
+# Workspaces
+#
+# usage: workspace
+
+ws_dir="/tmp/ws"
+gnumber="7"
+
+add_to_group() {
+    :> "${ws_dir}/${2}/${1}"
+}
+
+remove_from_group() {
+    [ "$2" = "all" ] && \
+        { rm -f "${ws_dir}/"*"/${1}" || rm -f "${ws_dir}/${2}/${1}"; }
+}
+
+find_group() {
+    test -n "$file" && basename $(dirname $file)
+    file=$(find "$ws_dir" -name "$1")
+}
+
+show_group() {
+    for file in "${ws_dir}/${1}/"*; do
+        mapw -m "${file##*/}"
+    done
+}
+
+hide_group() {
+    for file in "${ws_dir}/${1}/"*; do
+        mapw -u "${file##*/}"
+    done
+}
+
+# Hide all groups
+hide_group_all() {
+    for file in "$ws_dir"/*/*; do
+        mapw -u "${file##*/}"
+    done
+}
+
+check_groups_sanity() {
+    for gid in $(seq 1 $gnumber ); do
+        test -d "${ws_dir}/${gid}" || mkdir -p "${ws_dir}/${gid}"
+    done
+
+    for file in $(find "$ws_dir" -type f); do
+        wattr "${file##*/}" || rm -f "$file"
+    done
+}
+
+check_groups_sanity
+
+while getopts ":a:wd:ghm:u:U:" opt; do
+    case $opt in
+        a) add_to_group "$(pfw)" "$OPTARG" ;;
+        d) remove_from_group "$(pfw)" "$OPTARG" ;;
+        g) find_group "$(pfw)" ;;
+        m) show_group "$OPTARG" ;;
+        u) hide_group "$OPTARG" ;;
+        U) hide_group_all "$OPTARG" ;;
+        *) usage && exit 0;;
+    esac
+done
+
+# in case no argument is given, display the whole tree
+
+[ "$#" = 0 ] && tree --noreport "$ws_dir"

@@ -1,0 +1,18 @@
+#!/bin/sh
+#
+# Fullscreen window
+#
+# usage: fullscreen
+
+cur="$(pfw)"
+state_file="/tmp/.win-${cur}"
+
+if [ -f "$state_file" ]; then
+    read -r x y w h i < "$state_file"
+    wtp "$x" "$y" "$w" "$h" "$i"
+    rm -f "$state_file"
+
+else
+    wattr xywhi "$cur" > "$state_file"
+    wtp 0 0 3200 1800 "$cur"
+fi

@@ -96,6 +96,7 @@ Plug 'Shougo/neco-vim'
     inoremap <expr> <S-Tab> pumvisible() ? "\<C-p>" : "\<S-Tab>"
 
 Plug 'vim-python/python-syntax'
+Plug 'mzlogin/vim-markdown-toc'
 
 call plug#end()
 filetype plugin on
