@@ -5,8 +5,8 @@
 panel="${PANEL:-0}"
 gap="${GAP:-0}"
 
-cur=$(pfw)
-bw=$(wattr b "$cur")
+cur="$(pfw)"
+bw="$(wattr b "$cur")"
 
 read -ra scr < <(wattr wh "$(lsw -r)")
 master="$((scr[0] / 2))"

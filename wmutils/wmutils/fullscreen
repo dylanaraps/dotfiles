@@ -15,5 +15,6 @@ if [[ -f "$state_file" ]]; then
 else
     wattr xywh "$cur" > "$state_file"
     read -ra attr < <(wattr wh "$(lsw -r)")
+    chwb -s 0 "$cur"
     wtp 0 0 "${attr[@]}" "$cur"
 fi

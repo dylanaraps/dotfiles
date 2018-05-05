@@ -2,6 +2,10 @@
 #
 # Focus windows.
 
+source ~/.cache/wal/colors.sh
+color15="${color15:-#FFFFFF}"
+bw="${BW:-0}"
+
 get_wins() {
     readarray -t wins < <(lsw)
     cur="$(pfw)"
@@ -22,4 +26,5 @@ case "$1" in
     0x*) wattr "$1" && wid="$1" ;;
 esac
 
-[[ "$wid" ]] && wtf "$wid"
+chwb -s "$bw" -c "0x${color15/#}" "$wid"
+wtf "$wid"

@@ -5,7 +5,7 @@
 wew | while IFS=: read -r ev wid; do
     case "$ev" in
         16) wattr o "$wid" ;;
-        19) wattr o "$wid" || { focus "$wid"; center; }  ;;
+        19) wattr o "$wid" || { center; focus "$wid"; }  ;;
         18) wattr "$(pfw)" || focus "prev"  ;;
         7)  wattr o "$wid" || focus "$wid"  ;;
     esac
