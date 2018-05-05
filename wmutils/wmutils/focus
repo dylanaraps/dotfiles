@@ -1,0 +1,11 @@
+#!/bin/sh
+#
+# Focus windows.
+
+# get current window id
+
+case "$1" in
+    0x*) wattr "$1" && wid="$1" ;;
+esac
+
+[ "$wid" ] && wtf "$wid"

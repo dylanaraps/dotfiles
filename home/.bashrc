@@ -5,7 +5,7 @@ PS1='\[\e[1m\]✝\[\e[0m\] '
 export QT_AUTO_SCREEN_SCALE_FACTOR=1
 export HISTCONTROL=ignoredups
 export HISTSIZE=1000000
-export PATH+=:~/.gem/ruby/2.5.0/bin:~/go/bin:~/.local/bin:~/bin:~/.npm-packages/bin:~/.fzf/bin
+export PATH+=:~/.gem/ruby/2.5.0/bin:~/go/bin:~/.local/bin:~/bin:~/.npm-packages/bin:~/.fzf/bin:~/wmutils
 export EDITOR="nvim"
 export FZF_DEFAULT_COMMAND='rg --files --hidden'
 
