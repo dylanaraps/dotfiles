@@ -1,11 +1,34 @@
-#!/bin/sh
+#!/bin/bash
 #
 # Focus windows.
 
 # get current window id
 
 case "$1" in
-    0x*) wattr "$1" && wid="$1" ;;
+    next)
+        readarray -t wins < <(lsw)
+        cur="$(pfw)"
+
+        if [[ "${wins[0]}" == "$cur" ]]; then
+            wid="${wins[1]}"
+
+        else
+            wid="${wins[0]}"
+        fi
+    ;;
+
+    prev)
+        readarray -t wins < <(lsw)
+
+        if [[ "${wins[-1]}" == "$cur" ]]; then
+            wid="${wins[-2]}"
+
+        else
+            wid="${wins[-1]}"
+        fi
+    ;;
+
+    0x*)  wattr "$1" && wid="$1" ;;
 esac
 
-[ "$wid" ] && wtf "$wid"
+[[ "$wid" ]] && wtf "$wid"
