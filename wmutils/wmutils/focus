@@ -2,33 +2,24 @@
 #
 # Focus windows.
 
-# get current window id
+get_wins() {
+    readarray -t wins < <(lsw)
+    cur="$(pfw)"
+    read -ra wins <<< "${wins[@]/${cur}}"
+}
 
 case "$1" in
     next)
-        readarray -t wins < <(lsw)
-        cur="$(pfw)"
-
-        if [[ "${wins[0]}" == "$cur" ]]; then
-            wid="${wins[1]}"
-
-        else
-            wid="${wins[0]}"
-        fi
+        get_wins
+        wid="${wins[0]:-${wins[1]}}"
     ;;
 
     prev)
-        readarray -t wins < <(lsw)
-
-        if [[ "${wins[-1]}" == "$cur" ]]; then
-            wid="${wins[-2]}"
-
-        else
-            wid="${wins[-1]}"
-        fi
+        get_wins
+        wid="${wins[-1]:-${wins[-2]}}"
     ;;
 
-    0x*)  wattr "$1" && wid="$1" ;;
+    0x*) wattr "$1" && wid="$1" ;;
 esac
 
 [[ "$wid" ]] && wtf "$wid"

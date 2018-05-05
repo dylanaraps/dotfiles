@@ -1,4 +1,4 @@
-#!/bin/sh
+#!/bin/bash
 #
 # Fullscreen window
 #
@@ -7,12 +7,13 @@
 cur="$(pfw)"
 state_file="/tmp/.win-${cur}"
 
-if [ -f "$state_file" ]; then
-    read -r x y w h i < "$state_file"
-    wtp "$x" "$y" "$w" "$h" "$i"
+if [[ -f "$state_file" ]]; then
+    read -ra attr < "$state_file"
+    wtp "${attr[@]}"
     rm -f "$state_file"
 
 else
     wattr xywhi "$cur" > "$state_file"
-    wtp 0 0 3200 1800 "$cur"
+    read -ra attr < <(wattr wh "$(lsw -r)")
+    wtp 0 0 "${attr[@]}" "$cur"
 fi
