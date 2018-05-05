@@ -1,0 +1,31 @@
+#!/bin/bash
+#
+# Tile windows.
+
+panel="0"
+gap="0"
+
+cur=$(pfw)
+bw=$(wattr b "$cur")
+
+read -ra scr < <(wattr wh "$(lsw -r)")
+master="$((scr[0] / 2))"
+
+readarray -t wins < <(lsw)
+read -ra wins <<< "${wins[@]/${cur}}"
+max="${#wins[@]}"
+
+scr[0]="$((scr[0] - gap - 2*bw))"
+scr[1]="$((scr[1] - gap - panel))"
+y="$((0 + gap + panel))"
+
+wtp "$gap" "$y" "$((master - gap - 2*bw))" "$((scr[1] - gap - 2*bw))" "$cur"
+
+x="$((master + gap))"
+scr[0]="$((scr[0] - master - gap))"
+scr[1]="$((scr[1] / max - gap - 2*bw))"
+
+for wid in "${wins[@]}"; do
+    wtp "$x" "$y" "${scr[@]}" "$wid"
+    y="$((y + scr[1] + gap + 2*bw))"
+done
