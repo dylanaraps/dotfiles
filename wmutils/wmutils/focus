@@ -28,3 +28,4 @@ esac
 
 chwb -s "$bw" -c "0x${color15/#}" "$wid"
 wtf "$wid"
+chwso -r "$wid"

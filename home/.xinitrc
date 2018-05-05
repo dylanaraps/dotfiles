@@ -19,8 +19,9 @@ wal -R -o wal-set -l
 xrandr --dpi 192
 
 # wmutils
-sxhkd &
-focus-watch &
-workspace -i
+# sxhkd &
+# focus-watch &
+# workspace -i
 
-exec sh -c 'while :; do sleep 10; done'
+# exec sh -c 'while :; do sleep 10; done'
+exec i3
