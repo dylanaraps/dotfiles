@@ -10,8 +10,11 @@ save_size() {
 }
 
 initial() {
+    [[ ! -f "${tmp_dir}/win-${cur}" ]] && exit 1
+
     read -ra win < "${tmp_dir}/win-${cur}"
     wrs "${win[@]}" "cur"
+    echo "${win[@]}"
 }
 
 case "$1" in
