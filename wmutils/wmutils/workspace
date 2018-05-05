@@ -1,69 +1,64 @@
-#!/bin/sh
+#!/bin/bash
 #
 # Workspaces
 #
-# usage: workspace
+# usage: workspace [-i] [-g ws_num] [-m ws_num]
+# 	-i: Initialize workspaces. Should be called once in a startup script.
+# 	-g, <ws_num>: go to the workspace specified by <ws_num>
+# 	-m, <ws_num>: move the currently focused window to the worskpace specified by <ws_num>
 
-ws_dir="/tmp/ws"
-gnumber="7"
+ws_tot=5
+ws_dir="/tmp/workspaces"
 
-add_to_group() {
-    :> "${ws_dir}/${2}/${1}"
+ws_init() {
+    # Create the workspaces.
+	mkdir -p "$ws_dir"
+
+    for i in $(seq 0 "$ws_tot"); do
+		:> "${ws_dir}/ws${i}"
+	done
+
+	echo 0 > "${ws_dir}/curr"
 }
 
-remove_from_group() {
-    [ "$2" = "all" ] && \
-        { rm -f "${ws_dir}/"*"/${1}" || rm -f "${ws_dir}/${2}/${1}"; }
+ws_save() {
+    # Save all windows to the current workspace.
+	lsw > "${ws_dir}/ws$(< "${ws_dir}/curr")"
 }
 
-find_group() {
-    test -n "$file" && basename $(dirname $file)
-    file=$(find "$ws_dir" -name "$1")
+move_to_ws() {
+	ws_cur=$(< "${ws_dir}/curr");
+
+    (($1 > ws_tot || $1 < 0)) && return
+    (($1 == ws_cur)) && return
+
+	ws_save
+
+    readarray -t wins < <(lsw)
+    [[ "${wins[0]}" ]] && mapw -u "${wins[@]}"
+
+	nwins="$(< "${ws_dir}/ws${1}")"
+    [[ "$nwins" ]] && mapw -m "$nwins"
+
+	echo "$1" > "${ws_dir}/curr"
 }
 
-show_group() {
-    for file in "${ws_dir}/${1}/"*; do
-        mapw -m "${file##*/}"
-    done
+move_cur_win() {
+    (($1 > ws_tot || $1 < 0)) && return
+
+	curr_ws=$(< "${ws_dir}/curr");
+
+    [[ "$1" != "$curr_ws" ]] && {
+        pfw >> "${ws_dir}/ws${1}"
+        mapw -u "$(pfw)"
+    }
 }
 
-hide_group() {
-    for file in "${ws_dir}/${1}/"*; do
-        mapw -u "${file##*/}"
-    done
-}
-
-# Hide all groups
-hide_group_all() {
-    for file in "$ws_dir"/*/*; do
-        mapw -u "${file##*/}"
-    done
-}
-
-check_groups_sanity() {
-    for gid in $(seq 1 $gnumber ); do
-        test -d "${ws_dir}/${gid}" || mkdir -p "${ws_dir}/${gid}"
-    done
-
-    for file in $(find "$ws_dir" -type f); do
-        wattr "${file##*/}" || rm -f "$file"
-    done
-}
-
-check_groups_sanity
-
-while getopts ":a:wd:ghm:u:U:" opt; do
-    case $opt in
-        a) add_to_group "$(pfw)" "$OPTARG" ;;
-        d) remove_from_group "$(pfw)" "$OPTARG" ;;
-        g) find_group "$(pfw)" ;;
-        m) show_group "$OPTARG" ;;
-        u) hide_group "$OPTARG" ;;
-        U) hide_group_all "$OPTARG" ;;
-        *) usage && exit 0;;
-    esac
+while getopts ":m:g:npi" opt; do
+	case "$opt" in
+		g) move_to_ws "$OPTARG" ;;
+		m) move_cur_win "$OPTARG" ;;
+		i) ws_init ;;
+        *) exit ;;
+	esac
 done
-
-# in case no argument is given, display the whole tree
-
-[ "$#" = 0 ] && tree --noreport "$ws_dir"

@@ -21,5 +21,6 @@ xrandr --dpi 192
 # wmutils
 sxhkd &
 focus-watch &
+workspace -i
 
 exec sh -c 'while :; do sleep 10; done'
