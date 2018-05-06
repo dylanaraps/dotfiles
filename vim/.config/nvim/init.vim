@@ -56,6 +56,12 @@ Plug 'reedes/vim-pencil'
       autocmd FileType markdown,mkd,text call Prose()
     augroup END
 
+Plug 'terryma/vim-multiple-cursors'
+    let g:multi_cursor_use_default_mapping=0
+    let g:multi_cursor_start_word_key='<C-j>'
+    let g:multi_cursor_skip_key='<C-k>'
+    let g:multi_cursor_quit_key='<Esc>'
+
 Plug 'w0rp/ale'
     let g:ale_lint_on_save = 1
     let g:ale_lint_on_text_changed = 0

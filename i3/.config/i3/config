@@ -63,7 +63,7 @@ bindsym XF86AudioMute         exec "vol toggle &"
 bindsym XF86MonBrightnessUp   exec "bri 5 +"
 bindsym XF86MonBrightnessDown exec "bri 5 -"
 
-bindsym $mod+w exec "wal --backend colorz -i ~/Pictures/Wallpapers/ -o wal-set"
+bindsym $mod+w exec "wal --iterative --backend colorz -i ~/Pictures/Wallpapers/ -o wal-set"
 bindsym $mod+p exec "scr"
 bindsym $mod+b exec "tmux set -g status"
 
