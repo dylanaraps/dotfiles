@@ -1,0 +1,10 @@
+pcm.!default {
+    type route
+    slave.pcm "hw:0"
+    ttable {
+        0.0 1
+        0.1 1
+        1.0 1
+        1.1 1
+    }
+}
