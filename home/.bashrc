@@ -45,5 +45,3 @@ alias ls="ls --group-directories-first --color=always -A"
 
 # Tmux
 [[ -z "$TMUX"  ]] && exec tmux
-
-[ -f ~/.fzf.bash ] && source ~/.fzf.bash
