@@ -5,7 +5,7 @@ font pango:Roboto Mono 25
 for_window [class=".*"] title_format "<span font='Roboto Mono 0'></span>"
 
 set_from_resource $fg i3wm.color0 #f0f0f0
-set_from_resource $bg i3wm.color1 #f0f0f0
+set_from_resource $bg i3wm.color0 #f0f0f0
 
 # class                 border  backgr. text indicator child_border
 client.focused          $bg      $bg    $bg  $bg   $bg
@@ -22,10 +22,7 @@ bindsym $mod+d exec "rofi -show run"
 bindsym $mod+g split h
 bindsym $mod+v split v
 bindsym $mod+f fullscreen toggle
-bindsym $mod+space focus mode_toggle
-
-# Titlebars on floating windows.
-bindsym $mod+s "mark --add _; [con_mark=f] floating disable, border none, mark --add --toggle _; [con_mark=_] floating enable, border normal 0; mark --add --toggle f;"
+bindsym $mod+s floating toggle
 
 # switch to workspace
 bindsym $mod+1 workspace 1
@@ -54,7 +51,8 @@ bindsym $mod+Shift+0 move container to workspace 10
 bindsym $mod+Shift+c reload
 bindsym $mod+Shift+r restart
 bindsym $mod+c move position center
-bindsym Alt+Tab focus right
+bindsym Mod1+Tab exec "i3n"
+bindsym $mod+Tab focus right; focus down; focus left
 
 bindsym XF86AudioRaiseVolume  exec "vol 5%+ &"
 bindsym XF86AudioLowerVolume  exec "vol 5%- &"
@@ -66,5 +64,6 @@ bindsym XF86MonBrightnessDown exec "bri 5 -"
 bindsym $mod+w exec "wal --iterative --backend colorz -i ~/Pictures/Wallpapers/ -o wal-set"
 bindsym $mod+p exec "scr"
 bindsym $mod+b exec "tmux set -g status"
+bindsym $mod+n exec touch ~/"test"$bg"2"
 
-for_window [class="^.*"] border pixel 0
+for_window [class="^.*"] border normal 0

@@ -172,16 +172,9 @@ nnoremap <S-Tab> :bp<CR>
 augroup General
     au!
     autocmd FileType markdown,text setlocal spell
-
-    " Disable comments on newline.
     autocmd FileType * setlocal formatoptions-=cro
-
-    " Prevent saving files starting with ':' or ';'.
     autocmd BufWritePre [:;]* throw 'Forbidden file name: ' . expand('<afile>')
-
-	" Remove Whitespace on save.
 	autocmd BufWritePre * :%s/\s\+$//e
-
     autocmd FileType xdefaults setlocal commentstring=!\ %s
     autocmd FileType scss,css setlocal commentstring=/*%s*/ shiftwidth=2 softtabstop=2
 augroup END
@@ -190,20 +183,12 @@ augroup END
 
 " Text {{{
 
-" Show invisible characters.
 set listchars=tab:▸\ ,trail:·,eol:¬,nbsp:_
-
-" Softwrapped lines keep indent level.
 set breakindent
-
-" Show existing tab with 4 spaces width.
 set tabstop=4
-
-" When indenting with '>', use 4 spaces width.
 set shiftwidth=4
-
-" On pressing tab, insert 4 spaces.
 set expandtab
+set re=1
 
 " }}}
 
@@ -226,7 +211,6 @@ set smartcase
 
 " Temp Files {{{
 
-" Fuck swapfiles
 set noswapfile
 set backupdir=~/.config/nvim/tmp/backups/
 set undodir=~/.config/nvim/tmp/undo/
@@ -239,7 +223,6 @@ if !isdirectory(expand(&undodir))
     call mkdir(expand(&undodir), 'p')
 endif
 
-" Persistent undo
 set undofile
 set undolevels=500
 set undoreload=500
@@ -248,13 +231,9 @@ set undoreload=500
 
 " Misc {{{
 
-" Disable language support.
-" let g:loaded_python_provider = 1
 let g:loaded_ruby_provider = 1
 
-" Change pwd to file location.
 set autochdir
-
 set clipboard+=unnamedplus
 set nostartofline
 set notimeout

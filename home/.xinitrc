@@ -13,15 +13,9 @@ xset m 1/1
 xset r rate 200 40
 setxkbmap -option caps:escape
 xmodmap -e 'keycode 70 = 0x0000'
-
 xrdb ~/.Xresources
+
 wal -R -o wal-set -l
 xrandr --dpi 192
 
-# wmutils
-# sxhkd &
-# focus-watch &
-# workspace -i
-
-# exec sh -c 'while :; do sleep 10; done'
 exec i3
