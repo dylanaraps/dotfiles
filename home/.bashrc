@@ -39,9 +39,7 @@ alias gj="git add .; git commit -m 'docs: update'; git push"
 alias cd="lcd"
 alias ls="ls --group-directories-first --color=always -A"
 
-# Start x on login.
 [[ -z "$DISPLAY" && "$XDG_VTNR" -eq 1 ]] && \
     exec startx -- -keeptty > ~/.xorg.log 2>&1
 
-# Tmux
 [[ -z "$TMUX"  ]] && exec tmux

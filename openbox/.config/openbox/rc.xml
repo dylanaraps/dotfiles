@@ -21,7 +21,7 @@
   <theme>
     <name>thicc</name>
     <titleLayout>LC</titleLayout>
-    <cornerRadius>8</cornerRadius>
+    <cornerRadius>10</cornerRadius>
     <keepBorder>no</keepBorder>
     <animateIconify>no</animateIconify>
     <font place="ActiveWindow">
@@ -219,6 +219,11 @@
     <keybind key="W-e">
       <action name="Execute">
         <command>wal -q --backend colorz -i ~/Pictures/Wallpapers -o wal-set -l</command>
+      </action>
+    </keybind>
+    <keybind key="W-r">
+      <action name="Execute">
+        <command>openbox --reconfigure</command>
       </action>
     </keybind>
     <keybind key="W-Left">
