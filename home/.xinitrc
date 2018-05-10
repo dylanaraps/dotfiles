@@ -18,4 +18,4 @@ xrdb ~/.Xresources
 wal -R -o wal-set -l
 xrandr --dpi 192
 
-exec i3
+exec openbox
