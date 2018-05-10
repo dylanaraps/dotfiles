@@ -158,6 +158,9 @@
     <keybind key="W-m">
       <action name="ToggleFullscreen"/>
     </keybind>
+    <keybind key="W-s">
+      <action name="MoveResizeTo"><x>center</x><y>center</y><height>1020</height><width>1520</width></action>
+    </keybind>
     <keybind key="W-v">
       <action name="Execute">
         <command>tog Polybar</command>
@@ -228,19 +231,19 @@
     </keybind>
     <keybind key="W-Left">
         <action name="UnmaximizeFull"/>
-        <action name="MoveResizeTo"><x>0</x><y>0</y><height>100%</height><width>50%</width></action>
+        <action name="MoveResizeTo"><x>0</x><y>0</y><height>102%</height><width>51%</width></action>
     </keybind>
     <keybind key="W-Right">
         <action name="UnmaximizeFull"/>
-        <action name="MoveResizeTo"><x>-0</x><y>0</y><height>100%</height><width>50%</width></action>
+        <action name="MoveResizeTo"><x>-0</x><y>0</y><height>102%</height><width>51%</width></action>
     </keybind>
     <keybind key="W-Up">
         <action name="UnmaximizeFull"/>
-        <action name="MoveResizeTo"><x>0</x><y>0</y><width>100%</width><height>50%</height></action>
+        <action name="MoveResizeTo"><x>-0</x><y>0</y><width>51%</width><height>52%</height></action>
     </keybind>
     <keybind key="W-Down">
         <action name="UnmaximizeFull"/>
-        <action name="MoveResizeTo"><x>0</x><y>-0</y><width>100%</width><height>50%</height></action>
+        <action name="MoveResizeTo"><x>-0</x><y>-0</y><width>51%</width><height>52%</height></action>
     </keybind>
     <keybind key="XF86MonBrightnessUp">
       <action name="Execute">
