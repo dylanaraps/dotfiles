@@ -114,7 +114,7 @@ filetype plugin on
 set noshowmode
 set laststatus=0
 set shortmess=atI
-set cmdheight=2
+set cmdheight=1
 
 colorscheme wal
 
