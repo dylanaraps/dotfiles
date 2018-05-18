@@ -43,3 +43,7 @@ alias ls="ls --group-directories-first --color=always -A"
     exec startx -- -keeptty > ~/.xorg.log 2>&1
 
 [[ -z "$TMUX"  ]] && exec tmux
+
+[ -f ~/.fzf.bash ] && source ~/.fzf.bash
+
+# source ~/bin/pro
