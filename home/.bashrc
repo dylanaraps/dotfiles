@@ -1,5 +1,5 @@
 # Prompt
-PS1='\[\e[1m\]✝\[\e[0m\] '
+PS1='➜ '
 
 # Envars
 export QT_AUTO_SCREEN_SCALE_FACTOR=1
@@ -43,7 +43,3 @@ alias ls="ls --group-directories-first --color=always -A"
     exec startx -- -keeptty > ~/.xorg.log 2>&1
 
 [[ -z "$TMUX"  ]] && exec tmux
-
-[ -f ~/.fzf.bash ] && source ~/.fzf.bash
-
-# source ~/bin/pro
