@@ -1,0 +1,87 @@
+# vim: set syntax=conf:
+
+directory.default.set = ~/dl/
+session.path.set = ~/.rtorrent.session
+pieces.hash.on_completion.set = yes
+protocol.encryption.set = allow_incoming,try_outgoing,enable_retry
+
+# Watch dir
+schedule2 = watch_directory,5,5,load.start=/home/user/watch/*.torrent
+schedule2 = untied_directory,5,5,stop_untied=
+schedule2 = tied_directory,5,5,start_tied=
+schedule2 = low_diskspace,5,60,((close_low_diskspace,100M))
+
+# DHT
+dht.mode.set = auto
+dht.port.set = 6881
+protocol.pex.set= yes
+
+# Ports
+network.port_range.set = 49164-49164
+
+# Global upload and download rate in KiB, `0` for unlimited (`download_rate`, `upload_rate`)
+throttle.global_down.max_rate.set_kb = 6000
+throttle.global_up.max_rate.set_kb   = 400
+
+# Maximum number of simultaneous downloads and uploads slots (global slots!) (`max_downloads_global`, `max_uploads_global`)
+throttle.max_downloads.global.set = 300
+throttle.max_uploads.global.set   = 300
+
+# Maximum and minimum number of peers to connect to per torrent while downloading (`min_peers`, `max_peers`) Default: `100` and `200` respectively
+throttle.min_peers.normal.set = 99
+throttle.max_peers.normal.set = 100
+
+# Same as above but for seeding completed torrents (seeds per torrent), `-1` for same as downloading (`min_peers_seed`, `max_peers_seed`) Default: `-1` for both
+throttle.min_peers.seed.set = -1
+throttle.max_peers.seed.set = -1
+
+# Maximum number of simultaneous downloads and uploads slots per torrent (`max_uploads`) Default: `50` for both
+throttle.max_downloads.set = 50
+throttle.max_uploads.set = 50
+
+# Set the numwant field sent to the tracker, which indicates how many peers we want.
+#  A negative value disables this feature. Default: `-1` (`tracker_numwant`)
+trackers.numwant.set = 100
+
+# Set the max amount of memory address space used to mapping file chunks. This refers to memory mapping, not
+#  physical memory allocation. Default: `1GB` (`max_memory_usage`)
+# This may also be set using ulimit -m where 3/4 will be allocated to file chunks.
+pieces.memory.max.set = 2048M
+
+# Maximum number of connections rtorrent can accept/make (`sockets`)
+network.max_open_sockets.set = 999
+
+# Maximum number of open files rtorrent can keep open (you have to modify the system wide settings with ulimit!) (`set_max_open_files`)
+network.max_open_files.set = 600
+
+# Maximum number of simultaneous HTTP request (used by announce or scrape requests) Default: `32` (`set_max_open_http`)
+network.http.max_open.set = 99
+
+# Send and receive buffer size for socket. Disabled by default (`0`), this means the default is used by OS
+#  (you have to modify the system wide settings!) (`send_buffer_size`, `receive_buffer_size`)
+# Increasing buffer sizes may help reduce disk seeking, connection polling as more data is buffered each time
+#  the socket is written to. It will result higher memory usage (not visible in rtorrent process!).
+network.receive_buffer.size.set =  4M
+network.send_buffer.size.set    = 12M
+
+# Preloading a piece of a file. Default: `0` Possible values: `0` (Off) , `1` (Madvise) , `2` (Direct paging).
+pieces.preload.type.set = 2
+
+# CURL options to add support for nonofficial SSL trackers and peers
+network.http.ssl_verify_host.set = 0
+network.http.ssl_verify_peer.set = 0
+
+# CURL option to lower DNS timeout. Default: `60`.
+network.http.dns_cache_timeout.set = 25
+
+# Max packet size using xmlrpc. Default: `524288` (xmlrpc_size_limit)
+network.xmlrpc.size_limit.set = 2M
+
+# Save all the sessions in every 12 hours instead of the default 20 minutes.
+schedule2 = session_save, 1200, 43200, ((session.save))
+
+# Seeding
+ratio.enable=
+ratio.min.set=0
+ratio.max.set=1
+ratio.upload.set=1b

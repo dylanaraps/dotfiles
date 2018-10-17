@@ -1,3 +1,9 @@
+! Dylans Xresources
+*font: xft:Roboto Mono:size=15
+XTerm.vt100.faceName: xft:Roboto Mono:size=15
+URxvt.internalBorder: 125
+URxvt.scrollBar: false
+
 ! DPI/Font
 Xft.dpi: 192
 Xft.autohint: 0

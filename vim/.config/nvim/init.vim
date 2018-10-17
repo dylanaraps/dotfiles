@@ -18,15 +18,7 @@ endif
 call plug#begin('~/.config/nvim/plugged')
 
 Plug '~/projects/wal.vim'
-Plug '~/projects/root.vim'
-    let g:root#auto = 0
-    let g:root#echo = 0
-
-Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
-Plug 'junegunn/fzf.vim'
-
 Plug 'junegunn/goyo.vim'
-Plug 'junegunn/limelight.vim'
     augroup Goyo
         autocmd!
         " Always enable Goyo.
@@ -38,35 +30,17 @@ Plug 'junegunn/limelight.vim'
         autocmd VimResized * execute "normal \<C-W>="
     augroup END
 
-Plug 'reedes/vim-textobj-quote'
-Plug 'reedes/vim-pencil'
-    function! Prose()
-        call pencil#init()
-        call textobj#quote#init()
-
-        iabbrev <buffer> -- –
-        iabbrev <buffer> --- —
-        iabbrev <buffer> << «
-        iabbrev <buffer> >> »
-        iabbrev <buffer> ... …
-    endfunction
-
-    augroup Writing
-      autocmd!
-      autocmd FileType markdown,mkd,text call Prose()
-    augroup END
-
 Plug 'terryma/vim-multiple-cursors'
     let g:multi_cursor_use_default_mapping=0
     let g:multi_cursor_next_key='<C-j>'
-    let g:multi_cursor_skip_key='<C-k>'
+    let g:multi_cursor_prev_key='<C-k>'
+    let g:multi_cursor_skip_key='<C-s>'
     let g:multi_cursor_quit_key='<Esc>'
 
 Plug 'w0rp/ale'
     let g:ale_lint_on_save = 1
     let g:ale_lint_on_text_changed = 0
     let g:ale_lint_on_enter = 1
-    let g:ale_linters_sh_shellcheck_exclusions = 'SC1090,SC2155'
     let g:ale_echo_msg_error_str = 'E'
     let g:ale_echo_msg_warning_str = 'W'
     let g:ale_linters = {'python': ['pyls', 'flake8', 'pylint']}
@@ -87,7 +61,7 @@ Plug 'tpope/vim-surround'
 	vmap s S
 
 Plug 'machakann/vim-highlightedyank'
-    let g:highlightedyank_highlight_duration = 100
+    let g:highlightedyank_highlight_duration = 200
 
 Plug 'zchee/deoplete-jedi'
 Plug 'wellle/tmux-complete.vim'
@@ -206,6 +180,7 @@ set hlsearch
 set incsearch
 set ignorecase
 set smartcase
+set inccommand=nosplit
 
 " }}}
 
@@ -224,8 +199,8 @@ if !isdirectory(expand(&undodir))
 endif
 
 set undofile
-set undolevels=500
-set undoreload=500
+set undolevels=1000
+set undoreload=1000
 
 " }}}
 

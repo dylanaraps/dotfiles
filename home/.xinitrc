@@ -15,7 +15,8 @@ setxkbmap -option caps:escape
 xmodmap -e 'keycode 70 = 0x0000'
 xrdb ~/.Xresources
 
-wal -R -o wal-set -l
+wal -R -o wal-set
 xrandr --dpi 192
+bar &
 
 exec openbox

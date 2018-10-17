@@ -1,10 +1,23 @@
+# pcm.!default {
+#     type route
+#     slave.pcm "hw:0"
+#     ttable {
+#         0.0 1
+#         0.1 1
+#         1.0 1
+#         1.1 1
+#     }
+# }
+
 pcm.!default {
-    type route
-    slave.pcm "hw:0"
-    ttable {
-        0.0 1
-        0.1 1
-        1.0 1
-        1.1 1
-    }
+    type asym
+    playback.pcm "plug:softvol"
+    capture.pcm "plug:dsnoop"
+}
+
+pcm.softvol {
+    type softvol
+    slave.pcm "dmix"
+    control { name "PCM"; card 0; }
+    max_dB 32.0
 }
