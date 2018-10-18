@@ -18,5 +18,6 @@ xrdb ~/.Xresources
 wal -R -o wal-set
 xrandr --dpi 192
 bar &
+compton -b
 
 exec openbox

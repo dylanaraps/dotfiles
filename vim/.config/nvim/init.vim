@@ -43,6 +43,7 @@ Plug 'w0rp/ale'
     let g:ale_lint_on_enter = 1
     let g:ale_echo_msg_error_str = 'E'
     let g:ale_echo_msg_warning_str = 'W'
+    let g:ale_sh_shellcheck_exclusions = 'SC2180'
     let g:ale_linters = {'python': ['pyls', 'flake8', 'pylint']}
     nmap <silent> e <Plug>(ale_next_wrap)
 
