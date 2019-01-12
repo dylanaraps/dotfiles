@@ -22,9 +22,9 @@ Plug 'junegunn/goyo.vim'
     augroup Goyo
         autocmd!
         " Always enable Goyo.
-        autocmd BufReadPost * Goyo 80x80%
-        autocmd BufReadPost *.md Goyo 74x80%
-        autocmd BufReadPost neofetch Goyo 100x80%
+        autocmd BufReadPost * Goyo 82x80%
+        autocmd BufReadPost *.md Goyo 76x80%
+        autocmd BufReadPost neofetch Goyo 102x80%
 
         " Equalize splits on resize.
         autocmd VimResized * execute "normal \<C-W>="
@@ -38,13 +38,15 @@ Plug 'terryma/vim-multiple-cursors'
     let g:multi_cursor_quit_key='<Esc>'
 
 Plug 'w0rp/ale'
+    let g:ale_lint_delay = 0
     let g:ale_lint_on_save = 1
     let g:ale_lint_on_text_changed = 0
     let g:ale_lint_on_enter = 1
     let g:ale_echo_msg_error_str = 'E'
     let g:ale_echo_msg_warning_str = 'W'
     let g:ale_sh_shellcheck_exclusions = 'SC2180'
-    let g:ale_linters = {'python': ['pyls', 'flake8', 'pylint']}
+    let g:ale_linters = {'python': ['pyls', 'flake8', 'pylint'],
+                        \'sh': ['shellcheck']}
     nmap <silent> e <Plug>(ale_next_wrap)
 
 Plug 'kana/vim-textobj-user'
@@ -64,17 +66,19 @@ Plug 'tpope/vim-surround'
 Plug 'machakann/vim-highlightedyank'
     let g:highlightedyank_highlight_duration = 200
 
-Plug 'zchee/deoplete-jedi'
-Plug 'wellle/tmux-complete.vim'
-Plug 'ujihisa/neco-look'
-Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
-Plug 'Shougo/neco-syntax'
 Plug 'Shougo/neco-vim'
-    let g:deoplete#enable_at_startup = 1
+Plug 'neoclide/coc-neco'
+Plug 'neoclide/coc.nvim', {'tag': '*', 'do': { -> coc#util#install()}}
+    inoremap <silent><expr> <TAB>
+                \ pumvisible() ? "\<C-n>" :
+                \ <SID>check_back_space() ? "\<TAB>" :
+                \ coc#refresh()
+    inoremap <expr><S-TAB> pumvisible() ? "\<C-p>" : "\<C-h>"
 
-    " Map <Tab> to control completion menu.
-    inoremap <expr> <Tab> pumvisible() ? "\<C-n>" : "\<Tab>"
-    inoremap <expr> <S-Tab> pumvisible() ? "\<C-p>" : "\<S-Tab>"
+    function! s:check_back_space() abort
+        let col = col('.') - 1
+        return !col || getline('.')[col - 1]  =~# '\s'
+    endfunction
 
 Plug 'vim-python/python-syntax'
 Plug 'mzlogin/vim-markdown-toc'
@@ -86,6 +90,7 @@ filetype plugin on
 
 " Look and feel {{{
 
+set signcolumn=yes
 set noshowmode
 set laststatus=0
 set shortmess=atI

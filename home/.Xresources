@@ -3,6 +3,13 @@
 XTerm.vt100.faceName: xft:Roboto Mono:size=15
 URxvt.internalBorder: 125
 URxvt.scrollBar: false
+URxvt.geometry: 55x15
+URxvt.saveLines: 0
+URxvt.scrollWithBuffer: false
+URxvt*skipScroll: true
+
+URxvt.perl-ext:
+URxvt.perl-ext-common:
 
 ! DPI/Font
 Xft.dpi: 192
