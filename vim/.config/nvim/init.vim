@@ -18,6 +18,7 @@ endif
 call plug#begin('~/.config/nvim/plugged')
 
 Plug '~/projects/wal.vim'
+Plug '~/projects/fff.vim'
 Plug 'junegunn/goyo.vim'
     augroup Goyo
         autocmd!
@@ -44,7 +45,7 @@ Plug 'w0rp/ale'
     let g:ale_lint_on_enter = 1
     let g:ale_echo_msg_error_str = 'E'
     let g:ale_echo_msg_warning_str = 'W'
-    let g:ale_sh_shellcheck_exclusions = 'SC2180'
+    let g:ale_sh_shellcheck_exclusions = 'SC2180;SC1090'
     let g:ale_linters = {'python': ['pyls', 'flake8', 'pylint'],
                         \'sh': ['shellcheck']}
     nmap <silent> e <Plug>(ale_next_wrap)
@@ -106,6 +107,9 @@ noremap ; :
 
 " Always exit all files.
 cnoreabbrev q qa
+
+" Open fff
+nnoremap f :F<CR>
 
 " Run fzf on e.
 nnoremap <C-e> :FZF<CR>
@@ -186,7 +190,6 @@ set hlsearch
 set incsearch
 set ignorecase
 set smartcase
-set inccommand=nosplit
 
 " }}}
 
