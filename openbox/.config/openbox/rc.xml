@@ -25,13 +25,13 @@
     <keepBorder>no</keepBorder>
     <animateIconify>no</animateIconify>
     <font place="ActiveWindow">
-      <name>Roboto</name>
+      <name>Ubuntu</name>
       <size>12</size>
       <weight>Normal</weight>
       <slant>Normal</slant>
     </font>
     <font place="InactiveWindow">
-      <name>Roboto</name>
+      <name>Ubuntu</name>
       <size>12</size>
       <weight>Normal</weight>
       <slant>Normal</slant>
@@ -182,13 +182,13 @@
     <!-- Keybindings for running applications -->
     <keybind key="W-Return">
       <action name="Execute">
-        <command>st</command>
+          <command>st</command>
       </action>
     </keybind>
     <keybind key="W-d">
       <action name="Execute">
         <name>rofi</name>
-        <command>rofi -show run</command>
+        <command>dmenu_custom -fn "Roboto:size=20"</command>
       </action>
     </keybind>
     <keybind key="W-c">
@@ -196,7 +196,7 @@
     </keybind>
     <keybind key="XF86AudioMute">
       <action name="Execute">
-        <command>vol toggle</command>
+          <command>vol toggle</command>
       </action>
     </keybind>
     <keybind key="XF86AudioRaiseVolume">
@@ -216,7 +216,7 @@
     </keybind>
     <keybind key="W-w">
       <action name="Execute">
-        <command>wal -q --iterative --backend colorz -i ~/Pictures/Wallpapers -o wal-set</command>
+          <command>wal -q --iterative --backend colorz -i ~/Pictures/Wallpapers -o wal-set</command>
       </action>
     </keybind>
     <keybind key="W-e">

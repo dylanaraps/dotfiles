@@ -68,18 +68,18 @@ Plug 'machakann/vim-highlightedyank'
     let g:highlightedyank_highlight_duration = 200
 
 Plug 'Shougo/neco-vim'
-Plug 'neoclide/coc-neco'
-Plug 'neoclide/coc.nvim', {'tag': '*', 'do': { -> coc#util#install()}}
-    inoremap <silent><expr> <TAB>
-                \ pumvisible() ? "\<C-n>" :
-                \ <SID>check_back_space() ? "\<TAB>" :
-                \ coc#refresh()
-    inoremap <expr><S-TAB> pumvisible() ? "\<C-p>" : "\<C-h>"
+" Plug 'neoclide/coc-neco'
+" Plug 'neoclide/coc.nvim', {'tag': '*', 'do': { -> coc#util#install()}}
+"     inoremap <silent><expr> <TAB>
+"                 \ pumvisible() ? "\<C-n>" :
+"                 \ <SID>check_back_space() ? "\<TAB>" :
+"                 \ coc#refresh()
+"     inoremap <expr><S-TAB> pumvisible() ? "\<C-p>" : "\<C-h>"
 
-    function! s:check_back_space() abort
-        let col = col('.') - 1
-        return !col || getline('.')[col - 1]  =~# '\s'
-    endfunction
+"     function! s:check_back_space() abort
+"         let col = col('.') - 1
+"         return !col || getline('.')[col - 1]  =~# '\s'
+"     endfunction
 
 Plug 'vim-python/python-syntax'
 Plug 'mzlogin/vim-markdown-toc'

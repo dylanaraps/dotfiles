@@ -3,22 +3,23 @@
 #
 # .xinitrc
 
-# My locale randomly gets set to C
-export LC_ALL=en_US.UTF-8
+synclient AreaLeftEdge=200 AreaRightEdge=1471 AreaTopEdge=200 \
+          TapButton1=1 TapButton2=3 TapButton3=2
 
-redshift -l "38.7066:20.6407" &
+xinput disable "Lenovo EasyCamera: Lenovo EasyC"
+xinput disable "ELAN21EF:00 04F3:2200"
+
+export PATH=${PATH}:~/.local/bin:~/bin
 
 xset s 60 60
 xset m 1/1
-# xset r rate 200 40
 xset r rate 200 50
+
 setxkbmap -option caps:escape
 xmodmap -e 'keycode 70 = 0x0000'
-xrdb ~/.Xresources
 
+xrdb ~/.Xresources
 wal -R -o wal-set
 xrandr --dpi 192
-bar &
-# compton -b
 
 exec openbox

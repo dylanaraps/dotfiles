@@ -1,6 +1,6 @@
 ! Dylans Xresources
 *font: xft:Roboto Mono:size=15
-XTerm.vt100.faceName: xft:Roboto Mono:size=15
+XTerm.vt100.faceName: xft:Roboto Mono:size=20
 URxvt.internalBorder: 125
 URxvt.scrollBar: false
 URxvt.geometry: 55x15
@@ -19,6 +19,8 @@ Xft.hinting: true
 Xft.hintstyle: hintslight
 Xft.rgba: rgb
 Xft.lcdfilter: lcddefault
+Xcursor.theme: Adwaita
+Xcursor.size: 48
 
 ! Rofi
 rofi.font: Roboto 60
