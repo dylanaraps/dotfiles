@@ -158,7 +158,7 @@
     </keybind>
     <keybind key="W-d">
       <action name="Execute">
-        <command>st -g '30x1+0' -n launcher -e lnchr</command>
+        <command>st -g '30x1+0' -n launcher -e men</command>
       </action>
     </keybind>
     <keybind key="W-c">
@@ -186,7 +186,7 @@
     </keybind>
     <keybind key="W-w">
       <action name="Execute">
-          <command>buddy ~/Pictures/Wallpapers</command>
+          <command>bud ~/Pictures/Wallpapers</command>
       </action>
     </keybind>
     <keybind key="W-Left">
