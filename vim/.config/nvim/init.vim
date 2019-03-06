@@ -100,7 +100,7 @@ set notimeout
 set nottimeout
 set nrformats-=octal
 set modeline
-set bs=2
+set backspace=indent,eol,start
 set noswapfile
 set backupdir=~/.config/nvim/tmp/backups/
 set undodir=~/.config/nvim/tmp/undo/
