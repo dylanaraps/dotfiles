@@ -218,11 +218,12 @@ set undoreload=1000
 let g:loaded_ruby_provider = 1
 
 set autochdir
-set clipboard+=unnamedplus
+set clipboard=unnamedplus
 set nostartofline
 set notimeout
 set nottimeout
 set nrformats-=octal
 set modeline
+set bs=2
 
 " }}}

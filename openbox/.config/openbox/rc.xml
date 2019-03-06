@@ -188,7 +188,7 @@
     <keybind key="W-d">
       <action name="Execute">
         <name>rofi</name>
-        <command>dmenu_custom -fn "Roboto:size=20"</command>
+        <command>st -g '125x1+0' -n launcher -e lnchr</command>
       </action>
     </keybind>
     <keybind key="W-c">
@@ -216,7 +216,7 @@
     </keybind>
     <keybind key="W-w">
       <action name="Execute">
-          <command>wal -q --iterative --backend colorz -i ~/Pictures/Wallpapers -o wal-set</command>
+          <command>buddy ~/Pictures/Wallpapers</command>
       </action>
     </keybind>
     <keybind key="W-e">
@@ -439,6 +439,13 @@
           <position force="yes">
               <x>center</x>
               <y>center</y>
+          </position>
+      </application>
+      <application name="launcher">
+          <decor>no</decor>
+          <position force="yes">
+              <x>0</x>
+              <y>0</y>
           </position>
       </application>
   </applications>

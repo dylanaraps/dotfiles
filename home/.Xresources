@@ -1,17 +1,3 @@
-! Dylans Xresources
-*font: xft:Roboto Mono:size=15
-XTerm.vt100.faceName: xft:Roboto Mono:size=20
-URxvt.internalBorder: 125
-URxvt.scrollBar: false
-URxvt.geometry: 55x15
-URxvt.saveLines: 0
-URxvt.scrollWithBuffer: false
-URxvt*skipScroll: true
-
-URxvt.perl-ext:
-URxvt.perl-ext-common:
-
-! DPI/Font
 Xft.dpi: 192
 Xft.autohint: 0
 Xft.antialias: 1
@@ -21,12 +7,3 @@ Xft.rgba: rgb
 Xft.lcdfilter: lcddefault
 Xcursor.theme: Adwaita
 Xcursor.size: 48
-
-! Rofi
-rofi.font: Roboto 60
-rofi.separator-style: none
-rofi.scrollbar-width: 0
-rofi.lines: 2
-rofi.padding: 400
-rofi.width: 100%
-rofi.bw: 400

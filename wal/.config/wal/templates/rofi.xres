@@ -1,9 +1,0 @@
-rofi.color-enabled: true
-
-! bg, border, separator
-rofi.color-window: {background}, {background}, {background}
-
-! bg, fg, bg-alt, hl-bg, hl-fg
-rofi.color-normal: {background}, {foreground}, {background}, {color1}, {color0}
-rofi.color-active: {background}, {foreground}, {background}, {color2}, {color0}
-rofi.color-urgent: {background}, {foreground}, {background}, {color3}, {color0}
