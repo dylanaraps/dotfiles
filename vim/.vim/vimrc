@@ -39,15 +39,11 @@ Plug 'terryma/vim-expand-region'
 
 Plug 'mzlogin/vim-markdown-toc'
 Plug 'rstacruz/vim-closer'
-Plug 'tpope/vim-repeat'
 Plug 'tpope/vim-commentary'
 Plug 'tpope/vim-surround'
 	nmap ss ysiw
 	nmap sl yss
 	vmap s S
-
-Plug 'machakann/vim-highlightedyank'
-    let g:highlightedyank_highlight_duration = 200
 
 call plug#end()
 filetype plugin on
@@ -122,4 +118,3 @@ augroup General
     autocmd FileType xdefaults setlocal commentstring=!\ %s
     autocmd FileType scss,css setlocal commentstring=/*%s*/ shiftwidth=2 softtabstop=2
 augroup END
-
