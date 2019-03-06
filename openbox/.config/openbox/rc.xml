@@ -158,7 +158,7 @@
     </keybind>
     <keybind key="W-d">
       <action name="Execute">
-        <command>st -g '125x1+0' -n launcher -e lnchr</command>
+        <command>st -g '30x1+0' -n launcher -e lnchr</command>
       </action>
     </keybind>
     <keybind key="W-c">
