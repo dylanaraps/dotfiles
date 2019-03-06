@@ -4,13 +4,3 @@
 
 ![scrot](https://i.imgur.com/fmqL0uH.jpg)
 
-
-## Setup
-
-- Application Launcher: `lnchr`
-- Music Player: `mpv`
-- Shell: `bash`
-- Terminal Emulator: `st`
-- Text Editor: `vim`
-- Web Browser: `chromium`
-- Window Manager: `openbox`

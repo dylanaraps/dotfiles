@@ -20,6 +20,7 @@ xmodmap -e 'keycode 70 = 0x0000'
 
 xrdb ~/.Xresources
 bud ~/Pictures/Wallpapers
+bar &
 xrandr --dpi 192
 
 exec openbox
