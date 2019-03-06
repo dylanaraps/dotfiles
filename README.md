@@ -1,4 +1,4 @@
-# Dylan's Dotfiles
+# dotfiles
 
 **Screenshots: [link](https://www.reddit.com/r/unixporn/search?q=author%3Adylan112&sort=new&restrict_sr=on&t=all)**
 
