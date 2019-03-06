@@ -19,7 +19,7 @@ setxkbmap -option caps:escape
 xmodmap -e 'keycode 70 = 0x0000'
 
 xrdb ~/.Xresources
-buddy ~/Pictures/Wallpapers
+bud ~/Pictures/Wallpapers
 xrandr --dpi 192
 
 exec openbox
