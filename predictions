@@ -11,3 +11,6 @@
     - snaps/appimages/flatpaks
 - Ubuntu will swap to using Snaps for all software.
 - Firefox kills adblockers.
+- Smartphones will solely run web apps.
+    - In line with IOT.
+    - They will solely be gateways to curated content.
