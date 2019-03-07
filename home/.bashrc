@@ -23,6 +23,7 @@ export HISTSIZE=10000
 export PATH+=:~/.local/bin:~/bin
 export EDITOR=nvim
 export VISUAL=nvim
+export VTE_VERSION=poop
 export GPG_TTY=$(tty)
 export BROWSER=chromium
 export CDPATH=.:~/projects
