@@ -2,15 +2,15 @@
 - Microsoft retires native Microsoft Office.
 - Microsoft will release their own Linux distribution.
 - Linux will become unified as an OS platform.
-    - systemd
-    - wayland
-    - dbus
-    - pulseaudio
-    - glibc
-    - polkit
-    - snaps/appimages/flatpaks
+    - `systemd`
+    - `wayland`
+    - `dbus`
+    - `pulseaudio`
+    - `glibc`
+    - `polkit`
+    - `snaps`/`appimages`/`flatpaks`
 - Ubuntu will swap to using Snaps for all software.
-- Firefox kills adblockers.
+- Firefox kills ad-blockers.
 - Smartphones will solely run web apps.
     - In line with IOT.
     - They will solely be gateways to curated content.
