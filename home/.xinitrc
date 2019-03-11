@@ -1,5 +1,4 @@
 #!/bin/sh
-
 #
 # .xinitrc
 
@@ -20,6 +19,7 @@ xmodmap -e 'keycode 70 = 0x0000'
 
 xrdb ~/.Xresources
 bud ~/Pictures/Wallpapers
+chromium-browser &
 bar &
 xrandr --dpi 192
 

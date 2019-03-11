@@ -14,7 +14,6 @@ endif
 call plug#begin('~/.config/nvim/plugged')
 
 Plug '~/projects/wal.vim'
-Plug '~/projects/fff.vim'
 Plug 'junegunn/goyo.vim'
     augroup Goyo
         autocmd!
@@ -30,6 +29,17 @@ Plug 'terryma/vim-multiple-cursors'
     let g:multi_cursor_prev_key='<C-k>'
     let g:multi_cursor_skip_key='<C-s>'
     let g:multi_cursor_quit_key='<Esc>'
+
+Plug 'w0rp/ale'
+    let g:ale_sign_column_always = 1
+    let g:ale_lint_on_text_changed = 'never'
+    let g:ale_fix_on_save = 1
+    let g:ale_linters = {
+    \   'go': ['golint'],
+    \}
+    let g:ale_fixers = {
+    \   'go': ['goimports'],
+    \}
 
 Plug 'kana/vim-textobj-user'
 Plug 'kana/vim-textobj-line'
