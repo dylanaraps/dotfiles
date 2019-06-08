@@ -1,0 +1,1 @@
+/home/black/.vim/vimrc

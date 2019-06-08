@@ -21,7 +21,7 @@
   <theme>
     <name>thicc</name>
     <titleLayout>LC</titleLayout>
-    <cornerRadius>10</cornerRadius>
+    <cornerRadius>5</cornerRadius>
     <keepBorder>no</keepBorder>
     <animateIconify>no</animateIconify>
     <font place="ActiveWindow">
@@ -132,8 +132,14 @@
     <keybind key="W-a">
       <action name="ToggleAlwaysOnTop"/>
     </keybind>
+    <keybind key="W-b">
+      <action name="Execute">
+        <command>bat</command>
+      </action>
+    </keybind>
     <keybind key="W-f">
       <action name="ToggleMaximize"/>
+      <action name="ToggleDecorations"/>
     </keybind>
     <keybind key="W-m">
       <action name="ToggleFullscreen"/>
@@ -394,10 +400,17 @@
           <decor>no</decor>
       </application>
       <application class="Chromium"> <decor>no</decor> </application>
+      <application class="Chrome"> <decor>no</decor> </application>
       <application class="*" type="normal">
           <position force="yes">
               <x>center</x>
               <y>center</y>
+          </position>
+      </application>
+      <application name="music" type="normal">
+          <position force="yes">
+              <x>2449</x>
+              <y>1050</y>
           </position>
       </application>
       <application name="launcher">
