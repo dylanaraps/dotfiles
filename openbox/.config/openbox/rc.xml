@@ -42,34 +42,22 @@
   </resize>
   <keyboard>
     <keybind key="W-1">
-      <action name="GoToDesktop">
-        <to>1</to>
-      </action>
+      <action name="GoToDesktop"><to>1</to></action>
     </keybind>
     <keybind key="W-2">
-      <action name="GoToDesktop">
-        <to>2</to>
-      </action>
+      <action name="GoToDesktop"><to>2</to></action>
     </keybind>
     <keybind key="W-3">
-      <action name="GoToDesktop">
-        <to>3</to>
-      </action>
+      <action name="GoToDesktop"><to>3</to></action>
     </keybind>
     <keybind key="W-4">
-      <action name="GoToDesktop">
-        <to>4</to>
-      </action>
+      <action name="GoToDesktop"><to>4</to></action>
     </keybind>
     <keybind key="W-5">
-      <action name="GoToDesktop">
-        <to>5</to>
-      </action>
+      <action name="GoToDesktop"><to>5</to></action>
     </keybind>
     <keybind key="W-6">
-      <action name="GoToDesktop">
-        <to>6</to>
-      </action>
+      <action name="GoToDesktop"><to>6</to></action>
     </keybind>
     <keybind key="W-S-1">
       <action name="SendToDesktop">
