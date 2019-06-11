@@ -17,8 +17,8 @@ Plug '~/projects/wal.vim'
 Plug 'junegunn/goyo.vim'
     augroup Goyo
         autocmd!
-        autocmd BufReadPost * Goyo 82x80%
-        autocmd BufReadPost *.md Goyo 76x80%
+        autocmd BufReadPost * Goyo        82x80%
+        autocmd BufReadPost *.md Goyo     76x80%
         autocmd BufReadPost neofetch Goyo 102x80%
         autocmd VimResized * execute "normal \<C-W>="
     augroup END
@@ -34,12 +34,6 @@ Plug 'w0rp/ale'
     let g:ale_sign_column_always = 1
     let g:ale_lint_on_text_changed = 'never'
     let g:ale_fix_on_save = 1
-    let g:ale_linters = {
-    \   'go': ['golint'],
-    \}
-    let g:ale_fixers = {
-    \   'go': ['goimports'],
-    \}
 
 Plug 'kana/vim-textobj-user'
 Plug 'kana/vim-textobj-line'
@@ -60,23 +54,23 @@ filetype plugin on
 
 colorscheme wal
 
-noremap ; :
-cnoreabbrev q qa
-xnoremap p pgvy
 cmap w!! w !sudo tee % >/dev/null
-vmap <TAB> >gv
-vmap <BS> <gv
+cnoreabbrev q qa
+nmap az za
+nnoremap <S-Tab> :bp<CR>
+nnoremap <Tab> :bn<CR>
+nnoremap H 0
+nnoremap L A
 nnoremap j gj
 nnoremap k gk
-vnoremap j gj
-vnoremap k gk
-nnoremap H 0
+noremap ; :
+vmap <BS> <gv
+vmap <TAB> >gv
 vnoremap H 0
 vnoremap L $
-nnoremap L A
-nmap az za
-nnoremap <Tab> :bn<CR>
-nnoremap <S-Tab> :bp<CR>
+vnoremap j gj
+vnoremap k gk
+xnoremap p pgvy
 
 set signcolumn=yes
 set noshowmode
@@ -124,8 +118,9 @@ augroup General
     au!
     autocmd FileType markdown,text setlocal spell
     autocmd FileType * setlocal formatoptions-=cro
-    autocmd BufWritePre [:;]* throw 'Forbidden file name: ' . expand('<afile>')
-	autocmd BufWritePre * :%s/\s\+$//e
     autocmd FileType xdefaults setlocal commentstring=!\ %s
-    autocmd FileType scss,css setlocal commentstring=/*%s*/ shiftwidth=2 softtabstop=2
+    autocmd FileType scss,css  setlocal shiftwidth=2 softtabstop=2
+
+    autocmd BufWritePre [:;]* throw 'Forbidden file name: ' . expand('<afile>')
+    autocmd BufWritePre * :%s/\s\+$//e
 augroup END
