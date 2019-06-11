@@ -1,0 +1,12 @@
+#!/bin/sh
+
+case $- in *i*) ;; *) return; esac
+
+alias gj="git add .; git commit -m 'docs: update'; git push"
+alias ls="ls --color=auto --group-directories-first"
+alias xi="sudo xbps-install --repository=hostdir/binpkgs/"
+
+cat ~/.cache/pal/colors
+
+[ -z "$DISPLAY" ] && [ ! -e /tmp/.X11-unix/X0 ] &&
+    exec startx -- -keeptty 2>&1
