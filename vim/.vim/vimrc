@@ -77,7 +77,6 @@ set noshowmode
 set laststatus=0
 set synmaxcol=150
 set shortmess=atI
-set cmdheight=1
 set listchars=tab:▸\ ,trail:·,eol:¬,nbsp:_
 set breakindent
 set tabstop=4
