@@ -21,7 +21,7 @@ export PATH=/lib/ccache/bin:$PATH:~/.fakeroot/usr/bin
 export MAKEFLAGS='-j4'
 export CFLAGS='-O3 -march=native -pipe'
 export LC_COLLATE=en_US.UTF-8
-export GPG_TTY=${GPG_TTY:-$(tty)}
+export GPG_TTY=$(tty)
 export QT_AUTO_SCREEN_SCALE_FACTOR=1
 export LESSHISTFILE=-
 export HISTCONTROL=ignoredups
