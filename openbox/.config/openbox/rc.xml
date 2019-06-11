@@ -1,232 +1,232 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <openbox_config xmlns="http://openbox.org/3.4/rc" xmlns:xi="http://www.w3.org/2001/XInclude">
-  <resistance>
-    <strength>10</strength>
-    <screen_edge_strength>20</screen_edge_strength>
-  </resistance>
-  <focus>
-    <focusNew>yes</focusNew>
-    <followMouse>yes</followMouse>
-    <focusLast>no</focusLast>
-    <underMouse>yes</underMouse>
-    <focusDelay>0</focusDelay>
-    <raiseOnFocus>no</raiseOnFocus>
-  </focus>
-  <placement>
-    <policy>Smart</policy>
-    <center>yes</center>
-    <monitor>Mouse</monitor>
-    <primaryMonitor>1</primaryMonitor>
-  </placement>
-  <theme>
-    <name>thicc</name>
-    <titleLayout>LC</titleLayout>
-    <cornerRadius>5</cornerRadius>
-    <keepBorder>no</keepBorder>
-    <animateIconify>no</animateIconify>
-    <font place="ActiveWindow">
-      <size>15</size>
-    </font>
-    <font place="InactiveWindow">
-      <size>15</size>
-    </font>
-  </theme>
-  <desktops>
-    <number>6</number>
-    <firstdesk>1</firstdesk>
-    <popupTime>0</popupTime>
-  </desktops>
-  <resize>
-    <drawContents>yes</drawContents>
-    <popupShow>Never</popupShow>
-  </resize>
-  <keyboard>
-    <keybind key="W-1">
-      <action name="GoToDesktop"><to>1</to></action>
-    </keybind>
-    <keybind key="W-2">
-      <action name="GoToDesktop"><to>2</to></action>
-    </keybind>
-    <keybind key="W-3">
-      <action name="GoToDesktop"><to>3</to></action>
-    </keybind>
-    <keybind key="W-4">
-      <action name="GoToDesktop"><to>4</to></action>
-    </keybind>
-    <keybind key="W-5">
-      <action name="GoToDesktop"><to>5</to></action>
-    </keybind>
-    <keybind key="W-6">
-      <action name="GoToDesktop"><to>6</to></action>
-    </keybind>
-    <keybind key="W-S-1">
-      <action name="SendToDesktop">
-        <to>1</to>
-        <wrap>no</wrap>
-        <follow>no</follow>
-      </action>
-    </keybind>
-    <keybind key="W-S-2">
-      <action name="SendToDesktop">
-        <to>2</to>
-        <wrap>no</wrap>
-        <follow>no</follow>
-      </action>
-    </keybind>
-    <keybind key="W-S-3">
-      <action name="SendToDesktop">
-        <to>3</to>
-        <wrap>no</wrap>
-        <follow>no</follow>
-      </action>
-    </keybind>
-    <keybind key="W-S-4">
-      <action name="SendToDesktop">
-        <to>4</to>
-        <wrap>no</wrap>
-        <follow>no</follow>
-      </action>
-    </keybind>
-    <keybind key="W-S-5">
-      <action name="SendToDesktop">
-        <to>5</to>
-        <wrap>no</wrap>
-        <follow>no</follow>
-      </action>
-    </keybind>
-    <keybind key="W-S-6">
-      <action name="SendToDesktop">
-        <to>6</to>
-        <wrap>no</wrap>
-        <follow>no</follow>
-      </action>
-    </keybind>
-    <keybind key="W-o">
-      <action name="ToggleOmnipresent"/>
-    </keybind>
-    <keybind key="W-a">
-      <action name="ToggleAlwaysOnTop"/>
-    </keybind>
-    <keybind key="W-b">
-      <action name="Execute">
-        <command>bat</command>
-      </action>
-    </keybind>
-    <keybind key="W-f">
-      <action name="ToggleMaximize"/>
-      <action name="ToggleDecorations"/>
-    </keybind>
-    <keybind key="W-m">
-      <action name="ToggleFullscreen"/>
-    </keybind>
-    <keybind key="W-q">
-      <action name="Close"/>
-    </keybind>
-    <keybind key="A-Tab">
-      <action name="NextWindow">
-        <dialog>none</dialog>
-        <finalactions>
-          <action name="Focus"/>
-          <action name="Raise"/>
-          <action name="Unshade"/>
-        </finalactions>
-      </action>
-    </keybind>
-    <keybind key="W-Return">
-      <action name="Execute">
-          <command>st</command>
-      </action>
-    </keybind>
-    <keybind key="W-d">
-      <action name="Execute">
-        <command>st -g '30x1+0' -n launcher -e men</command>
-      </action>
-    </keybind>
-    <keybind key="W-c">
-      <action name="MoveToCenter"/>
-    </keybind>
-    <keybind key="XF86AudioMute">
-      <action name="Execute">
-          <command>vol toggle</command>
-      </action>
-    </keybind>
-    <keybind key="XF86AudioRaiseVolume">
-      <action name="Execute">
-        <command>vol 5%+</command>
-      </action>
-    </keybind>
-    <keybind key="XF86AudioLowerVolume">
-      <action name="Execute">
-        <command>vol 5%-</command>
-      </action>
-    </keybind>
-    <keybind key="W-p">
-      <action name="Execute">
-        <command>scr</command>
-      </action>
-    </keybind>
-    <keybind key="W-w">
-      <action name="Execute">
-          <command>bud ~/Pictures/Wallpapers</command>
-      </action>
-    </keybind>
-  </keyboard>
-  <mouse>
-    <context name="Frame">
-      <mousebind button="W-Left" action="Press">
-        <action name="Focus"/>
-        <action name="Raise"/>
-      </mousebind>
-      <mousebind button="W-Left" action="Drag">
-        <action name="Move"/>
-      </mousebind>
-      <mousebind button="W-Right" action="Press">
-        <action name="Focus"/>
-        <action name="Raise"/>
-        <action name="Unshade"/>
-      </mousebind>
-      <mousebind button="W-Right" action="Drag">
-        <action name="Resize"/>
-      </mousebind>
-    </context>
-    <context name="Titlebar">
-      <mousebind button="Left" action="Drag">
-        <action name="Move"/>
-      </mousebind>
-      <mousebind button="Left" action="DoubleClick">
-        <action name="ToggleMaximizeFull"/>
-      </mousebind>
-    </context>
-    <context name="Top">
-      <mousebind button="Left" action="Drag">
-        <action name="Resize">
-          <edge>top</edge>
-        </action>
-      </mousebind>
-    </context>
-  </mouse>
-  <applications>
-      <application class="mpv"><decor>no</decor></application>
-      <application title="qiv*"><decor>no</decor></application>
-      <application class="Chrom*"><decor>no</decor></application>
-      <application class="*" type="normal">
-          <position force="yes">
-              <x>center</x>
-              <y>center</y>
-          </position>
-      </application>
-      <application name="music" type="normal">
-          <position force="yes">
-              <x>2449</x>
-              <y>1050</y>
-          </position>
-      </application>
-      <application name="launcher">
-          <decor>no</decor>
-          <position force="yes">
-              <x>0</x>
-              <y>0</y>
-          </position>
-      </application>
-  </applications>
+    <resistance>
+        <strength>10</strength>
+        <screen_edge_strength>20</screen_edge_strength>
+    </resistance>
+    <focus>
+        <focusNew>yes</focusNew>
+        <followMouse>yes</followMouse>
+        <focusLast>no</focusLast>
+        <underMouse>yes</underMouse>
+        <focusDelay>0</focusDelay>
+        <raiseOnFocus>no</raiseOnFocus>
+    </focus>
+    <placement>
+        <policy>Smart</policy>
+        <center>yes</center>
+        <monitor>Mouse</monitor>
+        <primaryMonitor>1</primaryMonitor>
+    </placement>
+    <theme>
+        <name>thicc</name>
+        <titleLayout>LC</titleLayout>
+        <cornerRadius>5</cornerRadius>
+        <keepBorder>no</keepBorder>
+        <animateIconify>no</animateIconify>
+        <font place="ActiveWindow">
+            <size>15</size>
+        </font>
+        <font place="InactiveWindow">
+            <size>15</size>
+        </font>
+    </theme>
+    <desktops>
+        <number>6</number>
+        <firstdesk>1</firstdesk>
+        <popupTime>0</popupTime>
+    </desktops>
+    <resize>
+        <drawContents>yes</drawContents>
+        <popupShow>Never</popupShow>
+    </resize>
+    <keyboard>
+        <keybind key="W-1">
+            <action name="GoToDesktop"><to>1</to></action>
+        </keybind>
+        <keybind key="W-2">
+            <action name="GoToDesktop"><to>2</to></action>
+        </keybind>
+        <keybind key="W-3">
+            <action name="GoToDesktop"><to>3</to></action>
+        </keybind>
+        <keybind key="W-4">
+            <action name="GoToDesktop"><to>4</to></action>
+        </keybind>
+        <keybind key="W-5">
+            <action name="GoToDesktop"><to>5</to></action>
+        </keybind>
+        <keybind key="W-6">
+            <action name="GoToDesktop"><to>6</to></action>
+        </keybind>
+        <keybind key="W-S-1">
+            <action name="SendToDesktop">
+                <to>1</to>
+                <wrap>no</wrap>
+                <follow>no</follow>
+            </action>
+        </keybind>
+        <keybind key="W-S-2">
+            <action name="SendToDesktop">
+                <to>2</to>
+                <wrap>no</wrap>
+                <follow>no</follow>
+            </action>
+        </keybind>
+        <keybind key="W-S-3">
+            <action name="SendToDesktop">
+                <to>3</to>
+                <wrap>no</wrap>
+                <follow>no</follow>
+            </action>
+        </keybind>
+        <keybind key="W-S-4">
+            <action name="SendToDesktop">
+                <to>4</to>
+                <wrap>no</wrap>
+                <follow>no</follow>
+            </action>
+        </keybind>
+        <keybind key="W-S-5">
+            <action name="SendToDesktop">
+                <to>5</to>
+                <wrap>no</wrap>
+                <follow>no</follow>
+            </action>
+        </keybind>
+        <keybind key="W-S-6">
+            <action name="SendToDesktop">
+                <to>6</to>
+                <wrap>no</wrap>
+                <follow>no</follow>
+            </action>
+        </keybind>
+        <keybind key="W-o">
+            <action name="ToggleOmnipresent"/>
+        </keybind>
+        <keybind key="W-a">
+            <action name="ToggleAlwaysOnTop"/>
+        </keybind>
+        <keybind key="W-b">
+            <action name="Execute">
+                <command>bat</command>
+            </action>
+        </keybind>
+        <keybind key="W-f">
+            <action name="ToggleMaximize"/>
+            <action name="ToggleDecorations"/>
+        </keybind>
+        <keybind key="W-m">
+            <action name="ToggleFullscreen"/>
+        </keybind>
+        <keybind key="W-q">
+            <action name="Close"/>
+        </keybind>
+        <keybind key="A-Tab">
+            <action name="NextWindow">
+                <dialog>none</dialog>
+                <finalactions>
+                    <action name="Focus"/>
+                    <action name="Raise"/>
+                    <action name="Unshade"/>
+                </finalactions>
+            </action>
+        </keybind>
+        <keybind key="W-Return">
+            <action name="Execute">
+                <command>st</command>
+            </action>
+        </keybind>
+        <keybind key="W-d">
+            <action name="Execute">
+                <command>st -g '30x1+0' -n launcher -e men</command>
+            </action>
+        </keybind>
+        <keybind key="W-c">
+            <action name="MoveToCenter"/>
+        </keybind>
+        <keybind key="XF86AudioMute">
+            <action name="Execute">
+                <command>vol toggle</command>
+            </action>
+        </keybind>
+        <keybind key="XF86AudioRaiseVolume">
+            <action name="Execute">
+                <command>vol 5%+</command>
+            </action>
+        </keybind>
+        <keybind key="XF86AudioLowerVolume">
+            <action name="Execute">
+                <command>vol 5%-</command>
+            </action>
+        </keybind>
+        <keybind key="W-p">
+            <action name="Execute">
+                <command>scr</command>
+            </action>
+        </keybind>
+        <keybind key="W-w">
+            <action name="Execute">
+                <command>bud ~/Pictures/Wallpapers</command>
+            </action>
+        </keybind>
+    </keyboard>
+    <mouse>
+        <context name="Frame">
+            <mousebind button="W-Left" action="Press">
+                <action name="Focus"/>
+                <action name="Raise"/>
+            </mousebind>
+            <mousebind button="W-Left" action="Drag">
+                <action name="Move"/>
+            </mousebind>
+            <mousebind button="W-Right" action="Press">
+                <action name="Focus"/>
+                <action name="Raise"/>
+                <action name="Unshade"/>
+            </mousebind>
+            <mousebind button="W-Right" action="Drag">
+                <action name="Resize"/>
+            </mousebind>
+        </context>
+        <context name="Titlebar">
+            <mousebind button="Left" action="Drag">
+                <action name="Move"/>
+            </mousebind>
+            <mousebind button="Left" action="DoubleClick">
+                <action name="ToggleMaximizeFull"/>
+            </mousebind>
+        </context>
+        <context name="Top">
+            <mousebind button="Left" action="Drag">
+                <action name="Resize">
+                    <edge>top</edge>
+                </action>
+            </mousebind>
+        </context>
+    </mouse>
+    <applications>
+        <application class="mpv"><decor>no</decor></application>
+        <application title="qiv*"><decor>no</decor></application>
+        <application class="Chrom*"><decor>no</decor></application>
+        <application class="*" type="normal">
+            <position force="yes">
+                <x>center</x>
+                <y>center</y>
+            </position>
+        </application>
+        <application name="music" type="normal">
+            <position force="yes">
+                <x>2449</x>
+                <y>1050</y>
+            </position>
+        </application>
+        <application name="launcher">
+            <decor>no</decor>
+            <position force="yes">
+                <x>0</x>
+                <y>0</y>
+            </position>
+        </application>
+    </applications>
 </openbox_config>
