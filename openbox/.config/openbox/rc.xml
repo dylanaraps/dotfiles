@@ -1,9 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <openbox_config xmlns="http://openbox.org/3.4/rc" xmlns:xi="http://www.w3.org/2001/XInclude">
-    <resistance>
-        <strength>10</strength>
-        <screen_edge_strength>20</screen_edge_strength>
-    </resistance>
     <focus>
         <focusNew>yes</focusNew>
         <followMouse>yes</followMouse>
@@ -12,18 +8,11 @@
         <focusDelay>0</focusDelay>
         <raiseOnFocus>no</raiseOnFocus>
     </focus>
-    <placement>
-        <policy>Smart</policy>
-        <center>yes</center>
-        <monitor>Mouse</monitor>
-        <primaryMonitor>1</primaryMonitor>
-    </placement>
     <theme>
         <name>thicc</name>
-        <titleLayout>LC</titleLayout>
+        <titleLayout></titleLayout>
         <cornerRadius>5</cornerRadius>
         <keepBorder>no</keepBorder>
-        <animateIconify>no</animateIconify>
         <font place="ActiveWindow">
             <size>15</size>
         </font>
