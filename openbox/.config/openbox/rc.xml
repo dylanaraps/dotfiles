@@ -9,7 +9,7 @@
     <theme>
         <name>thicc</name>
         <titleLayout></titleLayout>
-        <cornerRadius>5</cornerRadius>
+        <cornerRadius>15</cornerRadius>
         <keepBorder>no</keepBorder>
     </theme>
     <desktops>
@@ -94,6 +94,8 @@
         </keybind>
         <keybind key="W-f">
             <action name="ToggleMaximize"/>
+        </keybind>
+        <keybind key="W-t">
             <action name="ToggleDecorations"/>
         </keybind>
         <keybind key="W-m">
@@ -119,7 +121,7 @@
         </keybind>
         <keybind key="W-d">
             <action name="Execute">
-                <command>st -g '30x1+0' -n launcher -e men</command>
+                <command>dmenu_run</command>
             </action>
         </keybind>
         <keybind key="W-c">
@@ -127,17 +129,17 @@
         </keybind>
         <keybind key="XF86AudioMute">
             <action name="Execute">
-                <command>vol toggle</command>
+                <command>amixer sset Master toggle</command>
             </action>
         </keybind>
         <keybind key="XF86AudioRaiseVolume">
             <action name="Execute">
-                <command>vol 5%+</command>
+                <command>amixer sset Master 5%+</command>
             </action>
         </keybind>
         <keybind key="XF86AudioLowerVolume">
             <action name="Execute">
-                <command>vol 5%-</command>
+                <command>amixer sset Master 5%-</command>
             </action>
         </keybind>
         <keybind key="W-p">
@@ -187,9 +189,9 @@
     </mouse>
     <applications>
         <application class="mpv"><decor>no</decor></application>
-        <application title="qiv*"><decor>no</decor></application>
-        <application class="Chrom*"><decor>no</decor></application>
+        <application class="Night*"><decor>no</decor></application>
         <application class="*" type="normal">
+            <decor>no</decor>
             <position force="yes">
                 <x>center</x>
                 <y>center</y>

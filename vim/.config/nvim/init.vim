@@ -94,7 +94,7 @@ set undofile
 set undolevels=1000
 set undoreload=1000
 set autochdir
-set clipboard+=unnamedplus
+set clipboard=unnamedplus
 set nostartofline
 set notimeout
 set nottimeout
