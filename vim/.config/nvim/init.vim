@@ -39,16 +39,16 @@ Plug 'w0rp/ale'
 Plug 'kana/vim-textobj-user'
 Plug 'kana/vim-textobj-line'
 Plug 'terryma/vim-expand-region'
-	vmap v <Plug>(expand_region_expand)
-	vmap <C-v> <Plug>(expand_region_shrink)
+    vmap v <Plug>(expand_region_expand)
+    vmap <C-v> <Plug>(expand_region_shrink)
 
 Plug 'mzlogin/vim-markdown-toc'
 Plug 'rstacruz/vim-closer'
 Plug 'tpope/vim-commentary'
 Plug 'tpope/vim-surround'
-	nmap ss ysiw
-	nmap sl yss
-	vmap s S
+    nmap ss ysiw
+    nmap sl yss
+    vmap s S
 
 call plug#end()
 filetype plugin on
