@@ -1,5 +1,6 @@
 set encoding=utf-8
 scriptencoding utf-8
+let g:is_bash = 1
 
 if empty(glob('~/.config/nvim/autoload/plug.vim'))
     silent !curl -fLo ~/.config//nvim/autoload/plug.vim --create-dirs
