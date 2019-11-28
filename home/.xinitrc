@@ -8,5 +8,6 @@ xset m 1/1
 xset r rate 200 50
 xset s off -dpms
 
-exec sowm
+xinput disable 'ELAN21EF:00 04F3:2200 Touchscreen'
 
+exec sowm

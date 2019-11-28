@@ -1,8 +1,27 @@
 #!/bin/sh
 
-case $- in *i*) ;; *) return; esac
+export PATH=/usr/lib/ccache/bin:~/bin:~/.local/bin:~/node_modules/.bin:$PATH
+export FFF_OPENER=opn
+export HISTFILESIZE=10000
+export PASH_KEYID=dylan.araps@gmail.com
 
-alias gj="git add .; git commit -m 'docs: update'; git push"
-alias ls="ls --color=auto --group-directories-first"
+export CMAKE_GENERATOR=Ninja
+export CFLAGS="-march=native -pipe -O3 -fno-math-errno"
+export CXXLAGS="-march=native -pipe -O3 -fno-math-errno"
+export LDFLAGS=""
 
-cat ~/.cache/pal/colors
+alias gj="git add .;git commit -m 'docs: update';git push"
+alias vi=vim
+alias mp3="youtube-dl -x --embed-thumbnail --audio-format mp3"
+
+paleta -r
+
+git() {
+    case $1 in commit) set -- "$@" -S; esac
+
+    command git "$@"
+}
+
+sudo() {
+    su -c "$*"
+}
