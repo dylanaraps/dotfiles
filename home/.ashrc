@@ -13,7 +13,7 @@ export PASH_KEYID=dylan.araps@gmail.com
 
 export CMAKE_GENERATOR=Ninja
 export CFLAGS='-march=native -pipe -O3 -fno-math-errno'
-export CXXLAGS="$CFLAGS"
+export CXXFLAGS="$CFLAGS"
 export MAKEFLAGS='-j5'
 export LDFLAGS=""
 
