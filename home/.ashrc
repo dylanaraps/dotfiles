@@ -2,7 +2,12 @@
 
 paleta -r
 
-export PATH=/usr/lib/ccache/bin:~/bin:~/.local/bin:~/node_modules/.bin:$PATH
+export PATH=$PATH:~/bin:~/.local/bin
+export PATH=/usr/lib/ccache/bin:~/bin:~/.local/bin:$PATH
+
+export PS1='-> '
+export QT_AUTO_SCREEN_SCALE_FACTOR=2
+export LESSHISTFILE=-
 export HISTFILESIZE=10000
 export PASH_KEYID=dylan.araps@gmail.com
 
