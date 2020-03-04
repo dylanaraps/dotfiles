@@ -1,6 +1,6 @@
 #!/bin/sh
 
-(cat ~/.cache/paleta/colors 2>/dev/null) &
+(cat ~/.cache/paleta/colors 2>/dev/null &)
 
 export PATH=/usr/lib/ccache/bin:~/bin:~/.local/bin:$PATH
 
