@@ -43,6 +43,10 @@ Plug 'tpope/vim-surround'
     nmap sl yss
     vmap s S
 
+Plug 'maxboisvert/vim-simple-complete'
+    let g:vsc_type_complete_length = 1
+    set complete=.,w,b,u,t,i
+
 call plug#end()
 filetype plugin on
 
@@ -111,9 +115,10 @@ augroup General
     au!
     autocmd FileType markdown,text setlocal spell
     autocmd FileType * setlocal formatoptions-=cro
-    autocmd FileType xdefaults setlocal commentstring=!\ %s
     autocmd FileType scss,css  setlocal shiftwidth=2 softtabstop=2
+    autocmd BufEnter *.txt  setlocal colorcolumn=70
+    autocmd BufEnter *.txt  highlight ColorColumn ctermbg=1
 
     autocmd BufWritePre [:;]* throw 'Forbidden file name: ' . expand('<afile>')
-    autocmd BufWritePre * :%s/\s\+$//e
+    " autocmd BufWritePre * :%s/\s\+$//e
 augroup END

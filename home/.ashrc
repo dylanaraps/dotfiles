@@ -1,8 +1,7 @@
 #!/bin/sh
 
-paleta -r
+(cat ~/.cache/paleta/colors 2>/dev/null) &
 
-export PATH=$PATH:~/bin:~/.local/bin
 export PATH=/usr/lib/ccache/bin:~/bin:~/.local/bin:$PATH
 
 export PS1='-> '
@@ -10,22 +9,13 @@ export QT_AUTO_SCREEN_SCALE_FACTOR=2
 export LESSHISTFILE=-
 export HISTFILESIZE=10000
 export PASH_KEYID=dylan.araps@gmail.com
+export FFF_OPENER=op
 
 export CMAKE_GENERATOR=Ninja
 export CFLAGS='-march=native -pipe -O3 -fno-math-errno'
 export CXXFLAGS="$CFLAGS"
-export MAKEFLAGS='-j5'
+export MAKEFLAGS='-j4'
 export LDFLAGS=""
 
-alias gj="git add .;git commit -m 'docs: update';git push"
-alias mp3="youtube-dl -x --embed-thumbnail --audio-format mp3"
-
-git() {
-    case $1 in commit|pull) set -- "$@" -S; esac
-
-    command git "$@"
-}
-
-sudo() {
-    su -c "$*"
-}
+export KISS_PATH=/home/goldie/projects/kiss-new/testing:/home/goldie/dylan-repo:/home/goldie/projects/kiss-new/core:/home/goldie/projects/kiss-new/extra:/home/goldie/projects/kiss-new/xorg:/home/goldie/projects/community/community
+export KISS_HOOK=~/bin/kh
