@@ -1,6 +1,6 @@
 MIT License
 
-Copyright (c) 2017 Dylan Araps
+Copyright (c) 2017-2020 Dylan Araps
 
 Permission is hereby granted, free of charge, to any person obtaining a copy
 of this software and associated documentation files (the "Software"), to deal
