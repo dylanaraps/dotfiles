@@ -1,6 +1,7 @@
 export ENV=~/.ashrc
+export PATH=/usr/lib/ccache/bin:~/bin:~/.local/bin:$PATH:
 
-read -rp "start X?" && [ -z "$DISPLAY" ] && {
+[ "$DISPLAY" ] || {
     export DISPLAY=:0
     x
 }

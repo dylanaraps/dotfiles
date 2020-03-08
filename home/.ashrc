@@ -2,7 +2,7 @@
 
 (cat ~/.cache/paleta/colors 2>/dev/null &)
 
-export PATH=/usr/lib/ccache/bin:~/bin:~/.local/bin:$PATH
+export PATH=/usr/lib/ccache/bin:~/bin:~/.local/bin:$PATH:
 
 export PS1='-> '
 export QT_AUTO_SCREEN_SCALE_FACTOR=2
