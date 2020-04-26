@@ -1,21 +1,29 @@
 #!/bin/sh
 
-(cat ~/.cache/paleta/colors 2>/dev/null &)
-
-export PATH=/usr/lib/ccache/bin:~/bin:~/.local/bin:$PATH:
-
+export PATH=/usr/lib/ccache/bin:~/bin:~/conf/data/bin:$PATH:
 export PS1='-> '
-export QT_AUTO_SCREEN_SCALE_FACTOR=2
 export LESSHISTFILE=-
 export HISTFILESIZE=10000
+export HISTFILE=~/conf/.ash_history
 export PASH_KEYID=dylan.araps@gmail.com
 export FFF_OPENER=op
+export XDG_CONFIG_HOME=~/conf
+export XDG_DATA_HOME=~/conf/data
+export XDG_CACHE_HOME=~/conf/cache
+export CCACHE_DIR=~/conf/ccache
+export GNUPGHOME=~/conf/data/gnupg
+export GIT_SSH_COMMAND='ssh -o IdentitiesOnly=yes -i /home/dylan/conf/ssh/id_rsa -F /dev/null -o UserKnownHostsFile=/home/dylan/conf/ssh/known_hosts'
 
 export CMAKE_GENERATOR=Ninja
 export CFLAGS='-march=native -pipe -O3 -fno-math-errno'
 export CXXFLAGS="$CFLAGS"
-export MAKEFLAGS='-j4'
+export MAKEFLAGS='-j8'
 export LDFLAGS=""
 
-export KISS_PATH=/home/goldie/projects/kiss-new/testing:/home/goldie/dylan-repo:/home/goldie/projects/kiss-new/core:/home/goldie/projects/kiss-new/extra:/home/goldie/projects/kiss-new/xorg:/home/goldie/projects/community/community
+export KISS_PATH=~/projects/drepo:~/projects/repo/testing:~/projects/repo/core:~/projects/repo/extra:~/projects/repo/xorg:~/projects/community/community
 export KISS_HOOK=~/bin/kh
+
+# TODO: $VIMSOMETHING
+alias vim="vim -u \$HOME/conf/vim/vimrc"
+
+(cat ~/conf/cache/paleta/colors 2>/dev/null &)
