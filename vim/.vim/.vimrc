@@ -1,9 +1,14 @@
 set encoding=utf-8
+set nocompatible
 scriptencoding utf-8
 let g:is_bash = 1
+set directory=~/conf/vim,~/,/tmp
+set backupdir=~/conf/vim,~/,/tmp
+set viminfo+=n~/conf/vim/viminfo
+set runtimepath=~/conf/vim,~/conf/vim/after,$VIM,$VIMRUNTIME
 
-if empty(glob('~/.config/nvim/autoload/plug.vim'))
-    silent !curl -fLo ~/.config//nvim/autoload/plug.vim --create-dirs
+if empty(glob('~/conf/vim/autoload/plug.vim'))
+    silent !curl -fLo ~/.config/vim/autoload/plug.vim --create-dirs
            \ https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
 
     augroup PLUG
@@ -12,22 +17,27 @@ if empty(glob('~/.config/nvim/autoload/plug.vim'))
     augroup END
 endif
 
-call plug#begin('~/.config/nvim/plugged')
+call plug#begin('~/conf/vim/plugged')
 
+Plug 'cormacrelf/vim-colors-github'
 Plug '~/projects/wal.vim'
 Plug 'junegunn/goyo.vim'
     augroup Goyo
         autocmd!
+        autocmd VimResized * execute "normal \<C-W>="
         autocmd BufReadPost * Goyo        82x80%
         autocmd BufReadPost *.md Goyo     76x80%
         autocmd BufReadPost neofetch Goyo 102x80%
-        autocmd VimResized * execute "normal \<C-W>="
     augroup END
 
 Plug 'w0rp/ale'
+    let g:ale_completion_enabled = 1
     let g:ale_sign_column_always = 1
     let g:ale_lint_on_text_changed = 'never'
     let g:ale_fix_on_save = 1
+    let g:ale_completion_enabled = 1
+    nn <silent> <C-d> :ALEGoToDefinition<cr>
+    nn <silent> <C-e> :ALEHover<cr>
 
 Plug 'kana/vim-textobj-user'
 Plug 'kana/vim-textobj-line'
@@ -52,6 +62,11 @@ filetype plugin on
 
 colorscheme wal
 
+" set termguicolors
+" let &t_8f = "\<Esc>[38;2;%lu;%lu;%lum"
+" let &t_8b = "\<Esc>[48;2;%lu;%lu;%lum"
+" colorscheme github
+
 cmap w!! w !sudo tee % >/dev/null
 cnoreabbrev q qa
 nmap az za
@@ -59,6 +74,7 @@ nnoremap <S-Tab> :bp<CR>
 nnoremap <Tab> :bn<CR>
 nnoremap H 0
 nnoremap L A
+nnoremap silent <esc> <esc>:noh<cr>
 nnoremap j gj
 nnoremap k gk
 noremap ; :
@@ -100,8 +116,9 @@ set nrformats-=octal
 set modeline
 set backspace=indent,eol,start
 set noswapfile
-set backupdir=~/.config/nvim/tmp/backups/
-set undodir=~/.config/nvim/tmp/undo/
+set backupdir=~/conf/vim/tmp/backups/
+set undodir=~/conf/vim/tmp/undo/
+set tabstop=4
 
 if !isdirectory(expand(&backupdir))
     call mkdir(expand(&backupdir), 'p')
@@ -116,9 +133,12 @@ augroup General
     autocmd FileType markdown,text setlocal spell
     autocmd FileType * setlocal formatoptions-=cro
     autocmd FileType scss,css  setlocal shiftwidth=2 softtabstop=2
-    autocmd BufEnter *.txt  setlocal colorcolumn=70
+    autocmd BufEnter *.txt  setlocal colorcolumn=80 virtualedit=all
     autocmd BufEnter *.txt  highlight ColorColumn ctermbg=1
 
     autocmd BufWritePre [:;]* throw 'Forbidden file name: ' . expand('<afile>')
-    " autocmd BufWritePre * :%s/\s\+$//e
+    autocmd BufWritePre * :%s/\s\+$//e
+    autocmd BufReadPost * call setpos(".", getpos("'\""))
+    autocmd BufEnter * execute "normal \<C-W>="
+    autocmd BufReadPre *.c,*.h  colorscheme github
 augroup END

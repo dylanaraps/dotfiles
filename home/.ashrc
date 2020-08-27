@@ -1,18 +1,20 @@
 #!/bin/sh
 
-export PATH=/usr/lib/ccache/bin:~/bin:~/conf/data/bin:$PATH:
+{ read -r v < ~/.pal; printf %s "$v"; unset v; }
+
+export PATH=/usr/lib/ccache/bin:$HOME/bin:$HOME/conf/data/bin:$PATH:
 export PS1='-> '
 export LESSHISTFILE=-
-export HISTFILESIZE=10000
-export HISTFILE=~/conf/.ash_history
+export HISTFILE=$HOME/conf/.ash_history
 export PASH_KEYID=dylan.araps@gmail.com
-export FFF_OPENER=op
-export XDG_CONFIG_HOME=~/conf
-export XDG_DATA_HOME=~/conf/data
-export XDG_CACHE_HOME=~/conf/cache
-export CCACHE_DIR=~/conf/ccache
-export GNUPGHOME=~/conf/data/gnupg
+export XDG_CONFIG_HOME=$HOME/conf
+export XDG_DATA_HOME=$HOME/conf/data
+export XDG_CACHE_HOME=$HOME/conf/cache
+export CCACHE_DIR=$HOME/conf/ccache
+export GNUPGHOME=$HOME/conf/data/gnupg
+export MPV_HOME=$XDG_CONFIG_HOME/mpv
 export GIT_SSH_COMMAND='ssh -o IdentitiesOnly=yes -i /home/dylan/conf/ssh/id_rsa -F /dev/null -o UserKnownHostsFile=/home/dylan/conf/ssh/known_hosts'
+
 
 export CMAKE_GENERATOR=Ninja
 export CFLAGS='-march=native -pipe -O3 -fno-math-errno'
@@ -20,10 +22,10 @@ export CXXFLAGS="$CFLAGS"
 export MAKEFLAGS='-j8'
 export LDFLAGS=""
 
-export KISS_PATH=~/projects/drepo:~/projects/repo/testing:~/projects/repo/core:~/projects/repo/extra:~/projects/repo/xorg:~/projects/community/community
-export KISS_HOOK=~/bin/kh
+export KISS_PATH=$HOME/projects/drepo:$HOME/projects/repo/testing:$HOME/projects/repo/core:$HOME/projects/repo/extra:$HOME/projects/repo/xorg:$HOME/projects/community/community
+export KISS_HOOK=$HOME/bin/kh
+export EDITOR=nvim
+export SHFM_OPENER=$HOME/bin/opener
 
 # TODO: $VIMSOMETHING
-alias vim="vim -u \$HOME/conf/vim/vimrc"
-
-(cat ~/conf/cache/paleta/colors 2>/dev/null &)
+alias vim="nvim -u \$HOME/conf/vim/vimrc"
