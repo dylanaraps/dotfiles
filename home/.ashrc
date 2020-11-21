@@ -1,8 +1,8 @@
 #!/bin/sh
 
+# Load colorscheme
 { read -r v < ~/.pal; printf %s "$v"; unset v; }
 
-export PATH=/usr/lib/ccache/bin:$HOME/bin:$HOME/conf/data/bin:$PATH:
 export PS1='-> '
 export LESSHISTFILE=-
 export HISTFILE=$HOME/conf/.ash_history
@@ -14,18 +14,13 @@ export CCACHE_DIR=$HOME/conf/ccache
 export GNUPGHOME=$HOME/conf/data/gnupg
 export MPV_HOME=$XDG_CONFIG_HOME/mpv
 export GIT_SSH_COMMAND='ssh -o IdentitiesOnly=yes -i /home/dylan/conf/ssh/id_rsa -F /dev/null -o UserKnownHostsFile=/home/dylan/conf/ssh/known_hosts'
-
-
+export XDG_RUNTIME_DIR=/run/user/$(id -u)
 export CMAKE_GENERATOR=Ninja
 export CFLAGS='-march=native -pipe -O3 -fno-math-errno'
 export CXXFLAGS="$CFLAGS"
 export MAKEFLAGS='-j8'
 export LDFLAGS=""
-
-export KISS_PATH=$HOME/projects/drepo:$HOME/projects/repo/testing:$HOME/projects/repo/core:$HOME/projects/repo/extra:$HOME/projects/repo/xorg:$HOME/projects/community/community
+export KISS_PATH=$HOME/projects/d-repo:$HOME/projects/repo/testing:$HOME/projects/repo/core:$HOME/projects/repo/extra:$HOME/projects/repo/xorg:$HOME/projects/community/community
 export KISS_HOOK=$HOME/bin/kh
-export EDITOR=nvim
+export EDITOR=vim
 export SHFM_OPENER=$HOME/bin/opener
-
-# TODO: $VIMSOMETHING
-alias vim="nvim -u \$HOME/conf/vim/vimrc"
