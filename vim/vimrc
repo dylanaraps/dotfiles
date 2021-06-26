@@ -1,23 +1,23 @@
 if empty(glob('~/.vim/autoload/plug.vim'))
-  silent !curl -fLo ~/.vim/autoload/plug.vim --create-dirs
-    \ https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
-  autocmd VimEnter * PlugInstall --sync | source $MYVIMRC
+    silent !curl -fLo ~/.vim/autoload/plug.vim --create-dirs
+        \ https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
+    au VimEnter * PlugInstall --sync | source $MYVIMRC
 endif
 
 call plug#begin('~/.vim/plugged')
 
-Plug 'junegunn/goyo.vim'
-Plug '~/projects/wal.vim'
 Plug 'kana/vim-textobj-user'
 Plug 'kana/vim-textobj-line'
 Plug 'terryma/vim-expand-region'
 Plug 'rstacruz/vim-closer'
 Plug 'dense-analysis/ale'
 Plug 'tpope/vim-commentary'
+Plug 'cormacrelf/vim-colors-github'
 
 call plug#end()
 
-colorscheme wal
+runtime ftplugin/man.vim
+colorscheme github
 
 vmap v <Plug>(expand_region_expand)
 vmap <C-v> <Plug>(expand_region_shrink)
@@ -27,43 +27,33 @@ nnoremap <S-Tab> :bp<CR>
 nnoremap <Tab> :bn<CR>
 nnoremap H 0
 nnoremap L A
-nnoremap silent <esc> <esc>:noh<cr>
 nnoremap j gj
 nnoremap k gk
 nnoremap g= mvgg=G`g
 noremap ; :
 vmap <BS> <gv
 vmap <TAB> >gv
-vnoremap H 0
-vnoremap L $
-vnoremap j gj
-vnoremap k gk
 xnoremap p pgvy
 
 set backspace=indent,eol,start
-
 set hlsearch
 set incsearch
 set ignorecase
 set smartcase
-
+set number
 set undofile
 set undolevels=1000
 set undoreload=1000
-
-set mouse=
-set ttymouse=
-
 set breakindent
 set tabstop=4
 set shiftwidth=4
 set expandtab
-
 set clipboard=unnamedplus
-
 set noswapfile
-set backupdir=~/conf/vim/tmp/backups/
-set undodir=~/conf/vim/tmp/undo/
+set backupdir=~/.config/vim/tmp/backups/
+set undodir=~/.config/vim/tmp/undo/
+set synmaxcol=150
+set keywordprg=:Man
 
 if !isdirectory(expand(&backupdir))
     call mkdir(expand(&backupdir), 'p')
@@ -73,37 +63,18 @@ if !isdirectory(expand(&undodir))
     call mkdir(expand(&undodir), 'p')
 endif
 
-set synmaxcol=150
-
 augroup bacon
-     autocmd FileType man nnoremap <buffer> K :bd<cr>
-     autocmd BufWritePre [:;]* throw 'Forbidden file name: ' . expand('<afile>')
-     autocmd BufWritePre * :%s/\s\+$//e
-     autocmd BufEnter *.txt  setlocal colorcolumn=80 virtualedit=all
-     autocmd BufEnter *.txt  highlight ColorColumn ctermbg=1 guibg=red
-     autocmd BufEnter * Goyo 82
-     autocmd VimResized * execute "normal \<C-W>="
+     au FileType man nnoremap <buffer> K :bd<cr>
+     au BufWritePre [:;]* throw 'Forbidden file name: ' . expand('<afile>')
+     au BufWritePre * :%s/\s\+$//e
+     au BufEnter *.txt  setlocal colorcolumn=80 virtualedit=all
+     au BufEnter *.txt  highlight ColorColumn ctermbg=1 guibg=red
 augroup END
-
-runtime ftplugin/man.vim
-set keywordprg=:Man
 
 set signcolumn=yes
 let g:ale_lint_on_text_changed = 'never'
 let g:ale_lint_on_insert_leave = 0
 let g:ale_sign_column_always = 1
 let g:ale_linters_explicit = 1
-let g:ale_linters = {
-\   'c': ['cc', 'clangd', 'clangtidy'],
-\}
-let g:ale_c_clangtidy_checks = [
-    \ '*',
-    \ '-llvmlibc-restrict-system-libc-headers',
-    \ '-hicpp*',
-    \ '-cpp*',
-    \ '-readability-magic-numbers',
-    \ '-readability-braces-around-statements',
-    \ '-android-cloexec-*'
-\]
 nmap <silent> <C-k> <Plug>(ale_previous_wrap)
 nmap <silent> <C-j> <Plug>(ale_next_wrap)
